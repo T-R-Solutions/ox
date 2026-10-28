@@ -1,0 +1,36 @@
+{
+  "environment": {
+    "python": "3.13.16",
+    "system": "Linux-7.3.0-1-default-x86_64-with-glibc2.44"
+  },
+  "results": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .",
+      "exit_code": 0,
+      "log": "docs/validation/runs/20261026T180053.837637Z/01.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+      "exit_code": 0,
+      "log": "docs/validation/runs/20261026T180053.837637Z/02.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 src/scripts/check-ox.py",
+      "exit_code": 0,
+      "log": "docs/validation/runs/20261026T180053.837637Z/03.log",
+      "sha256": "31429b9ecf435eaa5381737d261f375962a9e6aee8f1e4bede05b7802212ccd6"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s src/tests -v",
+      "exit_code": 0,
+      "log": "docs/validation/runs/20261026T180053.837637Z/04.log",
+      "sha256": "456ea1863cb4c1dd77db792c62657e3f72373689bdcb44934698e684e54812ea"
+    }
+  ],
+  "limitations": [
+    "Structural validation and tooling tests only; not product integration or model efficacy."
+  ],
+  "input_manifest": "docs/validation/runs/20261026T180053.837637Z/inputs.json"
+}

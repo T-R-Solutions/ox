@@ -1,0 +1,9 @@
+# Reexame do contrato atual e das observações históricas
+
+2026-10-26, agente executor. Após fechar tasks/plan, o executor reexaminou specs, planos, tarefas, rastreabilidade, resultados estruturais e respostas históricas contra os critérios atuais. A revisão confirmou que não se alteraram os quatro cenários técnicos originais de cada skill, os critérios adicionais de autoria/ensaio nem o escopo de preparação. As mudanças de tasks registram trabalho realizado; o apêndice dos plans registra consultas posteriores, não uso da skill durante a própria criação.
+
+A observação E-AGENT vincula somente o material estável disponível no ensaio (skills/referências técnicas, catálogo e prompts); ela não afirma que o subagente leu as versões finais de spec/plan/tasks nem o gabarito. E-REVIEW vincula o resultado histórico e o oráculo ao contrato atual por nova inspeção. Isso preserva a diferença entre executar novamente o agente e reexaminar sua resposta. Inputs arquivados em agent-evals/observed-inputs.tar.gz permanecem íntegros.
+
+A rodada inicial do runner preserva seus próprios inputs e resultados. Os oito testes foram novamente executados depois de fechar a convergência inicial, em final-evidence-001/2.log. O registro E-LOCAL cita esse resultado de teste, com código/oráculos então observados; uma inspeção de contrato E-CONTRACT registra sua pertinência aos critérios atuais. As correções de metadados de proveniência posteriores não alteram o comportamento dos verificadores e recebem nova checagem schema 2, sem alegar uma nova execução da suíte ou dos agentes.
+
+Limites: reexame semântico pelo próprio autor; sem autenticação externa das execuções, sem versão imutável do modelo e sem integração do produto. As 36 pendências técnicas permanecem. Versões de evidência anteriores preservadas em pre-provenance-review/evidence.tar.gz.

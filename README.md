@@ -1,0 +1,119 @@
+# Ox — fundação sob SDD
+
+**Estado do projeto:** fase `implementation-foundation`, aplicativo `bootstrap-implemented`.
+O workspace Rust/Iced em `application/` contém 16 crates e um shell desktop mínimo.
+A baseline histórica era `not-yet-implemented`. Evidências atuais e lacunas estão
+em `sdd/features/product-bootstrap/converge.md`; F0 inteira não está concluída.
+
+Autoridades: [constituição](docs/constitution.md), [AGENTS](AGENTS.md),
+[contexto](sdd/project.md), [workflow](sdd/workflow.md) e
+[ADR de transição](docs/decisions/implementation-transition.md).
+Os três estudos externos continuam fora da distribuição e das dependências de validação.
+
+## Navegação
+
+- [Catálogo](.codex/skills/README.md): 29 skills (17 gerais, 3 condicionais, 9 especializações), com [perfil versionado](config/governance/profile.json) e [29 pontes](sdd/chain/README.md).
+- [Workflow 1.3.0](sdd/workflow.md), [evidências schema 2](sdd/evidence.md) e [features](sdd/features/README.md).
+- [Arquitetura prevista](docs/architecture/context.md), [pendências](docs/decisions/open-questions.md) e [fronteiras de confiança](docs/security/trust-boundaries.md).
+- [Decisão e mapeamento da migração](docs/decisions/governance-externalization.md), [cobertura local](docs/validation/normative-coverage.md) e [relatório histórico](docs/validation/report.md) e [transição atual](docs/validation/implementation-transition/summary.md).
+- [Proveniência](docs/structure/files.json) e baseline `docs/validation/adoption-baseline/copied-before-adaptation.tar.gz`: conservam cópias da biblioteca/SDD. Origens são rótulos históricos, sem acesso externo.
+
+## Consulta explícita
+
+Peça ao agente: “Leia .codex/skills/plugin-protocol-engineering/SKILL.md para revisar este contrato”. Para retomar: “Leia sdd/project.md e sdd/workflow.md e retome sdd/features/<nome>”. São instruções de conversa. Disponibilidade não ativa nem instala skills. Escolha uma primária pertinente e auxiliares somente para perguntas distintas. Não carregar a biblioteca inteira.
+
+distributed-systems é condicional a garantias entre falhas independentes; engineering-productivity à avaliação de fluxos/ferramentas; prompt à autoria de prompts. gleam, kotlin e postgresql não estão no perfil.
+
+## Organização do repositório
+
+- `application/`: workspace Cargo virtual, 16 crates, lockfile único e binário `ox`.
+  Fontes em `application/crates/<crate>/src/`; testes externos em
+  `application/crates/<crate>/tests/`. Não há `application/src/` ou `application/tests/`.
+- `tools/governance/scripts/`: validadores, runner e empacotador Python locais.
+- `tools/governance/tests/`: testes dessas ferramentas; dados de avaliação em `fixtures/`.
+- `config/governance/`: perfil vigente da biblioteca e cobertura normativa.
+- `docs/`, `sdd/` e `.codex/skills/`: documentação, processo e biblioteca.
+
+A [ADR de organização](docs/decisions/governance-layout.md) registra os caminhos
+atuais e a compatibilidade histórica. O validador original continua em `sdd/tools/`.
+
+## Verificação da governança e skills
+
+Na raiz do Ox, Python 3.11+ e stdlib:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .
+PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -v
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/run-checks.py
+PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/package-ox.py
+```
+
+O runner conserva rodadas, logs, ambiente e hashes em `docs/validation/runs/`. O empacotador cria `ox-governance.zip` e relatório novos em `dist/`, inspeciona archives, extrai fora da árvore e executa os cinco comandos principais; não publica nada. O manifesto usa a allowlist da governança e exclui scratch, caches e arquivos da raiz fora desse contrato, incluindo todo o workspace `application/`. Os testes usam cópia explícita e processos com auditoria de leitura da raiz de origem.
+
+O modo padrão aceita pendências documentadas; `--structure-only` não aceita a mudança. `--require-fresh` confere vínculos de conteúdo, não adequação do oráculo. Não exigir aprovação global enquanto os 36 cenários técnicos das skills estiverem NÃO VERIFICADO.
+
+## Histórico e limites
+
+Scripts de autoria inicial e verify-boundary foram retirados da distribuição; não são comandos suportados. O backup anterior completo está fora do projeto; nomes/checksums da retirada estão na migração. Não há dependência desse backup. Observações antigas conservadas em archives/relatórios históricos não demonstram a configuração atual. As evidências correntes são as das features e do registro de transição; o relatório anterior conserva seu escopo histórico.
+
+Skills copiadas, recursos, workflow, evidence, templates e validador SDD permanecem byte a byte. Estrutura, inspeção semântica, resposta observada de agente e integração de produto são níveis distintos. Termos de terceiros, distribuição comercial, plataforma e sandbox aguardam decisões antes de produto público; não são resolvidos por esta migração.
+
+## Integração das skills com SDD
+
+O [guia de uso](docs/development/sdd-skills.md) distingue indicação, seleção,
+consulta e uso, com exemplos de rota local e completa. As pontes transportam IDs,
+perguntas e resultados; as skills oferecem métodos, sem substituir autoridades.
+
+## Verificação do aplicativo
+
+Os comandos Python verificam governança, SDD e contratos das skills. Não comprovam
+compilação Rust, integração Iced, eficácia de sandbox ou aceitação do aplicativo.
+Em Linux x86_64, com Rust stable e bibliotecas gráficas X11/Wayland disponíveis:
+
+```bash
+cd application
+cargo run -p ox-app --bin ox
+cargo check --workspace
+cargo fmt --all -- --check
+cargo test --workspace
+cargo test --workspace -- --list
+cargo clippy --workspace --all-targets -- -D warnings
+# Requer sessão X11 e move o ponteiro para testar a janela do Ox:
+cargo test -p ox-app --test desktop -- --ignored --nocapture --test-threads=1
+```
+
+A janela permite mostrar/ocultar detalhes e sair. Agentes, host de plugins,
+persistência e indexadores não estão disponíveis. Fontes próprias proíbem unsafe;
+as dependências gráficas possuem código nativo/unsafe. Toolchain stable é móvel:
+logs registram a versão observada, o lockfile fixa dependências. Piso declarado 1.99.
+Os registros de produto e seus inputs não integram o pacote de governança.
+
+## Pacote de governança
+
+`tools/governance/scripts/package-ox.py` produz exclusivamente `ox-governance.zip`, com
+`package_kind=governance` e `product_included=false` no ZIP e no recibo externo.
+A allowlist inclui `tools/governance/` e `config/governance/`; não inclui `src/`,
+`application/` (manifesto, lockfile, crates, testes e target), `Cargo.toml`,
+`Cargo.lock` ou `crates/` soltos na raiz, outras ferramentas/configurações, binários ou instaladores.
+O pipeline do aplicativo exigirá manifestos, build, testes e distribuição próprios.
+O comando não publica o pacote.
+
+## Compartilhamento limpo e licenciamento
+
+Consulte [organização e recuperação](docs/development/sharing.md) e
+[análise de licenciamento](docs/licensing/review.md). A revisão de preservação das
+nove especializações está na [ADR maintenance-001](docs/decisions/maintenance-001.md).
+Para copiar somente o conteúdo governado, sem compactar, use um destino novo:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/export-clean.py /tmp/ox-share-review
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/verify-maintenance.py
+```
+
+O comando de exportação cria uma pasta, não publica nada e não gera ZIP. GPL-3.0-only foi escolhida para material próprio, com texto em [LICENSE](LICENSE)
+e escopo em [NOTICE](NOTICE). Titular do material próprio: Rodrigo Batista. Os direitos dos materiais copiados continuam pendentes; não há prontidão para
+distribuição pública. O relatório de composição usa bytes da árvore, não os 73 MB
+do arquivo externo enviado anteriormente pelo mantenedor.

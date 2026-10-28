@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "environment": "Python 3.13.16; Linux; maintenance-001",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Contexto registra implementation-foundation e not-yet-implemented; autoridades permitem desenvolvimento delimitado e não concedem execução irrestrita.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "AGENTS remete às autoridades; guia de integração distingue seleção, consulta e uso, rota local/completa e contribuição das pontes; 29 skills, 29 pontes e SDD 1.3.0 permanecem íntegros.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Critérios de product-foundation são próprios; os 36 cenários técnicos de skill permanecem NÃO VERIFICADO e mutações que os promovam são rejeitadas.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "ZIP ox-governance.zip e recibos declaram governança sem produto; manifesto exclui Cargo/crates e extração independente passa os cinco comandos de qualificação.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Checks e testes adversariais passam; histórico imutável e baseline mantêm bytes; observações afetadas são arquivadas e substituídas por reexame/execução novos com schema 2 e inputs atuais.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Aceitação restrita à governança/autoria; sem compilação Rust, integração Iced ou eficácia do produto.",
+    "Revisão do executor não é revisão humana independente; ensaios históricos não foram reexecutados.",
+    "Envelopes anteriores em docs/validation/governance-layout/before.tar.gz; outputs de coleta são conferidos separadamente por freshness e extração final.",
+    "Qualificação inicial de pacote tem inputs próprios anteriores à consolidação; o recibo de entrega final fica em dist/.",
+    "Os 36 cenários técnicos de skills permanecem NÃO VERIFICADO.",
+    "maintenance-001: observações afetadas preservadas em docs/validation/maintenance-001/previous/sdd/features/product-foundation/evidence.json.bin; aguardam reexame ou nova execução, sem renovar hashes antigos.",
+    "Observações maintenance-001 são novas; resultados anteriores preservados. Critérios de pacote real, novo ensaio de agente e titularidade/permissões não resolvidas permanecem NÃO VERIFICADO.",
+    "Inputs alterados pelo bootstrap; observações anteriores e aprovações históricas preservadas em docs/validation/bootstrap-governance/previous. Critérios dependentes aguardam reaceitação própria; hashes antigos não foram renovados."
+  ]
+}

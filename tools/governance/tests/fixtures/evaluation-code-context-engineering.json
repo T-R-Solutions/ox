@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "code-context-engineering-positive",
+      "kind": "selection",
+      "prompt": "Projetar índice incremental de símbolos com offsets e proveniência por snapshot e fallback sem LSP."
+    },
+    {
+      "id": "code-context-engineering-negative",
+      "kind": "selection",
+      "prompt": "Testar se embeddings melhoram localização de código comparados a busca textual, sem mudar mecanismo de indexação."
+    },
+    {
+      "id": "code-context-engineering-failure",
+      "kind": "behavior",
+      "skill": "code-context-engineering",
+      "prompt": "Dois módulos definem run; AST achou chamada run sem resolução. Arquivo foi renomeado e ganhou um caractere multibyte antes do símbolo; LSP está indisponível. Defina retorno de consulta e invalidação."
+    }
+  ],
+  "oracle": {
+    "primary": "code-context-engineering",
+    "negative": "ai-engineering",
+    "failure": "syntax not resolved; byte/encoding bounds; rename invalidation; explicit fallback"
+  }
+}

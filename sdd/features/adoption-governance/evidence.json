@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "environment": "Python 3.13.16; Linux; maintenance-001",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Manifesto e baseline locais confirmam integridade das cópias da biblioteca, sem depender dos três estudos externos.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Inventário exato, recursos íntegros e 29 pontes com identidade e caminho válidos passam no auditor local.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Cobertura dos IDs locais vigentes e revisão preservam decisões abertas, cinco estados e nove features de autoria.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Validador copiado e testes locais passam; relatório separa estrutura, revisão, simulação, agente e integração.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Aceitação restrita à governança/autoria; sem compilação Rust, integração Iced ou eficácia do produto.",
+    "Revisão do executor não é revisão humana independente; ensaios históricos não foram reexecutados.",
+    "Envelopes anteriores em docs/validation/governance-layout/before.tar.gz; outputs de coleta são conferidos separadamente por freshness e extração final.",
+    "Qualificação inicial de pacote tem inputs próprios anteriores à consolidação; o recibo de entrega final fica em dist/.",
+    "Os 36 cenários técnicos de skills permanecem NÃO VERIFICADO.",
+    "maintenance-001: observações afetadas preservadas em docs/validation/maintenance-001/previous/sdd/features/adoption-governance/evidence.json.bin; aguardam reexame ou nova execução, sem renovar hashes antigos.",
+    "Observações maintenance-001 são novas; resultados anteriores preservados. Critérios de pacote real, novo ensaio de agente e titularidade/permissões não resolvidas permanecem NÃO VERIFICADO.",
+    "Inputs alterados pelo bootstrap; observações anteriores e aprovações históricas preservadas em docs/validation/bootstrap-governance/previous. Critérios dependentes aguardam reaceitação própria; hashes antigos não foram renovados."
+  ]
+}

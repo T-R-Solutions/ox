@@ -1,0 +1,1650 @@
+--- before/README.md
++++ after/README.md
+@@ -5,7 +5,7 @@
+ ## Navegação
+ 
+ - [Contexto SDD e comandos](sdd/project.md), [workflow 1.3.0](sdd/workflow.md) e [evidências/schema 2](sdd/evidence.md).
+-- [Catálogo](skills/README.md): **29 skills** — 17 gerais copiadas, 3 condicionais copiadas, 5 novas P0 e 4 novas P1. As 20 existentes mantêm recursos e bytes de origem.
++- [Catálogo](.codex/skills/README.md): **29 skills** — 17 gerais copiadas, 3 condicionais copiadas, 5 novas P0 e 4 novas P1. As 20 existentes mantêm recursos e bytes de origem.
+ - [29 pontes](sdd/chain/README.md): 20 adaptadas e 9 novas, com paths relativos e identidade verificável.
+ - [Features](sdd/features/README.md): adoção de governança e nove SDDs `skill-*`, separados de futuras funcionalidades `product-*`.
+ - [Arquitetura e fases](docs/architecture/context.md), [decisões da adoção](docs/decisions/adoption.md), [pendências](docs/decisions/open-questions.md) e [fronteiras de confiança](docs/security/trust-boundaries.md).
+@@ -14,7 +14,7 @@
+ 
+ ## Consulta explícita
+ 
+-Peça ao agente: “Leia skills/plugin-protocol-engineering/SKILL.md para revisar a negociação de capacidades deste contrato”. Para SDD: “Leia sdd/project.md e sdd/workflow.md e retome a feature sdd/features/<nome>”. São instruções de conversa, não comandos de shell. Arquivos disponíveis não significam descoberta automática ou instalação no ambiente. Escolha uma primária por questão e auxiliares apenas para dúvidas distintas; não carregue a biblioteca inteira.
++Peça ao agente: “Leia .codex/skills/plugin-protocol-engineering/SKILL.md para revisar a negociação de capacidades deste contrato”. Para SDD: “Leia sdd/project.md e sdd/workflow.md e retome a feature sdd/features/<nome>”. São instruções de conversa, não comandos de shell. Arquivos disponíveis não significam descoberta automática ou instalação no ambiente. Escolha uma primária por questão e auxiliares apenas para dúvidas distintas; não carregue a biblioteca inteira.
+ 
+ Condicionais: distributed-systems somente com garantias entre falhas independentes; engineering-productivity somente com avaliação de fluxo/ferramenta; prompt somente quando o artefato pedido é um prompt. gleam, kotlin e postgresql não estão no perfil.
+ 
+--- before/AGENTS.md
++++ after/AGENTS.md
+@@ -4,7 +4,7 @@
+ 
+ Escolha a rota em [workflow](sdd/workflow.md). Use rota local para trabalho delimitado recuperável sem risco material; contratos, autorização, dados, concorrência e recuperação exigem rota completa. Preserve critérios de features existentes e reavalie evidências afetadas mesmo em mudanças pequenas. Retome por spec, plan, tasks, converge e inputs atuais.
+ 
+-Consulte o [catálogo](skills/README.md) por tarefa. Se pertinente, selecione uma competência primária e auxiliares apenas para perguntas distintas; confirme identidade e leia a entrada real. No fluxo completo registre ponte/versão, caminho, papel, pergunta e entregável no plan. Indicação, seleção, consulta e uso são estados diferentes. Não carregue toda a biblioteca nem siga referências recursivamente.
++Consulte o [catálogo](.codex/skills/README.md) por tarefa. Se pertinente, selecione uma competência primária e auxiliares apenas para perguntas distintas; confirme identidade e leia a entrada real. No fluxo completo registre ponte/versão, caminho, papel, pergunta e entregável no plan. Indicação, seleção, consulta e uso são estados diferentes. Não carregue toda a biblioteca nem siga referências recursivamente.
+ 
+ Registre aceitação conforme [evidence](sdd/evidence.md): critério, método, input, resultado e limite. Preserve observações anteriores; mudanças nos inputs invalidam somente evidências dependentes. Não confunda tarefas concluídas, verificações, permissões e progresso funcional. Ausência de evidência não aprova.
+ 
+--- before/.codex/skills/README.md
++++ after/.codex/skills/README.md
+@@ -1,6 +1,6 @@
+ # Catálogo de skills do Ox
+ 
+-Disponibilidade não é ativação. Para consulta explícita: “Leia skills/<nome>/SKILL.md para resolver [pergunta] em [escopo]”. Use o caminho real do catálogo abaixo; não há promessa de descoberta automática. Uma primária quando pertinente, auxiliares somente para questões distintas. Referências históricas em skills copiadas são proveniência, não dependências operacionais.
++Disponibilidade não é ativação. Para consulta explícita: “Leia .codex/skills/<nome>/SKILL.md para resolver [pergunta] em [escopo]”. Use o caminho real do catálogo abaixo; não há promessa de descoberta automática. Uma primária quando pertinente, auxiliares somente para questões distintas. Referências históricas em skills copiadas são proveniência, não dependências operacionais.
+ 
+ ## 17 gerais
+ 
+--- before/sdd/chain/ai-engineering.md
++++ after/sdd/chain/ai-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: ai-engineering
+-skill_path: skills/ai-engineering/SKILL.md
++skill_path: .codex/skills/ai-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: ai-engineering
+--- before/sdd/chain/api-testing.md
++++ after/sdd/chain/api-testing.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: api-testing
+-skill_path: skills/api-testing/SKILL.md
++skill_path: .codex/skills/api-testing/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: api-testing
+--- before/sdd/chain/application-security.md
++++ after/sdd/chain/application-security.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: application-security
+-skill_path: skills/application-security/SKILL.md
++skill_path: .codex/skills/application-security/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: application-security
+--- before/sdd/chain/database-engineering.md
++++ after/sdd/chain/database-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: database-engineering
+-skill_path: skills/database-engineering/SKILL.md
++skill_path: .codex/skills/database-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/design-review.md
++++ after/sdd/chain/design-review.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: design-review
+-skill_path: skills/design-review/SKILL.md
++skill_path: .codex/skills/design-review/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: design-review
+--- before/sdd/chain/design-system.md
++++ after/sdd/chain/design-system.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: design-system
+-skill_path: skills/design-system/SKILL.md
++skill_path: .codex/skills/design-system/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: design-system
+--- before/sdd/chain/domain-modeling.md
++++ after/sdd/chain/domain-modeling.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: domain-modeling
+-skill_path: skills/domain-modeling/SKILL.md
++skill_path: .codex/skills/domain-modeling/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: domain-modeling
+--- before/sdd/chain/observability-and-diagnostics.md
++++ after/sdd/chain/observability-and-diagnostics.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: observability-and-diagnostics
+-skill_path: skills/observability-and-diagnostics/SKILL.md
++skill_path: .codex/skills/observability-and-diagnostics/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/performance-engineering.md
++++ after/sdd/chain/performance-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: performance-engineering
+-skill_path: skills/performance-engineering/SKILL.md
++skill_path: .codex/skills/performance-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: performance-engineering
+--- before/sdd/chain/reliability-engineering.md
++++ after/sdd/chain/reliability-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: reliability-engineering
+-skill_path: skills/reliability-engineering/SKILL.md
++skill_path: .codex/skills/reliability-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: reliability-engineering
+--- before/sdd/chain/rust.md
++++ after/sdd/chain/rust.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: rust
+-skill_path: skills/rust/SKILL.md
++skill_path: .codex/skills/rust/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: rust
+--- before/sdd/chain/software-architecture.md
++++ after/sdd/chain/software-architecture.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-architecture
+-skill_path: skills/software-architecture/SKILL.md
++skill_path: .codex/skills/software-architecture/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: software-architecture
+--- before/sdd/chain/software-delivery.md
++++ after/sdd/chain/software-delivery.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-delivery
+-skill_path: skills/software-delivery/SKILL.md
++skill_path: .codex/skills/software-delivery/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/software-design.md
++++ after/sdd/chain/software-design.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-design
+-skill_path: skills/software-design/SKILL.md
++skill_path: .codex/skills/software-design/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: software-design
+--- before/sdd/chain/software-evolution.md
++++ after/sdd/chain/software-evolution.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-evolution
+-skill_path: skills/software-evolution/SKILL.md
++skill_path: .codex/skills/software-evolution/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/software-testing.md
++++ after/sdd/chain/software-testing.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-testing
+-skill_path: skills/software-testing/SKILL.md
++skill_path: .codex/skills/software-testing/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: software-testing
+--- before/sdd/chain/technical-documentation.md
++++ after/sdd/chain/technical-documentation.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: technical-documentation
+-skill_path: skills/technical-documentation/SKILL.md
++skill_path: .codex/skills/technical-documentation/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: technical-documentation
+--- before/sdd/chain/distributed-systems.md
++++ after/sdd/chain/distributed-systems.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: distributed-systems
+-skill_path: skills/distributed-systems/SKILL.md
++skill_path: .codex/skills/distributed-systems/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: distributed-systems
+--- before/sdd/chain/engineering-productivity.md
++++ after/sdd/chain/engineering-productivity.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: engineering-productivity
+-skill_path: skills/engineering-productivity/SKILL.md
++skill_path: .codex/skills/engineering-productivity/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: engineering-productivity
+--- before/sdd/chain/prompt.md
++++ after/sdd/chain/prompt.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: prompt
+-skill_path: skills/prompt/SKILL.md
++skill_path: .codex/skills/prompt/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: prompt
+--- before/sdd/chain/plugin-protocol-engineering.md
++++ after/sdd/chain/plugin-protocol-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: plugin-protocol-engineering
+-skill_path: skills/plugin-protocol-engineering/SKILL.md
++skill_path: .codex/skills/plugin-protocol-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/agent-runtime-engineering.md
++++ after/sdd/chain/agent-runtime-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: agent-runtime-engineering
+-skill_path: skills/agent-runtime-engineering/SKILL.md
++skill_path: .codex/skills/agent-runtime-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/autonomous-verification-engineering.md
++++ after/sdd/chain/autonomous-verification-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: autonomous-verification-engineering
+-skill_path: skills/autonomous-verification-engineering/SKILL.md
++skill_path: .codex/skills/autonomous-verification-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/workspace-integrity-engineering.md
++++ after/sdd/chain/workspace-integrity-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: workspace-integrity-engineering
+-skill_path: skills/workspace-integrity-engineering/SKILL.md
++skill_path: .codex/skills/workspace-integrity-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/iced-engineering.md
++++ after/sdd/chain/iced-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: iced-engineering
+-skill_path: skills/iced-engineering/SKILL.md
++skill_path: .codex/skills/iced-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/code-context-engineering.md
++++ after/sdd/chain/code-context-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: code-context-engineering
+-skill_path: skills/code-context-engineering/SKILL.md
++skill_path: .codex/skills/code-context-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/code-knowledge-graph-engineering.md
++++ after/sdd/chain/code-knowledge-graph-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: code-knowledge-graph-engineering
+-skill_path: skills/code-knowledge-graph-engineering/SKILL.md
++skill_path: .codex/skills/code-knowledge-graph-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/tool-output-engineering.md
++++ after/sdd/chain/tool-output-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: tool-output-engineering
+-skill_path: skills/tool-output-engineering/SKILL.md
++skill_path: .codex/skills/tool-output-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/chain/agent-usage-accounting.md
++++ after/sdd/chain/agent-usage-accounting.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: agent-usage-accounting
+-skill_path: skills/agent-usage-accounting/SKILL.md
++skill_path: .codex/skills/agent-usage-accounting/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- before/sdd/features/skill-plugin-protocol-engineering/plan.md
++++ after/sdd/features/skill-plugin-protocol-engineering/plan.md
+@@ -27,7 +27,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/plugin-protocol-engineering.md, bridge_version 1, e entrada skills/plugin-protocol-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `application-security` — O isolamento escolhido realmente impede os efeitos não autorizados de um plugin comprometido? Sem consulta automática.
++A ponte sdd/chain/plugin-protocol-engineering.md, bridge_version 1, e entrada .codex/skills/plugin-protocol-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `application-security` — O isolamento escolhido realmente impede os efeitos não autorizados de um plugin comprometido? Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -42,4 +42,4 @@
+ 
+ ## Consulta posterior na avaliação
+ 
+-Em 2026-10-26 um subagente interno consultou `skills/plugin-protocol-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
++Em 2026-10-26 um subagente interno consultou `.codex/skills/plugin-protocol-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+--- before/sdd/features/skill-plugin-protocol-engineering/tasks.md
++++ after/sdd/features/skill-plugin-protocol-engineering/tasks.md
+@@ -1,7 +1,7 @@
+ # Tarefas — plugin-protocol-engineering
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/plugin-protocol-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/plugin-protocol-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [x] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [x] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+--- before/sdd/features/skill-plugin-protocol-engineering/converge.md
++++ after/sdd/features/skill-plugin-protocol-engineering/converge.md
+@@ -4,12 +4,12 @@
+ 
+ | Critério | Requisito / decisão / risco / tarefa | Alteração | Método e evidência | Estado |
+ |---|---|---|---|---|
+-| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `skills/plugin-protocol-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/plugin-protocol-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/plugin-protocol-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/plugin-protocol-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/plugin-protocol-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
+-| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/plugin-protocol-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
++| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `.codex/skills/plugin-protocol-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/plugin-protocol-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/plugin-protocol-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/plugin-protocol-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/plugin-protocol-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
++| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/plugin-protocol-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
+ 
+ ## Limites e retomada
+ 
+--- before/sdd/features/skill-agent-runtime-engineering/plan.md
++++ after/sdd/features/skill-agent-runtime-engineering/plan.md
+@@ -27,7 +27,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/agent-runtime-engineering.md, bridge_version 1, e entrada skills/agent-runtime-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `reliability-engineering` — Como limitar processos órfãos, duplicação de efeitos e perda de eventos durante falhas? Sem consulta automática.
++A ponte sdd/chain/agent-runtime-engineering.md, bridge_version 1, e entrada .codex/skills/agent-runtime-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `reliability-engineering` — Como limitar processos órfãos, duplicação de efeitos e perda de eventos durante falhas? Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -42,4 +42,4 @@
+ 
+ ## Consulta posterior na avaliação
+ 
+-Em 2026-10-26 um subagente interno consultou `skills/agent-runtime-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
++Em 2026-10-26 um subagente interno consultou `.codex/skills/agent-runtime-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+--- before/sdd/features/skill-agent-runtime-engineering/tasks.md
++++ after/sdd/features/skill-agent-runtime-engineering/tasks.md
+@@ -1,7 +1,7 @@
+ # Tarefas — agent-runtime-engineering
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/agent-runtime-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/agent-runtime-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [x] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [x] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+--- before/sdd/features/skill-agent-runtime-engineering/converge.md
++++ after/sdd/features/skill-agent-runtime-engineering/converge.md
+@@ -4,12 +4,12 @@
+ 
+ | Critério | Requisito / decisão / risco / tarefa | Alteração | Método e evidência | Estado |
+ |---|---|---|---|---|
+-| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `skills/agent-runtime-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/agent-runtime-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-03 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/agent-runtime-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/agent-runtime-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/agent-runtime-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
+-| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/agent-runtime-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
++| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `.codex/skills/agent-runtime-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/agent-runtime-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-03 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/agent-runtime-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/agent-runtime-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/agent-runtime-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
++| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/agent-runtime-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
+ 
+ ## Limites e retomada
+ 
+--- before/sdd/features/skill-autonomous-verification-engineering/plan.md
++++ after/sdd/features/skill-autonomous-verification-engineering/plan.md
+@@ -27,7 +27,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/autonomous-verification-engineering.md, bridge_version 1, e entrada skills/autonomous-verification-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `software-testing` — O oráculo escolhido realmente falha quando introduzimos o defeito representativo? Sem consulta automática.
++A ponte sdd/chain/autonomous-verification-engineering.md, bridge_version 1, e entrada .codex/skills/autonomous-verification-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `software-testing` — O oráculo escolhido realmente falha quando introduzimos o defeito representativo? Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -42,4 +42,4 @@
+ 
+ ## Consulta posterior na avaliação
+ 
+-Em 2026-10-26 um subagente interno consultou `skills/autonomous-verification-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
++Em 2026-10-26 um subagente interno consultou `.codex/skills/autonomous-verification-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+--- before/sdd/features/skill-autonomous-verification-engineering/tasks.md
++++ after/sdd/features/skill-autonomous-verification-engineering/tasks.md
+@@ -1,7 +1,7 @@
+ # Tarefas — autonomous-verification-engineering
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/autonomous-verification-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/autonomous-verification-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [x] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [x] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+--- before/sdd/features/skill-autonomous-verification-engineering/converge.md
++++ after/sdd/features/skill-autonomous-verification-engineering/converge.md
+@@ -4,12 +4,12 @@
+ 
+ | Critério | Requisito / decisão / risco / tarefa | Alteração | Método e evidência | Estado |
+ |---|---|---|---|---|
+-| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `skills/autonomous-verification-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/autonomous-verification-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-03 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/autonomous-verification-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/autonomous-verification-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/autonomous-verification-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
+-| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/autonomous-verification-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
++| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `.codex/skills/autonomous-verification-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/autonomous-verification-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-03 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/autonomous-verification-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/autonomous-verification-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/autonomous-verification-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
++| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/autonomous-verification-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
+ 
+ ## Limites e retomada
+ 
+--- before/sdd/features/skill-workspace-integrity-engineering/plan.md
++++ after/sdd/features/skill-workspace-integrity-engineering/plan.md
+@@ -27,7 +27,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/workspace-integrity-engineering.md, bridge_version 1, e entrada skills/workspace-integrity-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `application-security` — Existem caminhos alternativos/symlinks que escapam da raiz concedida ao agente? Sem consulta automática.
++A ponte sdd/chain/workspace-integrity-engineering.md, bridge_version 1, e entrada .codex/skills/workspace-integrity-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `application-security` — Existem caminhos alternativos/symlinks que escapam da raiz concedida ao agente? Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -42,4 +42,4 @@
+ 
+ ## Consulta posterior na avaliação
+ 
+-Em 2026-10-26 um subagente interno consultou `skills/workspace-integrity-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
++Em 2026-10-26 um subagente interno consultou `.codex/skills/workspace-integrity-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+--- before/sdd/features/skill-workspace-integrity-engineering/tasks.md
++++ after/sdd/features/skill-workspace-integrity-engineering/tasks.md
+@@ -1,7 +1,7 @@
+ # Tarefas — workspace-integrity-engineering
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/workspace-integrity-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/workspace-integrity-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [x] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [x] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+--- before/sdd/features/skill-workspace-integrity-engineering/converge.md
++++ after/sdd/features/skill-workspace-integrity-engineering/converge.md
+@@ -4,12 +4,12 @@
+ 
+ | Critério | Requisito / decisão / risco / tarefa | Alteração | Método e evidência | Estado |
+ |---|---|---|---|---|
+-| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `skills/workspace-integrity-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/workspace-integrity-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/workspace-integrity-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/workspace-integrity-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/workspace-integrity-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
+-| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/workspace-integrity-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
++| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `.codex/skills/workspace-integrity-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/workspace-integrity-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/workspace-integrity-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/workspace-integrity-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/workspace-integrity-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
++| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/workspace-integrity-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
+ 
+ ## Limites e retomada
+ 
+--- before/sdd/features/skill-iced-engineering/plan.md
++++ after/sdd/features/skill-iced-engineering/plan.md
+@@ -27,7 +27,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/iced-engineering.md, bridge_version 1, e entrada skills/iced-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `design-system` — O componente reutilizável preserva tokens, variantes, estados e contrato de interação definidos? Sem consulta automática.
++A ponte sdd/chain/iced-engineering.md, bridge_version 1, e entrada .codex/skills/iced-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `design-system` — O componente reutilizável preserva tokens, variantes, estados e contrato de interação definidos? Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -42,4 +42,4 @@
+ 
+ ## Consulta posterior na avaliação
+ 
+-Em 2026-10-26 um subagente interno consultou `skills/iced-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
++Em 2026-10-26 um subagente interno consultou `.codex/skills/iced-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+--- before/sdd/features/skill-iced-engineering/tasks.md
++++ after/sdd/features/skill-iced-engineering/tasks.md
+@@ -1,7 +1,7 @@
+ # Tarefas — iced-engineering
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/iced-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/iced-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [x] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [x] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+--- before/sdd/features/skill-iced-engineering/converge.md
++++ after/sdd/features/skill-iced-engineering/converge.md
+@@ -4,12 +4,12 @@
+ 
+ | Critério | Requisito / decisão / risco / tarefa | Alteração | Método e evidência | Estado |
+ |---|---|---|---|---|
+-| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `skills/iced-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/iced-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-03 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/iced-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/iced-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/iced-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
+-| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/iced-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
++| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `.codex/skills/iced-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/iced-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-03 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/iced-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/iced-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/iced-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
++| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/iced-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
+ 
+ ## Limites e retomada
+ 
+--- before/sdd/features/skill-code-context-engineering/plan.md
++++ after/sdd/features/skill-code-context-engineering/plan.md
+@@ -27,7 +27,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/code-context-engineering.md, bridge_version 1, e entrada skills/code-context-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `ai-engineering` — A recuperação realmente eleva a taxa de sucesso da tarefa em relação a uma busca simples? Sem consulta automática.
++A ponte sdd/chain/code-context-engineering.md, bridge_version 1, e entrada .codex/skills/code-context-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `ai-engineering` — A recuperação realmente eleva a taxa de sucesso da tarefa em relação a uma busca simples? Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -42,4 +42,4 @@
+ 
+ ## Consulta posterior na avaliação
+ 
+-Em 2026-10-26 um subagente interno consultou `skills/code-context-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
++Em 2026-10-26 um subagente interno consultou `.codex/skills/code-context-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+--- before/sdd/features/skill-code-context-engineering/tasks.md
++++ after/sdd/features/skill-code-context-engineering/tasks.md
+@@ -1,7 +1,7 @@
+ # Tarefas — code-context-engineering
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/code-context-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/code-context-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [x] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [x] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+--- before/sdd/features/skill-code-context-engineering/converge.md
++++ after/sdd/features/skill-code-context-engineering/converge.md
+@@ -4,12 +4,12 @@
+ 
+ | Critério | Requisito / decisão / risco / tarefa | Alteração | Método e evidência | Estado |
+ |---|---|---|---|---|
+-| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `skills/code-context-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/code-context-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/code-context-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/code-context-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/code-context-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
+-| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/code-context-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
++| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `.codex/skills/code-context-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/code-context-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/code-context-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/code-context-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/code-context-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
++| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/code-context-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
+ 
+ ## Limites e retomada
+ 
+--- before/sdd/features/skill-code-knowledge-graph-engineering/plan.md
++++ after/sdd/features/skill-code-knowledge-graph-engineering/plan.md
+@@ -27,7 +27,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/code-knowledge-graph-engineering.md, bridge_version 1, e entrada skills/code-knowledge-graph-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `code-context-engineering` — A origem da aresta pode ser verificada no snapshot de código indexado? Sem consulta automática.
++A ponte sdd/chain/code-knowledge-graph-engineering.md, bridge_version 1, e entrada .codex/skills/code-knowledge-graph-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `code-context-engineering` — A origem da aresta pode ser verificada no snapshot de código indexado? Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -42,4 +42,4 @@
+ 
+ ## Consulta posterior na avaliação
+ 
+-Em 2026-10-26 um subagente interno consultou `skills/code-knowledge-graph-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
++Em 2026-10-26 um subagente interno consultou `.codex/skills/code-knowledge-graph-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+--- before/sdd/features/skill-code-knowledge-graph-engineering/tasks.md
++++ after/sdd/features/skill-code-knowledge-graph-engineering/tasks.md
+@@ -1,7 +1,7 @@
+ # Tarefas — code-knowledge-graph-engineering
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/code-knowledge-graph-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/code-knowledge-graph-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [x] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [x] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+--- before/sdd/features/skill-code-knowledge-graph-engineering/converge.md
++++ after/sdd/features/skill-code-knowledge-graph-engineering/converge.md
+@@ -4,12 +4,12 @@
+ 
+ | Critério | Requisito / decisão / risco / tarefa | Alteração | Método e evidência | Estado |
+ |---|---|---|---|---|
+-| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `skills/code-knowledge-graph-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/code-knowledge-graph-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/code-knowledge-graph-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/code-knowledge-graph-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/code-knowledge-graph-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
+-| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/code-knowledge-graph-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
++| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `.codex/skills/code-knowledge-graph-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/code-knowledge-graph-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/code-knowledge-graph-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/code-knowledge-graph-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/code-knowledge-graph-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
++| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/code-knowledge-graph-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
+ 
+ ## Limites e retomada
+ 
+--- before/sdd/features/skill-tool-output-engineering/plan.md
++++ after/sdd/features/skill-tool-output-engineering/plan.md
+@@ -27,7 +27,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/tool-output-engineering.md, bridge_version 1, e entrada skills/tool-output-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `application-security` — Texto de stdout pode ser confundido com instrução ou dado autorizado para ferramenta? Sem consulta automática.
++A ponte sdd/chain/tool-output-engineering.md, bridge_version 1, e entrada .codex/skills/tool-output-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `application-security` — Texto de stdout pode ser confundido com instrução ou dado autorizado para ferramenta? Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -42,4 +42,4 @@
+ 
+ ## Consulta posterior na avaliação
+ 
+-Em 2026-10-26 um subagente interno consultou `skills/tool-output-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
++Em 2026-10-26 um subagente interno consultou `.codex/skills/tool-output-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+--- before/sdd/features/skill-tool-output-engineering/tasks.md
++++ after/sdd/features/skill-tool-output-engineering/tasks.md
+@@ -1,7 +1,7 @@
+ # Tarefas — tool-output-engineering
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/tool-output-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/tool-output-engineering/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [x] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [x] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+--- before/sdd/features/skill-tool-output-engineering/converge.md
++++ after/sdd/features/skill-tool-output-engineering/converge.md
+@@ -4,12 +4,12 @@
+ 
+ | Critério | Requisito / decisão / risco / tarefa | Alteração | Método e evidência | Estado |
+ |---|---|---|---|---|
+-| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `skills/tool-output-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/tool-output-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-03 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/tool-output-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/tool-output-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/tool-output-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
+-| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/tool-output-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
++| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `.codex/skills/tool-output-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/tool-output-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-03 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/tool-output-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/tool-output-engineering/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/tool-output-engineering/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
++| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/tool-output-engineering/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
+ 
+ ## Limites e retomada
+ 
+--- before/sdd/features/skill-agent-usage-accounting/plan.md
++++ after/sdd/features/skill-agent-usage-accounting/plan.md
+@@ -27,7 +27,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/agent-usage-accounting.md, bridge_version 1, e entrada skills/agent-usage-accounting/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `observability-and-diagnostics` — O evento de uso chega integralmente e pode ser correlacionado sem violar privacidade? Sem consulta automática.
++A ponte sdd/chain/agent-usage-accounting.md, bridge_version 1, e entrada .codex/skills/agent-usage-accounting/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `observability-and-diagnostics` — O evento de uso chega integralmente e pode ser correlacionado sem violar privacidade? Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -42,4 +42,4 @@
+ 
+ ## Consulta posterior na avaliação
+ 
+-Em 2026-10-26 um subagente interno consultou `skills/agent-usage-accounting/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
++Em 2026-10-26 um subagente interno consultou `.codex/skills/agent-usage-accounting/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+--- before/sdd/features/skill-agent-usage-accounting/tasks.md
++++ after/sdd/features/skill-agent-usage-accounting/tasks.md
+@@ -1,7 +1,7 @@
+ # Tarefas — agent-usage-accounting
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/agent-usage-accounting/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/agent-usage-accounting/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [x] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [x] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+--- before/sdd/features/skill-agent-usage-accounting/converge.md
++++ after/sdd/features/skill-agent-usage-accounting/converge.md
+@@ -4,12 +4,12 @@
+ 
+ | Critério | Requisito / decisão / risco / tarefa | Alteração | Método e evidência | Estado |
+ |---|---|---|---|---|
+-| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `skills/agent-usage-accounting/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `skills/agent-usage-accounting/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/agent-usage-accounting/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `skills/agent-usage-accounting/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
+-| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/agent-usage-accounting/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
+-| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `skills/agent-usage-accounting/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
++| AC-01 | REQ-01 / D-01 / R-01 / T001, T004 | `.codex/skills/agent-usage-accounting/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-02 | REQ-02 / D-01 / R-01 / T001, T004 | `.codex/skills/agent-usage-accounting/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-03 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/agent-usage-accounting/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-04 | REQ-03 / D-01 / R-01 / T001, T004 | `.codex/skills/agent-usage-accounting/SKILL.md` e referências | Oráculo original não executado em consumidor; casos e instruções preparados | NÃO VERIFICADO |
++| AC-05 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/agent-usage-accounting/SKILL.md` e referências | E-AUTHOR / E-STRUCTURE — revisão de conteúdo e validador | APROVADO no escopo indicado |
++| AC-06 | REQ-04 / D-03 / R-03 / T002, T003, T005 | `.codex/skills/agent-usage-accounting/SKILL.md` e referências | E-AGENT / E-REVIEW — três respostas textuais observadas | APROVADO no escopo indicado |
+ 
+ ## Limites e retomada
+ 
+--- before/sdd/features/adoption-governance/traceability.json
++++ after/sdd/features/adoption-governance/traceability.json
+@@ -18,7 +18,7 @@
+     "tasks": [
+       "T002"
+     ],
+-    "implementation": "skills/README.md",
++    "implementation": ".codex/skills/README.md",
+     "oracle": "src/scripts/check-ox.py"
+   },
+   {
+--- before/sdd/features/skill-plugin-protocol-engineering/traceability.json
++++ after/sdd/features/skill-plugin-protocol-engineering/traceability.json
+@@ -8,8 +8,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/plugin-protocol-engineering/SKILL.md",
+-    "oracle": "skills/plugin-protocol-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/plugin-protocol-engineering/SKILL.md",
++    "oracle": ".codex/skills/plugin-protocol-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-02",
+@@ -20,8 +20,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/plugin-protocol-engineering/SKILL.md",
+-    "oracle": "skills/plugin-protocol-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/plugin-protocol-engineering/SKILL.md",
++    "oracle": ".codex/skills/plugin-protocol-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-03",
+@@ -32,8 +32,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/plugin-protocol-engineering/SKILL.md",
+-    "oracle": "skills/plugin-protocol-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/plugin-protocol-engineering/SKILL.md",
++    "oracle": ".codex/skills/plugin-protocol-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-04",
+@@ -44,8 +44,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/plugin-protocol-engineering/SKILL.md",
+-    "oracle": "skills/plugin-protocol-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/plugin-protocol-engineering/SKILL.md",
++    "oracle": ".codex/skills/plugin-protocol-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-05",
+@@ -57,8 +57,8 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/plugin-protocol-engineering/SKILL.md",
+-    "oracle": "skills/plugin-protocol-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/plugin-protocol-engineering/SKILL.md",
++    "oracle": ".codex/skills/plugin-protocol-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-06",
+@@ -70,7 +70,7 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/plugin-protocol-engineering/SKILL.md",
+-    "oracle": "skills/plugin-protocol-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/plugin-protocol-engineering/SKILL.md",
++    "oracle": ".codex/skills/plugin-protocol-engineering/references/evaluation-cases.md"
+   }
+ ]
+--- before/sdd/features/skill-agent-runtime-engineering/traceability.json
++++ after/sdd/features/skill-agent-runtime-engineering/traceability.json
+@@ -8,8 +8,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/agent-runtime-engineering/SKILL.md",
+-    "oracle": "skills/agent-runtime-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-runtime-engineering/SKILL.md",
++    "oracle": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-02",
+@@ -20,8 +20,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/agent-runtime-engineering/SKILL.md",
+-    "oracle": "skills/agent-runtime-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-runtime-engineering/SKILL.md",
++    "oracle": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-03",
+@@ -32,8 +32,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/agent-runtime-engineering/SKILL.md",
+-    "oracle": "skills/agent-runtime-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-runtime-engineering/SKILL.md",
++    "oracle": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-04",
+@@ -44,8 +44,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/agent-runtime-engineering/SKILL.md",
+-    "oracle": "skills/agent-runtime-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-runtime-engineering/SKILL.md",
++    "oracle": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-05",
+@@ -57,8 +57,8 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/agent-runtime-engineering/SKILL.md",
+-    "oracle": "skills/agent-runtime-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-runtime-engineering/SKILL.md",
++    "oracle": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-06",
+@@ -70,7 +70,7 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/agent-runtime-engineering/SKILL.md",
+-    "oracle": "skills/agent-runtime-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-runtime-engineering/SKILL.md",
++    "oracle": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md"
+   }
+ ]
+--- before/sdd/features/skill-autonomous-verification-engineering/traceability.json
++++ after/sdd/features/skill-autonomous-verification-engineering/traceability.json
+@@ -8,8 +8,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/autonomous-verification-engineering/SKILL.md",
+-    "oracle": "skills/autonomous-verification-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/autonomous-verification-engineering/SKILL.md",
++    "oracle": ".codex/skills/autonomous-verification-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-02",
+@@ -20,8 +20,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/autonomous-verification-engineering/SKILL.md",
+-    "oracle": "skills/autonomous-verification-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/autonomous-verification-engineering/SKILL.md",
++    "oracle": ".codex/skills/autonomous-verification-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-03",
+@@ -32,8 +32,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/autonomous-verification-engineering/SKILL.md",
+-    "oracle": "skills/autonomous-verification-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/autonomous-verification-engineering/SKILL.md",
++    "oracle": ".codex/skills/autonomous-verification-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-04",
+@@ -44,8 +44,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/autonomous-verification-engineering/SKILL.md",
+-    "oracle": "skills/autonomous-verification-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/autonomous-verification-engineering/SKILL.md",
++    "oracle": ".codex/skills/autonomous-verification-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-05",
+@@ -57,8 +57,8 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/autonomous-verification-engineering/SKILL.md",
+-    "oracle": "skills/autonomous-verification-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/autonomous-verification-engineering/SKILL.md",
++    "oracle": ".codex/skills/autonomous-verification-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-06",
+@@ -70,7 +70,7 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/autonomous-verification-engineering/SKILL.md",
+-    "oracle": "skills/autonomous-verification-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/autonomous-verification-engineering/SKILL.md",
++    "oracle": ".codex/skills/autonomous-verification-engineering/references/evaluation-cases.md"
+   }
+ ]
+--- before/sdd/features/skill-workspace-integrity-engineering/traceability.json
++++ after/sdd/features/skill-workspace-integrity-engineering/traceability.json
+@@ -8,8 +8,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/workspace-integrity-engineering/SKILL.md",
+-    "oracle": "skills/workspace-integrity-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/workspace-integrity-engineering/SKILL.md",
++    "oracle": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-02",
+@@ -20,8 +20,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/workspace-integrity-engineering/SKILL.md",
+-    "oracle": "skills/workspace-integrity-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/workspace-integrity-engineering/SKILL.md",
++    "oracle": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-03",
+@@ -32,8 +32,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/workspace-integrity-engineering/SKILL.md",
+-    "oracle": "skills/workspace-integrity-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/workspace-integrity-engineering/SKILL.md",
++    "oracle": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-04",
+@@ -44,8 +44,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/workspace-integrity-engineering/SKILL.md",
+-    "oracle": "skills/workspace-integrity-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/workspace-integrity-engineering/SKILL.md",
++    "oracle": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-05",
+@@ -57,8 +57,8 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/workspace-integrity-engineering/SKILL.md",
+-    "oracle": "skills/workspace-integrity-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/workspace-integrity-engineering/SKILL.md",
++    "oracle": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-06",
+@@ -70,7 +70,7 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/workspace-integrity-engineering/SKILL.md",
+-    "oracle": "skills/workspace-integrity-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/workspace-integrity-engineering/SKILL.md",
++    "oracle": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md"
+   }
+ ]
+--- before/sdd/features/skill-iced-engineering/traceability.json
++++ after/sdd/features/skill-iced-engineering/traceability.json
+@@ -8,8 +8,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/iced-engineering/SKILL.md",
+-    "oracle": "skills/iced-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/iced-engineering/SKILL.md",
++    "oracle": ".codex/skills/iced-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-02",
+@@ -20,8 +20,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/iced-engineering/SKILL.md",
+-    "oracle": "skills/iced-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/iced-engineering/SKILL.md",
++    "oracle": ".codex/skills/iced-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-03",
+@@ -32,8 +32,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/iced-engineering/SKILL.md",
+-    "oracle": "skills/iced-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/iced-engineering/SKILL.md",
++    "oracle": ".codex/skills/iced-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-04",
+@@ -44,8 +44,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/iced-engineering/SKILL.md",
+-    "oracle": "skills/iced-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/iced-engineering/SKILL.md",
++    "oracle": ".codex/skills/iced-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-05",
+@@ -57,8 +57,8 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/iced-engineering/SKILL.md",
+-    "oracle": "skills/iced-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/iced-engineering/SKILL.md",
++    "oracle": ".codex/skills/iced-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-06",
+@@ -70,7 +70,7 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/iced-engineering/SKILL.md",
+-    "oracle": "skills/iced-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/iced-engineering/SKILL.md",
++    "oracle": ".codex/skills/iced-engineering/references/evaluation-cases.md"
+   }
+ ]
+--- before/sdd/features/skill-code-context-engineering/traceability.json
++++ after/sdd/features/skill-code-context-engineering/traceability.json
+@@ -8,8 +8,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/code-context-engineering/SKILL.md",
+-    "oracle": "skills/code-context-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-context-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-context-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-02",
+@@ -20,8 +20,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/code-context-engineering/SKILL.md",
+-    "oracle": "skills/code-context-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-context-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-context-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-03",
+@@ -32,8 +32,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/code-context-engineering/SKILL.md",
+-    "oracle": "skills/code-context-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-context-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-context-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-04",
+@@ -44,8 +44,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/code-context-engineering/SKILL.md",
+-    "oracle": "skills/code-context-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-context-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-context-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-05",
+@@ -57,8 +57,8 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/code-context-engineering/SKILL.md",
+-    "oracle": "skills/code-context-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-context-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-context-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-06",
+@@ -70,7 +70,7 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/code-context-engineering/SKILL.md",
+-    "oracle": "skills/code-context-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-context-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-context-engineering/references/evaluation-cases.md"
+   }
+ ]
+--- before/sdd/features/skill-code-knowledge-graph-engineering/traceability.json
++++ after/sdd/features/skill-code-knowledge-graph-engineering/traceability.json
+@@ -8,8 +8,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/code-knowledge-graph-engineering/SKILL.md",
+-    "oracle": "skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-knowledge-graph-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-02",
+@@ -20,8 +20,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/code-knowledge-graph-engineering/SKILL.md",
+-    "oracle": "skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-knowledge-graph-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-03",
+@@ -32,8 +32,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/code-knowledge-graph-engineering/SKILL.md",
+-    "oracle": "skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-knowledge-graph-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-04",
+@@ -44,8 +44,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/code-knowledge-graph-engineering/SKILL.md",
+-    "oracle": "skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-knowledge-graph-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-05",
+@@ -57,8 +57,8 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/code-knowledge-graph-engineering/SKILL.md",
+-    "oracle": "skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-knowledge-graph-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-06",
+@@ -70,7 +70,7 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/code-knowledge-graph-engineering/SKILL.md",
+-    "oracle": "skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/code-knowledge-graph-engineering/SKILL.md",
++    "oracle": ".codex/skills/code-knowledge-graph-engineering/references/evaluation-cases.md"
+   }
+ ]
+--- before/sdd/features/skill-tool-output-engineering/traceability.json
++++ after/sdd/features/skill-tool-output-engineering/traceability.json
+@@ -8,8 +8,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/tool-output-engineering/SKILL.md",
+-    "oracle": "skills/tool-output-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/tool-output-engineering/SKILL.md",
++    "oracle": ".codex/skills/tool-output-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-02",
+@@ -20,8 +20,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/tool-output-engineering/SKILL.md",
+-    "oracle": "skills/tool-output-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/tool-output-engineering/SKILL.md",
++    "oracle": ".codex/skills/tool-output-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-03",
+@@ -32,8 +32,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/tool-output-engineering/SKILL.md",
+-    "oracle": "skills/tool-output-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/tool-output-engineering/SKILL.md",
++    "oracle": ".codex/skills/tool-output-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-04",
+@@ -44,8 +44,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/tool-output-engineering/SKILL.md",
+-    "oracle": "skills/tool-output-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/tool-output-engineering/SKILL.md",
++    "oracle": ".codex/skills/tool-output-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-05",
+@@ -57,8 +57,8 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/tool-output-engineering/SKILL.md",
+-    "oracle": "skills/tool-output-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/tool-output-engineering/SKILL.md",
++    "oracle": ".codex/skills/tool-output-engineering/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-06",
+@@ -70,7 +70,7 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/tool-output-engineering/SKILL.md",
+-    "oracle": "skills/tool-output-engineering/references/evaluation-cases.md"
++    "implementation": ".codex/skills/tool-output-engineering/SKILL.md",
++    "oracle": ".codex/skills/tool-output-engineering/references/evaluation-cases.md"
+   }
+ ]
+--- before/sdd/features/skill-agent-usage-accounting/traceability.json
++++ after/sdd/features/skill-agent-usage-accounting/traceability.json
+@@ -8,8 +8,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/agent-usage-accounting/SKILL.md",
+-    "oracle": "skills/agent-usage-accounting/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-usage-accounting/SKILL.md",
++    "oracle": ".codex/skills/agent-usage-accounting/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-02",
+@@ -20,8 +20,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/agent-usage-accounting/SKILL.md",
+-    "oracle": "skills/agent-usage-accounting/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-usage-accounting/SKILL.md",
++    "oracle": ".codex/skills/agent-usage-accounting/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-03",
+@@ -32,8 +32,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/agent-usage-accounting/SKILL.md",
+-    "oracle": "skills/agent-usage-accounting/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-usage-accounting/SKILL.md",
++    "oracle": ".codex/skills/agent-usage-accounting/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-04",
+@@ -44,8 +44,8 @@
+       "T001",
+       "T004"
+     ],
+-    "implementation": "skills/agent-usage-accounting/SKILL.md",
+-    "oracle": "skills/agent-usage-accounting/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-usage-accounting/SKILL.md",
++    "oracle": ".codex/skills/agent-usage-accounting/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-05",
+@@ -57,8 +57,8 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/agent-usage-accounting/SKILL.md",
+-    "oracle": "skills/agent-usage-accounting/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-usage-accounting/SKILL.md",
++    "oracle": ".codex/skills/agent-usage-accounting/references/evaluation-cases.md"
+   },
+   {
+     "acceptance": "AC-06",
+@@ -70,7 +70,7 @@
+       "T003",
+       "T005"
+     ],
+-    "implementation": "skills/agent-usage-accounting/SKILL.md",
+-    "oracle": "skills/agent-usage-accounting/references/evaluation-cases.md"
++    "implementation": ".codex/skills/agent-usage-accounting/SKILL.md",
++    "oracle": ".codex/skills/agent-usage-accounting/references/evaluation-cases.md"
+   }
+ ]
+--- before/src/scripts/adopt-library.py
++++ after/src/scripts/adopt-library.py
+@@ -15,7 +15,7 @@
+ for name in general+list(conditional):
+     for p in sorted((root/'skills'/name).rglob('*')):
+         assert not p.is_symlink(), p
+-        if p.is_file(): copy(p,ox/p.relative_to(root))
++        if p.is_file(): copy(p,ox/'.codex'/p.relative_to(root))
+ for p in sorted((root/'sdd/model').rglob('*')):
+     if p.is_file() and '__pycache__' not in p.parts: copy(p,ox/'sdd'/p.relative_to(root/'sdd/model'))
+ for name in general+list(conditional): copy(root/'sdd/chain'/f'{name}.md',ox/'sdd/chain'/f'{name}.md')
+@@ -28,7 +28,7 @@
+ (ox/'src/fixtures/profile.json').write_text(json.dumps({'general':general,'conditional':conditional,'new':new,'excluded':['gleam','kotlin','postgresql']},ensure_ascii=False,indent=2)+'\n')
+ for name in general+list(conditional):
+     p=ox/'sdd/chain'/f'{name}.md'
+-    text=p.read_text().replace('skill_path: UNCONFIGURED',f'skill_path: skills/{name}/SKILL.md')
++    text=p.read_text().replace('skill_path: UNCONFIGURED',f'skill_path: .codex/skills/{name}/SKILL.md')
+     if name in conditional: text+='\n## Perfil condicional do projeto\n\n'+conditional[name]+' Disponibilidade não significa seleção, consulta ou uso.\n'
+     p.write_text(text)
+ f=ox/'sdd/features/adoption-governance'; f.mkdir(parents=True)
+--- before/src/scripts/author-skills.py
++++ after/src/scripts/author-skills.py
+@@ -323,7 +323,7 @@
+ for name,data in DATA.items():
+     block=re.search(r'### 8\.\d+ `'+re.escape(name)+r'`.*?(?=\n### 8\.\d+ |\n## 9\.)',source,re.S)[0]
+     def field(label): return re.search(r'\*\*'+re.escape(label)+r':\*\* (.*)',block)[1]
+-    folder=root/'skills'/name
++    folder=root/'.codex/skills'/name
+     assert not folder.exists(),folder
+     (folder/'references').mkdir(parents=True)
+     refs='\n'.join(f'- [{key}](references/{key}.md): consultar para '+content.splitlines()[0].lstrip('# ') +'.' for key,content in data['refs'].items())
+@@ -379,7 +379,7 @@
+     acs=re.findall(r'^- AC-\d+ → REQ-\d+:.*$',block,re.M)
+     cases='# Avaliações da skill\n\nContrato de casos; execução deve ser registrada separadamente. Não constituem testes realizados.\n\n## Cenários técnicos preservados\n\n'+'\n'.join(acs)+'\n\n## Protocolo de avaliação\n\nForneça um pedido concreto e os inputs mínimos a um agente em diretório isolado autorizado. Na rodada de seleção, mostre somente catálogo/descriptions, sem a resposta esperada. Na rodada de comportamento, disponibilize a skill selecionada e os dados adversos. Preserve prompt, resposta bruta, identidade/configuração conhecida do agente, hashes dos inputs, revisão do resultado e limitações. Não execute serviços ou ferramentas com novas permissões.\n\nSeleção positiva: pedir o entregável próprio descrito nesta entrada. Seleção negativa: usar a exclusão explícita; a resposta deve apontar competência mais adequada sem carregar esta skill. Falha: fornecer input que contraria o cenário técnico e exigir evidência antes de aprovação. Os prompts concretos do pacote consumidor devem incluir dados suficientes e um oráculo independente.\n'
+     (folder/'references/evaluation-cases.md').write_text(cases)
+-    bridge=re.search(r'````markdown\n(.*?)\n````',block,re.S)[1].replace('skill_path: UNCONFIGURED',f'skill_path: skills/{name}/SKILL.md')
++    bridge=re.search(r'````markdown\n(.*?)\n````',block,re.S)[1].replace('skill_path: UNCONFIGURED',f'skill_path: .codex/skills/{name}/SKILL.md')
+     (root/'sdd/chain'/f'{name}.md').write_text(bridge+'\n')
+     feature=root/'sdd/features'/f'skill-{name}'; feature.mkdir()
+     (feature/'spec.md').write_text(f'''# Autoria e avaliação de {name}
+@@ -418,7 +418,7 @@
+ 
+ Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+ 
+-A ponte sdd/chain/{name}.md, bridge_version 1, e entrada skills/{name}/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: {field('Skill auxiliar condicional')} Sem consulta automática.
++A ponte sdd/chain/{name}.md, bridge_version 1, e entrada .codex/skills/{name}/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: {field('Skill auxiliar condicional')} Sem consulta automática.
+ 
+ Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+ 
+@@ -431,14 +431,14 @@
+     (feature/'tasks.md').write_text(f'''# Tarefas — {name}
+ 
+ - [x] T001 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, R-01]: preservar contratos e definir cenários; spec.md e referências; sem dependências; concluída a preparação, não a integração.
+-- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar skills/{name}/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
++- [x] T002 [REQ-04, AC-05, D-03, R-03]: autorar .codex/skills/{name}/SKILL.md, referências e ponte; depende T001; conteúdo materializado e sujeito à revisão.
+ - [ ] T003 [REQ-04, AC-05, AC-06, D-03, R-03]: validar estrutura, revisar conteúdo e executar casos controlados de seleção/comportamento; depende T002; preservar inputs e respostas.
+ - [ ] T004 [REQ-01, REQ-02, REQ-03, AC-01, AC-02, AC-03, AC-04, D-01, D-02, R-01, R-02]: exercitar os quatro cenários técnicos em consumidor autorizado com os oráculos da spec; depende T003 e disponibilidade de implementação/ambiente; não implementar Ox nesta tarefa.
+ - [ ] T005 [REQ-04, AC-05, AC-06, D-03, R-03]: registrar convergência e evidência schema 2 após estabilizar inputs; depende T003; distinguir pendências de T004.
+ ''')
+     trace=[]
+-    for i,ac in enumerate(acs,1): trace.append({'acceptance':f'AC-{i:02d}','requirement':re.search(r'→ (REQ-\d+)',ac)[1],'decision':'D-01','risk':'R-01','tasks':['T001','T004'],'implementation':f'skills/{name}/SKILL.md','oracle':f'skills/{name}/references/evaluation-cases.md'})
+-    for i in [5,6]: trace.append({'acceptance':f'AC-{i:02d}','requirement':'REQ-04','decision':'D-03','risk':'R-03','tasks':['T002','T003','T005'],'implementation':f'skills/{name}/SKILL.md','oracle':f'skills/{name}/references/evaluation-cases.md'})
++    for i,ac in enumerate(acs,1): trace.append({'acceptance':f'AC-{i:02d}','requirement':re.search(r'→ (REQ-\d+)',ac)[1],'decision':'D-01','risk':'R-01','tasks':['T001','T004'],'implementation':f'.codex/skills/{name}/SKILL.md','oracle':f'.codex/skills/{name}/references/evaluation-cases.md'})
++    for i in [5,6]: trace.append({'acceptance':f'AC-{i:02d}','requirement':'REQ-04','decision':'D-03','risk':'R-03','tasks':['T002','T003','T005'],'implementation':f'.codex/skills/{name}/SKILL.md','oracle':f'.codex/skills/{name}/references/evaluation-cases.md'})
+     (feature/'traceability.json').write_text(json.dumps(trace,ensure_ascii=False,indent=2)+'\n')
+     (feature/'evidence.json').write_text(json.dumps({'schema_version':2,'environment':'Autoria local; integração e avaliação ainda não executadas.','requirements':[{'id':f'AC-{i:02d}','criterion':line,'status':'NÃO VERIFICADO','evidence_ids':[]} for i,line in enumerate(acs+['Revisão de autoria','Avaliação com agente'],1)],'evidence':[],'limitations':['Não há aplicação consumidora implementada; cenários de integração não executados.']},ensure_ascii=False,indent=2)+'\n')
+     (feature/'converge.md').write_text('# Convergência inicial\n\nAC-01..06: NÃO VERIFICADO. Autoria materializada; avaliação e integração têm critérios separados. Retomar T003 para revisão/casos e T004 somente em consumidor autorizado.\n')
+--- before/src/scripts/configure-governance.py
++++ after/src/scripts/configure-governance.py
+@@ -11,7 +11,7 @@
+ 
+ Escolha a rota em [workflow](sdd/workflow.md). Use rota local para trabalho delimitado recuperável sem risco material; contratos, autorização, dados, concorrência e recuperação exigem rota completa. Preserve critérios de features existentes e reavalie evidências afetadas mesmo em mudanças pequenas. Retome por spec, plan, tasks, converge e inputs atuais.
+ 
+-Consulte o [catálogo](skills/README.md) por tarefa. Se pertinente, selecione uma competência primária e auxiliares apenas para perguntas distintas; confirme identidade e leia a entrada real. No fluxo completo registre ponte/versão, caminho, papel, pergunta e entregável no plan. Indicação, seleção, consulta e uso são estados diferentes. Não carregue toda a biblioteca nem siga referências recursivamente.
++Consulte o [catálogo](.codex/skills/README.md) por tarefa. Se pertinente, selecione uma competência primária e auxiliares apenas para perguntas distintas; confirme identidade e leia a entrada real. No fluxo completo registre ponte/versão, caminho, papel, pergunta e entregável no plan. Indicação, seleção, consulta e uso são estados diferentes. Não carregue toda a biblioteca nem siga referências recursivamente.
+ 
+ Registre aceitação conforme [evidence](sdd/evidence.md): critério, método, input, resultado e limite. Preserve observações anteriores; mudanças nos inputs invalidam somente evidências dependentes. Não confunda tarefas concluídas, verificações, permissões e progresso funcional. Ausência de evidência não aprova.
+ 
+@@ -108,7 +108,7 @@
+ 
+ ## Divergências entre proposta e árvore real
+ 
+-- Os caminhos `skills/skills/`, `skills/sdd/model/`, `skills/sdd/chain/` do ZIP resolvem para `skills/`, `sdd/model/`, `sdd/chain/` da biblioteca. `doc/structure/README.md` confirma a migração; rótulos antigos não são configuração.
++- Os caminhos `.codex/skills/skills/`, `.codex/skills/sdd/model/`, `.codex/skills/sdd/chain/` do ZIP resolvem para `.codex/skills/`, `sdd/model/`, `sdd/chain/` da biblioteca. `doc/structure/README.md` confirma a migração; rótulos antigos não são configuração.
+ - Há 23 skills e 23 pontes na origem; somente 20 pares entram no perfil. As nove especializações não existiam e foram autoradas, sem alegar consulta durante autoria.
+ - Inicialmente Ox tinha só os três documentos e nenhum arquivo de aplicação. Não há Git disponível; preservação usa bytes e hashes, incluindo árvore externa.
+ - As pontes propostas usam UNCONFIGURED; as operacionais recebem paths reais. O cache `__pycache__` encontrado no modelo não é fonte ou contrato e foi omitido.
+@@ -172,7 +172,7 @@
+ 
+ Retomada: escolher consumidor e SO, delimitar dados descartáveis/autorização, instanciar os casos das respectivas skills e registrar efeitos reais com snapshots. Não usar mocks como prova de sandbox. Retenção/redação do bruto devem preservar evidência autorizada sem expor segredos nas visões compactas.
+ ''')
+-rows=['# Catálogo de skills do Ox','', 'Disponibilidade não é ativação. Para consulta explícita: “Leia skills/<nome>/SKILL.md para resolver [pergunta] em [escopo]”. Use o caminho real do catálogo abaixo; não há promessa de descoberta automática. Uma primária quando pertinente, auxiliares somente para questões distintas. Referências históricas em skills copiadas são proveniência, não dependências operacionais.','']
++rows=['# Catálogo de skills do Ox','', 'Disponibilidade não é ativação. Para consulta explícita: “Leia .codex/skills/<nome>/SKILL.md para resolver [pergunta] em [escopo]”. Use o caminho real do catálogo abaixo; não há promessa de descoberta automática. Uma primária quando pertinente, auxiliares somente para questões distintas. Referências históricas em skills copiadas são proveniência, não dependências operacionais.','']
+ for title,names in [('17 gerais',profile['general']),('3 condicionais',list(profile['conditional'])),('9 novas especializações (5 P0, 4 P1)',profile['new'])]:
+  rows+=['## '+title,'']
+  for name in names:
+@@ -180,7 +180,7 @@
+   rows.append(f'- [{name}]({name}/SKILL.md): {suffix}')
+  rows.append('')
+ rows+=['## Fora do perfil','', 'gleam, kotlin e postgresql não foram instaladas. Menções opcionais em skills genéricas não instalam essas competências. As três candidatas absorvidas permanecem em database-engineering/reliability-engineering/software-evolution, ai-engineering/software-testing/performance-engineering e software-delivery/application-security/software-evolution.']
+-write('skills/README.md','\n'.join(rows)+'\n')
++write('.codex/skills/README.md','\n'.join(rows)+'\n')
+ write('sdd/chain/README.md','# Pontes instaladas\n\n29 pontes: 17 gerais, 3 condicionais e 9 novas. Cada skill_path é relativo à raiz Ox. Confirme existência e identidade antes de consultar. Ponte não instala no ambiente, não autoriza efeitos e não prova consulta. Seleção por tarefa, sem carga recursiva.\n\n'+ '\n'.join(f'- [{n}]({n}.md)'+(' — condicional: '+profile['conditional'][n] if n in profile['conditional'] else '') for n in profile['general']+list(profile['conditional'])+profile['new'])+'\n')
+ write('sdd/features/README.md','# Features de governança e autoria\n\n`adoption-governance` registra esta adoção. Nove diretórios `skill-*` registram autoria/avaliação, não funcionalidades do produto. Futuras features `product-*` precisam de critérios e evidências independentes. Não mover features para escapar de gates; o validador percorre os diretórios diretos desta pasta.\n')
+ # Add all overlap boundaries from the supplied matrix, without activating neighbors.
+@@ -189,6 +189,6 @@
+  block=re.search(r'#### `'+n+r'`.*?(?=\n#### |\n---)',compare,re.S)[0]
+  boundaries=[]
+  for m in re.finditer(r'- \*\*([a-z-]+) — adjacência (?:forte|moderada):\*\* permanece responsável por seu escopo geral \(([^)]+)\)',block): boundaries.append(f'| `{m[1]}` | {m[2]} |')
+- p=root/'skills'/n/'SKILL.md'
++ p=root/'.codex/skills'/n/'SKILL.md'
+  p.write_text(p.read_text()+'\n## Responsabilidades adjacentes\n\nA competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.\n\n| Competência | Autoridade técnica adjacente |\n|---|---|\n'+'\n'.join(boundaries)+'\n')
+ print('Governance and catalog configured.')
+--- before/src/scripts/prepare-evaluations.py
++++ after/src/scripts/prepare-evaluations.py
+@@ -17,12 +17,12 @@
+ for i,(name,pos,neg,fail,alt,rubric) in enumerate(data):
+  cases=[{'id':name+'-positive','kind':'selection','prompt':pos},{'id':name+'-negative','kind':'selection','prompt':neg},{'id':name+'-failure','kind':'behavior','skill':name,'prompt':fail}]
+  allcases+=cases
+- f=root/'skills'/name/'references/evaluation-cases.md'
++ f=root/'.codex/skills'/name/'references/evaluation-cases.md'
+  f.write_text(f.read_text()+'\n## Prompts concretos\n\n'+ '\n\n'.join(f"### {c['id']}\n\n{c['prompt']}" for c in cases)+'\n\nOráculo de revisão: positivo seleciona a competência própria; negativo encaminha para '+alt+' (ou competência adjacente justificada). Na falha observar: '+rubric+'. Este gabarito é revisado depois da resposta, não fornecido ao avaliador na seleção.\n')
+  (root/'src/fixtures'/f'evaluation-{name}.json').write_text(json.dumps({'cases':cases,'oracle':{'primary':name,'negative':alt,'failure':rubric}},ensure_ascii=False,indent=2)+'\n')
+ for i in range(3): (root/'src/fixtures'/f'agent-prompts-{i+1}.json').write_text(json.dumps(allcases[i*9:i*9+9],ensure_ascii=False,indent=2)+'\n')
+ catalog=[]
+-for p in sorted((root/'skills').glob('*/SKILL.md')):
++for p in sorted((root/'.codex/skills').glob('*/SKILL.md')):
+  t=p.read_text(); catalog.append({'name':p.parent.name,'description':re.search(r'^description: (.*)$',t,re.M)[1]})
+ (root/'src/fixtures/selection-catalog.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n')
+ (root/'docs/validation/agent-evals').mkdir(parents=True)
+--- before/src/scripts/check-ox.py
++++ after/src/scripts/check-ox.py
+@@ -9,9 +9,9 @@
+     root=root.resolve(); errors=[]
+     profile=read(root/'src/fixtures/profile.json')
+     expected=set(profile['general'])|set(profile['conditional'])|set(profile['new'])
+-    actual={p.parent.name for p in (root/'skills').glob('*/SKILL.md')}
++    actual={p.parent.name for p in (root/'.codex/skills').glob('*/SKILL.md')}
+     if actual!=expected: errors.append('Skill inventory differs: '+str(actual^expected))
+-    if set(profile['excluded']) & {p.name for p in (root/'skills').iterdir()}: errors.append('Excluded skill installed')
++    if set(profile['excluded']) & {p.name for p in (root/'.codex/skills').iterdir()}: errors.append('Excluded skill installed')
+     bridges={p.stem for p in (root/'sdd/chain').glob('*.md') if p.name!='README.md'}
+     if bridges!=expected: errors.append('Bridge inventory differs')
+     if [len(profile[k]) for k in ('general','conditional','new')]!=[17,3,9]: errors.append('Profile class counts differ')
+@@ -24,11 +24,11 @@
+     # Existing skills must remain byte-identical, including every internal resource.
+     copied_paths=set()
+     for row in copies:
+-        rel=row['destination']; copied_paths.add(rel)
+-        if rel.startswith('skills/') and (not (root/rel).is_file() or digest(root/rel)!=row['source_sha256']): errors.append('Copied resource changed/missing: '+rel)
++        rel=row['destination']; rel='.codex/'+rel if rel.startswith('skills/') else rel; copied_paths.add(rel)
++        if rel.startswith('.codex/skills/') and (not (root/rel).is_file() or digest(root/rel)!=row['source_sha256']): errors.append('Copied resource changed/missing: '+rel)
+         if row['copied_sha256']!=row['source_sha256']: errors.append('Invalid copy provenance: '+rel)
+     for name in profile['general']+list(profile['conditional']):
+-        for p in (root/'skills'/name).rglob('*'):
++        for p in (root/'.codex/skills'/name).rglob('*'):
+             if p.is_file() and p.relative_to(root).as_posix() not in copied_paths: errors.append('Unexpected copied resource: '+str(p))
+     # Baseline archive is self-contained; no source library access is needed.
+     with tarfile.open(root/'docs/validation/adoption-baseline/copied-before-adaptation.tar.gz') as archive:
+@@ -52,7 +52,7 @@
+             resolved=(p.parent/unquote(parsed.path)).resolve()
+             if not resolved.is_relative_to(root) or not resolved.is_file(): errors.append(f'Broken/escaping link: {rel}: {target}')
+     for name in profile['new']:
+-        p=root/'skills'/name/'SKILL.md'; text=p.read_text()
++        p=root/'.codex/skills'/name/'SKILL.md'; text=p.read_text()
+         if len(name)>64 or not re.search(r'^description: [^<>\n]{1,1024}$',text,re.M): errors.append('Invalid new metadata: '+name)
+         if re.search(r'^\[TODO:',text,re.M): errors.append('Unfinished skill: '+name)
+         if len(list((p.parent/'references').glob('*.md')))<4: errors.append('Missing specialized resources: '+name)
+--- before/src/scripts/run-checks.py
++++ after/src/scripts/run-checks.py
+@@ -8,7 +8,7 @@
+     run=ROOT/'docs/validation/runs'/datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
+     run.mkdir(parents=True,exist_ok=False)
+     inputs={}
+-    for base in ('skills','sdd','src'):
++    for base in ('.codex/skills','sdd','src'):
+         for p in sorted((ROOT/base).rglob('*')):
+             if p.is_file() and '__pycache__' not in p.parts: inputs[p.relative_to(ROOT).as_posix()]=sha(p)
+     for p in [ROOT/'AGENTS.md',ROOT/'README.md',*sorted((ROOT/'docs').rglob('*.md'))]:
+--- before/src/scripts/document-adoption.py
++++ after/src/scripts/document-adoption.py
+@@ -59,7 +59,7 @@
+ ## Navegação
+ 
+ - [Contexto SDD e comandos](sdd/project.md), [workflow 1.3.0](sdd/workflow.md) e [evidências/schema 2](sdd/evidence.md).
+-- [Catálogo](skills/README.md): **29 skills** — 17 gerais copiadas, 3 condicionais copiadas, 5 novas P0 e 4 novas P1. As 20 existentes mantêm recursos e bytes de origem.
++- [Catálogo](.codex/skills/README.md): **29 skills** — 17 gerais copiadas, 3 condicionais copiadas, 5 novas P0 e 4 novas P1. As 20 existentes mantêm recursos e bytes de origem.
+ - [29 pontes](sdd/chain/README.md): 20 adaptadas e 9 novas, com paths relativos e identidade verificável.
+ - [Features](sdd/features/README.md): adoção de governança e nove SDDs `skill-*`, separados de futuras funcionalidades `product-*`.
+ - [Arquitetura e fases](docs/architecture/context.md), [decisões da adoção](docs/decisions/adoption.md), [pendências](docs/decisions/open-questions.md) e [fronteiras de confiança](docs/security/trust-boundaries.md).
+@@ -68,7 +68,7 @@
+ 
+ ## Consulta explícita
+ 
+-Peça ao agente: “Leia skills/plugin-protocol-engineering/SKILL.md para revisar a negociação de capacidades deste contrato”. Para SDD: “Leia sdd/project.md e sdd/workflow.md e retome a feature sdd/features/<nome>”. São instruções de conversa, não comandos de shell. Arquivos disponíveis não significam descoberta automática ou instalação no ambiente. Escolha uma primária por questão e auxiliares apenas para dúvidas distintas; não carregue a biblioteca inteira.
++Peça ao agente: “Leia .codex/skills/plugin-protocol-engineering/SKILL.md para revisar a negociação de capacidades deste contrato”. Para SDD: “Leia sdd/project.md e sdd/workflow.md e retome a feature sdd/features/<nome>”. São instruções de conversa, não comandos de shell. Arquivos disponíveis não significam descoberta automática ou instalação no ambiente. Escolha uma primária por questão e auxiliares apenas para dúvidas distintas; não carregue a biblioteca inteira.
+ 
+ Condicionais: distributed-systems somente com garantias entre falhas independentes; engineering-productivity somente com avaliação de fluxo/ferramenta; prompt somente quando o artefato pedido é um prompt. gleam, kotlin e postgresql não estão no perfil.
+ 
+@@ -111,7 +111,7 @@
+ # Initial adoption automation includes honest pending records.
+ f=root/'sdd/features/adoption-governance'
+ rows=[]
+-for i in range(1,5): rows.append({'acceptance':f'AC-{i:02d}','requirement':f'REQ-{i:02d}','decision':f'D-{i:02d}','risk':f'R-{i:02d}','tasks':[f'T00{i}'],'implementation':'AGENTS.md' if i==3 else 'skills/README.md' if i==2 else 'docs/structure/files.json' if i==1 else 'src/scripts/run-checks.py','oracle':'src/scripts/check-ox.py' if i!=3 else 'docs/validation/normative-coverage.md'})
++for i in range(1,5): rows.append({'acceptance':f'AC-{i:02d}','requirement':f'REQ-{i:02d}','decision':f'D-{i:02d}','risk':f'R-{i:02d}','tasks':[f'T00{i}'],'implementation':'AGENTS.md' if i==3 else '.codex/skills/README.md' if i==2 else 'docs/structure/files.json' if i==1 else 'src/scripts/run-checks.py','oracle':'src/scripts/check-ox.py' if i!=3 else 'docs/validation/normative-coverage.md'})
+ (f/'traceability.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+ (f/'evidence.json').write_text(json.dumps({'schema_version':2,'environment':'Adoção local, verificações em preparação.','requirements':[{'id':f'AC-{i:02d}','criterion':'Critério de adoção '+str(i),'status':'NÃO VERIFICADO','evidence_ids':[]} for i in range(1,5)],'evidence':[],'limitations':['Sem integração do produto.']},ensure_ascii=False,indent=2)+'\n')
+ print('Normative IDs:',len(coverage))
+--- before/src/scripts/check-new-skills.py
++++ after/src/scripts/check-new-skills.py
+@@ -5,5 +5,5 @@
+ spec=importlib.util.spec_from_file_location('quick',root/'src/scripts/skill-quick-validate.py'); quick=importlib.util.module_from_spec(spec);spec.loader.exec_module(quick)
+ failed=False
+ for name in json.loads((root/'src/fixtures/profile.json').read_text())['new']:
+- ok,message=quick.validate_skill(root/'skills'/name);print(name+': '+message);failed|=not ok
++ ok,message=quick.validate_skill(root/'.codex/skills'/name);print(name+': '+message);failed|=not ok
+ sys.exit(failed)
+--- before/src/scripts/record-revision.py
++++ after/src/scripts/record-revision.py
+@@ -17,12 +17,12 @@
+  with tarfile.open(ROOT/'docs/validation/adoption-baseline/copied-before-adaptation.tar.gz') as archive:
+   members=set(archive.getnames())
+   for row in doc['revisions'][0]['records']:
+-   rel=row['destination'];now=(ROOT/rel).read_bytes();before=archive.extractfile(rel).read()
++   rel=row['destination'];current='.codex/'+rel if rel.startswith('skills/') else rel;now=(ROOT/current).read_bytes();before=archive.extractfile(rel).read()
+    if now!=before:
+     diff.extend(difflib.unified_diff(before.decode().splitlines(True),now.decode().splitlines(True),fromfile='copied/'+rel,tofile='current/'+rel))
+  # Track maintained components, not mutable observation outputs or a recursive self-hash.
+  paths=[ROOT/'AGENTS.md',ROOT/'README.md',ROOT/'docs/constitution.md']
+- for base in ['skills','sdd','src','docs/architecture','docs/decisions','docs/security']:
++ for base in ['.codex/skills','sdd','src','docs/architecture','docs/decisions','docs/security']:
+   paths.extend(p for p in (ROOT/base).rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.name not in {'evidence.json','converge.md'})
+  with tarfile.open(dest/'components.tar.gz','w:gz') as archive:
+   for path in sorted(set(paths)):
+--- before/src/tests/test_governance.py
++++ after/src/tests/test_governance.py
+@@ -27,8 +27,8 @@
+   folder=self.root/'sdd/chain';folder.mkdir(parents=True)
+   p=folder/'rust.md';p.write_text('---\nskill: rust\nskill_path: UNCONFIGURED\nbridge_version: 1\n---\n')
+   self.assertTrue(any('Unconfigured' in e for e in V.bridge_errors(self.root,folder)))
+-  skill=self.root/'skills/rust';skill.mkdir(parents=True);(skill/'SKILL.md').write_text('---\nname: wrong\ndescription: test\n---\n')
+-  p.write_text(p.read_text().replace('UNCONFIGURED','skills/rust/SKILL.md'))
++  skill=self.root/'.codex/skills/rust';skill.mkdir(parents=True);(skill/'SKILL.md').write_text('---\nname: wrong\ndescription: test\n---\n')
++  p.write_text(p.read_text().replace('UNCONFIGURED','.codex/skills/rust/SKILL.md'))
+   self.assertTrue(any('mismatch' in e for e in V.bridge_errors(self.root,folder)))
+  def test_missing_artifact_not_approved(self):
+   doc={'schema_version':2,'environment':'fixture','limitations':[],'evidence':[],'requirements':[{'id':'AC-01','criterion':'tested','status':'APROVADO','evidence_ids':[]}]}
+@@ -43,7 +43,7 @@
+  def test_independent_copy_and_corrupt_resource(self):
+   dest=self.root/'detached';dest.mkdir()
+   # Copy only operative tree and preservation dependencies, never parent/library.
+-  for name in ['skills','sdd','src']:
++  for name in ['.codex/skills','sdd','src']:
+    shutil.copytree(ROOT/name,dest/name,ignore=shutil.ignore_patterns('__pycache__'))
+   shutil.copytree(ROOT/'docs/structure',dest/'docs/structure')
+   shutil.copytree(ROOT/'docs/validation/adoption-baseline',dest/'docs/validation/adoption-baseline')
+@@ -58,6 +58,6 @@
+    elif p.is_dir(): shutil.copytree(p,dest/'docs/validation'/p.name)
+   self.assertEqual(C.check(dest),[])
+   self.assertEqual(V.audit(dest),[])
+-  target=dest/'skills/rust/references/design.md';target.write_text(target.read_text()+'\ncorruption\n')
++  target=dest/'.codex/skills/rust/references/design.md';target.write_text(target.read_text()+'\ncorruption\n')
+   self.assertTrue(any('Copied resource changed' in e for e in C.check(dest)))
+ if __name__=='__main__':unittest.main()

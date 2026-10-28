@@ -1,0 +1,7 @@
+{
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh",
+  "exit_code": 0,
+  "artifact": "docs/validation/final-freshness-002/result.log",
+  "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+  "reason": "Revised provenance distinguishes actual agent inputs and later contract reinspection."
+}

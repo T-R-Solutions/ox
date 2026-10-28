@@ -1,0 +1,50 @@
+[
+  {
+    "id": "workspace-integrity-engineering-positive",
+    "kind": "selection",
+    "prompt": "Projetar gravação concorrente entre editor e agentes, com snapshots, watcher e recuperação de arquivos."
+  },
+  {
+    "id": "workspace-integrity-engineering-negative",
+    "kind": "selection",
+    "prompt": "Planejar migração de uma coluna SQLite local após crash, sem escritores externos no filesystem."
+  },
+  {
+    "id": "workspace-integrity-engineering-failure",
+    "kind": "behavior",
+    "skill": "workspace-integrity-engineering",
+    "prompt": "Dois escritores leram H0; A publicou H1; B tenta gravar H2. Um destino usa symlink para fora da raiz, e houve crash entre staging e rename com watcher perdido. Explique operações permitidas e recuperação; não escreva fora do diretório de avaliação."
+  },
+  {
+    "id": "iced-engineering-positive",
+    "kind": "selection",
+    "prompt": "Adicionar componente Iced que permaneça interativo durante indexação e preserve foco ao recolher painéis."
+  },
+  {
+    "id": "iced-engineering-negative",
+    "kind": "selection",
+    "prompt": "Avaliar hierarquia visual de uma jornada web sem código Iced."
+  },
+  {
+    "id": "iced-engineering-failure",
+    "kind": "behavior",
+    "skill": "iced-engineering",
+    "prompt": "Uma UI Iced recebe resultado de busca antigo após troca de painel. Grafo oculto continua agendando layout. Não há lockfile fornecido. Proponha estado, efeitos, foco e ensaio, indicando APIs que precisam ser confirmadas."
+  },
+  {
+    "id": "code-context-engineering-positive",
+    "kind": "selection",
+    "prompt": "Projetar índice incremental de símbolos com offsets e proveniência por snapshot e fallback sem LSP."
+  },
+  {
+    "id": "code-context-engineering-negative",
+    "kind": "selection",
+    "prompt": "Testar se embeddings melhoram localização de código comparados a busca textual, sem mudar mecanismo de indexação."
+  },
+  {
+    "id": "code-context-engineering-failure",
+    "kind": "behavior",
+    "skill": "code-context-engineering",
+    "prompt": "Dois módulos definem run; AST achou chamada run sem resolução. Arquivo foi renomeado e ganhou um caractere multibyte antes do símbolo; LSP está indisponível. Defina retorno de consulta e invalidação."
+  }
+]

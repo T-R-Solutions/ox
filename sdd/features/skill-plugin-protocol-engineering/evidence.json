@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "environment": "Python 3.13.16; Linux; maintenance-001",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Plugin compatível e autorizado negocia apenas capacidades concedidas; oráculo: fixture de cliente/provedor e asserts de mensagens.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Plugin incompatível ou malformado recebe falha explícita sem mutação persistente; oráculo: harness de compatibilidade.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Plugin encerra durante operação e host recupera/expira recursos sem bloqueio; oráculo: teste de crash e timeout.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Plugin sem permissão tenta ler caminho protegido e o host bloqueia efeito; oráculo: integração em sandbox no SO alvo.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Revisão de conteúdo e validação local confirmam entrada completa, referências substantivas, fronteiras e ponte válida.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Ensaio observado com agente distingue pedido positivo, negativo e comportamento adverso; limitações e resposta bruta preservadas.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Aceitação restrita à governança/autoria; sem compilação Rust, integração Iced ou eficácia do produto.",
+    "Revisão do executor não é revisão humana independente; ensaios históricos não foram reexecutados.",
+    "Envelopes anteriores em docs/validation/governance-layout/before.tar.gz; outputs de coleta são conferidos separadamente por freshness e extração final.",
+    "Qualificação inicial de pacote tem inputs próprios anteriores à consolidação; o recibo de entrega final fica em dist/.",
+    "Os 36 cenários técnicos de skills permanecem NÃO VERIFICADO.",
+    "maintenance-001: observações afetadas preservadas em docs/validation/maintenance-001/previous/sdd/features/skill-plugin-protocol-engineering/evidence.json.bin; aguardam reexame ou nova execução, sem renovar hashes antigos.",
+    "Observações maintenance-001 são novas; resultados anteriores preservados. Critérios de pacote real, novo ensaio de agente e titularidade/permissões não resolvidas permanecem NÃO VERIFICADO.",
+    "Inputs alterados pelo bootstrap; observações anteriores e aprovações históricas preservadas em docs/validation/bootstrap-governance/previous. Critérios dependentes aguardam reaceitação própria; hashes antigos não foram renovados."
+  ]
+}

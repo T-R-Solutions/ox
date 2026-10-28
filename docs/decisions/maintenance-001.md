@@ -1,0 +1,43 @@
+# ADR — Simplificação delimitada e compartilhamento da governança
+
+Estado: adotada em 2026-10-27 pelo pedido explícito do mantenedor, com decisão posterior de GPL-3.0-only registrada em licensing.md; OPEN-07 permanece parcialmente pendente.
+
+D-01: Somente as nove entradas de profile.json/new passam a ter name e description.
+O guia skill-creator instalado admite metadata opcional: esta é uma preferência do Ox,
+não correção de campo inválido nem proibição da OpenAI. O corpo, valores e recursos
+permanecem idênticos. As vinte skills copiadas não mudam.
+
+Revisão de preservação: sucede apenas a exigência de igualdade integral das nove
+entradas nas ADRs implementation-transition e governance-layout. O guard autentica
+os bytes originais pelo before.json original e deriva a única transformação autorizada:
+retirar o bloco metadata/version 1.0.0 do frontmatter. Não aceita alterações de descrição,
+corpo, recursos, perfil ou métodos. Nenhum hash histórico é reescrito.
+
+Versões anteriores continuam no before.tar.gz de implementation-transition e nas
+revisões de docs/structure/files.json. Identidade atual para plans/evidências é caminho
+mais SHA-256 dos bytes consultados; versão da ponte continua bridge_version 1.
+Não há segundo catálogo de versões. O único consumidor obrigatório de metadata.version
+era check-ox; quick_validate admite metadata, mas não a exige. As pontes pedem versão,
+não esse campo específico; o guia operacional esclarece a identidade por conteúdo.
+
+D-02: Organização por regras de inclusão, sem mover ou excluir arquivos. A allowlist
+vigente já exclui dist e caches; todos os registros de docs necessários à auditoria,
+links e recuperação continuam incluídos. Acrescentar exportação em diretório vazio,
+sem compactação, usando a mesma allowlist. O tamanho do arquivo externo de 73 MB
+não demonstra defeito no empacotador e não é métrica da árvore atual.
+
+D-03: Preservar bytes anteriores alterados em maintenance-001/previous, com extensão
+.bin para não reinterpretar links históricos como documentos ativos. before.json
+registra hashes e tamanhos antes da tarefa. Para restaurar governance-layout, usar
+primeiro o retained path se seu hash conferir; se mudou, buscar previous nesta revisão,
+e depois o archive da baseline. Conferir todos os hashes, em destino vazio.
+Não depender de dist nem do backup externo temporário da migração inicial.
+
+D-04: A análise está em docs/licensing/review.md. A decisão posterior do mantenedor
+adota GPL-3.0-only para material próprio, conforme docs/decisions/licensing.md;
+Rodrigo Batista foi informado como titular próprio; permissões de terceiros permanecem pendentes.
+A licença escolhida para conteúdo próprio não concede direitos sobre cópias ou livros.
+
+Alternativas rejeitadas: desativar guards, atualizar hashes antigos, apagar arquivos
+volumosos, externalizar evidências obrigatórias ou escolher licença sem decisão.
+Rever ao alterar perfil, conteúdo, allowlist, cadeia de recuperação ou decisão OPEN-07.

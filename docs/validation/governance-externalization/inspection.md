@@ -1,0 +1,21 @@
+# Inspeção da migração — 2026-10-26
+
+Revisor: agente executor; não revisão humana independente. Critérios: AC-01..07 da migração e critérios afetados das dez features anteriores.
+
+A revisão das autoridades locais e das 72 disposições confirma papéis separados, regras do SDD 1.3.0, seleção condicional, proibição de aprovação por tarefas/hashes e tratamento futuro de GUI/produto. A incorporação integral por referência foi retirada. Cobertura corrente tem 18 IDs locais (POL-01..10 e GOV-01..08), sem estados APROVADO herdados dos 72 IDs antigos.
+
+A revisão dos scripts correntes encontrou entradas relativas à raiz própria. Nenhum lê os estudos ou exige topologia parent/ox. A lista de três nomes serve somente à rejeição de inclusão/leitura. O empacotador usa lista explícita na raiz, manifesto e extração fora da origem. O teste de isolamento contém tentativa proposital de leitura da origem e verifica rejeição. Isso observa ferramentas Python/stdlib, não constitui sandbox de SO.
+
+Os 141 inputs técnicos/prompts do observed-inputs.json, exceto o README histórico de localização anterior, foram comparados com SHA-256 dos arquivos atuais: nenhuma divergência. O catálogo de seleção e os prompts mantêm os bytes; as 29 skills e todos os recursos técnicos também permanecem iguais ao backup inicial desta migração. As declarações REQ/AC das nove specs são idênticas às do previous-features.tar.gz; apenas a descrição de origem e a motivação dos plans passaram a indicar o contrato local.
+
+Reexame de AC-05: metadata, gatilhos, referências, fronteiras, ponte e spec local continuam adequados à autoria. A revisão semântica histórica só é usada para o conteúdo técnico idêntico, não como prova das antigas autoridades. Validação atual de estrutura/completude é executada novamente. Não houve mudança de APIs, fontes técnicas ou recomendações que exigisse validação externa de novas alegações.
+
+Reexame de AC-06: leitura das respostas brutas group-1/2/3 e do review histórico confirma seleção positiva/negativa e aplicação textual delimitada: grants e efeito incerto; geração e cancelamento; invalidação de evidência; conflito H0/H1; Iced com geração/foco; AST sem resolução; grafo inferido/limites; exit code e bruto; cache/cumulativos/custo desconhecido. As duas alternativas negativas diferentes do gabarito continuam justificadas pelo cenário. Nenhum ensaio novo de agente foi executado. Não se atribui aos agentes conhecimento da constituição nova. O critério refere-se à existência e adequação limitada das respostas históricas, com seus inputs preservados; a nova inspeção somente estabelece sua pertinência aos critérios locais atuais.
+
+Limites preservados: casos próximos das referências, exposição incidental do grupo 2, README ausente no grupo 1, modelos/seeds não imutáveis, sem comparação de eficácia, sem testes reais de produto. Os 36 cenários técnicos AC-01..04 continuam NÃO VERIFICADO. Licença/plataforma/sandbox do produto continuam em decisões abertas; esta entrega é governança local, sem publicação.
+
+O histórico ativo foi separado: E-RELOCATION obsoleto está preservado byte a byte no snapshot de features; novas evidências usam IDs E-EXT-* e novos métodos. history-integrity.json protege 59 artefatos históricos; alterações deliberadas são detectadas. Não se alteraram hashes antigos para simular atualidade.
+
+A primeira rodada da migração (20261026T200610.956828Z) registrou falhas reais: links de documento histórico avulso e posição do stream após is_zipfile. O documento foi conservado em archive histórico e o leitor reposiciona o stream antes de abrir gzip/tar. Testes posteriores exercitam nome aninhado, conteúdo renomeado, wrapper, symlink/traversal, recurso, ponte, autoridade, link, perfil, catálogo, ID e evidência ausente, com restauração de sucesso.
+
+Inspeção de conteúdo: assinaturas SHA-256 e sequência de linhas detectam os textos preservados, inclusive renomeados e envolvidos por texto adicional, em ZIP/TAR/GZIP aninhados. Limites de expansão/profundidade e formatos compactados não suportados falham explicitamente. Não é prova contra ofuscação arbitrária nem detector de paráfrases. Nenhum conteúdo integral dos três estudos foi encontrado na árvore corrigida ou no primeiro pacote inspecionado.

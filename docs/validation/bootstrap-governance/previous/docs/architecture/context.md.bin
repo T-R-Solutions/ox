@@ -1,0 +1,31 @@
+# Contexto e fases do produto
+
+**Fase atual:** `implementation-foundation`; aplicativo `not-yet-implemented`.
+A feature `product-foundation` entrega a transição da governança; F0 não está concluído.
+
+**Escopo arquitetural vigente:** resumo autocontido do produto e seus estados. Ox é agent-first, local-first e extensível, com Rust/Iced, LSP e serviços avançados por plugins, dois modos de grafo e confiabilidade verificável como prioridade. Motores de contexto, grafo e compactação serão próprios; bibliotecas auxiliares exigem avaliação. Componentes abaixo estão previstos, não implementados. Novos detalhes dependem de ADRs. O planejamento externo não é requisito de execução ou validação.
+
+A futura interface SDD apresentará arquivos portáveis como autoridade, sem estado concorrente: distinguir indicação/seleção/consulta/uso de skills, tarefas/aceitação/permissões e falhas de sincronização. Mudanças propostas por agentes respeitam escopo e autorizações. Esses comportamentos futuros não foram testados. Tokio, SQLite, IPC, Tree-sitter, plataformas e sandbox seguem em [decisões abertas](../decisions/open-questions.md).
+
+O núcleo futuro coordena tarefas, agentes, permissões, workspace e evidências. Plugins opcionais fornecem integrações; Iced apresenta estados do domínio. Contexto extrai dados por snapshot; grafo deriva relações com proveniência; output gera projeções do bruto; contabilidade conserva semântica de uso. Dois modos de grafo são vistas do mesmo grafo lógico. O estado de implementação deverá ser acompanhado nas features `product-*`
+e em seus artefatos de verificação. A baseline de governança não contém
+implementação desses componentes; sua presença futura só poderá ser declarada
+após inspeção do código e das evidências atuais.
+
+| Marco | Escopo futuro | Dependência relevante |
+|---|---|---|
+| F0 | Fundação e contratos | Decisões de risco e plataforma |
+| F1 | Shell local e plugins | Protocolo, dados e falhas |
+| F2 | Agentes e workspace | Autorizações, concorrência e recuperação |
+| F3 / MVP | Verificação e observabilidade essencial | Critérios e evidências reais |
+| F4 | Contexto incremental | Snapshots íntegros |
+| F5 | Grafo estrutural | Contexto e proveniência |
+| F6 | Grafo exploratório e output | Limites de trabalho e raw preservado |
+| F7 / V1 | Plugins avançados e robustez | Integração multiplataforma |
+| F8 | Expansões opcionais | Validação prévia do produto local |
+
+A preparação das skills P0/P1 foi registrada historicamente e não altera
+a ordem dos marcos do produto. Na fase `implementation-foundation`, somente
+features `product-*` e evidências próprias demonstram entregas do aplicativo.
+Persistência, avaliação de agentes e distribuição continuam abrangidas pelas
+competências existentes quando pertinentes.

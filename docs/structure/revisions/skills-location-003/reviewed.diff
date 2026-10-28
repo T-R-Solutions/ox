@@ -1,0 +1,362 @@
+--- copied/sdd/chain/README.md
++++ current/sdd/chain/README.md
+@@ -1,24 +1,33 @@
+-# Pontes instaladas neste projeto
++# Pontes instaladas
+ 
+-Esta pasta começa sem pontes específicas. Copie aqui somente os Markdown escolhidos
+-do catálogo Chain da biblioteca. Cada ponte tem `skill`, `skill_path` e
+-`bridge_version` no cabeçalho. `skill_path` é relativo à raiz do projeto, não à ponte.
+-Ajuste o valor UNCONFIGURED antes de usar ou validar a ponte.
++29 pontes: 17 gerais, 3 condicionais e 9 novas. Cada skill_path é relativo à raiz Ox. Confirme existência e identidade antes de consultar. Ponte não instala no ambiente, não autoriza efeitos e não prova consulta. Seleção por tarefa, sem carga recursiva.
+ 
+-Não copie as skills para esta pasta: copie suas pastas completas para um local
+-adequado e autorizado e indique o caminho de cada SKILL.md na ponte correspondente.
+-As pontes são documentos, não skills do Codex, scripts ou comandos executáveis.
+-
+-O fluxo consulta as pontes existentes; não há registro adicional para sincronizar.
+-Sem pontes o SDD funciona normalmente. Dependências de especialidades são sugestões
+-condicionais; ausência de uma auxiliar não aciona instalação ou delegação automática.
+-
+-Mantenha o método técnico na skill e os requisitos concretos na spec. Uma ponte
+-traduz entradas e resultados entre esses dois contextos e não substitui nenhum deles.
+-
+-## Relação com as rotas
+-
+-As contribuições spec/plan/tasks das pontes se aplicam ao fluxo completo e às features
+-existentes afetadas. Uma mudança local sem feature pode usar a skill isoladamente,
+-sem ponte, mantendo seu próprio registro proporcional. A ponte não exige criar uma
+-feature nem permite dispensar critérios/evidências já exigidos pelo projeto.
++- [ai-engineering](ai-engineering.md)
++- [api-testing](api-testing.md)
++- [application-security](application-security.md)
++- [database-engineering](database-engineering.md)
++- [design-review](design-review.md)
++- [design-system](design-system.md)
++- [domain-modeling](domain-modeling.md)
++- [observability-and-diagnostics](observability-and-diagnostics.md)
++- [performance-engineering](performance-engineering.md)
++- [reliability-engineering](reliability-engineering.md)
++- [rust](rust.md)
++- [software-architecture](software-architecture.md)
++- [software-delivery](software-delivery.md)
++- [software-design](software-design.md)
++- [software-evolution](software-evolution.md)
++- [software-testing](software-testing.md)
++- [technical-documentation](technical-documentation.md)
++- [distributed-systems](distributed-systems.md) — condicional: Garantias entre processos com falhas independentes, ordenação, replay ou sincronização; IPC por si só não basta.
++- [engineering-productivity](engineering-productivity.md) — condicional: Avaliação de fluxo humano ou ferramenta com baseline e resultado observável; não benchmark do binário.
++- [prompt](prompt.md) — condicional: Pedido de criar ou revisar um prompt como artefato; não qualquer tarefa com IA.
++- [plugin-protocol-engineering](plugin-protocol-engineering.md)
++- [agent-runtime-engineering](agent-runtime-engineering.md)
++- [autonomous-verification-engineering](autonomous-verification-engineering.md)
++- [workspace-integrity-engineering](workspace-integrity-engineering.md)
++- [iced-engineering](iced-engineering.md)
++- [code-context-engineering](code-context-engineering.md)
++- [code-knowledge-graph-engineering](code-knowledge-graph-engineering.md)
++- [tool-output-engineering](tool-output-engineering.md)
++- [agent-usage-accounting](agent-usage-accounting.md)
+--- copied/sdd/constitution.md
++++ current/sdd/constitution.md
+@@ -1,17 +1,3 @@
+-# Constituição inicial
++# Autoridade constitucional
+ 
+-Este é um ponto de partida a revisar na adoção, não uma política que substitui a do
+-projeto. Se já existir constituição, registre sua localização em project.md e use-a
+-como autoridade; este texto passa a ser apenas material de adaptação.
+-
+-1. Preserve dados, mudanças anteriores e configurações fora do escopo autorizado.
+-2. Mantenha uma autoridade por regra: princípios na constituição, comportamento na
+-   spec, decisões no plan/ADRs, trabalho nas tasks e observações nas evidências.
+-3. Verifique riscos proporcionais à superfície alterada. Não invente resultados,
+-   permissões, ferramentas disponíveis ou garantias de segurança e desempenho.
+-4. Torne decisões e mudanças rastreáveis a critérios observáveis. Pendência ou
+-   ausência de evidência não equivale a aprovação.
+-5. Resolva conflitos na fonte, registrando motivo, alcance e condição de revisão
+-   das exceções. Nenhuma ponte ou método especializado altera requisitos por conta própria.
+-
+-Registre data, responsável e justificativa de adoção ou alteração no projeto.
++A única constituição permanente deste projeto é `docs/constitution.md`, relativa à raiz Ox. Este arquivo é um apontador de integração do SDD 1.3.0 e não contém uma segunda política. Consulte também `docs/decisions/adoption.md` para origem, data e alcance da adoção. A constituição inicial do modelo foi preservada na baseline de cópia antes desta adaptação.
+--- copied/sdd/project.md
++++ current/sdd/project.md
+@@ -1,16 +1,42 @@
+-# Contexto do projeto
++# Contexto do projeto Ox
+ 
+-Preencher ao adotar, sem duplicar conteúdo já mantido em outro documento.
+-Valores não preenchidos são questões abertas, nunca fatos ou comandos executáveis.
++## Objetivo e escopo atual
+ 
+-- Objetivo e fronteiras do projeto: a preencher.
+-- Instruções existentes e constituição autoritativa: a preencher; reconciliar com constitution.md.
+-- Local dos requisitos, decisões e tarefas existentes: a preencher.
+-- Diretório das novas features: `sdd/features/` por padrão; pode ser alterado.
+-- Linguagens, targets e versões verificadas: a preencher quando pertinentes.
+-- Comandos reais de build, testes e validação: descobrir no projeto; registrar aqui ou referenciar a autoridade existente.
+-- Restrições, dados protegidos e escopo autorizado: a preencher.
+-- Ajustes locais deste modelo e motivos: registrar apenas diferenças necessárias.
++Preparar uma biblioteca e governança portáveis para aplicação desktop agent-first. Esta adoção não implementa aplicação, crates, UI, serviços ou plugins. Todos os arquivos operacionais resolvem dentro desta raiz; origens históricas são proveniência, nunca dependência de execução.
+ 
+-A localização de cada skill pertence à sua ponte, não a uma segunda lista aqui.
+-Não deduzir uma stack, política de segurança ou orçamento de desempenho de exemplos.
++## Autoridades
++
++- `AGENTS.md`: entrada operacional; `docs/constitution.md`: única política permanente; `sdd/constitution.md`: apontador.
++- `Ox_Regras_SDD_Skills_AGENTS_v1.0.md`: contratos de integração adotados; cobertura em `docs/validation/normative-coverage.md`.
++- `Ox_Comparativo_Skills_e_SDD_v1.0.md`: perfil, fronteiras, nove contratos de autoria; `Ox_Roadmap_Arquitetura_v0.2.md`: contexto e fases, mantendo recomendações como propostas.
++- `docs/decisions/adoption.md` e `docs/decisions/open-questions.md`: conflitos e decisões abertas; `docs/architecture/context.md`: fronteiras e fases.
++
++## Features e métodos
++
++Features diretas em `sdd/features/`: `adoption-governance` e nove `skill-<nome>`. O prefixo skill identifica autoria da biblioteca. Nenhuma feature de produto foi criada; futuras features de produto devem usar prefixo `product-` e evidências próprias. O validador verifica diretórios diretos, não depender de recursão implícita.
++
++Uma primária quando pertinente, auxiliares para perguntas distintas; paths e bridge_version pertencem às pontes. A disponibilidade de 29 entradas não ativa nenhuma delas automaticamente. Critérios técnicos originais AC-01..04 das nove skills permanecem separados de AC-05/06 de conteúdo/avaliação.
++
++## Stack e versões observadas
++
++Rust e Iced definidos para o aplicativo; não há Cargo.toml, lockfile, compilação, MSRV ou versões adotadas. Ferramentas desta preparação usam somente Python 3.11+ e stdlib; Python observado 3.13.16 em Linux, detalhes em `docs/validation/adoption-baseline/environment.json`. Não há repositório Git. SDD copiado: 1.3.0, validador preservado byte a byte. Documentação consultada: Iced 0.14.0, ACP v1 (v2 draft separado), LSP 3.17, JSON-RPC 2.0, SLSA 1.2; são referências, não dependências instaladas. Fontes e lacunas em `docs/validation/official-sources.md`.
++
++## Comandos existentes (cwd: raiz Ox)
++
++```bash
++PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .
++PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only
++PYTHONDONTWRITEBYTECODE=1 python3 src/scripts/check-ox.py
++PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s src/tests -v
++PYTHONDONTWRITEBYTECODE=1 python3 src/scripts/run-checks.py
++```
++
++O runner preserva cada rodada em diretório novo e mantém seus logs e hashes. O validador é somente leitura. Não solicitar aprovação estrita global enquanto existirem critérios sem evidência. Schema 2 vincula observações decididas aos inputs reais; hashes não atestam adequação do oráculo.
++
++## Adaptações e pendências
++
++Adaptações restritas a projeto, apontador constitucional, catálogo e skill_path das pontes. Templates, workflow, evidence e ferramenta mantidos. Cache Python da origem não é recurso portátil e foi excluído da cópia do modelo. Skills existentes copiadas integralmente sem reescrita. Nenhum runner externo é usado. Plataformas, sandbox, distribuição, agentes, persistência, runtime e metas continuam pendentes no registro de decisões.
++
++## Correção da localização das skills
++
++Por solicitação do mantenedor, o catálogo ativo está em `.codex/skills/`; todas as 29 pontes e referências operacionais usam essa localização. `skills/` nos documentos originais, snapshots e observações anteriores permanece referência histórica. Registro: `docs/validation/skills-location-001/report.md`. Não há cópia ativa em `skills/`.
+--- copied/sdd/chain/ai-engineering.md
++++ current/sdd/chain/ai-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: ai-engineering
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/ai-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: ai-engineering
+--- copied/sdd/chain/api-testing.md
++++ current/sdd/chain/api-testing.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: api-testing
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/api-testing/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: api-testing
+--- copied/sdd/chain/application-security.md
++++ current/sdd/chain/application-security.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: application-security
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/application-security/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: application-security
+--- copied/sdd/chain/database-engineering.md
++++ current/sdd/chain/database-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: database-engineering
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/database-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- copied/sdd/chain/design-review.md
++++ current/sdd/chain/design-review.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: design-review
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/design-review/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: design-review
+--- copied/sdd/chain/design-system.md
++++ current/sdd/chain/design-system.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: design-system
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/design-system/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: design-system
+--- copied/sdd/chain/domain-modeling.md
++++ current/sdd/chain/domain-modeling.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: domain-modeling
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/domain-modeling/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: domain-modeling
+--- copied/sdd/chain/observability-and-diagnostics.md
++++ current/sdd/chain/observability-and-diagnostics.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: observability-and-diagnostics
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/observability-and-diagnostics/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- copied/sdd/chain/performance-engineering.md
++++ current/sdd/chain/performance-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: performance-engineering
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/performance-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: performance-engineering
+--- copied/sdd/chain/reliability-engineering.md
++++ current/sdd/chain/reliability-engineering.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: reliability-engineering
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/reliability-engineering/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: reliability-engineering
+--- copied/sdd/chain/rust.md
++++ current/sdd/chain/rust.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: rust
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/rust/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: rust
+--- copied/sdd/chain/software-architecture.md
++++ current/sdd/chain/software-architecture.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-architecture
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/software-architecture/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: software-architecture
+--- copied/sdd/chain/software-delivery.md
++++ current/sdd/chain/software-delivery.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-delivery
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/software-delivery/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- copied/sdd/chain/software-design.md
++++ current/sdd/chain/software-design.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-design
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/software-design/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: software-design
+--- copied/sdd/chain/software-evolution.md
++++ current/sdd/chain/software-evolution.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-evolution
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/software-evolution/SKILL.md
+ bridge_version: 1
+ ---
+ 
+--- copied/sdd/chain/software-testing.md
++++ current/sdd/chain/software-testing.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: software-testing
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/software-testing/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: software-testing
+--- copied/sdd/chain/technical-documentation.md
++++ current/sdd/chain/technical-documentation.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: technical-documentation
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/technical-documentation/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: technical-documentation
+--- copied/sdd/chain/distributed-systems.md
++++ current/sdd/chain/distributed-systems.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: distributed-systems
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/distributed-systems/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: distributed-systems
+@@ -48,3 +48,7 @@
+ spec defines behavior; plan/ADRs define decisions; tasks define executable work.
+ This bridge cannot override those artifacts or expand authorization. Changes to
+ product rules belong in their authoritative artifact, not in this bridge.
++
++## Perfil condicional do projeto
++
++Garantias entre processos com falhas independentes, ordenação, replay ou sincronização; IPC por si só não basta. Disponibilidade não significa seleção, consulta ou uso.
+--- copied/sdd/chain/engineering-productivity.md
++++ current/sdd/chain/engineering-productivity.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: engineering-productivity
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/engineering-productivity/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: engineering-productivity
+@@ -39,3 +39,7 @@
+ inconclusive status for each applicable criterion. Spec owns the desired outcome;
+ plan/ADRs own decisions and tasks own executable work. The bridge neither changes
+ those authorities nor grants data access, rollout, outreach or spending permission.
++
++## Perfil condicional do projeto
++
++Avaliação de fluxo humano ou ferramenta com baseline e resultado observável; não benchmark do binário. Disponibilidade não significa seleção, consulta ou uso.
+--- copied/sdd/chain/prompt.md
++++ current/sdd/chain/prompt.md
+@@ -1,6 +1,6 @@
+ ---
+ skill: prompt
+-skill_path: UNCONFIGURED
++skill_path: .codex/skills/prompt/SKILL.md
+ bridge_version: 1
+ ---
+ # SDD bridge: prompt
+@@ -48,3 +48,7 @@
+ spec defines behavior; plan/ADRs define decisions; tasks define executable work.
+ This bridge cannot override those artifacts or expand authorization. Changes to
+ product rules belong in their authoritative artifact, not in this bridge.
++
++## Perfil condicional do projeto
++
++Pedido de criar ou revisar um prompt como artefato; não qualquer tarefa com IA. Disponibilidade não significa seleção, consulta ou uso.

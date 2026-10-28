@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "iced-engineering-positive",
+      "kind": "selection",
+      "prompt": "Adicionar componente Iced que permaneça interativo durante indexação e preserve foco ao recolher painéis."
+    },
+    {
+      "id": "iced-engineering-negative",
+      "kind": "selection",
+      "prompt": "Avaliar hierarquia visual de uma jornada web sem código Iced."
+    },
+    {
+      "id": "iced-engineering-failure",
+      "kind": "behavior",
+      "skill": "iced-engineering",
+      "prompt": "Uma UI Iced recebe resultado de busca antigo após troca de painel. Grafo oculto continua agendando layout. Não há lockfile fornecido. Proponha estado, efeitos, foco e ensaio, indicando APIs que precisam ser confirmadas."
+    }
+  ],
+  "oracle": {
+    "primary": "iced-engineering",
+    "negative": "design-review",
+    "failure": "version gap; generation guard; suspend work; measure UI not assert responsive"
+  }
+}

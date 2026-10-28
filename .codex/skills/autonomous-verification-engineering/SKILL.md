@@ -1,0 +1,68 @@
+---
+name: autonomous-verification-engineering
+description: Design criterion-based acceptance gates for autonomous work, binding verdicts to observed inputs and independent oracles. Use for evidence and approval engines; skip ordinary unit-test authoring without acceptance orchestration.
+---
+
+# autonomous-verification-engineering
+
+## Responsabilidade e seleção
+
+Transformar requisitos e critérios de aceite em verificações executáveis e veredictos rastreáveis, preservando independência dos oráculos e políticas de autorização.
+
+Selecionar: Sistemas que aprovam/reprovam entregas de agentes; evidências, critérios, gates, execução autônoma e risco de aceitação falsa.
+
+Não selecionar: Não usar para apenas criar testes unitários ou investigar flaky tests; software-testing é responsável por esses métodos. Não produzir “score de confiança” sem calibração.
+
+## Entradas e lacunas
+
+critérios normativos, snapshots de código, testes/verificadores autorizados, risco da mudança, política de aprovação.
+
+Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+
+## Procedimento operacional
+
+1. Enumerate normative acceptance criteria and identify their authority. For each, name the implementation surface, oracle, execution permission and expected failure. Do not derive expected results solely from the candidate implementation or an agent explanation.
+
+2. Model authorization, execution outcome and acceptance as separate controls. A permitted test can fail; an accepted artifact may still lack deployment permission. Treat skips, missing tools and absent evidence explicitly instead of folding them into success.
+
+3. Capture immutable observations with command/method, environment, exit/result, artifact hash and hashes of implementation, oracle, configuration and contract. Include dirty/untracked inputs when relevant. A Git commit alone is insufficient.
+
+4. Evaluate each criterion against its declared oracle. Use approved, rejected, unverified, inconclusive and justified not-applicable states, mapped to the consumer vocabulary. Contradictory observations require investigation, not majority voting among agents.
+
+5. Build a dependency map from observed inputs to criteria. Change one input in a disposable fixture and confirm only dependent observations become stale; changing the oracle or criterion itself also invalidates affected acceptance.
+
+6. Introduce representative defects into a controlled candidate and confirm the oracle rejects them. Preserve the failing and repaired results separately. Deliver a per-criterion verdict table, residual work and exact replay instructions; stop retries when they require missing authority or an unchanged external dependency.
+
+## Entregáveis e aceitação
+
+modelo de gates, status auditáveis, vínculo requisito-evidência-snapshot, separação implementação/oráculo, procedimentos de replay.
+
+Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+
+## Fronteiras e encaminhamento
+
+`software-testing` — O oráculo escolhido realmente falha quando introduzimos o defeito representativo?
+
+Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+
+## Referências especializadas
+
+- [acceptance-verdicts](references/acceptance-verdicts.md): consultar para Verdicts and authorization.
+- [evidence-provenance](references/evidence-provenance.md): consultar para Content-bound observations.
+- [independent-oracles](references/independent-oracles.md): consultar para Challenge the oracle.
+
+Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+
+## Responsabilidades adjacentes
+
+A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+
+| Competência | Autoridade técnica adjacente |
+|---|---|
+| `ai-engineering` | modelos, rag, agentes com ferramentas, diagnóstico e avaliação de resultados |
+| `api-testing` | verificação de protocolos, efeitos, permissões e compatibilidade entre consumidores |
+| `reliability-engineering` | falhas, cancelamento, limites, degradação, recuperação |
+| `software-testing` | casos, oráculos, testes automatizados, suites e regressões |
+| `application-security` | fronteiras de confiança, segredos, autorizações e ameaças |
+| `domain-modeling` | regras de domínio, invariantes, conceitos de tarefa/agente/política |
+| `software-architecture` | fronteiras, integração, atributos de qualidade, adrs |

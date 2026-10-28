@@ -1,0 +1,14 @@
+[
+  {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+    "exit_code": 0,
+    "artifact": "docs/validation/final-structure-001/1.log",
+    "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+  },
+  {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 src/scripts/check-ox.py",
+    "exit_code": 0,
+    "artifact": "docs/validation/final-structure-001/2.log",
+    "sha256": "31429b9ecf435eaa5381737d261f375962a9e6aee8f1e4bede05b7802212ccd6"
+  }
+]

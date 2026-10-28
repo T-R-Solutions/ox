@@ -1,0 +1,197 @@
+[
+  {
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/Cargo.toml",
+    "oracle": "docs/validation/product-bootstrap/metadata.json"
+  },
+  {
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/crates/ox-ui/src/desktop.rs",
+    "oracle": "application/crates/ox-app/tests/desktop.rs"
+  },
+  {
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/crates/ox-app/src/main.rs",
+    "oracle": "application/crates/ox-app/src/startup.rs"
+  },
+  {
+    "acceptance": "AC-04",
+    "requirement": "REQ-04",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/crates/ox-core/src/lib.rs",
+    "oracle": "application/Cargo.toml"
+  },
+  {
+    "acceptance": "AC-05",
+    "requirement": "REQ-05",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/crates/ox-ui/src/lib.rs",
+    "oracle": "application/crates/ox-ui/src/shell.rs"
+  },
+  {
+    "acceptance": "AC-06",
+    "requirement": "REQ-06",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/crates/ox-task/src/state.rs",
+    "oracle": "application/crates/ox-task/tests/lifecycle.rs"
+  },
+  {
+    "acceptance": "AC-07",
+    "requirement": "REQ-07",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/Cargo.toml",
+    "oracle": "docs/validation/product-bootstrap/metadata.json"
+  },
+  {
+    "acceptance": "AC-08",
+    "requirement": "REQ-08",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/crates/ox-workspace/src/root.rs",
+    "oracle": "application/crates/ox-workspace/tests/root_contract.rs"
+  },
+  {
+    "acceptance": "AC-09",
+    "requirement": "REQ-09",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "sdd/features/product-bootstrap/plan.md",
+    "oracle": "sdd/tools/validate.py"
+  },
+  {
+    "acceptance": "AC-10",
+    "requirement": "REQ-10",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py"
+  },
+  {
+    "acceptance": "AC-11",
+    "requirement": "REQ-11",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/crates/ox-plugin/src/protocol.rs",
+    "oracle": "application/crates/ox-plugin/tests/compatibility.rs"
+  },
+  {
+    "acceptance": "AC-12",
+    "requirement": "REQ-12",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "tools/governance/scripts/governance_support.py",
+    "oracle": "tools/governance/tests/test_governance.py"
+  },
+  {
+    "acceptance": "AC-13",
+    "requirement": "REQ-13",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002",
+      "T003",
+      "T004",
+      "T005"
+    ],
+    "implementation": "application/crates/ox-agent/src/session.rs",
+    "oracle": "docs/decisions/product-bootstrap.md"
+  }
+]

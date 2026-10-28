@@ -1,0 +1,47 @@
+{
+  "package_kind": "governance",
+  "product_included": false,
+  "limitations": [
+    "Validation covers governance/skills/SDD, not the Ox Rust application.",
+    "Cargo workspace, binaries, installers and product integration tests are out of this package."
+  ],
+  "package": "ox-governance.zip",
+  "sha256": "de5dfeb897c7115f3484a56942c33fbf11036a9dd3233cbf720c16e042bf2fd1",
+  "file_count": 420,
+  "archive_inspection": "PASS",
+  "manifest_and_extraction": "PASS",
+  "source_unchanged_during_build": true,
+  "results": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .",
+      "exit_code": 0,
+      "log": "01.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+      "exit_code": 0,
+      "log": "02.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 src/scripts/check-ox.py",
+      "exit_code": 0,
+      "log": "03.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s src/tests -v",
+      "exit_code": 0,
+      "log": "04.log",
+      "sha256": "5a6a704faeb83268ce41325ed666b54e52a10c0280e758c8056c8aafec06dcbe"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 src/scripts/run-checks.py",
+      "exit_code": 0,
+      "log": "05.log",
+      "sha256": "61ac2f635edafb650db62e4f7861c3bbda6151bb66af178c8ebc0e865f5bea13"
+    }
+  ],
+  "isolation": "Python audit hook rejects original parent and external document reads; not an OS sandbox"
+}

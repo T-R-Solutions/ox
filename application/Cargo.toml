@@ -1,0 +1,37 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/ox-app",
+    "crates/ox-ui",
+    "crates/ox-core",
+    "crates/ox-agent",
+    "crates/ox-plugin",
+    "crates/ox-policy",
+    "crates/ox-task",
+    "crates/ox-workspace",
+    "crates/ox-storage",
+    "crates/ox-context",
+    "crates/ox-graph",
+    "crates/ox-output",
+    "crates/ox-verification",
+    "crates/ox-observability",
+    "crates/ox-sdd",
+    "crates/ox-skills",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99"
+license = "GPL-3.0-only"
+publish = false
+
+[workspace.dependencies]
+iced = { version = "=0.14.0", default-features = false, features = ["tiny-skia", "x11", "wayland", "fira-sans", "thread-pool"] }
+ox-ui = { path = "crates/ox-ui" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[profile.dev]
+debug = 0

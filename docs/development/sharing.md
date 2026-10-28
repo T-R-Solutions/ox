@@ -1,0 +1,75 @@
+# Organização, compartilhamento e recuperação
+
+Medição inicial em 27/10/2026: 609 arquivos, 80.950.232 bytes lógicos
+(77,20 MiB); du indicou aproximadamente 79 MiB alocados. Os 73 MB do arquivo
+externo informado pelo mantenedor não foram usados como tamanho desta árvore.
+Inventário exato e hashes: docs/validation/maintenance-001/before.json;
+composição e maiores arquivos: composition.json na mesma pasta.
+
+| Local | Bytes iniciais | Papel e inclusão |
+| --- | ---: | --- |
+| dist/ | 69.927.377 | Pacotes anteriores, recibos, logs de extração e cópia completa de recuperação; preservar localmente, excluir do compartilhamento corrente |
+| docs/ | 8.238.780 | Autoridades, proveniência, evidências e baselines; incluir integralmente, exceto scratch |
+| sdd/ | 2.098.560 | Processo, features e evidências ativas; incluir |
+| .codex/ | 591.896 | Biblioteca ativa e recursos; incluir .codex/skills |
+| tools/ | 77.451 | Ferramentas e testes; incluir tools/governance |
+| config/ | 8.017 | Configuração; incluir config/governance |
+
+As categorias sobrepostas somam 74.845.296 bytes em 25 archives,
+123.866 bytes em 170 logs e 7.976.394 bytes em histórico sob docs/validation e
+revisions. Não foram encontrados caches ou scratch na medição inicial.
+Os maiores contribuintes são os pacotes de 27/10 (aproximadamente 12–13 MiB),
+a cópia completa de governance-layout (6,1 MiB) e a baseline de
+implementation-transition (3 MiB). Os pacotes sucessivos repetem o conteúdo
+histórico incluído em docs; não são arquivos idênticos dispensáveis por idade.
+
+Conteúdo ativo: autoridades, skills, ferramentas, perfil, features e envelopes atuais.
+Histórico obrigatório: baselines de adoção/transição/layout, revisões de proveniência,
+respostas brutas de ensaios, manifests/logs referenciados, hashes de observações e
+versões anteriores da manutenção. Permanecem nos caminhos atuais para conservar links.
+Saídas regeneráveis: novos pacotes podem ser produzidos a partir dos inputs atuais,
+mas uma observação histórica específica não é reproduzível apenas executando novamente.
+Por isso dist permanece local; sua exclusão da cópia não significa autorização de apagar.
+Caches Python e docs/validation/scratch são temporários excluídos pela allowlist.
+Não se atribui a todo log a condição de temporário: logs usados como evidência são incluídos.
+
+## Procedimento sem compactação
+
+Executar da raiz: `PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/export-clean.py /tmp/ox-share-review`.
+O destino deve ser novo e externo à árvore. O script inspeciona o conteúdo, aplica
+ROOT_FILES/ROOT_DIRS de governance_support.py (incluindo LICENSE e NOTICE após a decisão GPL-3.0-only) e compara hashes da cópia, produzindo
+export-manifest.json. Não chama package-ox.py nem gera ZIP. Não copia toda a raiz,
+backups externos, dist, caches, scratch ou o workspace `application/`, incluindo
+Cargo.toml, Cargo.lock, crates e target. Também exclui a feature product-bootstrap
+e seus registros dependentes das fontes, conforme a ADR de bootstrap.
+O conteúdo de governança inicial elegível tinha 11.022.855 bytes (10,51 MiB), antes
+dos novos registros desta manutenção. Isso é tamanho sem compressão, não previsão de ZIP.
+
+No destino de governança, executar somente os comandos de governança do README, incluindo check-ox,
+unittest e verify-maintenance. Para verificar independência, executar por
+isolated-run.py com a origem como argumento proibido. Esse oráculo bloqueia
+leituras Python da origem; não é sandbox de SO. A suíte contém fixtures sintéticas
+de archives; isso não produz pacote da solução. Publicação continua fora do escopo.
+
+## Recuperação
+
+A cópia exportada contém o histórico necessário; nenhum backup externo é obrigatório.
+A baseline de adoção conserva as cópias originais. before.tar.gz de
+implementation-transition conserva os bytes e metadata.version anteriores.
+Para recuperar o estado imediatamente anterior a maintenance-001: criar destino vazio,
+copiar a distribuição e substituir apenas os arquivos registrados em previous/*.bin,
+retirando o sufixo .bin; comparar hashes com before.json, ignorando dist (saídas locais,
+não necessárias ao funcionamento). Não aplicar rollback sobre trabalho inesperado.
+
+Para recuperar governance-layout: usar before.json dessa baseline como contrato.
+Para cada path presente no before.tar.gz, usar o membro do archive. Para os demais,
+usar o arquivo atual apenas se SHA-256 conferir; caso contrário usar
+maintenance-001/previous/<path>.bin. Conferir todos os 439 inputs antes de qualquer
+uso. verify-maintenance.py faz essa comparação sem sobrescrever arquivos e deve
+passar também no destino independente. A cópia completa em dist é redundante para
+esse contrato, mas permanece preservada. Backups antigos externos mencionados em
+ADRs históricas são contexto da migração, não requisitos atuais.
+
+Não remover registros de docs por tamanho sem revisar links, evidence inputs,
+guards e cadeia de recuperação. Um futuro perfil de exportação menor exige decisão
+própria e validação independente, mantendo disponíveis os históricos necessários.
