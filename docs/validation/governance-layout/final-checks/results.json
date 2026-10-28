@@ -1,0 +1,23 @@
+{
+  "results": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh",
+      "exit_code": 0,
+      "log": "01.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 0,
+      "log": "02.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "method": "Validator API: evidence_errors + trace_errors + input_errors(require_fresh=True), and all four layout acceptance statuses decided.",
+      "exit_code": 0,
+      "errors": []
+    }
+  ],
+  "scope": "Layout acceptance and global freshness; no global skill approval or product acceptance.",
+  "prior_collection_failure": "00-first-freshness.log"
+}

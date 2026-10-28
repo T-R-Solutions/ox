@@ -1,0 +1,93 @@
+{
+  "scope": "documentary holder update; no new product or adversarial suite execution",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/check-ox.py"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "artifact": "docs/validation/license-holder-001/local-0.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "command": [
+        "python3",
+        "sdd/tools/validate.py",
+        "--root",
+        ".",
+        "--require-fresh"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "artifact": "docs/validation/license-holder-001/local-1.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/verify-maintenance.py"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "artifact": "docs/validation/license-holder-001/local-2.log",
+      "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/export-clean.py",
+        "/tmp/ox-holder-bdzd0ci6/ox"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "artifact": "docs/validation/license-holder-001/export.log",
+      "sha256": "a04960d5ed6818843df7e6a5611c5841b6d69833ebc7a171401d61aae9871588"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/isolated-run.py",
+        "/home/rodrigo/Projetos/ox",
+        "tools/governance/scripts/check-ox.py"
+      ],
+      "cwd": "/tmp/ox-holder-bdzd0ci6/ox",
+      "exit_code": 0,
+      "artifact": "docs/validation/license-holder-001/independent-0.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/isolated-run.py",
+        "/home/rodrigo/Projetos/ox",
+        "sdd/tools/validate.py",
+        "--root",
+        ".",
+        "--require-fresh"
+      ],
+      "cwd": "/tmp/ox-holder-bdzd0ci6/ox",
+      "exit_code": 0,
+      "artifact": "docs/validation/license-holder-001/independent-1.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/isolated-run.py",
+        "/home/rodrigo/Projetos/ox",
+        "tools/governance/scripts/verify-maintenance.py"
+      ],
+      "cwd": "/tmp/ox-holder-bdzd0ci6/ox",
+      "exit_code": 0,
+      "artifact": "docs/validation/license-holder-001/independent-2.log",
+      "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff"
+    }
+  ],
+  "notice_copy_identical": true,
+  "limitations": [
+    "Third-party permissions unresolved",
+    "Prior 22-test results remain historical; source and tests unchanged"
+  ]
+}

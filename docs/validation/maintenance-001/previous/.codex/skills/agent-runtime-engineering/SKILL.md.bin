@@ -1,0 +1,71 @@
+---
+name: agent-runtime-engineering
+description: Engineer CLI agent supervision, session state, event ordering, cancellation and recovery. Use for process adapters and execution lifecycles; skip prompt writing and model-quality evaluation without process effects.
+metadata:
+  version: "1.0.0"
+---
+
+# agent-runtime-engineering
+
+## Responsabilidade e seleção
+
+Gerenciar ciclo de vida de agentes CLI e protocolos de comunicação, recursos, sessões, eventos, cancelamento, reconexão e resultados sem confundir declaração do modelo com efeito realizado.
+
+Selecionar: Adaptador ACP/CLI, supervisor de processos, estado de sessão/tarefa, paralelismo entre agentes, cancelamento e retomada.
+
+Não selecionar: Não selecionar para prompt isolado, comparação de modelos ou avaliação de qualidade de respostas sem efeitos; usar ai-engineering.
+
+## Entradas e lacunas
+
+protocolos suportados, executáveis/versionamento, política de permissão, recursos, semântica de sessão, eventos e limites.
+
+Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+
+## Procedimento operacional
+
+1. Inspect the actual executable, version, launch contract, transport and supported operations. Build an adapter capability table for cancel, resume, permission requests and usage reporting. Missing capabilities remain unavailable; do not emulate pause or resume by inventing protocol messages.
+
+2. Separate session ID, task ID, execution attempt, process identity and event sequence. Define allowed transitions and guards. An adapter statement such as done is a reported event; process exit, file changes and acceptance evidence are distinct observations.
+
+3. Supervise stdin/stdout/stderr concurrently with bounded queues and an overflow policy that preserves critical events. Decide where backpressure blocks, where raw bytes spill to disk, and how failure to persist them surfaces. Never parse human stderr as authoritative permissions.
+
+4. Design cancellation as a request followed by an observed terminal outcome. Stop new work, cancel supported protocol operations, drain outputs, enforce a deadline, terminate the owned process tree through supported platform mechanisms, and reap processes. Record partial effects before permitting retries.
+
+5. On reconnection, compare generation and last acknowledged event. Deduplicate recorded events, expose sequence gaps and reconcile artifacts before replaying side effects. A new process does not inherit old grants implicitly.
+
+6. Exercise out-of-order events, death with unread streams, cancellation under sustained output and done without evidence. Deliver a transition table, adapter contract and execution trace with remaining cleanup/permission limitations.
+
+## Entregáveis e aceitação
+
+máquina de estados, adaptadores testáveis, eventos ordenados, controles de processo, tratamento de cancelamento, integração de políticas.
+
+Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+
+## Fronteiras e encaminhamento
+
+`reliability-engineering` — Como limitar processos órfãos, duplicação de efeitos e perda de eventos durante falhas?
+
+Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+
+## Referências especializadas
+
+- [session-state-machine](references/session-state-machine.md): consultar para Session and execution state.
+- [process-supervision](references/process-supervision.md): consultar para Supervision and resource ownership.
+- [acp-and-cli-adapters](references/acp-and-cli-adapters.md): consultar para ACP and CLI adapters.
+
+Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+
+## Responsabilidades adjacentes
+
+A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+
+| Competência | Autoridade técnica adjacente |
+|---|---|
+| `ai-engineering` | modelos, rag, agentes com ferramentas, diagnóstico e avaliação de resultados |
+| `api-testing` | verificação de protocolos, efeitos, permissões e compatibilidade entre consumidores |
+| `application-security` | fronteiras de confiança, segredos, autorizações e ameaças |
+| `reliability-engineering` | falhas, cancelamento, limites, degradação, recuperação |
+| `distributed-systems` | garantias entre domínios de falha e versões, mensageria/consistência |
+| `observability-and-diagnostics` | instrumentação, logs, métricas, traces, investigação causal |
+| `rust` | ownership, crates, concorrência, compatibilidade, validação rust |
+| `software-architecture` | fronteiras, integração, atributos de qualidade, adrs |

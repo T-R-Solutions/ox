@@ -1,0 +1,83 @@
+# Ox — .gitignore (colocar na raiz do repositorio)
+# Arquivos de codigo, SDD, skills e evidencias oficiais devem ser versionados.
+
+# Rust / Cargo: build e caches (Cargo.lock DEVE ser versionado)
+**/target/
+**/*.rs.bk
+*.pdb
+
+# Distribuicoes geradas e empacotamento local
+/dist/
+
+# Arquivos temporarios e logs locais
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+*.rej
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Ambiente e preferencias pessoais de editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.shared.json
+.idea/
+*.iml
+.history/
+
+# Arquivos locais de ambiente e credenciais
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python — ferramentas de governanca
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.venv/
+venv/
+
+# Cobertura, profiling e resultados gerados
+/coverage/
+**/coverage/
+*.profraw
+*.profdata
+*.gcda
+*.gcno
+
+# Dados operacionais locais da aplicacao (nao fontes/configs normativas)
+/.ox/local/
+/.ox/cache/
+/.ox/state/
+/.ox/logs/
+/.ox/backups/
+/.ox/secrets/
+/application/.ox/
+
+# Bancos e journals locais gerados em tempo de execucao
+*.sqlite-wal
+*.sqlite-shm
+*.db-wal
+*.db-shm
+
+# Importante: NAO ignorar .codex/, sdd/, docs/, config/governance/,
+# tools/, application/Cargo.lock ou evidencias SDD versionadas.
+# Arquivos SQLite de fixture e evidencias devem ser preservados.

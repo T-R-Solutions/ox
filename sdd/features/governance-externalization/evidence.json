@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "environment": "Python 3.13.16; Linux; maintenance-001",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Cópia independente executa verificadores Ox e SDD sem estudos ou biblioteca de origem.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Inspeção recursiva rejeita nomes e conteúdo integral dos estudos em arquivos e archives, inclusive renomeados.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Cobertura aponta para IDs de autoridades locais existentes; links e catálogo/perfil concordam.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Testes rejeitam corrupção de skill, ponte, autoridade, evidência e link; restauração recupera sucesso.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Observações anteriores preservadas com hashes originais; evidências afetadas substituídas por observações novas ou estado não decidido.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Os 36 cenários técnicos das nove skills permanecem NÃO VERIFICADO.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-07",
+      "criterion": "ZIP novo contém inventário verificável, passa inspeção recursiva e os cinco comandos oficiais na extração limpa.",
+      "status": "NÃO VERIFICADO",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Aceitação restrita à governança/autoria; sem compilação Rust, integração Iced ou eficácia do produto.",
+    "Revisão do executor não é revisão humana independente; ensaios históricos não foram reexecutados.",
+    "Envelopes anteriores em docs/validation/governance-layout/before.tar.gz; outputs de coleta são conferidos separadamente por freshness e extração final.",
+    "Qualificação inicial de pacote tem inputs próprios anteriores à consolidação; o recibo de entrega final fica em dist/.",
+    "Os 36 cenários técnicos de skills permanecem NÃO VERIFICADO.",
+    "maintenance-001: observações afetadas preservadas em docs/validation/maintenance-001/previous/sdd/features/governance-externalization/evidence.json.bin; aguardam reexame ou nova execução, sem renovar hashes antigos.",
+    "Observações maintenance-001 são novas; resultados anteriores preservados. Critérios de pacote real, novo ensaio de agente e titularidade/permissões não resolvidas permanecem NÃO VERIFICADO.",
+    "Inputs alterados pelo bootstrap; observações anteriores e aprovações históricas preservadas em docs/validation/bootstrap-governance/previous. Critérios dependentes aguardam reaceitação própria; hashes antigos não foram renovados."
+  ]
+}

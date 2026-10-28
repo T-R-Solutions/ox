@@ -1,0 +1,17 @@
+{
+  "reason": "Evidence and task/plan inputs changed during convergence; verify current schema and detached-copy integration.",
+  "results": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh",
+      "exit_code": 0,
+      "artifact": "docs/validation/final-evidence-001/1.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s src/tests -v",
+      "exit_code": 0,
+      "artifact": "docs/validation/final-evidence-001/2.log",
+      "sha256": "7ae30fb5a0afb1f8de104ff53c65c77485cf94108b2f3c0a97a26af8c2c3b3aa"
+    }
+  ]
+}

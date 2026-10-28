@@ -1,0 +1,30 @@
+{
+  "scope": "All regular files outside application, excluding .git/.aws/.agents metadata, symlinks and __pycache__; audit output excluded from its own input inventory.",
+  "files": 849,
+  "text_files": 818,
+  "binary_files": 31,
+  "archives_listed": 25,
+  "method": "UTF-8 text scan with line-level matches; hashes for all inventoried files and immediate member listings for archives. No rewriting or reinterpretation of historical archive payloads.",
+  "corrected": [
+    "README.md",
+    "sdd/project.md",
+    "sdd/features/README.md",
+    "docs/development/sharing.md",
+    "docs/licensing/review.md",
+    "docs/architecture/context.md",
+    "tools/governance/tests/test_governance.py"
+  ],
+  "preserved_categories": [
+    "Historical ADRs and feature specs describe the original layout and are superseded by product-bootstrap ADR.",
+    "Historical logs, snapshots, hashes and dist packages retain their original paths.",
+    "Skill references and SDD templates use generic src/tests/Cargo examples, not the Ox repository layout.",
+    "governance_support RELOCATIONS and check-ox archive paths are required for historical recovery.",
+    "Root-level Cargo/src/crates test fixtures remain negative cases; current application paths were added as additional cases.",
+    "Prompt iniciar-projeto-revisado.md already defines application/crates and correctly warns against workspace-root tests."
+  ],
+  "remaining_operational_path_errors": [],
+  "limitations": [
+    "Binary documents are inventoried, not semantically read by the text scan.",
+    "Historical archive payloads are preserved; current recursive archive/content checks run separately through governance tooling."
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "package": "ox-corrigido.zip",
+  "sha256": "3491f4496ca96d9f22d1f39f833acbf4ae1854c60f7debb374fe26b51e18a7dd",
+  "file_count": 385,
+  "archive_inspection": "PASS",
+  "manifest_and_extraction": "PASS",
+  "source_unchanged_during_build": true,
+  "results": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .",
+      "exit_code": 0,
+      "log": "01.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+      "exit_code": 0,
+      "log": "02.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 src/scripts/check-ox.py",
+      "exit_code": 0,
+      "log": "03.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s src/tests -v",
+      "exit_code": 0,
+      "log": "04.log",
+      "sha256": "c44f947a7e1a1ddaccff87eaf7e5b6f4bf8550e96e5d3999e7cdf2bd96c1a16c"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 src/scripts/run-checks.py",
+      "exit_code": 0,
+      "log": "05.log",
+      "sha256": "d119e1c7f5ad5951c836ef9eab7a922ae42c80d201dd4ff878704e8b1d5e84a2"
+    }
+  ],
+  "isolation": "Python audit hook rejects original parent and external document reads; not an OS sandbox",
+  "limitations": [
+    "Local governance only; no product implementation, publication or new agent efficacy evaluation."
+  ]
+}

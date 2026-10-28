@@ -1,0 +1,303 @@
+"""Adversarial tests for adopted validator and Ox-specific preservation checks."""
+from pathlib import Path
+import importlib.util,json,shutil,tempfile,unittest,subprocess,sys,os,hashlib,tarfile,zipfile,re
+from io import BytesIO
+ROOT=Path(__file__).resolve().parents[3]
+def load(name,path):
+ spec=importlib.util.spec_from_file_location(name,path); module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
+V=load('sdd_validator',ROOT/'sdd/tools/validate.py')
+C=load('ox_checker',ROOT/'tools/governance/scripts/check-ox.py')
+from governance_support import copy_distribution,inspect_bytes,EXTERNAL_DOCUMENTS,scope_errors
+P=load('ox_package',ROOT/'tools/governance/scripts/package-ox.py')
+class GovernanceTests(unittest.TestCase):
+ def setUp(self):
+  self.temp=tempfile.TemporaryDirectory(prefix='ox-test-');self.addCleanup(self.temp.cleanup);self.root=Path(self.temp.name)
+ def test_declared_criteria_ignore_examples(self):
+  self.assertEqual(V.acceptance_ids('- AC-01 → REQ-01: required\n```md\n- AC-02: example\n```\n> AC-03: quote\n'),{'AC-01'})
+ def test_duplicate_criterion_rejected(self):
+  with self.assertRaises(ValueError): V.acceptance_ids('- AC-01: one\n- AC-01: two\n')
+ def test_duplicate_json_rejected(self):
+  p=self.root/'dup.json';p.write_text('{"status":"APROVADO","status":"NÃO VERIFICADO"}')
+  with self.assertRaises(ValueError): V.strict_json(p)
+ def test_path_escape_and_symlink(self):
+  (self.root/'ok').write_text('ok');self.assertTrue(V.local_file(self.root,'ok').is_file())
+  with self.assertRaises(ValueError): V.local_file(self.root,'../missing')
+  outside=self.root/'other';outside.mkdir();(outside/'file').write_text('x')
+  inside=self.root/'inside';inside.mkdir();(inside/'link').symlink_to(outside/'file')
+  with self.assertRaises(ValueError): V.local_file(inside,'link')
+ def test_bridge_identity_and_unconfigured(self):
+  folder=self.root/'sdd/chain';folder.mkdir(parents=True)
+  p=folder/'rust.md';p.write_text('---\nskill: rust\nskill_path: UNCONFIGURED\nbridge_version: 1\n---\n')
+  self.assertTrue(any('Unconfigured' in e for e in V.bridge_errors(self.root,folder)))
+  skill=self.root/'.codex/skills/rust';skill.mkdir(parents=True);(skill/'SKILL.md').write_text('---\nname: wrong\ndescription: test\n---\n')
+  p.write_text(p.read_text().replace('UNCONFIGURED','.codex/skills/rust/SKILL.md'))
+  self.assertTrue(any('mismatch' in e for e in V.bridge_errors(self.root,folder)))
+ def test_missing_artifact_not_approved(self):
+  doc={'schema_version':2,'environment':'fixture','limitations':[],'evidence':[],'requirements':[{'id':'AC-01','criterion':'tested','status':'APROVADO','evidence_ids':[]}]}
+  self.assertTrue(any('without evidence' in e for e in V.evidence_errors(doc,self.root)))
+  doc['requirements'][0]['status']='NÃO VERIFICADO';self.assertEqual(V.evidence_errors(doc,self.root),[])
+ def test_freshness_selective_invalidation(self):
+  a=self.root/'a';b=self.root/'b';a.write_text('A0');b.write_text('B0')
+  doc={'schema_version':2,'requirements':[],'evidence':[{'id':'E-A','inputs':[{'path':'a','sha256':V.digest(a),'role':'implementation'}]},{'id':'E-B','inputs':[{'path':'b','sha256':V.digest(b),'role':'implementation'}]}]}
+  self.assertEqual(V.input_errors(doc,self.root,[],self.root,True),[])
+  a.write_text('A1');errors=V.input_errors(doc,self.root,[],self.root,True)
+  self.assertEqual(len(errors),1);self.assertIn('E-A',errors[0]);self.assertNotIn('E-B',errors[0])
+ def test_independent_copy_and_corrupt_resource(self):
+  dest=self.root/'detached';dest.mkdir()
+  copy_distribution(ROOT,dest)
+  self.assertFalse(any((dest/name).exists() for name in EXTERNAL_DOCUMENTS))
+  self.assertFalse((dest/'docs/validation/adoption-baseline/originals.json').exists())
+  for args in [('tools/governance/scripts/check-ox.py',),('sdd/tools/validate.py','--root','.'),('sdd/tools/validate.py','--root','.','--structure-only')]:
+   result=subprocess.run([sys.executable,'tools/governance/scripts/isolated-run.py',str(ROOT),*args],cwd=dest,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1'),capture_output=True,text=True)
+   self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+  self.assertEqual(C.check(dest),[])
+  self.assertEqual(V.audit(dest),[])
+  mutations=[
+   ('.codex/skills/rust/references/design.md',lambda b:b+b'\ncorruption\n','Copied resource changed'),
+   ('sdd/chain/rust.md',lambda b:b.replace(b'skill: rust',b'skill: wrong'),'mismatch'),
+   ('README.md',lambda b:b+b'\n[broken](absent-file.md)\n','Broken/escaping link'),
+   ('config/governance/profile.json',lambda b:b.replace(b'"rust",',b''),'Profile revision not reviewed'),
+   ('.codex/skills/README.md',lambda b:b.replace(b'[rust](rust/SKILL.md)',b'rust'),'Catalog differs'),
+   ('config/governance/normative-coverage.json',lambda b:b.replace(b'"POL-01":',b'"INT-001":'),'coverage IDs'),
+   ('docs/constitution.md',lambda b:b.replace(b'- GOV-01:',b'- GOV-99:'),'coverage IDs'),
+   ('docs/validation/agent-evals/group-1.md',lambda b:b+b'\nchanged historical record\n','Historical observation changed'),
+  ]
+  for relative,mutate,diagnostic in mutations:
+   with self.subTest(mutation=relative):
+    target=dest/relative;before=target.read_bytes()
+    try:
+     target.write_bytes(mutate(before))
+     self.assertTrue(any(diagnostic in e for e in C.check(dest)),diagnostic)
+    finally: target.write_bytes(before)
+    self.assertEqual(C.check(dest),[])
+  for relative in ('docs/constitution.md','sdd/features/adoption-governance/evidence.json'):
+   with self.subTest(removal=relative):
+    target=dest/relative;before=target.read_bytes();target.unlink()
+    try:
+     result=subprocess.run([sys.executable,'tools/governance/scripts/check-ox.py'],cwd=dest,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1'),capture_output=True,text=True)
+     self.assertNotEqual(result.returncode,0)
+     self.assertIn('FAIL:',result.stdout)
+    finally: target.write_bytes(before)
+    self.assertEqual(C.check(dest),[])
+
+ def test_archive_content_and_names(self):
+  # Synthetic secret text: test detection without reintroducing the actual studies.
+  content=b'first line\nsecond line\nthird line\nlast line\n'
+  fingerprints={'fixture':{'sha256':hashlib.sha256(content).hexdigest(),'line_hashes':[hashlib.sha256(x).hexdigest() for x in content.splitlines()]}}
+  self.assertTrue(inspect_bytes('renamed.md',content,fingerprints))
+  self.assertTrue(inspect_bytes('wrapper.md',b'preface\n'+content+b'after\n',fingerprints))
+  tar=BytesIO()
+  with tarfile.open(fileobj=tar,mode='w:gz') as archive:
+   member=tarfile.TarInfo('renamed.md');member.size=len(content);archive.addfile(member,BytesIO(content))
+  nested=BytesIO()
+  with zipfile.ZipFile(nested,'w') as archive:archive.writestr('snapshot.bin',tar.getvalue())
+  self.assertTrue(any('External document content' in e for e in inspect_bytes('package.zip',nested.getvalue(),fingerprints)))
+  for name in EXTERNAL_DOCUMENTS:
+   self.assertTrue(any('External document name' in e for e in inspect_bytes(name,b'anything',{})))
+   archive_bytes=BytesIO()
+   with zipfile.ZipFile(archive_bytes,'w') as archive:archive.writestr(name,b'anything')
+   self.assertTrue(any('External document name' in e for e in inspect_bytes('renamed.bin',archive_bytes.getvalue(),{})))
+  self.assertEqual(inspect_bytes('history.md',b'Historical name: Ox_Roadmap_Arquitetura_v0.2.md',fingerprints),[])
+  self.assertTrue(inspect_bytes('broken.tar.gz',b'not an archive',{}))
+
+ def test_archive_traversal_and_symlink(self):
+  stream=BytesIO()
+  with tarfile.open(fileobj=stream,mode='w') as archive:
+   member=tarfile.TarInfo('../escape');member.size=1;archive.addfile(member,BytesIO(b'x'))
+   link=tarfile.TarInfo('link');link.type=tarfile.SYMTYPE;link.linkname='/tmp/outside';archive.addfile(link)
+  errors=inspect_bytes('hostile.tar',stream.getvalue(),{})
+  self.assertTrue(any('Unsafe archive path' in e for e in errors))
+  self.assertTrue(any('nonregular member' in e for e in errors))
+
+ def test_technical_pending_and_history(self):
+  profile=json.loads((ROOT/'config/governance/profile.json').read_text())
+  archive=ROOT/'docs/validation/governance-externalization/previous-features.tar.gz'
+  with tarfile.open(archive) as history:
+   for name in profile['new']:
+    feature='sdd/features/skill-'+name
+    prior=json.load(history.extractfile(feature+'/evidence.json'))
+    current=json.loads((ROOT/feature/'evidence.json').read_text())
+    for doc in (prior,current):
+     technical=[r for r in doc['requirements'] if r['id'] in {'AC-01','AC-02','AC-03','AC-04'}]
+     self.assertEqual(len(technical),4)
+     self.assertTrue(all(r['status']=='NÃO VERIFICADO' for r in technical))
+    declarations=lambda text:re.findall(r'^- (?:REQ|AC)-.*$',text,re.M)
+    self.assertEqual(declarations((ROOT/feature/'spec.md').read_text()),declarations(history.extractfile(feature+'/spec.md').read().decode()))
+
+ def test_missing_evidence_artifact(self):
+  doc={'schema_version':2,'environment':'fixture','limitations':[],
+       'requirements':[{'id':'AC-01','criterion':'observed','status':'APROVADO','evidence_ids':['E-1']}],
+       'evidence':[{'id':'E-1','kind':'test','command_or_method':'fixture','observed_result':'ok',
+                    'artifact':'missing.log','sha256':'0'*64,'inputs':[{'path':'input','sha256':'0'*64,'role':'oracle'}]}]}
+  self.assertTrue(any('missing.log' in e for e in V.evidence_errors(doc,self.root)))
+
+ def test_isolation_oracle_rejects_source_access(self):
+  dest=self.root/'detached';dest.mkdir();scripts=dest/'tools/governance/scripts';scripts.mkdir(parents=True)
+  for name in ('isolated-run.py','governance_support.py'):shutil.copy2(ROOT/'tools/governance/scripts'/name,scripts/name)
+  (dest/'probe.py').write_text('from pathlib import Path\nPath('+repr(str(ROOT/'README.md'))+').read_text()\n')
+  result=subprocess.run([sys.executable,'tools/governance/scripts/isolated-run.py',str(ROOT),'probe.py'],cwd=dest,capture_output=True,text=True)
+  self.assertNotEqual(result.returncode,0)
+  self.assertIn('Isolation oracle denied open',result.stderr)
+
+ def test_implementation_phase_consistency(self):
+  copy_distribution(ROOT,self.root)
+  self.assertEqual(C.phase_errors(self.root),[])
+  mutations=[
+   ('AGENTS.md',lambda t:t+'\nO escopo atual é governança e biblioteca: não implementar aplicativo.\n','Obsolete operational'),
+   ('sdd/project.md',lambda t:t.replace('implementation-foundation','governance-only'),'Phase contract'),
+   ('sdd/project.md',lambda t:t.replace('not-yet-implemented','approved'),'Application state'),
+   ('AGENTS.md',lambda t:t.replace('sdd/workflow.md','missing.md'),'Missing AGENTS'),
+   ('AGENTS.md',lambda t:t+'\n- POL-01: duplicate\n','duplicated'),
+   ('docs/constitution.md',lambda t:t.replace('features autorizadas','qualquer ação'),'Constitution contradicts'),
+   ('README.md',lambda t:t.replace('product_included=false','product_included=true'),'README must distinguish'),
+  ]
+  for relative,mutate,diagnostic in mutations:
+   with self.subTest(mutation=relative,diagnostic=diagnostic):
+    target=self.root/relative;before=target.read_text()
+    try:
+     target.write_text(mutate(before))
+     self.assertTrue(any(diagnostic in e for e in C.phase_errors(self.root)))
+    finally:target.write_text(before)
+    self.assertEqual(C.phase_errors(self.root),[])
+  # A past restriction in an audit record must not become a current authority.
+  (self.root/'docs/validation/historical-phase.md').write_text('O escopo atual é governança e biblioteca: não implementar aplicativo.\n')
+  self.assertEqual(C.phase_errors(self.root),[])
+
+ def test_governance_package_not_product_release(self):
+  for name in ('AGENTS.md','README.md','LICENSE','NOTICE','Cargo.toml','Cargo.lock'):
+   (self.root/name).write_text('fixture\n')
+  for name in ('.codex/skills/example/SKILL.md','sdd/project.md','docs/constitution.md',
+               'tools/governance/tests/fixture.py','config/governance/profile.json',
+               'src/main.rs','tools/unrelated/tool.py','config/unrelated.json',
+               'crates/app/main.rs','target/release/ox','plugins/plugin.bin'):
+   path=self.root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text('fixture\n')
+  package=BytesIO()  # Synthetic archive in memory, never a solution package.
+  manifest,scope=P.create_archive(self.root,package)
+  self.assertEqual(P.PACKAGE_NAME,"ox-governance.zip")
+  with zipfile.ZipFile(package) as archive:
+   serialized=json.loads(archive.read('package-scope.json'))
+   self.assertEqual(serialized,scope)
+   self.assertEqual(serialized['package_kind'],'governance')
+   self.assertIs(serialized['product_included'],False)
+   self.assertEqual(scope_errors(serialized),[])
+   self.assertEqual(json.loads(archive.read('package-manifest.json')),manifest)
+   self.assertEqual(set(archive.namelist()),set(manifest)|{'package-manifest.json','package-scope.json'})
+   self.assertTrue({'LICENSE','NOTICE','.codex/skills/example/SKILL.md','sdd/project.md',
+                    'tools/governance/tests/fixture.py','config/governance/profile.json'} <= set(manifest))
+   for name in ('Cargo.toml','Cargo.lock','src/main.rs','tools/unrelated/tool.py',
+                'config/unrelated.json','crates/app/main.rs','target/release/ox','plugins/plugin.bin'):
+    self.assertNotIn(name,archive.namelist())
+   for name,digest in manifest.items():
+    self.assertEqual(hashlib.sha256(archive.read(name)).hexdigest(),digest)
+  for key,value in (('package_kind','application'),('product_included',True),('product_included',0),('limitations',[])):
+   with self.subTest(key=key,value=value):self.assertTrue(scope_errors(dict(scope,**{key:value})))
+
+ def test_product_feature_isolated_from_skill_acceptance(self):
+  copy_distribution(ROOT,self.root)
+  feature=self.root/'sdd/features/product-foundation'
+  self.assertEqual(V.acceptance_ids((feature/'spec.md').read_text()),{'AC-01','AC-02','AC-03','AC-04','AC-05'})
+  # Product AC-01 is legitimate; the same ID in an authorship feature cannot
+  # inherit its status. The actual checker must reject that independent mutation.
+  path=self.root/'sdd/features/skill-agent-runtime-engineering/evidence.json'
+  before=path.read_bytes();doc=json.loads(before)
+  next(r for r in doc['requirements'] if r['id']=='AC-01')['status']='APROVADO'
+  try:
+   path.write_text(json.dumps(doc))
+   self.assertTrue(any('Technical scenario promoted' in e for e in C.check(self.root)))
+  finally:path.write_bytes(before)
+  self.assertEqual(C.check(self.root),[])
+
+ def test_normative_hash_requires_review(self):
+  copy_distribution(ROOT,self.root)
+  path=self.root/'docs/constitution.md';before=path.read_bytes()
+  try:
+   path.write_bytes(before.replace(b'- GOV-07: ',b'- GOV-07: Changed scope. ',1))
+   self.assertTrue(any('Normative rule changed without coverage review: GOV-07' in e for e in C.check(self.root)))
+  finally:path.write_bytes(before)
+  self.assertEqual(C.check(self.root),[])
+
+ def test_historical_files_remain_immutable(self):
+  copy_distribution(ROOT,self.root)
+  self.assertEqual(C.transition_preservation_errors(self.root,V.strict_json),[])
+  for relative in ('docs/decisions/adoption.md','docs/validation/report.md',
+                   'sdd/workflow.md','.codex/skills/iced-engineering/SKILL.md',
+                   'sdd/chain/iced-engineering.md'):
+   with self.subTest(path=relative):
+    path=self.root/relative;before=path.read_bytes()
+    try:
+     path.write_bytes(before+b'\nchanged\n')
+     self.assertIn('Transition preserved input changed: '+relative,C.transition_preservation_errors(self.root,V.strict_json))
+    finally:path.write_bytes(before)
+  baseline=json.loads((self.root/'docs/validation/implementation-transition/before.json').read_text())
+  with tarfile.open(self.root/'docs/validation/implementation-transition/before.tar.gz') as archive:
+   self.assertEqual(set(archive.getnames()),set(baseline))
+   for name,digest in baseline.items():
+    self.assertEqual(hashlib.sha256(archive.extractfile(name).read()).hexdigest(),digest,name)
+
+ def test_relocated_contracts_remain_protected(self):
+  copy_distribution(ROOT,self.root)
+  for relative in ('config/governance/profile.json',
+                   'sdd/features/adoption-governance/traceability.json',
+                   'sdd/features/governance-externalization/traceability.json'):
+   with self.subTest(path=relative):
+    path=self.root/relative;before=path.read_bytes()
+    try:
+     path.write_bytes(before+b'\nchanged\n')
+     self.assertTrue(any('Transition preserved input changed' in e
+                         for e in C.transition_preservation_errors(self.root,V.strict_json)))
+    finally:path.write_bytes(before)
+    self.assertEqual(C.transition_preservation_errors(self.root,V.strict_json),[])
+
+ def test_directory_links_stay_within_root(self):
+  copy_distribution(ROOT,self.root)
+  target=self.root/'README.md';before=target.read_bytes()
+  try:
+   target.write_bytes(before+b'\n[decisions](docs/decisions/)\n')
+   self.assertFalse(any('Broken/escaping link' in e for e in C.check(self.root)))
+   for link in ('missing-directory/','../'):
+    target.write_bytes(before+('\n[invalid]('+link+')\n').encode())
+    self.assertTrue(any('Broken/escaping link' in e for e in C.check(self.root)))
+  finally:target.write_bytes(before)
+
+ def test_specialized_frontmatter_preserves_original_content(self):
+  copy_distribution(ROOT,self.root)
+  profile=json.loads((self.root/'config/governance/profile.json').read_text())
+  with tarfile.open(self.root/'docs/validation/implementation-transition/before.tar.gz') as archive:
+   for name in profile['new']:
+    relative=f'.codex/skills/{name}/SKILL.md'
+    original=archive.extractfile(relative).read()
+    current=(self.root/relative).read_bytes()
+    self.assertEqual(current,original.replace(b'metadata:\n  version: "1.0.0"\n',b'',1))
+    self.assertEqual(current.split(b'\n---\n',1)[1],original.split(b'\n---\n',1)[1])
+    for mutation in (current.replace(b'description: ',b'description: altered ',1),
+                     current.replace(b'\n---\n',b'\nmetadata:\n  version: "2.0.0"\n---\n',1),
+                     original,current+b'changed body'):
+     target=self.root/relative
+     try:
+      target.write_bytes(mutation)
+      self.assertTrue(C.transition_preservation_errors(self.root,V.strict_json))
+     finally:target.write_bytes(current)
+  target=self.root/'.codex/skills/iced-engineering/references/acceptance.md'
+  target=next((target.parent).glob('*.md'));old=target.read_bytes()
+  try:
+   target.write_bytes(old+b'changed resource')
+   self.assertTrue(C.transition_preservation_errors(self.root,V.strict_json))
+  finally:target.write_bytes(old)
+
+
+ def test_clean_export_and_recovery(self):
+  E=load('clean_export',ROOT/'tools/governance/scripts/export-clean.py')
+  M=load('maintenance_verify',ROOT/'tools/governance/scripts/verify-maintenance.py')
+  dest=self.root/'export'
+  manifest=E.export(ROOT,dest)
+  self.assertFalse(any(name.startswith('dist/') for name in manifest))
+  self.assertTrue({'LICENSE','NOTICE'} <= set(manifest))
+  self.assertEqual(M.verify(dest)['errors'],[])
+  self.assertEqual(M.verify(dest)['recovered_layout_inputs'],439)
+  with self.assertRaises(ValueError):E.export(ROOT,dest)
+  with self.assertRaises(ValueError):E.export(ROOT,ROOT/'nested-export')
+  target=dest/'docs/validation/maintenance-001/previous/.codex/skills/iced-engineering/SKILL.md.bin'
+  target.write_bytes(b'corrupted prior version')
+  self.assertTrue(M.verify(dest)['errors'])
+
+if __name__=='__main__':unittest.main()

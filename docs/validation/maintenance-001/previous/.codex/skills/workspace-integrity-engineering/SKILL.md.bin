@@ -1,0 +1,71 @@
+---
+name: workspace-integrity-engineering
+description: Protect multiauthor workspaces through content preconditions, path boundaries, conflict detection and crash recovery. Use for concurrent file edits, watchers and Git worktrees; skip ordinary schema migrations.
+metadata:
+  version: "1.0.0"
+---
+
+# workspace-integrity-engineering
+
+## Responsabilidade e seleção
+
+Garantir integridade de arquivos de projetos modificados por processos, editores e agentes concorrentes, com snapshots, worktrees, detecção de conflitos e recuperação.
+
+Selecionar: Edição concorrente, watcher, atomicidade de escrita, Git/worktree, rollback, caminhos e links simbólicos.
+
+Não selecionar: Não ativar para adicionar uma coluna SQLite ou revisar formato de UI; database-engineering/design-system. Não reimplementar Git apenas para satisfazer conveniência.
+
+## Entradas e lacunas
+
+árvore do workspace, política de exclusões, raízes autorizadas, plano de edições, Git state, eventos do SO.
+
+Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+
+## Procedimento operacional
+
+1. Inventory authorized roots, existing dirty and untracked files, symlinks, external writers, filesystem and Git availability. Capture a recoverable content baseline for the intended write set; Git status alone does not preserve unstaged or untracked bytes.
+
+2. Bind each proposed edit to an observed base hash and destination identity. Compare immediately before commit; a mismatched base becomes a conflict, never a blind overwrite. A merge requires independent verification and retention of both inputs.
+
+3. Constrain path resolution and the actual operation. Reject traversal and escaping symlinks; consider case normalization, mount boundaries and races. Canonicalizing once before opening is not a complete defense against TOCTOU. Use suitable platform primitives or explicitly narrow the threat model.
+
+4. Prepare staging, a journal and recovery points. Distinguish atomic replacement of one path from durability and from a multi-file transaction. Record which writes are committed, uncertain or still staged when a crash interrupts the sequence.
+
+5. Treat watcher events as hints. Reconcile from file contents after overflow, rename bursts or restart; invalidate snapshots of changed files and downstream indices. If worktrees are used, inspect shared repository metadata and serialize conflicting Git operations.
+
+6. Exercise path escape, two writers from one base, failure before/after replacement and external mutation with missed watcher events. Deliver a conflict policy, restoration procedure and observed platform limits; never restore a baseline over newer unrelated work.
+
+## Entregáveis e aceitação
+
+transações de arquivo com validação, prevenção de perda, trilhas de alteração, estratégia de snapshot e recuperação.
+
+Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+
+## Fronteiras e encaminhamento
+
+`application-security` — Existem caminhos alternativos/symlinks que escapam da raiz concedida ao agente?
+
+Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+
+## Referências especializadas
+
+- [file-operations](references/file-operations.md): consultar para Safe write boundaries.
+- [git-worktrees-and-conflicts](references/git-worktrees-and-conflicts.md): consultar para Git is context, not a backup of all bytes.
+- [watcher-and-recovery](references/watcher-and-recovery.md): consultar para Reconcile after lost events.
+
+Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+
+## Responsabilidades adjacentes
+
+A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+
+| Competência | Autoridade técnica adjacente |
+|---|---|
+| `application-security` | fronteiras de confiança, segredos, autorizações e ameaças |
+| `reliability-engineering` | falhas, cancelamento, limites, degradação, recuperação |
+| `software-evolution` | compatibilidade, migrações, coexistência e versões antigas |
+| `database-engineering` | persistência, esquemas, invariantes transacionais e migrações |
+| `rust` | ownership, crates, concorrência, compatibilidade, validação rust |
+| `software-architecture` | fronteiras, integração, atributos de qualidade, adrs |
+| `software-design` | interfaces, coesão, acoplamento, refatoração localizada |
+| `software-testing` | casos, oráculos, testes automatizados, suites e regressões |

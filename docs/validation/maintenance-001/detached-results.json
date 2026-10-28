@@ -1,0 +1,49 @@
+{
+  "method": "export-clean.py to new directory, isolated-run denies Python reads of origin; runner propagates origin audit to children",
+  "destination": "/tmp/ox-maintenance-independent-xo23xvxv/ox",
+  "manifest": "docs/validation/maintenance-001/export-manifest.json",
+  "files": 568,
+  "bytes": 13128068,
+  "results": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tools/governance/scripts/isolated-run.py",
+        "/home/rodrigo/Projetos/ox",
+        "tools/governance/scripts/run-checks.py"
+      ],
+      "exit_code": 0,
+      "log": "docs/validation/maintenance-001/detached/00.log",
+      "sha256": "8c9ea891c4ead02d0b74633c1482a8388bc45af803a23b2d23a4092fb1f8085a"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tools/governance/scripts/isolated-run.py",
+        "/home/rodrigo/Projetos/ox",
+        "sdd/tools/validate.py",
+        "--root",
+        ".",
+        "--require-fresh"
+      ],
+      "exit_code": 0,
+      "log": "docs/validation/maintenance-001/detached/01.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tools/governance/scripts/isolated-run.py",
+        "/home/rodrigo/Projetos/ox",
+        "tools/governance/scripts/verify-maintenance.py"
+      ],
+      "exit_code": 0,
+      "log": "docs/validation/maintenance-001/detached/02.log",
+      "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff"
+    }
+  ],
+  "limitations": [
+    "No OS sandbox claim; no product tests; no solution ZIP created.",
+    "Temporary independent copy retained for review, not required for recovery."
+  ]
+}

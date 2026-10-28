@@ -1,0 +1,12 @@
+{
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh",
+  "exit_code": 0,
+  "output_record": "freshness.log transcribes the observed tool stdout",
+  "artifact_sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+  "checks_run": "docs/validation/runs/20261026T183739.024276Z/results.json",
+  "skills": 29,
+  "bridges": 29,
+  "old_directory_exists": false,
+  "technical_skill_bytes_preserved": true,
+  "historical_records_preserved": true
+}

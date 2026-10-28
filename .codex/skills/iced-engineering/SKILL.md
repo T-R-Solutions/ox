@@ -1,0 +1,68 @@
+---
+name: iced-engineering
+description: Implement and review Iced desktop interfaces using explicit state, messages, tasks, subscriptions and widget contracts. Use for Iced-specific rendering and interaction; skip non-Iced UIs and visual strategy alone.
+---
+
+# iced-engineering
+
+## Responsabilidade e seleção
+
+Implementar GUIs desktop com Iced usando modelagem de mensagens, estado, Tasks/Subscriptions, componentes customizados, painéis e desempenho responsivo.
+
+Selecionar: Código Iced, modelos de update/view, widgets customizados, split panes, temas, acessibilidade e visualização gráfica.
+
+Não selecionar: Não selecionar para projeto sem Iced; não substituir design-review/design-system na decisão de hierarquia visual.
+
+## Entradas e lacunas
+
+versão do Iced e features, estado da GUI, fluxos, eventos, restrições de tamanho, acessibilidade e latência.
+
+Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+
+## Procedimento operacional
+
+1. Read the actual manifest, lockfile, enabled features and Iced version before naming APIs. Compare that version with documentation. If no consumer exists, provide version-scoped design guidance and mark compilation/integration unverified instead of inventing a Cargo workspace.
+
+2. Define state and Message transitions independently of widgets. Route effects through tasks and results through messages with request/generation identity. Ignore stale results after navigation or cancellation. Keep process/session state outside presentation state.
+
+3. Keep view construction free of blocking IO and expensive layout algorithms. Task-based scheduling alone does not make CPU-bound work cooperative: choose a worker strategy compatible with the configured executor. Bound queues and coalesce render-only updates without dropping evidence.
+
+4. Design subscription lifetime from active state and stable identity. Remove or suspend expensive producers when their view is inactive; explicitly cancel independently owned work. Guard late replies so a hidden or reopened panel cannot apply obsolete results.
+
+5. Prefer composition of existing widgets. For custom widgets verify the selected version's layout, event propagation, focus, accessibility, operation and drawing contracts. Define pane IDs and layout persistence separately from content, with safe restoration on smaller screens.
+
+6. Test slow work with a UI heartbeat, keyboard focus across collapse/expand, extreme window sizes, loading/error/empty states and hidden-view work counters. Report platform/hardware and measurement limits; no universal latency or accessibility guarantee follows from Iced.
+
+## Entregáveis e aceitação
+
+componentes/contratos de update, UI testável, estados vazios/erro/carregamento, orçamento de renderização e benchmark.
+
+Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+
+## Fronteiras e encaminhamento
+
+`design-system` — O componente reutilizável preserva tokens, variantes, estados e contrato de interação definidos?
+
+Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+
+## Referências especializadas
+
+- [message-update-state](references/message-update-state.md): consultar para Message, update, effects.
+- [layout-and-custom-widgets](references/layout-and-custom-widgets.md): consultar para Layout, panes and custom widgets.
+- [desktop-performance-and-accessibility](references/desktop-performance-and-accessibility.md): consultar para Responsiveness and accessibility evidence.
+
+Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+
+## Responsabilidades adjacentes
+
+A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+
+| Competência | Autoridade técnica adjacente |
+|---|---|
+| `design-review` | auditoria de hierarquia visual, fluxo e usabilidade |
+| `design-system` | tokens, componentes, estados e contratos de ui |
+| `rust` | ownership, crates, concorrência, compatibilidade, validação rust |
+| `observability-and-diagnostics` | instrumentação, logs, métricas, traces, investigação causal |
+| `performance-engineering` | benchmarks, profiling, comparações reproduzíveis e regressões |
+| `software-design` | interfaces, coesão, acoplamento, refatoração localizada |
+| `software-testing` | casos, oráculos, testes automatizados, suites e regressões |

@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "autonomous-verification-engineering-positive",
+      "kind": "selection",
+      "prompt": "Projetar motor que atribui veredictos por critério a entregas de agentes, vinculando evidências ao snapshot."
+    },
+    {
+      "id": "autonomous-verification-engineering-negative",
+      "kind": "selection",
+      "prompt": "Criar testes unitários de uma função de soma e diagnosticar um teste flaky, sem motor de aceitação."
+    },
+    {
+      "id": "autonomous-verification-engineering-failure",
+      "kind": "behavior",
+      "skill": "autonomous-verification-engineering",
+      "prompt": "Critério A tinha teste passando sobre arquivo X; X mudou. Critério B testa arquivo Y inalterado. O teste de C está ausente. Há uma verificação de build aprovada, mas nenhum grant de publicação. Classifique e proponha retomada; não publique."
+    }
+  ],
+  "oracle": {
+    "primary": "autonomous-verification-engineering",
+    "negative": "software-testing",
+    "failure": "invalidate A not unrelated B; C unverified; no deploy authorization"
+  }
+}
