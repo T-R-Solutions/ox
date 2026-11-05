@@ -1,4 +1,4 @@
 interface:
   display_name: "Commit Governance"
-  short_description: "Create authorized commits in one Git root"
-  default_prompt: "Use $commit-governance for this authorized task-local or repository-wide commit operation in one ITAPIRACÓ Git root."
+  short_description: "Classify commits and map GitHub labels for Ox"
+  default_prompt: "Use $commit-governance to classify authorized Ox commits with Conventional Commits, distinguish GitHub labels from version tags, and perform only the requested Git operations."

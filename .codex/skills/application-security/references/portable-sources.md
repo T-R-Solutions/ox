@@ -4,17 +4,17 @@ Bibliographic and reading-scope snapshot from the authoring library. No books or
 
 ## B02: The Garbage Collection Handbook: The Art of Automatic Memory Management
 
-Authors: Richard Jones; Antony Hosking; Eliot Moss. Edition/year: copyright 2012; Version Date 20110726; número de edição não declarado na página examinada; não é a 2ª de 2023.
+Authors: Richard Jones; Antony Hosking; Eliot Moss. Edition/year: copyright 2012; Version Date 20110726; edition number not stated on the examined page; not the 2nd edition from 2023.
 
-Examined sections: cap. 1, §§1.3–1.6, p. 5–13. Metadata examined: PDF 4–5.
+Examined sections: ch. 1, §§1.3–1.6, p. 5–13. Metadata examined: PDF 4–5.
 
 Analyzed physical PDF ranges (1-based): [[36, 44]]. Visual pages: [5]. Book examples executed: False.
 
 ## B05: Building Secure and Reliable Systems
 
-Authors: Heather Adkins; Betsy Beyer; Paul Blankinship; Piotr Lewandowski; Ana Oprea; Adam Stubblefield. Edition/year: 1ª, março 2020.
+Authors: Heather Adkins; Betsy Beyer; Paul Blankinship; Piotr Lewandowski; Ana Oprea; Adam Stubblefield. Edition/year: 1st, March 2020.
 
-Examined sections: cap. 8 p. 159–161; cap. 9 p. 186–188; cap. 10 p. 220–224. Metadata examined: PDF 5–6.
+Examined sections: ch. 8 p. 159–161; ch. 9 p. 186–188; ch. 10 p. 220–224. Metadata examined: PDF 5–6.
 
 Analyzed physical PDF ranges (1-based): [[195, 197], [222, 224], [256, 260]]. Visual pages: []. Book examples executed: False.
 

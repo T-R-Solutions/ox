@@ -1,32 +1,32 @@
-# Avaliações da skill
+# Skill evaluations
 
-Contrato de casos; execução deve ser registrada separadamente. Não constituem testes realizados.
+Case contract; execution must be recorded separately. These are not completed tests.
 
-## Cenários técnicos preservados
+## Preserved technical scenarios
 
-- AC-01 → REQ-01: Plugin compatível e autorizado negocia apenas capacidades concedidas; oráculo: fixture de cliente/provedor e asserts de mensagens.
-- AC-02 → REQ-02: Plugin incompatível ou malformado recebe falha explícita sem mutação persistente; oráculo: harness de compatibilidade.
-- AC-03 → REQ-03: Plugin encerra durante operação e host recupera/expira recursos sem bloqueio; oráculo: teste de crash e timeout.
-- AC-04 → REQ-03: Plugin sem permissão tenta ler caminho protegido e o host bloqueia efeito; oráculo: integração em sandbox no SO alvo.
+- AC-01 → REQ-01: A compatible, authorized plugin negotiates only granted capabilities; oracle: client/provider fixture and message assertions.
+- AC-02 → REQ-02: An incompatible or malformed plugin receives an explicit failure without persistent mutation; oracle: compatibility harness.
+- AC-03 → REQ-03: A plugin exits during an operation and the host recovers/expires resources without blocking; oracle: crash and timeout test.
+- AC-04 → REQ-03: An unauthorized plugin attempts to read a protected path and the host blocks the effect; oracle: sandbox integration on the target OS.
 
-## Protocolo de avaliação
+## Evaluation protocol
 
-Forneça um pedido concreto e os inputs mínimos a um agente em diretório isolado autorizado. Na rodada de seleção, mostre somente catálogo/descriptions, sem a resposta esperada. Na rodada de comportamento, disponibilize a skill selecionada e os dados adversos. Preserve prompt, resposta bruta, identidade/configuração conhecida do agente, hashes dos inputs, revisão do resultado e limitações. Não execute serviços ou ferramentas com novas permissões.
+Give an agent a concrete request and minimal inputs in an authorized isolated directory. In the selection round, show only the catalog/descriptions, without the expected answer. In the behavior round, provide the selected skill and adversarial data. Preserve the prompt, raw response, known agent identity/configuration, input hashes, outcome review and limitations. Do not run services or tools requiring new permissions.
 
-Seleção positiva: pedir o entregável próprio descrito nesta entrada. Seleção negativa: usar a exclusão explícita; a resposta deve apontar competência mais adequada sem carregar esta skill. Falha: fornecer input que contraria o cenário técnico e exigir evidência antes de aprovação. Os prompts concretos do pacote consumidor devem incluir dados suficientes e um oráculo independente.
+Positive selection: request the specialized deliverable described in this entry. Negative selection: use the explicit exclusion; the response should identify a more suitable capability without loading this skill. Failure: provide input that contradicts the technical scenario and require evidence before approval. Concrete prompts in the consumer package must include sufficient data and an independent oracle.
 
-## Prompts concretos
+## Concrete prompts
 
 ### plugin-protocol-engineering-positive
 
-Criar um protocolo host/plugin para um provedor LSP com negociação de versão e permissões.
+Create a host/plugin protocol for an LSP provider with version and permission negotiation.
 
 ### plugin-protocol-engineering-negative
 
-Adicionar uma regra de lint usando um SDK de plugins já estável, sem alterar protocolo ou permissões.
+Add a lint rule using an established plugin SDK without changing the protocol or permissions.
 
 ### plugin-protocol-engineering-failure
 
-Host oferece read/search; plugin pede read/write; grant é read na raiz A. O plugin em processo separado diz que pode ler a raiz B diretamente e cai após gravar mas antes de responder. Proponha contrato e verificações; não execute processos.
+The host offers read/search; the plugin requests read/write; the grant is read on root A. The plugin in a separate process claims it can read root B directly and crashes after writing but before responding. Propose a contract and checks; do not run processes.
 
-Oráculo de revisão: positivo seleciona a competência própria; negativo encaminha para api-testing (ou competência adjacente justificada). Na falha observar: effective read A only; process is not sandbox; reconcile uncertain effect before retry. Este gabarito é revisado depois da resposta, não fornecido ao avaliador na seleção.
+Review oracle: positive selects this specialized capability; negative routes to api-testing (or a justified adjacent capability). In the failure case, check: effective read A only; process is not sandbox; reconcile uncertain effect before retry. Review this answer key after the response; do not provide it to the evaluator during selection.

@@ -49,6 +49,6 @@ spec defines behavior; plan/ADRs define decisions; tasks define executable work.
 This bridge cannot override those artifacts or expand authorization. Changes to
 product rules belong in their authoritative artifact, not in this bridge.
 
-## Perfil condicional do projeto
+## Conditional project profile
 
-Garantias entre processos com falhas independentes, ordenação, replay ou sincronização; IPC por si só não basta. Disponibilidade não significa seleção, consulta ou uso.
+Guarantees across independently failing processes, ordering, replay or synchronization; IPC alone is insufficient. Availability does not imply selection, consultation or use.

@@ -1,20 +1,24 @@
-# Organização das ferramentas de governança
+# Governance tool organization
 
-Ator: mantenedor do Ox. Pedido autorizado: retirar a governança de src/ e
-atualizar referências e consumidores. Escopo: ferramentas Python, configuração,
-fixtures, documentação, rastreabilidade, pacote e evidências afetadas.
-Não implementa a aplicação nem altera o conteúdo das skills ou do núcleo SDD.
+Actor: Ox maintainer. Authorized request: move governance out of src/ and
+update references and consumers. Scope: Python tools, configuration,
+fixtures, documentation, traceability, package and affected evidence.
+Does not implement the application or change skill or SDD core content.
 
-- REQ-01: Reservar src/ para fontes futuras da aplicação; ferramentas em tools/governance/scripts/, testes em tools/governance/tests/ e dados de avaliação em tests/fixtures/ dessa ferramenta.
-- REQ-02: Separar configuração vigente (perfil e cobertura normativa) em config/governance/ e atualizar comandos, imports e referências operacionais.
-- REQ-03: Distribuir somente a governança, incluindo seus novos caminhos e excluindo fontes do aplicativo e ferramentas/configurações alheias.
-- REQ-04: Preservar observações históricas e substituir evidências ativas afetadas somente após novas execuções ou inspeções.
-- AC-01 → REQ-01: src/ fica sem arquivos de governança; os 23 arquivos originais têm destino identificado, sem perda; fixtures e perfil mantêm conteúdo e a cobertura muda somente nas referências afetadas.
-- AC-02 → REQ-02: Comandos documentados executam na raiz e em cópia independente; referências ativas e rastreabilidade resolvem para os novos locais; guards continuam rejeitando alterações indevidas.
-- AC-03 → REQ-03: ZIP real inclui tools/governance/ e config/governance/, exclui src/, Cargo, crates e caminhos alheios; manifesto confere e cinco comandos passam na extração independente.
-- AC-04 → REQ-04: Baseline recuperável, histórico anterior preservado, observações novas vinculadas aos inputs atuais e freshness válido; 36 cenários técnicos das skills continuam NÃO VERIFICADO.
+- REQ-01: Reserve src/ for future application sources; tools in tools/governance/scripts/, tests in tools/governance/tests/ and evaluation data in the tool's tests/fixtures/.
+- REQ-02: Separate current configuration (profile and normative coverage) into config/governance/ and update commands, imports and operational references.
+- REQ-03: Distribute only governance, including its new paths and excluding application sources and unrelated tools/configuration.
+- REQ-04: Preserve historical observations and replace affected active evidence only after new executions or inspections.
+- AC-01 → REQ-01: src/ has no governance files; all 23 original files have identified destinations without loss; fixtures and profile retain their content and coverage changes only affected references.
+- AC-02 → REQ-02: Documented commands run from the root and an independent copy; active references and traceability resolve to new locations; guards continue rejecting improper changes.
+- AC-03 → REQ-03: The actual ZIP includes tools/governance/ and config/governance/, excludes src/, Cargo, crates and unrelated paths; the manifest matches and five commands pass in an independent extraction.
+- AC-04 → REQ-04: Recoverable baseline, preserved prior history, new observations bound to current inputs and valid freshness; the skills' 36 technical scenarios remain UNVERIFIED.
 
-Compatibilidade: os comandos Python mudam de caminho intencionalmente; não há
-aliases em src/. Logs, archives e decisões históricas conservam caminhos da época.
-O validador original permanece em sdd/tools/validate.py. Não se escolhe a futura
-estrutura de crates, runtime, plataforma ou dependência do produto.
+Compatibility: Python commands intentionally change path; there are no
+aliases in src/. Logs, archives and historical decisions retain their original paths.
+The original validator remains in sdd/tools/validate.py. This does not select the future
+crate structure, runtime, platform or product dependencies.
+
+## Current applicability note — 2026-11-01
+
+The literal requirement to keep all 36 skill scenarios UNVERIFIED records the preparatory baseline, not their current observed state. docs/decisions/technical-acceptance.md explicitly supersedes product-foundation AC-03 and the transition decision; skill-consumer-validation records the successor executions. Its named supersession does not expressly enumerate governance-externalization AC-06, governance-layout AC-04 or maintenance-001 AC-04. Those compound legacy gates remain INCONCLUSIVE pending maintainer confirmation of succession scope and any remaining preservation/qualification evidence. No original scenario, historical result or other clause is waived. Current consumer acceptance never transfers to the product. See docs/validation/f0-reconciliation-20261101/legacy-succession.md.

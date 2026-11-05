@@ -40,6 +40,6 @@ inconclusive status for each applicable criterion. Spec owns the desired outcome
 plan/ADRs own decisions and tasks own executable work. The bridge neither changes
 those authorities nor grants data access, rollout, outreach or spending permission.
 
-## Perfil condicional do projeto
+## Conditional project profile
 
-Avaliação de fluxo humano ou ferramenta com baseline e resultado observável; não benchmark do binário. Disponibilidade não significa seleção, consulta ou uso.
+Evaluation of a human workflow or tool against a baseline and an observable outcome; excludes binary benchmarks. Availability does not imply selection, consultation or use.

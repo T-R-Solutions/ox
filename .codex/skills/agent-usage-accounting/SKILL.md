@@ -5,21 +5,21 @@ description: Model and reconcile agent token, cache and cost usage with provenan
 
 # agent-usage-accounting
 
-## Responsabilidade e seleção
+## Responsibility and selection
 
-Modelar métricas de agentes e modelos (tokens, cache, contexto, custos, períodos e sessões) com origem, precisão, unidades, idempotência e regras de agregação auditáveis.
+Model agent and model metrics (tokens, cache, context, costs, periods and sessions) with provenance, accuracy, units, idempotency and auditable aggregation rules.
 
-Selecionar: Contagem de tokens por chat/dia/projeto, custos multimodelo, janela de contexto, cache, preços e relatórios de uso.
+Select: Token counts by chat/day/project, multi-model costs, context windows, caching, prices and usage reports.
 
-Não selecionar: Não selecionar para instrumentar CPU/RAM genericamente; observability-and-diagnostics. Não confundir progresso funcional com consumo de contexto.
+Do not select: Do not select for generic CPU/RAM instrumentation; use observability-and-diagnostics. Do not confuse functional progress with context consumption.
 
-## Entradas e lacunas
+## Inputs and gaps
 
-eventos de provedores/agentes, tipos de tokens/caches, tarifas versionadas, intervalos, identidade de sessão/tarefa.
+provider/agent events, token/cache types, versioned rates, intervals, session/task identity.
 
-Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+Inspect actual contracts and resources before execution. A missing version requires consulting the corresponding documentation; a missing permission prevents the dependent effect. Record the gap, its impact and how to resolve it while continuing independent work. Examples in this package are evaluation contracts, not APIs or policies imposed on all consumers.
 
-## Procedimento operacional
+## Operating procedure
 
 1. Inventory actual provider/adapter events and distinguish reported totals, deltas, local estimates and absent fields. Record units, source, request/session/attempt identity, event time, observation time and timezone policy.
 
@@ -33,36 +33,36 @@ Inspecione os contratos e recursos reais antes de executar. Ausência de versão
 
 6. Replay duplicates, partial streams, cache-inclusive totals, missing tariff and a day-boundary event. Reconcile with the observed provider contract without exposing content/credentials. Deliver ledger schema, aggregation examples and uncertainty labels; telemetry conventions alone do not certify an invoice.
 
-## Entregáveis e aceitação
+## Deliverables and acceptance
 
-esquema de ledger de uso, regras para duplicação e gaps, visões por período, proveniência e precisão das estimativas.
+usage ledger schema, duplicate and gap rules, period views, provenance and estimate accuracy.
 
-Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+Bind each conclusion to observed inputs, method, result and limitations. Run the normal, boundary and failure cases from the [evaluations](references/evaluation-cases.md) in the authorized environment; distinguish review, simulation and integration results. Written cases remain unexecuted until run. Skill text neither proves effectiveness nor grants authority.
 
-## Fronteiras e encaminhamento
+## Boundaries and handoff
 
-`observability-and-diagnostics` — O evento de uso chega integralmente e pode ser correlacionado sem violar privacidade?
+`observability-and-diagnostics` — Does the usage event arrive in full, and can it be correlated without violating privacy?
 
-Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+Hand off only the distinct unresolved technical question, including scope, criterion IDs, facts, gaps and required evidence. Confirm availability before consultation. A mention does not install, delegate, execute or recursively load other skills. The consumer's contract owns behavior; the skill provides the method.
 
-## Referências especializadas
+## Specialized references
 
-- [usage-event-schema](references/usage-event-schema.md): consultar para Usage event identity.
-- [accounting-and-reconciliation](references/accounting-and-reconciliation.md): consultar para Replay, corrections and totals.
-- [context-and-cost-estimates](references/context-and-cost-estimates.md): consultar para Time, context and price.
+- [usage-event-schema](references/usage-event-schema.md): consult for Usage event identity.
+- [accounting-and-reconciliation](references/accounting-and-reconciliation.md): consult for Replay, corrections and totals.
+- [context-and-cost-estimates](references/context-and-cost-estimates.md): consult for Time, context and price.
 
-Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+Official sources accessed on 2026-10-26 are cited alongside claims. A consulted version is not a version adopted by the consumer. Operational summaries and example schemas are methodological decisions of this skill, without a promise of implementation or future compatibility.
 
-## Responsabilidades adjacentes
+## Adjacent responsibilities
 
-A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+The specialized capability above does not replace the general methods below. Consult them only when the corresponding question remains unresolved; no handoff is mandatory.
 
-| Competência | Autoridade técnica adjacente |
+| Capability | Adjacent technical authority |
 |---|---|
-| `ai-engineering` | modelos, rag, agentes com ferramentas, diagnóstico e avaliação de resultados |
-| `observability-and-diagnostics` | instrumentação, logs, métricas, traces, investigação causal |
-| `application-security` | fronteiras de confiança, segredos, autorizações e ameaças |
-| `database-engineering` | persistência, esquemas, invariantes transacionais e migrações |
-| `engineering-productivity` | avaliação de fluxos e ferramentas de trabalho com evidência |
-| `performance-engineering` | benchmarks, profiling, comparações reproduzíveis e regressões |
-| `software-testing` | casos, oráculos, testes automatizados, suites e regressões |
+| `ai-engineering` | models, RAG, agents using tools, diagnostics and outcome evaluation |
+| `observability-and-diagnostics` | instrumentation, logs, metrics, traces, causal investigation |
+| `application-security` | trust boundaries, secrets, authorization and threats |
+| `database-engineering` | persistence, schemas, transactional invariants and migrations |
+| `engineering-productivity` | evidence-based evaluation of workflows and tools |
+| `performance-engineering` | benchmarks, profiling, reproducible comparisons and regressions |
+| `software-testing` | cases, oracles, automated tests, suites and regressions |

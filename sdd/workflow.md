@@ -1,82 +1,86 @@
-# Condução e retomada no Codex
+# Execution and resumption in Codex
 
-Leia o contexto do projeto e as instruções aplicáveis antes de agir. A autorização
-vem do pedido e do ambiente, não deste fluxo. Avance autonomamente nas ações locais
-reversíveis autorizadas; pergunte apenas por ambiguidade material, conflito ou ação
-que exija autorização. Não solicite aprovação rotineira entre todos os documentos.
+Read the project context and applicable instructions before acting. Authorization
+comes from the request and environment, not this workflow. Proceed autonomously
+with authorized reversible local actions; ask only about material ambiguity,
+conflict or actions requiring authorization. Do not request routine approval
+between every document.
 
-## Escolha da rota
+## Choose the route
 
-Use a **rota local** quando o objetivo e a aceitação forem claros, a superfície e os
-consumidores forem conhecidos, a mudança estiver autorizada e for recuperável, sem
-incerteza material sobre contratos, permissões, integridade, concorrência ou operação.
-Exemplos: correção textual e reparo local que preserva um contrato conhecido.
+Use the **local route** when the goal and acceptance are clear, the affected surface
+and consumers are known, and the change is authorized and recoverable, without
+material uncertainty about contracts, permissions, integrity, concurrency or operation.
+Examples: a text correction or local repair that preserves a known contract.
 
-1. Inspecione instruções, alteração existente, contrato/callers e checks pertinentes.
-2. Implemente a mudança delimitada e execute a verificação focada que sustenta o resultado.
-3. Corrija falhas causadas pela mudança e relate resultado, observação e limitação material.
-   Registre objetivo, arquivos/versões observados e check no artefato já usado pelo projeto
-   (issue, revisão ou nota); não crie spec/plan/tasks apenas para preencher pastas.
+1. Inspect instructions, existing changes, the contract/callers and relevant checks.
+2. Implement the bounded change and run focused verification supporting the result.
+3. Fix failures caused by the change and report results, observations and material
+   limitations. Record the goal, observed files/versions and check in an artifact
+   already used by the project (issue, review or note); do not create spec/plan/tasks
+   merely to populate directories.
 
-Use ou amplie para o **fluxo completo abaixo** quando houver decisão material não
-resolvida, mudança de contrato/autorização, dados persistidos, concorrência, consumidores
-com versões distintas, recuperação incerta ou alcance operacional que exija coordenação.
-Uma alteração de uma linha pode exigir esse fluxo. Uma documentação extensa pode ser local.
-Ao descobrir novo risco, preserve o que já foi feito, acrescente critérios/decisões/tarefas
-necessários e prossiga; não reinicie trabalho comprovado nem reduza a aceitação para caber na rota.
+Use or expand to the **full workflow below** when there is an unresolved material
+decision, a contract/authorization change, persisted data, concurrency, consumers
+on different versions, uncertain recovery or operational scope requiring coordination.
+A one-line change may require this route. Extensive documentation may remain local.
+When a new risk appears, preserve completed work, add necessary criteria/decisions/tasks
+and continue; do not restart verified work or reduce acceptance to fit the route.
 
-Se a mudança afeta uma feature existente, atualize seus artefatos e evidências afetados,
-mesmo pela rota local. Não esconda uma feature dos checks movendo-a de pasta. Mantenha os
-cinco estados e compare inputs atuais com os observados segundo [evidence.md](evidence.md).
-Uma tarefa pequena só termina quando os critérios aplicáveis estiverem sustentados ou
-as lacunas materiais explicitadas; falta de ferramenta não significa aprovação.
+If a change affects an existing feature, update its affected artifacts and evidence,
+even on the local route. Do not hide a feature from checks by moving its directory.
+Keep the five states and compare current inputs with observed inputs according to
+[evidence.md](evidence.md). A small task ends only when applicable criteria are
+supported or material gaps are explicit; missing tooling does not imply approval.
 
-As pontes mapeiam o fluxo completo. Na rota local, uma skill pode ser usada isoladamente
-para uma pergunta concreta, sem instalar ponte ou criar plan. Em qualquer rota, não
-carregue especialistas apenas por menção. [Verificações por rota](evidence.md#verificações-por-rota)
-explica os limites da automação sem mudar seus gates.
+Bridges map the full workflow. On the local route, a skill can address a concrete
+question independently, without installing a bridge or creating a plan. On either
+route, do not load specialists merely because they are mentioned.
+[Checks by route](evidence.md#checks-by-route) explains automation limits without
+changing its gates.
 
 ## Constitution → specify
 
-Identifique a constituição autoritativa. Inspecione o estado real e os contratos
-existentes. Escreva ou ajuste a spec com atores, invariantes, cenários normais e
-rejeitados, critérios identificáveis e limites. Diferencie requisitos de hipóteses
-ou exemplos. Esclareça lacunas que impeçam decisões; avance nas partes independentes.
+Identify the authoritative constitution. Inspect the actual state and existing
+contracts. Write or adjust the spec with actors, invariants, normal and rejected
+scenarios, identifiable criteria and limits. Distinguish requirements from assumptions
+or examples. Clarify gaps that prevent decisions; proceed with independent work.
 
 ## Plan
 
-Compare alternativas proporcionais, registre decisões/riscos e seus requisitos.
-Consulte apenas as pontes presentes na pasta `chain/` deste SDD que correspondam à
-superfície e ao risco. Confirme que o caminho configurado existe e que o nome da skill
-confere. Leia a entrada real, escolha uma primária e auxiliares só para perguntas
-não resolvidas. Registre ponte/versão, caminho e razão no plan; não importe o catálogo.
+Compare proportionate alternatives and record decisions/risks and their requirements.
+Consult only bridges present in this SDD's `chain/` directory that match the affected
+surface and risk. Confirm that the configured path exists and the skill name matches.
+Read the actual entry; choose one primary skill and supporting skills only for
+unresolved questions. Record bridge/version, path and reason in the plan; do not
+import the catalog.
 
-Uma skill ou auxiliar ausente não foi executada. Registre a lacuna e continue o que
-não depende dela. Se a capacidade for indispensável à aceitação, mantenha esse
-critério não verificado e peça a informação/capacidade necessária. Nunca instale,
-finja ou percorra recursivamente uma cadeia de skills por mera referência.
+A missing skill or supporting capability has not been executed. Record the gap and
+continue independent work. If the capability is indispensable to acceptance, keep
+that criterion unverified and request the necessary information/capability. Never
+install, pretend to use or recursively traverse a skill chain merely by reference.
 
 ## Tasks → implement
 
-Decomponha mudanças e verificações com IDs, dependências, arquivos e condição de
-conclusão. Examine a consistência entre spec, decisões e tarefas antes de implementar.
-Use checklist apenas quando ajudar a avaliar qualidade dos requisitos; marcar uma
-checklist não comprova que o código foi executado. Confirme comandos no projeto.
+Break changes and checks into IDs, dependencies, files and completion conditions.
+Check consistency among the spec, decisions and tasks before implementation.
+Use a checklist only when it helps assess requirement quality; checking a box does
+not prove code execution. Confirm commands in the project. Keep `tasks.md` files
+in Brazilian Portuguese (pt-BR); other SDD prose is in English.
 
-Aplique o procedimento da skill selecionada, se houver. Use referências somente
-quando necessárias. Preserve políticas do produto em seus documentos de autoridade.
-Registre alterações, falhas e verificações realmente observadas; não deixe testes
-falhos desaparecerem pela alteração silenciosa do requisito.
+Apply the selected skill's procedure, if any. Use references only when needed.
+Keep product policies in their authoritative documents. Record changes, failures
+and checks actually observed; do not hide failing tests by silently changing requirements.
 
-## Converge e retomada
+## Converge and resume
 
-Percorra requisito → decisão/risco → tarefa → alteração → evidência → aceitação.
-Registre os cinco estados definidos em evidence.md. Se houver lacuna executável,
-acrescente tarefa delimitada e repita os checks afetados. Se houver impedimento,
-registre dependência, impacto e passo exato de retomada. Não faça tentativas idênticas
-sem informação nova nem declare conclusão porque o contexto ou orçamento terminou.
+Trace requirement → decision/risk → task → change → evidence → acceptance.
+Record the five states defined in evidence.md. If an executable gap remains, add a
+bounded task and repeat affected checks. If blocked, record the dependency, impact
+and exact resumption step. Do not repeat identical attempts without new information
+or declare completion because context or budget has ended.
 
-Ao retomar, leia spec, plan, tasks e o último registro de convergência; compare-os
-com os arquivos atuais. Não confie em estado oculto do chat nem repita trabalho já
-comprovado. Atualize evidências afetadas por mudanças de código. A conclusão depende
-dos critérios aplicáveis, não da existência das pastas ou do número de documentos.
+When resuming, read the spec, plan, tasks and latest convergence record; compare
+them with current files. Do not rely on hidden chat state or repeat already verified
+work. Update evidence affected by code changes. Completion depends on applicable
+criteria, not the existence of directories or number of documents.

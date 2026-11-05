@@ -1,45 +1,45 @@
-# Plano de autoria de agent-usage-accounting
+# Authoring plan for agent-usage-accounting
 
-Rota completa por contrato de competência, fronteiras e critérios de avaliação. Autoridade: spec desta feature e constituição do consumidor para efeitos autorizados.
+Full route because of the capability contract, boundaries and evaluation criteria. Authority: this feature's spec and the consumer's constitution for authorized effects.
 
-## Alternativas técnicas preservadas
+## Preserved technical alternatives
 
-As escolhas abaixo são alternativas de método a ensinar/avaliar, não decisões técnicas aprovadas do Ox.
+The choices below are alternative methods to teach/evaluate, not approved Ox technical decisions.
 
 
-| ID | Decisão ou risco | Verificação proposta |
+| ID | Decision or risk | Proposed verification |
 
 |---|---|---|
 
-| D-01 | Ledger imutável de eventos de uso mais views computadas; não mutar evento medido. | Revisão de alternativas + contrato observado |
+| D-01 | Immutable usage-event ledger plus computed views; do not mutate measured events. | Alternative review + observed contract |
 
-| D-02 | Unidades/tarifas versão-datadas, escopos de agregação e flags de exatidão e indisponibilidade. | Cenários rejeitados e comparação de opções |
+| D-02 | Version-dated units/rates, aggregation scopes and flags for accuracy and unavailability. | Rejected scenarios and comparison of options |
 
-| R-01 | Dupla contagem por retries, streaming e reconexão. | Teste adverso pertinente |
+| R-01 | Double counting from retries, streaming and reconnection. | Relevant adversarial test |
 
-| R-02 | Preço, cache e granularidade diferentes entre agentes geram números enganosos. | Falsificação controlada do resultado |
+| R-02 | Different prices, caching and granularity across agents produce misleading numbers. | Controlled falsification of the result |
 
 
 
-D-03 [REQ-04]: criar entrada, três referências especializadas e casos próprios em vez de duplicar uma skill geral; custo de manutenção justificado pela competência especializada e pelos cenários locais da spec; o comparativo é somente origem histórica. R-03 [REQ-04]: seleção ambígua ou texto superficial; verificar com casos positivos, negativos e falha. Reavaliar após uso observado ou mudança das fontes.
+D-03 [REQ-04]: create an entry, three specialized references and dedicated cases instead of duplicating a general skill; maintenance cost is justified by the specialized capability and local spec scenarios; the comparison is historical origin only. R-03 [REQ-04]: ambiguous selection or superficial text; check with positive, negative and failure cases. Reevaluate after observed use or source changes.
 
-## Seleção de métodos e dependências
+## Method selection and dependencies
 
-Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+Primary authoring method actually consulted: the environment's skill-creator (version not declared; consultation copy at docs/validation/adoption-baseline/skill-creator.md). No local bridge exists for this method. This new skill did not exist at initial selection and is not claimed to have been consulted during its own authoring.
 
-A ponte sdd/chain/agent-usage-accounting.md, bridge_version 1, e entrada .codex/skills/agent-usage-accounting/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `observability-and-diagnostics` — O evento de uso chega integralmente e pode ser correlacionado sem violar privacidade? Sem consulta automática.
+The bridge sdd/chain/agent-usage-accounting.md, bridge_version 1, and entry .codex/skills/agent-usage-accounting/SKILL.md are available for consumers and later evaluation; existence does not prove consultation. Proposed conditional supporting skill: `observability-and-diagnostics` — Does the usage event arrive in full, and can it be correlated without violating privacy? No automatic consultation.
 
-Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+Authoring dependencies: protocol → runtime → verification; workspace/Iced complete the foundation; context precedes graph; output and usage depend on event vocabulary. These are not installation dependencies.
 
-## Atividades técnicas propostas a ensinar e retomar
+## Proposed technical activities to teach and resume
 
-> - [ ] P001 [REQ, AC, D, R aplicáveis]: Inventariar campos disponíveis e ausência de dados por adaptador.
-> - [ ] P002 [REQ, AC, D, R aplicáveis]: Definir ledger idempotente, tipos/unidades, moeda e timezones.
-> - [ ] P003 [REQ, AC, D, R aplicáveis]: Criar fixtures com cache, replay, streaming parcial e falta de preço.
-> - [ ] P004 [REQ, AC, D, R aplicáveis]: Confrontar agregações com fonte observada e registrar precisão/limites.
+> - [ ] P001 [applicable REQ, AC, D, R]: Inventory available fields and missing data per adapter.
+> - [ ] P002 [applicable REQ, AC, D, R]: Define an idempotent ledger, types/units, currency and timezones.
+> - [ ] P003 [applicable REQ, AC, D, R]: Create fixtures with caching, replay, partial streaming and missing pricing.
+> - [ ] P004 [applicable REQ, AC, D, R]: Compare aggregations against the observed source and record accuracy/limits.
 
-P001..P004 preservam a intenção das tarefas propostas; não declaram implementação do produto. A execução local de autoria está em tasks.md. Testes reais dependem de consumidor e escopo autorizado.
+P001..P004 preserve the intent of proposed tasks; they do not claim product implementation. Local authoring execution is in tasks.md. Real tests depend on a consumer and authorized scope.
 
-## Consulta posterior na avaliação
+## Subsequent consultation during evaluation
 
-Em 2026-10-26 um subagente interno consultou `.codex/skills/agent-usage-accounting/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+On 2026-10-26 an internal subagent consulted `.codex/skills/agent-usage-accounting/SKILL.md` version 1.0.0 and technical references to answer an adversarial scenario. Available bridge: bridge_version 1; direct evaluation without claiming bridge consultation. Primary: this now-existing skill; supporting skills were unnecessary. The description catalog was used for selection before reading. Questions, raw response, consulted paths and limitations are in `docs/validation/agent-evals/`; the executor's judgment is separate in review.md. This is neither consultation during authoring nor product integration.

@@ -5,21 +5,21 @@ description: Design and verify versioned host-plugin protocols, capability negot
 
 # plugin-protocol-engineering
 
-## Responsabilidade e seleção
+## Responsibility and selection
 
-Projetar e verificar protocolos versionados de plugins isolados do host, incluindo negociação de capacidades, permissões, ciclo de vida, falhas, ABI e compatibilidade.
+Design and verify versioned protocols for plugins isolated from the host, including capability negotiation, permissions, lifecycle, failures, ABI and compatibility.
 
-Selecionar: Novo protocolo/plugin host, manifest de capacidades, IPC, compatibilidade vN/vN+1, instalação/desinstalação segura.
+Select: New protocol/plugin host, capability manifest, IPC, vN/vN+1 compatibility, safe installation/uninstallation.
 
-Não selecionar: Não selecionar para um plugin de lint que apenas utiliza SDK já estabilizado; nesse caso, aplicar Rust e API Testing. Não converter a skill em recomendação automática de Wasm, gRPC ou Dylib.
+Do not select: Do not select for a lint plugin that only uses an established SDK; use Rust and API Testing in that case. Do not turn this skill into an automatic recommendation for Wasm, gRPC or Dylib.
 
-## Entradas e lacunas
+## Inputs and gaps
 
-políticas de extensibilidade, modelo de ameaças, operações/capacidades, matriz de versões, SO, recursos disponíveis.
+extensibility policies, threat model, operations/capabilities, version matrix, OS, available resources.
 
-Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+Inspect actual contracts and resources before execution. A missing version requires consulting the corresponding documentation; a missing permission prevents the dependent effect. Record the gap, its impact and how to resolve it while continuing independent work. Examples in this package are evaluation contracts, not APIs or policies imposed on all consumers.
 
-## Procedimento operacional
+## Operating procedure
 
 1. Inventory each operation as a tuple: caller identity, requested capability, granted scope, input limit, effect, idempotency rule and revocation point. Separate host-mediated effects from direct process access; an allowlist in a manifest cannot constrain the latter.
 
@@ -33,38 +33,38 @@ Inspecione os contratos e recursos reais antes de executar. Ausência de versão
 
 6. Deliver a protocol contract, denied-effect matrix, lifecycle transcript and platform-specific residual risks. Treat a successful mock as protocol evidence only; isolate and test a real untrusted plugin before claiming sandbox enforcement.
 
-## Entregáveis e aceitação
+## Deliverables and acceptance
 
-contrato de mensagens, estados do host, modelo de permissões, limites de recursos, matriz compatível, testes de falhas e migração.
+message contract, host states, permission model, resource limits, compatibility matrix, failure and migration tests.
 
-Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+Bind each conclusion to observed inputs, method, result and limitations. Run the normal, boundary and failure cases from the [evaluations](references/evaluation-cases.md) in the authorized environment; distinguish review, simulation and integration results. Written cases remain unexecuted until run. Skill text neither proves effectiveness nor grants authority.
 
-## Fronteiras e encaminhamento
+## Boundaries and handoff
 
-`application-security` — O isolamento escolhido realmente impede os efeitos não autorizados de um plugin comprometido?
+`application-security` — Does the chosen isolation actually prevent unauthorized effects from a compromised plugin?
 
-Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+Hand off only the distinct unresolved technical question, including scope, criterion IDs, facts, gaps and required evidence. Confirm availability before consultation. A mention does not install, delegate, execute or recursively load other skills. The consumer's contract owns behavior; the skill provides the method.
 
-## Referências especializadas
+## Specialized references
 
-- [protocol-negotiation](references/protocol-negotiation.md): consultar para Negotiation and message identity.
-- [permissions-and-isolation](references/permissions-and-isolation.md): consultar para Mediated permissions and containment.
-- [versioning-and-faults](references/versioning-and-faults.md): consultar para Compatibility and failure windows.
+- [protocol-negotiation](references/protocol-negotiation.md): consult for Negotiation and message identity.
+- [permissions-and-isolation](references/permissions-and-isolation.md): consult for Mediated permissions and containment.
+- [versioning-and-faults](references/versioning-and-faults.md): consult for Compatibility and failure windows.
 
-Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+Official sources accessed on 2026-10-26 are cited alongside claims. A consulted version is not a version adopted by the consumer. Operational summaries and example schemas are methodological decisions of this skill, without a promise of implementation or future compatibility.
 
-## Responsabilidades adjacentes
+## Adjacent responsibilities
 
-A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+The specialized capability above does not replace the general methods below. Consult them only when the corresponding question remains unresolved; no handoff is mandatory.
 
-| Competência | Autoridade técnica adjacente |
+| Capability | Adjacent technical authority |
 |---|---|
-| `api-testing` | verificação de protocolos, efeitos, permissões e compatibilidade entre consumidores |
-| `application-security` | fronteiras de confiança, segredos, autorizações e ameaças |
-| `reliability-engineering` | falhas, cancelamento, limites, degradação, recuperação |
-| `software-architecture` | fronteiras, integração, atributos de qualidade, adrs |
-| `software-evolution` | compatibilidade, migrações, coexistência e versões antigas |
-| `distributed-systems` | garantias entre domínios de falha e versões, mensageria/consistência |
-| `rust` | ownership, crates, concorrência, compatibilidade, validação rust |
-| `software-delivery` | supply chain, builds, assinaturas, release e rollback |
-| `software-design` | interfaces, coesão, acoplamento, refatoração localizada |
+| `api-testing` | verification of protocols, effects, permissions and consumer compatibility |
+| `application-security` | trust boundaries, secrets, authorization and threats |
+| `reliability-engineering` | failures, cancellation, limits, degradation, recovery |
+| `software-architecture` | boundaries, integration, quality attributes, ADRs |
+| `software-evolution` | compatibility, migrations, coexistence and older versions |
+| `distributed-systems` | guarantees across failure domains and versions, messaging/consistency |
+| `rust` | ownership, crates, concurrency, compatibility, Rust validation |
+| `software-delivery` | supply chain, builds, signatures, release and rollback |
+| `software-design` | interfaces, cohesion, coupling, local refactoring |

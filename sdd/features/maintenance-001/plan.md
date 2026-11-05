@@ -1,30 +1,37 @@
-# Plano
+# Plan
 
-Rota completa: revisão de contrato de preservação, recuperação e decisão OPEN-07.
-D-01: transformação exata autenticada da baseline; R-01: permissividade indevida do guard.
-D-02: allowlist atual e exportação em pasta; R-02: omitir evidência ou depender da origem.
-D-03: cópias dos arquivos alterados e hashes observados; R-03: recuperação deduplicada perder versão.
-D-04: análise de direitos por componente; R-04: presumir licença de terceiros.
-Decisões detalhadas em docs/decisions/maintenance-001.md; REQ-01..04 correspondem a D-01..04 conforme traceability.
+Full route: preservation contract review, recovery and OPEN-07 decision.
+D-01: exact authenticated baseline transformation; R-01: an overly permissive guard.
+D-02: current allowlist and directory export; R-02: omitting evidence or depending on the source.
+D-03: copies of changed files and observed hashes; R-03: deduplicated recovery loses a version.
+D-04: rights analysis per component; R-04: assuming third-party licensing.
+Detailed decisions in docs/decisions/maintenance-001.md; REQ-01..04 correspond to
+D-01..04 according to traceability.
 
-Primária: software-delivery, .codex/skills/software-delivery/SKILL.md, versão não
-declarada, ponte sdd/chain/software-delivery.md versão 1; consultada e usada para
-fronteira exportável, identidade, cópia independente e recuperação.
-Auxiliar: skill-creator em /home/rodrigo/.codex/skills/.system/skill-creator/SKILL.md,
-sem versão declarada nem ponte local; consultada e usada apenas para frontmatter e
-preservação do conteúdo. Identidades das entradas consultadas registradas em docs/validation/maintenance-001/skills-consulted.json.
-Não há dependência desses caminhos externos para validar a entrega.
+Primary: software-delivery, .codex/skills/software-delivery/SKILL.md, version not
+declared, bridge sdd/chain/software-delivery.md version 1; consulted and used for
+the export boundary, identity, independent copy and recovery.
+Supporting: skill-creator at /home/rodrigo/.codex/skills/.system/skill-creator/SKILL.md,
+without declared version or local bridge; consulted and used only for frontmatter
+and content preservation. Consulted entry identities are recorded in
+docs/validation/maintenance-001/skills-consulted.json. Validation of the delivery
+does not depend on those external paths.
 
-Não apagar nem reorganizar fisicamente histórico com vínculos ativos. Preservar
-observações afetadas em previous; reexames novos não renovam resultados antigos.
-Gates específicos de pacote ZIP e ensaios de agentes não executados nesta tarefa
-ficam explicitamente pendentes se seus inputs mudaram. Os 36 cenários técnicos permanecem NÃO VERIFICADO.
+Do not delete or physically reorganize history with active bindings. Preserve
+affected observations in previous; new reviews do not renew old results.
+Specific gates for ZIP packaging and agent trials not executed in this task
+remain explicitly pending if their inputs changed. The 36 technical scenarios
+remain UNVERIFIED.
 
-Decisão posterior: GPL-3.0-only para material próprio, conforme ADR licensing.md.
-T005 implementa LICENSE/NOTICE e inclusão na allowlist; Rodrigo Batista foi
-informado como titular próprio e os direitos de terceiros continuam pendentes, sem prontidão pública. A alteração real de ROOT_FILES exige
-nova execução dos testes de exportação e preservação.
+Subsequent decision: GPL-3.0-only for first-party material, according to ADR licensing.md.
+T005 implements LICENSE/NOTICE and allowlist inclusion; Rodrigo Batista was
+identified as first-party owner and third-party rights remain pending, without
+public readiness. The actual ROOT_FILES change requires rerunning export and
+preservation tests.
 
-Atualização local license-holder-001: registrar o titular declarado, reexaminar os
-inputs documentais afetados e preservar envelopes anteriores. Nenhuma mudança de
-código, critérios ou licença; cenários técnicos e direitos de terceiros permanecem pendentes.
+Local update license-holder-001: record the declared owner, reexamine affected
+documentary inputs and preserve previous envelopes. No change to code, criteria
+or license; technical scenarios and third-party rights remain pending.
+
+## Current acceptance review — 2026-11-01
+Local route for inspection and evidence reconciliation; no contract changes. Aggregate execution is distinct from criterion-specific acceptance. Persistence design is a separate unadopted proposal in docs/decisions/local-persistence-proposal.md.

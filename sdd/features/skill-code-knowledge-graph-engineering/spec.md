@@ -1,24 +1,24 @@
-# Autoria e avaliação de code-knowledge-graph-engineering
+# Authoring and evaluation of code-knowledge-graph-engineering
 
-Origem histórica: estudo externo; contrato vigente autocontido nesta spec. O estudo não integra a distribuição nem a validação. Ator: mantenedor/avaliador da skill. Precondição: autoria autorizada e avaliação em ambiente permitido. Esta feature pertence à biblioteca; não é feature do produto Ox.
+Historical origin: external study; the current contract is self-contained in this spec. The study is not part of distribution or validation. Actor: skill maintainer/evaluator. Precondition: authorized authoring and evaluation in a permitted environment. This feature belongs to the library; it is not an Ox product feature.
 
-## Contratos técnicos preservados
+## Preserved technical contracts
 
-As declarações abaixo mantêm IDs, cenários e oráculos propostos. REQ-01..03 são competências que a skill deve ensinar. AC-01..04 exigem exercitar entregáveis concretos; revisão textual sozinha não os aprova. Integrações de produto/plataforma permanecem futuras quando não disponíveis.
+The declarations below retain the proposed IDs, scenarios and oracles. REQ-01..03 are capabilities the skill must teach. AC-01..04 require exercising concrete deliverables; text review alone does not approve them. Product/platform integrations remain future work when unavailable.
 
-- REQ-01: Nós/arestas têm tipos, identidade e proveniência ligada ao snapshot.
-- REQ-02: Relações inferidas não são apresentadas como fatos extraídos/resolvidos.
-- REQ-03: Grafos densos operam com limites de consulta e não bloqueiam a interface.
+- REQ-01: Nodes/edges have types, identity and provenance bound to the snapshot.
+- REQ-02: Inferred relationships are not presented as extracted/resolved facts.
+- REQ-03: Dense graphs operate with query limits and do not block the interface.
 
-- AC-01 → REQ-01: Aresta de chamada válida pode ser rastreada a localização e método; oráculo: corpus sintético conhecido.
-- AC-02 → REQ-02: Relação inferida marcada incorretamente como verificada é rejeitada; oráculo: schema/assert de proveniência.
-- AC-03 → REQ-03: Alteração remove aresta obsoleta no snapshot novo; oráculo: fixture antes/depois.
-- AC-04 → REQ-03: Consulta por subgrafo aplica limite e relatórios de truncamento; oráculo: grafo grande gerado determinísticamente.
+- AC-01 → REQ-01: A valid call edge can be traced to its location and method; oracle: known synthetic corpus.
+- AC-02 → REQ-02: An inferred relationship incorrectly marked as verified is rejected; oracle: provenance schema/assertion.
+- AC-03 → REQ-03: A change removes a stale edge in the new snapshot; oracle: before/after fixture.
+- AC-04 → REQ-03: A subgraph query applies limits and reports truncation; oracle: deterministically generated large graph.
 
-## Critérios adicionais da autoria
+## Additional authoring criteria
 
-- REQ-04: Entregar método reutilizável com seleção precisa, entradas, referências e cenários verificáveis.
-- AC-05 → REQ-04: Revisão de conteúdo e validação local confirmam entrada completa, referências substantivas, fronteiras e ponte válida.
-- AC-06 → REQ-04: Ensaio observado com agente distingue pedido positivo, negativo e comportamento adverso; limitações e resposta bruta preservadas.
+- REQ-04: Provide a reusable method with precise selection, inputs, references and verifiable scenarios.
+- AC-05 → REQ-04: Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.
+- AC-06 → REQ-04: An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.
 
-Não substituir AC-01..04 por AC-05/06. Versões, plataforma, dados e autorização do consumidor precisam ser conhecidos antes da integração. A aprovação da skill não aprova subsistemas do produto.
+Do not replace AC-01..04 with AC-05/06. Consumer versions, platform, data and authorization must be known before integration. Skill approval does not approve product subsystems.

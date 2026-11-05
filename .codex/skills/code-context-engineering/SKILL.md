@@ -5,21 +5,21 @@ description: Engineer incremental code indexing and retrieval with snapshot-boun
 
 # code-context-engineering
 
-## Responsabilidade e seleção
+## Responsibility and selection
 
-Extrair e recuperar contexto de repositórios de forma incremental, rastreável e econômica, combinando arquivos, busca textual, AST e resolução semântica opt-in.
+Extract and retrieve repository context incrementally, traceably and economically by combining files, text search, AST and opt-in semantic resolution.
 
-Selecionar: Indexação/invalidadores, busca por código, análise AST/LSP, seleção contextual, cache, freshness e evidência de recuperação.
+Select: Indexing/invalidators, code search, AST/LSP analysis, context selection, caching, freshness and retrieval evidence.
 
-Não selecionar: Não selecionar para RAG genérico de documentos sem código; ai-engineering cobre isso. Não tratar AST como prova de resolução de chamadas.
+Do not select: Do not select for generic document RAG without code; ai-engineering covers that. Do not treat an AST as proof of call resolution.
 
-## Entradas e lacunas
+## Inputs and gaps
 
-repositório/snapshot, regras de ignore, línguas suportadas, modelo de símbolos, orçamentos de recurso e consultas.
+repository/snapshot, ignore rules, supported languages, symbol model, resource budgets and queries.
 
-Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+Inspect actual contracts and resources before execution. A missing version requires consulting the corresponding documentation; a missing permission prevents the dependent effect. Record the gap, its impact and how to resolve it while continuing independent work. Examples in this package are evaluation contracts, not APIs or policies imposed on all consumers.
 
-## Procedimento operacional
+## Operating procedure
 
 1. Identify the repository snapshot including dirty files, ignore rules, languages and parser/semantic-provider versions. Define resource and privacy limits before scanning; start with paths/text when they answer the query.
 
@@ -33,37 +33,37 @@ Inspecione os contratos e recursos reais antes de executar. Ausência de versão
 
 6. Evaluate on a versioned corpus with known symbol positions, rename/edit mutations, ambiguous calls and absent LSP. Compare with simple textual search for precision/recall and resource use. Deliver the index contract and replayable query cases, not a claimed model-quality improvement without measurement.
 
-## Entregáveis e aceitação
+## Deliverables and acceptance
 
-índice versionado, APIs de busca, ranking, proveniência, invalidação incremental, testes de precisão/custo e degradação.
+versioned index, search APIs, ranking, provenance, incremental invalidation, accuracy/cost tests and degradation.
 
-Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+Bind each conclusion to observed inputs, method, result and limitations. Run the normal, boundary and failure cases from the [evaluations](references/evaluation-cases.md) in the authorized environment; distinguish review, simulation and integration results. Written cases remain unexecuted until run. Skill text neither proves effectiveness nor grants authority.
 
-## Fronteiras e encaminhamento
+## Boundaries and handoff
 
-`ai-engineering` — A recuperação realmente eleva a taxa de sucesso da tarefa em relação a uma busca simples?
+`ai-engineering` — Does retrieval actually improve task success compared with simple search?
 
-Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+Hand off only the distinct unresolved technical question, including scope, criterion IDs, facts, gaps and required evidence. Confirm availability before consultation. A mention does not install, delegate, execute or recursively load other skills. The consumer's contract owns behavior; the skill provides the method.
 
-## Referências especializadas
+## Specialized references
 
-- [incremental-indexing](references/incremental-indexing.md): consultar para Generation-based index updates.
-- [symbols-and-resolution](references/symbols-and-resolution.md): consultar para Identity and resolution strength.
-- [retrieval-evaluation](references/retrieval-evaluation.md): consultar para Evaluate retrieval, then downstream utility.
+- [incremental-indexing](references/incremental-indexing.md): consult for Generation-based index updates.
+- [symbols-and-resolution](references/symbols-and-resolution.md): consult for Identity and resolution strength.
+- [retrieval-evaluation](references/retrieval-evaluation.md): consult for Evaluate retrieval, then downstream utility.
 
-Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+Official sources accessed on 2026-10-26 are cited alongside claims. A consulted version is not a version adopted by the consumer. Operational summaries and example schemas are methodological decisions of this skill, without a promise of implementation or future compatibility.
 
-## Responsabilidades adjacentes
+## Adjacent responsibilities
 
-A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+The specialized capability above does not replace the general methods below. Consult them only when the corresponding question remains unresolved; no handoff is mandatory.
 
-| Competência | Autoridade técnica adjacente |
+| Capability | Adjacent technical authority |
 |---|---|
-| `ai-engineering` | modelos, rag, agentes com ferramentas, diagnóstico e avaliação de resultados |
-| `database-engineering` | persistência, esquemas, invariantes transacionais e migrações |
-| `performance-engineering` | benchmarks, profiling, comparações reproduzíveis e regressões |
-| `observability-and-diagnostics` | instrumentação, logs, métricas, traces, investigação causal |
-| `rust` | ownership, crates, concorrência, compatibilidade, validação rust |
-| `software-architecture` | fronteiras, integração, atributos de qualidade, adrs |
-| `software-design` | interfaces, coesão, acoplamento, refatoração localizada |
-| `software-testing` | casos, oráculos, testes automatizados, suites e regressões |
+| `ai-engineering` | models, RAG, agents using tools, diagnostics and outcome evaluation |
+| `database-engineering` | persistence, schemas, transactional invariants and migrations |
+| `performance-engineering` | benchmarks, profiling, reproducible comparisons and regressions |
+| `observability-and-diagnostics` | instrumentation, logs, metrics, traces, causal investigation |
+| `rust` | ownership, crates, concurrency, compatibility, Rust validation |
+| `software-architecture` | boundaries, integration, quality attributes, ADRs |
+| `software-design` | interfaces, cohesion, coupling, local refactoring |
+| `software-testing` | cases, oracles, automated tests, suites and regressions |

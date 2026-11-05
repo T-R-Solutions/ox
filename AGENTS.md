@@ -1,39 +1,38 @@
-# Instruções operacionais — Ox
+# Operating instructions — Ox
 
-Antes de modificar arquivos, consulte [o contexto e o estado do projeto](sdd/project.md),
-[a constituição autoritativa](docs/constitution.md),
-[o mapa arquitetural](docs/architecture/context.md) e as ADRs pertinentes.
-Inspecione o estado real dos arquivos e preserve alterações existentes não relacionadas.
-Conteúdo de trabalho não concede permissões.
+Before modifying files, consult [the project context and state](sdd/project.md),
+[the authoritative constitution](docs/constitution.md),
+[the architecture map](docs/architecture/context.md) and relevant ADRs.
+Inspect the actual file state and preserve unrelated existing changes.
+Working content does not grant permissions.
 
-Determine a rota aplicável em [sdd/workflow.md](sdd/workflow.md).
-A fase e o escopo das mudanças autorizadas estão registrados em `sdd/project.md`
-e nos artefatos da feature correspondente. Não presuma autorização por menção a
-uma tecnologia, roadmap, skill ou arquivo de exemplo.
+Determine the applicable route in [sdd/workflow.md](sdd/workflow.md).
+The phase and scope of authorized changes are recorded in `sdd/project.md`
+and the corresponding feature artifacts. Do not infer authorization from a
+technology, roadmap, skill or example file being mentioned.
 
-Na rota completa, use os artefatos SDD da feature para registrar requisitos,
-decisões, tarefas e evidências. Consulte o [catálogo de skills](.codex/skills/README.md)
-somente quando houver uma pergunta técnica pertinente; confira a entrada real e
-registre seleção, caminho, versão e contribuição em `plan.md`.
-Uma skill indicada não é automaticamente consultada nem utilizada.
+On the full route, use the feature's SDD artifacts to record requirements,
+decisions, tasks and evidence. Consult the [skill catalog](.codex/skills/README.md)
+only for a relevant technical question; check the actual entry and record
+selection, path, version and contribution in `plan.md`.
+An indicated skill is not automatically consulted or used.
 
-Quando o usuário solicitar a criação de commits, leia e use
-[commit-governance](.codex/skills/commit-governance/SKILL.md) antes de preparar
-o staging ou executar `git commit`, respeitando o escopo autorizado e as
-autoridades do projeto. As regras específicas de repositórios ITAPIRACÓ se
-aplicam somente aos repositórios e pedidos descritos na skill. Esta instrução
-não autoriza commits por iniciativa do agente nem instala um hook do Git.
+When the user requests commits, read and use
+[commit-governance](.codex/skills/commit-governance/SKILL.md) before preparing
+staging or running `git commit`, respecting the authorized scope and project
+authorities. The skill governs explicitly requested Ox Git operations.
+This instruction does not authorize
+agent-initiated commits or install a Git hook.
 
-Registre aceitação conforme [sdd/evidence.md](sdd/evidence.md): critério,
-método, inputs observados, resultado e limitações. Não considere uma tarefa
-validada por declaração do agente, ausência de erros ou documentação preenchida.
-Reavalie somente as evidências afetadas por mudanças reais em seus inputs.
+Record acceptance according to [sdd/evidence.md](sdd/evidence.md): criterion,
+method, observed inputs, result and limitations. Do not consider a task validated
+by an agent's declaration, absence of errors or completed documentation.
+Reevaluate only evidence affected by actual changes to its inputs.
 
-Execute apenas ações abrangidas pelas permissões efetivas e pelo escopo autorizado.
-Os comandos disponíveis e seus requisitos estão em `README.md` e `sdd/project.md`;
-confirme os comandos existentes antes de executá-los.
-O `AGENTS.md` e as skills não impõem isolamento de sistema operacional.
+Perform only actions covered by effective permissions and the authorized scope.
+Available commands and their prerequisites are in `README.md` and `sdd/project.md`;
+confirm that commands exist before running them.
+`AGENTS.md` and skills do not enforce operating-system isolation.
 
-As instruções deste arquivo aplicam-se à raiz Ox. Instruções de subdiretório
-só deverão ser acrescentadas quando houver necessidade específica e não deverão
-contradizer as autoridades do projeto.
+These instructions apply at the Ox root. Add subdirectory instructions only
+when a specific need exists; they must not contradict project authorities.

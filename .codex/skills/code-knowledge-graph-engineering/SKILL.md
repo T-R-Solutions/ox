@@ -5,21 +5,21 @@ description: Design typed code knowledge graphs with evidence-backed edges, incr
 
 # code-knowledge-graph-engineering
 
-## Responsabilidade e seleção
+## Responsibility and selection
 
-Modelar e consultar grafos de símbolos, chamadas, arquivos, testes, regras e tarefas, distinguindo relações verificadas de hipóteses e evitando visualização de dados obsoletos.
+Model and query graphs of symbols, calls, files, tests, rules and tasks, distinguishing verified relationships from hypotheses and avoiding displays of stale data.
 
-Selecionar: Schema de nós/arestas, provenance, análise de impacto, caminhos, clusters e visualização por subgrafo/densidade.
+Select: Node/edge schema, provenance, impact analysis, paths, clusters and subgraph/density visualization.
 
-Não selecionar: Não selecionar para fazer um grafo de marketing ou apresentação estática; design-system/design-review. Não substituir compilador/LSP por embeddings.
+Do not select: Do not select for a marketing graph or static presentation; use design-system/design-review. Do not replace a compiler/LSP with embeddings.
 
-## Entradas e lacunas
+## Inputs and gaps
 
-identidades estáveis, relações extraídas/inferidas, snapshots, consultas de impacto, limites de cardinalidade e layout.
+stable identities, extracted/inferred relationships, snapshots, impact queries, cardinality and layout limits.
 
-Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+Inspect actual contracts and resources before execution. A missing version requires consulting the corresponding documentation; a missing permission prevents the dependent effect. Record the gap, its impact and how to resolve it while continuing independent work. Examples in this package are evaluation contracts, not APIs or policies imposed on all consumers.
 
-## Procedimento operacional
+## Operating procedure
 
 1. Define node identity, edge type, direction, cardinality and evidence requirements before choosing a graph store. Separate structural relations, semantic resolution and inference with incompatible labels when appropriate.
 
@@ -33,37 +33,37 @@ Inspecione os contratos e recursos reais antes de executar. Ausência de versão
 
 6. Test known calls, mislabeled inferences, deleted sources and a deterministic dense cyclic graph. Check provenance, orphan handling and explicit truncation. Deliver schema, bounded queries, before/after fixtures and UI-performance gaps separately.
 
-## Entregáveis e aceitação
+## Deliverables and acceptance
 
-contrato de grafo versionado, consultas com limites, rastreabilidade de arestas, políticas de invalidação, modos estruturais/densos.
+versioned graph contract, bounded queries, edge traceability, invalidation policies, structural/dense modes.
 
-Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+Bind each conclusion to observed inputs, method, result and limitations. Run the normal, boundary and failure cases from the [evaluations](references/evaluation-cases.md) in the authorized environment; distinguish review, simulation and integration results. Written cases remain unexecuted until run. Skill text neither proves effectiveness nor grants authority.
 
-## Fronteiras e encaminhamento
+## Boundaries and handoff
 
-`code-context-engineering` — A origem da aresta pode ser verificada no snapshot de código indexado?
+`code-context-engineering` — Can the edge's origin be verified in the indexed code snapshot?
 
-Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+Hand off only the distinct unresolved technical question, including scope, criterion IDs, facts, gaps and required evidence. Confirm availability before consultation. A mention does not install, delegate, execute or recursively load other skills. The consumer's contract owns behavior; the skill provides the method.
 
-## Referências especializadas
+## Specialized references
 
-- [graph-schema-and-evidence](references/graph-schema-and-evidence.md): consultar para Evidence-bearing graph schema.
-- [incremental-graph-updates](references/incremental-graph-updates.md): consultar para Remove stale relationships deliberately.
-- [graph-queries-and-visualization](references/graph-queries-and-visualization.md): consultar para Bounded traversal and honest views.
+- [graph-schema-and-evidence](references/graph-schema-and-evidence.md): consult for Evidence-bearing graph schema.
+- [incremental-graph-updates](references/incremental-graph-updates.md): consult for Remove stale relationships deliberately.
+- [graph-queries-and-visualization](references/graph-queries-and-visualization.md): consult for Bounded traversal and honest views.
 
-Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+Official sources accessed on 2026-10-26 are cited alongside claims. A consulted version is not a version adopted by the consumer. Operational summaries and example schemas are methodological decisions of this skill, without a promise of implementation or future compatibility.
 
-## Responsabilidades adjacentes
+## Adjacent responsibilities
 
-A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+The specialized capability above does not replace the general methods below. Consult them only when the corresponding question remains unresolved; no handoff is mandatory.
 
-| Competência | Autoridade técnica adjacente |
+| Capability | Adjacent technical authority |
 |---|---|
-| `ai-engineering` | modelos, rag, agentes com ferramentas, diagnóstico e avaliação de resultados |
-| `database-engineering` | persistência, esquemas, invariantes transacionais e migrações |
-| `design-system` | tokens, componentes, estados e contratos de ui |
-| `domain-modeling` | regras de domínio, invariantes, conceitos de tarefa/agente/política |
-| `performance-engineering` | benchmarks, profiling, comparações reproduzíveis e regressões |
-| `software-architecture` | fronteiras, integração, atributos de qualidade, adrs |
-| `software-design` | interfaces, coesão, acoplamento, refatoração localizada |
-| `software-testing` | casos, oráculos, testes automatizados, suites e regressões |
+| `ai-engineering` | models, RAG, agents using tools, diagnostics and outcome evaluation |
+| `database-engineering` | persistence, schemas, transactional invariants and migrations |
+| `design-system` | tokens, components, states and UI contracts |
+| `domain-modeling` | domain rules, invariants, task/agent/policy concepts |
+| `performance-engineering` | benchmarks, profiling, reproducible comparisons and regressions |
+| `software-architecture` | boundaries, integration, quality attributes, ADRs |
+| `software-design` | interfaces, cohesion, coupling, local refactoring |
+| `software-testing` | cases, oracles, automated tests, suites and regressions |

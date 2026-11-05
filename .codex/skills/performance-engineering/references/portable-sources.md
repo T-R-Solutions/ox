@@ -4,33 +4,33 @@ Bibliographic and reading-scope snapshot from the authoring library. No books or
 
 ## B01: Observability Engineering
 
-Authors: Charity Majors; Liz Fong-Jones; George Miranda. Edition/year: 1ª, maio 2022.
+Authors: Charity Majors; Liz Fong-Jones; George Miranda. Edition/year: 1st, May 2022.
 
-Examined sections: cap. 5, p. 57–59; cap. 17, p. 213–215. Metadata examined: PDF 7.
+Examined sections: ch. 5, p. 57–59; ch. 17, p. 213–215. Metadata examined: PDF 7.
 
 Analyzed physical PDF ranges (1-based): [[82, 84], [238, 240]]. Visual pages: []. Book examples executed: False.
 
 ## B02: The Garbage Collection Handbook: The Art of Automatic Memory Management
 
-Authors: Richard Jones; Antony Hosking; Eliot Moss. Edition/year: copyright 2012; Version Date 20110726; número de edição não declarado na página examinada; não é a 2ª de 2023.
+Authors: Richard Jones; Antony Hosking; Eliot Moss. Edition/year: copyright 2012; Version Date 20110726; edition number not stated on the examined page; not the 2nd edition from 2023.
 
-Examined sections: cap. 1, §§1.3–1.6, p. 5–13. Metadata examined: PDF 4–5.
+Examined sections: ch. 1, §§1.3–1.6, p. 5–13. Metadata examined: PDF 4–5.
 
 Analyzed physical PDF ranges (1-based): [[36, 44]]. Visual pages: [5]. Book examples executed: False.
 
 ## B07: Learning eBPF: Programming the Linux Kernel for Enhanced Observability, Networking, and Security
 
-Authors: Liz Rice. Edition/year: 1ª, março 2023.
+Authors: Liz Rice. Edition/year: 1st, March 2023.
 
-Examined sections: cap. 6, p. 120–122; cap. 9, p. 171–173. Metadata examined: PDF 2–3.
+Examined sections: ch. 6, p. 120–122; ch. 9, p. 171–173. Metadata examined: PDF 2–3.
 
 Analyzed physical PDF ranges (1-based): [[137, 139], [188, 190]]. Visual pages: []. Book examples executed: False.
 
 ## B09: Introduction to Algorithms
 
-Authors: Thomas H. Cormen; Charles E. Leiserson; Ronald L. Rivest; Clifford Stein. Edition/year: 4ª, 2022.
+Authors: Thomas H. Cormen; Charles E. Leiserson; Ronald L. Rivest; Clifford Stein. Edition/year: 4th, 2022.
 
-Examined sections: cap. 2 §2.2, p. 25–31; continuação da seção não analisada. Metadata examined: PDF 3, 5–6.
+Examined sections: ch. 2 §2.2, pp. 25–31; the rest of the section was not analyzed. Metadata examined: PDF 3, 5–6.
 
 Analyzed physical PDF ranges (1-based): [[47, 53]]. Visual pages: []. Book examples executed: False.
 

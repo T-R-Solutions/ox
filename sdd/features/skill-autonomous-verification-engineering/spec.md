@@ -1,24 +1,24 @@
-# Autoria e avaliação de autonomous-verification-engineering
+# Authoring and evaluation of autonomous-verification-engineering
 
-Origem histórica: estudo externo; contrato vigente autocontido nesta spec. O estudo não integra a distribuição nem a validação. Ator: mantenedor/avaliador da skill. Precondição: autoria autorizada e avaliação em ambiente permitido. Esta feature pertence à biblioteca; não é feature do produto Ox.
+Historical origin: external study; the current contract is self-contained in this spec. The study is not part of distribution or validation. Actor: skill maintainer/evaluator. Precondition: authorized authoring and evaluation in a permitted environment. This feature belongs to the library; it is not an Ox product feature.
 
-## Contratos técnicos preservados
+## Preserved technical contracts
 
-As declarações abaixo mantêm IDs, cenários e oráculos propostos. REQ-01..03 são competências que a skill deve ensinar. AC-01..04 exigem exercitar entregáveis concretos; revisão textual sozinha não os aprova. Integrações de produto/plataforma permanecem futuras quando não disponíveis.
+The declarations below retain the proposed IDs, scenarios and oracles. REQ-01..03 are capabilities the skill must teach. AC-01..04 require exercising concrete deliverables; text review alone does not approve them. Product/platform integrations remain future work when unavailable.
 
-- REQ-01: Todo veredicto está vinculado a critério explícito, método e snapshot dos inputs.
-- REQ-02: Falha, não execução ou evidência obsoleta não são promovidas a aprovado.
-- REQ-03: Permissão de execução e aceitação de resultado são controles independentes.
+- REQ-01: Every verdict is bound to an explicit criterion, method and input snapshot.
+- REQ-02: Failures, non-execution and stale evidence are not promoted to approved.
+- REQ-03: Execution permission and result acceptance are independent controls.
 
-- AC-01 → REQ-01: Critério com teste real e input versionado pode ser marcado APROVADO; oráculo: artefato de execução vinculado.
-- AC-02 → REQ-02: Teste ignorado ou indisponível permanece NÃO VERIFICADO; oráculo: fixture sem executável.
-- AC-03 → REQ-02: Alteração após validação invalida somente critérios dependentes dos inputs alterados; oráculo: teste de freshness.
-- AC-04 → REQ-03: Agente sem autorização para deploy não consegue publicar mesmo quando verificação passou; oráculo: mock de fronteira + integração permitida.
+- AC-01 → REQ-01: A criterion with a real test and versioned input can be marked APPROVED; oracle: bound execution artifact.
+- AC-02 → REQ-02: A skipped or unavailable test remains UNVERIFIED; oracle: fixture without an executable.
+- AC-03 → REQ-02: A change after validation invalidates only criteria dependent on changed inputs; oracle: freshness test.
+- AC-04 → REQ-03: An agent without deployment authorization cannot publish even after verification passes; oracle: boundary mock plus permitted integration.
 
-## Critérios adicionais da autoria
+## Additional authoring criteria
 
-- REQ-04: Entregar método reutilizável com seleção precisa, entradas, referências e cenários verificáveis.
-- AC-05 → REQ-04: Revisão de conteúdo e validação local confirmam entrada completa, referências substantivas, fronteiras e ponte válida.
-- AC-06 → REQ-04: Ensaio observado com agente distingue pedido positivo, negativo e comportamento adverso; limitações e resposta bruta preservadas.
+- REQ-04: Provide a reusable method with precise selection, inputs, references and verifiable scenarios.
+- AC-05 → REQ-04: Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.
+- AC-06 → REQ-04: An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.
 
-Não substituir AC-01..04 por AC-05/06. Versões, plataforma, dados e autorização do consumidor precisam ser conhecidos antes da integração. A aprovação da skill não aprova subsistemas do produto.
+Do not replace AC-01..04 with AC-05/06. Consumer versions, platform, data and authorization must be known before integration. Skill approval does not approve product subsystems.

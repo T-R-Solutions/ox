@@ -11,7 +11,12 @@ from urllib.parse import urlsplit, unquote
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from governance_support import (inspect_tree, transient, sha as digest,
-                                relocated_path, relocated_traceability)
+                                relocated_path, relocated_traceability,
+                                preservation_digest, succession_records, succession_errors)
+from technical_acceptance import technical_errors
+from skill_revision import records as integration_records
+from documentation_revision import records as visual_records, errors as visual_errors
+from readme_revision import excluded_product_reference
 
 
 def validator(root):
@@ -32,9 +37,9 @@ def phase_errors(root):
     agents = (root/'AGENTS.md').read_text()
     constitution = (root/'docs/constitution.md').read_text()
     readme = (root/'README.md').read_text()
-    if not re.search(r'^Fase atual: `implementation-foundation`\.$', project, re.M):
+    if not re.search(r'^Current phase: `implementation-foundation`\.$', project, re.M):
         errors.append('Phase contract missing: implementation-foundation')
-    if not re.search(r'^Estado do aplicativo: `(?:not-yet-implemented|bootstrap-implemented)`\.$', project, re.M):
+    if not re.search(r'^Application state: `(?:not-yet-implemented|bootstrap-implemented)`\.$', project, re.M):
         errors.append('Application state must be explicit: baseline or scoped bootstrap')
     for name, text in (('AGENTS.md', agents), ('sdd/project.md', project)):
         if re.search(r'(?:escopo atual é governança e biblioteca|não implementar aplicativo|não implementar o aplicativo)', text, re.I):
@@ -59,8 +64,39 @@ def phase_errors(root):
     return errors
 
 
+def metadata_revision(root, read):
+    """Read the bounded UI revision; historical copy records remain immutable."""
+    revisions = read(root/'docs/structure/files.json')['revisions']
+    matches = [r for r in revisions if r['id'] == 'skill-ui-metadata-001']
+    if len(matches) != 1:
+        raise ValueError('Exactly one skill UI metadata revision required')
+    revision = matches[0]
+    if revision.get('decision') != 'docs/decisions/skill-ui-metadata-inventory.md':
+        raise ValueError('Skill UI metadata decision required')
+    if not (root/revision['decision']).is_file():
+        raise ValueError('Skill UI metadata decision missing')
+    rows = revision['records']
+    expected = {p for p in read(root/'docs/validation/skill-ui-metadata/inspection.json')['inputs_sha256']
+                if p.endswith('/agents/openai.yaml')}
+    paths = [r['destination'] for r in rows]
+    if len(paths) != len(set(paths)) or set(paths) != expected or len(expected) != 30:
+        raise ValueError('Skill UI metadata revision inventory differs')
+    copies = {'.codex/'+r['destination']: r['source_sha256']
+              for r in revisions[0]['records'] if r['destination'].startswith('skills/')}
+    for row in rows:
+        path = row['destination']
+        if not re.fullmatch(r'\.codex/skills/[a-z0-9-]+/agents/openai\.yaml', path):
+            raise ValueError('Invalid skill UI metadata path: '+path)
+        if row['previous_sha256'] != copies.get(path):
+            raise ValueError('Skill UI metadata predecessor differs: '+path)
+        if not re.fullmatch(r'[0-9a-f]{64}', row['sha256']):
+            raise ValueError('Invalid skill UI metadata hash: '+path)
+    return {r['destination']: r for r in rows}
+
+
 def transition_preservation_errors(root, read):
     """Protect immutable history and methods with the pre-edit content baseline."""
+    metadata = metadata_revision(root, read)
     baseline = read(root/'docs/validation/implementation-transition/before.json')
     errors = []
     immutable_files = {
@@ -107,7 +143,15 @@ def transition_preservation_errors(root, read):
                 continue
             expected = header.replace(marker.rstrip(b'\n'), b'').rstrip(b'\n') + separator + body
             observed = hashlib.sha256(expected).hexdigest()
-        if not target.is_file() or digest(target) != observed:
+        current = target.relative_to(root).as_posix()
+        if current in metadata:
+            row = metadata[current]
+            if row['previous_sha256'] != observed:
+                errors.append('Transition UI predecessor differs: '+relative)
+            elif not target.is_file() or digest(target) != row['sha256']:
+                errors.append('Transition UI metadata changed/missing: '+relative)
+            continue
+        if not target.is_file() or preservation_digest(root, current) != observed:
             errors.append('Transition preserved input changed: '+relative)
     return errors
 
@@ -118,6 +162,13 @@ def check(root):
     V = validator(root)
     read = V.strict_json
     errors.extend(phase_errors(root))
+    errors.extend(succession_errors(root))
+    errors.extend(visual_errors(root))
+    metadata = metadata_revision(root, read)
+    for relative, row in metadata.items():
+        target = root/relative
+        if not target.is_file() or target.is_symlink() or digest(target) != row['sha256']:
+            errors.append('UI metadata changed/missing: '+relative)
     errors.extend(transition_preservation_errors(root, read))
     profile = read(root/'config/governance/profile.json')
     names = sum([list(profile[key]) for key in ('general','conditional','new')], [])
@@ -150,13 +201,13 @@ def check(root):
         rel = row['destination']
         rel = '.codex/'+rel if rel.startswith('skills/') else rel
         copied_paths.add(rel)
-        if rel.startswith('.codex/skills/') and (not (root/rel).is_file() or digest(root/rel) != row['source_sha256']):
+        if rel.startswith('.codex/skills/') and rel not in metadata and (not (root/rel).is_file() or preservation_digest(root, rel) != row['source_sha256']):
             errors.append('Copied resource changed/missing: '+rel)
         if row['copied_sha256'] != row['source_sha256']:
             errors.append('Invalid copy provenance: '+rel)
     for name in list(profile['general'])+list(profile['conditional']):
         for path in (root/'.codex/skills'/name).rglob('*'):
-            if path.is_file() and path.relative_to(root).as_posix() not in copied_paths:
+            if path.is_file() and path.relative_to(root).as_posix() not in copied_paths | metadata.keys() | succession_records(root).keys() | integration_records(root).keys() | visual_records(root).keys():
                 errors.append('Unexpected copied resource: '+str(path.relative_to(root)))
     with tarfile.open(root/'docs/validation/adoption-baseline/copied-before-adaptation.tar.gz') as archive:
         for row in copies:
@@ -167,7 +218,7 @@ def check(root):
     stable += ['templates/'+p.name for p in (root/'sdd/templates').iterdir() if p.is_file()]
     source_hash = {r['destination']:r['source_sha256'] for r in copies}
     for name in stable:
-        if digest(root/'sdd'/name) != source_hash['sdd/'+name]:
+        if preservation_digest(root, 'sdd/'+name) != source_hash['sdd/'+name]:
             errors.append('SDD core modified: '+name)
 
     for path in root.rglob('*.md'):
@@ -180,7 +231,8 @@ def check(root):
                 continue
             resolved = (path.parent/unquote(parsed.path)).resolve()
             if not resolved.is_relative_to(root) or not (resolved.is_file() or resolved.is_dir()):
-                errors.append(f'Broken/escaping link: {rel}: {target}')
+                if not excluded_product_reference(root, rel.as_posix(), resolved):
+                    errors.append(f'Broken/escaping link: {rel}: {target}')
 
     for name in profile['new']:
         path = root/'.codex/skills'/name/'SKILL.md'
@@ -189,8 +241,8 @@ def check(root):
             errors.append('Invalid new metadata: '+name)
         if re.search(r'^\[TODO:',text,re.M):
             errors.append('Unfinished skill: '+name)
-        if any(marker not in text for marker in ('Selecionar:', 'Não selecionar:',
-               '## Entradas e lacunas', '## Procedimento operacional', '## Entregáveis e aceitação')):
+        if any(marker not in text for marker in ('Select:', 'Do not select:',
+               '## Inputs and gaps', '## Operating procedure', '## Deliverables and acceptance')):
             errors.append('Missing specialized activation/procedure contract: '+name)
         if not re.match(r'\A---\nname: '+re.escape(name)+r'\ndescription: [^\n]+\n---\n', text):
             errors.append('Specialized frontmatter must contain only name and description: '+name)
@@ -202,9 +254,8 @@ def check(root):
             errors.append('Missing local authorship/technical criteria: '+name)
         if not re.search(r'^- REQ-\d+: .+',spec_text,re.M):
             errors.append('Missing local requirements: '+name)
-        for criterion in read(feature/'evidence.json')['requirements']:
-            if criterion['id'] in {'AC-01','AC-02','AC-03','AC-04'} and criterion['status'] != 'NÃO VERIFICADO':
-                errors.append('Technical scenario promoted without authorized product review: '+name+': '+criterion['id'])
+        errors.extend(technical_errors(root, feature, read(feature/'evidence.json'),
+                                       read(feature/'traceability.json'), V))
 
     authority = root/'docs/constitution.md'
     declarations = re.findall(r'^- ((?:POL|GOV)-\d+): (.+)$',authority.read_text(),re.M)

@@ -5,21 +5,21 @@ description: Design criterion-based acceptance gates for autonomous work, bindin
 
 # autonomous-verification-engineering
 
-## Responsabilidade e seleção
+## Responsibility and selection
 
-Transformar requisitos e critérios de aceite em verificações executáveis e veredictos rastreáveis, preservando independência dos oráculos e políticas de autorização.
+Turn requirements and acceptance criteria into executable checks and traceable verdicts while preserving oracle independence and authorization policies.
 
-Selecionar: Sistemas que aprovam/reprovam entregas de agentes; evidências, critérios, gates, execução autônoma e risco de aceitação falsa.
+Select: Systems that accept/reject agent deliverables; evidence, criteria, gates, autonomous execution and false acceptance risk.
 
-Não selecionar: Não usar para apenas criar testes unitários ou investigar flaky tests; software-testing é responsável por esses métodos. Não produzir “score de confiança” sem calibração.
+Do not select: Do not use solely to create unit tests or investigate flaky tests; software-testing owns those methods. Do not produce an uncalibrated “confidence score.”
 
-## Entradas e lacunas
+## Inputs and gaps
 
-critérios normativos, snapshots de código, testes/verificadores autorizados, risco da mudança, política de aprovação.
+normative criteria, code snapshots, authorized tests/checkers, change risk, approval policy.
 
-Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+Inspect actual contracts and resources before execution. A missing version requires consulting the corresponding documentation; a missing permission prevents the dependent effect. Record the gap, its impact and how to resolve it while continuing independent work. Examples in this package are evaluation contracts, not APIs or policies imposed on all consumers.
 
-## Procedimento operacional
+## Operating procedure
 
 1. Enumerate normative acceptance criteria and identify their authority. For each, name the implementation surface, oracle, execution permission and expected failure. Do not derive expected results solely from the candidate implementation or an agent explanation.
 
@@ -33,36 +33,36 @@ Inspecione os contratos e recursos reais antes de executar. Ausência de versão
 
 6. Introduce representative defects into a controlled candidate and confirm the oracle rejects them. Preserve the failing and repaired results separately. Deliver a per-criterion verdict table, residual work and exact replay instructions; stop retries when they require missing authority or an unchanged external dependency.
 
-## Entregáveis e aceitação
+## Deliverables and acceptance
 
-modelo de gates, status auditáveis, vínculo requisito-evidência-snapshot, separação implementação/oráculo, procedimentos de replay.
+gate model, auditable states, requirement-evidence-snapshot bindings, implementation/oracle separation, replay procedures.
 
-Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+Bind each conclusion to observed inputs, method, result and limitations. Run the normal, boundary and failure cases from the [evaluations](references/evaluation-cases.md) in the authorized environment; distinguish review, simulation and integration results. Written cases remain unexecuted until run. Skill text neither proves effectiveness nor grants authority.
 
-## Fronteiras e encaminhamento
+## Boundaries and handoff
 
-`software-testing` — O oráculo escolhido realmente falha quando introduzimos o defeito representativo?
+`software-testing` — Does the chosen oracle actually fail when a representative defect is introduced?
 
-Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+Hand off only the distinct unresolved technical question, including scope, criterion IDs, facts, gaps and required evidence. Confirm availability before consultation. A mention does not install, delegate, execute or recursively load other skills. The consumer's contract owns behavior; the skill provides the method.
 
-## Referências especializadas
+## Specialized references
 
-- [acceptance-verdicts](references/acceptance-verdicts.md): consultar para Verdicts and authorization.
-- [evidence-provenance](references/evidence-provenance.md): consultar para Content-bound observations.
-- [independent-oracles](references/independent-oracles.md): consultar para Challenge the oracle.
+- [acceptance-verdicts](references/acceptance-verdicts.md): consult for Verdicts and authorization.
+- [evidence-provenance](references/evidence-provenance.md): consult for Content-bound observations.
+- [independent-oracles](references/independent-oracles.md): consult for Challenge the oracle.
 
-Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+Official sources accessed on 2026-10-26 are cited alongside claims. A consulted version is not a version adopted by the consumer. Operational summaries and example schemas are methodological decisions of this skill, without a promise of implementation or future compatibility.
 
-## Responsabilidades adjacentes
+## Adjacent responsibilities
 
-A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+The specialized capability above does not replace the general methods below. Consult them only when the corresponding question remains unresolved; no handoff is mandatory.
 
-| Competência | Autoridade técnica adjacente |
+| Capability | Adjacent technical authority |
 |---|---|
-| `ai-engineering` | modelos, rag, agentes com ferramentas, diagnóstico e avaliação de resultados |
-| `api-testing` | verificação de protocolos, efeitos, permissões e compatibilidade entre consumidores |
-| `reliability-engineering` | falhas, cancelamento, limites, degradação, recuperação |
-| `software-testing` | casos, oráculos, testes automatizados, suites e regressões |
-| `application-security` | fronteiras de confiança, segredos, autorizações e ameaças |
-| `domain-modeling` | regras de domínio, invariantes, conceitos de tarefa/agente/política |
-| `software-architecture` | fronteiras, integração, atributos de qualidade, adrs |
+| `ai-engineering` | models, RAG, agents using tools, diagnostics and outcome evaluation |
+| `api-testing` | verification of protocols, effects, permissions and consumer compatibility |
+| `reliability-engineering` | failures, cancellation, limits, degradation, recovery |
+| `software-testing` | cases, oracles, automated tests, suites and regressions |
+| `application-security` | trust boundaries, secrets, authorization and threats |
+| `domain-modeling` | domain rules, invariants, task/agent/policy concepts |
+| `software-architecture` | boundaries, integration, quality attributes, ADRs |

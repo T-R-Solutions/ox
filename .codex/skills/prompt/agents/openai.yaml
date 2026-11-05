@@ -1,5 +1,6 @@
 interface:
   display_name: "Prompt"
   short_description: "Turn ideas into clear, verifiable prompts"
+  default_prompt: "Use $prompt to turn my request into a clear prompt with technical requirements and verifiable criteria, without executing the task described in it."
 policy:
   allow_implicit_invocation: true

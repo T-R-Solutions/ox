@@ -7,7 +7,17 @@ import re
 import sys
 from urllib.parse import unquote, urlsplit
 
-STATES = {'APROVADO', 'REPROVADO', 'NÃO VERIFICADO', 'INCONCLUSIVO', 'NÃO APLICÁVEL'}
+STATES = {'APPROVED', 'REJECTED', 'UNVERIFIED', 'INCONCLUSIVE', 'NOT APPLICABLE'}
+LEGACY_STATES = {
+    'APROVADO': 'APPROVED', 'REPROVADO': 'REJECTED',
+    'NÃO VERIFICADO': 'UNVERIFIED', 'INCONCLUSIVO': 'INCONCLUSIVE',
+    'NÃO APLICÁVEL': 'NOT APPLICABLE',
+}
+
+
+def state(value):
+    """Normalize legacy evidence without rewriting historical documents."""
+    return LEGACY_STATES.get(value, value) if isinstance(value, str) else None
 
 
 def digest(path):
@@ -124,7 +134,7 @@ def input_errors(document, root, rows, feature, require_fresh):
     if not isinstance(rows, list) or not isinstance(document.get('requirements'), list):
         return errors
     for criterion in document['requirements']:
-        if not isinstance(criterion, dict) or criterion.get('status') not in ('APROVADO', 'REPROVADO'):
+        if not isinstance(criterion, dict) or state(criterion.get('status')) not in ('APPROVED', 'REJECTED'):
             continue
         refs = criterion.get('evidence_ids', [])
         if not isinstance(refs, list) or any(not isinstance(x, str) for x in refs):
@@ -188,16 +198,16 @@ def evidence_errors(document, root):
         criteria.add(identifier)
         if not isinstance(row.get('criterion'), str) or not row['criterion'].strip():
             errors.append(f'Missing criterion text: {identifier}')
-        if not isinstance(row.get('status'), str) or row['status'] not in STATES:
+        if state(row.get('status')) not in STATES:
             errors.append(f'Invalid status: {identifier}'); continue
         refs = row.get('evidence_ids')
         if not isinstance(refs, list) or any(not isinstance(x, str) for x in refs):
             errors.append(f'Invalid evidence_ids: {identifier}'); continue
         if len(refs) != len(set(refs)) or not set(refs) <= ids:
             errors.append(f'Duplicate or dangling evidence IDs: {identifier}')
-        if row.get('status') in {'APROVADO', 'REPROVADO'} and not refs:
+        if state(row.get('status')) in {'APPROVED', 'REJECTED'} and not refs:
             errors.append(f'Decided criterion without evidence: {identifier}')
-        if (row.get('status') == 'NÃO APLICÁVEL'
+        if (state(row.get('status')) == 'NOT APPLICABLE'
                 and (not isinstance(row.get('reason'), str) or not row['reason'].strip())):
             errors.append(f'Inapplicable criterion without reason: {identifier}')
     return errors
@@ -281,7 +291,7 @@ def feature_errors(root, check_evidence=True, require_approved=False, directory=
                 if isinstance(requirements, list):
                     for row in requirements:
                         if isinstance(row, dict) and isinstance(row.get('id'), str) and row['id'] in expected:
-                            if row.get('status') not in {'APROVADO', 'NÃO APLICÁVEL'}:
+                            if state(row.get('status')) not in {'APPROVED', 'NOT APPLICABLE'}:
                                 errors.append(f"{prefix}: Acceptance {row['id']} is {row.get('status')}")
         except (OSError, ValueError, KeyError, TypeError) as exc:
             errors.append(f'{prefix}: Could not audit feature: {exc}')

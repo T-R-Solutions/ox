@@ -5,21 +5,21 @@ description: Implement and review Iced desktop interfaces using explicit state, 
 
 # iced-engineering
 
-## Responsabilidade e seleção
+## Responsibility and selection
 
-Implementar GUIs desktop com Iced usando modelagem de mensagens, estado, Tasks/Subscriptions, componentes customizados, painéis e desempenho responsivo.
+Implement desktop GUIs with Iced using message modeling, state, Tasks/Subscriptions, custom components, panes and responsive performance.
 
-Selecionar: Código Iced, modelos de update/view, widgets customizados, split panes, temas, acessibilidade e visualização gráfica.
+Select: Iced code, update/view models, custom widgets, split panes, themes, accessibility and graph visualization.
 
-Não selecionar: Não selecionar para projeto sem Iced; não substituir design-review/design-system na decisão de hierarquia visual.
+Do not select: Do not select for projects without Iced; do not replace design-review/design-system when deciding visual hierarchy.
 
-## Entradas e lacunas
+## Inputs and gaps
 
-versão do Iced e features, estado da GUI, fluxos, eventos, restrições de tamanho, acessibilidade e latência.
+Iced version and features, GUI state, flows, events, size constraints, accessibility and latency.
 
-Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+Inspect actual contracts and resources before execution. A missing version requires consulting the corresponding documentation; a missing permission prevents the dependent effect. Record the gap, its impact and how to resolve it while continuing independent work. Examples in this package are evaluation contracts, not APIs or policies imposed on all consumers.
 
-## Procedimento operacional
+## Operating procedure
 
 1. Read the actual manifest, lockfile, enabled features and Iced version before naming APIs. Compare that version with documentation. If no consumer exists, provide version-scoped design guidance and mark compilation/integration unverified instead of inventing a Cargo workspace.
 
@@ -33,36 +33,36 @@ Inspecione os contratos e recursos reais antes de executar. Ausência de versão
 
 6. Test slow work with a UI heartbeat, keyboard focus across collapse/expand, extreme window sizes, loading/error/empty states and hidden-view work counters. Report platform/hardware and measurement limits; no universal latency or accessibility guarantee follows from Iced.
 
-## Entregáveis e aceitação
+## Deliverables and acceptance
 
-componentes/contratos de update, UI testável, estados vazios/erro/carregamento, orçamento de renderização e benchmark.
+components/update contracts, testable UI, empty/error/loading states, rendering budget and benchmark.
 
-Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+Bind each conclusion to observed inputs, method, result and limitations. Run the normal, boundary and failure cases from the [evaluations](references/evaluation-cases.md) in the authorized environment; distinguish review, simulation and integration results. Written cases remain unexecuted until run. Skill text neither proves effectiveness nor grants authority.
 
-## Fronteiras e encaminhamento
+## Boundaries and handoff
 
-`design-system` — O componente reutilizável preserva tokens, variantes, estados e contrato de interação definidos?
+`design-system` — Does the reusable component preserve the defined tokens, variants, states and interaction contract?
 
-Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+Hand off only the distinct unresolved technical question, including scope, criterion IDs, facts, gaps and required evidence. Confirm availability before consultation. A mention does not install, delegate, execute or recursively load other skills. The consumer's contract owns behavior; the skill provides the method.
 
-## Referências especializadas
+## Specialized references
 
-- [message-update-state](references/message-update-state.md): consultar para Message, update, effects.
-- [layout-and-custom-widgets](references/layout-and-custom-widgets.md): consultar para Layout, panes and custom widgets.
-- [desktop-performance-and-accessibility](references/desktop-performance-and-accessibility.md): consultar para Responsiveness and accessibility evidence.
+- [message-update-state](references/message-update-state.md): consult for Message, update, effects.
+- [layout-and-custom-widgets](references/layout-and-custom-widgets.md): consult for Layout, panes and custom widgets.
+- [desktop-performance-and-accessibility](references/desktop-performance-and-accessibility.md): consult for Responsiveness and accessibility evidence.
 
-Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+Official sources accessed on 2026-10-26 are cited alongside claims. A consulted version is not a version adopted by the consumer. Operational summaries and example schemas are methodological decisions of this skill, without a promise of implementation or future compatibility.
 
-## Responsabilidades adjacentes
+## Adjacent responsibilities
 
-A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+The specialized capability above does not replace the general methods below. Consult them only when the corresponding question remains unresolved; no handoff is mandatory.
 
-| Competência | Autoridade técnica adjacente |
+| Capability | Adjacent technical authority |
 |---|---|
-| `design-review` | auditoria de hierarquia visual, fluxo e usabilidade |
-| `design-system` | tokens, componentes, estados e contratos de ui |
-| `rust` | ownership, crates, concorrência, compatibilidade, validação rust |
-| `observability-and-diagnostics` | instrumentação, logs, métricas, traces, investigação causal |
-| `performance-engineering` | benchmarks, profiling, comparações reproduzíveis e regressões |
-| `software-design` | interfaces, coesão, acoplamento, refatoração localizada |
-| `software-testing` | casos, oráculos, testes automatizados, suites e regressões |
+| `design-review` | visual hierarchy, flow and usability audit |
+| `design-system` | tokens, components, states and UI contracts |
+| `rust` | ownership, crates, concurrency, compatibility, Rust validation |
+| `observability-and-diagnostics` | instrumentation, logs, metrics, traces, causal investigation |
+| `performance-engineering` | benchmarks, profiling, reproducible comparisons and regressions |
+| `software-design` | interfaces, cohesion, coupling, local refactoring |
+| `software-testing` | cases, oracles, automated tests, suites and regressions |

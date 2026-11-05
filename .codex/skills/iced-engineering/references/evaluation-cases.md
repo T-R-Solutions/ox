@@ -1,32 +1,32 @@
-# Avaliações da skill
+# Skill evaluations
 
-Contrato de casos; execução deve ser registrada separadamente. Não constituem testes realizados.
+Case contract; execution must be recorded separately. These are not completed tests.
 
-## Cenários técnicos preservados
+## Preserved technical scenarios
 
-- AC-01 → REQ-01: Operação lenta simulada não bloqueia navegação/interação; oráculo: teste de integração com heartbeat de UI.
-- AC-02 → REQ-02: Painel expandido/recolhido preserva conteúdo e foco definidos; oráculo: teste funcional de estados.
-- AC-03 → REQ-02: Redimensionamento extremo não perde ações essenciais; oráculo: revisão de layout em tamanhos documentados.
-- AC-04 → REQ-03: Grafo oculto não agenda re-layout contínuo; oráculo: instrumentação sob workload controlado.
+- AC-01 → REQ-01: A simulated slow operation does not block navigation/interaction; oracle: integration test with a UI heartbeat.
+- AC-02 → REQ-02: An expanded/collapsed pane preserves the defined content and focus; oracle: functional state test.
+- AC-03 → REQ-02: Extreme resizing does not lose essential actions; oracle: layout review at documented sizes.
+- AC-04 → REQ-03: A hidden graph does not schedule continuous relayout; oracle: instrumentation under a controlled workload.
 
-## Protocolo de avaliação
+## Evaluation protocol
 
-Forneça um pedido concreto e os inputs mínimos a um agente em diretório isolado autorizado. Na rodada de seleção, mostre somente catálogo/descriptions, sem a resposta esperada. Na rodada de comportamento, disponibilize a skill selecionada e os dados adversos. Preserve prompt, resposta bruta, identidade/configuração conhecida do agente, hashes dos inputs, revisão do resultado e limitações. Não execute serviços ou ferramentas com novas permissões.
+Give an agent a concrete request and minimal inputs in an authorized isolated directory. In the selection round, show only the catalog/descriptions, without the expected answer. In the behavior round, provide the selected skill and adversarial data. Preserve the prompt, raw response, known agent identity/configuration, input hashes, outcome review and limitations. Do not run services or tools requiring new permissions.
 
-Seleção positiva: pedir o entregável próprio descrito nesta entrada. Seleção negativa: usar a exclusão explícita; a resposta deve apontar competência mais adequada sem carregar esta skill. Falha: fornecer input que contraria o cenário técnico e exigir evidência antes de aprovação. Os prompts concretos do pacote consumidor devem incluir dados suficientes e um oráculo independente.
+Positive selection: request the specialized deliverable described in this entry. Negative selection: use the explicit exclusion; the response should identify a more suitable capability without loading this skill. Failure: provide input that contradicts the technical scenario and require evidence before approval. Concrete prompts in the consumer package must include sufficient data and an independent oracle.
 
-## Prompts concretos
+## Concrete prompts
 
 ### iced-engineering-positive
 
-Adicionar componente Iced que permaneça interativo durante indexação e preserve foco ao recolher painéis.
+Add an Iced component that stays interactive during indexing and preserves focus when collapsing panes.
 
 ### iced-engineering-negative
 
-Avaliar hierarquia visual de uma jornada web sem código Iced.
+Evaluate the visual hierarchy of a web journey without Iced code.
 
 ### iced-engineering-failure
 
-Uma UI Iced recebe resultado de busca antigo após troca de painel. Grafo oculto continua agendando layout. Não há lockfile fornecido. Proponha estado, efeitos, foco e ensaio, indicando APIs que precisam ser confirmadas.
+An Iced UI receives an old search result after switching panes. A hidden graph keeps scheduling layout. No lockfile was provided. Propose state, effects, focus and a trial, identifying APIs that need confirmation.
 
-Oráculo de revisão: positivo seleciona a competência própria; negativo encaminha para design-review (ou competência adjacente justificada). Na falha observar: version gap; generation guard; suspend work; measure UI not assert responsive. Este gabarito é revisado depois da resposta, não fornecido ao avaliador na seleção.
+Review oracle: positive selects this specialized capability; negative routes to design-review (or a justified adjacent capability). In the failure case, check: version gap; generation guard; suspend work; measure UI not assert responsive. Review this answer key after the response; do not provide it to the evaluator during selection.

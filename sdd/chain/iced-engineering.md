@@ -10,28 +10,28 @@ Copy this file to the destination project's `sdd/chain/` and set `skill_path` to
 
 ## Selection
 
-Use for: Código Iced, modelos de update/view, widgets customizados, split panes, temas, acessibilidade e visualização gráfica.
+Use for: Iced code, update/view models, custom widgets, split panes, themes, accessibility and graph visualization.
 
-Do not select for: Não selecionar para projeto sem Iced; não substituir design-review/design-system na decisão de hierarquia visual.
+Do not select for: Do not select for projects without Iced; do not replace design-review/design-system when deciding visual hierarchy.
 
 Select only when the concrete feature has this specialized question. Read the actual skill; record its path/version and selection reason in the plan. A bridge reference does not recursively select other skills.
 
 ## Inputs and contributions
 
-Known inputs: versão do Iced e features, estado da GUI, fluxos, eventos, restrições de tamanho, acessibilidade e latência. Do not infer missing capabilities or permissions.
+Known inputs: Iced version and features, GUI state, flows, events, size constraints, accessibility and latency. Do not infer missing capabilities or permissions.
 
 | Artifact | Required input / contribution |
 |---|---|
 | Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |
-| Spec | Define scoped, observable behavior and rejected cases. A UI não bloqueia em processos, busca, indexação ou eventos de agentes. |
-| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Modelo Message/Update/View com estado explícito e tarefas externas à renderização. |
-| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Criar harness de UI e fixtures para estados/carregamento/eventos. |
-| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. componentes/contratos de update, UI testável, estados vazios/erro/carregamento, orçamento de renderização e benchmark |
+| Spec | Define scoped, observable behavior and rejected cases. The UI does not block on processes, search, indexing or agent events. |
+| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Message/Update/View model with explicit state and tasks outside rendering. |
+| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Create a UI harness and fixtures for states/loading/events. |
+| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. components/update contracts, testable UI, empty/error/loading states, rendering budget and benchmark |
 
 ## Conditional handoff
 
-Optional specialist: `design-system`. Specific unresolved question: “O componente reutilizável preserva tokens, variantes, estados e contrato de interação definidos?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.
+Optional specialist: `design-system`. Specific unresolved question: “Does the reusable component preserve the defined tokens, variants, states and interaction contract?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.
 
 ## Completion and authority
 
-Use the destination SDD's states: APROVADO, REPROVADO, NÃO VERIFICADO, INCONCLUSIVO, NÃO APLICÁVEL (with justification). A mock or document is not execution evidence. Record freshness of inputs and source of each observation. Spec owns behavior; plan/ADRs own decisions; tasks own work; this bridge only connects the skill to those artifacts.
+Use the destination SDD's states: APPROVED, REJECTED, UNVERIFIED, INCONCLUSIVE, NOT APPLICABLE (with justification). A mock or document is not execution evidence. Record freshness of inputs and source of each observation. Spec owns behavior; plan/ADRs own decisions; tasks own work; this bridge only connects the skill to those artifacts.

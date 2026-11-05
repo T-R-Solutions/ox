@@ -7,7 +7,7 @@ def load(name,path):
  spec=importlib.util.spec_from_file_location(name,path); module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
 V=load('sdd_validator',ROOT/'sdd/tools/validate.py')
 C=load('ox_checker',ROOT/'tools/governance/scripts/check-ox.py')
-from governance_support import copy_distribution,inspect_bytes,EXTERNAL_DOCUMENTS,scope_errors
+from governance_support import copy_distribution,inspect_bytes,EXTERNAL_DOCUMENTS,scope_errors,preservation_bytes
 P=load('ox_package',ROOT/'tools/governance/scripts/package-ox.py')
 class GovernanceTests(unittest.TestCase):
  def setUp(self):
@@ -16,6 +16,10 @@ class GovernanceTests(unittest.TestCase):
   from governance_support import distribution_files
   names={p.relative_to(ROOT).as_posix() for p in distribution_files(ROOT)}
   self.assertFalse(any(p.startswith(('application/','sdd/features/product-bootstrap/','docs/validation/product-bootstrap/')) for p in names))
+  for feature in ('product-plugin-host','product-agent-runtime','product-verification-engine','product-local-task-ui','product-f0-gate'):
+   self.assertFalse(any(p.startswith((f'sdd/features/{feature}/',f'docs/validation/{feature}/')) for p in names))
+  self.assertFalse(any(p.startswith('docs/validation/f0-execution-20261102/') for p in names))
+  self.assertFalse(any(p.startswith('docs/validation/f0-resumption-20261103/') for p in names))
   self.assertIn('sdd/features/product-foundation/spec.md',names)
 
  def test_declared_criteria_ignore_examples(self):
@@ -42,6 +46,41 @@ class GovernanceTests(unittest.TestCase):
   doc={'schema_version':2,'environment':'fixture','limitations':[],'evidence':[],'requirements':[{'id':'AC-01','criterion':'tested','status':'APROVADO','evidence_ids':[]}]}
   self.assertTrue(any('without evidence' in e for e in V.evidence_errors(doc,self.root)))
   doc['requirements'][0]['status']='NÃO VERIFICADO';self.assertEqual(V.evidence_errors(doc,self.root),[])
+ def test_english_and_legacy_states_enforce_the_same_evidence_gates(self):
+  for legacy,english in V.LEGACY_STATES.items():
+   for status in (legacy,english):
+    with self.subTest(status=status):
+     criterion={'id':'AC-01','criterion':'observed','status':status,'evidence_ids':[]}
+     doc={'schema_version':2,'environment':'fixture','limitations':[],
+          'requirements':[criterion],'evidence':[]}
+     errors=V.evidence_errors(doc,self.root)
+     if english in {'APPROVED','REJECTED'}:
+      self.assertTrue(any('without evidence' in e for e in errors))
+      self.assertEqual(len(V.input_errors(doc,self.root,[],self.root,True)),4)
+     elif english=='NOT APPLICABLE':
+      self.assertTrue(any('without reason' in e for e in errors))
+      criterion['reason']='Outside this feature scope'
+      self.assertEqual(V.evidence_errors(doc,self.root),[])
+     else:
+      self.assertEqual(errors,[])
+  for status in ('passed','',None,[],{}):
+   doc['requirements'][0]['status']=status
+   self.assertTrue(any('Invalid status' in e for e in V.evidence_errors(doc,self.root)))
+ def test_translation_predecessor_is_authenticated(self):
+  copy_distribution(ROOT,self.root)
+  relative='sdd/workflow.md'
+  registry=self.root/'docs/validation/english-documentation/translations.json'
+  record=json.loads(registry.read_text())[relative]
+  prior=self.root/record['previous']
+  before=prior.read_bytes()
+  self.assertEqual(preservation_bytes(self.root,relative),before)
+  prior.write_bytes(before+b'corrupted predecessor')
+  with self.assertRaisesRegex(ValueError,'Translation predecessor changed'):
+   preservation_bytes(self.root,relative)
+  prior.write_bytes(before)
+  target=self.root/relative
+  target.write_bytes(target.read_bytes()+b'changed after translation')
+  self.assertEqual(preservation_bytes(self.root,relative),target.read_bytes())
  def test_freshness_selective_invalidation(self):
   a=self.root/'a';b=self.root/'b';a.write_text('A0');b.write_text('B0')
   doc={'schema_version':2,'requirements':[],'evidence':[{'id':'E-A','inputs':[{'path':'a','sha256':V.digest(a),'role':'implementation'}]},{'id':'E-B','inputs':[{'path':'b','sha256':V.digest(b),'role':'implementation'}]}]}
@@ -123,12 +162,19 @@ class GovernanceTests(unittest.TestCase):
     feature='sdd/features/skill-'+name
     prior=json.load(history.extractfile(feature+'/evidence.json'))
     current=json.loads((ROOT/feature/'evidence.json').read_text())
-    for doc in (prior,current):
+    for doc in (prior,):
      technical=[r for r in doc['requirements'] if r['id'] in {'AC-01','AC-02','AC-03','AC-04'}]
      self.assertEqual(len(technical),4)
-     self.assertTrue(all(r['status']=='NÃO VERIFICADO' for r in technical))
+     self.assertTrue(all(V.state(r['status'])=='UNVERIFIED' for r in technical))
+    # The immutable preparation snapshot stays pending. Current decisions must
+    # satisfy the evolved evidence contract, not inherit the snapshot's states.
+    self.assertEqual(C.technical_errors(ROOT, ROOT/feature, current,
+                     json.loads((ROOT/feature/'traceability.json').read_text()), V), [])
     declarations=lambda text:re.findall(r'^- (?:REQ|AC)-.*$',text,re.M)
-    self.assertEqual(declarations((ROOT/feature/'spec.md').read_text()),declarations(history.extractfile(feature+'/spec.md').read().decode()))
+    current=(ROOT/feature/'spec.md').read_text()
+    previous=history.extractfile(feature+'/spec.md').read().decode()
+    self.assertEqual(V.acceptance_ids(current),V.acceptance_ids(previous))
+    self.assertEqual(declarations(preservation_bytes(ROOT,feature+'/spec.md').decode()),declarations(previous))
 
  def test_missing_evidence_artifact(self):
   doc={'schema_version':2,'environment':'fixture','limitations':[],
@@ -215,7 +261,11 @@ class GovernanceTests(unittest.TestCase):
   next(r for r in doc['requirements'] if r['id']=='AC-01')['status']='APROVADO'
   try:
    path.write_text(json.dumps(doc))
-   self.assertTrue(any('Technical scenario promoted' in e for e in C.check(self.root)))
+   doc=json.loads(path.read_text())
+   criterion=next(r for r in doc['requirements'] if r['id']=='AC-01')
+   criterion.pop('technical_review',None)
+   path.write_text(json.dumps(doc))
+   self.assertTrue(any('Technical acceptance' in e for e in C.check(self.root)))
   finally:path.write_bytes(before)
   self.assertEqual(C.check(self.root),[])
 
@@ -262,7 +312,7 @@ class GovernanceTests(unittest.TestCase):
 
  def test_directory_links_stay_within_root(self):
   copy_distribution(ROOT,self.root)
-  target=self.root/'README.md';before=target.read_bytes()
+  target=self.root/'link-probe.md';before=b''
   try:
    target.write_bytes(before+b'\n[decisions](docs/decisions/)\n')
    self.assertFalse(any('Broken/escaping link' in e for e in C.check(self.root)))
@@ -279,8 +329,9 @@ class GovernanceTests(unittest.TestCase):
     relative=f'.codex/skills/{name}/SKILL.md'
     original=archive.extractfile(relative).read()
     current=(self.root/relative).read_bytes()
-    self.assertEqual(current,original.replace(b'metadata:\n  version: "1.0.0"\n',b'',1))
-    self.assertEqual(current.split(b'\n---\n',1)[1],original.split(b'\n---\n',1)[1])
+    predecessor=preservation_bytes(self.root,relative)
+    self.assertEqual(predecessor,original.replace(b'metadata:\n  version: "1.0.0"\n',b'',1))
+    self.assertEqual(predecessor.split(b'\n---\n',1)[1],original.split(b'\n---\n',1)[1])
     for mutation in (current.replace(b'description: ',b'description: altered ',1),
                      current.replace(b'\n---\n',b'\nmetadata:\n  version: "2.0.0"\n---\n',1),
                      original,current+b'changed body'):

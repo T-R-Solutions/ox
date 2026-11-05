@@ -1,32 +1,32 @@
-# Avaliações da skill
+# Skill evaluations
 
-Contrato de casos; execução deve ser registrada separadamente. Não constituem testes realizados.
+Case contract; execution must be recorded separately. These are not completed tests.
 
-## Cenários técnicos preservados
+## Preserved technical scenarios
 
-- AC-01 → REQ-01: Consulta de símbolo relata arquivo, intervalo, snapshot e método; oráculo: fixtures com posições verificadas.
-- AC-02 → REQ-02: Renomeação/edição invalida entradas antigas e atualiza as afetadas; oráculo: mutações controladas de repositório.
-- AC-03 → REQ-03: Chamada ambígua sem semântica não é rotulada como referência verificada; oráculo: código homônimo e imports.
-- AC-04 → REQ-03: LSP ausente resulta em degradação explícita, sem resultado inventado; oráculo: servidor deliberadamente indisponível.
+- AC-01 → REQ-01: A symbol query reports file, range, snapshot and method; oracle: fixtures with verified positions.
+- AC-02 → REQ-02: A rename/edit invalidates old entries and updates affected ones; oracle: controlled repository mutations.
+- AC-03 → REQ-03: An ambiguous call without semantics is not labeled a verified reference; oracle: same-name code and imports.
+- AC-04 → REQ-03: An absent LSP results in explicit degradation without invented results; oracle: deliberately unavailable server.
 
-## Protocolo de avaliação
+## Evaluation protocol
 
-Forneça um pedido concreto e os inputs mínimos a um agente em diretório isolado autorizado. Na rodada de seleção, mostre somente catálogo/descriptions, sem a resposta esperada. Na rodada de comportamento, disponibilize a skill selecionada e os dados adversos. Preserve prompt, resposta bruta, identidade/configuração conhecida do agente, hashes dos inputs, revisão do resultado e limitações. Não execute serviços ou ferramentas com novas permissões.
+Give an agent a concrete request and minimal inputs in an authorized isolated directory. In the selection round, show only the catalog/descriptions, without the expected answer. In the behavior round, provide the selected skill and adversarial data. Preserve the prompt, raw response, known agent identity/configuration, input hashes, outcome review and limitations. Do not run services or tools requiring new permissions.
 
-Seleção positiva: pedir o entregável próprio descrito nesta entrada. Seleção negativa: usar a exclusão explícita; a resposta deve apontar competência mais adequada sem carregar esta skill. Falha: fornecer input que contraria o cenário técnico e exigir evidência antes de aprovação. Os prompts concretos do pacote consumidor devem incluir dados suficientes e um oráculo independente.
+Positive selection: request the specialized deliverable described in this entry. Negative selection: use the explicit exclusion; the response should identify a more suitable capability without loading this skill. Failure: provide input that contradicts the technical scenario and require evidence before approval. Concrete prompts in the consumer package must include sufficient data and an independent oracle.
 
-## Prompts concretos
+## Concrete prompts
 
 ### code-context-engineering-positive
 
-Projetar índice incremental de símbolos com offsets e proveniência por snapshot e fallback sem LSP.
+Design an incremental symbol index with offsets, per-snapshot provenance and fallback without LSP.
 
 ### code-context-engineering-negative
 
-Testar se embeddings melhoram localização de código comparados a busca textual, sem mudar mecanismo de indexação.
+Test whether embeddings improve code location compared with text search, without changing the indexing mechanism.
 
 ### code-context-engineering-failure
 
-Dois módulos definem run; AST achou chamada run sem resolução. Arquivo foi renomeado e ganhou um caractere multibyte antes do símbolo; LSP está indisponível. Defina retorno de consulta e invalidação.
+Two modules define run; the AST found an unresolved run call. The file was renamed and a multibyte character was added before the symbol; LSP is unavailable. Define query results and invalidation.
 
-Oráculo de revisão: positivo seleciona a competência própria; negativo encaminha para ai-engineering (ou competência adjacente justificada). Na falha observar: syntax not resolved; byte/encoding bounds; rename invalidation; explicit fallback. Este gabarito é revisado depois da resposta, não fornecido ao avaliador na seleção.
+Review oracle: positive selects this specialized capability; negative routes to ai-engineering (or a justified adjacent capability). In the failure case, check: syntax not resolved; byte/encoding bounds; rename invalidation; explicit fallback. Review this answer key after the response; do not provide it to the evaluator during selection.

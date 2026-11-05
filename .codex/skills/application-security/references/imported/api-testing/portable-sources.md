@@ -4,9 +4,9 @@ Bibliographic and reading-scope snapshot from the authoring library. No books or
 
 ## B04: API Security in Action
 
-Authors: Neil Madden. Edition/year: 2020; numeração de edição não explícita nas páginas examinadas.
+Authors: Neil Madden. Edition/year: 2020; edition number not explicit on the examined pages.
 
-Examined sections: cap. 3 §3.6 e resumo, p. 87–97. Metadata examined: PDF 3–4.
+Examined sections: ch. 3 §3.6 and summary, pp. 87–97. Metadata examined: PDF 3–4.
 
 Analyzed physical PDF ranges (1-based): [[109, 119]]. Visual pages: []. Book examples executed: False.
 

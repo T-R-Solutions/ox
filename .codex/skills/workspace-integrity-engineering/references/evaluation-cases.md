@@ -1,32 +1,32 @@
-# Avaliações da skill
+# Skill evaluations
 
-Contrato de casos; execução deve ser registrada separadamente. Não constituem testes realizados.
+Case contract; execution must be recorded separately. These are not completed tests.
 
-## Cenários técnicos preservados
+## Preserved technical scenarios
 
-- AC-01 → REQ-01: Tentativa de escrita fora da raiz via .. ou symlink é rejeitada; oráculo: fixture com caminhos adversos.
-- AC-02 → REQ-02: Dois agentes editam mesma versão: segunda gravação conflita ou aplica merge verificado; oráculo: teste concorrente.
-- AC-03 → REQ-03: Falha injetada entre arquivo temporário e rename não deixa registro “concluído” incorreto; oráculo: teste de crash.
-- AC-04 → REQ-03: Arquivo externo alterado invalida hash/snapshot; oráculo: watcher + verificação por leitura real.
+- AC-01 → REQ-01: An attempted write outside the root through .. or a symlink is rejected; oracle: adversarial path fixture.
+- AC-02 → REQ-02: Two agents edit the same version: the second write conflicts or applies a verified merge; oracle: concurrency test.
+- AC-03 → REQ-03: An injected failure between temporary-file creation and rename leaves no incorrect “done” record; oracle: crash test.
+- AC-04 → REQ-03: An externally changed file invalidates the hash/snapshot; oracle: watcher plus actual-read verification.
 
-## Protocolo de avaliação
+## Evaluation protocol
 
-Forneça um pedido concreto e os inputs mínimos a um agente em diretório isolado autorizado. Na rodada de seleção, mostre somente catálogo/descriptions, sem a resposta esperada. Na rodada de comportamento, disponibilize a skill selecionada e os dados adversos. Preserve prompt, resposta bruta, identidade/configuração conhecida do agente, hashes dos inputs, revisão do resultado e limitações. Não execute serviços ou ferramentas com novas permissões.
+Give an agent a concrete request and minimal inputs in an authorized isolated directory. In the selection round, show only the catalog/descriptions, without the expected answer. In the behavior round, provide the selected skill and adversarial data. Preserve the prompt, raw response, known agent identity/configuration, input hashes, outcome review and limitations. Do not run services or tools requiring new permissions.
 
-Seleção positiva: pedir o entregável próprio descrito nesta entrada. Seleção negativa: usar a exclusão explícita; a resposta deve apontar competência mais adequada sem carregar esta skill. Falha: fornecer input que contraria o cenário técnico e exigir evidência antes de aprovação. Os prompts concretos do pacote consumidor devem incluir dados suficientes e um oráculo independente.
+Positive selection: request the specialized deliverable described in this entry. Negative selection: use the explicit exclusion; the response should identify a more suitable capability without loading this skill. Failure: provide input that contradicts the technical scenario and require evidence before approval. Concrete prompts in the consumer package must include sufficient data and an independent oracle.
 
-## Prompts concretos
+## Concrete prompts
 
 ### workspace-integrity-engineering-positive
 
-Projetar gravação concorrente entre editor e agentes, com snapshots, watcher e recuperação de arquivos.
+Design concurrent writes by an editor and agents with snapshots, a watcher and file recovery.
 
 ### workspace-integrity-engineering-negative
 
-Planejar migração de uma coluna SQLite local após crash, sem escritores externos no filesystem.
+Plan migration of a local SQLite column after a crash, without external filesystem writers.
 
 ### workspace-integrity-engineering-failure
 
-Dois escritores leram H0; A publicou H1; B tenta gravar H2. Um destino usa symlink para fora da raiz, e houve crash entre staging e rename com watcher perdido. Explique operações permitidas e recuperação; não escreva fora do diretório de avaliação.
+Two writers read H0; A published H1; B tries to write H2. One destination uses a symlink outside the root, and a crash occurred between staging and rename with missed watcher events. Explain permitted operations and recovery; do not write outside the evaluation directory.
 
-Oráculo de revisão: positivo seleciona a competência própria; negativo encaminha para database-engineering (ou competência adjacente justificada). Na falha observar: conflict; reject escape; read actual contents; no blind rollback or TOCTOU claim. Este gabarito é revisado depois da resposta, não fornecido ao avaliador na seleção.
+Review oracle: positive selects this specialized capability; negative routes to database-engineering (or a justified adjacent capability). In the failure case, check: conflict; reject escape; read actual contents; no blind rollback or TOCTOU claim. Review this answer key after the response; do not provide it to the evaluator during selection.

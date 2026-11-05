@@ -5,21 +5,21 @@ description: Protect multiauthor workspaces through content preconditions, path 
 
 # workspace-integrity-engineering
 
-## Responsabilidade e seleção
+## Responsibility and selection
 
-Garantir integridade de arquivos de projetos modificados por processos, editores e agentes concorrentes, com snapshots, worktrees, detecção de conflitos e recuperação.
+Ensure the integrity of project files modified by concurrent processes, editors and agents, using snapshots, worktrees, conflict detection and recovery.
 
-Selecionar: Edição concorrente, watcher, atomicidade de escrita, Git/worktree, rollback, caminhos e links simbólicos.
+Select: Concurrent editing, watchers, write atomicity, Git/worktrees, rollback, paths and symbolic links.
 
-Não selecionar: Não ativar para adicionar uma coluna SQLite ou revisar formato de UI; database-engineering/design-system. Não reimplementar Git apenas para satisfazer conveniência.
+Do not select: Do not activate to add a SQLite column or review UI formatting; use database-engineering/design-system. Do not reimplement Git merely for convenience.
 
-## Entradas e lacunas
+## Inputs and gaps
 
-árvore do workspace, política de exclusões, raízes autorizadas, plano de edições, Git state, eventos do SO.
+workspace tree, exclusion policy, authorized roots, edit plan, Git state, OS events.
 
-Inspecione os contratos e recursos reais antes de executar. Ausência de versão exige consulta à documentação correspondente; ausência de permissão impede o efeito dependente. Registre a lacuna, seu impacto e como resolvê-la, continuando partes independentes. Os exemplos deste pacote são contratos de avaliação, não APIs ou políticas impostas a todos os consumidores.
+Inspect actual contracts and resources before execution. A missing version requires consulting the corresponding documentation; a missing permission prevents the dependent effect. Record the gap, its impact and how to resolve it while continuing independent work. Examples in this package are evaluation contracts, not APIs or policies imposed on all consumers.
 
-## Procedimento operacional
+## Operating procedure
 
 1. Inventory authorized roots, existing dirty and untracked files, symlinks, external writers, filesystem and Git availability. Capture a recoverable content baseline for the intended write set; Git status alone does not preserve unstaged or untracked bytes.
 
@@ -33,37 +33,37 @@ Inspecione os contratos e recursos reais antes de executar. Ausência de versão
 
 6. Exercise path escape, two writers from one base, failure before/after replacement and external mutation with missed watcher events. Deliver a conflict policy, restoration procedure and observed platform limits; never restore a baseline over newer unrelated work.
 
-## Entregáveis e aceitação
+## Deliverables and acceptance
 
-transações de arquivo com validação, prevenção de perda, trilhas de alteração, estratégia de snapshot e recuperação.
+validated file transactions, loss prevention, change trails, snapshot and recovery strategy.
 
-Vincule cada conclusão a input observado, método, resultado e limite. Execute casos esperados, de borda e de falha de [avaliações](references/evaluation-cases.md) no ambiente autorizado; diferencie resultado de revisão, simulação e integração. Casos apenas escritos continuam não executados. O texto da skill não prova eficácia nem concede autoridade.
+Bind each conclusion to observed inputs, method, result and limitations. Run the normal, boundary and failure cases from the [evaluations](references/evaluation-cases.md) in the authorized environment; distinguish review, simulation and integration results. Written cases remain unexecuted until run. Skill text neither proves effectiveness nor grants authority.
 
-## Fronteiras e encaminhamento
+## Boundaries and handoff
 
-`application-security` — Existem caminhos alternativos/symlinks que escapam da raiz concedida ao agente?
+`application-security` — Are there alternative paths/symlinks that escape the root granted to the agent?
 
-Encaminhe somente a pergunta técnica distinta ainda não resolvida, com escopo, IDs de critérios, fatos, lacunas e evidência requerida. Confirme disponibilidade antes da consulta. Uma menção não instala, delega, executa nem carrega recursivamente outras skills. A autoridade de comportamento pertence ao contrato do consumidor; a skill oferece o método.
+Hand off only the distinct unresolved technical question, including scope, criterion IDs, facts, gaps and required evidence. Confirm availability before consultation. A mention does not install, delegate, execute or recursively load other skills. The consumer's contract owns behavior; the skill provides the method.
 
-## Referências especializadas
+## Specialized references
 
-- [file-operations](references/file-operations.md): consultar para Safe write boundaries.
-- [git-worktrees-and-conflicts](references/git-worktrees-and-conflicts.md): consultar para Git is context, not a backup of all bytes.
-- [watcher-and-recovery](references/watcher-and-recovery.md): consultar para Reconcile after lost events.
+- [file-operations](references/file-operations.md): consult for Safe write boundaries.
+- [git-worktrees-and-conflicts](references/git-worktrees-and-conflicts.md): consult for Git is context, not a backup of all bytes.
+- [watcher-and-recovery](references/watcher-and-recovery.md): consult for Reconcile after lost events.
 
-Fontes oficiais acessadas em 2026-10-26 são citadas junto às afirmações. Versão consultada não é versão adotada pelo consumidor. Sínteses operacionais e esquemas de exemplo são decisões de método desta skill, sem promessa de implementação ou compatibilidade futura.
+Official sources accessed on 2026-10-26 are cited alongside claims. A consulted version is not a version adopted by the consumer. Operational summaries and example schemas are methodological decisions of this skill, without a promise of implementation or future compatibility.
 
-## Responsabilidades adjacentes
+## Adjacent responsibilities
 
-A competência própria acima não substitui os métodos gerais abaixo. Consultar apenas quando a questão correspondente permanecer aberta; nenhum encaminhamento é obrigatório.
+The specialized capability above does not replace the general methods below. Consult them only when the corresponding question remains unresolved; no handoff is mandatory.
 
-| Competência | Autoridade técnica adjacente |
+| Capability | Adjacent technical authority |
 |---|---|
-| `application-security` | fronteiras de confiança, segredos, autorizações e ameaças |
-| `reliability-engineering` | falhas, cancelamento, limites, degradação, recuperação |
-| `software-evolution` | compatibilidade, migrações, coexistência e versões antigas |
-| `database-engineering` | persistência, esquemas, invariantes transacionais e migrações |
-| `rust` | ownership, crates, concorrência, compatibilidade, validação rust |
-| `software-architecture` | fronteiras, integração, atributos de qualidade, adrs |
-| `software-design` | interfaces, coesão, acoplamento, refatoração localizada |
-| `software-testing` | casos, oráculos, testes automatizados, suites e regressões |
+| `application-security` | trust boundaries, secrets, authorization and threats |
+| `reliability-engineering` | failures, cancellation, limits, degradation, recovery |
+| `software-evolution` | compatibility, migrations, coexistence and older versions |
+| `database-engineering` | persistence, schemas, transactional invariants and migrations |
+| `rust` | ownership, crates, concurrency, compatibility, Rust validation |
+| `software-architecture` | boundaries, integration, quality attributes, ADRs |
+| `software-design` | interfaces, cohesion, coupling, local refactoring |
+| `software-testing` | cases, oracles, automated tests, suites and regressions |

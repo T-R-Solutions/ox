@@ -1,10 +1,14 @@
-# Templates de feature
+# Feature templates
 
-No fluxo completo, copie spec.md, plan.md, tasks.md e converge.md para a pasta da feature escolhida. Na rota local definida em [workflow.md](../workflow.md), reutilize o registro existente sem criar uma feature artificial. Se uma feature existente for afetada, atualize seus documentos e evidências.
-Checklist e ADRs são opcionais. Os templates são guias a preencher, não evidências
-nem critérios já aprovados. Preserve contratos existentes e remova somente seções
-não pertinentes com justificativa quando a omissão afetar a interpretação.
+For the full workflow, copy spec.md, plan.md, tasks.md and converge.md into the
+chosen feature directory. On the local route in [workflow.md](../workflow.md),
+reuse the existing record without creating an artificial feature. When an existing
+feature is affected, update its documents and evidence. Keep tasks.md in Brazilian
+Portuguese (pt-BR); all other template prose is in English.
+Checklists and ADRs are optional. Templates are guides to fill in, not evidence
+or already-approved criteria. Preserve existing contracts and remove only irrelevant
+sections, with justification when omission affects interpretation.
 
-A rastreabilidade pode ficar nas tabelas Markdown. Para usar a validação automática
-de evidências, acrescente traceability.json e evidence.json segundo o contrato em
-`sdd/evidence.md`; o uso do fluxo não depende desse formato de automação.
+Traceability may remain in Markdown tables. For automated evidence validation,
+add traceability.json and evidence.json according to `sdd/evidence.md`;
+using the workflow does not depend on that automation format.

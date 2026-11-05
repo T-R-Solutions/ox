@@ -1,6 +1,6 @@
-# Pontes instaladas
+# Installed bridges
 
-29 pontes: 17 gerais, 3 condicionais e 9 novas. Cada skill_path é relativo à raiz Ox. Confirme existência e identidade antes de consultar. Ponte não instala no ambiente, não autoriza efeitos e não prova consulta. Seleção por tarefa, sem carga recursiva.
+31 bridges: 17 general, 5 conditional and 9 specializations. Each skill_path is relative to the Ox root. Confirm existence and identity before consultation. A bridge does not install anything in the environment, authorize effects or prove consultation. Select by task without recursive loading.
 
 - [ai-engineering](ai-engineering.md)
 - [api-testing](api-testing.md)
@@ -19,9 +19,10 @@
 - [software-evolution](software-evolution.md)
 - [software-testing](software-testing.md)
 - [technical-documentation](technical-documentation.md)
-- [distributed-systems](distributed-systems.md) — condicional: Garantias entre processos com falhas independentes, ordenação, replay ou sincronização; IPC por si só não basta.
-- [engineering-productivity](engineering-productivity.md) — condicional: Avaliação de fluxo humano ou ferramenta com baseline e resultado observável; não benchmark do binário.
-- [prompt](prompt.md) — condicional: Pedido de criar ou revisar um prompt como artefato; não qualquer tarefa com IA.
+- [distributed-systems](distributed-systems.md) — conditional: Guarantees across independently failing processes, ordering, replay or synchronization; IPC alone is insufficient.
+- [engineering-productivity](engineering-productivity.md) — conditional: Evaluation of a human workflow or tool against a baseline and an observable outcome; excludes binary benchmarks.
+- [commit-governance](commit-governance.md) — conditional: explicitly requested Ox Git operations.
+- [prompt](prompt.md) — conditional: A request to create or revise a prompt as an artifact; does not cover every AI task.
 - [plugin-protocol-engineering](plugin-protocol-engineering.md)
 - [agent-runtime-engineering](agent-runtime-engineering.md)
 - [autonomous-verification-engineering](autonomous-verification-engineering.md)
@@ -31,3 +32,5 @@
 - [code-knowledge-graph-engineering](code-knowledge-graph-engineering.md)
 - [tool-output-engineering](tool-output-engineering.md)
 - [agent-usage-accounting](agent-usage-accounting.md)
+
+- [readme-lifecycle-engineering](readme-lifecycle-engineering.md)

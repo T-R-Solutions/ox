@@ -4,7 +4,7 @@ Bibliographic and reading-scope snapshot from the authoring library. No books or
 
 ## B08: Rust Atomics and Locks: Low-Level Concurrency in Practice
 
-Authors: Mara Bos. Edition/year: 1ª, dezembro 2022; copyright 2023; segunda release 2023-01-27.
+Authors: Mara Bos. Edition/year: 1st, December 2022; copyright 2023; second release 2023-01-27.
 
 Examined sections: OEBPS/ch03.html: Happens-Before Relationship (incl. Spawning and Joining), Release and Acquire Ordering (incl. exemplos), Common Misconceptions. Metadata examined: OEBPS/titlepage01.html; OEBPS/copyright-page01.html.
 

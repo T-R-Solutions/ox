@@ -10,28 +10,28 @@ Copy this file to the destination project's `sdd/chain/` and set `skill_path` to
 
 ## Selection
 
-Use for: Redução de tokens de stdout/stderr, parsers de comando, resumos de testes, supressão controlada de ruído, detecção de truncamento.
+Use for: Reducing stdout/stderr tokens, command parsers, test summaries, controlled noise suppression, truncation detection.
 
-Do not select for: Não aplicar a log de auditoria irreversivelmente; não vender redução estimada de caracteres como redução medida na conta do provedor.
+Do not select for: Do not irreversibly transform audit logs; do not present estimated character reduction as measured savings on the provider bill.
 
 Select only when the concrete feature has this specialized question. Read the actual skill; record its path/version and selection reason in the plan. A bridge reference does not recursively select other skills.
 
 ## Inputs and contributions
 
-Known inputs: bytes brutos, metadados exit code, formato da ferramenta, limites/encoding, estratégia de retenção e orçamento. Do not infer missing capabilities or permissions.
+Known inputs: raw bytes, exit-code metadata, tool format, limits/encoding, retention strategy and budget. Do not infer missing capabilities or permissions.
 
 | Artifact | Required input / contribution |
 |---|---|
 | Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |
-| Spec | Define scoped, observable behavior and rejected cases. Cada saída transformada conserva exit code, sinais de erro e referência ao bruto. |
-| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Três formas: raw append-only, estrutura normalizada e visão compacta. |
-| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Construir corpus adverso e testes diferenciais com saídas reais autorizadas. |
-| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. saída bruta preservada, eventos estruturados, resumo com sinalização de perda/truncamento, mensuração comparável |
+| Spec | Define scoped, observable behavior and rejected cases. Each transformed output preserves exit code, error signals and a reference to raw output. |
+| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Three forms: append-only raw output, normalized structure and compact view. |
+| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Build an adversarial corpus and differential tests with authorized real output. |
+| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. preserved raw output, structured events, summaries flagging loss/truncation, comparable measurements |
 
 ## Conditional handoff
 
-Optional specialist: `application-security`. Specific unresolved question: “Texto de stdout pode ser confundido com instrução ou dado autorizado para ferramenta?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.
+Optional specialist: `application-security`. Specific unresolved question: “Can stdout text be mistaken for an instruction or authorized tool input?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.
 
 ## Completion and authority
 
-Use the destination SDD's states: APROVADO, REPROVADO, NÃO VERIFICADO, INCONCLUSIVO, NÃO APLICÁVEL (with justification). A mock or document is not execution evidence. Record freshness of inputs and source of each observation. Spec owns behavior; plan/ADRs own decisions; tasks own work; this bridge only connects the skill to those artifacts.
+Use the destination SDD's states: APPROVED, REJECTED, UNVERIFIED, INCONCLUSIVE, NOT APPLICABLE (with justification). A mock or document is not execution evidence. Record freshness of inputs and source of each observation. Spec owns behavior; plan/ADRs own decisions; tasks own work; this bridge only connects the skill to those artifacts.

@@ -1,24 +1,24 @@
-# Autoria e avaliação de agent-runtime-engineering
+# Authoring and evaluation of agent-runtime-engineering
 
-Origem histórica: estudo externo; contrato vigente autocontido nesta spec. O estudo não integra a distribuição nem a validação. Ator: mantenedor/avaliador da skill. Precondição: autoria autorizada e avaliação em ambiente permitido. Esta feature pertence à biblioteca; não é feature do produto Ox.
+Historical origin: external study; the current contract is self-contained in this spec. The study is not part of distribution or validation. Actor: skill maintainer/evaluator. Precondition: authorized authoring and evaluation in a permitted environment. This feature belongs to the library; it is not an Ox product feature.
 
-## Contratos técnicos preservados
+## Preserved technical contracts
 
-As declarações abaixo mantêm IDs, cenários e oráculos propostos. REQ-01..03 são competências que a skill deve ensinar. AC-01..04 exigem exercitar entregáveis concretos; revisão textual sozinha não os aprova. Integrações de produto/plataforma permanecem futuras quando não disponíveis.
+The declarations below retain the proposed IDs, scenarios and oracles. REQ-01..03 are capabilities the skill must teach. AC-01..04 require exercising concrete deliverables; text review alone does not approve them. Product/platform integrations remain future work when unavailable.
 
-- REQ-01: Sessões e tarefas têm estados legais, identificadores estáveis e transições rejeitadas.
-- REQ-02: Cancelamento, encerramento e reinício liberam recursos sem alterar escopo de permissão.
-- REQ-03: Ações observadas e conclusões declaradas por agentes têm proveniência distinta.
+- REQ-01: Sessions and tasks have legal states, stable identifiers and rejected transitions.
+- REQ-02: Cancellation, shutdown and restart release resources without changing permission scope.
+- REQ-03: Observed actions and agent-declared conclusions have distinct provenance.
 
-- AC-01 → REQ-01: Evento fora de ordem não produz conclusão indevida; oráculo: teste de transição com sequência adversa.
-- AC-02 → REQ-02: Morte do processo gera status e cleanup de recursos associados; oráculo: processo controlado com falha injetada.
-- AC-03 → REQ-02: Cancelamento durante saída intensa não deixa tarefas órfãs; oráculo: harness com streams e deadline.
-- AC-04 → REQ-03: Mensagem “concluído” sem artefato validado não muda veredicto para aprovado; oráculo: caso adverso determinístico.
+- AC-01 → REQ-01: An out-of-order event does not cause an unwarranted completion; oracle: transition test with an adversarial sequence.
+- AC-02 → REQ-02: Process death produces a status and cleanup of associated resources; oracle: controlled process with an injected failure.
+- AC-03 → REQ-02: Cancellation during heavy output leaves no orphaned tasks; oracle: harness with streams and a deadline.
+- AC-04 → REQ-03: A “done” message without a validated artifact does not change the verdict to approved; oracle: deterministic adversarial case.
 
-## Critérios adicionais da autoria
+## Additional authoring criteria
 
-- REQ-04: Entregar método reutilizável com seleção precisa, entradas, referências e cenários verificáveis.
-- AC-05 → REQ-04: Revisão de conteúdo e validação local confirmam entrada completa, referências substantivas, fronteiras e ponte válida.
-- AC-06 → REQ-04: Ensaio observado com agente distingue pedido positivo, negativo e comportamento adverso; limitações e resposta bruta preservadas.
+- REQ-04: Provide a reusable method with precise selection, inputs, references and verifiable scenarios.
+- AC-05 → REQ-04: Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.
+- AC-06 → REQ-04: An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.
 
-Não substituir AC-01..04 por AC-05/06. Versões, plataforma, dados e autorização do consumidor precisam ser conhecidos antes da integração. A aprovação da skill não aprova subsistemas do produto.
+Do not replace AC-01..04 with AC-05/06. Consumer versions, platform, data and authorization must be known before integration. Skill approval does not approve product subsystems.

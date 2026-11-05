@@ -1,34 +1,38 @@
-# Catálogo de skills do Ox
+# Ox skill catalog
 
-Disponibilidade não é ativação. Para consulta explícita: “Leia .codex/skills/<nome>/SKILL.md para resolver [pergunta] em [escopo]”. Use o caminho real do catálogo abaixo; não há promessa de descoberta automática. Uma primária quando pertinente, auxiliares somente para questões distintas. Referências históricas em skills copiadas são proveniência, não dependências operacionais.
+Availability is not activation. For explicit consultation: “Read .codex/skills/<name>/SKILL.md to resolve [question] within [scope].” Use the actual path from the catalog below; automatic discovery is not guaranteed. Select one relevant primary skill and supporting skills only for distinct questions. Historical references in copied skills record provenance, not operational dependencies.
 
-## 17 gerais
+## 17 general skills
 
-- [ai-engineering](ai-engineering/SKILL.md): selecionar por tarefa
-- [api-testing](api-testing/SKILL.md): selecionar por tarefa
-- [application-security](application-security/SKILL.md): selecionar por tarefa
-- [database-engineering](database-engineering/SKILL.md): selecionar por tarefa
-- [design-review](design-review/SKILL.md): selecionar por tarefa
-- [design-system](design-system/SKILL.md): selecionar por tarefa
-- [domain-modeling](domain-modeling/SKILL.md): selecionar por tarefa
-- [observability-and-diagnostics](observability-and-diagnostics/SKILL.md): selecionar por tarefa
-- [performance-engineering](performance-engineering/SKILL.md): selecionar por tarefa
-- [reliability-engineering](reliability-engineering/SKILL.md): selecionar por tarefa
-- [rust](rust/SKILL.md): selecionar por tarefa
-- [software-architecture](software-architecture/SKILL.md): selecionar por tarefa
-- [software-delivery](software-delivery/SKILL.md): selecionar por tarefa
-- [software-design](software-design/SKILL.md): selecionar por tarefa
-- [software-evolution](software-evolution/SKILL.md): selecionar por tarefa
-- [software-testing](software-testing/SKILL.md): selecionar por tarefa
-- [technical-documentation](technical-documentation/SKILL.md): selecionar por tarefa
+- [ai-engineering](ai-engineering/SKILL.md): select by task
+- [api-testing](api-testing/SKILL.md): select by task
+- [application-security](application-security/SKILL.md): select by task
+- [database-engineering](database-engineering/SKILL.md): select by task
+- [design-review](design-review/SKILL.md): select by task
+- [design-system](design-system/SKILL.md): select by task
+- [domain-modeling](domain-modeling/SKILL.md): select by task
+- [observability-and-diagnostics](observability-and-diagnostics/SKILL.md): select by task
+- [performance-engineering](performance-engineering/SKILL.md): select by task
+- [reliability-engineering](reliability-engineering/SKILL.md): select by task
+- [rust](rust/SKILL.md): select by task
+- [software-architecture](software-architecture/SKILL.md): select by task
+- [software-delivery](software-delivery/SKILL.md): select by task
+- [software-design](software-design/SKILL.md): select by task
+- [software-evolution](software-evolution/SKILL.md): select by task
+- [software-testing](software-testing/SKILL.md): select by task
+- [technical-documentation](technical-documentation/SKILL.md): select by task
 
-## 3 condicionais
+## 5 conditional skills
 
-- [distributed-systems](distributed-systems/SKILL.md): Garantias entre processos com falhas independentes, ordenação, replay ou sincronização; IPC por si só não basta.
-- [engineering-productivity](engineering-productivity/SKILL.md): Avaliação de fluxo humano ou ferramenta com baseline e resultado observável; não benchmark do binário.
-- [prompt](prompt/SKILL.md): Pedido de criar ou revisar um prompt como artefato; não qualquer tarefa com IA.
+- [commit-governance](commit-governance/SKILL.md): Explicit requests concerning Ox commits or version tags; never implies permission to commit or publish.
 
-## 9 novas especializações (5 P0, 4 P1)
+- [distributed-systems](distributed-systems/SKILL.md): Guarantees across independently failing processes, ordering, replay or synchronization; IPC alone is insufficient.
+- [engineering-productivity](engineering-productivity/SKILL.md): Evaluation of a human workflow or tool against a baseline and an observable outcome; excludes binary benchmarks.
+- [prompt](prompt/SKILL.md): A request to create or revise a prompt as an artifact; does not cover every AI task.
+
+- [readme-lifecycle-engineering](readme-lifecycle-engineering/SKILL.md): README entry points, runnable onboarding, documentation splitting/navigation and drift; standalone manuals/API references remain technical-documentation.
+
+## 9 new specializations (5 P0, 4 P1)
 
 - [plugin-protocol-engineering](plugin-protocol-engineering/SKILL.md): P0
 - [agent-runtime-engineering](agent-runtime-engineering/SKILL.md): P0
@@ -40,6 +44,6 @@ Disponibilidade não é ativação. Para consulta explícita: “Leia .codex/ski
 - [tool-output-engineering](tool-output-engineering/SKILL.md): P1
 - [agent-usage-accounting](agent-usage-accounting/SKILL.md): P1
 
-## Fora do perfil
+## Outside the profile
 
-gleam, kotlin e postgresql não foram instaladas. Menções opcionais em skills genéricas não instalam essas competências. As três candidatas absorvidas permanecem em database-engineering/reliability-engineering/software-evolution, ai-engineering/software-testing/performance-engineering e software-delivery/application-security/software-evolution.
+gleam, kotlin and postgresql were not installed. Optional mentions in general skills do not install those capabilities. The three absorbed candidates remain covered by database-engineering/reliability-engineering/software-evolution, ai-engineering/software-testing/performance-engineering and software-delivery/application-security/software-evolution.

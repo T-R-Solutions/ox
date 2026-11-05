@@ -1,22 +1,22 @@
-# Plano: [funcionalidade]
+# Plan: [feature]
 
-## Contexto e autoridade
+## Context and authority
 
-Spec, constituição vigente, arquivos, ferramentas verificadas e restrições.
+Spec, current constitution, files, verified tools and constraints.
 
-## Decisões e riscos
+## Decisions and risks
 
-| ID decisão/risco | Requisito | Alternativas, escolha e custo | Verificação | Revisitar quando |
+| Decision/risk ID | Requirement | Alternatives, choice and cost | Verification | Revisit when |
 |---|---|---|---|---|
-| D-01 / R-01 | REQ-01 | Preencher | Preencher | Preencher |
+| D-01 / R-01 | REQ-01 | Fill in | Fill in | Fill in |
 
-## Métodos e pontes selecionados — opcional
+## Selected methods and bridges — optional
 
-Se não houver pontes pertinentes, registrar isso e seguir sem skills especializadas.
-Se houver, informar arquivo/versão da ponte, entrada real da skill, motivo, entregável
-e pergunta específica para cada auxiliar. Consultar somente as pontes instaladas.
+If no bridges are relevant, record that and continue without specialized skills.
+Otherwise, record the bridge file/version, actual skill entry, reason, deliverable
+and specific question for each supporting skill. Consult only installed bridges.
 
-## Implementação
+## Implementation
 
-Superfícies afetadas, compatibilidade, migração e recuperação proporcionais ao risco.
-ADRs, pesquisa, modelos e contratos adicionais somente quando resolverem uma necessidade.
+Affected surfaces, compatibility, migration and recovery proportionate to risk.
+Additional ADRs, research, models and contracts only when they address a need.

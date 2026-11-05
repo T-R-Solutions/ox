@@ -1,45 +1,45 @@
-# Plano de autoria de code-context-engineering
+# Authoring plan for code-context-engineering
 
-Rota completa por contrato de competência, fronteiras e critérios de avaliação. Autoridade: spec desta feature e constituição do consumidor para efeitos autorizados.
+Full route because of the capability contract, boundaries and evaluation criteria. Authority: this feature's spec and the consumer's constitution for authorized effects.
 
-## Alternativas técnicas preservadas
+## Preserved technical alternatives
 
-As escolhas abaixo são alternativas de método a ensinar/avaliar, não decisões técnicas aprovadas do Ox.
+The choices below are alternative methods to teach/evaluate, not approved Ox technical decisions.
 
 
-| ID | Decisão ou risco | Verificação proposta |
+| ID | Decision or risk | Proposed verification |
 
 |---|---|---|
 
-| D-01 | Índice de caminhos/texto sempre útil, parser incremental por linguagem e LSP somente quando justificado. | Revisão de alternativas + contrato observado |
+| D-01 | Always-useful path/text index, incremental parser per language and LSP only when justified. | Alternative review + observed contract |
 
-| D-02 | Snapshot/offset/proveniência explícitos e ranking controlado por recall/precisão/custo. | Cenários rejeitados e comparação de opções |
+| D-02 | Explicit snapshot/offset/provenance and ranking governed by recall/precision/cost. | Rejected scenarios and comparison of options |
 
-| R-01 | Índice obsoleto; respostas da IA com posições incorretas. | Teste adverso pertinente |
+| R-01 | Stale index; AI responses with incorrect positions. | Relevant adversarial test |
 
-| R-02 | Indexação excessiva na abertura e alto consumo de recursos. | Falsificação controlada do resultado |
+| R-02 | Excessive indexing at startup and high resource consumption. | Controlled falsification of the result |
 
 
 
-D-03 [REQ-04]: criar entrada, três referências especializadas e casos próprios em vez de duplicar uma skill geral; custo de manutenção justificado pela competência especializada e pelos cenários locais da spec; o comparativo é somente origem histórica. R-03 [REQ-04]: seleção ambígua ou texto superficial; verificar com casos positivos, negativos e falha. Reavaliar após uso observado ou mudança das fontes.
+D-03 [REQ-04]: create an entry, three specialized references and dedicated cases instead of duplicating a general skill; maintenance cost is justified by the specialized capability and local spec scenarios; the comparison is historical origin only. R-03 [REQ-04]: ambiguous selection or superficial text; check with positive, negative and failure cases. Reevaluate after observed use or source changes.
 
-## Seleção de métodos e dependências
+## Method selection and dependencies
 
-Método primário de autoria efetivamente consultado: skill-creator do ambiente (versão não declarada; cópia de consulta em docs/validation/adoption-baseline/skill-creator.md). Sem ponte local para esse método. Esta nova skill não existia na seleção inicial e não é declarada consultada na própria autoria.
+Primary authoring method actually consulted: the environment's skill-creator (version not declared; consultation copy at docs/validation/adoption-baseline/skill-creator.md). No local bridge exists for this method. This new skill did not exist at initial selection and is not claimed to have been consulted during its own authoring.
 
-A ponte sdd/chain/code-context-engineering.md, bridge_version 1, e entrada .codex/skills/code-context-engineering/SKILL.md ficam disponíveis para consumidores e avaliação posterior; existência não prova consulta. Auxiliar condicional proposta: `ai-engineering` — A recuperação realmente eleva a taxa de sucesso da tarefa em relação a uma busca simples? Sem consulta automática.
+The bridge sdd/chain/code-context-engineering.md, bridge_version 1, and entry .codex/skills/code-context-engineering/SKILL.md are available for consumers and later evaluation; existence does not prove consultation. Proposed conditional supporting skill: `ai-engineering` — Does retrieval actually improve task success compared with simple search? No automatic consultation.
 
-Dependências de autoria: protocolo → runtime → verificação; workspace/Iced completam fundação; contexto antecede grafo; output e uso dependem do vocabulário de eventos. Não são dependências de instalação.
+Authoring dependencies: protocol → runtime → verification; workspace/Iced complete the foundation; context precedes graph; output and usage depend on event vocabulary. These are not installation dependencies.
 
-## Atividades técnicas propostas a ensinar e retomar
+## Proposed technical activities to teach and resume
 
-> - [ ] P001 [REQ, AC, D, R aplicáveis]: Modelar identidade de símbolo, documento, hash e versão do índice.
-> - [ ] P002 [REQ, AC, D, R aplicáveis]: Prototipar extração, busca e invalidação em fixtures multilíngues.
-> - [ ] P003 [REQ, AC, D, R aplicáveis]: Definir integração opcional LSP e semântica de evidência.
-> - [ ] P004 [REQ, AC, D, R aplicáveis]: Executar avaliações recall/latência/freshness e documentar limites.
+> - [ ] P001 [applicable REQ, AC, D, R]: Model symbol identity, document, hash and index version.
+> - [ ] P002 [applicable REQ, AC, D, R]: Prototype extraction, search and invalidation with multilingual fixtures.
+> - [ ] P003 [applicable REQ, AC, D, R]: Define optional LSP integration and evidence semantics.
+> - [ ] P004 [applicable REQ, AC, D, R]: Run recall/latency/freshness evaluations and document limits.
 
-P001..P004 preservam a intenção das tarefas propostas; não declaram implementação do produto. A execução local de autoria está em tasks.md. Testes reais dependem de consumidor e escopo autorizado.
+P001..P004 preserve the intent of proposed tasks; they do not claim product implementation. Local authoring execution is in tasks.md. Real tests depend on a consumer and authorized scope.
 
-## Consulta posterior na avaliação
+## Subsequent consultation during evaluation
 
-Em 2026-10-26 um subagente interno consultou `.codex/skills/code-context-engineering/SKILL.md` versão 1.0.0 e referências técnicas para responder cenário adverso. Ponte disponível bridge_version 1; avaliação direta, sem alegar consulta da ponte. Primária: esta skill, agora existente; auxiliares não necessárias. Catálogo de descrições usado antes da leitura para seleção. Perguntas, resposta bruta, caminhos consultados e limitações em `docs/validation/agent-evals/`; julgamento do executor separado em review.md. Não é consulta durante autoria nem integração do produto.
+On 2026-10-26 an internal subagent consulted `.codex/skills/code-context-engineering/SKILL.md` version 1.0.0 and technical references to answer an adversarial scenario. Available bridge: bridge_version 1; direct evaluation without claiming bridge consultation. Primary: this now-existing skill; supporting skills were unnecessary. The description catalog was used for selection before reading. Questions, raw response, consulted paths and limitations are in `docs/validation/agent-evals/`; the executor's judgment is separate in review.md. This is neither consultation during authoring nor product integration.

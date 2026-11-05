@@ -13,7 +13,7 @@ def main():
         if not p.is_relative_to(run):
             inputs[p.relative_to(ROOT).as_posix()]=sha(p)
     (run/'inputs.json').write_text(json.dumps(inputs,ensure_ascii=False,indent=2)+'\n')
-    commands=[['sdd/tools/validate.py','--root','.'],['sdd/tools/validate.py','--root','.','--structure-only'],['tools/governance/scripts/check-ox.py'],['-m','unittest','discover','-s','tools/governance/tests','-v']]
+    commands=[['sdd/tools/validate.py','--root','.'],['sdd/tools/validate.py','--root','.','--structure-only'],['tools/governance/scripts/check-ox.py'],['tools/governance/scripts/verify-maintenance.py'],['tools/governance/scripts/run-tests.py','--group','all']]
     results=[]; env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1')
     for i,args in enumerate(commands,1):
         command=[sys.executable,*args]

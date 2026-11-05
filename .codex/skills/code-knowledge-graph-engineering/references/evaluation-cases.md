@@ -1,32 +1,32 @@
-# Avaliações da skill
+# Skill evaluations
 
-Contrato de casos; execução deve ser registrada separadamente. Não constituem testes realizados.
+Case contract; execution must be recorded separately. These are not completed tests.
 
-## Cenários técnicos preservados
+## Preserved technical scenarios
 
-- AC-01 → REQ-01: Aresta de chamada válida pode ser rastreada a localização e método; oráculo: corpus sintético conhecido.
-- AC-02 → REQ-02: Relação inferida marcada incorretamente como verificada é rejeitada; oráculo: schema/assert de proveniência.
-- AC-03 → REQ-03: Alteração remove aresta obsoleta no snapshot novo; oráculo: fixture antes/depois.
-- AC-04 → REQ-03: Consulta por subgrafo aplica limite e relatórios de truncamento; oráculo: grafo grande gerado determinísticamente.
+- AC-01 → REQ-01: A valid call edge can be traced to its location and method; oracle: known synthetic corpus.
+- AC-02 → REQ-02: An inferred relationship incorrectly marked as verified is rejected; oracle: provenance schema/assertion.
+- AC-03 → REQ-03: A change removes a stale edge in the new snapshot; oracle: before/after fixture.
+- AC-04 → REQ-03: A subgraph query applies limits and reports truncation; oracle: deterministically generated large graph.
 
-## Protocolo de avaliação
+## Evaluation protocol
 
-Forneça um pedido concreto e os inputs mínimos a um agente em diretório isolado autorizado. Na rodada de seleção, mostre somente catálogo/descriptions, sem a resposta esperada. Na rodada de comportamento, disponibilize a skill selecionada e os dados adversos. Preserve prompt, resposta bruta, identidade/configuração conhecida do agente, hashes dos inputs, revisão do resultado e limitações. Não execute serviços ou ferramentas com novas permissões.
+Give an agent a concrete request and minimal inputs in an authorized isolated directory. In the selection round, show only the catalog/descriptions, without the expected answer. In the behavior round, provide the selected skill and adversarial data. Preserve the prompt, raw response, known agent identity/configuration, input hashes, outcome review and limitations. Do not run services or tools requiring new permissions.
 
-Seleção positiva: pedir o entregável próprio descrito nesta entrada. Seleção negativa: usar a exclusão explícita; a resposta deve apontar competência mais adequada sem carregar esta skill. Falha: fornecer input que contraria o cenário técnico e exigir evidência antes de aprovação. Os prompts concretos do pacote consumidor devem incluir dados suficientes e um oráculo independente.
+Positive selection: request the specialized deliverable described in this entry. Negative selection: use the explicit exclusion; the response should identify a more suitable capability without loading this skill. Failure: provide input that contradicts the technical scenario and require evidence before approval. Concrete prompts in the consumer package must include sufficient data and an independent oracle.
 
-## Prompts concretos
+## Concrete prompts
 
 ### code-knowledge-graph-engineering-positive
 
-Definir schema de arestas de código e consultas de impacto com limites e duas projeções do mesmo grafo.
+Define a code-edge schema and bounded impact queries with two projections of the same graph.
 
 ### code-knowledge-graph-engineering-negative
 
-Criar um diagrama estático de marketing sem relações extraídas de código.
+Create a static marketing diagram without relationships extracted from code.
 
 ### code-knowledge-graph-engineering-failure
 
-Aresta inferida com similaridade 0.98 veio marcada verified=true; seu arquivo mudou. Consulta passa por ciclo e um hub com dez mil arestas. Especifique validações, invalidação e limites sem presumir desempenho.
+An inferred edge with similarity 0.98 was marked verified=true; its file changed. A query traverses a cycle and a hub with ten thousand edges. Specify validation, invalidation and limits without assuming performance.
 
-Oráculo de revisão: positivo seleciona a competência própria; negativo encaminha para design-system (ou competência adjacente justificada). Na falha observar: reject false verified; snapshot invalidation; visited plus limits and truncation. Este gabarito é revisado depois da resposta, não fornecido ao avaliador na seleção.
+Review oracle: positive selects this specialized capability; negative routes to design-system (or a justified adjacent capability). In the failure case, check: reject false verified; snapshot invalidation; visited plus limits and truncation. Review this answer key after the response; do not provide it to the evaluator during selection.

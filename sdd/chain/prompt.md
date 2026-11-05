@@ -49,6 +49,6 @@ spec defines behavior; plan/ADRs define decisions; tasks define executable work.
 This bridge cannot override those artifacts or expand authorization. Changes to
 product rules belong in their authoritative artifact, not in this bridge.
 
-## Perfil condicional do projeto
+## Conditional project profile
 
-Pedido de criar ou revisar um prompt como artefato; não qualquer tarefa com IA. Disponibilidade não significa seleção, consulta ou uso.
+A request to create or revise a prompt as an artifact; does not cover every AI task. Availability does not imply selection, consultation or use.

@@ -4,9 +4,9 @@ Bibliographic and reading-scope snapshot from the authoring library. No books or
 
 ## B03: AI Engineering: Building Applications with Foundation Models
 
-Authors: Chip Huyen. Edition/year: 1ª, dezembro 2024; copyright 2025.
+Authors: Chip Huyen. Edition/year: 1st, December 2024; copyright 2025.
 
-Examined sections: cap. 4 p. 200–206; cap. 5 p. 233–235 e 248–251. Metadata examined: PDF 5–6.
+Examined sections: ch. 4 pp. 200–206; ch. 5 pp. 233–235 and 248–251. Metadata examined: PDF 5–6.
 
 Analyzed physical PDF ranges (1-based): [[224, 230], [257, 259], [272, 275]]. Visual pages: []. Book examples executed: False.
 

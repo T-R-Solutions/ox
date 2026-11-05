@@ -1,32 +1,32 @@
-# Avaliações da skill
+# Skill evaluations
 
-Contrato de casos; execução deve ser registrada separadamente. Não constituem testes realizados.
+Case contract; execution must be recorded separately. These are not completed tests.
 
-## Cenários técnicos preservados
+## Preserved technical scenarios
 
-- AC-01 → REQ-01: Critério com teste real e input versionado pode ser marcado APROVADO; oráculo: artefato de execução vinculado.
-- AC-02 → REQ-02: Teste ignorado ou indisponível permanece NÃO VERIFICADO; oráculo: fixture sem executável.
-- AC-03 → REQ-02: Alteração após validação invalida somente critérios dependentes dos inputs alterados; oráculo: teste de freshness.
-- AC-04 → REQ-03: Agente sem autorização para deploy não consegue publicar mesmo quando verificação passou; oráculo: mock de fronteira + integração permitida.
+- AC-01 → REQ-01: A criterion with a real test and versioned input can be marked APPROVED; oracle: bound execution artifact.
+- AC-02 → REQ-02: A skipped or unavailable test remains UNVERIFIED; oracle: fixture without an executable.
+- AC-03 → REQ-02: A change after validation invalidates only criteria dependent on changed inputs; oracle: freshness test.
+- AC-04 → REQ-03: An agent without deployment authorization cannot publish even after verification passes; oracle: boundary mock plus permitted integration.
 
-## Protocolo de avaliação
+## Evaluation protocol
 
-Forneça um pedido concreto e os inputs mínimos a um agente em diretório isolado autorizado. Na rodada de seleção, mostre somente catálogo/descriptions, sem a resposta esperada. Na rodada de comportamento, disponibilize a skill selecionada e os dados adversos. Preserve prompt, resposta bruta, identidade/configuração conhecida do agente, hashes dos inputs, revisão do resultado e limitações. Não execute serviços ou ferramentas com novas permissões.
+Give an agent a concrete request and minimal inputs in an authorized isolated directory. In the selection round, show only the catalog/descriptions, without the expected answer. In the behavior round, provide the selected skill and adversarial data. Preserve the prompt, raw response, known agent identity/configuration, input hashes, outcome review and limitations. Do not run services or tools requiring new permissions.
 
-Seleção positiva: pedir o entregável próprio descrito nesta entrada. Seleção negativa: usar a exclusão explícita; a resposta deve apontar competência mais adequada sem carregar esta skill. Falha: fornecer input que contraria o cenário técnico e exigir evidência antes de aprovação. Os prompts concretos do pacote consumidor devem incluir dados suficientes e um oráculo independente.
+Positive selection: request the specialized deliverable described in this entry. Negative selection: use the explicit exclusion; the response should identify a more suitable capability without loading this skill. Failure: provide input that contradicts the technical scenario and require evidence before approval. Concrete prompts in the consumer package must include sufficient data and an independent oracle.
 
-## Prompts concretos
+## Concrete prompts
 
 ### autonomous-verification-engineering-positive
 
-Projetar motor que atribui veredictos por critério a entregas de agentes, vinculando evidências ao snapshot.
+Design an engine that assigns verdicts per criterion to agent deliverables, binding evidence to the snapshot.
 
 ### autonomous-verification-engineering-negative
 
-Criar testes unitários de uma função de soma e diagnosticar um teste flaky, sem motor de aceitação.
+Create unit tests for an addition function and diagnose a flaky test without an acceptance engine.
 
 ### autonomous-verification-engineering-failure
 
-Critério A tinha teste passando sobre arquivo X; X mudou. Critério B testa arquivo Y inalterado. O teste de C está ausente. Há uma verificação de build aprovada, mas nenhum grant de publicação. Classifique e proponha retomada; não publique.
+Criterion A had a passing test on file X; X changed. Criterion B tests unchanged file Y. C's test is missing. A build check passed, but there is no publication grant. Classify and propose resumption; do not publish.
 
-Oráculo de revisão: positivo seleciona a competência própria; negativo encaminha para software-testing (ou competência adjacente justificada). Na falha observar: invalidate A not unrelated B; C unverified; no deploy authorization. Este gabarito é revisado depois da resposta, não fornecido ao avaliador na seleção.
+Review oracle: positive selects this specialized capability; negative routes to software-testing (or a justified adjacent capability). In the failure case, check: invalidate A not unrelated B; C unverified; no deploy authorization. Review this answer key after the response; do not provide it to the evaluator during selection.

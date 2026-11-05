@@ -49,6 +49,142 @@ def relocated_traceability(data):
     return data
 
 
+def succession_records(root):
+    """Read the explicitly reviewed succession; never infer permission from drift."""
+    manifest = json.loads((root / 'docs/structure/files.json').read_text())
+    revisions = [r for r in manifest['revisions'] if r['id'] == 'governance-reconciliation-001']
+    if len(revisions) != 1:
+        raise ValueError('Exactly one governance reconciliation revision required')
+    revision = revisions[0]
+    if revision['decision'] != 'docs/decisions/governance-reconciliation.md':
+        raise ValueError('Unexpected succession decision')
+    if not (root / revision['decision']).is_file():
+        raise ValueError('Missing succession decision')
+    rows = revision['records']
+    paths = [row['destination'] for row in rows]
+    expected = {'AGENTS.md', '.codex/skills/README.md', 'sdd/chain/README.md',
+                'config/governance/profile.json', '.codex/skills/commit-governance/SKILL.md',
+                'sdd/chain/commit-governance.md', 'tools/governance/scripts/run-checks.py',
+                'docs/development/sdd-skills.md'}
+    if len(paths) != len(set(paths)) or set(paths) != expected:
+        raise ValueError('Succession inventory differs from reviewed scope')
+    for row in rows:
+        for field in ('sha256', 'previous_sha256'):
+            value = row.get(field)
+            if field == 'previous_sha256' and value is None:
+                continue
+            if not isinstance(value, str) or len(value) != 64 or any(c not in '0123456789abcdef' for c in value):
+                raise ValueError('Invalid succession digest: ' + row['destination'])
+    return {row['destination']: row for row in rows}
+
+
+def succession_predecessor(root, row):
+    relative = row['destination']
+    expected = row['previous_sha256']
+    if expected is None:
+        if row.get('previous') is not None:
+            raise ValueError('Unexpected succession predecessor: ' + relative)
+        return None
+    source = root / row['previous']
+    path = source.resolve()
+    if not path.is_relative_to(root.resolve()) or not path.is_file() or source.is_symlink():
+        raise ValueError('Missing or escaping succession predecessor: ' + relative)
+    data = path.read_bytes()
+    if hashlib.sha256(data).hexdigest() != expected:
+        raise ValueError('Succession predecessor changed: ' + relative)
+    return data
+
+
+def succession_errors(root):
+    from skill_revision import errors as integration_errors, predecessor
+    errors = integration_errors(root)
+    for relative, row in succession_records(root).items():
+        succession_predecessor(root, row)
+        path = root / relative
+        if (not path.is_file() or path.is_symlink()
+                or hashlib.sha256(predecessor(root, relative, path.read_bytes())).hexdigest() != row['sha256']):
+            errors.append('Succession current changed/missing: ' + relative)
+    return errors
+
+
+def preservation_bytes(root, relative):
+    """Recover authenticated pre-translation bytes for preservation comparisons.
+
+    Only exact registered documentary/translation revisions use predecessors. Any subsequent
+    mutation is compared as-is and must still fail the original preservation gate.
+    Historical archives and their hashes remain untouched.
+    """
+    path = root / relative
+    from skill_revision import predecessor
+    from documentation_revision import predecessor as visual_predecessor
+    data = visual_predecessor(root, relative, path.read_bytes())
+    data = predecessor(root, relative, data)
+    data = documentary_predecessor(root, relative, data)
+    row = succession_records(root).get(relative)
+    if row and hashlib.sha256(data).hexdigest() == row['sha256']:
+        previous = succession_predecessor(root, row)
+        if previous is not None:
+            data = previous
+    registry = root / 'docs/validation/english-documentation/translations.json'
+    if not registry.is_file():
+        return data
+    record = json.loads(registry.read_text()).get(relative)
+    if not record or hashlib.sha256(data).hexdigest() != record['translated_sha256']:
+        return data
+    previous = (root / record['previous']).resolve()
+    if not previous.is_relative_to(root.resolve()) or not previous.is_file():
+        raise ValueError('Missing or escaping translation predecessor: ' + relative)
+    original = previous.read_bytes()
+    if hashlib.sha256(original).hexdigest() != record['before_sha256']:
+        raise ValueError('Translation predecessor changed: ' + relative)
+    return original
+
+
+def documentary_predecessor(root, relative, data):
+    """Resolve only the bounded, reviewed 2026-11-01 document revision.
+
+    The registry is a content identity record, not permission. Unknown current
+    bytes pass through and fail the original preservation comparison.
+    """
+    registry = root / 'docs/validation/f0-reconciliation-20261101/document-succession.json'
+    if not registry.is_file():
+        return data
+    document = json.loads(registry.read_text())
+    if document.get('revision') != 'f0-document-reconciliation-001':
+        raise ValueError('Unexpected documentary succession revision')
+    expected = {
+        'sdd/features/skill-' + name + '/tasks.md' for name in (
+            'plugin-protocol-engineering', 'agent-runtime-engineering',
+            'autonomous-verification-engineering', 'workspace-integrity-engineering',
+            'iced-engineering', 'code-context-engineering',
+            'code-knowledge-graph-engineering', 'tool-output-engineering',
+            'agent-usage-accounting')
+    }
+    expected.update('sdd/features/' + feature + '/' + name for feature, names in (
+        ('governance-externalization', ('spec.md', 'tasks.md')),
+        ('product-foundation', ('spec.md', 'plan.md', 'tasks.md')),
+        ('governance-layout', ('spec.md', 'plan.md', 'tasks.md')),
+    ) for name in names)
+    records = document.get('records', [])
+    paths = [r['destination'] for r in records]
+    if len(paths) != len(set(paths)) or set(paths) != expected:
+        raise ValueError('Documentary succession scope differs from reviewed files')
+    for row in records:
+        for field in ('sha256', 'previous_sha256'):
+            value = row.get(field)
+            if not isinstance(value, str) or len(value) != 64 or any(c not in '0123456789abcdef' for c in value):
+                raise ValueError('Invalid documentary succession digest')
+        if row['destination'] == relative:
+            previous = succession_predecessor(root, row)
+            if hashlib.sha256(data).hexdigest() == row['sha256']:
+                return previous
+    return data
+
+
+def preservation_digest(root, relative):
+    return hashlib.sha256(preservation_bytes(root, relative)).hexdigest()
+
+
 def governance_scope():
     """A fresh receipt shared by the ZIP and runner; never product acceptance."""
     return {
@@ -78,13 +214,19 @@ def sha(path):
 
 
 def transient(path):
-    return '__pycache__' in path.parts or path.as_posix().startswith('docs/validation/scratch/')
+    return '.git' in path.parts or '__pycache__' in path.parts or path.as_posix().startswith('docs/validation/scratch/')
 
 
 def product_record(path):
     """Product evidence depends on sources deliberately absent from governance exports."""
     return path.as_posix().startswith((
         'sdd/features/product-bootstrap/', 'docs/validation/product-bootstrap/',
+        'sdd/features/product-plugin-host/', 'docs/validation/product-plugin-host/',
+        'sdd/features/product-agent-runtime/', 'docs/validation/product-agent-runtime/',
+        'sdd/features/product-verification-engine/', 'docs/validation/product-verification-engine/',
+        'sdd/features/product-local-task-ui/', 'docs/validation/product-local-task-ui/',
+        'sdd/features/product-f0-gate/', 'docs/validation/f0-execution-20261102/',
+        'docs/validation/f0-resumption-20261103/',
     ))
 
 
@@ -133,6 +275,8 @@ def inspect_bytes(name, data, fingerprints, *, budget=None, depth=0):
 
     def member_path(member):
         path = PurePosixPath(member.replace('\\', '/'))
+        if '.git' in path.parts:
+            errors.append(f'Git metadata in archive: {name}::{member}')
         if path.is_absolute() or '..' in path.parts:
             errors.append(f'Unsafe archive path: {name}::{member}')
         return f'{name}::{member}'
@@ -184,7 +328,7 @@ def inspect_bytes(name, data, fingerprints, *, budget=None, depth=0):
 def inspect_tree(root):
     fingerprints = json.loads((root/'docs/validation/governance-externalization/external-fingerprints.json').read_text())
     errors = []
-    for path in sorted(root.rglob('*')):
+    for path in distribution_files(root):
         rel = path.relative_to(root)
         if transient(rel) or rel.parts[0] == 'dist':
             continue  # Package outputs are inspected directly; scratch is disposable.

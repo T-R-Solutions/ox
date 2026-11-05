@@ -1,24 +1,24 @@
-# Autoria e avaliação de workspace-integrity-engineering
+# Authoring and evaluation of workspace-integrity-engineering
 
-Origem histórica: estudo externo; contrato vigente autocontido nesta spec. O estudo não integra a distribuição nem a validação. Ator: mantenedor/avaliador da skill. Precondição: autoria autorizada e avaliação em ambiente permitido. Esta feature pertence à biblioteca; não é feature do produto Ox.
+Historical origin: external study; the current contract is self-contained in this spec. The study is not part of distribution or validation. Actor: skill maintainer/evaluator. Precondition: authorized authoring and evaluation in a permitted environment. This feature belongs to the library; it is not an Ox product feature.
 
-## Contratos técnicos preservados
+## Preserved technical contracts
 
-As declarações abaixo mantêm IDs, cenários e oráculos propostos. REQ-01..03 são competências que a skill deve ensinar. AC-01..04 exigem exercitar entregáveis concretos; revisão textual sozinha não os aprova. Integrações de produto/plataforma permanecem futuras quando não disponíveis.
+The declarations below retain the proposed IDs, scenarios and oracles. REQ-01..03 are capabilities the skill must teach. AC-01..04 require exercising concrete deliverables; text review alone does not approve them. Product/platform integrations remain future work when unavailable.
 
-- REQ-01: Todas as mudanças em arquivos respeitam raiz autorizada e versão observada.
-- REQ-02: Edições concorrentes são detectadas antes de sobrescrita silenciosa.
-- REQ-03: Queda durante escrita permite detectar o estado parcial e recuperar sem perda silenciosa.
+- REQ-01: All file changes respect the authorized root and observed version.
+- REQ-02: Concurrent edits are detected before silent overwrites.
+- REQ-03: A crash during writing allows partial-state detection and recovery without silent loss.
 
-- AC-01 → REQ-01: Tentativa de escrita fora da raiz via .. ou symlink é rejeitada; oráculo: fixture com caminhos adversos.
-- AC-02 → REQ-02: Dois agentes editam mesma versão: segunda gravação conflita ou aplica merge verificado; oráculo: teste concorrente.
-- AC-03 → REQ-03: Falha injetada entre arquivo temporário e rename não deixa registro “concluído” incorreto; oráculo: teste de crash.
-- AC-04 → REQ-03: Arquivo externo alterado invalida hash/snapshot; oráculo: watcher + verificação por leitura real.
+- AC-01 → REQ-01: An attempted write outside the root through .. or a symlink is rejected; oracle: adversarial path fixture.
+- AC-02 → REQ-02: Two agents edit the same version: the second write conflicts or applies a verified merge; oracle: concurrency test.
+- AC-03 → REQ-03: An injected failure between temporary-file creation and rename leaves no incorrect “done” record; oracle: crash test.
+- AC-04 → REQ-03: An externally changed file invalidates the hash/snapshot; oracle: watcher plus actual-read verification.
 
-## Critérios adicionais da autoria
+## Additional authoring criteria
 
-- REQ-04: Entregar método reutilizável com seleção precisa, entradas, referências e cenários verificáveis.
-- AC-05 → REQ-04: Revisão de conteúdo e validação local confirmam entrada completa, referências substantivas, fronteiras e ponte válida.
-- AC-06 → REQ-04: Ensaio observado com agente distingue pedido positivo, negativo e comportamento adverso; limitações e resposta bruta preservadas.
+- REQ-04: Provide a reusable method with precise selection, inputs, references and verifiable scenarios.
+- AC-05 → REQ-04: Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.
+- AC-06 → REQ-04: An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.
 
-Não substituir AC-01..04 por AC-05/06. Versões, plataforma, dados e autorização do consumidor precisam ser conhecidos antes da integração. A aprovação da skill não aprova subsistemas do produto.
+Do not replace AC-01..04 with AC-05/06. Consumer versions, platform, data and authorization must be known before integration. Skill approval does not approve product subsystems.
