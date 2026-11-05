@@ -1,0 +1,10 @@
+{
+  "method": "Maintainer interaction in native Wayland window; independent protocol trace and process exit in sibling artifacts.",
+  "reply": "Sim, fechei pelo X durante a execução",
+  "requested_scenario": "Click Timeout then native X before the ten-second task deadline",
+  "result": "Maintainer confirmed normal native closing during active task; process exit=0, supervisor_terminated=false observed separately.",
+  "limitations": [
+    "No child PID sampling in this older runner; Runtime integration tests and worker-completion shutdown path provide supervision evidence.",
+    "Missing-evidence diagnostic and stale-response guard were improved after this binary started; close policy itself unchanged."
+  ]
+}

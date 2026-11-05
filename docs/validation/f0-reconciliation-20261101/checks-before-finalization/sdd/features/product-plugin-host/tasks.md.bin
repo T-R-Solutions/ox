@@ -1,0 +1,6 @@
+# Tarefas: product-plugin-host
+
+- [x] T001 [D-01, R-01]: delimitar requisitos e decisões antes do código.
+- [x] T002 [D-01, R-01]: implementar a fatia local delimitada.
+- [x] T003 [D-01, R-01]: executar cenários positivos e negativos com oráculos externos ao resultado.
+- [x] T004 [D-01, R-01]: registrar inputs, resultados e limitações; consolidar aceitação antes da próxima etapa.

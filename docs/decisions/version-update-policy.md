@@ -1,0 +1,62 @@
+# ADR proposal — Controlled version updates
+
+Status: ADOPTED on 2026-11-02 as F0-D5; see [adoption](f0-boundary-20261102.md).
+The following proposal history and alternatives are retained. The maintainer's follow-up “ok, efetue os
+ajustes recomendados” authorizes refinement of this proposal, not selection of a
+new release or operational acceptance. Current repository settings remain Rust
+1.99.1, rust-version 1.99, Iced =0.14.0, edition 2024 and the existing Cargo.lock.
+These are observed settings, not a claim about latest releases or demonstrated MSRV.
+
+## Adopted decision and succession
+
+This decision supersedes only the exact Iced requirement in
+[product-bootstrap](product-bootstrap.md) and extend D-03 of
+[governance-reconciliation](governance-reconciliation.md) with the lifecycle below.
+Preserve both historical decisions and the exact validated toolchain principle.
+Actual manifest/toolchain/lockfile changes require candidate validation; adoption
+alone does not change them or renew historical execution evidence.
+
+1. Keep an exact validated Rust toolchain during development. Evaluate stable
+   releases separately and promote a numbered release after validation. A moving
+   stable channel may be an experiment input, not the identity of an accepted build.
+   Validate rust-version separately before claiming minimum-version support.
+2. Prefer compatible Cargo requirements to unnecessary exact dependency pins.
+   For example, Iced 0.14.0 permits >=0.14.0 and <0.15.0 under Cargo rules;
+   it does not approve 0.15 or demonstrate runtime/UI compatibility. Exact constraints
+   remain possible with a documented reason, owner and review trigger.
+3. Keep Cargo.lock versioned and use --locked for accepted builds/tests. Identify
+   compiler, Cargo, target, features, native dependencies and environment as well.
+   The lockfile alone does not guarantee byte-identical binaries.
+4. Review stable Rust, Iced and dependencies monthly and before a release baseline;
+   relevant security advisories or broken supported builds trigger earlier review.
+   The maintainer owns promotion and documented postponements. This proposed cadence
+   does not create an automation, installation or network permission.
+5. Evaluate candidates in a separate checkout/worktree or disposable copy, preserving
+   dirty/untracked inputs and using separate build outputs. Review release notes,
+   dependency/lockfile diffs, licenses, advisories and native/unsafe changes. Run
+   affected static, behavior, regression, GUI, coverage and performance checks.
+6. Promote with current criterion-bound evidence; preserve previous baseline and
+   failed candidate results. Discard/revert candidate changes only within their
+   isolated scope, without resetting unrelated work. Reevaluate observations whose
+   code, toolchain, dependency, oracle or environment inputs changed.
+7. Identify a release baseline by source snapshot, exact toolchain, lockfile,
+   features, target, environment and evidence manifest. Release qualification and
+   publication remain separately scoped.
+
+## Alternatives, consequences and review
+
+Indefinite freezing accumulates fixes/migrations. Floating toolchains and unlocked
+acceptance builds weaken reproducibility. Exact constraints on every dependency
+restrict resolution unnecessarily; retain justified exceptions. Prefer bounded
+update batches for fault attribution, grouping changes only when compatibility
+requires it. Controlled updates cost review/test time and do not guarantee bug-free
+dependencies. Revisit on MSRV, renderer, platform, public API, runtime, distribution
+changes or repeated update failures.
+
+F0-P01/P06 require an identifiable accepted baseline and candidate-promotion
+procedure; an actual update additionally requires its affected observations.
+See the [quality proposal](../validation/f0-reconciliation-20261101/quality-proposal.md).
+
+Official sources consulted in this conversation: [Cargo dependency requirements](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html)
+and [Cargo CI](https://doc.rust-lang.org/cargo/guide/continuous-integration.html).
+The cadence and promotion rules are proposed Ox decisions, not Cargo mandates.

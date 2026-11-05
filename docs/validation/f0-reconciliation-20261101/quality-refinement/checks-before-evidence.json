@@ -1,0 +1,26 @@
+[
+  {
+    "name": "structure",
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--structure-only"
+    ],
+    "exit": 0,
+    "log": "docs/validation/f0-reconciliation-20261101/quality-refinement/structure.log"
+  },
+  {
+    "name": "old-evidence-rejection",
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--require-fresh"
+    ],
+    "exit": 1,
+    "log": "docs/validation/f0-reconciliation-20261101/quality-refinement/old-evidence-rejection.log"
+  }
+]

@@ -1,0 +1,740 @@
+{
+  "method": "Compare prior declared bindings and archived bytes, protected product/storage/authority inputs, seven-row and thirteen-clause mappings, and 36 recorded skill scenarios against current spec/evidence/tasks. Not product execution.",
+  "predecessor_files_preserved": 8,
+  "protected_inputs_unchanged": 85,
+  "previous_declared_inputs": 120,
+  "changed_inputs": [
+    "docs/validation/f0-reconciliation-20261101/f0-matrix.json",
+    "docs/validation/foundation-current-20261101/f0.md",
+    "sdd/features/product-f0-gate/plan.md",
+    "sdd/features/product-f0-gate/spec.md",
+    "sdd/features/product-f0-gate/tasks.md",
+    "sdd/features/product-f0-gate/traceability.json"
+  ],
+  "comparisons": [
+    {
+      "path": ".codex/skills/autonomous-verification-engineering/SKILL.md",
+      "old_sha256": "3b8e2a6fbd6b09ba79f2316fdb444de0d2dda2ac0907b34c352ad09d1e360c94",
+      "current_sha256": "3b8e2a6fbd6b09ba79f2316fdb444de0d2dda2ac0907b34c352ad09d1e360c94",
+      "same": true
+    },
+    {
+      "path": ".codex/skills/database-engineering/SKILL.md",
+      "old_sha256": "9fcee66df99fda30e51a004dd16143e2ac1fde12a4398cb8da88ec4ca72ab686",
+      "current_sha256": "9fcee66df99fda30e51a004dd16143e2ac1fde12a4398cb8da88ec4ca72ab686",
+      "same": true
+    },
+    {
+      "path": ".codex/skills/database-engineering/references/model-and-transactions.md",
+      "old_sha256": "24218a027be332e02b9bf821e936bd4433b3d217a0e6b45da974728f5e9127e2",
+      "current_sha256": "24218a027be332e02b9bf821e936bd4433b3d217a0e6b45da974728f5e9127e2",
+      "same": true
+    },
+    {
+      "path": "README.md",
+      "old_sha256": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d",
+      "current_sha256": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d",
+      "same": true
+    },
+    {
+      "path": "application/crates/ox-plugin/tests/host.rs",
+      "old_sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+      "current_sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+      "same": true
+    },
+    {
+      "path": "application/crates/ox-storage/src/lib.rs",
+      "old_sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+      "current_sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+      "same": true
+    },
+    {
+      "path": "application/crates/ox-storage/src/local.rs",
+      "old_sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+      "current_sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+      "same": true
+    },
+    {
+      "path": "application/crates/ox-ui/src/local_task.rs",
+      "old_sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
+      "current_sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
+      "same": true
+    },
+    {
+      "path": "application/crates/ox-ui/tests/local_task.rs",
+      "old_sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+      "current_sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+      "same": true
+    },
+    {
+      "path": "application/crates/ox-verification/src/engine.rs",
+      "old_sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+      "current_sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+      "same": true
+    },
+    {
+      "path": "application/crates/ox-verification/tests/engine.rs",
+      "old_sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+      "current_sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+      "same": true
+    },
+    {
+      "path": "docs/architecture/context.md",
+      "old_sha256": "8193e63ec37f1198daeb5040a57a1c7baba644a0d8d4850a868efbdc2c9e3e93",
+      "current_sha256": "8193e63ec37f1198daeb5040a57a1c7baba644a0d8d4850a868efbdc2c9e3e93",
+      "same": true
+    },
+    {
+      "path": "docs/constitution.md",
+      "old_sha256": "ae44bf96f769493a9bdc518e7e692a95cdac2dea72076c45439eade95103f1f8",
+      "current_sha256": "ae44bf96f769493a9bdc518e7e692a95cdac2dea72076c45439eade95103f1f8",
+      "same": true
+    },
+    {
+      "path": "docs/decisions/governance-reconciliation.md",
+      "old_sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+      "current_sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+      "same": true
+    },
+    {
+      "path": "docs/decisions/local-persistence-proposal.md",
+      "old_sha256": "b8769a02eaf4343c9f42197cc5ac49580a6d3985187ef2af65e07fd8b8b92233",
+      "current_sha256": "b8769a02eaf4343c9f42197cc5ac49580a6d3985187ef2af65e07fd8b8b92233",
+      "same": true
+    },
+    {
+      "path": "docs/decisions/open-questions.md",
+      "old_sha256": "0ca3c4c2574adb0fa95c38a6099ffd2a8cd1fae898eb8789b6ba6ed47eb28601",
+      "current_sha256": "0ca3c4c2574adb0fa95c38a6099ffd2a8cd1fae898eb8789b6ba6ed47eb28601",
+      "same": true
+    },
+    {
+      "path": "docs/decisions/product-bootstrap.md",
+      "old_sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+      "current_sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+      "same": true
+    },
+    {
+      "path": "docs/decisions/technical-acceptance.md",
+      "old_sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+      "current_sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/before.json",
+      "old_sha256": "5337b8dc7da3ee034a53f261ca40539a969678122394aef824c7ce3bee678107",
+      "current_sha256": "5337b8dc7da3ee034a53f261ca40539a969678122394aef824c7ce3bee678107",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/checks.json",
+      "old_sha256": "eeeb592d7913014a992601023a5c301f103ccf63bd8529e2fe9565522f0608d8",
+      "current_sha256": "eeeb592d7913014a992601023a5c301f103ccf63bd8529e2fe9565522f0608d8",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/before.json",
+      "old_sha256": "7daa85e73cb746d552a497d49280cf693f35a9fe8d2badc1a458650cd7c76ba9",
+      "current_sha256": "7daa85e73cb746d552a497d49280cf693f35a9fe8d2badc1a458650cd7c76ba9",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/before/sdd/features/product-f0-gate/evidence.json.bin",
+      "old_sha256": "f9633b38d22c172a461d06d083b720e8f261c798ac3d9a3411bf41ec7108dfee",
+      "current_sha256": "f9633b38d22c172a461d06d083b720e8f261c798ac3d9a3411bf41ec7108dfee",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/binding-tests.log",
+      "old_sha256": "6ff2203e5cba8f430396344c89d7244f480db85e50ba5c2639603d225f5aa813",
+      "current_sha256": "6ff2203e5cba8f430396344c89d7244f480db85e50ba5c2639603d225f5aa813",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/checks-before-evidence.json",
+      "old_sha256": "1a9aa3acd3adb54f18b1695f2ef1f60118f6b416fc0daf10bdd1083ea4d01d41",
+      "current_sha256": "1a9aa3acd3adb54f18b1695f2ef1f60118f6b416fc0daf10bdd1083ea4d01d41",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/dependency-impact.json",
+      "old_sha256": "dfcf87263c19dce550a82ca800291991c7f81d118b93339b9a556c70dabd4428",
+      "current_sha256": "dfcf87263c19dce550a82ca800291991c7f81d118b93339b9a556c70dabd4428",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/document-check.json",
+      "old_sha256": "bc3a362d186e1b7ce84f4aea119ff0eb5984c35e186cd761c980d2bcab646a6d",
+      "current_sha256": "bc3a362d186e1b7ce84f4aea119ff0eb5984c35e186cd761c980d2bcab646a6d",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/product-bindings.json",
+      "old_sha256": "19095619a940caa7698f1a0db3129ffb17863acff8190ee3e9cdfddc81d7efb6",
+      "current_sha256": "19095619a940caa7698f1a0db3129ffb17863acff8190ee3e9cdfddc81d7efb6",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/stale-predecessor.log",
+      "old_sha256": "78ae2dd7a6ef563062d3c469a007dcea7884edc79862c0a74d166872c1a5293c",
+      "current_sha256": "78ae2dd7a6ef563062d3c469a007dcea7884edc79862c0a74d166872c1a5293c",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/structure.log",
+      "old_sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+      "current_sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/decision-preparation/workspace-before.json",
+      "old_sha256": "1ecfd30ba858629883ca62b722a47612b5d1287b91c3026cfe3bfd62fde105ea",
+      "current_sha256": "1ecfd30ba858629883ca62b722a47612b5d1287b91c3026cfe3bfd62fde105ea",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/dependencies-before.json",
+      "old_sha256": "bbdd092389712bbcdad5d79333029326375f4f2755aafcd394afd7578c204f73",
+      "current_sha256": "bbdd092389712bbcdad5d79333029326375f4f2755aafcd394afd7578c204f73",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/dependency-impact.json",
+      "old_sha256": "3fcfe13f39bd39fb4245c48d662d6675933237b5f400704344e791e0e672ef48",
+      "current_sha256": "3fcfe13f39bd39fb4245c48d662d6675933237b5f400704344e791e0e672ef48",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/dependency-remapping.json",
+      "old_sha256": "0aadc0a05bed7961ba64498a2f261fe7ea65e90889f652512654638fefbb5f03",
+      "current_sha256": "0aadc0a05bed7961ba64498a2f261fe7ea65e90889f652512654638fefbb5f03",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/document-review.json",
+      "old_sha256": "146268020784683f1015b7411754cba6d4ee9e543a4d4d0e5fecad12f7dd61ef",
+      "current_sha256": "146268020784683f1015b7411754cba6d4ee9e543a4d4d0e5fecad12f7dd61ef",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/document-succession.json",
+      "old_sha256": "ea37d5e2dc68a1bbe59d84fd9d3cba9ab08bf30557ff931d96554037cc284436",
+      "current_sha256": "ea37d5e2dc68a1bbe59d84fd9d3cba9ab08bf30557ff931d96554037cc284436",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/f0-matrix.json",
+      "old_sha256": "09cb9c0b0898d13cd7453286b4c446d109dbd9d6d2fbf141cfe5a934b4f28d33",
+      "current_sha256": "68d20e1fa2799c017470ea77f15c1b75d6d7b0e04f92aea6142891d88a0c30da",
+      "same": false
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/inputs-final.json",
+      "old_sha256": "d8a4fbc4da8ba9bfc42ebfbb6f889b54e9bf2dc4494aa40b1af62b0fe8cab35f",
+      "current_sha256": "d8a4fbc4da8ba9bfc42ebfbb6f889b54e9bf2dc4494aa40b1af62b0fe8cab35f",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/legacy-succession.md",
+      "old_sha256": "cd69b0022c1fe6dbc0603a2daeb22b1750688601b158a6a470edc399342dd2d4",
+      "current_sha256": "cd69b0022c1fe6dbc0603a2daeb22b1750688601b158a6a470edc399342dd2d4",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/review.md",
+      "old_sha256": "13cd3a5252da9a22e11eb58689bd1c0e495172d82ada9e75f939c5524f695490",
+      "current_sha256": "13cd3a5252da9a22e11eb58689bd1c0e495172d82ada9e75f939c5524f695490",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/skill-t004.json",
+      "old_sha256": "5011ceea5bc4924784d45195e68389bbe1a97a9e1d52cd7f3085420b675084ee",
+      "current_sha256": "5011ceea5bc4924784d45195e68389bbe1a97a9e1d52cd7f3085420b675084ee",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/source-observation.json",
+      "old_sha256": "f97a03f02bcb0657a3fde581f479bf169b344f670be38344e74e3cf80283c399",
+      "current_sha256": "f97a03f02bcb0657a3fde581f479bf169b344f670be38344e74e3cf80283c399",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/Cargo.lock.bin",
+      "old_sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+      "current_sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/Cargo.toml.bin",
+      "old_sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+      "current_sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/crates/ox-storage/src/lib.rs.bin",
+      "old_sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+      "current_sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/crates/ox-storage/src/local.rs.bin",
+      "old_sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+      "current_sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/crates/ox-ui/src/local_task.rs.bin",
+      "old_sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
+      "current_sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/crates/ox-verification/src/engine.rs.bin",
+      "old_sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+      "current_sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+      "same": true
+    },
+    {
+      "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/rust-toolchain.toml.bin",
+      "old_sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+      "current_sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+      "same": true
+    },
+    {
+      "path": "docs/validation/foundation-current-20261101/criteria.json",
+      "old_sha256": "29ad795d439735ad32687aa05faa56892072532b9939cc94b9214a8a3bf7e0fb",
+      "current_sha256": "29ad795d439735ad32687aa05faa56892072532b9939cc94b9214a8a3bf7e0fb",
+      "same": true
+    },
+    {
+      "path": "docs/validation/foundation-current-20261101/f0.md",
+      "old_sha256": "2619cc834a60a8f063a69002800183e2c959c795d7d549378a8c6c7dd4f7c8bc",
+      "current_sha256": "6b22985480c5672f3cb59164c079f6c34ba5339bef7cb4d08af25030fc675d0f",
+      "same": false
+    },
+    {
+      "path": "docs/validation/product-local-task-ui/acceptance/review.md",
+      "old_sha256": "2aa217b61a502291057fad0de968df3fa7117b892c4a73f0de0532380358c241",
+      "current_sha256": "2aa217b61a502291057fad0de968df3fa7117b892c4a73f0de0532380358c241",
+      "same": true
+    },
+    {
+      "path": "sdd/chain/autonomous-verification-engineering.md",
+      "old_sha256": "e8b2dad28951ce1e9f3a53d1852721f4acb44698801d95e89957675518c85c2e",
+      "current_sha256": "e8b2dad28951ce1e9f3a53d1852721f4acb44698801d95e89957675518c85c2e",
+      "same": true
+    },
+    {
+      "path": "sdd/chain/database-engineering.md",
+      "old_sha256": "645a3264e48d5d2d294320906d4f846cf4f60ee45ee84ee67ac4b76e25274609",
+      "current_sha256": "645a3264e48d5d2d294320906d4f846cf4f60ee45ee84ee67ac4b76e25274609",
+      "same": true
+    },
+    {
+      "path": "sdd/evidence.md",
+      "old_sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+      "current_sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+      "same": true
+    },
+    {
+      "path": "sdd/features/README.md",
+      "old_sha256": "fc1fd4e2019b0a269f7fcb707c3f529f9b93b7d53f55083e1aff125c3f12c79a",
+      "current_sha256": "fc1fd4e2019b0a269f7fcb707c3f529f9b93b7d53f55083e1aff125c3f12c79a",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-agent-runtime/evidence.json",
+      "old_sha256": "9522889f636502d2dff6dcd7e6f1b82d7df0780953c0a5d94838c67f7a9d169b",
+      "current_sha256": "9522889f636502d2dff6dcd7e6f1b82d7df0780953c0a5d94838c67f7a9d169b",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-bootstrap/evidence.json",
+      "old_sha256": "dd0ce2e00df415379f33896207aae3c95f9088edfd6b69b21c91b3258b95d840",
+      "current_sha256": "dd0ce2e00df415379f33896207aae3c95f9088edfd6b69b21c91b3258b95d840",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-f0-gate/plan.md",
+      "old_sha256": "f6e2e8cacdaa25c3082ae29cb7a2e8b4f3b3c153b94b56bf4ceb1a8a422ba49a",
+      "current_sha256": "b89b6eeadd45ea1d2db3cc1ba5f0be3273bd1b753ef06b4138fe5a5041f4b38c",
+      "same": false
+    },
+    {
+      "path": "sdd/features/product-f0-gate/spec.md",
+      "old_sha256": "619755c490e4690387447db1c22f57c9a631f621868cccff596322c0f909e633",
+      "current_sha256": "beda2d8c092c20c64dbd2671da96dd0c89cef182366188053c3581a150112f7c",
+      "same": false
+    },
+    {
+      "path": "sdd/features/product-f0-gate/tasks.md",
+      "old_sha256": "e268a0afb016e58f14277ddb679b82921b1e81c7a428412c68a88749298ca660",
+      "current_sha256": "ef5cbe26408aca71a9d6dbfeb512bfa83e9b1aec168c0fbe721a6f6e20331261",
+      "same": false
+    },
+    {
+      "path": "sdd/features/product-f0-gate/traceability.json",
+      "old_sha256": "4f2c087fc31906b94680e61f4bb95521340f5cd5a84f81d61207609a63768a8b",
+      "current_sha256": "91b633e6d6bedfce5d13ff414dfde74eb0d070e0261345e4812fd4a4ff25e697",
+      "same": false
+    },
+    {
+      "path": "sdd/features/product-local-persistence/converge.md",
+      "old_sha256": "01fe5d8b59f510d459eca7987db2ad7f7fcb38443c5e18484ca931772b4b9539",
+      "current_sha256": "01fe5d8b59f510d459eca7987db2ad7f7fcb38443c5e18484ca931772b4b9539",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-local-persistence/evidence.json",
+      "old_sha256": "a955908c777275dc006f24ed660a4baef27f2b0ad8b64a7dce3b60a90702f443",
+      "current_sha256": "a955908c777275dc006f24ed660a4baef27f2b0ad8b64a7dce3b60a90702f443",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-local-persistence/plan.md",
+      "old_sha256": "c05614708f06a1cd5f6999b95a127096a626170fbd5392c567c53e94c0e466ce",
+      "current_sha256": "c05614708f06a1cd5f6999b95a127096a626170fbd5392c567c53e94c0e466ce",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-local-persistence/spec.md",
+      "old_sha256": "e67116517c774b5f08df1db971a9f8975ca6e9d31f4e163f7bc4da3620da0452",
+      "current_sha256": "e67116517c774b5f08df1db971a9f8975ca6e9d31f4e163f7bc4da3620da0452",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-local-persistence/tasks.md",
+      "old_sha256": "2305e238446af3aa78773504a403361feaffcd7a067afa0dcb97b561e7d27e09",
+      "current_sha256": "2305e238446af3aa78773504a403361feaffcd7a067afa0dcb97b561e7d27e09",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-local-persistence/traceability.json",
+      "old_sha256": "46007306383ba15ee807c2dbc4fafbc1d283b7a5d9311b95b7debdd541c559da",
+      "current_sha256": "46007306383ba15ee807c2dbc4fafbc1d283b7a5d9311b95b7debdd541c559da",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-local-task-ui/evidence.json",
+      "old_sha256": "a3383d6f56f32892227a6c638bd67b8ff1d88c324da183ddb6d31ba8e290efb1",
+      "current_sha256": "a3383d6f56f32892227a6c638bd67b8ff1d88c324da183ddb6d31ba8e290efb1",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-plugin-host/evidence.json",
+      "old_sha256": "1049ab281ae7449d6130c8fd629943094de41f6af0ce2b6daaa55cd0e28bcb4b",
+      "current_sha256": "1049ab281ae7449d6130c8fd629943094de41f6af0ce2b6daaa55cd0e28bcb4b",
+      "same": true
+    },
+    {
+      "path": "sdd/features/product-verification-engine/evidence.json",
+      "old_sha256": "9c54a2e60986ec58b7ec2c96f085a3d51e61c0acadaa0dd5558975bbbecb6bfa",
+      "current_sha256": "9c54a2e60986ec58b7ec2c96f085a3d51e61c0acadaa0dd5558975bbbecb6bfa",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-runtime-engineering/converge.md",
+      "old_sha256": "5190a1b1222215faf786386b18b7f6f956cdfd9fe0c6ef186003ab4bf80cf06c",
+      "current_sha256": "5190a1b1222215faf786386b18b7f6f956cdfd9fe0c6ef186003ab4bf80cf06c",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-runtime-engineering/evidence.json",
+      "old_sha256": "5c5a068b610f4eef4179d09e26f2747342fa7990b4c13ed5b05461b164439168",
+      "current_sha256": "5c5a068b610f4eef4179d09e26f2747342fa7990b4c13ed5b05461b164439168",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+      "old_sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+      "current_sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
+      "old_sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+      "current_sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+      "old_sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+      "current_sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-usage-accounting/converge.md",
+      "old_sha256": "680a4998ab47769356b50f27b7b90e48c70a3c17d2c26d0b70f99e8b7abd948c",
+      "current_sha256": "680a4998ab47769356b50f27b7b90e48c70a3c17d2c26d0b70f99e8b7abd948c",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-usage-accounting/evidence.json",
+      "old_sha256": "5e9ea16e24ae94d27f147d4717bae3daffde744b7547524caee151a095816e90",
+      "current_sha256": "5e9ea16e24ae94d27f147d4717bae3daffde744b7547524caee151a095816e90",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-usage-accounting/spec.md",
+      "old_sha256": "85519e01837797c97db881a959e3b4837d5ceedf37ee0d24728ef32f9ec7b30f",
+      "current_sha256": "85519e01837797c97db881a959e3b4837d5ceedf37ee0d24728ef32f9ec7b30f",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-usage-accounting/tasks.md",
+      "old_sha256": "1c7c9717d129dff3701fea7f8aa25da325754922954feb96cc8f7524cd3033ab",
+      "current_sha256": "1c7c9717d129dff3701fea7f8aa25da325754922954feb96cc8f7524cd3033ab",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-agent-usage-accounting/traceability.json",
+      "old_sha256": "aa251e1ad44dc26953a1fcd1b3ef725166baa48b21bb0ee0be86676469d1576c",
+      "current_sha256": "aa251e1ad44dc26953a1fcd1b3ef725166baa48b21bb0ee0be86676469d1576c",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-autonomous-verification-engineering/converge.md",
+      "old_sha256": "2ccfab5a1fb05e25e00d85c78660eb91f6f49415aa5a8d2c08c32b2913431d57",
+      "current_sha256": "2ccfab5a1fb05e25e00d85c78660eb91f6f49415aa5a8d2c08c32b2913431d57",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-autonomous-verification-engineering/evidence.json",
+      "old_sha256": "f0faead42373102008cfec342947e938b9c457b46f47f32a42116bc63b043826",
+      "current_sha256": "f0faead42373102008cfec342947e938b9c457b46f47f32a42116bc63b043826",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-autonomous-verification-engineering/spec.md",
+      "old_sha256": "a6a74cc78475f3ee2d381230d838dc43c22087f62bab745adbb007bd6a6d7a05",
+      "current_sha256": "a6a74cc78475f3ee2d381230d838dc43c22087f62bab745adbb007bd6a6d7a05",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-autonomous-verification-engineering/tasks.md",
+      "old_sha256": "c193d6b7ff08419986a73f00d04b9dde0115229b7649c438e77e38ce64a4b0b5",
+      "current_sha256": "c193d6b7ff08419986a73f00d04b9dde0115229b7649c438e77e38ce64a4b0b5",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-autonomous-verification-engineering/traceability.json",
+      "old_sha256": "f563fdc86fd43a0584d85bd15af9438998d0cbd648ee0f4b0fabba16e2f5405f",
+      "current_sha256": "f563fdc86fd43a0584d85bd15af9438998d0cbd648ee0f4b0fabba16e2f5405f",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-context-engineering/converge.md",
+      "old_sha256": "a12149d1d896bf1c1c44c51b58eb96c245189f44642bc9cded84d625fd0489f1",
+      "current_sha256": "a12149d1d896bf1c1c44c51b58eb96c245189f44642bc9cded84d625fd0489f1",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-context-engineering/evidence.json",
+      "old_sha256": "62e50c9d79faedf38722798c046919cb1fb45eb78b3410e1ed045f73b3be0ed8",
+      "current_sha256": "62e50c9d79faedf38722798c046919cb1fb45eb78b3410e1ed045f73b3be0ed8",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-context-engineering/spec.md",
+      "old_sha256": "1b3f6f76041cd01f25dd5785b66aea36cb061bca3085de0d1abd8026121e12b6",
+      "current_sha256": "1b3f6f76041cd01f25dd5785b66aea36cb061bca3085de0d1abd8026121e12b6",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-context-engineering/tasks.md",
+      "old_sha256": "f86825c269b695e1a74e19aebc80d7575e4dcbe50e55781f622316dca3fbfdb8",
+      "current_sha256": "f86825c269b695e1a74e19aebc80d7575e4dcbe50e55781f622316dca3fbfdb8",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-context-engineering/traceability.json",
+      "old_sha256": "5fe0ea117d11356a05c2133a270c21343e942ab0bc99d48d8e4be97863d664a0",
+      "current_sha256": "5fe0ea117d11356a05c2133a270c21343e942ab0bc99d48d8e4be97863d664a0",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-knowledge-graph-engineering/converge.md",
+      "old_sha256": "ed38af6a33f972bbf9ee5fb625cd0db7993d85375680c583892a87c7ed6b64a2",
+      "current_sha256": "ed38af6a33f972bbf9ee5fb625cd0db7993d85375680c583892a87c7ed6b64a2",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-knowledge-graph-engineering/evidence.json",
+      "old_sha256": "0945f81afbab6fbf1332e3f13e3e9fbdd8656d9a369cd7f92e2d12edfd78aa76",
+      "current_sha256": "0945f81afbab6fbf1332e3f13e3e9fbdd8656d9a369cd7f92e2d12edfd78aa76",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-knowledge-graph-engineering/spec.md",
+      "old_sha256": "b03bc32ab177534c92af325ee7bb85f0c365668bb14b65e8af88baeab50cdd0e",
+      "current_sha256": "b03bc32ab177534c92af325ee7bb85f0c365668bb14b65e8af88baeab50cdd0e",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-knowledge-graph-engineering/tasks.md",
+      "old_sha256": "584ebf394bcca3cdffdbea2caf5e2fb90211ec568480b3fd09e994cc0bc3441b",
+      "current_sha256": "584ebf394bcca3cdffdbea2caf5e2fb90211ec568480b3fd09e994cc0bc3441b",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-code-knowledge-graph-engineering/traceability.json",
+      "old_sha256": "a2b14a5431e2ee69f2bb79f562e0580db1811350ad68edb13aeea1b70165a26e",
+      "current_sha256": "a2b14a5431e2ee69f2bb79f562e0580db1811350ad68edb13aeea1b70165a26e",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-iced-engineering/converge.md",
+      "old_sha256": "fbe82e970b74008f6711dbe61ea0eba8d783e5c156d7c51254c2ccb0fc302f13",
+      "current_sha256": "fbe82e970b74008f6711dbe61ea0eba8d783e5c156d7c51254c2ccb0fc302f13",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-iced-engineering/evidence.json",
+      "old_sha256": "b894d9c1fcab37b3a00eeaddbf7d940073db307b22e67f00ae5c307da52e6a3e",
+      "current_sha256": "b894d9c1fcab37b3a00eeaddbf7d940073db307b22e67f00ae5c307da52e6a3e",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-iced-engineering/spec.md",
+      "old_sha256": "aa9fe545d3d09df385d9bbcef7ab408cb2d30db88df8f7a12f9014ea4486c50f",
+      "current_sha256": "aa9fe545d3d09df385d9bbcef7ab408cb2d30db88df8f7a12f9014ea4486c50f",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-iced-engineering/tasks.md",
+      "old_sha256": "ca3b6f0fa789e22054435398ece92ad322cbe9edd1d3fc6cab83569eb4279a53",
+      "current_sha256": "ca3b6f0fa789e22054435398ece92ad322cbe9edd1d3fc6cab83569eb4279a53",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-iced-engineering/traceability.json",
+      "old_sha256": "3e6fd2e915a7d81fb68a37464be1b007d3a2ef4fa83ba5d597434b41be2d0596",
+      "current_sha256": "3e6fd2e915a7d81fb68a37464be1b007d3a2ef4fa83ba5d597434b41be2d0596",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-plugin-protocol-engineering/converge.md",
+      "old_sha256": "ff7a09c38ad4eb6ed16f996e5b58edf7a1c05831bf7f6e6dbbe58935dfaf11d4",
+      "current_sha256": "ff7a09c38ad4eb6ed16f996e5b58edf7a1c05831bf7f6e6dbbe58935dfaf11d4",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-plugin-protocol-engineering/evidence.json",
+      "old_sha256": "7d683eaaa8ad1cca9b57a3016dcc479fe549daa816d560b23d9a5d671cd4e4f0",
+      "current_sha256": "7d683eaaa8ad1cca9b57a3016dcc479fe549daa816d560b23d9a5d671cd4e4f0",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-plugin-protocol-engineering/spec.md",
+      "old_sha256": "7cac5f3b1164a5a9724338ba4f0fafbc08e0768db2388b53caf97c4773f5680f",
+      "current_sha256": "7cac5f3b1164a5a9724338ba4f0fafbc08e0768db2388b53caf97c4773f5680f",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-plugin-protocol-engineering/tasks.md",
+      "old_sha256": "0e7ccd6b1129adff6e35d986e691cb1edd69e8d72ed27423a6786353ff49a9ce",
+      "current_sha256": "0e7ccd6b1129adff6e35d986e691cb1edd69e8d72ed27423a6786353ff49a9ce",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-plugin-protocol-engineering/traceability.json",
+      "old_sha256": "467b870c5d33bf857f30c93b7966a5f7028e37bb80df04d4f59ba12c2abcea5e",
+      "current_sha256": "467b870c5d33bf857f30c93b7966a5f7028e37bb80df04d4f59ba12c2abcea5e",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-tool-output-engineering/converge.md",
+      "old_sha256": "69797ca81f89d54ec55e5ed51b31c33f3ec9f91d18804c0472f693e07501cda5",
+      "current_sha256": "69797ca81f89d54ec55e5ed51b31c33f3ec9f91d18804c0472f693e07501cda5",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-tool-output-engineering/evidence.json",
+      "old_sha256": "f385addeb7614d4851f7d98bcf7b9312b593df9809f041673461e03c35cf81f0",
+      "current_sha256": "f385addeb7614d4851f7d98bcf7b9312b593df9809f041673461e03c35cf81f0",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-tool-output-engineering/spec.md",
+      "old_sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+      "current_sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+      "old_sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+      "current_sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+      "old_sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+      "current_sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-workspace-integrity-engineering/converge.md",
+      "old_sha256": "592b7f3b699f99e0f4b55a36c038d3e63f8521441053ac99ebaaed45a6931c8a",
+      "current_sha256": "592b7f3b699f99e0f4b55a36c038d3e63f8521441053ac99ebaaed45a6931c8a",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-workspace-integrity-engineering/evidence.json",
+      "old_sha256": "2bbd992f2d1f1b9efe7c608b3f73900658695d0a630b5ee53e61afd43b4f278c",
+      "current_sha256": "2bbd992f2d1f1b9efe7c608b3f73900658695d0a630b5ee53e61afd43b4f278c",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+      "old_sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+      "current_sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+      "old_sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+      "current_sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+      "same": true
+    },
+    {
+      "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+      "old_sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+      "current_sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+      "same": true
+    },
+    {
+      "path": "sdd/project.md",
+      "old_sha256": "404a6595f2e6ec6c0a9a8b0afb96031eed92c5eda956eeef57c83c316100aec4",
+      "current_sha256": "404a6595f2e6ec6c0a9a8b0afb96031eed92c5eda956eeef57c83c316100aec4",
+      "same": true
+    },
+    {
+      "path": "sdd/workflow.md",
+      "old_sha256": "76fed784c36ba322d1cac3438c2328f3d7a603e414443fe7a2890b5b86be0ea2",
+      "current_sha256": "76fed784c36ba322d1cac3438c2328f3d7a603e414443fe7a2890b5b86be0ea2",
+      "same": true
+    },
+    {
+      "path": "tools/governance/scripts/governance_support.py",
+      "old_sha256": "c873fa5055265691f0a3d42db120af2f30ee9d1f52ec96051415432763dccc72",
+      "current_sha256": "c873fa5055265691f0a3d42db120af2f30ee9d1f52ec96051415432763dccc72",
+      "same": true
+    },
+    {
+      "path": "tools/governance/tests/test_document_succession.py",
+      "old_sha256": "a8872b93749727cde018717afb85ec00625bb47736ca497e878d82056893890a",
+      "current_sha256": "a8872b93749727cde018717afb85ec00625bb47736ca497e878d82056893890a",
+      "same": true
+    },
+    {
+      "path": "tools/governance/tests/test_technical_acceptance.py",
+      "old_sha256": "da7f685e9035be154cdae4cba66ca88b3f5674dfde07d3e14844520ac6f17f5c",
+      "current_sha256": "da7f685e9035be154cdae4cba66ca88b3f5674dfde07d3e14844520ac6f17f5c",
+      "same": true
+    }
+  ],
+  "skill_rows_matched": 36,
+  "f0_rows": 7,
+  "quality_clauses": 13,
+  "limits": "This comparison establishes declared content agreement and documentary consistency only; no operational evidence, baseline, dependency upgrade or milestone adoption."
+}

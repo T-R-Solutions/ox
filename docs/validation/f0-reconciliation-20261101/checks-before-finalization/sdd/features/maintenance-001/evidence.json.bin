@@ -1,0 +1,534 @@
+{
+  "schema_version": 2,
+  "environment": "2026-11-01 Linux; environment identity in docs/validation/foundation-current-20261101/environment.json",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Spec criterion",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "CURRENT-REVIEW",
+        "E-DOCUMENTARY-DELTA-AC-01"
+      ],
+      "reason": "Current guard and mutation suite pass; later authorized skill changes require explicit comparison against the original bounded transformation."
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Spec criterion",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "CURRENT-REVIEW",
+        "E-DOCUMENTARY-DELTA-AC-02"
+      ],
+      "reason": "Independent-copy suite passes; no new measured composition inventory was produced here."
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Spec criterion",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "CURRENT-REVIEW",
+        "E-DOCUMENTARY-DELTA-AC-03"
+      ],
+      "reason": "Licensing review and ADR preserve own-license decision and unresolved third-party rights; origin-by-origin review was not renewed."
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Spec criterion",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "CURRENT-REVIEW",
+        "E-DOCUMENTARY-DELTA-AC-04"
+      ],
+      "reason": "Recovery passes; historical 36 UNVERIFIED clause needs succession reconciliation."
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Spec criterion",
+      "status": "UNVERIFIED",
+      "evidence_ids": [
+        "CURRENT-REVIEW",
+        "E-DOCUMENTARY-DELTA-AC-05"
+      ],
+      "reason": "Third-party permissions remain missing; own GPL decision does not close this criterion."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "CURRENT-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Criterion-specific comparison described in review artifact; current aggregate executions are supporting context only.",
+      "observed_result": "Insufficient evidence for current approval; missing execution distinguished from inconclusive review.",
+      "artifact": "docs/validation/foundation-current-20261101/maintenance-001-review.md",
+      "sha256": "29359d116382a3cd8f337866a7b501d79128aa4a3e97eaf525567835cd23c8eb",
+      "inputs": [
+        {
+          "path": "docs/decisions/governance-reconciliation.md",
+          "sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        },
+        {
+          "path": "docs/licensing/review.md",
+          "sha256": "5428fd5f2308bccce64a4489308236316e765e3eaa3b29911e5875533f6fde4e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/runs/20261101T232924.409428Z/results.json",
+          "sha256": "559a03bb8e4ceb06ab2bfc9ec279895ef0a6eac0a75d962ed053bf4e6232f086",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/plan.md",
+          "sha256": "b4083a2c49e43bf678cfc5ad88e887b9a6ba411324d0e7b0219d33f29e97b568",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/spec.md.bin",
+          "sha256": "726880f70207baafd9818db31799ae73f5b437ebe1c5fd90101644021f99b94d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/tasks.md.bin",
+          "sha256": "0078afffec7638f747500b8a6f9ddaf6b8a635399ce57b4d1349634d7882339e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/traceability.json",
+          "sha256": "64d86d88102f9fc8005a81abc782add2ef5407e0eac7e629da3da5434d6b1761",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/export-clean.py",
+          "sha256": "30f40c42fae982611e8265e3bd9e49844a85d329c4e7a50b46b7a377257bc6e8",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/verify-maintenance.py",
+          "sha256": "5d88a7002fef02f6c7fa3e5c45c0b875898954f8db4c528019c1109dcf75a5fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "935e9360d92e0dd3790ba24df31955c26b290371ded094a8a50645296e1a4641",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-01",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "Current documentary applicability/successor references only; the inherited criterion result and substantive remaining obligations are unchanged. See legacy-succession.md. No compound legacy gate promoted.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/maintenance-001.md",
+      "sha256": "6cb1866cedaf4ea43bf18e3ec5f17211ca480b25de486904288c6777f1427f41",
+      "inputs": [
+        {
+          "path": "docs/decisions/governance-reconciliation.md",
+          "sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        },
+        {
+          "path": "docs/licensing/review.md",
+          "sha256": "5428fd5f2308bccce64a4489308236316e765e3eaa3b29911e5875533f6fde4e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/runs/20261101T232924.409428Z/results.json",
+          "sha256": "559a03bb8e4ceb06ab2bfc9ec279895ef0a6eac0a75d962ed053bf4e6232f086",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/plan.md",
+          "sha256": "b4083a2c49e43bf678cfc5ad88e887b9a6ba411324d0e7b0219d33f29e97b568",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/spec.md.bin",
+          "sha256": "726880f70207baafd9818db31799ae73f5b437ebe1c5fd90101644021f99b94d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/tasks.md.bin",
+          "sha256": "0078afffec7638f747500b8a6f9ddaf6b8a635399ce57b4d1349634d7882339e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/traceability.json",
+          "sha256": "64d86d88102f9fc8005a81abc782add2ef5407e0eac7e629da3da5434d6b1761",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/scripts/export-clean.py",
+          "sha256": "30f40c42fae982611e8265e3bd9e49844a85d329c4e7a50b46b7a377257bc6e8",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/verify-maintenance.py",
+          "sha256": "5d88a7002fef02f6c7fa3e5c45c0b875898954f8db4c528019c1109dcf75a5fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "935e9360d92e0dd3790ba24df31955c26b290371ded094a8a50645296e1a4641",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/maintenance-001/spec.md",
+          "sha256": "20cb07e6877cbda0fa52f9874e884129f7e21411e00ffb96de681d536adac470",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/maintenance-001/tasks.md",
+          "sha256": "0f8ed610648a45c7ea0354bc69b253d07478af23000439f9b1065656d1fc4dca",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-02",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "Current documentary applicability/successor references only; the inherited criterion result and substantive remaining obligations are unchanged. See legacy-succession.md. No compound legacy gate promoted.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/maintenance-001.md",
+      "sha256": "6cb1866cedaf4ea43bf18e3ec5f17211ca480b25de486904288c6777f1427f41",
+      "inputs": [
+        {
+          "path": "docs/decisions/governance-reconciliation.md",
+          "sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        },
+        {
+          "path": "docs/licensing/review.md",
+          "sha256": "5428fd5f2308bccce64a4489308236316e765e3eaa3b29911e5875533f6fde4e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/runs/20261101T232924.409428Z/results.json",
+          "sha256": "559a03bb8e4ceb06ab2bfc9ec279895ef0a6eac0a75d962ed053bf4e6232f086",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/plan.md",
+          "sha256": "b4083a2c49e43bf678cfc5ad88e887b9a6ba411324d0e7b0219d33f29e97b568",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/spec.md.bin",
+          "sha256": "726880f70207baafd9818db31799ae73f5b437ebe1c5fd90101644021f99b94d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/tasks.md.bin",
+          "sha256": "0078afffec7638f747500b8a6f9ddaf6b8a635399ce57b4d1349634d7882339e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/traceability.json",
+          "sha256": "64d86d88102f9fc8005a81abc782add2ef5407e0eac7e629da3da5434d6b1761",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/export-clean.py",
+          "sha256": "30f40c42fae982611e8265e3bd9e49844a85d329c4e7a50b46b7a377257bc6e8",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/scripts/verify-maintenance.py",
+          "sha256": "5d88a7002fef02f6c7fa3e5c45c0b875898954f8db4c528019c1109dcf75a5fd",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "935e9360d92e0dd3790ba24df31955c26b290371ded094a8a50645296e1a4641",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/spec.md",
+          "sha256": "20cb07e6877cbda0fa52f9874e884129f7e21411e00ffb96de681d536adac470",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/maintenance-001/tasks.md",
+          "sha256": "0f8ed610648a45c7ea0354bc69b253d07478af23000439f9b1065656d1fc4dca",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-03",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "Current documentary applicability/successor references only; the inherited criterion result and substantive remaining obligations are unchanged. See legacy-succession.md. No compound legacy gate promoted.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/maintenance-001.md",
+      "sha256": "6cb1866cedaf4ea43bf18e3ec5f17211ca480b25de486904288c6777f1427f41",
+      "inputs": [
+        {
+          "path": "docs/decisions/governance-reconciliation.md",
+          "sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        },
+        {
+          "path": "docs/licensing/review.md",
+          "sha256": "5428fd5f2308bccce64a4489308236316e765e3eaa3b29911e5875533f6fde4e",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/runs/20261101T232924.409428Z/results.json",
+          "sha256": "559a03bb8e4ceb06ab2bfc9ec279895ef0a6eac0a75d962ed053bf4e6232f086",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/plan.md",
+          "sha256": "b4083a2c49e43bf678cfc5ad88e887b9a6ba411324d0e7b0219d33f29e97b568",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/spec.md.bin",
+          "sha256": "726880f70207baafd9818db31799ae73f5b437ebe1c5fd90101644021f99b94d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/tasks.md.bin",
+          "sha256": "0078afffec7638f747500b8a6f9ddaf6b8a635399ce57b4d1349634d7882339e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/traceability.json",
+          "sha256": "64d86d88102f9fc8005a81abc782add2ef5407e0eac7e629da3da5434d6b1761",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/export-clean.py",
+          "sha256": "30f40c42fae982611e8265e3bd9e49844a85d329c4e7a50b46b7a377257bc6e8",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/verify-maintenance.py",
+          "sha256": "5d88a7002fef02f6c7fa3e5c45c0b875898954f8db4c528019c1109dcf75a5fd",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "935e9360d92e0dd3790ba24df31955c26b290371ded094a8a50645296e1a4641",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/spec.md",
+          "sha256": "20cb07e6877cbda0fa52f9874e884129f7e21411e00ffb96de681d536adac470",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/maintenance-001/tasks.md",
+          "sha256": "0f8ed610648a45c7ea0354bc69b253d07478af23000439f9b1065656d1fc4dca",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-04",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "Current documentary applicability/successor references only; the inherited criterion result and substantive remaining obligations are unchanged. See legacy-succession.md. No compound legacy gate promoted.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/maintenance-001.md",
+      "sha256": "6cb1866cedaf4ea43bf18e3ec5f17211ca480b25de486904288c6777f1427f41",
+      "inputs": [
+        {
+          "path": "docs/decisions/governance-reconciliation.md",
+          "sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        },
+        {
+          "path": "docs/licensing/review.md",
+          "sha256": "5428fd5f2308bccce64a4489308236316e765e3eaa3b29911e5875533f6fde4e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/runs/20261101T232924.409428Z/results.json",
+          "sha256": "559a03bb8e4ceb06ab2bfc9ec279895ef0a6eac0a75d962ed053bf4e6232f086",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/plan.md",
+          "sha256": "b4083a2c49e43bf678cfc5ad88e887b9a6ba411324d0e7b0219d33f29e97b568",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/spec.md.bin",
+          "sha256": "726880f70207baafd9818db31799ae73f5b437ebe1c5fd90101644021f99b94d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/tasks.md.bin",
+          "sha256": "0078afffec7638f747500b8a6f9ddaf6b8a635399ce57b4d1349634d7882339e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/traceability.json",
+          "sha256": "64d86d88102f9fc8005a81abc782add2ef5407e0eac7e629da3da5434d6b1761",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/export-clean.py",
+          "sha256": "30f40c42fae982611e8265e3bd9e49844a85d329c4e7a50b46b7a377257bc6e8",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/verify-maintenance.py",
+          "sha256": "5d88a7002fef02f6c7fa3e5c45c0b875898954f8db4c528019c1109dcf75a5fd",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "935e9360d92e0dd3790ba24df31955c26b290371ded094a8a50645296e1a4641",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/spec.md",
+          "sha256": "20cb07e6877cbda0fa52f9874e884129f7e21411e00ffb96de681d536adac470",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/maintenance-001/tasks.md",
+          "sha256": "0f8ed610648a45c7ea0354bc69b253d07478af23000439f9b1065656d1fc4dca",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-05",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "Current documentary applicability/successor references only; the inherited criterion result and substantive remaining obligations are unchanged. See legacy-succession.md. No compound legacy gate promoted.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/maintenance-001.md",
+      "sha256": "6cb1866cedaf4ea43bf18e3ec5f17211ca480b25de486904288c6777f1427f41",
+      "inputs": [
+        {
+          "path": "docs/decisions/governance-reconciliation.md",
+          "sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        },
+        {
+          "path": "docs/licensing/review.md",
+          "sha256": "5428fd5f2308bccce64a4489308236316e765e3eaa3b29911e5875533f6fde4e",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/runs/20261101T232924.409428Z/results.json",
+          "sha256": "559a03bb8e4ceb06ab2bfc9ec279895ef0a6eac0a75d962ed053bf4e6232f086",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/plan.md",
+          "sha256": "b4083a2c49e43bf678cfc5ad88e887b9a6ba411324d0e7b0219d33f29e97b568",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/spec.md.bin",
+          "sha256": "726880f70207baafd9818db31799ae73f5b437ebe1c5fd90101644021f99b94d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/maintenance-001/tasks.md.bin",
+          "sha256": "0078afffec7638f747500b8a6f9ddaf6b8a635399ce57b4d1349634d7882339e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/traceability.json",
+          "sha256": "64d86d88102f9fc8005a81abc782add2ef5407e0eac7e629da3da5434d6b1761",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/export-clean.py",
+          "sha256": "30f40c42fae982611e8265e3bd9e49844a85d329c4e7a50b46b7a377257bc6e8",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/verify-maintenance.py",
+          "sha256": "5d88a7002fef02f6c7fa3e5c45c0b875898954f8db4c528019c1109dcf75a5fd",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "935e9360d92e0dd3790ba24df31955c26b290371ded094a8a50645296e1a4641",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/maintenance-001/spec.md",
+          "sha256": "20cb07e6877cbda0fa52f9874e884129f7e21411e00ffb96de681d536adac470",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/maintenance-001/tasks.md",
+          "sha256": "0f8ed610648a45c7ea0354bc69b253d07478af23000439f9b1065656d1fc4dca",
+          "role": "contract"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Does not validate the application; license decision pending.",
+    "maintenance-001 observations are new; previous results are preserved. Actual-package criteria, a new agent trial and unresolved ownership/permissions remain UNVERIFIED.",
+    "Inputs changed by bootstrap; previous observations and historical approvals are preserved in docs/validation/bootstrap-governance/previous. Dependent criteria await their own reacceptance; old hashes were not renewed.",
+    "2026-11-01 documentary reconciliation: old input digests preserved under explicit snapshot paths; new task/successor inspections do not represent operational reruns. See docs/validation/f0-reconciliation-20261101/dependency-impact.json."
+  ]
+}

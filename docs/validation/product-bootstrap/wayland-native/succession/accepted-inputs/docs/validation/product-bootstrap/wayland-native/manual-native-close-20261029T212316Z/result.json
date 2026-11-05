@@ -1,0 +1,195 @@
+{
+  "scenario": "native-close",
+  "started_utc": "2026-10-29T21:23:16.862783+00:00",
+  "deadline_seconds": 60,
+  "method": "Human visual observation and interaction; separate WAYLAND_DEBUG trace and supervised process exit; no synthetic events or state calls",
+  "inputs": [
+    {
+      "path": "application/target/debug/ox",
+      "sha256": "b8e50493cc28e70fb3cf21e5ed339f56e35dfba73682917cbfbe7fb1c9cae54b"
+    },
+    {
+      "path": "application/Cargo.toml",
+      "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380"
+    },
+    {
+      "path": "application/Cargo.lock",
+      "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd"
+    },
+    {
+      "path": "application/rust-toolchain.toml",
+      "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33"
+    },
+    {
+      "path": "application/crates/ox-skills/src/lib.rs",
+      "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b"
+    },
+    {
+      "path": "application/crates/ox-skills/src/reference.rs",
+      "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424"
+    },
+    {
+      "path": "application/crates/ox-sdd/src/lib.rs",
+      "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a"
+    },
+    {
+      "path": "application/crates/ox-sdd/src/artifact.rs",
+      "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb"
+    },
+    {
+      "path": "application/crates/ox-observability/src/lib.rs",
+      "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810"
+    },
+    {
+      "path": "application/crates/ox-observability/src/measurement.rs",
+      "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74"
+    },
+    {
+      "path": "application/crates/ox-verification/src/lib.rs",
+      "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501"
+    },
+    {
+      "path": "application/crates/ox-verification/src/verdict.rs",
+      "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133"
+    },
+    {
+      "path": "application/crates/ox-output/src/lib.rs",
+      "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed"
+    },
+    {
+      "path": "application/crates/ox-output/src/capture.rs",
+      "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12"
+    },
+    {
+      "path": "application/crates/ox-graph/src/lib.rs",
+      "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867"
+    },
+    {
+      "path": "application/crates/ox-graph/src/relation.rs",
+      "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c"
+    },
+    {
+      "path": "application/crates/ox-context/src/lib.rs",
+      "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2"
+    },
+    {
+      "path": "application/crates/ox-context/src/query.rs",
+      "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a"
+    },
+    {
+      "path": "application/crates/ox-storage/src/lib.rs",
+      "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7"
+    },
+    {
+      "path": "application/crates/ox-storage/src/local.rs",
+      "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad"
+    },
+    {
+      "path": "application/crates/ox-workspace/src/lib.rs",
+      "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8"
+    },
+    {
+      "path": "application/crates/ox-workspace/src/root.rs",
+      "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7"
+    },
+    {
+      "path": "application/crates/ox-workspace/tests/root_contract.rs",
+      "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad"
+    },
+    {
+      "path": "application/crates/ox-task/src/lib.rs",
+      "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54"
+    },
+    {
+      "path": "application/crates/ox-task/src/state.rs",
+      "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7"
+    },
+    {
+      "path": "application/crates/ox-task/tests/lifecycle.rs",
+      "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8"
+    },
+    {
+      "path": "application/crates/ox-policy/src/lib.rs",
+      "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6"
+    },
+    {
+      "path": "application/crates/ox-policy/src/authorization.rs",
+      "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426"
+    },
+    {
+      "path": "application/crates/ox-plugin/src/lib.rs",
+      "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52"
+    },
+    {
+      "path": "application/crates/ox-plugin/src/protocol.rs",
+      "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0"
+    },
+    {
+      "path": "application/crates/ox-plugin/tests/compatibility.rs",
+      "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51"
+    },
+    {
+      "path": "application/crates/ox-agent/src/lib.rs",
+      "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a"
+    },
+    {
+      "path": "application/crates/ox-agent/src/session.rs",
+      "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f"
+    },
+    {
+      "path": "application/crates/ox-core/src/lib.rs",
+      "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563"
+    },
+    {
+      "path": "application/crates/ox-core/src/capability.rs",
+      "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab"
+    },
+    {
+      "path": "application/crates/ox-ui/src/lib.rs",
+      "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5"
+    },
+    {
+      "path": "application/crates/ox-ui/src/shell.rs",
+      "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2"
+    },
+    {
+      "path": "application/crates/ox-ui/src/desktop.rs",
+      "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea"
+    },
+    {
+      "path": "application/crates/ox-ui/tests/shell_contract.rs",
+      "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465"
+    },
+    {
+      "path": "application/crates/ox-app/src/main.rs",
+      "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb"
+    },
+    {
+      "path": "application/crates/ox-app/src/lib.rs",
+      "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3"
+    },
+    {
+      "path": "application/crates/ox-app/src/startup.rs",
+      "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147"
+    },
+    {
+      "path": "application/crates/ox-app/tests/desktop.rs",
+      "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311"
+    },
+    {
+      "path": "application/crates/ox-app/tests/initialization.rs",
+      "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115"
+    }
+  ],
+  "human_observation": "pending",
+  "environment": {
+    "WAYLAND_DISPLAY": "wayland-0",
+    "DISPLAY": null,
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "XDG_SESSION_TYPE": "wayland"
+  },
+  "pid": 402236,
+  "exit_code": 0,
+  "supervisor_terminated": false,
+  "elapsed_seconds": 8.73227043800216
+}

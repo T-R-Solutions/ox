@@ -1,0 +1,392 @@
+[
+  {
+    "feature": "adoption-governance",
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T006"
+    ],
+    "implementation": "docs/structure/files.json",
+    "oracle": "tools/governance/scripts/check-ox.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Current recovery verifies historical identities; semantic mapping of all library-copy succession records remains incomplete."
+  },
+  {
+    "feature": "adoption-governance",
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T002",
+      "T006"
+    ],
+    "implementation": ".codex/skills/README.md",
+    "oracle": "tools/governance/scripts/check-ox.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "The literal 29-bridge inventory is superseded by governance-reconciliation (30); no current approval of the original compound criterion."
+  },
+  {
+    "feature": "adoption-governance",
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T003",
+      "T006"
+    ],
+    "implementation": "AGENTS.md",
+    "oracle": "docs/validation/normative-coverage.md",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Current local IDs pass check-ox; full criterion-specific semantic coverage review remains incomplete."
+  },
+  {
+    "feature": "adoption-governance",
+    "acceptance": "AC-04",
+    "requirement": "REQ-04",
+    "decision": "D-04",
+    "risk": "R-04",
+    "tasks": [
+      "T004",
+      "T006"
+    ],
+    "implementation": "tools/governance/scripts/run-checks.py",
+    "oracle": "tools/governance/scripts/check-ox.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Current validator and all governance tests pass; the required report separation and historical trial scope need explicit mapping."
+  },
+  {
+    "feature": "governance-externalization",
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T004"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Independent-copy tests ran in the complete suite; current actual delivery boundary needs separate qualification."
+  },
+  {
+    "feature": "governance-externalization",
+    "acceptance": "AC-02",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T004"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Recursive inspection and mutation suite pass; criterion-specific renamed-content case mapping remains incomplete."
+  },
+  {
+    "feature": "governance-externalization",
+    "acceptance": "AC-03",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T004"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Local authority IDs and links pass; semantic correspondence review remains incomplete."
+  },
+  {
+    "feature": "governance-externalization",
+    "acceptance": "AC-04",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T004"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Mutation tests pass; the exact required corruption/restoration cases need criterion-specific mapping."
+  },
+  {
+    "feature": "governance-externalization",
+    "acceptance": "AC-05",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T004"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Predecessors exist and freshness passes; full history lineage review remains incomplete."
+  },
+  {
+    "feature": "governance-externalization",
+    "acceptance": "AC-06",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T004"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Literal 36 UNVERIFIED condition conflicts with later consumer acceptance; technical-acceptance explicitly supersedes product-foundation AC-03, so succession scope here needs reconciliation."
+  },
+  {
+    "feature": "governance-externalization",
+    "acceptance": "AC-07",
+    "requirement": "REQ-04",
+    "decision": "D-04",
+    "risk": "R-04",
+    "tasks": [
+      "T005"
+    ],
+    "implementation": "tools/governance/scripts/package-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "UNVERIFIED",
+    "remaining": "No new actual ZIP was qualified in this consolidation."
+  },
+  {
+    "feature": "governance-layout",
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001",
+      "T002"
+    ],
+    "implementation": "tools/governance/scripts/governance_support.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Recovery reports 439/439 inputs; mapping of the 23 original files needs criterion-specific review."
+  },
+  {
+    "feature": "governance-layout",
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T002",
+      "T003",
+      "T005"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Root commands and independent-copy suite pass; active reference mapping review remains incomplete."
+  },
+  {
+    "feature": "governance-layout",
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T003",
+      "T005"
+    ],
+    "implementation": "tools/governance/scripts/package-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "UNVERIFIED",
+    "remaining": "No new actual ZIP was qualified in this consolidation."
+  },
+  {
+    "feature": "governance-layout",
+    "acceptance": "AC-04",
+    "requirement": "REQ-04",
+    "decision": "D-04",
+    "risk": "R-04",
+    "tasks": [
+      "T001",
+      "T004",
+      "T005"
+    ],
+    "implementation": "docs/decisions/governance-layout.md",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Recovery passes; literal 36 UNVERIFIED clause is obsolete relative to later consumer records and needs explicit succession reconciliation."
+  },
+  {
+    "feature": "maintenance-001",
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Current guard and mutation suite pass; later authorized skill changes require explicit comparison against the original bounded transformation."
+  },
+  {
+    "feature": "maintenance-001",
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T002"
+    ],
+    "implementation": "tools/governance/scripts/export-clean.py",
+    "oracle": "tools/governance/scripts/verify-maintenance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Independent-copy suite passes; no new measured composition inventory was produced here."
+  },
+  {
+    "feature": "maintenance-001",
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T003"
+    ],
+    "implementation": "docs/licensing/review.md",
+    "oracle": "tools/governance/scripts/verify-maintenance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Licensing review and ADR preserve own-license decision and unresolved third-party rights; origin-by-origin review was not renewed."
+  },
+  {
+    "feature": "maintenance-001",
+    "acceptance": "AC-04",
+    "requirement": "REQ-04",
+    "decision": "D-04",
+    "risk": "R-04",
+    "tasks": [
+      "T004"
+    ],
+    "implementation": "tools/governance/scripts/verify-maintenance.py",
+    "oracle": "tools/governance/scripts/verify-maintenance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Recovery passes; historical 36 UNVERIFIED clause needs succession reconciliation."
+  },
+  {
+    "feature": "maintenance-001",
+    "acceptance": "AC-05",
+    "requirement": "REQ-03",
+    "decision": "D-04",
+    "risk": "R-04",
+    "tasks": [
+      "T005"
+    ],
+    "implementation": "docs/licensing/review.md",
+    "oracle": "tools/governance/scripts/verify-maintenance.py",
+    "previous": "UNVERIFIED",
+    "current": "UNVERIFIED",
+    "remaining": "Third-party permissions remain missing; own GPL decision does not close this criterion."
+  },
+  {
+    "feature": "product-foundation",
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T002",
+      "T006"
+    ],
+    "implementation": "sdd/project.md",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "not-yet-implemented was superseded by bootstrap-implemented; compound historical gate needs explicit current interpretation."
+  },
+  {
+    "feature": "product-foundation",
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T003",
+      "T006"
+    ],
+    "implementation": "docs/development/sdd-skills.md",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "29-entry clause was superseded by the 30-entry reconciliation; integration documentation remains present."
+  },
+  {
+    "feature": "product-foundation",
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T003",
+      "T006"
+    ],
+    "implementation": "sdd/features/product-foundation/spec.md",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Unconditional UNVERIFIED clause explicitly superseded by technical-acceptance ADR; consumer acceptance is not product acceptance."
+  },
+  {
+    "feature": "product-foundation",
+    "acceptance": "AC-04",
+    "requirement": "REQ-04",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T004",
+      "T006"
+    ],
+    "implementation": "tools/governance/scripts/package-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "UNVERIFIED",
+    "remaining": "No new actual ZIP was qualified in this consolidation."
+  },
+  {
+    "feature": "product-foundation",
+    "acceptance": "AC-05",
+    "requirement": "REQ-05",
+    "decision": "D-04",
+    "risk": "R-04",
+    "tasks": [
+      "T005",
+      "T006"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py",
+    "previous": "UNVERIFIED",
+    "current": "INCONCLUSIVE",
+    "remaining": "Current checks pass and all prior evidence bindings match; complete lineage/criterion mapping remains incomplete."
+  }
+]

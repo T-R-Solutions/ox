@@ -1,0 +1,9 @@
+# Plan: product-agent-runtime
+
+Full route under the maintainer’s sequential local-delivery authorization.
+D-01 / R-01: Use std::process direct-child supervision with caller-driven poll, no Tokio or ACP adoption. Spawn is local and explicit: caller provides absolute executable, workspace, session/task identity and attempt. Controlled adapter capabilities are launch, observed exit and direct-child termination; pause, resume, usage and remote providers unavailable. Separate identity tuple (session, task, attempt), process PID and monotonically increasing event sequence. Idle -> Running on Started; Running -> Cancelling on cancellation request; Running/Cancelling -> Finished only after observed exit. Exit observed before cancellation wins; otherwise cancellation outcome is recorded after reap. Wrong identity/sequence or terminal events reject without mutation. Recovery is a new Runtime and next attempt; old object/history retained, no retries/replay. One child, at most three lifecycle events per attempt, poll deadline >0 <=10s; no process-tree/OS resource enforcement. stdin/stdout/stderr are explicitly unavailable (null streams), no text event parsing or output-preservation claim in this no-output fixture adapter; production output adapters require separate design. Host never edits workspace; fixture test compares sentinel and directory entries, not a sandbox guarantee. Drop terminates/reaps owned direct child. No integration with real agents.
+
+Primary skill: .codex/skills/agent-runtime-engineering/SKILL.md; bridge sdd/chain/agent-runtime-engineering.md, version 1. No semantic skill version; SHA-256 in skills.json.
+Supporting rust skill (same path under .codex/skills/rust/SKILL.md, bridge version 1) addresses safe Rust API and bounded ownership.
+Implementation: application/crates/ox-agent/src/runtime.rs; oracle: application/crates/ox-agent/tests/runtime.rs.
+T001 specifies, T002 implements, T003 tests, T004 records acceptance.

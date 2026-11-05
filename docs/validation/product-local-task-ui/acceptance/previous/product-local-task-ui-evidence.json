@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "environment": "Local Linux workspace; implementation pending",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Existing accessible workspace accepted; missing or inaccessible directory refused before process launch.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Real controlled task execution reaches coherent observed success, failure or timeout states.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Cancellation remains pending until child termination is observed.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Duplicate actions, workspace changes while busy and late events cannot corrupt another attempt.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Execution and verification leave the actual interface responsive.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Independent oracle approves the correct task-produced result and rejects incorrect bytes or identity.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-07",
+      "criterion": "Absent evidence and completion claims never approve a result.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-08",
+      "criterion": "Changed inputs invalidate current acceptance while preserving prior observations.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-09",
+      "criterion": "Exclusive task directories preserve all preexisting workspace content.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-10",
+      "criterion": "Window close supervises owned work through termination before application exit.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-11",
+      "criterion": "Five evidence states, criterion, attempt, verification run, inputs and observation freshness are visible.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Existing desktop harness does not yet cover this feature; traceability must be refined with implementation."
+  ]
+}

@@ -1,0 +1,4590 @@
+{
+  "schema_version": 2,
+  "environment": "{\n  \"system\": \"Linux-7.3.0-1-default-x86_64-with-glibc2.44\",\n  \"machine\": \"x86_64\",\n  \"rustc\": \"rustc 1.99.1 (58cf8f9c3 2026-10-13)\",\n  \"cargo\": \"cargo 1.99.1 (5f94df478 2026-08-27)\",\n  \"toolchain\": \"stable\",\n  \"display\": \":0\",\n  \"wayland_display\": \"wayland-0\",\n  \"gui_backend\": \"X11 via XWayland session, WAYLAND_DISPLAY removed only in test child; tiny-skia software renderer\",\n  \"python\": \"3.13.16\"\n}",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Workspace virtual com 16 crates compiláveis e lockfile único; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-STRUCTURE-LAYOUT",
+        "E-CHECK-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Janela Iced abre, interação revela detalhes e encerra pelo botão e pela janela; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-GUI-LAYOUT",
+        "E-REVIEW-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Binário ox delega à biblioteca; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-REVIEW-LAYOUT",
+        "E-TEST-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Todas as raízes próprias proíbem unsafe; dependências avaliadas separadamente; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-STRUCTURE-LAYOUT",
+        "E-DEPS-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Módulos externos sem mod.rs; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-STRUCTURE-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Testes unitários e externos descobertos e executados; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-TEST-LAYOUT",
+        "E-DISCOVERY-LAYOUT",
+        "E-GUI-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-07",
+      "criterion": "Grafo acíclico e UI separada dos domínios; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-STRUCTURE-LAYOUT",
+        "E-CHECK-LAYOUT",
+        "E-REVIEW-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-08",
+      "criterion": "Identidades usadas distintas, UUID v7 somente para entidades persistentes globais; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-REVIEW-LAYOUT",
+        "E-TEST-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-09",
+      "criterion": "Evidências com inputs e resultados reais; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-SDD-LAYOUT",
+        "E-REVIEW-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-10",
+      "criterion": "Verificadores de governança continuam operacionais; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-GOV-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-11",
+      "criterion": "Contrato versionado de plugins; IPC e sandbox indisponíveis; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-REVIEW-LAYOUT",
+        "E-TEST-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-12",
+      "criterion": "Produto separado da distribuição de governança; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-GOV-LAYOUT",
+        "E-REVIEW-LAYOUT"
+      ]
+    },
+    {
+      "id": "AC-13",
+      "criterion": "16 contratos úteis e capacidades futuras explicitamente indisponíveis; verificar com Cargo, inspeção ou execução gráfica conforme plan.",
+      "status": "APROVADO",
+      "evidence_ids": [
+        "E-REVIEW-LAYOUT",
+        "E-CHECK-LAYOUT",
+        "E-GUI-LAYOUT"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-STRUCTURE-LAYOUT",
+      "kind": "inspection",
+      "command_or_method": "python3 docs/validation/product-bootstrap/inspect.py; cargo metadata --manifest-path application/Cargo.toml --no-deps --format-version 1; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "16 membros exatos, DAG, raízes forbid, sem mod.rs/placeholders, stable. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/structure.json",
+      "sha256": "edbee66d4e26aa42da07f3fedd94e8f3f25bd1be282dafa208b947ca189fc2ee",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-CHECK-LAYOUT",
+      "kind": "test",
+      "command_or_method": "cd application && cargo check --workspace; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "Compilação dos 16 crates a partir de application: exit 0. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/check-from-workspace.log",
+      "sha256": "9ddcb7a97f3589835ba8f354c41d25b0a805bd5f85ddbccaff009e6f6dc7236c",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-TEST-LAYOUT",
+      "kind": "test",
+      "command_or_method": "cargo test --manifest-path application/Cargo.toml --workspace; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "7 testes passaram; 2 gráficos ignorados com motivo, executados separadamente em E-GUI. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/test-accepted.log",
+      "sha256": "e9e71926d9c0e70eb1ae31c66740ddfe582e71097b1ef59cace69e72d2598fb8",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-DISCOVERY-LAYOUT",
+      "kind": "inspection",
+      "command_or_method": "cargo test --manifest-path application/Cargo.toml --workspace -- --list; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "9 testes descobertos: 2 unitários, 5 integrações comuns, 2 integrações gráficas. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/test-list-final.log",
+      "sha256": "b7d02eac104962fa3bfd796455282b6307a1f4161cf9aa73e42f1cf64f6f8685",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-GUI-LAYOUT",
+      "kind": "test",
+      "command_or_method": "OX_DESKTOP_CAPTURE_DIR=\"$PWD/docs/validation/product-bootstrap\" cargo test --manifest-path application/Cargo.toml -p ox-app --test desktop -- --ignored --nocapture; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "2 passaram. Janela real, toggle ida/volta, pixels mudaram; Sair e WM_DELETE_WINDOW retornaram exit 0. X11 na sessão XWayland. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/desktop.log",
+      "sha256": "84c8b44172a870643274400cc634d38cd4748f3b3158276aa037afb9d5c82bdb",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-FMT-LAYOUT",
+      "kind": "test",
+      "command_or_method": "cargo fmt --manifest-path application/Cargo.toml --all -- --check; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "exit 0; formato aceito. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/fmt-accepted.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-CLIPPY-LAYOUT",
+      "kind": "test",
+      "command_or_method": "cargo clippy --manifest-path application/Cargo.toml --workspace --all-targets -- -D warnings; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "exit 0; nenhum warning. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/clippy-accepted.log",
+      "sha256": "97c02efec76080b598218dd3e7af586f9ec3d304bcce7d9d31f18519ea8e1df6",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-REVIEW-LAYOUT",
+      "kind": "inspection",
+      "command_or_method": "Revisão de APIs/contratos, manifestos, política de IDs e capturas collapsed.png/expanded.png; fontes identificadas nos inputs; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "Revisão por contrato registrada; nenhum host IPC, persistência, agente ou sandbox alegado. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/review.md",
+      "sha256": "36b837bb174a96ba06f8103324b125303ddba9622034a1bbf7a31bd006140d81",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-DEPS-LAYOUT",
+      "kind": "inspection",
+      "command_or_method": "Inventário dos manifestos e varredura de tokens unsafe e arquivos C/C++ dos sources locais resolvidos para Linux; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "154 dependências examinadas; 126 com token unsafe em fontes, inclusive comentários/tests/cfg; não é auditoria integral. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/dependency-review.json",
+      "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-SDD-LAYOUT",
+      "kind": "test",
+      "command_or_method": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only; revisão posterior de referências em 28/10/2026: alterações documentais e fixtures de exclusão de application, sem mudanças nos inputs Rust ou oráculos de produto; execução original conservada, não repetida.",
+      "observed_result": "Estrutura, IDs e rastreabilidade válidos. Aceitação schema 2 exige o check final separado. Reexame local: referências atuais corrigidas para workspace virtual e crates; resultados Rust/gráficos anteriores conservam os mesmos bytes de implementação.",
+      "artifact": "docs/validation/product-bootstrap/structure-sdd.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-GOV-LAYOUT",
+      "kind": "test",
+      "command_or_method": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/run-checks.py",
+      "observed_result": "Reexecução após correções de layout: validadores normal/estrutural, check-ox e 23 testes passaram, incluindo fixture que exclui application/Cargo.toml, Cargo.lock, crates/ox-app/src, tests e target do pacote de governança.",
+      "artifact": "docs/validation/product-bootstrap/layout-audit/checks.log",
+      "sha256": "8cf3fcc29ebb61cf9649f3120dcf44e88ce8844ebb41d36ac0c32c687358b5c5",
+      "inputs": [
+        {
+          "path": "README.md",
+          "sha256": "7dd99cb1892ffee69995c4e32537d7b95c394bc6943712e27e4bb199aeb7f069",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "implementation"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "3969a3a5c03783e34bde05f54ed5f9a89d41f6979fcfda2eff55caf4c72ead2a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "a7b6543c771229d92e0871ea19857a0231a29cd30bd19bf9f62e5cc8ad0ca311",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "d821c1fa127488f5050a2075a4041e34f3fec3753ab0c469f0be8ef43d829b52",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "b8235b382e79e744c46308a7127af59ff863a2ea66bec26e595f2963b842cea5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "071925f5cc52941c614f45c50a071a085fe0dabd78067752da47186788b79fea",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "abfa4d4f435b527f0f976a7ba3a2b48dfd71c55d17172def876c1f00ed9f2cf5",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c31efdd23789434a34fc3fcd61a0a7eb7975a0accef4461066e2a390638ea501",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "implementation"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "7458b2d74495e6fb1c1edeea4d5a793705476431dadb60627187111f91441e13",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "b4abfacf7ff51339d9783eea52aaee35772ac28721445f2464f569bfe12f962f",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "30319f0a39a3275a5821efe075050b7c4bd38e3b66bb3440bcbef3ab6f734a12",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/dependency-review.json",
+          "sha256": "2b344c4b07838e7bcdf8742febb9df0b6533c3e01777c3abb60bb335a5369b42",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/environment.json",
+          "sha256": "4464692408ba0cd76588f1a67ace82a57e123869b68a514244344764b417e2c2",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/inspect.py",
+          "sha256": "d39264ec9a017a0327796cfc155a3266a8d850595bd952c7b6ae10f9ad3700b3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/metadata.json",
+          "sha256": "cb3cbe4fda629e331c1253c9c250004a1f2b3cdbf067663adc53e282822e3b1d",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "75c9a9da3b1a99329b54608331ab430f2a8bbe99714287875d8333d965bda313",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/skills.json",
+          "sha256": "9eb190bdd038e7efa7341cb03ddfbec58cd9737cee268c078c5b8db326ecbd87",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "0eb24480d33990786f837c1564ba5c661e4d4b9398fc8616bf807c47809ba446",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "5b479506034da3315ff31e844e03b1e24066b3819a39971bf8e846796ea5e365",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "06d1b5d778cccb59de34334370953769d776cbf6136c8e3d7305d41a1c51fad0",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "37d0fcb025e74bc33c6bc5c6a25acf79a9b5e752d0396e8d65aa76d325f1f6d4",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "cf178496dde7b738e48e1d7f0612d349aeecf3ac156a24991e3b05d163eba947",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "829bddb20793db9d84fc32c2e094275c806a3b760bfcf2f76975d7beb7ab0408",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "2e467220379c11644b9e1c8cc947acb6a96b5d79b3f2ff107c82581c5ea549dc",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "4549a60997924efdb50e9cacac904a9b6b6802e8935c21be1f32df8b822bb6e7",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/changes.json",
+          "sha256": "52e5db3b26f6a9b22ec6319631ce983c48bfeaddaf4ede5250309d0112076085",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-bootstrap/layout-audit/report.json",
+          "sha256": "244b846fad460e58074d87560705b4083735bf1b02c7d274911a9651874c3697",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Aceitação somente da fatia product-bootstrap; F0 inteira não concluída.",
+    "Linux x86_64 X11/XWayland observado; Wayland nativo e demais plataformas não exercitados.",
+    "stable observada 1.99.1; não foi testado compilador 1.99.0 nem provado um MSRV técnico mínimo.",
+    "IPC, sandbox, agentes, persistência, índices e motores continuam indisponíveis; sem UUID persistente nesta fatia.",
+    "Dependências possuem unsafe/FFI; inventário não certifica segurança nem direitos de distribuição.",
+    "Aprovações históricas preservadas em bootstrap-governance/previous; critérios com inputs alterados permanecem NÃO VERIFICADO, listados em invalidation.json.",
+    "Hashes conferem bytes, não autenticidade ou suficiência de um oráculo."
+  ]
+}

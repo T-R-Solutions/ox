@@ -1,0 +1,8 @@
+# Tarefas — persistência local proposta
+
+- [x] T001 [REQ-01..07, D-01, R-01..03]: preparar ADR comparativa e critérios verificáveis, sem implementação; docs/decisions/local-persistence-proposal.md e spec.md.
+- [ ] T002 [REQ-01..07, D-01, R-03]: mantenedor decide D1..D4, registra escopo/autorização e limites; depende T001. Sem autorização, parar antes de código/dependências.
+- [ ] T003 [REQ-01..07, D-01..03, R-01..03]: somente se autorizado, fixar candidato/driver/configuração e manifestos esperados; executar comparação descartável com o mesmo corpus; depende T002 e ambiente permitido.
+- [ ] T004 [REQ-01..07, D-01..03, R-01..03]: após escolha e autorização explícitas, implementar fatia em ox-storage/Engine/controller/Iced; depende T003 ou decisão expressa que escolha diretamente a alternativa, mantendo todos os testes.
+- [ ] T005 [REQ-01..07, D-02..03, R-01..02]: executar oráculos reais de reinício, falha, migração, backup/restauração, concorrência e UI; conservar falhas e limitações; depende T004.
+- [ ] T006 [REQ-01..07, D-01..03, R-01..03]: convergir por critério com inputs atuais e preservar predecessor; depende T005. Não concluir F0 por concluir esta documentação.

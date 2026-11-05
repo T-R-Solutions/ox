@@ -1,0 +1,304 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64, Rust 1.99.1",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Approval requires a real local execution matching an explicit exit-code oracle and unchanged observed inputs.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Missing evidence and agent/task completion claims never produce approval.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Observed failures remain in immutable history and contradictory same-input observations cannot silently replace rejection.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Changed implementation inputs, criterion or oracle invalidate dependent acceptance without invalidating unrelated criteria.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Five SDD states remain distinct and each observation exposes execution identity, command, result and evaluated content.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-TEST",
+      "kind": "test",
+      "command_or_method": "cargo test -p ox-verification",
+      "observed_result": "Observed results in artifact; criteria mapped in review.md. No broader runtime claim.",
+      "artifact": "docs/validation/product-verification-engine/test.log",
+      "sha256": "639694f729222002f6d439198602ad2eafc960b4fe9b8983af61ff8c6664c5fb",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/bin/local-oracle.rs",
+          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/engine.rs",
+          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/tests/engine.rs",
+          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/plan.md",
+          "sha256": "32e44a6fdb6db661b6b9e3617923b945b06f93e7d7896e2e3b9e710f7e50cd92",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/skills.json",
+          "sha256": "b4996a8b130c5b2e3b6cfcfc8e3836c2778e5d46c1e064ddb859b2c3289eb1f5",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/spec.md",
+          "sha256": "c8346607aae205a5e5f8b7dc4311634b2f549c8d98c064bb6c1c0d4157af56ba",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/tasks.md",
+          "sha256": "fbcaded6dff9e450cb49e62fbc376bd37c7226af9bd15883b9b1e899da9ec6fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/traceability.json",
+          "sha256": "c289adf75ab69f8ecdcf89fd26d5a66bc5bf7b537ff9c8341500015d5e4b4dd5",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-CHECKS",
+      "kind": "test",
+      "command_or_method": "cargo check --workspace; cargo fmt --all -- --check; cargo clippy --workspace --all-targets -- -D warnings",
+      "observed_result": "Observed results in artifact; criteria mapped in review.md. No broader runtime claim.",
+      "artifact": "docs/validation/product-verification-engine/checks.log",
+      "sha256": "86204302c27f7f0ba43ab793ed7d998a37813f6c85bd71bc5bf277ab2b012dd4",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/bin/local-oracle.rs",
+          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/engine.rs",
+          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/tests/engine.rs",
+          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/plan.md",
+          "sha256": "32e44a6fdb6db661b6b9e3617923b945b06f93e7d7896e2e3b9e710f7e50cd92",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/skills.json",
+          "sha256": "b4996a8b130c5b2e3b6cfcfc8e3836c2778e5d46c1e064ddb859b2c3289eb1f5",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/spec.md",
+          "sha256": "c8346607aae205a5e5f8b7dc4311634b2f549c8d98c064bb6c1c0d4157af56ba",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/tasks.md",
+          "sha256": "fbcaded6dff9e450cb49e62fbc376bd37c7226af9bd15883b9b1e899da9ec6fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/traceability.json",
+          "sha256": "c289adf75ab69f8ecdcf89fd26d5a66bc5bf7b537ff9c8341500015d5e4b4dd5",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Criterion-to-test semantic review; inspect sources, bounds and limitations",
+      "observed_result": "Observed results in artifact; criteria mapped in review.md. No broader runtime claim.",
+      "artifact": "docs/validation/product-verification-engine/review.md",
+      "sha256": "b48708be19eea5fed12aaed7dd77f4ada0e41d9c14260acc404fee718e74b684",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/bin/local-oracle.rs",
+          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/engine.rs",
+          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/tests/engine.rs",
+          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/plan.md",
+          "sha256": "32e44a6fdb6db661b6b9e3617923b945b06f93e7d7896e2e3b9e710f7e50cd92",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/skills.json",
+          "sha256": "b4996a8b130c5b2e3b6cfcfc8e3836c2778e5d46c1e064ddb859b2c3289eb1f5",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/spec.md",
+          "sha256": "c8346607aae205a5e5f8b7dc4311634b2f549c8d98c064bb6c1c0d4157af56ba",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/tasks.md",
+          "sha256": "fbcaded6dff9e450cb49e62fbc376bd37c7226af9bd15883b9b1e899da9ec6fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/traceability.json",
+          "sha256": "c289adf75ab69f8ecdcf89fd26d5a66bc5bf7b537ff9c8341500015d5e4b4dd5",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "In-memory local exit-code oracle only; no persistence, artifact authentication, arbitrary oracle suitability proof or real-agent integration.",
+    "Exact byte snapshots are bounded, not cryptographic hashes; dependency completeness is caller responsibility. Environment/dynamic libraries and transient concurrent changes between snapshots are not fully bound.",
+    "Direct-child deadlines only; no process-tree or OS sandbox. Output is unavailable for this exit-only oracle.",
+    "Caller explicitly supplies executable and inputs; accepting evidence grants no execution, publication or deployment permissions."
+  ]
+}

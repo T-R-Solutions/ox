@@ -1,0 +1,32 @@
+{
+  "execute_ms": {
+    "n": 20,
+    "max": 16.042989,
+    "median": 15.1573335,
+    "limit": 50
+  },
+  "verify_ms": {
+    "n": 20,
+    "max": 3.412174,
+    "median": 3.0505585,
+    "limit": 50
+  },
+  "runtime_cancel_exit_ms": {
+    "n": 20,
+    "max": 0.09386,
+    "median": 0.04929,
+    "limit": 100
+  },
+  "verify_cancel_exit_ms": {
+    "n": 20,
+    "max": 2.353582,
+    "median": 2.182658,
+    "limit": 100
+  },
+  "harness_rss_mib": {
+    "max": 8.36328125,
+    "limit": 32
+  },
+  "status": "APPROVED",
+  "method": "Direct already-built executable under time -v; 3 unprinted warmups and20 measured samples. The earlier cargo-run time log includes compilation and is not a harness RSS measurement."
+}

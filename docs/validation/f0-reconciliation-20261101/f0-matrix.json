@@ -1,0 +1,157 @@
+[
+  {
+    "id": "F0-P01",
+    "requirement": "Rust/Iced foundation",
+    "adoption": "ADOPTED product/initial platform requirements; PROPOSED F0 closure test",
+    "origin": "POL-01; product-bootstrap ADR; governance-reconciliation D-03; architecture F0",
+    "scope": "Linux x86_64, pinned Rust 1.99.1, Iced 0.14.0; named X11/Wayland environments only",
+    "pass_condition": "Adopt named OS/filesystem/display envelope. Exact-toolchain check/fmt/clippy and workspace tests pass, skips enumerated; explicit graphical tests and native Wayland interaction cover render/toggle/exit. First-party forbid(unsafe_code) and workspace contracts inspected. No claim for 1.99.0 or other platforms. Require measured total/changed coverage, critical unit/integration/regression scenarios, minimal design system and real keyboard/focus/contrast/scale/reference-image interaction, actual cancellation/stale rejection, bounded concurrency and performance baseline followed by adopted numeric budgets before closure.",
+    "oracle": "Cargo commands in README plus explicit desktop tests and human/protocol Wayland observation; semantic first-party source review, not crate count. Coverage numerator/denominator with per-component critical scenarios; UI input/backend state traces; repeatable measurements compared with adopted budgets. See Q01–Q08.",
+    "inputs": "application/Cargo.toml, Cargo.lock, rust-toolchain.toml; all crate manifests/src/tests; target/display/environment; graphical runner; product-bootstrap and product-local-task-ui contracts; quality-proposal.md; version-update-policy.md where Q01 applies; measurement protocols/tools/baseline and candidate snapshots where applicable",
+    "available_evidence": "sdd/features/product-bootstrap/evidence.json; sdd/features/product-local-task-ui/evidence.json; docs/validation/product-local-task-ui/acceptance/review.md and graphical-review.json; docs/validation/foundation-current-20261101/environment.json. Resolve raw artifacts through these feature envelopes; previously listed foundation-current check/fmt/clippy/test logs are absent there.",
+    "status": "INCONCLUSIVE",
+    "limitations": "Inherited logs, not independently rerun/audited here; three ignored graphics in aggregate tests do not count as graphical passes. Main GNOME XTEST limitation remains. Quality refinement adds requirements but supplies no new operational observations.",
+    "remaining_action": "Maintainer adopts support envelope; executor maps named functional assertions and input identities to it. Repeat only tests affected by changed code/oracle/environment. Adopt applicable Q clauses, then inventory actual implementation/assertions/evidence gaps; collect only missing or affected observations under authorized scope.",
+    "blocker_type": "Decision + evidence coverage",
+    "operational_gap": "No new mandatory code defect established; existing foundation and display observations need criterion-level mapping.",
+    "quality_clauses": [
+      "Q01",
+      "Q02",
+      "Q03",
+      "Q04",
+      "Q05",
+      "Q06",
+      "Q07",
+      "Q08"
+    ],
+    "quality_contract": "docs/validation/f0-reconciliation-20261101/quality-proposal.md"
+  },
+  {
+    "id": "F0-P02",
+    "requirement": "Risk and platform decisions",
+    "adoption": "ADOPTED dependency; PROPOSED decision register/gate",
+    "origin": "architecture F0; POL-04/05/10; GOV-07; OPEN-01..11",
+    "scope": "Foundation risk envelope; owned local controlled processes only in proposed boundary",
+    "pass_condition": "Every applicable risk has explicit adopted owner/decision, supported control or explicit bounded exclusion with rationale and revisit trigger. No pending decision hidden as NOT APPLICABLE. Require initial threat model linking assets/trust boundaries/permissions to claimed controls and adversarial denied-effect observations, integrity checks and resolved dependency/license/advisory review. API denial cannot prove OS isolation.",
+    "oracle": "Maintainer decision record plus criterion-specific denied-effect/recovery tests for any claimed control; documentation alone cannot establish isolation.",
+    "inputs": "constitution, architecture/context, project, open-questions, product scope/ADRs; actual process/runtime/host contracts; quality-proposal.md; version-update-policy.md where Q01 applies; measurement protocols/tools/baseline and candidate snapshots where applicable",
+    "available_evidence": "Existing Linux/toolchain/local fixture decisions; risk disposition table below",
+    "status": "UNVERIFIED",
+    "limitations": "F0 boundary and residual risk acceptance have never been adopted; no production sandbox observed. Quality refinement adds requirements but supplies no new operational observations.",
+    "remaining_action": "Maintainer adopts or changes the seven-row boundary and risk table; executor tests every newly claimed control only within authorized scope. Adopt applicable Q clauses, then inventory actual implementation/assertions/evidence gaps; collect only missing or affected observations under authorized scope.",
+    "blocker_type": "Decision",
+    "operational_gap": "Risk acceptance and scope adoption are absent; tests cannot make this decision.",
+    "quality_clauses": [
+      "Q09",
+      "Q10"
+    ],
+    "quality_contract": "docs/validation/f0-reconciliation-20261101/quality-proposal.md"
+  },
+  {
+    "id": "F0-P03",
+    "requirement": "Extensibility contracts",
+    "adoption": "ADOPTED direction; PROPOSED F0 contract scope",
+    "origin": "POL-03; architecture F0; product-plugin-host spec/plan",
+    "scope": "Versioned contract plus controlled local Unix socket fixture; proposed exclusion of public SDK and third-party trust",
+    "pass_condition": "Compatible handshake/capability call succeeds; malformed/incompatible/unauthorized calls fail without persistent mutation; correlated replies, timeout, exit and cleanup meet host contract. Adopt whether this bounded contract suffices for F0. Require explicit cancellation, bounded concurrency/failure tests, actual shutdown/resource cleanup and identified extension/version/migration boundaries for current fixtures. No public SDK or zero-redesign guarantee.",
+    "oracle": "application/crates/ox-plugin/tests/host.rs and contract tests; independent expected protocol/error assertions and actual child/socket checks",
+    "inputs": "ox-plugin src/tests/fixtures/manifests; lockfile/toolchain; product-plugin-host spec/plan; platform/socket permissions; quality-proposal.md; version-update-policy.md where Q01 applies; measurement protocols/tools/baseline and candidate snapshots where applicable",
+    "available_evidence": "product-plugin-host/evidence.json and docs/validation/product-plugin-host/; existing four host tests and compatibility assertion",
+    "status": "INCONCLUSIVE",
+    "limitations": "Fixture acceptance is recorded, not public protocol adoption or sandbox evidence; no new host test executed for this document edit. Quality refinement adds requirements but supplies no new operational observations.",
+    "remaining_action": "Maintainer confirms contract scope under OPEN-03/06; executor maps tests to adopted gate and verifies freshness before closure. Adopt applicable Q clauses, then inventory actual implementation/assertions/evidence gaps; collect only missing or affected observations under authorized scope.",
+    "blocker_type": "Decision + evidence coverage",
+    "operational_gap": "Bounded host exists; suitability for F0 and exact negative-case coverage remain to be reviewed.",
+    "quality_clauses": [
+      "Q02",
+      "Q07",
+      "Q11"
+    ],
+    "quality_contract": "docs/validation/f0-reconciliation-20261101/quality-proposal.md"
+  },
+  {
+    "id": "F0-P04",
+    "requirement": "Local durable data",
+    "adoption": "ADOPTED local-at-MVP and truthful-evidence policies; PROPOSED post-F0/pre-MVP delivery with current volatile-history honesty gate",
+    "origin": "POL-02; OPEN-05; local-persistence-proposal ADR",
+    "scope": "Current volatile-history claims; independent mandatory pre-MVP storage under proposed F0 deferral",
+    "pass_condition": "If included: adopted durability/retention/location/model and product-local-persistence AC-01..07 pass against real storage; independent restore and crash corpus show no invented approval. If deferred: explicit maintainer F0 exclusion, retaining MVP obligation. Even if storage is deferred, current core/UI must not claim volatile session history establishes durable recovery or restart-safe acceptance. This present honesty obligation remains applicable independently of future storage acceptance.",
+    "oracle": "Two-process restart and fault injection with independently specified expected entity/history manifests; fresh restore; UI fault observation. No persistence oracle currently exists.",
+    "inputs": "Controller/Engine/storage contracts; adopted schema/driver/engine/configuration; filesystem; recovery corpus; backups/evidence; quality-proposal.md; version-update-policy.md where Q01 applies; measurement protocols/tools/baseline and candidate snapshots where applicable",
+    "available_evidence": "Source inspection: Controller::new creates Engine::default; Engine Vec observations; ox-storage boundary only",
+    "status": "UNVERIFIED",
+    "limitations": "No storage implementation, recovery execution or adopted F0 inclusion. Process kill cannot prove power-loss durability. Quality refinement adds requirements but supplies no new operational observations.",
+    "remaining_action": "Maintainer decides proposed deferral from F0 with independent mandatory pre-MVP acceptance. Separately authorize the paired experiment; select technology only after results, then authorize product integration. Adopt applicable Q clauses, then inventory actual implementation/assertions/evidence gaps; collect only missing or affected observations under authorized scope.",
+    "blocker_type": "Implementation absent; proposed outside F0",
+    "operational_gap": "Durable history is absent in source; a pre-MVP obligation, not an adopted F0 blocker.",
+    "quality_clauses": [
+      "Q12"
+    ],
+    "quality_contract": "docs/validation/f0-reconciliation-20261101/quality-proposal.md"
+  },
+  {
+    "id": "F0-P05",
+    "requirement": "Evidence validity",
+    "adoption": "ADOPTED policy; PROPOSED operational closure rule",
+    "origin": "POL-06; GOV-05/06; sdd/evidence.md; technical-acceptance ADR",
+    "scope": "Every applicable F0 criterion and any current verdict shown by included product flows",
+    "pass_condition": "Each adopted gate has criterion-specific adequate current evidence, execution separate from permission, immutable prior observations, all five states and selective stale detection. Changed oracle/input cannot retain current approval; completion text cannot approve. Require traceable coverage/critical scenarios and fail-before/pass-after regression evidence, or a justified repeatable alternative. Expanded requirements need their own adequate observations; existing approval cannot transfer automatically.",
+    "oracle": "Independent expected verdict cases in ox-verification/tests/engine.rs and local_task tests; technical acceptance adversarial tests only for governance bindings; semantic per-criterion review",
+    "inputs": "criterion definitions; Engine/controller source/oracles; fixture data, runtime dependencies and observed environments; evidence schemas/bindings; quality-proposal.md; version-update-policy.md where Q01 applies; measurement protocols/tools/baseline and candidate snapshots where applicable",
+    "available_evidence": "product-verification-engine/evidence.json; product-local-task-ui/evidence.json; technical-acceptance feature; focused governance results in reconciliation checks",
+    "status": "INCONCLUSIVE",
+    "limitations": "Passing governance mutations cannot replace application behavior; validity depends on complete declared inputs and suitable oracles, not authenticity from hashes. Quality refinement adds requirements but supplies no new operational observations.",
+    "remaining_action": "After boundary adoption, executor reviews each F0 evidence bundle; run relevant independent negative cases for changed operational inputs. Adopt applicable Q clauses, then inventory actual implementation/assertions/evidence gaps; collect only missing or affected observations under authorized scope.",
+    "blocker_type": "Evidence coverage",
+    "operational_gap": "Current byte bindings alone do not demonstrate oracle adequacy or full F0 coverage.",
+    "quality_clauses": [
+      "Q02",
+      "Q03",
+      "Q04",
+      "Q13"
+    ],
+    "quality_contract": "docs/validation/f0-reconciliation-20261101/quality-proposal.md"
+  },
+  {
+    "id": "F0-P06",
+    "requirement": "Governance and historical succession",
+    "adoption": "ADOPTED governance obligations; PROPOSED milestone applicability mapping",
+    "origin": "GOV-01..08; workflow/evidence; adopted succession ADRs",
+    "scope": "Current authorities, portable governance and separation of skill/product acceptance",
+    "pass_condition": "T004 and summaries agree with scoped consumer evidence; old observations retained; each legacy compound gate has explicit adopted successor/applicability, and remaining applicable archive/licensing obligations have their own evidence. No aggregate pass is transferred. Require controlled update procedure, technical review, automated criterion/evidence checks and traceability to actual tested snapshots, preserving failures, historical succession and applicable dependency/license obligations.",
+    "oracle": "Document/contract comparison, content-dependency audit, existing technical mutations; if distribution included, actual new ZIP recursive inspection and independent extraction qualification, not structure-only checks",
+    "inputs": "README/project and affected SDD docs; 25-criterion baseline; original/successor ADRs; package allowlist, inputs, archive and qualification tools when applicable; quality-proposal.md; version-update-policy.md where Q01 applies; measurement protocols/tools/baseline and candidate snapshots where applicable",
+    "available_evidence": "Inherited criteria.json: 21 INCONCLUSIVE + 4 UNVERIFIED; reconciliation skill-t004.json and legacy-succession.md; historical matrices and logs retained",
+    "status": "INCONCLUSIVE",
+    "limitations": "Documentary reconciliation can close clerical discrepancies, not the unreviewed lineage, actual ZIP or third-party permissions. No ZIP produced or rights inferred here. Quality refinement adds requirements but supplies no new operational observations.",
+    "remaining_action": "Maintainer resolves legacy succession reach and F0 distribution boundary; executor completes remaining applicable criterion-specific reviews/qualification, rights owner supplies missing permissions. Adopt applicable Q clauses, then inventory actual implementation/assertions/evidence gaps; collect only missing or affected observations under authorized scope.",
+    "blocker_type": "Decision + evidence coverage",
+    "operational_gap": "Legacy succession and applicable qualification/rights obligations remain unresolved.",
+    "quality_clauses": [
+      "Q01",
+      "Q10",
+      "Q13"
+    ],
+    "quality_contract": "docs/validation/f0-reconciliation-20261101/quality-proposal.md"
+  },
+  {
+    "id": "F0-P07",
+    "requirement": "Full engines, agents and distribution",
+    "adoption": "ROADMAP direction; PROPOSED explicit F0 deferral",
+    "origin": "architecture F1..F8; POL-03/07/08/09; OPEN-04/07/09/10/11",
+    "scope": "Future context/graph/output/accounting, real agents, public release and wider platform support",
+    "pass_condition": "Maintainer explicitly adopts whether each is outside F0 and records later milestone/revisit trigger. Any inclusion receives full authorized spec and real operational oracle before closure. Retain bounded extension contracts, version/migration ownership and concrete revisit triggers for deferred capabilities without promising no future redesign.",
+    "oracle": "Scope/authority review for deferral; operational criteria and independent tests required for included capabilities. No blanket acceptance from skill fixtures.",
+    "inputs": "architecture map, constitution, project, future authorized product contracts; quality-proposal.md; version-update-policy.md where Q01 applies; measurement protocols/tools/baseline and candidate snapshots where applicable",
+    "available_evidence": "Current limited product and skill records identify exclusions, not completion of these capabilities",
+    "status": "UNVERIFIED",
+    "limitations": "NOT APPLICABLE is not asserted until adopted scope justifies it; future roadmap is not execution permission. Quality refinement adds requirements but supplies no new operational observations.",
+    "remaining_action": "Maintainer approves or edits deferrals; executor opens only separately authorized implementation slices. Adopt applicable Q clauses, then inventory actual implementation/assertions/evidence gaps; collect only missing or affected observations under authorized scope.",
+    "blocker_type": "Decision",
+    "operational_gap": "Later capabilities are not implemented by the accepted fixtures; deferral needs adoption.",
+    "quality_clauses": [
+      "Q11"
+    ],
+    "quality_contract": "docs/validation/f0-reconciliation-20261101/quality-proposal.md"
+  }
+]

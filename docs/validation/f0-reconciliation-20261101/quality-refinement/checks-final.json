@@ -1,0 +1,23 @@
+{
+  "checks": [
+    {
+      "name": "freshness",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh",
+      "exit": 0,
+      "output": "PASS: portable files, configured bridges and requested evidence checks\nNot proof of semantic adequacy, agent execution or comparative effectiveness.\n"
+    },
+    {
+      "name": "links-policy",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit": 0,
+      "output": "PASS: local profile, catalog, bridges, skill copies, SDD, normative IDs, links and archive/content inspection. No product acceptance.\n"
+    },
+    {
+      "name": "whitespace",
+      "command": "git diff --check",
+      "exit": 0,
+      "output": ""
+    }
+  ],
+  "limits": "Documentary structure, declared freshness, local links/policy and whitespace only; no product runtime/coverage/performance or F0 acceptance. Eight existing evidence tests are preserved in initial-checks.json. Initial no-feature checks are explicitly excluded."
+}

@@ -1,0 +1,44 @@
+{
+  "result": "PASS",
+  "members": [
+    "ox-agent",
+    "ox-app",
+    "ox-context",
+    "ox-core",
+    "ox-graph",
+    "ox-observability",
+    "ox-output",
+    "ox-plugin",
+    "ox-policy",
+    "ox-sdd",
+    "ox-skills",
+    "ox-storage",
+    "ox-task",
+    "ox-ui",
+    "ox-verification",
+    "ox-workspace"
+  ],
+  "edges": {
+    "ox-app": [
+      "ox-ui"
+    ],
+    "ox-ui": [],
+    "ox-core": [],
+    "ox-agent": [],
+    "ox-plugin": [],
+    "ox-policy": [],
+    "ox-task": [],
+    "ox-workspace": [],
+    "ox-storage": [],
+    "ox-context": [],
+    "ox-graph": [],
+    "ox-output": [],
+    "ox-verification": [],
+    "ox-observability": [],
+    "ox-sdd": [],
+    "ox-skills": []
+  },
+  "limits": [
+    "Structural inspection does not prove runtime correctness, isolation, or transitive safety."
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "observed_utc": "2026-11-04T09:23:40.080034+00:00",
+  "checks": [
+    {
+      "name": "reproduction",
+      "command": [
+        "python3",
+        "/home/rodrigo/Projetos/ox/docs/validation/f0-resumption-20261103/prepare-optimized.py"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit": 0,
+      "seconds": 0.12202029800391756,
+      "log": "optimized-product-reproduction.log"
+    },
+    {
+      "name": "fmt",
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit": 0,
+      "seconds": 0.13737453700741753,
+      "log": "optimized-product-fmt.log"
+    },
+    {
+      "name": "check",
+      "command": [
+        "cargo",
+        "check",
+        "--workspace",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit": 0,
+      "seconds": 1.448380026005907,
+      "log": "optimized-product-check.log"
+    },
+    {
+      "name": "test",
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit": 0,
+      "seconds": 13.600705204997212,
+      "log": "optimized-product-test.log"
+    },
+    {
+      "name": "clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit": 0,
+      "seconds": 0.5005838070064783,
+      "log": "optimized-product-clippy.log"
+    },
+    {
+      "name": "backend",
+      "command": [
+        "/usr/bin/time",
+        "-v",
+        "cargo",
+        "run",
+        "-p",
+        "ox-ui",
+        "--example",
+        "f0_measure",
+        "--locked",
+        "--offline",
+        "--",
+        "/home/rodrigo/Projetos/ox/application/target/debug",
+        "/home/rodrigo/Projetos/ox/docs/validation/f0-resumption-20261103/optimized-backend-workspace"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit": 0,
+      "seconds": 0.8145964489958715,
+      "log": "optimized-product-backend.log"
+    }
+  ]
+}

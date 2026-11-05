@@ -1,0 +1,35 @@
+# Proposed local persistence for the existing controlled task flow
+
+Status: specification/design only, authorized by the 2026-11-01 request. Implementation and engine selection are NOT authorized. Actor: local user; owner: maintainer. Full route due to persisted state, recovery, concurrency and unresolved contract decisions. Requirements below are proposals, not adopted acceptance of storage.
+
+Scope: durable task/attempt/check/verification history for product-local-task-ui; integration through ox-storage, ox-verification and the existing controller/Iced flow after authorization. Preserve local policy, provenance and all five states. Do not scan/reconstruct arbitrary .ox-task directories as trusted history.
+
+Exclusions: remote agents/network/sync, graph/FTS/search, marketplace, generalized orchestration, automatic task replay, secrets/encryption guarantees, hostile writers, other OS targets, automatic deletion and public release. These exclusions do not waive missing-evidence or corruption handling. Power-loss durability requires a separately adopted model and observation.
+
+Dependencies: explicit maintainer scope/implementation decision; F0 inclusion/deferral; engine/driver/version/configuration and dependency review; selected local directory/filesystem, quota/retention, bounded busy/recovery/UI deadlines (proposed defaults and directory/quota in ADR, not yet adopted); versioned serialization contract; accepted product-local-task-ui/Engine/runtime APIs. Proposed fault corpus and mechanism comparison are in docs/decisions/local-persistence-proposal.md. No commands for nonexistent persistence tests are claimed.
+
+- REQ-01: Stable durable identity and complete provenance.
+- AC-01 → REQ-01: Across two separate processes, task/attempt/check/observation/history round-trip with identical identities, arguments, expected result and before/after content identities; unknown remains distinct from zero/missing. Oracle: independent expected manifest, not serializer output.
+- REQ-02: Recover safely without replaying uncertain effects.
+- AC-02 → REQ-02: Run clean restart and kills before/after intent, after effect, before/after commit acknowledgement; truncate/corrupt owned copies. Oracle: expected acknowledged histories, no invented approval/relaunch, preserved damaged bytes and explicit interrupted state within adopted durability envelope.
+- REQ-03: Current acceptance follows current inputs.
+- AC-03 → REQ-03: After restart change one input, oracle, arguments or criterion independently; only dependent acceptance becomes stale. Missing evidence never approves. Exercise all five states, including justified inapplicability. Oracle: independent verdict/dependency table with negative controls.
+- REQ-04: Recoverable schema evolution.
+- AC-04 → REQ-04: Old/current/future schemas, interrupted upgrade and rejected downgrade preserve recoverable original bytes; no partial migrated visibility. Oracle: independent version/entity manifest and before/after original-byte comparison.
+- REQ-05: Consistent portable local backup.
+- AC-05 → REQ-05: While a writer is active, produce a consistent store+evidence manifest; restore into a fresh directory/process and compare expected entities/provenance, marking missing/changed external inputs stale. Incomplete/tampered backup fails visibly without overwriting originals. Oracle: independent manifest and restored-state query.
+- REQ-06: Bounded observable storage failures in Iced.
+- AC-06 → REQ-06: Permission denied, disk full, corrupt/unavailable store and bounded busy/restore failures remain visible; UI interaction/heartbeat continues within adopted bound; no silent volatile approval. Oracle: injected real storage errors plus independent graphical/heartbeat observation.
+- REQ-07: Writer authority and idempotency.
+- AC-07 → REQ-07: Two actual processes race to write the same store; second writer obeys adopted exclusion/deadline. Same operation+payload is one result, conflicting payload is rejected; lost acknowledgement resolves durable ID without executing effect twice. Oracle: independent operation/effect counter and recorded interleaving.
+
+Each criterion must record initial store/fixture, exact engine/driver/source/configuration/FS, command, fault point, expected/observed values, artifact and limitations. Independent expected histories are authored before implementation. The same corpus applies to snapshots, journal and embedded database; a schedule model is not actual storage execution. Missing implementation leaves all criteria UNVERIFIED.
+
+## Comparative preparation constraint
+
+Proposed milestone assignment: independent delivery after F0 closure and before
+F3/MVP, pending maintainer adoption. The common E01..E08 protocol and selection rule
+in the ADR apply equally to SQLite and snapshots. Contract/corpus/operational bounds
+precede experiments; comparative results precede technology selection. Journal is a
+documented alternative only. This request grants neither experiments nor integration.
+Prototype evidence cannot alone approve these seven product criteria.

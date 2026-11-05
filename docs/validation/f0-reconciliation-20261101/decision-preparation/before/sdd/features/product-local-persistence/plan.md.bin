@@ -1,0 +1,9 @@
+# Plan — proposed local persistence
+
+Full route; design only. D-01: compare snapshots, journal and embedded transactions against the same seven criteria; no adoption before explicit maintainer decision. D-02: durable intent and observation/reference transaction do not make external effects atomic; reconcile stable operation identities. D-03: versioned backup/restore and bounded UI error handling are part of the slice, not optional afterthoughts. R-01: false current approval or lost acknowledged history after crash. R-02: corrupt migration/backup, competing writers or duplicate effects. R-03: dependency/FFI and unmeasured maintenance costs.
+
+Primary selected, consulted and used: database-engineering; sdd/chain/database-engineering.md bridge_version 1; .codex/skills/database-engineering/SKILL.md has no declared version. Reference consulted: references/model-and-transactions.md. Contribution to REQ/AC-01..07: common invariants, transaction/effect boundary, writer schedules, migration and recovery alternatives. No recursive skill activation or delegation. Source versions are recorded by content in docs/validation/f0-reconciliation-20261101/inputs-final.json.
+
+Implementation alternatives, technical source ledger, consequences and pending decision D1..D4: docs/decisions/local-persistence-proposal.md. Recommendation is conditional evaluation of an embedded candidate versus snapshots, not SQLite adoption. Any future chosen dependency needs pinned version/build/license review; unversioned reference pages do not establish version-specific correctness.
+
+Sequence: prepare proposal → maintainer decision → resolve exact storage envelope/version → authorized isolated comparative evaluation if selected → engine adoption and implementation authorization → implement bounded persistence → operational corpus/GUI/restore evidence → convergence. Do not execute a later step merely because this plan lists it.

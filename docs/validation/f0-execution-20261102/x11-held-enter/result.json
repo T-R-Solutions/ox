@@ -1,0 +1,30 @@
+{
+  "server_command": [
+    "Xwayland",
+    "-displayfd",
+    "4",
+    "-fullscreen",
+    "-geometry",
+    "2000x1600",
+    "-nolisten",
+    "tcp",
+    "-shm"
+  ],
+  "display": ":2",
+  "test_command": [
+    "cargo",
+    "test",
+    "-p",
+    "ox-app",
+    "--test",
+    "desktop",
+    "--locked",
+    "--",
+    "--ignored",
+    "cancel_verification_observes_oracle_exit_in_ui",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "test_exit_code": 0,
+  "server_exit_code": 0
+}

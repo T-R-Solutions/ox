@@ -1,0 +1,777 @@
+{
+  "native_or_build": [
+    {
+      "name": "ahash",
+      "version": "0.8.12",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "getrandom",
+      "version": "0.3.4",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "libc",
+      "version": "0.2.191",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "libm",
+      "version": "0.2.16",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "num-traits",
+      "version": "0.2.19",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "quote",
+      "version": "1.0.47",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "rustix",
+      "version": "0.38.44",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "rustix",
+      "version": "1.1.6",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "serde",
+      "version": "1.0.229",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "serde_core",
+      "version": "1.0.229",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "slotmap",
+      "version": "1.1.1",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "smithay-client-toolkit",
+      "version": "0.19.2",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "smithay-client-toolkit",
+      "version": "0.20.0",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "thiserror",
+      "version": "1.0.69",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "thiserror",
+      "version": "2.0.21",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "tiny-xlib",
+      "version": "0.2.5",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "wayland-backend",
+      "version": "0.3.17",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "wayland-client",
+      "version": "0.31.15",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "wayland-sys",
+      "version": "0.31.11",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "winit",
+      "version": "0.30.13",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "x11-dl",
+      "version": "2.21.0",
+      "links": null,
+      "build_script": true
+    },
+    {
+      "name": "zerocopy",
+      "version": "0.8.63",
+      "links": null,
+      "build_script": true
+    }
+  ],
+  "unsafe_lexical_inventory": [
+    {
+      "name": "ab_glyph_rasterizer",
+      "version": "0.1.10",
+      "lexical_unsafe_occurrences": 5,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "ahash",
+      "version": "0.8.12",
+      "lexical_unsafe_occurrences": 8,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "arrayref",
+      "version": "0.3.9",
+      "lexical_unsafe_occurrences": 12,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "arrayvec",
+      "version": "0.7.8",
+      "lexical_unsafe_occurrences": 58,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "as-raw-xcb-connection",
+      "version": "1.0.1",
+      "lexical_unsafe_occurrences": 10,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "bitflags",
+      "version": "2.13.2",
+      "lexical_unsafe_occurrences": 3,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "bytemuck",
+      "version": "1.25.2",
+      "lexical_unsafe_occurrences": 391,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "bytemuck_derive",
+      "version": "1.12.1",
+      "lexical_unsafe_occurrences": 10,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "bytes",
+      "version": "1.12.1",
+      "lexical_unsafe_occurrences": 171,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "calloop",
+      "version": "0.13.0",
+      "lexical_unsafe_occurrences": 26,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "calloop",
+      "version": "0.14.5",
+      "lexical_unsafe_occurrences": 28,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "cc",
+      "version": "1.10.0",
+      "lexical_unsafe_occurrences": 36,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "clipboard_wayland",
+      "version": "0.2.2",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "cosmic-text",
+      "version": "0.15.0",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "ctor",
+      "version": "0.10.1",
+      "lexical_unsafe_occurrences": 107,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "dlib",
+      "version": "0.5.3",
+      "lexical_unsafe_occurrences": 15,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "dpi",
+      "version": "0.1.2",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "dtor",
+      "version": "0.8.1",
+      "lexical_unsafe_occurrences": 88,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "errno",
+      "version": "0.3.14",
+      "lexical_unsafe_occurrences": 12,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "find-msvc-tools",
+      "version": "0.1.15",
+      "lexical_unsafe_occurrences": 55,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "font-types",
+      "version": "0.10.1",
+      "lexical_unsafe_occurrences": 3,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "font-types",
+      "version": "0.12.7",
+      "lexical_unsafe_occurrences": 4,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "fontdb",
+      "version": "0.23.0",
+      "lexical_unsafe_occurrences": 6,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "futures-channel",
+      "version": "0.3.34",
+      "lexical_unsafe_occurrences": 24,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "futures-core",
+      "version": "0.3.34",
+      "lexical_unsafe_occurrences": 8,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "futures-executor",
+      "version": "0.3.34",
+      "lexical_unsafe_occurrences": 9,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "futures-macro",
+      "version": "0.3.34",
+      "lexical_unsafe_occurrences": 2,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "futures-sink",
+      "version": "0.3.34",
+      "lexical_unsafe_occurrences": 2,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "futures-task",
+      "version": "0.3.34",
+      "lexical_unsafe_occurrences": 65,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "futures-util",
+      "version": "0.3.34",
+      "lexical_unsafe_occurrences": 138,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "gethostname",
+      "version": "1.1.0",
+      "lexical_unsafe_occurrences": 2,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "getrandom",
+      "version": "0.3.4",
+      "lexical_unsafe_occurrences": 98,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "glam",
+      "version": "0.25.0",
+      "lexical_unsafe_occurrences": 774,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "half",
+      "version": "2.7.1",
+      "lexical_unsafe_occurrences": 84,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "harfrust",
+      "version": "0.3.2",
+      "lexical_unsafe_occurrences": 24,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "iced_core",
+      "version": "0.14.0",
+      "lexical_unsafe_occurrences": 3,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "iced_tiny_skia",
+      "version": "0.14.1",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "iced_winit",
+      "version": "0.14.1",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "jobserver",
+      "version": "0.1.35",
+      "lexical_unsafe_occurrences": 47,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "libc",
+      "version": "0.2.191",
+      "lexical_unsafe_occurrences": 811,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "libloading",
+      "version": "0.8.9",
+      "lexical_unsafe_occurrences": 112,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "libm",
+      "version": "0.2.16",
+      "lexical_unsafe_occurrences": 57,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "linebender_resource_handle",
+      "version": "0.1.1",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "linux-raw-sys",
+      "version": "0.4.15",
+      "lexical_unsafe_occurrences": 1775,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "linux-raw-sys",
+      "version": "0.12.1",
+      "lexical_unsafe_occurrences": 6932,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "log",
+      "version": "0.4.34",
+      "lexical_unsafe_occurrences": 8,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "memchr",
+      "version": "2.8.3",
+      "lexical_unsafe_occurrences": 340,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "memmap2",
+      "version": "0.9.12",
+      "lexical_unsafe_occurrences": 157,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "num-traits",
+      "version": "0.2.19",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "once_cell",
+      "version": "1.21.4",
+      "lexical_unsafe_occurrences": 53,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "owned_ttf_parser",
+      "version": "0.25.1",
+      "lexical_unsafe_occurrences": 5,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "percent-encoding",
+      "version": "2.3.2",
+      "lexical_unsafe_occurrences": 5,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "pin-project-lite",
+      "version": "0.2.17",
+      "lexical_unsafe_occurrences": 50,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "polling",
+      "version": "3.11.0",
+      "lexical_unsafe_occurrences": 134,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "lexical_unsafe_occurrences": 6,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "quick-xml",
+      "version": "0.41.0",
+      "lexical_unsafe_occurrences": 9,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "raw-window-handle",
+      "version": "0.6.2",
+      "lexical_unsafe_occurrences": 30,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "rustix",
+      "version": "0.38.44",
+      "lexical_unsafe_occurrences": 1540,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "rustix",
+      "version": "1.1.6",
+      "lexical_unsafe_occurrences": 1678,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "scoped-tls",
+      "version": "1.0.1",
+      "lexical_unsafe_occurrences": 2,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "sctk-adwaita",
+      "version": "0.10.1",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "self_cell",
+      "version": "1.3.0",
+      "lexical_unsafe_occurrences": 48,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "serde",
+      "version": "1.0.229",
+      "lexical_unsafe_occurrences": 2,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "serde_core",
+      "version": "1.0.229",
+      "lexical_unsafe_occurrences": 2,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "shlex",
+      "version": "2.0.1",
+      "lexical_unsafe_occurrences": 7,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "slab",
+      "version": "0.4.12",
+      "lexical_unsafe_occurrences": 9,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "slotmap",
+      "version": "1.1.1",
+      "lexical_unsafe_occurrences": 123,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "smallvec",
+      "version": "1.16.4",
+      "lexical_unsafe_occurrences": 83,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "smithay-client-toolkit",
+      "version": "0.19.2",
+      "lexical_unsafe_occurrences": 24,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "smithay-client-toolkit",
+      "version": "0.20.0",
+      "lexical_unsafe_occurrences": 24,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "smithay-clipboard",
+      "version": "0.7.3",
+      "lexical_unsafe_occurrences": 7,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "smol_str",
+      "version": "0.2.2",
+      "lexical_unsafe_occurrences": 13,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "softbuffer",
+      "version": "0.4.8",
+      "lexical_unsafe_occurrences": 87,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "strict-num",
+      "version": "0.1.1",
+      "lexical_unsafe_occurrences": 8,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "swash",
+      "version": "0.2.10",
+      "lexical_unsafe_occurrences": 54,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "syn",
+      "version": "2.0.119",
+      "lexical_unsafe_occurrences": 104,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "syn",
+      "version": "3.0.9",
+      "lexical_unsafe_occurrences": 108,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "sys-locale",
+      "version": "0.3.2",
+      "lexical_unsafe_occurrences": 7,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "thiserror-impl",
+      "version": "1.0.69",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "thiserror-impl",
+      "version": "2.0.21",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "tiny-skia",
+      "version": "0.11.4",
+      "lexical_unsafe_occurrences": 148,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "tiny-skia-path",
+      "version": "0.11.4",
+      "lexical_unsafe_occurrences": 3,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "tiny-xlib",
+      "version": "0.2.5",
+      "lexical_unsafe_occurrences": 52,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "tinyvec",
+      "version": "1.13.3",
+      "lexical_unsafe_occurrences": 5,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "tracing",
+      "version": "0.1.44",
+      "lexical_unsafe_occurrences": 7,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "tracing-attributes",
+      "version": "0.1.31",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "tracing-core",
+      "version": "0.1.36",
+      "lexical_unsafe_occurrences": 33,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "ttf-parser",
+      "version": "0.25.1",
+      "lexical_unsafe_occurrences": 3,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "unicode-bidi",
+      "version": "0.3.18",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "unicode-ident",
+      "version": "1.0.27",
+      "lexical_unsafe_occurrences": 2,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "wayland-backend",
+      "version": "0.3.17",
+      "lexical_unsafe_occurrences": 212,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "wayland-client",
+      "version": "0.31.15",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "wayland-scanner",
+      "version": "0.31.11",
+      "lexical_unsafe_occurrences": 11,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "wayland-sys",
+      "version": "0.31.11",
+      "lexical_unsafe_occurrences": 37,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "window_clipboard",
+      "version": "0.5.1",
+      "lexical_unsafe_occurrences": 5,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "winit",
+      "version": "0.30.13",
+      "lexical_unsafe_occurrences": 938,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "x11-dl",
+      "version": "2.21.0",
+      "lexical_unsafe_occurrences": 197,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "x11rb",
+      "version": "0.13.2",
+      "lexical_unsafe_occurrences": 82,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "xkbcommon-dl",
+      "version": "0.4.2",
+      "lexical_unsafe_occurrences": 3,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "zeno",
+      "version": "0.3.3",
+      "lexical_unsafe_occurrences": 1,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "zerocopy",
+      "version": "0.8.63",
+      "lexical_unsafe_occurrences": 665,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    },
+    {
+      "name": "zerocopy-derive",
+      "version": "0.8.63",
+      "lexical_unsafe_occurrences": 818,
+      "limit": "includes comments/test/conditional code; not reachability or soundness analysis"
+    }
+  ],
+  "license_expressions": {
+    "Apache-2.0": 7,
+    "MIT OR Apache-2.0": 59,
+    "BSD-2-Clause": 1,
+    "Apache-2.0 OR MIT": 11,
+    "Zlib OR Apache-2.0 OR MIT": 3,
+    "MIT": 50,
+    "MIT OR Apache-2.0 OR Zlib": 4,
+    "MIT/Apache-2.0": 4,
+    "Apache-2.0 AND MIT": 1,
+    "ISC": 1,
+    "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT": 4,
+    "Unlicense OR MIT": 1,
+    "GPL-3.0-only": 16,
+    "Apache-2.0/MIT": 1,
+    "Apache-2.0 OR GPL-2.0-only": 1,
+    "Zlib": 1,
+    "BSD-3-Clause": 2,
+    "(MIT OR Apache-2.0) AND Unicode-3.0": 1,
+    "BSD-2-Clause OR Apache-2.0 OR MIT": 2
+  }
+}

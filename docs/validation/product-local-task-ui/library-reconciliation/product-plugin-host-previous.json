@@ -1,0 +1,329 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64, Rust 1.99.1",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "A real local plugin process negotiates protocol 1.0 and completes a correlated echo request.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "An incompatible major version is rejected before any operation.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Echo requires both plugin-advertised support and caller grant; denied operations are not sent.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Malformed, oversized and mismatched response frames fail the host without approval.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-05",
+      "criterion": "A silent plugin times out within the configured deadline and an unexpected exit is distinguished.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Shutdown closes admission, reaps the child and releases its socket; recovery starts a new independent host.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-TEST",
+        "E-CHECKS",
+        "E-REVIEW"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-TEST",
+      "kind": "test",
+      "command_or_method": "cargo test -p ox-plugin",
+      "observed_result": "Observed results in artifact; criteria mapped in review.md. No broader runtime claim.",
+      "artifact": "docs/validation/product-plugin-host/test.log",
+      "sha256": "d4662bf811e7f8cbee1da0842997e8feb18377d0ad856f80daab686bb61003a8",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/bin/local-plugin.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/host.rs",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/plan.md",
+          "sha256": "0141ac0312ec87f25d0e208d44d3301cac261f22255f308085be3825f242c09f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/skills.json",
+          "sha256": "679d0d986bff071c940d219233e7d4fc1aeaeb39a0535d453d6ee7502ed69037",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/spec.md",
+          "sha256": "67fad09f437ead8b0170764c594f7bd8a37d3700837548b8804bace1cf7f5000",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/tasks.md",
+          "sha256": "1fd16a8ef819cc6ed6127311da0df9286bce5838224110754b29962aea5d01f7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/traceability.json",
+          "sha256": "97fd1ce2239cfd88e4a0478e2ec3b8c4bf04584f3f8d384c19af3ddd6074b5bc",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-CHECKS",
+      "kind": "test",
+      "command_or_method": "cargo check --workspace; cargo fmt --all -- --check; cargo clippy --workspace --all-targets -- -D warnings",
+      "observed_result": "Observed results in artifact; criteria mapped in review.md. No broader runtime claim.",
+      "artifact": "docs/validation/product-plugin-host/checks.log",
+      "sha256": "e77302c0af7cab10fcd3ee4cc643276046afdbc03585c55bced8f70f5a48d22c",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/bin/local-plugin.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/host.rs",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/plan.md",
+          "sha256": "0141ac0312ec87f25d0e208d44d3301cac261f22255f308085be3825f242c09f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/skills.json",
+          "sha256": "679d0d986bff071c940d219233e7d4fc1aeaeb39a0535d453d6ee7502ed69037",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/spec.md",
+          "sha256": "67fad09f437ead8b0170764c594f7bd8a37d3700837548b8804bace1cf7f5000",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/tasks.md",
+          "sha256": "1fd16a8ef819cc6ed6127311da0df9286bce5838224110754b29962aea5d01f7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/traceability.json",
+          "sha256": "97fd1ce2239cfd88e4a0478e2ec3b8c4bf04584f3f8d384c19af3ddd6074b5bc",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Criterion-to-test semantic review; inspect sources, bounds and limitations",
+      "observed_result": "Observed results in artifact; criteria mapped in review.md. No broader runtime claim.",
+      "artifact": "docs/validation/product-plugin-host/review.md",
+      "sha256": "262f20ccce13aada2d95f57b40ba6bef4d686ba2e543871073d449bc621dbb7d",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "6838f6f7fe61acc717c18b80f12ed18f25b3eb6467d7775b5e39d157746d86fd",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/bin/local-plugin.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/host.rs",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/plan.md",
+          "sha256": "0141ac0312ec87f25d0e208d44d3301cac261f22255f308085be3825f242c09f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/skills.json",
+          "sha256": "679d0d986bff071c940d219233e7d4fc1aeaeb39a0535d453d6ee7502ed69037",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/spec.md",
+          "sha256": "67fad09f437ead8b0170764c594f7bd8a37d3700837548b8804bace1cf7f5000",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/tasks.md",
+          "sha256": "1fd16a8ef819cc6ed6127311da0df9286bce5838224110754b29962aea5d01f7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/traceability.json",
+          "sha256": "97fd1ce2239cfd88e4a0478e2ec3b8c4bf04584f3f8d384c19af3ddd6074b5bc",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Linux-only Unix sockets; controlled fixture, no authentication against malicious same-user clients or OS sandbox.",
+    "One direct child supervised; descendants, CPU/RAM enforcement and hostile executable cleanup are not covered.",
+    "Deadline per connection/frame/shutdown, not one aggregate session budget; no retry or persistent recovery.",
+    "No desktop UI or third-party plugin integration, installation, publication or remote service."
+  ]
+}

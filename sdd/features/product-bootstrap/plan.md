@@ -1,20 +1,101 @@
-# Plano: product-bootstrap
+# Plan: product-bootstrap
 
-Autoridades lidas: AGENTS, constituição, workflow/evidence, contexto, ADRs de transição/layout/open-questions. Rota completa. Sem Git operacional; arquivos existentes preservados por comparação de bytes.
+Authorities read: AGENTS, constitution, workflow/evidence, context and transition/layout/open-questions ADRs.
+Full route. No operational Git; existing files preserved through byte comparison.
 
-D-01 / R-01: todos REQ-01 a REQ-13 usam workspace explícito, contratos pequenos e validação proporcional. Risco: skeleton confundido com operação. Oráculos Cargo, inspeção de contratos e execução gráfica separada. Rever ao implementar capacidades.
-D-02: Iced 0.14.0, edição 2024, toolchain stable por instrução explícita do mantenedor (observada 1.99.1); MSRV conservador 1.99 (piso deliberado desta primeira entrega, não alegação de mínimo técnico). Tiny-skia + X11 + Wayland + fira-sans + thread-pool (exigido pela compilação do Iced), sem Tokio ou runtime adicional. Confirmar resolução/build. Alternativa wgpu adiada por não haver GPU necessária nesta janela.
-D-03: sem entidades persistentes na F0; não introduzir UUID ou serde sem consumidor. Plugin usa nome e versão; transporte IPC permanece não selecionado.
-D-04: detalhes expansíveis da fundação são interação de UI real; não simulam execução de agentes. Sair retorna tarefa iced::exit, fechamento nativo usa comportamento padrão.
-R-02: mantenedor confirmou Linux x86_64 inicialmente. Windows/macOS não são suportados nesta fatia. Execução gráfica continua exigindo observação independente.
+D-01 / R-01: all REQ-01 through REQ-13 use an explicit workspace, small contracts and proportionate validation. Risk: skeleton mistaken for operation. Cargo oracles, contract inspection and separate graphical execution. Revisit when implementing capabilities.
+D-02: Iced 0.14.0, edition 2024, stable toolchain by explicit maintainer instruction (observed 1.99.1); conservative MSRV 1.99 (deliberate floor for this first delivery, not a claim of technical minimum). Tiny-skia + X11 + Wayland + fira-sans + thread-pool (required to compile Iced), without Tokio or an additional runtime. Confirm resolution/build. The wgpu alternative is deferred because this window needs no GPU.
+D-03: no persistent entities in F0; do not introduce UUID or serde without a consumer. Plugins use name and version; IPC transport remains unselected.
+D-04: expandable foundation details are actual UI interaction; they do not simulate agent execution. Exit returns an iced::exit task; native closing uses default behavior.
+R-02: the maintainer initially confirmed Linux x86_64. Windows/macOS are unsupported in this slice. Graphical execution still requires independent observation.
 
-## Skills consultadas e utilizadas
-Primária .codex/skills/rust/SKILL.md: ownership, manifests, APIs públicas e descoberta de testes. Auxiliar .codex/skills/iced-engineering/SKILL.md: Message/update/view e efeito de encerramento. Pontes sdd/chain/rust.md e sdd/chain/iced-engineering.md, bridge_version 1. Identidades SHA-256 no arquivo skills.json desta feature (entradas sem versão semântica). Contribuição: estado puro, módulos externos, efeitos fora de view e distinção de teste de estado versus janela. Nenhuma delegação.
+## Skills consulted and used
 
-## Execução
-T001 especificar; T002 workspace/contratos; T003 GUI; T004 validar; T005 evidências. Testar toggle repetido, política sem grant, plugin incompatível, bytes brutos e falhas. Não criar processos, banco, IPC ou executor fictício. Logs em docs/validation/product-bootstrap. Nenhuma mudança de distribuição pública.
+Primary .codex/skills/rust/SKILL.md: ownership, manifests, public APIs and test discovery. Supporting .codex/skills/iced-engineering/SKILL.md: Message/update/view and exit effect. Bridges sdd/chain/rust.md and sdd/chain/iced-engineering.md, bridge_version 1. SHA-256 identities in this feature's skills.json file (entries without semantic versions). Contribution: pure state, external modules, effects outside view and distinction between state and window tests. No delegation.
 
-## Resultado das decisões
-Linux x86_64, stable e configuração descrita na ADR product-bootstrap. X11/XWayland exercitado; Wayland nativo só compilado. Teste gráfico usa x11rb 0.13.2 com xtest apenas como dev-dependency; não é IPC de produto. O harness restaura a posição do ponteiro após cliques e encerra seus próprios filhos no cleanup. Captura somente a própria janela.
-Dependências: Iced declara MIT e rust-version 1.88; piso próprio 1.99 é conservador, não uma inferência de mínimo técnico. Inventário Linux em dependency-review.json; winit/softbuffer e bibliotecas de plataforma possuem unsafe/FFI. Revisão limitada a manifestos e varredura, sem afirmar auditoria integral ou autorização de distribuição.
-A mudança de autoridades invalida observações históricas E-HOLDER-REVIEW. Bytes e aprovações anteriores preservados em docs/validation/bootstrap-governance/previous; invalidation.json registra exatamente os critérios pendentes. Os testes atuais não promovem automaticamente esses critérios.
+## Execution
+
+T001 specify; T002 workspace/contracts; T003 GUI; T004 validate; T005 evidence. Test repeated toggles, policy without a grant, incompatible plugin, raw bytes and failures. Do not create fake processes, databases, IPC or executors. Logs in docs/validation/product-bootstrap. No public distribution changes.
+
+## Decision outcomes
+
+Linux x86_64, stable and configuration described in the product-bootstrap ADR. X11/XWayland exercised; native Wayland only compiled. The graphical test uses x11rb 0.13.2 with xtest only as a dev-dependency; this is not product IPC. The harness restores pointer position after clicks and terminates its own children during cleanup. It captures only its own window.
+Dependencies: Iced declares MIT and rust-version 1.88; the first-party 1.99 floor is conservative, not an inferred technical minimum. Linux inventory in dependency-review.json; winit/softbuffer and platform libraries contain unsafe/FFI. Review limited to manifests and scanning, without claiming a full audit or distribution authorization.
+Authority changes invalidate historical E-HOLDER-REVIEW observations. Previous bytes and approvals are preserved in docs/validation/bootstrap-governance/previous; invalidation.json records the exact pending criteria. Current tests do not automatically promote those criteria.
+
+## Reconciliation — 2026-10-29
+
+D-05: the explicit reconciliation request supersedes floating stable with exact
+1.99.1; rust-version 1.99 remains the conservative declared floor. R-03: 1.99.0
+is not executed. Rerun Cargo and graphical tests after this configuration change.
+Reconcile each translated criterion against its retained Portuguese predecessor.
+Future tasks: native Wayland on the supported Linux target; Windows/macOS only
+after a support decision and available environments. No support expansion here.
+
+## Native Wayland acceptance — 2026-10-29
+
+D-06 / R-04: explicitly validate native Wayland without removing X11 coverage.
+Use GNOME/Mutter session facilities if available, real pointer/keyboard events
+and captured frames; never call Shell state directly as a graphical oracle.
+Prove backend through process Wayland protocol traffic (surface creation,
+configure and buffer commit), not environment alone. Bound exploratory calls
+to 15 seconds and complete GUI attempts to 60 seconds; preserve diagnostics
+and distinguish timeout/test-mechanism failure from application failure.
+Separate executions must cover button exit and compositor-native close.
+No host implementation until applicable bootstrap acceptance is supported.
+Primary skill for this extension: .codex/skills/iced-engineering/SKILL.md,
+bridge sdd/chain/iced-engineering.md version 1; entry has no semantic version.
+Content identity is recorded in wayland-native/skill.json. Contribution: distinguish
+state tests from rendered interaction, effects and actual process termination.
+
+D-07 / R-05 (AC-02/06): investigate XWayland event delivery using the same
+XTEST channel for absolute pointer motion and button events. Current harness
+reproduced a 15-second toggle timeout despite QueryPointer reporting the target.
+Hypothesis: WarpPointer and XTEST operate through different input paths.
+Retain failed baseline and compare a bounded XTEST-motion attempt, preserving
+all title/pixel/reversal/exit assertions and pointer restoration. No product
+behavior change or acceptance relaxation. Protocol reference:
+https://www.x.org/releases/X11R7.7/doc/xextproto/xtest.pdf
+Absolute MotionNotify uses detail=0 and root coordinates. x11rb 0.13.2
+installed API inspected. Supporting rust skill consulted again at
+.codex/skills/rust/SKILL.md, bridge sdd/chain/rust.md version 1; no semantic
+entry version. Identity in x11-motion/skill.json. Contribution: safe typed
+protocol calls, unchanged dependency contract, focused test validation.
+Human Wayland observation accepted as the visual oracle when capture is denied;
+process protocol and exit observations remain independent, preserved per run.
+
+D-07 outcome: retain XTEST motion/button path after controlled comparison.
+Rootful temporary Xwayland (-geometry 800x600 -nolisten tcp -shm) runs the
+unchanged test assertions; original WarpPointer variant failed reversal, XTEST
+variant passed both tests. Use the retained x11-nested-motion/runner.py with a
+new output directory per run. GNOME main-session XTEST remains unavailable;
+this result does not claim it was repaired. No new dependencies or global setup.
+
+D-08 / R-06: authorized successor slices implement local host/runtime/verification
+APIs after bootstrap acceptance. Preserve accepted-before-host.json and input
+copies in wayland-native/succession. Bootstrap AC-11's absence-of-IPC clause is
+now superseded by product-plugin-host: NOT APPLICABLE to the evolved workspace,
+not a waiver used to obtain the predecessor's approval. The versioned in-memory
+contract and sandbox absence remain reviewed. AC-13's desktop availability
+claim still applies: these libraries are not wired into the shell. Reexamine
+other bootstrap criteria against current sources; no graphical input changed
+since native/controlled-X11 acceptance, so retain those observations explicitly.
+
+D-09 / R-07 (REQ-12): extend existing product-record export exclusion to the
+three newly implemented product features and their validation directories,
+retaining product-foundation governance records. No artifact publication.
+Supporting .codex/skills/software-delivery/SKILL.md consulted for artifact
+boundary and independent export verification; bridge
+sdd/chain/software-delivery.md version 1, no semantic entry version;
+identity in succession/delivery-skill.json. Verify exclusion and governance
+checks in independent copies; this does not distribute the Rust product.
+
+D-10 / R-08: Reconcile current bootstrap obligations after product-local-task-ui.
+The explicit maintainer request authorizes local task controls; prior shell-only
+descriptions remain historical. Reexecute build, tests and real desktop interactions;
+retain native Wayland confirmations and controlled X11 failures/successes separately.
+AC-11 remains NOT APPLICABLE for its already-superseded absence-of-IPC clause.
+AC-13 still forbids presenting remote/general agents, sandbox or persistence as
+available. Current Cargo metadata replaces the old dependency-layout snapshot for
+AC-01/07. No old hash is renewed as a new execution; acceptance review and receipts
+are in docs/validation/product-local-task-ui/acceptance. T012 records this review.

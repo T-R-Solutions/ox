@@ -1,0 +1,44 @@
+# F0 operational gate proposal — 2026-11-01
+
+**F0 remains open.** The architectural authority adopts “foundation and contracts” and a dependency on risk/platform decisions. It does not adopt an operational closure specification. This document makes all seven predecessor rows verifiable without making them adopted requirements. The predecessor is preserved in docs/validation/f0-reconciliation-20261101/before/docs/validation/foundation-current-20261101/f0.md.bin.
+
+The maintainer is the decision owner. Proposed boundary for decision: Linux x86_64 foundation/contracts, the existing bounded local host/runtime/verifier/UI slices, criterion-bound evidence and preservation. Defer durable history to a separately authorized next slice and before MVP; defer public plugins/agents, remote access, production sandbox claims, other OS targets and public distribution. This is a recommendation, not an adopted exclusion or a claim that present code is sufficient. POL-02 says local persistence **at MVP**, not at F0; only a new explicit milestone decision can include it in F0. Including it leaves F0-P04 blocked until actual storage acceptance.
+
+The complete machine-readable matrix is [f0-matrix.json](../f0-reconciliation-20261101/f0-matrix.json). Each entry records requirement/origin, adoption, scope, objective pass condition, oracle, inputs, evidence, five-state verdict, limitations and exact remaining action. “PROPOSED” describes authority, not a sixth acceptance state.
+
+| ID | Original row | Authority versus gate | State | Blocking owner/action |
+|---|---|---|---|---|
+| F0-P01 | Rust/Iced foundation | ADOPTED product/initial platform requirements; PROPOSED F0 closure test | INCONCLUSIVE | Maintainer adopts support envelope; executor maps named functional assertions and input identities to it. Repeat only tests affected by changed code/oracle/environment. |
+| F0-P02 | Risk and platform decisions | ADOPTED dependency; PROPOSED decision register/gate | UNVERIFIED | Maintainer adopts or changes the seven-row boundary and risk table; executor tests every newly claimed control only within authorized scope. |
+| F0-P03 | Extensibility contracts | ADOPTED direction; PROPOSED F0 contract scope | INCONCLUSIVE | Maintainer confirms contract scope under OPEN-03/06; executor maps tests to adopted gate and verifies freshness before closure. |
+| F0-P04 | Local durable data | ADOPTED local-at-MVP policy; PROPOSED inclusion in F0 | UNVERIFIED | Maintainer decides inclusion/deferral and storage authorization; implement/test only after explicit authorization. |
+| F0-P05 | Evidence validity | ADOPTED policy; PROPOSED operational closure rule | INCONCLUSIVE | After boundary adoption, executor reviews each F0 evidence bundle; run relevant independent negative cases for changed operational inputs. |
+| F0-P06 | Governance and historical succession | ADOPTED governance obligations; PROPOSED milestone applicability mapping | INCONCLUSIVE | Maintainer resolves legacy succession reach and F0 distribution boundary; executor completes remaining applicable criterion-specific reviews/qualification, rights owner supplies missing permissions. |
+| F0-P07 | Full engines, agents and distribution | ROADMAP direction; PROPOSED explicit F0 deferral | UNVERIFIED | Maintainer approves or edits deferrals; executor opens only separately authorized implementation slices. |
+
+## Risk and platform decision docket
+
+| Open decision | Already adopted/observed | F0 decision still needed | Proposed disposition and revisit trigger |
+|---|---|---|---|
+| OPEN-01 | Linux x86_64; scoped X11/Xwayland and human Wayland observations | Name OS/display/filesystem support and residual GNOME input limit | Confine initial envelope to identified local environment; reevaluate on OS/FS/GPU/display change |
+| OPEN-02 | Rust 1.99.1, edition 2024, declared floor 1.99, Iced 0.14.0 | Confirm this F0 matrix; no demonstrated 1.99.0 minimum | Retain pinned toolchain, std local supervision and Iced thread-pool; revisit external I/O |
+| OPEN-03 | ASCII 1.0/Unix socket fixture only | Contract stability, version/failure boundary sufficient for F0? | Bounded fixture contract; public JSON-RPC/ACP/SDK deferred until adapters |
+| OPEN-04 | Controlled local task, no real agents/network/credentials | Accept permitted effects and direct-child limits for F0 | No autonomous replay/remote providers; revisit adapters and grants |
+| OPEN-05 | Local MVP policy, in-memory history today | Include persistence in F0 or explicitly defer? | Separate next feature; location, retention, durability and engine require decision |
+| OPEN-06 | No product sandbox, effective environment permissions | Accept trusted local-fixture risk, or require actual isolation in F0? | No sandbox claim; inclusion requires threat model and denied-effect OS tests |
+| OPEN-07 | Own GPL decision; third-party rights unresolved | Is any distribution/public SDK included in F0? | Defer publication; retain rights blocker and separate artifact qualification obligations |
+| OPEN-08 | No product CPU/RAM/latency/accessibility target adopted | Which responsiveness/accessibility obligations are F0 gates? | Keep existing graphical assertions; additional targets require named corpus/hardware and authorization |
+| OPEN-09 | First-party forbid unsafe; native/transitive dependencies exist | Accept reviewed dependency/FFI risk or add a dependency audit gate? | No blanket absence-of-C claim; revisit new storage/driver/parser |
+| OPEN-10 | Future hypotheses only | Confirm outside F0 | Revisit only with explicit feature authorization |
+| OPEN-11 | Controlled existing UI; final UX/language choices open | Define required approval/error/stale presentation for F0 | Retain explicit verification and visible failure; broader UX remains separately scoped |
+
+These decisions cannot be delegated to a successful test or a checkbox. A maintainer decision must identify alternatives, consequences, exclusions and review triggers. No owner acceptance is recorded here.
+
+## Execution and closure procedure
+
+1. Maintainer records adopted boundary and dispositions by F0-P ID, including F0-P04 and unresolved legacy succession scope. Preserve this proposal and original clauses.
+2. Executor stabilizes adopted criteria and maps exact implementation/oracle/configuration/environment inputs; use the full traceability and five-state contract in sdd/evidence.md. A statement of scope is not operational evidence.
+3. Compare retained bindings before selecting reruns. Existing code/oracles were not changed in this documentary task, so Cargo/GUI consumer runs are not repeated solely for document updates. The inherited 25-criterion review is not independently audited or rerun here. Targeted structural/freshness/mutation checks and documentary comparisons are recorded in ../f0-reconciliation-20261101/checks.json.
+4. For changed functional inputs, confirm commands in README and prerequisites: Rust 1.99.1 and cached dependencies, local socket permission, actual named X11/Wayland environment, graphical input permission/human observer. Run check/fmt/clippy/tests and explicit ignored desktop cases only where affected. A skipped graphical case is not approval. Persistence has no implemented oracle yet; follow its proposed feature after authorization.
+5. Collect per-criterion failures, negative controls, logs, versions and limitations. ZIP qualification, rights, production controls and unavailable observations remain dependencies, never structural substitutes.
+6. Close F0 only after scope adoption and every applicable gate is APPROVED or explicitly justified NOT APPLICABLE under that scope. Any REJECTED, INCONCLUSIVE or UNVERIFIED applicable row prevents closure. Do not sum the 25 legacy states or the 36 skill verdicts into F0 acceptance.

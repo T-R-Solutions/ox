@@ -1,0 +1,65 @@
+# ADR proposal — OPEN-05 durable local task history
+
+Status: **PROPOSED, not adopted**. Decision owner: maintainer. Preparation authorized on 2026-11-01; storage implementation, dependency selection and F0 inclusion require explicit authorization. This revision replaces the earlier proposal, preserved byte-for-byte under docs/validation/f0-reconciliation-20261101/before/. No storage engine or version is adopted.
+
+## Observed need and authority
+
+POL-02 requires local Ox-controlled persistence at MVP; POL-04/05/06 require preservation, current evidence and explicit acceptance. None explicitly requires storage at F0. See the [F0 decision docket](../validation/foundation-current-20261101/f0.md).
+
+Observed by source inspection, not a new restart experiment: `application/crates/ox-ui/src/local_task.rs` constructs a new clock-based session and `Engine::default()` in `Controller::new`; request/result directories alone do not reconstruct checks/history. `application/crates/ox-verification/src/engine.rs` holds observations/claims in Vecs, with before/after bytes, Check arguments and result. `ox-storage/src/lib.rs` explicitly declares no persistence implementation; `local.rs` provides location/error types only. Source identities are recorded in the reconciliation input manifest. An APPROVED label alone is insufficient durable evidence. Existing code limits (32 observations, 8 declared inputs, 16 MiB/file and 32 MiB/capture) are observed API bounds, not an adopted lifetime retention policy.
+
+## Common proposed requirements for every alternative
+
+- Stable store/task/attempt/operation/observation identities, schema/payload versions, immutable observations and referential completeness. Preserve criterion, oracle identity/arguments/expected result, before/after input identity and result. Preserve all five acceptance states and unknown/missing distinctions. A loaded verdict must be reevaluated against current inputs; completion text cannot approve.
+- Commit one observation plus all its references atomically. The process effect is outside that transaction: durably record intent before launch, then reconcile by attempt/operation identity. A recovered unfinished attempt is interrupted/unknown, never automatically rerun or declared successful. A reused operation ID with identical payload is idempotent; conflicting payload is rejected.
+- Initially one cooperating writer per store. A second app fails clearly and boundedly; it must not run tasks while unable to record intent. Unknown commit outcome is resolved by durable ID before retry. No blind replay of external effects.
+- Versioned migrations with pre-migration backup and recoverable transaction/new-store replacement. Reject future/unsupported schemas without writes. Preserve original corrupt/interrupted bytes. Code rollback does not reverse data migration.
+- Consistent backup includes the history and referenced evidence/oracle identities, a manifest and independent restore. Missing binaries or changed workspace inputs produce stale/unverified observations, never current approval. Backups need not redistribute executable binaries; restoration must mark unavailable oracles.
+- Visible bounded storage errors; no UI-thread blocking I/O, unbounded retry, silent fallback to volatile acceptance or automatic retention deletion. Initial proposal is no automatic deletion and explicit local export; quotas/location still require decision.
+
+These are proposed feature requirements, not newly imposed product policy.
+
+## Like-for-like alternatives
+
+The following engineering assessment is a design comparison, not measured engine behavior. All alternatives must pass exactly product-local-persistence AC-01..07 and the same fault schedules; none is exempt from backup/migration/concurrency work.
+
+| Dimension / shared obligation | Versioned snapshot + replacement | Append journal + checkpoints | Embedded transactional database (SQLite candidate) |
+|---|---|---|---|
+| Integrity: whole observation/references visible together | Single generation manifest; validate payload/checksum then publish replacement; references must belong to one generation | Frame length/version/checksum and transaction commit marker; only committed groups replay | Transaction plus unique IDs/references; schema constraints and driver mapping still must be verified |
+| Recovery: acknowledged history, no invented success | Retain prior generation; reconcile temp/current generations and intent after each interruption | Reject/quarantine torn tail; replay only committed prefix; checkpoint and log handoff must survive interruption | Engine recovery depends on selected mode/configuration/FS; application still reconciles process effects and provenance |
+| Migration: preserve original and reject future format | Read old, write/validate new generation before switching | Version event decoding and checkpoints; replay semantics across versions increase obligations | Transactional migration where supported, version guard and pre-backup; driver/DDL semantics need real tests |
+| Backup: consistent history + referenced evidence | Copy a pinned immutable generation and its evidence manifest, then restore independently | Pin checkpoint plus necessary log range and evidence; compaction cannot remove backup inputs | Use engine-consistent backup mechanism plus external evidence manifest; copying one live file is not a complete protocol |
+| Concurrency: one writer, duplicate operation safety | Application must implement/test interprocess lock and generation CAS; check-then-write alone is insufficient | Single append coordinator plus lock/sequence and duplicate index rebuilt on replay | Engine write coordination plus application writer policy and unique operation IDs; busy/errors remain explicit |
+| Maintenance: bounded cost and review surface | Small dependency surface; custom serialization, locking, publication ordering and complete rewrites | Custom replay/tail/compaction/checkpoint protocol; most application-owned mechanisms | Dependency/driver/native build and upgrades; less custom transaction/recovery code is a hypothesis to validate |
+| Workload/cost uncertainty | Full-history rewrite growth not measured | Replay/compaction cost not measured | Query/index/storage costs not measured; no benchmark win claimed |
+
+Snapshot and journal columns specify required mechanisms, not guarantees of an implemented library. No filesystem rename or process-kill experiment alone establishes power-loss durability.
+
+## Technical source ledger and limits
+
+Local contracts/code above are the authoritative observed implementation, bound by content in the reconciliation manifest. External primary documentation was consulted on 2026-11-01, without installing or executing an engine:
+
+- [SQLite transaction documentation](https://www.sqlite.org/lang_transaction.html): multiple readers, one simultaneous write transaction; contention may return SQLITE_BUSY. This supports evaluating a single-writer design, not automatic application-wide writer exclusion.
+- [SQLite atomic commit](https://www.sqlite.org/atomiccommit.html): describes rollback-mode protocol and its storage/locking assumptions; it is not a WAL guarantee or evidence about this host's hardware.
+- [SQLite backup API](https://www.sqlite.org/backup.html): provides a consistent database-copy mechanism; external evidence files require their own coordinated manifest. No backup/restore was executed here.
+- [Versioned release record 3.51.0](https://sqlite.org/releaselog/3_51_0.html), dated 2025-11-04, identifies a historical SQLite release only. It is neither a selected version nor a claim of the latest/safest release. The general documentation pages are unversioned; exact applicability must be checked against the pinned engine/driver/source ID before adoption. No SQLite-specific guarantee is accepted from this review.
+
+A Rust driver, native dependency/FFI and license/build review are unresolved. POL-01 prohibits first-party unsafe, not all transitive native code; that distinction does not preapprove any driver. Network filesystems, hostile noncooperating writers, encryption, secret storage and power-loss tolerance are outside the proposed first tested envelope unless explicitly added.
+
+## Recommendation and consequences
+
+Recommend an **embedded transactional store as the leading design candidate**, with SQLite as a concrete candidate for a subsequent bounded evaluation; retain snapshots as the lower-dependency alternative. Do not select a custom journal initially unless measurements or required event semantics justify its replay/compaction burden. Reason: the proposed unit of consistency spans identities, observations and references, making custom transaction/recovery logic a material maintenance risk. This is an inference from the required mechanisms, not an observed superiority or adoption of SQLite.
+
+Proposed decision sequence: adopt the bounded requirements and durability envelope; authorize a disposable comparison of snapshots and one pinned embedded candidate using the same fault corpus; choose the engine only after recorded dependency review and results; authorize/integrate storage in product-local-persistence. If the maintainer instead selects an engine now, its driver/version/configuration and acceptance work remain explicit prerequisites. No evaluation implementation is started by this ADR.
+
+Suggested initial envelope for decision: Linux x86_64, local filesystem, single writer, one existing controlled task flow; acknowledged records survive process crash within the tested protocol, with OS/power-loss durability unclaimed until separately observed. Store outside user source files in an explicitly selected local app-data directory; no automatic deletion; backup/export to a new explicit destination. Concrete defaults proposed for maintainer decision: `$XDG_DATA_HOME/ox/tasks` (fallback `~/.local/share/ox/tasks`) on a named local filesystem; 1 GiB logical payload/evidence quota with explicit refusal before a new effect and no deletion; 2-second writer-lock wait, 10-second recovery budget before a visible recovery-required state, and a 250 ms UI heartbeat bound in the named test environment. These are unmeasured proposed safety/workload bounds, not current performance guarantees; change them explicitly if the acceptance workload requires it. Existing Engine bounds cannot silently become retention policy. Schema starts at version 1 with an old-format fixture for migration testing.
+
+Consequences: durable IDs replace session-clock-only identity; Engine needs versioned import/export/revalidation rather than persistence of displayed verdicts. Iced must expose recovery/storage errors, interrupted attempts and stale evidence without blocking. Backup/migration increase feature scope but cannot be omitted just to fit a candidate. No generalized repository store, search, graph or remote sync is included.
+
+## Decision requested and resumption
+
+Maintainer must record: (D1) include storage in F0 or defer to this separate pre-MVP slice; (D2) adopt/change proposed requirements and process-crash versus power-loss envelope; (D3) authorize candidate evaluation only or an explicitly selected implementation; (D4) choose directory, retention/quota, wait/recovery bound and dependency policy. Recommended immediate decision is pre-MVP separate slice plus bounded candidate evaluation, with final engine adoption after results.
+
+The [feature specification](../../sdd/features/product-local-persistence/spec.md) provides exclusions, dependencies and seven independent acceptance criteria. All remain UNVERIFIED. After a decision, record its verbatim scope/source in project/ADR, resolve exact engine/driver versions and operational bounds, then execute the first authorized task. Do not infer implementation authorization from this proposal, a checked task or a favorable recommendation.
+
+Decision form (maintainer has not answered): D1 = defer persistence from F0, retaining pre-MVP obligation; D2 = adopt proposed seven requirements and process-crash-only tested envelope; D3 = authorize disposable snapshot-versus-embedded evaluation only, with pinned candidate/driver review before downloads and a later engine/implementation decision; D4 = adopt or amend the concrete directory/quota/deadline defaults above. None of these proposed answers is an authorization record.

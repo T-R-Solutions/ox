@@ -1,0 +1,123 @@
+{
+  "observed_utc": "2026-11-04T09:28:25.754012+00:00",
+  "status": "APPROVED",
+  "checks": [
+    {
+      "name": "global freshness",
+      "command": [
+        "python3",
+        "sdd/tools/validate.py",
+        "--require-fresh"
+      ],
+      "exit": 0,
+      "log": "closure-freshness-2.log",
+      "log_sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "name": "structure",
+      "command": [
+        "python3",
+        "tools/governance/scripts/check-ox.py"
+      ],
+      "exit": 0,
+      "log": "closure-structure-2.log",
+      "log_sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "name": "acceptance and negative controls",
+      "command": [
+        "python3",
+        "docs/validation/f0-resumption-20261103/acceptance-closure.py"
+      ],
+      "exit": 0,
+      "log": "closure-acceptance-2.log",
+      "log_sha256": "820fc0f5653f38c5866391c582877b9badf859fc5e05b6479e648f9656610234"
+    },
+    {
+      "name": "governance export boundary",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tools.governance.tests.test_governance.GovernanceTests.test_product_records_stay_out_of_governance_export"
+      ],
+      "exit": 0,
+      "log": "closure-export.log",
+      "log_sha256": "fff39cd0cd57d85ee0e2d7e85ca1c2072c386877bf55c74b0a2d6a1ef42391b2"
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "log": "closure-whitespace.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "negative_controls": {
+    "observed_utc": "2026-11-04T09:26:22.953848+00:00",
+    "features": [
+      {
+        "name": "product-f0-gate",
+        "states": {
+          "AC-01": "APPROVED",
+          "AC-02": "APPROVED",
+          "AC-03": "APPROVED",
+          "AC-04": "APPROVED",
+          "AC-05": "APPROVED"
+        },
+        "current_schema_trace_inputs": "PASS",
+        "changed_input_negative_control": "REJECTED as expected",
+        "missing_evidence_negative_control": "REJECTED as expected"
+      },
+      {
+        "name": "product-bootstrap",
+        "states": {
+          "AC-01": "APPROVED",
+          "AC-02": "APPROVED",
+          "AC-03": "APPROVED",
+          "AC-04": "APPROVED",
+          "AC-05": "APPROVED",
+          "AC-06": "APPROVED",
+          "AC-07": "APPROVED",
+          "AC-08": "APPROVED",
+          "AC-09": "APPROVED",
+          "AC-10": "APPROVED",
+          "AC-11": "NOT APPLICABLE",
+          "AC-12": "APPROVED",
+          "AC-13": "APPROVED"
+        },
+        "current_schema_trace_inputs": "PASS",
+        "changed_input_negative_control": "REJECTED as expected",
+        "missing_evidence_negative_control": "REJECTED as expected"
+      },
+      {
+        "name": "product-local-task-ui",
+        "states": {
+          "AC-01": "APPROVED",
+          "AC-02": "APPROVED",
+          "AC-03": "APPROVED",
+          "AC-04": "APPROVED",
+          "AC-05": "APPROVED",
+          "AC-06": "APPROVED",
+          "AC-07": "APPROVED",
+          "AC-08": "APPROVED",
+          "AC-09": "APPROVED",
+          "AC-10": "APPROVED",
+          "AC-11": "APPROVED"
+        },
+        "current_schema_trace_inputs": "PASS",
+        "changed_input_negative_control": "REJECTED as expected",
+        "missing_evidence_negative_control": "REJECTED as expected"
+      }
+    ],
+    "limits": [
+      "schema/hash validation does not establish authenticity or oracle suitability; operational and visual evidence reviewed separately"
+    ]
+  },
+  "prior_failure": "closure-{freshness,structure,acceptance}.log reject the stale historical product-agent-runtime envelope; corrected only by identical archived bytes, see resumption-authority/closure-cross-reference-review.json",
+  "limits": "Document checks establish schema/identity/trace consistency, not graphical behavior. Graphical acceptance separately verified by optimized-checks.json and raw observations."
+}

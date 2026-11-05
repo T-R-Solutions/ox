@@ -1,0 +1,20 @@
+{
+  "platform": "Linux-7.3.1-1-default-x86_64-with-glibc2.44",
+  "machine": "x86_64",
+  "python": "3.13.16",
+  "rustc --version": {
+    "exit": 0,
+    "stdout": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\n",
+    "stderr": ""
+  },
+  "findmnt -T /home/rodrigo/Projetos/ox -o TARGET,SOURCE,FSTYPE,OPTIONS": {
+    "exit": 0,
+    "stdout": "TARGET                    SOURCE                               FSTYPE OPTIONS\n/home/rodrigo/Projetos/ox /dev/nvme0n1p3[/rodrigo/Projetos/ox] xfs    rw,nosuid,nodev,relatime,seclabel,inode64,logbufs=8,logbsize=32k,noquota\n",
+    "stderr": ""
+  },
+  "uname -a": {
+    "exit": 0,
+    "stdout": "Linux localhost.localdomain 7.3.1-1-default #1 SMP PREEMPT_DYNAMIC Sat Oct 31 11:17:21 UTC 2026 (8815021) x86_64 x86_64 x86_64 GNU/Linux\n",
+    "stderr": ""
+  }
+}

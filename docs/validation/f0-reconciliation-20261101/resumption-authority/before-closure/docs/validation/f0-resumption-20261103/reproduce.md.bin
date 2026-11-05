@@ -1,0 +1,35 @@
+# Reproduction boundaries
+
+Read report.md, graphical-review.md and the adopted decision before replaying.
+These are controlled GUI tests, not a permission bypass or an OS sandbox. Installed
+Mutter 50.5, Xwayland, Python GI/GStreamer/Pillow, PipeWire, dbus-broker-launch and
+the pinned Rust toolchain are prerequisites. Primary desktop input is not used by
+the isolated runners. Existing output directories are never reused.
+
+`python3 docs/validation/f0-resumption-20261103/prepare-harness.py` reconstructs and
+builds the diagnostic copy from the current hash-checked product and retained exact
+instrumentation sources, using offline dependencies only. It fails on unexpected
+existing scratch contents. The installed registry source remains external to the
+repository, identified by the locked package and observed dependency source.
+
+Examples of the observed commands, with a fresh output name on replay:
+
+```sh
+/usr/bin/python3 docs/validation/f0-resumption-20261103/native-session.py native-replay-1 --flow
+/usr/bin/python3 docs/validation/f0-resumption-20261103/native-metrics.py native-metric-replay-1 1 900 700
+/usr/bin/python3 docs/validation/f0-resumption-20261103/x11-isolated.py x11-replay-1 full 1 900 700
+/usr/bin/python3 docs/validation/f0-resumption-20261103/x11-isolated.py x11-covered-replay-1 coverage-held
+/usr/bin/python3 docs/validation/f0-resumption-20261103/native-held.py native-held-replay-1
+```
+
+Run resource measurements serially. An output file's existence is not acceptance:
+inspect return codes, raw observations and screenshots. The native batch drivers
+preserve exceptions in result.json; check-observations.py rejects missing/error
+results and checks the named acceptance corpus. Its current run names refer to the
+observed runs, not arbitrary future output. It complements visual review and
+schema/input validation, and does not replace them.
+
+`primary-native-1` is a separate, manually interacted primary-session record with
+its binary/source identity, exact workspace, artifact snapshots and human reply.
+Replaying it requires another explicitly identified human interaction; an old reply
+cannot validate a new run.

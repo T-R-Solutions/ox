@@ -1,0 +1,15 @@
+# F0 assessment — 2026-11-01
+
+The architectural map defines F0 only as foundation/contracts dependent on risk/platform decisions. It does not define an operational acceptance gate. Completion cannot be inferred from 16 crates or from delivery of later milestone slices.
+
+| Obligation/capability | Requirement source | Existing delivery | Evidence | Remaining gap | Dependency/decision | Verifiable completion condition |
+|---|---|---|---|---|---|---|
+| Rust/Iced foundation | POL-01; bootstrap ADR | Workspace, contracts, shell | Cargo logs; product-bootstrap evidence | Full support boundary beyond observed Linux sessions | OPEN-01/02 | Proposed: accepted platform/toolchain matrix and current checks |
+| Risk and platform decisions | Architecture F0 | Linux x86_64, pinned toolchain; bounded local protocols | ADRs and product feature records | F0-required subset of open decisions unspecified | Maintainer defines F0 boundary | Proposed: every F0 risk has an adopted decision or justified deferral |
+| Extensibility contracts | POL-03 | Local fixture Plugin Host | Four host tests; compatibility test | Production plugin trust and public protocol excluded | OPEN-03/06 | Proposed: contract/version/failure boundary approved for F0 scope |
+| Local durable data | POL-02; OPEN-05 | Attempt files; in-memory observations | Controller and Engine inspection | Restart recovery/history/backup absent | Persistence proposal | Proposed: adopted durability contract and recovery corpus pass if included in F0 |
+| Evidence validity | POL-06; GOV-05 | Engine, SDD bindings and oracles | Workspace tests and SDD validator | Whole-product acceptance is not defined by passing fixtures | F0 acceptance specification | Proposed: criterion-specific input-bound evidence for each adopted F0 gate |
+| Governance | GOV-01..07 | Validators, recovery, history | Current governance run; 25 pending old criteria | Obsolete literal clauses and missing per-criterion reconciliation | Existing succession ADRs; review remaining scope | Reconcile each gate without transferring aggregate approval |
+| Full engines, agents and distribution | Architecture F1..F8 | Contracts and bounded fixtures | Independent product/skill records | Production capabilities not delivered | Future authorized features | Not automatically F0 requirements; maintainer must decide boundary |
+
+All proposed conditions above require maintainer decision. No F0/MVP/V1 completion is declared. Persistence is a useful next candidate because current code demonstrably loses in-memory history on restart, not because this table adopts a new milestone requirement.

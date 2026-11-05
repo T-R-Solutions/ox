@@ -1,0 +1,31 @@
+{
+  "method": "Post-envelope read-only checks after product-f0-gate evidence stabilization",
+  "results": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh",
+      "exit_code": 0,
+      "artifact": "docs/validation/f0-reconciliation-20261101/closure-fresh.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+      "result": "PASS: portable files, configured bridges and requested evidence checks\nNot proof of semantic adequacy, agent execution or comparative effectiveness."
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 0,
+      "artifact": "docs/validation/f0-reconciliation-20261101/closure-check-ox.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+      "result": "PASS: local profile, catalog, bridges, skill copies, SDD, normative IDs, links and archive/content inspection. No product acceptance."
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 docs/validation/skill-consumers-20261101/acceptance_check.py",
+      "exit_code": 0,
+      "artifact": "docs/validation/f0-reconciliation-20261101/closure-skills.log",
+      "sha256": "c529415e0ddd0318a19e9488916b36cb7b2a04d4a92af6d9756bbb04a1513cde",
+      "result": "PASS: 54 skill criteria, schema/content bindings and technical execution reviews. Scope remains each evaluated consumer."
+    }
+  ],
+  "additional_check": "git diff --check: exit 0 after closure",
+  "limitations": [
+    "These checks establish content/structure/profile consistency, not F0 adoption or operational acceptance.",
+    "This receipt is outside the evidence it checks to avoid a self-hashed receipt. No implementation/oracle/input changed after these checks."
+  ]
+}

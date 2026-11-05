@@ -1,0 +1,729 @@
+[
+  {
+    "installed": "0.3.9",
+    "advisory": {
+      "id": "RUSTSEC-2026-0260",
+      "package": "arrayref",
+      "date": "2026-08-20",
+      "url": "https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref",
+      "categories": [
+        "malicious"
+      ]
+    },
+    "versions": {
+      "unaffected": [
+        "<= 0.3.9"
+      ],
+      "patched": []
+    },
+    "raw_sha256": "cf4c1f3b03b9f2c918e3396f2e0a94cdc3c3a4ad8929d92892c50990870db4fb"
+  },
+  {
+    "installed": "1.12.1",
+    "advisory": {
+      "id": "RUSTSEC-2026-0007",
+      "package": "bytes",
+      "date": "2026-02-03",
+      "url": "https://github.com/tokio-rs/bytes/commit/d0293b0e35838123c51ca5dfdf468ecafee4398f",
+      "categories": [
+        "memory-corruption"
+      ],
+      "keywords": [
+        "integer-overflow"
+      ],
+      "aliases": [
+        "CVE-2026-25541",
+        "GHSA-434x-w66g-qw3r"
+      ],
+      "license": "CC-BY-4.0"
+    },
+    "versions": {
+      "patched": [
+        ">= 1.11.1"
+      ],
+      "unaffected": [
+        "< 1.2.1"
+      ]
+    },
+    "raw_sha256": "64d20718cfc2dca3763c8d4a04fbff6f86192fa464f2ca6479d8e7e72679f310"
+  },
+  {
+    "installed": "0.3.34",
+    "advisory": {
+      "id": "RUSTSEC-2020-0060",
+      "package": "futures-task",
+      "aliases": [
+        "CVE-2020-35906",
+        "GHSA-r93v-9p5q-vhpf"
+      ],
+      "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "date": "2020-09-04",
+      "url": "https://github.com/rust-lang/futures-rs/pull/2206",
+      "categories": [
+        "code-execution",
+        "memory-corruption"
+      ],
+      "keywords": [
+        "use-after-free",
+        "arbitrary code execution",
+        "memory-corruption",
+        "memory-management"
+      ]
+    },
+    "versions": {
+      "patched": [
+        ">= 0.3.6"
+      ],
+      "unaffected": [
+        "<= 0.2.1"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "futures_task::waker": [
+          ">= 0.3.0"
+        ]
+      }
+    },
+    "raw_sha256": "46ab37b93db5fa9c79b5ddcc534acbc896c38356a33b04e391a7b869449d5b52"
+  },
+  {
+    "installed": "0.3.34",
+    "advisory": {
+      "id": "RUSTSEC-2020-0061",
+      "package": "futures-task",
+      "aliases": [
+        "CVE-2020-35907",
+        "GHSA-p9m5-3hj7-cp5r"
+      ],
+      "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "date": "2020-05-03",
+      "url": "https://github.com/rust-lang/futures-rs/issues/2091",
+      "categories": [
+        "denial-of-service"
+      ],
+      "keywords": [
+        "NULL pointer dereference",
+        "memory-management"
+      ]
+    },
+    "versions": {
+      "patched": [
+        ">= 0.3.5"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "futures_task::noop_waker_ref": [
+          ">= 0.3.0"
+        ]
+      }
+    },
+    "raw_sha256": "ef1337fbf0cf04cff90500de673092bc40502c6e3bf82430df1143c87a6ae07c"
+  },
+  {
+    "installed": "0.3.34",
+    "advisory": {
+      "id": "RUSTSEC-2020-0059",
+      "package": "futures-util",
+      "aliases": [
+        "CVE-2020-35905",
+        "GHSA-rh4w-94hh-9943"
+      ],
+      "cvss": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "date": "2020-10-22",
+      "url": "https://github.com/rust-lang/futures-rs/issues/2239",
+      "categories": [
+        "thread-safety"
+      ],
+      "keywords": [
+        "concurrency",
+        "memory-corruption",
+        "memory-management"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "futures_util::lock::MutexGuard::map": [
+          ">= 0.3.2"
+        ]
+      }
+    },
+    "versions": {
+      "patched": [
+        ">= 0.3.7"
+      ],
+      "unaffected": [
+        "< 0.3.2"
+      ]
+    },
+    "raw_sha256": "356322d687dd21107ede342c1dbd2abddb13c1189da1160b46249eb026b46744"
+  },
+  {
+    "installed": "0.3.34",
+    "advisory": {
+      "id": "RUSTSEC-2020-0062",
+      "package": "futures-util",
+      "aliases": [
+        "CVE-2020-35908",
+        "GHSA-5r9g-j7jj-hw6c"
+      ],
+      "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "date": "2020-01-24",
+      "url": "https://github.com/rust-lang/futures-rs/issues/2050",
+      "categories": [
+        "memory-corruption",
+        "thread-safety"
+      ],
+      "keywords": [
+        "concurrency",
+        "memory-corruption",
+        "memory-management"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "futures_util::stream::FuturesUnordered": [
+          ">= 0.3.0"
+        ]
+      }
+    },
+    "versions": {
+      "patched": [
+        ">= 0.3.2"
+      ],
+      "unaffected": [
+        "< 0.3.0"
+      ]
+    },
+    "raw_sha256": "11078d12e5767cc722d3b6c2862f5bc3cb8a0f8ece363baaa2fb2310bc980db5"
+  },
+  {
+    "installed": "0.9.12",
+    "advisory": {
+      "id": "RUSTSEC-2026-0186",
+      "package": "memmap2",
+      "date": "2026-06-20",
+      "url": "https://github.com/RazrFalcon/memmap2-rs/issues/169",
+      "references": [
+        "https://github.com/RazrFalcon/memmap2-rs/pull/170"
+      ],
+      "informational": "unsound",
+      "keywords": [
+        "pointer-arithmetic",
+        "out-of-bounds"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "memmap2::Mmap::advise_range": [
+          ">= 0.5.9",
+          "< 0.9.11"
+        ],
+        "memmap2::Mmap::unchecked_advise_range": [
+          ">= 0.8.0",
+          "< 0.9.11"
+        ],
+        "memmap2::MmapMut::advise_range": [
+          ">= 0.5.9",
+          "< 0.9.11"
+        ],
+        "memmap2::MmapMut::flush_async_range": [
+          "< 0.9.11"
+        ],
+        "memmap2::MmapMut::flush_range": [
+          "< 0.9.11"
+        ],
+        "memmap2::MmapMut::unchecked_advise_range": [
+          ">= 0.8.0",
+          "< 0.9.11"
+        ]
+      }
+    },
+    "versions": {
+      "patched": [
+        ">= 0.9.11"
+      ]
+    },
+    "raw_sha256": "f7bba43166256cf9408990712b768e7b76b02b1ddf107fe7dadded9e0b42cd8d"
+  },
+  {
+    "installed": "1.21.4",
+    "advisory": {
+      "id": "RUSTSEC-2019-0017",
+      "package": "once_cell",
+      "aliases": [
+        "CVE-2019-16141",
+        "GHSA-7j44-fv4x-79g9"
+      ],
+      "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "date": "2019-09-01",
+      "keywords": [
+        "undefined_behavior"
+      ],
+      "url": "https://github.com/matklad/once_cell/issues/46"
+    },
+    "affected": {
+      "functions": {
+        "once_cell::sync::Lazy::deref": [
+          "< 1.0.1, >= 0.2.5"
+        ],
+        "once_cell::sync::Lazy::force": [
+          "< 1.0.1, >= 0.2.5"
+        ],
+        "once_cell::unsync::Lazy::deref": [
+          "< 1.0.1, >= 0.2.5"
+        ],
+        "once_cell::unsync::Lazy::force": [
+          "< 1.0.1, >= 0.2.5"
+        ]
+      }
+    },
+    "versions": {
+      "patched": [
+        ">= 1.0.1"
+      ],
+      "unaffected": [
+        "< 0.2.5"
+      ]
+    },
+    "raw_sha256": "bc7bd3623f56956b973c731bab193d6c70c0cf6d3ab0fe78005634b0e577b616"
+  },
+  {
+    "installed": "0.41.0",
+    "advisory": {
+      "id": "RUSTSEC-2026-0194",
+      "package": "quick-xml",
+      "date": "2026-06-29",
+      "url": "https://github.com/tafia/quick-xml/issues/969",
+      "references": [
+        "https://github.com/tafia/quick-xml/pull/971",
+        "https://github.com/tafia/quick-xml/commit/07f3db8343cf152f5bc3483ef5b3164582489bea"
+      ],
+      "categories": [
+        "denial-of-service"
+      ],
+      "keywords": [
+        "xml",
+        "parser",
+        "dos",
+        "algorithmic-complexity",
+        "quadratic"
+      ],
+      "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    },
+    "versions": {
+      "patched": [
+        ">= 0.41.0"
+      ]
+    },
+    "raw_sha256": "148a2d313b2c3d855a810740af4a5e73f50fa1fad9104d375fd52045ab630877"
+  },
+  {
+    "installed": "0.41.0",
+    "advisory": {
+      "id": "RUSTSEC-2026-0195",
+      "package": "quick-xml",
+      "date": "2026-06-29",
+      "url": "https://github.com/tafia/quick-xml/issues/970",
+      "references": [
+        "https://github.com/tafia/quick-xml/commit/7ca25266e94987210daa864889ab15c9332c8a2a"
+      ],
+      "categories": [
+        "denial-of-service"
+      ],
+      "keywords": [
+        "xml",
+        "parser",
+        "dos",
+        "memory",
+        "namespace"
+      ],
+      "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+    },
+    "versions": {
+      "patched": [
+        ">= 0.41.0"
+      ]
+    },
+    "raw_sha256": "b2cd28ce625a122e3859117f3e68718bbe6c7f60cdb726f9a596b58c326b5370"
+  },
+  {
+    "installed": "1.3.0",
+    "advisory": {
+      "id": "RUSTSEC-2023-0070",
+      "package": "self_cell",
+      "date": "2023-11-10",
+      "url": "https://github.com/Voultapher/self_cell/issues/49",
+      "categories": [],
+      "keywords": [
+        "unsound",
+        "self_cell",
+        "self-referential"
+      ],
+      "aliases": [
+        "GHSA-48m6-wm5p-rr6h"
+      ]
+    },
+    "versions": {
+      "patched": [
+        ">= 0.10.3, < 1.0.0",
+        ">= 1.0.2"
+      ]
+    },
+    "raw_sha256": "1a0a95aadc89f0395c669647b564556c4c41bd0b439463ab34958e32f9d06774"
+  },
+  {
+    "installed": "2.0.1",
+    "advisory": {
+      "id": "RUSTSEC-2024-0006",
+      "package": "shlex",
+      "date": "2024-01-21",
+      "url": "https://github.com/comex/rust-shlex/commit/4a0724b0b62ef715467875b040a890ce75a8a829",
+      "categories": [
+        "code-execution",
+        "file-disclosure"
+      ],
+      "keywords": [],
+      "aliases": [
+        "CVE-2024-58266",
+        "GHSA-r7qv-8r2h-pg27"
+      ]
+    },
+    "versions": {
+      "patched": [
+        ">= 1.3.0"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "shlex::quote": [
+          "< 1.2.1"
+        ],
+        "shlex::join": [
+          "< 1.2.1"
+        ],
+        "shlex::bytes::quote": [
+          "< 1.2.1"
+        ],
+        "shlex::bytes::join": [
+          "< 1.2.1"
+        ]
+      }
+    },
+    "raw_sha256": "8b79767db8a365d15713a86abd61d8dd97aa3d596f397e2edc6e1c6a6522d6ec"
+  },
+  {
+    "installed": "0.4.12",
+    "advisory": {
+      "id": "RUSTSEC-2025-0047",
+      "package": "slab",
+      "aliases": [
+        "CVE-2025-55159",
+        "GHSA-qx2v-8332-m4fv"
+      ],
+      "date": "2025-08-12",
+      "url": "https://github.com/tokio-rs/slab/pull/152",
+      "references": [
+        "https://github.com/tokio-rs/slab/pull/152"
+      ],
+      "keywords": [
+        "memory-exposure",
+        "bounds-check"
+      ]
+    },
+    "versions": {
+      "patched": [
+        ">= 0.4.11"
+      ],
+      "unaffected": [
+        "< 0.4.10"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "slab::Slab::get_disjoint_mut": [
+          "= 0.4.10"
+        ]
+      }
+    },
+    "raw_sha256": "9701f3000c2a95230e45acc12ef188c2e019d87467ed86b3945ee3e813192f3c"
+  },
+  {
+    "installed": "1.16.4",
+    "advisory": {
+      "id": "RUSTSEC-2018-0003",
+      "package": "smallvec",
+      "aliases": [
+        "CVE-2018-20991",
+        "GHSA-rxr4-x558-x7hw"
+      ],
+      "cvss": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "date": "2018-07-19",
+      "keywords": [
+        "memory-corruption"
+      ],
+      "url": "https://github.com/servo/rust-smallvec/issues/96"
+    },
+    "versions": {
+      "patched": [
+        ">= 0.6.3",
+        "^0.3.4",
+        "^0.4.5",
+        "^0.5.1"
+      ],
+      "unaffected": [
+        "< 0.3.2"
+      ]
+    },
+    "raw_sha256": "58bc46ac555b886033a0d4ee0248dbbadc802a7bec85139cbaea9d0f2923a24e"
+  },
+  {
+    "installed": "1.16.4",
+    "advisory": {
+      "date": "2018-09-25",
+      "id": "RUSTSEC-2018-0018",
+      "package": "smallvec",
+      "informational": "unsound",
+      "url": "https://github.com/servo/rust-smallvec/issues/126",
+      "aliases": [
+        "CVE-2018-25023",
+        "GHSA-55m5-whcv-c49c",
+        "GHSA-66p5-j55p-32r9"
+      ]
+    },
+    "versions": {
+      "patched": [
+        ">= 0.6.13"
+      ]
+    },
+    "raw_sha256": "2e0b6b96ca8a1e56d7ae219141a8c589eaf69c137d05e75ce6f9fca55d512e9e"
+  },
+  {
+    "installed": "1.16.4",
+    "advisory": {
+      "id": "RUSTSEC-2019-0009",
+      "package": "smallvec",
+      "aliases": [
+        "CVE-2019-15551",
+        "GHSA-mm7v-vpv8-xfc3"
+      ],
+      "cvss": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "date": "2019-06-06",
+      "keywords": [
+        "double free",
+        "use after free",
+        "arbitrary code execution"
+      ],
+      "url": "https://github.com/servo/rust-smallvec/issues/148"
+    },
+    "affected": {
+      "functions": {
+        "smallvec::SmallVec::grow": [
+          "< 0.6.10, >= 0.6.5"
+        ]
+      }
+    },
+    "versions": {
+      "patched": [
+        ">= 0.6.10"
+      ],
+      "unaffected": [
+        "< 0.6.5"
+      ]
+    },
+    "raw_sha256": "678bd66f3703ac7279a9b9fe4219fbe3903395d8411d899647ee8136d19241c5"
+  },
+  {
+    "installed": "1.16.4",
+    "advisory": {
+      "id": "RUSTSEC-2019-0012",
+      "package": "smallvec",
+      "aliases": [
+        "CVE-2019-15554",
+        "GHSA-69gw-hgj3-45m7"
+      ],
+      "cvss": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "categories": [
+        "code-execution",
+        "memory-corruption"
+      ],
+      "date": "2019-07-19",
+      "url": "https://github.com/servo/rust-smallvec/issues/149"
+    },
+    "affected": {
+      "functions": {
+        "smallvec::SmallVec::grow": [
+          "< 0.6.10, >= 0.6.3"
+        ]
+      }
+    },
+    "versions": {
+      "patched": [
+        ">= 0.6.10"
+      ],
+      "unaffected": [
+        "< 0.6.3"
+      ]
+    },
+    "raw_sha256": "5b23697816f2106c81a60a439af0bca44d285b79e194ef6a4bfb4dfec2eb3a14"
+  },
+  {
+    "installed": "1.16.4",
+    "advisory": {
+      "id": "RUSTSEC-2021-0003",
+      "package": "smallvec",
+      "aliases": [
+        "CVE-2021-25900",
+        "GHSA-43w2-9j62-hq99"
+      ],
+      "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "date": "2021-01-08",
+      "url": "https://github.com/servo/rust-smallvec/issues/252",
+      "categories": [
+        "memory-corruption"
+      ],
+      "keywords": [
+        "buffer-overflow",
+        "heap-overflow",
+        "unsound"
+      ]
+    },
+    "versions": {
+      "patched": [
+        ">= 0.6.14, < 1.0.0",
+        ">= 1.6.1"
+      ],
+      "unaffected": [
+        "< 0.6.3"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "smallvec::SmallVec::insert_many": [
+          ">= 0.6.3, < 0.6.14",
+          ">= 1.0.0, < 1.6.1"
+        ]
+      }
+    },
+    "raw_sha256": "6690201a9eb5ff0df1c1500c4e3eddca4f728b51e72bb386d28880240662d2ad"
+  },
+  {
+    "installed": "0.1.44",
+    "advisory": {
+      "id": "RUSTSEC-2023-0078",
+      "package": "tracing",
+      "date": "2023-10-19",
+      "url": "https://github.com/tokio-rs/tracing/pull/2765",
+      "informational": "unsound",
+      "categories": [
+        "memory-corruption"
+      ],
+      "keywords": [
+        "use-after-free"
+      ],
+      "aliases": [
+        "GHSA-8f24-6m29-wm2r"
+      ]
+    },
+    "versions": {
+      "patched": [
+        ">= 0.1.40"
+      ],
+      "unaffected": [
+        "<= 0.1.37"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "tracing::instrument::Instrumented::into_inner": [
+          ">= 0.1.38",
+          "< 0.1.40"
+        ]
+      }
+    },
+    "raw_sha256": "32e0edde69a636771bc9fa8a22e53315a26656560bb18f62defeebad61ab9eee"
+  },
+  {
+    "installed": "0.25.1",
+    "advisory": {
+      "id": "RUSTSEC-2026-0192",
+      "package": "ttf-parser",
+      "date": "2026-06-28",
+      "url": "https://github.com/harfbuzz/ttf-parser/issues/217",
+      "informational": "unmaintained"
+    },
+    "versions": {
+      "patched": []
+    },
+    "raw_sha256": "37496b74020531fc9e29830bd5aafc65f3861a228d8052dc73e6a75a9576ea4d"
+  },
+  {
+    "installed": "0.8.63",
+    "advisory": {
+      "id": "RUSTSEC-2023-0074",
+      "package": "zerocopy",
+      "date": "2023-12-14",
+      "url": "https://github.com/google/zerocopy/issues/716",
+      "keywords": [
+        "ref",
+        "refcell",
+        "mutable-aliasing"
+      ],
+      "aliases": [
+        "GHSA-3mv5-343c-w2qg",
+        "GHSA-rjhf-4mh8-9xjq"
+      ]
+    },
+    "versions": {
+      "patched": [
+        ">= 0.2.9, < 0.3.0",
+        ">= 0.3.2, < 0.4.0",
+        ">= 0.4.1, < 0.5.0",
+        ">= 0.5.2, < 0.6.0",
+        ">= 0.6.6, < 0.7.0",
+        ">= 0.7.31"
+      ],
+      "unaffected": [
+        "< 0.2.2"
+      ]
+    },
+    "affected": {
+      "functions": {
+        "zerocopy::Ref::into_ref": [
+          ">= 0.2.2, < 0.2.9",
+          ">= 0.3.0, < 0.3.2",
+          ">= 0.4.0, < 0.4.1",
+          ">= 0.5.0, < 0.5.2",
+          ">= 0.6.0, < 0.6.6",
+          ">= 0.7.0, < 0.7.31"
+        ],
+        "zerocopy::Ref::into_mut": [
+          ">= 0.2.2, < 0.2.9",
+          ">= 0.3.0, < 0.3.2",
+          ">= 0.4.0, < 0.4.1",
+          ">= 0.5.0, < 0.5.2",
+          ">= 0.6.0, < 0.6.6",
+          ">= 0.7.0, < 0.7.31"
+        ],
+        "zerocopy::Ref::into_slice": [
+          ">= 0.2.2, < 0.2.9",
+          ">= 0.3.0, < 0.3.2",
+          ">= 0.4.0, < 0.4.1",
+          ">= 0.5.0, < 0.5.2",
+          ">= 0.6.0, < 0.6.6",
+          ">= 0.7.0, < 0.7.31"
+        ],
+        "zerocopy::Ref::into_mut_slice": [
+          ">= 0.2.2, < 0.2.9",
+          ">= 0.3.0, < 0.3.2",
+          ">= 0.4.0, < 0.4.1",
+          ">= 0.5.0, < 0.5.2",
+          ">= 0.6.0, < 0.6.6",
+          ">= 0.7.0, < 0.7.31"
+        ]
+      }
+    },
+    "raw_sha256": "3d11d20e48559ed4fe42cc6d8a04cd27e3cf3e8e88a33887de0f6f0c4efb2f7f"
+  }
+]

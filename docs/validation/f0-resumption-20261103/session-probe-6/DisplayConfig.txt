@@ -1,0 +1,82 @@
+node /org/gnome/Mutter/DisplayConfig {
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface_name,
+          in  s property_name,
+          out v value);
+      GetAll(in  s interface_name,
+             out a{sv} properties);
+      Set(in  s interface_name,
+          in  s property_name,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface_name,
+                        a{sv} changed_properties,
+                        as invalidated_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s xml_data);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+  interface org.gnome.Mutter.DisplayConfig {
+    methods:
+      GetResources(out u serial,
+                   out a(uxiiiiiuaua{sv}) crtcs,
+                   out a(uxiausauaua{sv}) outputs,
+                   out a(uxuudu) modes,
+                   out i max_screen_width,
+                   out i max_screen_height);
+      ApplyConfiguration(in  u serial,
+                         in  b persistent,
+                         in  a(uiiiuaua{sv}) crtcs,
+                         in  a(ua{sv}) outputs);
+      @org.freedesktop.DBus.Deprecated("true")
+      ChangeBacklight(in  u serial,
+                      in  u output,
+                      in  i value,
+                      out i new_value);
+      SetBacklight(in  u serial,
+                   in  s connector,
+                   in  i value);
+      GetCrtcGamma(in  u serial,
+                   in  u crtc,
+                   out aq red,
+                   out aq green,
+                   out aq blue);
+      SetCrtcGamma(in  u serial,
+                   in  u crtc,
+                   in  aq red,
+                   in  aq green,
+                   in  aq blue);
+      GetCurrentState(out u serial,
+                      out a((ssss)a(siiddada{sv})a{sv}) monitors,
+                      out a(iiduba(ssss)a{sv}) logical_monitors,
+                      out a{sv} properties);
+      ApplyMonitorsConfig(in  u serial,
+                          in  u method,
+                          in  a(iiduba(ssa{sv})) logical_monitors,
+                          in  a{sv} properties);
+      SetOutputCTM(in  u serial,
+                   in  u output,
+                   in  (ttttttttt) ctm);
+    signals:
+      MonitorsChanged();
+    properties:
+      readonly (uaa{sv}) Backlight = (3, []);
+      readwrite i PowerSaveMode = 0;
+      readonly b PanelOrientationManaged = false;
+      readonly b ApplyMonitorsConfigAllowed = true;
+      readonly b NightLightSupported = false;
+      readonly b HasExternalMonitor = true;
+  };
+};

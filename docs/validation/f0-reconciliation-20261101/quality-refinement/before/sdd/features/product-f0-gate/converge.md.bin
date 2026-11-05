@@ -1,0 +1,27 @@
+# Convergence — F0 decision preparation
+
+AC-01..04: APPROVED for documentary preparation only. The current criterion-specific
+review is docs/validation/f0-reconciliation-20261101/decision-preparation/review.md;
+input versions, comparisons, negative controls and checks accompany it. The previous
+convergence and full evidence envelope remain in decision-preparation/before/.
+Earlier reconciliation of nine T004 tasks and recovery-helper changes is unchanged;
+its historical 46-test/439-input results are not reported as new execution.
+
+T007..T009 completed the current diagnostic, common experiment protocol and affected
+document review. T006 remains a maintainer decision. F0 is open: four INCONCLUSIVE
+and three UNVERIFIED rows. The immediate decision blocker and incomplete operational
+coverage are separate; it is not established that new foundation code is needed.
+The missing durable-history implementation belongs to the proposed independent
+post-F0/pre-MVP feature. The maintainer has not yet adopted that assignment.
+
+Current read-only comparison: 38 product observations, 3,514 declared input/artifact
+bindings, zero mismatches. Current structure check and eight binding tests passed;
+the old F0 envelope was correctly rejected for changed document inputs before this
+successor review. Final link/freshness results are in checks-final.json. No Cargo,
+GUI, persistence experiment or new product acceptance is claimed.
+
+The ADR now prohibits technology selection before paired results, removes the old
+leading-candidate preference and direct-selection shortcut, and separates experiment
+permission from integration authorization. product-local-persistence AC-01..07 remain
+UNVERIFIED. Resume with F0-D1..D4 adoption, then G2 criterion coverage; any storage
+prototype requires its own D3/D4 grant, and selection/integration require D5/D6.

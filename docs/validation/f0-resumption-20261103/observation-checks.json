@@ -1,0 +1,288 @@
+{
+  "observed_utc": "2026-11-04T00:40:13.085925+00:00",
+  "method": "exact controlled artifact bytes/identities, raw logged outcomes, process observations, per-cell warmup/sample/resource checks against adopted contract",
+  "status": "APPROVED",
+  "cells": [
+    {
+      "backend": "Wayland",
+      "scale": 1,
+      "logical_size": [
+        900,
+        700
+      ],
+      "response_max_ms": 44.007773976773024,
+      "client_max_ms": 30.522357,
+      "rss_max_mib": 28.6484375,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "native-metrics-1-900/result.json"
+    },
+    {
+      "backend": "X11",
+      "scale": 1,
+      "logical_size": [
+        900,
+        700
+      ],
+      "response_max_ms": 46.907927,
+      "client_max_ms": 42.500982,
+      "rss_max_mib": 25.9296875,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "x11-metrics-1-900/test.log"
+    },
+    {
+      "backend": "Wayland",
+      "scale": 1,
+      "logical_size": [
+        640,
+        480
+      ],
+      "response_max_ms": 37.59396699024364,
+      "client_max_ms": 23.592719000000002,
+      "rss_max_mib": 25.3984375,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "native-metrics-1-640/result.json"
+    },
+    {
+      "backend": "X11",
+      "scale": 1,
+      "logical_size": [
+        640,
+        480
+      ],
+      "response_max_ms": 47.537578,
+      "client_max_ms": 42.968403,
+      "rss_max_mib": 24.39453125,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "x11-metrics-1-640/test.log"
+    },
+    {
+      "backend": "Wayland",
+      "scale": 1.5,
+      "logical_size": [
+        900,
+        700
+      ],
+      "response_max_ms": 71.51100802002475,
+      "client_max_ms": 45.424726,
+      "rss_max_mib": 39.9765625,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "native-metrics-1.5-900/result.json"
+    },
+    {
+      "backend": "X11",
+      "scale": 1.5,
+      "logical_size": [
+        900,
+        700
+      ],
+      "response_max_ms": 65.930751,
+      "client_max_ms": 58.754663,
+      "rss_max_mib": 29.66015625,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "x11-metrics-1.5-900/test.log"
+    },
+    {
+      "backend": "Wayland",
+      "scale": 1.5,
+      "logical_size": [
+        640,
+        480
+      ],
+      "response_max_ms": 62.49919699621387,
+      "client_max_ms": 37.198096,
+      "rss_max_mib": 32.203125,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "native-metrics-1.5-640/result.json"
+    },
+    {
+      "backend": "X11",
+      "scale": 1.5,
+      "logical_size": [
+        640,
+        480
+      ],
+      "response_max_ms": 70.928327,
+      "client_max_ms": 65.367881,
+      "rss_max_mib": 26.23828125,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "x11-metrics-1.5-640/test.log"
+    },
+    {
+      "backend": "Wayland",
+      "scale": 2,
+      "logical_size": [
+        900,
+        700
+      ],
+      "response_max_ms": 95.3010670200456,
+      "client_max_ms": 60.763265,
+      "rss_max_mib": 49.37109375,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "native-metrics-2-900/result.json"
+    },
+    {
+      "backend": "X11",
+      "scale": 2,
+      "logical_size": [
+        900,
+        700
+      ],
+      "response_max_ms": 89.52988,
+      "client_max_ms": 80.367749,
+      "rss_max_mib": 34.828125,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "x11-metrics-2-900/test.log"
+    },
+    {
+      "backend": "Wayland",
+      "scale": 2,
+      "logical_size": [
+        640,
+        480
+      ],
+      "response_max_ms": 87.29139700881205,
+      "client_max_ms": 53.297115999999995,
+      "rss_max_mib": 36.7265625,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "native-metrics-2-640/result.json"
+    },
+    {
+      "backend": "X11",
+      "scale": 2,
+      "logical_size": [
+        640,
+        480
+      ],
+      "response_max_ms": 89.473609,
+      "client_max_ms": 82.205541,
+      "rss_max_mib": 28.97265625,
+      "idle_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "artifact": "x11-metrics-2-640/test.log"
+    }
+  ],
+  "functional_checks": [
+    {
+      "cell": [
+        1,
+        900,
+        700
+      ],
+      "native_artifacts": "good=42; bad=41; cancelled missing; sentinel preserved",
+      "native_processes": "cancel child absent; natural exit 0",
+      "x11_tests": 6,
+      "visual_inspection": "separate graphical-review.md"
+    },
+    {
+      "cell": [
+        1,
+        640,
+        480
+      ],
+      "native_artifacts": "good=42; bad=41; cancelled missing; sentinel preserved",
+      "native_processes": "cancel child absent; natural exit 0",
+      "x11_tests": 6,
+      "visual_inspection": "separate graphical-review.md"
+    },
+    {
+      "cell": [
+        1.5,
+        900,
+        700
+      ],
+      "native_artifacts": "good=42; bad=41; cancelled missing; sentinel preserved",
+      "native_processes": "cancel child absent; natural exit 0",
+      "x11_tests": 6,
+      "visual_inspection": "separate graphical-review.md"
+    },
+    {
+      "cell": [
+        1.5,
+        640,
+        480
+      ],
+      "native_artifacts": "good=42; bad=41; cancelled missing; sentinel preserved",
+      "native_processes": "cancel child absent; natural exit 0",
+      "x11_tests": 6,
+      "visual_inspection": "separate graphical-review.md"
+    },
+    {
+      "cell": [
+        2,
+        900,
+        700
+      ],
+      "native_artifacts": "good=42; bad=41; cancelled missing; sentinel preserved",
+      "native_processes": "cancel child absent; natural exit 0",
+      "x11_tests": 6,
+      "visual_inspection": "separate graphical-review.md"
+    },
+    {
+      "cell": [
+        2,
+        640,
+        480
+      ],
+      "native_artifacts": "good=42; bad=41; cancelled missing; sentinel preserved",
+      "native_processes": "cancel child absent; natural exit 0",
+      "x11_tests": 6,
+      "visual_inspection": "separate graphical-review.md"
+    }
+  ],
+  "native_held_repeats": 3,
+  "covered_x11_held_repeats": 3,
+  "limits": [
+    "copied diagnostic sizing/logging/frame timer explicitly identified",
+    "native performance is isolated headless Mutter, primary-session journey separately human observed",
+    "X11 pixels are client framebuffer; Wayland pixels are compositor capture; neither is physical scanout",
+    "CPU zero ticks at 100 Hz over 10 seconds is below observation resolution, not proof of zero work",
+    "finite corpus and repetitions do not establish universal flake rate; historical failures retained"
+  ]
+}

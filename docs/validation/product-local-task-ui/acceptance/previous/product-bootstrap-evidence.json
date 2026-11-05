@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64; exact Rust 1.99.1 pinned; Iced 0.14.0; GNOME Shell 50.5; native process Wayland trace retained. Local incremental builds.",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Virtual workspace with 16 compilable crates and a single lockfile; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "The Iced window opens, interaction reveals details, and both the button and window close it; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "The ox binary delegates to the library; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "All first-party roots prohibit unsafe; dependencies are evaluated separately; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "External modules without mod.rs; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Unit and external tests are discovered and executed; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-07",
+      "criterion": "Acyclic graph and UI separate from domains; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-08",
+      "criterion": "Distinct identities are used, UUID v7 only for globally persistent entities; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-09",
+      "criterion": "Evidence with actual inputs and results; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-10",
+      "criterion": "Governance checkers remain operational; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-11",
+      "criterion": "Versioned plugin contract; IPC and sandbox unavailable; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": [],
+      "reason": "Absence-of-IPC bootstrap clause explicitly superseded after predecessor acceptance by the authorized product-plugin-host slice (D-08). Versioned contract and no-sandbox limits remain reviewed."
+    },
+    {
+      "id": "AC-12",
+      "criterion": "Product separate from governance distribution; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-13",
+      "criterion": "16 useful contracts and future capabilities explicitly unavailable; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Native Wayland visual evidence is human-observed, independently supported by protocol/exit logs; reused because graphical inputs are unchanged.",
+    "Rootful temporary Xwayland accepted; main GNOME XTEST path remains limited.",
+    "Bootstrap accepted before successors; current AC-11 superseded, no F0 completion.",
+    "Three successor libraries/fixtures do not add real agents, production sandbox, persistence, UI integration or publication.",
+    "Local task UI distribution change invalidates dependent observations; original envelope retained in docs/validation/product-local-task-ui/resumption-01/previous. Reexamination required; no historical hash refreshed."
+  ]
+}

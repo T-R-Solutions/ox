@@ -1,0 +1,240 @@
+{
+  "group": "all",
+  "discovered": 46,
+  "executed": 46,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "tests": [
+    {
+      "test": "test_document_succession.DocumentSuccessionTests.test_corrupt_missing_and_escaping_predecessor_fail",
+      "group": "fast",
+      "seconds": 0.003125943010672927
+    },
+    {
+      "test": "test_document_succession.DocumentSuccessionTests.test_recovers_exact_original_and_rejects_unknown_current",
+      "group": "fast",
+      "seconds": 0.007953089021611959
+    },
+    {
+      "test": "test_document_succession.DocumentSuccessionTests.test_scope_duplicate_and_invalid_digest_fail",
+      "group": "fast",
+      "seconds": 0.0027925739996135235
+    },
+    {
+      "test": "test_document_succession.DocumentSuccessionTests.test_unrelated_file_is_not_rewritten",
+      "group": "fast",
+      "seconds": 0.002357302000746131
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_archive_content_and_names",
+      "group": "fast",
+      "seconds": 0.006735468021361157
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_archive_traversal_and_symlink",
+      "group": "fast",
+      "seconds": 0.0002679299796000123
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_bridge_identity_and_unconfigured",
+      "group": "fast",
+      "seconds": 0.001009161991532892
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_clean_export_and_recovery",
+      "group": "integration",
+      "seconds": 3.0060979679983575
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_declared_criteria_ignore_examples",
+      "group": "fast",
+      "seconds": 0.0003889499930664897
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_directory_links_stay_within_root",
+      "group": "integration",
+      "seconds": 9.206711311009713
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_duplicate_criterion_rejected",
+      "group": "fast",
+      "seconds": 0.00018344999989494681
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_duplicate_json_rejected",
+      "group": "fast",
+      "seconds": 0.00020052000763826072
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_english_and_legacy_states_enforce_the_same_evidence_gates",
+      "group": "fast",
+      "seconds": 0.00040047100628726184
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_freshness_selective_invalidation",
+      "group": "fast",
+      "seconds": 0.0004469800041988492
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_governance_package_not_product_release",
+      "group": "fast",
+      "seconds": 0.0024697830085642636
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_historical_files_remain_immutable",
+      "group": "integration",
+      "seconds": 5.4449632440228015
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_implementation_phase_consistency",
+      "group": "integration",
+      "seconds": 0.5471981689915992
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_independent_copy_and_corrupt_resource",
+      "group": "integration",
+      "seconds": 67.50418814297882
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_isolation_oracle_rejects_source_access",
+      "group": "fast",
+      "seconds": 0.04066072599380277
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_missing_artifact_not_approved",
+      "group": "fast",
+      "seconds": 0.0002249009849037975
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_missing_evidence_artifact",
+      "group": "fast",
+      "seconds": 0.0002727799874264747
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_normative_hash_requires_review",
+      "group": "integration",
+      "seconds": 6.570724899007473
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_path_escape_and_symlink",
+      "group": "fast",
+      "seconds": 0.0005469800089485943
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_product_feature_isolated_from_skill_acceptance",
+      "group": "integration",
+      "seconds": 6.585474545980105
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_product_records_stay_out_of_governance_export",
+      "group": "fast",
+      "seconds": 0.21831937099341303
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_relocated_contracts_remain_protected",
+      "group": "integration",
+      "seconds": 5.372762790007982
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_specialized_frontmatter_preserves_original_content",
+      "group": "integration",
+      "seconds": 28.633325477974722
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_technical_pending_and_history",
+      "group": "fast",
+      "seconds": 0.21957956298138015
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_translation_predecessor_is_authenticated",
+      "group": "integration",
+      "seconds": 0.49155350498040207
+    },
+    {
+      "test": "test_reconciliation.GitBoundaryTests.test_archived_git_metadata_rejected_recursively",
+      "group": "fast",
+      "seconds": 0.0003420510038267821
+    },
+    {
+      "test": "test_reconciliation.GitBoundaryTests.test_nested_git_directories_and_worktree_files_excluded",
+      "group": "fast",
+      "seconds": 0.003865834994940087
+    },
+    {
+      "test": "test_reconciliation.SuccessionTests.test_current_original_and_metadata_integrity",
+      "group": "integration",
+      "seconds": 3.9593186440179124
+    },
+    {
+      "test": "test_reconciliation.SuccessionTests.test_profile_still_rejects_unauthorized_skills_and_bridges",
+      "group": "integration",
+      "seconds": 6.081589345994871
+    },
+    {
+      "test": "test_reconciliation.SuccessionTests.test_succession_predecessor_and_scope_fail_closed",
+      "group": "integration",
+      "seconds": 0.49522613899898715
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_all_states_and_legacy_aliases",
+      "group": "fast",
+      "seconds": 0.019289432995719835
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_bare_status_or_authoring_review_never_approves",
+      "group": "fast",
+      "seconds": 0.019306401984067634
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_missing_files_escape_and_duplicate_references",
+      "group": "fast",
+      "seconds": 0.01705102002597414
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_partial_states_require_review_and_scope",
+      "group": "fast",
+      "seconds": 0.006655737000983208
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_review_cannot_borrow_contract_binding_from_execution",
+      "group": "fast",
+      "seconds": 0.0020419229986146092
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_stale_artifacts_and_each_bound_input_rejected",
+      "group": "fast",
+      "seconds": 0.04786375499679707
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_symlink_alias_does_not_hide_authoring_substitution",
+      "group": "fast",
+      "seconds": 0.0025644930137787014
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_unrelated_change_does_not_invalidate_acceptance",
+      "group": "fast",
+      "seconds": 0.0030550829833373427
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_corruption_and_deletion_fail_for_new_and_existing_metadata",
+      "group": "integration",
+      "seconds": 30.215913968975656
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_invalid_revision_records_rejected",
+      "group": "integration",
+      "seconds": 0.5435072449909057
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_revision_matches_current_files_and_preserves_prior_revisions",
+      "group": "integration",
+      "seconds": 3.566668542975094
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_unrelated_preservation_still_enforced",
+      "group": "integration",
+      "seconds": 6.583881553000538
+    }
+  ]
+}

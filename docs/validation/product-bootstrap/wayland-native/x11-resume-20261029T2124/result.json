@@ -1,0 +1,17 @@
+{
+  "command": [
+    "cargo",
+    "test",
+    "-p",
+    "ox-app",
+    "--test",
+    "desktop",
+    "--locked",
+    "--",
+    "--ignored",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "exit_code": 101,
+  "elapsed_seconds": 16.343143693000457
+}

@@ -1,0 +1,866 @@
+[
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "task": "T004",
+    "criterion": "AC-01",
+    "requirement": "A compatible, authorized plugin negotiates only granted capabilities; oracle: client/provider fixture and message assertions.",
+    "recorded_status": "APPROVED",
+    "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
+    "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
+    "review": "docs/validation/technical-acceptance-20261101/skill-plugin-protocol-engineering-AC-01.md",
+    "recorded_finding": "Host tests negotiate echo and reject denied/unsupported CALLs using a peer that exits 21 on any unauthorized CALL. Local trusted ASCII fixture only; no sandbox or third-party interoperability.",
+    "execution": [
+      {
+        "id": "E-TECH-RUN-AC-01",
+        "command_or_method": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline (application); standalone rustc consumer for missing oracle and direct-child reaping. Test-to-criterion mapping in the linked review.",
+        "artifact": "docs/validation/technical-acceptance-20261101/cargo.log",
+        "sha256": "479d67912906f1e7db38a3ac00b62bd9248e750336ae4482b4e78e70dee99884",
+        "observed_result": "Host tests negotiate echo and reject denied/unsupported CALLs using a peer that exits 21 on any unauthorized CALL."
+      }
+    ],
+    "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "task": "T004",
+    "criterion": "AC-02",
+    "requirement": "An incompatible or malformed plugin receives an explicit failure without persistent mutation; oracle: compatibility harness.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/plugin_host.rs",
+    "oracle": "tools/governance/consumers/operation_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-02.md",
+    "recorded_finding": "plugin_ac02_no_mutation: frozen host rejects incompatible handshake and malformed response; oracle compares working-directory entries and sentinel bytes, and confirms transport directories are removed after both failures.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-02",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+        "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+        "observed_result": "plugin_ac02_no_mutation: frozen host rejects incompatible handshake and malformed response; oracle compares working-directory entries and sentinel bytes, and confirms transport directories are removed after both failures."
+      }
+    ],
+    "scope": "Frozen local Host and plugin fixture for protocol rejection; separate bwrap read-probe process for actual filesystem/PID/network namespace isolation. Disposable files only. Neither result adopts or approves an Ox production sandbox.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "task": "T004",
+    "criterion": "AC-03",
+    "requirement": "A plugin exits during an operation and the host recovers/expires resources without blocking; oracle: crash and timeout test.",
+    "recorded_status": "APPROVED",
+    "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
+    "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
+    "review": "docs/validation/technical-acceptance-20261101/skill-plugin-protocol-engineering-AC-03.md",
+    "recorded_finding": "Crash and timeout are distinct and bounded below 3 seconds; separate shutdown/recovery test observes socket directory removal and a fresh instance. Direct child and local fixture only.",
+    "execution": [
+      {
+        "id": "E-TECH-RUN-AC-03",
+        "command_or_method": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline (application); standalone rustc consumer for missing oracle and direct-child reaping. Test-to-criterion mapping in the linked review.",
+        "artifact": "docs/validation/technical-acceptance-20261101/cargo.log",
+        "sha256": "479d67912906f1e7db38a3ac00b62bd9248e750336ae4482b4e78e70dee99884",
+        "observed_result": "Crash and timeout are distinct and bounded below 3 seconds; separate shutdown/recovery test observes socket directory removal and a fresh instance."
+      }
+    ],
+    "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "task": "T004",
+    "criterion": "AC-04",
+    "requirement": "An unauthorized plugin attempts to read a protected path and the host blocks the effect; oracle: sandbox integration on the target OS.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/fixture.rs",
+    "oracle": "tools/governance/consumers/isolation_test.py",
+    "review": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-04.md",
+    "recorded_finding": "isolation_test: outside baseline reads protected fixture; inside bwrap the allowed file remains readable and protected host path fails with exit 13/NotFound, including /proc/1/root route; protected bytes unchanged.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-04",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/isolation.json",
+        "sha256": "14969cb4aaa8e5c93fac000caf336afbdec9dcfe6caefdfb5dfa792f3a47d798",
+        "observed_result": "isolation_test: outside baseline reads protected fixture; inside bwrap the allowed file remains readable and protected host path fails with exit 13/NotFound, including /proc/1/root route; protected bytes unchanged."
+      }
+    ],
+    "scope": "Frozen local Host and plugin fixture for protocol rejection; separate bwrap read-probe process for actual filesystem/PID/network namespace isolation. Disposable files only. Neither result adopts or approves an Ox production sandbox.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "task": "T004",
+    "criterion": "AC-01",
+    "requirement": "An out-of-order event does not cause an unwarranted completion; oracle: transition test with an adversarial sequence.",
+    "recorded_status": "APPROVED",
+    "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
+    "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin",
+    "review": "docs/validation/technical-acceptance-20261101/skill-agent-runtime-engineering-AC-01.md",
+    "recorded_finding": "Adversarial reducer test rejects wrong generation, duplicate start, sequence gap and late success without corrupting terminal state. Reducer evidence is not sender authentication.",
+    "execution": [
+      {
+        "id": "E-TECH-RUN-AC-01",
+        "command_or_method": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline (application); standalone rustc consumer for missing oracle and direct-child reaping. Test-to-criterion mapping in the linked review.",
+        "artifact": "docs/validation/technical-acceptance-20261101/cargo.log",
+        "sha256": "479d67912906f1e7db38a3ac00b62bd9248e750336ae4482b4e78e70dee99884",
+        "observed_result": "Adversarial reducer test rejects wrong generation, duplicate start, sequence gap and late success without corrupting terminal state."
+      }
+    ],
+    "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "task": "T004",
+    "criterion": "AC-02",
+    "requirement": "Process death produces a status and cleanup of associated resources; oracle: controlled process with an injected failure.",
+    "recorded_status": "APPROVED",
+    "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
+    "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
+    "review": "docs/validation/technical-acceptance-20261101/skill-agent-runtime-engineering-AC-02.md",
+    "recorded_finding": "Real failure returns Failed(17); additional Linux consumer asserts the PID disappears from /proc after observed completion. Direct-child/no-output fixture; descendants and stream resources absent.",
+    "execution": [
+      {
+        "id": "E-TECH-RUN-AC-02",
+        "command_or_method": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline (application); standalone rustc consumer for missing oracle and direct-child reaping. Test-to-criterion mapping in the linked review.",
+        "artifact": "docs/validation/technical-acceptance-20261101/consumer.log",
+        "sha256": "f34b5471a57bd7a9e7a953d2d75ea17cd8479607d6616689a9ba6998acbe561a",
+        "observed_result": "Real failure returns Failed(17); additional Linux consumer asserts the PID disappears from /proc after observed completion."
+      }
+    ],
+    "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "task": "T004",
+    "criterion": "AC-03",
+    "requirement": "Cancellation during heavy output leaves no orphaned tasks; oracle: harness with streams and a deadline.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/operations.rs",
+    "oracle": "tools/governance/consumers/operation_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/agent-runtime-engineering-AC-03.md",
+    "recorded_finding": "runtime_ac03_cancel_output: final replay observes over 1 MiB on each stream before cancellation, retains 4096 bytes per stream, reaps the PID and joins both readers in under two seconds.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-03",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+        "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+        "observed_result": "runtime_ac03_cancel_output: final replay observes over 1 MiB on each stream before cancellation, retains 4096 bytes per stream, reaps the PID and joins both readers in under two seconds."
+      }
+    ],
+    "scope": "Controlled direct child continuously writes stdout/stderr; bounded retained output, observed kill/wait and two joined reader threads. No arbitrary process tree/grandchild-pipe supervision.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "task": "T004",
+    "criterion": "AC-04",
+    "requirement": "A “done” message without a validated artifact does not change the verdict to approved; oracle: deterministic adversarial case.",
+    "recorded_status": "APPROVED",
+    "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
+    "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
+    "review": "docs/validation/technical-acceptance-20261101/skill-agent-runtime-engineering-AC-04.md",
+    "recorded_finding": "Engine receives literal agent completion claim and remains NotVerified until a real oracle executes. Controlled deterministic engine consumer, not arbitrary agent integration.",
+    "execution": [
+      {
+        "id": "E-TECH-RUN-AC-04",
+        "command_or_method": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline (application); standalone rustc consumer for missing oracle and direct-child reaping. Test-to-criterion mapping in the linked review.",
+        "artifact": "docs/validation/technical-acceptance-20261101/cargo.log",
+        "sha256": "479d67912906f1e7db38a3ac00b62bd9248e750336ae4482b4e78e70dee99884",
+        "observed_result": "Engine receives literal agent completion claim and remains NotVerified until a real oracle executes."
+      }
+    ],
+    "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "task": "T004",
+    "criterion": "AC-01",
+    "requirement": "A criterion with a real test and versioned input can be marked APPROVED; oracle: bound execution artifact.",
+    "recorded_status": "APPROVED",
+    "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
+    "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
+    "review": "docs/validation/technical-acceptance-20261101/skill-autonomous-verification-engineering-AC-01.md",
+    "recorded_finding": "Real oracle exit and captured input bytes produce Approved with run identity; test asserts observation/check bindings. Local in-memory consumer; no authenticity or persistence guarantee.",
+    "execution": [
+      {
+        "id": "E-TECH-RUN-AC-01",
+        "command_or_method": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline (application); standalone rustc consumer for missing oracle and direct-child reaping. Test-to-criterion mapping in the linked review.",
+        "artifact": "docs/validation/technical-acceptance-20261101/cargo.log",
+        "sha256": "479d67912906f1e7db38a3ac00b62bd9248e750336ae4482b4e78e70dee99884",
+        "observed_result": "Real oracle exit and captured input bytes produce Approved with run identity; test asserts observation/check bindings."
+      }
+    ],
+    "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "task": "T004",
+    "criterion": "AC-02",
+    "requirement": "A skipped or unavailable test remains UNVERIFIED; oracle: fixture without an executable.",
+    "recorded_status": "APPROVED",
+    "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
+    "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
+    "review": "docs/validation/technical-acceptance-20261101/skill-autonomous-verification-engineering-AC-02.md",
+    "recorded_finding": "New consumer uses nonexistent oracle: execution returns NotFound, observations remain empty, verdict stays NotVerified before and after. Exercises unavailable executable branch; does not claim all wrapper/skip protocols.",
+    "execution": [
+      {
+        "id": "E-TECH-RUN-AC-02",
+        "command_or_method": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline (application); standalone rustc consumer for missing oracle and direct-child reaping. Test-to-criterion mapping in the linked review.",
+        "artifact": "docs/validation/technical-acceptance-20261101/consumer.log",
+        "sha256": "f34b5471a57bd7a9e7a953d2d75ea17cd8479607d6616689a9ba6998acbe561a",
+        "observed_result": "New consumer uses nonexistent oracle: execution returns NotFound, observations remain empty, verdict stays NotVerified before and after."
+      }
+    ],
+    "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "task": "T004",
+    "criterion": "AC-03",
+    "requirement": "A change after validation invalidates only criteria dependent on changed inputs; oracle: freshness test.",
+    "recorded_status": "APPROVED",
+    "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
+    "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
+    "review": "docs/validation/technical-acceptance-20261101/skill-autonomous-verification-engineering-AC-03.md",
+    "recorded_finding": "Mutation test invalidates changed candidate/contract while independent criterion remains approved and rejected history is retained. Declared local inputs only.",
+    "execution": [
+      {
+        "id": "E-TECH-RUN-AC-03",
+        "command_or_method": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline (application); standalone rustc consumer for missing oracle and direct-child reaping. Test-to-criterion mapping in the linked review.",
+        "artifact": "docs/validation/technical-acceptance-20261101/cargo.log",
+        "sha256": "479d67912906f1e7db38a3ac00b62bd9248e750336ae4482b4e78e70dee99884",
+        "observed_result": "Mutation test invalidates changed candidate/contract while independent criterion remains approved and rejected history is retained."
+      }
+    ],
+    "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "task": "T004",
+    "criterion": "AC-04",
+    "requirement": "An agent without deployment authorization cannot publish even after verification passes; oracle: boundary mock plus permitted integration.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/operations.rs",
+    "oracle": "tools/governance/consumers/operation_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/autonomous-verification-engineering-AC-04.md",
+    "recorded_finding": "verification_ac04_receiver: mocked decision rejects missing grant despite approved=true; actual loopback requests with empty/wrong grants create no file; correct grant writes exactly artifact.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-04",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+        "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+        "observed_result": "verification_ac04_receiver: mocked decision rejects missing grant despite approved=true; actual loopback requests with empty/wrong grants create no file; correct grant writes exactly artifact."
+      }
+    ],
+    "scope": "Authorized ephemeral loopback receiver owns a fixture grant; submitted approval does not confer the grant. Mock decision plus actual rejected/allowed local requests and file observation. No external publication or production authentication protocol.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "task": "T004",
+    "criterion": "AC-01",
+    "requirement": "An attempted write outside the root through .. or a symlink is rejected; oracle: adversarial path fixture.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/operations.rs",
+    "oracle": "tools/governance/consumers/operation_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-01.md",
+    "recorded_finding": "workspace_ac01_paths: ../ and symlink writes fail, inside/outside sentinels remain unchanged; normal in-root edit succeeds as positive control.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-01",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+        "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+        "observed_result": "workspace_ac01_paths: ../ and symlink writes fail, inside/outside sentinels remain unchanged; normal in-root edit succeeds as positive control."
+      }
+    ],
+    "scope": "Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "task": "T004",
+    "criterion": "AC-02",
+    "requirement": "Two agents edit the same version: the second write conflicts or applies a verified merge; oracle: concurrency test.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/operations.rs",
+    "oracle": "tools/governance/consumers/operation_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-02.md",
+    "recorded_finding": "workspace_ac02_concurrent: two actual processes use the same base; exactly one exits 0 and one conflicts with exit 23; final file is one complete proposal.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-02",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+        "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+        "observed_result": "workspace_ac02_concurrent: two actual processes use the same base; exactly one exits 0 and one conflicts with exit 23; final file is one complete proposal."
+      }
+    ],
+    "scope": "Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "task": "T004",
+    "criterion": "AC-03",
+    "requirement": "An injected failure between temporary-file creation and rename leaves no incorrect “done” record; oracle: crash test.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/operations.rs",
+    "oracle": "tools/governance/consumers/operation_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-03.md",
+    "recorded_finding": "workspace_ac03_crash: child exits 91 after PREPARED/before rename; original is unchanged, no DONE is recorded; after reaping, recovery preserves the unapplied proposal and records RECOVERED_UNAPPLIED.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-03",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+        "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+        "observed_result": "workspace_ac03_crash: child exits 91 after PREPARED/before rename; original is unchanged, no DONE is recorded; after reaping, recovery preserves the unapplied proposal and records RECOVERED_UNAPPLIED."
+      }
+    ],
+    "scope": "Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "task": "T004",
+    "criterion": "AC-04",
+    "requirement": "An externally changed file invalidates the hash/snapshot; oracle: watcher plus actual-read verification.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/operations.rs",
+    "oracle": "tools/governance/consumers/operation_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-04.md",
+    "recorded_finding": "workspace_ac04_watcher: external write produces a polling hint; actual read invalidates old snapshot. After stopping the watcher, another write is still detected through reconciliation.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-04",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+        "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+        "observed_result": "workspace_ac04_watcher: external write produces a polling hint; actual read invalidates old snapshot. After stopping the watcher, another write is still detected through reconciliation."
+      }
+    ],
+    "scope": "Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "task": "T004",
+    "criterion": "AC-01",
+    "requirement": "A simulated slow operation does not block navigation/interaction; oracle: integration test with a UI heartbeat.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/gui.rs",
+    "oracle": "tools/governance/consumers/gui_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/iced-engineering-AC-01.md",
+    "recorded_finding": "iced_four_criteria: during a real three-second worker, event-loop heartbeat advances and actual pane clicks/typing are processed while busy remains true.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-01",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/gui-final/tests.log",
+        "sha256": "31e288274cb21dab2adbfeb604aa35608dc2ad2b81a90b73620ad7f8bb03d416",
+        "observed_result": "iced_four_criteria: during a real three-second worker, event-loop heartbeat advances and actual pane clicks/typing are processed while busy remains true."
+      }
+    ],
+    "scope": "Separate Iced 0.14 graphical consumer under dedicated Xwayland; actual XTEST input, widget focus query, captures at 240x180/1600x1000 and relayout counters. Detail text persists; collapse routes focus to command input, expand restores detail. No product UI/native Wayland or arbitrary-size acceptance.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "task": "T004",
+    "criterion": "AC-02",
+    "requirement": "An expanded/collapsed pane preserves the defined content and focus; oracle: functional state test.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/gui.rs",
+    "oracle": "tools/governance/consumers/gui_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/iced-engineering-AC-02.md",
+    "recorded_finding": "iced_four_criteria: actual input contains retained; collapse redirects focus to command and typing changes cmd; expand restores detail focus and retained content; subsequent typing changes the detail.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-02",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/gui-final/tests.log",
+        "sha256": "31e288274cb21dab2adbfeb604aa35608dc2ad2b81a90b73620ad7f8bb03d416",
+        "observed_result": "iced_four_criteria: actual input contains retained; collapse redirects focus to command and typing changes cmd; expand restores detail focus and retained content; subsequent typing changes the detail."
+      }
+    ],
+    "scope": "Separate Iced 0.14 graphical consumer under dedicated Xwayland; actual XTEST input, widget focus query, captures at 240x180/1600x1000 and relayout counters. Detail text persists; collapse routes focus to command input, expand restores detail. No product UI/native Wayland or arbitrary-size acceptance.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "task": "T004",
+    "criterion": "AC-03",
+    "requirement": "Extreme resizing does not lose essential actions; oracle: layout review at documented sizes.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/gui.rs",
+    "oracle": "tools/governance/consumers/gui_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/iced-engineering-AC-03.md",
+    "recorded_finding": "iced_four_criteria plus pixel review: full labels/actions remain visible at actual 240x180 and 1600x1000; Slow/Pane/Graph work at both sizes, Quit exits at minimum. Initial clipped Quit failure is preserved in gui-01; fixed run and reviewed captures are gui-02.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-03",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/gui-final/tests.log",
+        "sha256": "31e288274cb21dab2adbfeb604aa35608dc2ad2b81a90b73620ad7f8bb03d416",
+        "observed_result": "iced_four_criteria plus pixel review: full labels/actions remain visible at actual 240x180 and 1600x1000; Slow/Pane/Graph work at both sizes, Quit exits at minimum. Initial clipped Quit failure is preserved in gui-01; fixed run and reviewed captures are gui-02."
+      }
+    ],
+    "scope": "Separate Iced 0.14 graphical consumer under dedicated Xwayland; actual XTEST input, widget focus query, captures at 240x180/1600x1000 and relayout counters. Detail text persists; collapse routes focus to command input, expand restores detail. No product UI/native Wayland or arbitrary-size acceptance.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "task": "T004",
+    "criterion": "AC-04",
+    "requirement": "A hidden graph does not schedule continuous relayout; oracle: instrumentation under a controlled workload.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/gui.rs",
+    "oracle": "tools/governance/consumers/gui_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/iced-engineering-AC-04.md",
+    "recorded_finding": "iced_four_criteria: actual relayout count remains stable during each 300ms hidden interval, increases while visible, and stops after hiding at both documented window sizes; actual counts are in gui-final/tests.log.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-04",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/gui-final/tests.log",
+        "sha256": "31e288274cb21dab2adbfeb604aa35608dc2ad2b81a90b73620ad7f8bb03d416",
+        "observed_result": "iced_four_criteria: actual relayout count remains stable during each 300ms hidden interval, increases while visible, and stops after hiding at both documented window sizes; actual counts are in gui-final/tests.log."
+      }
+    ],
+    "scope": "Separate Iced 0.14 graphical consumer under dedicated Xwayland; actual XTEST input, widget focus query, captures at 240x180/1600x1000 and relayout counters. Detail text persists; collapse routes focus to command input, expand restores detail. No product UI/native Wayland or arbitrary-size acceptance.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "task": "T004",
+    "criterion": "AC-01",
+    "requirement": "A symbol query reports file, range, snapshot and method; oracle: fixtures with verified positions.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-01.md",
+    "recorded_finding": "context_ac01_positions: known Unicode prefix yields a.fixture byte range 9..12, source bytes run, snapshot=1 and fixture-syntax-v1.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-01",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "context_ac01_positions: known Unicode prefix yields a.fixture byte range 9..12, source bytes run, snapshot=1 and fixture-syntax-v1."
+      }
+    ],
+    "scope": "Synthetic declaration/import/call corpus; exact source bytes and generation; actual rename/edit of owned temporary files and absent executable; no Rust parser or working LSP client. Unchanged files reuse parsed declarations, with no repository-scale performance claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "task": "T004",
+    "criterion": "AC-02",
+    "requirement": "A rename/edit invalidates old entries and updates affected ones; oracle: controlled repository mutations.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-02.md",
+    "recorded_finding": "context_ac02_rename_edit: real rename then write invalidates the old hit/path/name, updates b.fixture/renamed at generation 2, and reparses zero files when bytes are unchanged.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-02",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "context_ac02_rename_edit: real rename then write invalidates the old hit/path/name, updates b.fixture/renamed at generation 2, and reparses zero files when bytes are unchanged."
+      }
+    ],
+    "scope": "Synthetic declaration/import/call corpus; exact source bytes and generation; actual rename/edit of owned temporary files and absent executable; no Rust parser or working LSP client. Unchanged files reuse parsed declarations, with no repository-scale performance claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "task": "T004",
+    "criterion": "AC-03",
+    "requirement": "An ambiguous call without semantics is not labeled a verified reference; oracle: same-name code and imports.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-03.md",
+    "recorded_finding": "context_ac03_ambiguity: same-name declarations and import/call fixture return two candidates with verified=false.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-03",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "context_ac03_ambiguity: same-name declarations and import/call fixture return two candidates with verified=false."
+      }
+    ],
+    "scope": "Synthetic declaration/import/call corpus; exact source bytes and generation; actual rename/edit of owned temporary files and absent executable; no Rust parser or working LSP client. Unchanged files reuse parsed declarations, with no repository-scale performance claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "task": "T004",
+    "criterion": "AC-04",
+    "requirement": "An absent LSP results in explicit degradation without invented results; oracle: deliberately unavailable server.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-04.md",
+    "recorded_finding": "context_ac04_absent_provider: starting a nonexistent server fails with NotFound and produces semantic-provider-unavailable; existing syntax stays labeled, absent symbols remain empty.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-04",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "context_ac04_absent_provider: starting a nonexistent server fails with NotFound and produces semantic-provider-unavailable; existing syntax stays labeled, absent symbols remain empty."
+      }
+    ],
+    "scope": "Synthetic declaration/import/call corpus; exact source bytes and generation; actual rename/edit of owned temporary files and absent executable; no Rust parser or working LSP client. Unchanged files reuse parsed declarations, with no repository-scale performance claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "task": "T004",
+    "criterion": "AC-01",
+    "requirement": "A valid call edge can be traced to its location and method; oracle: known synthetic corpus.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-01.md",
+    "recorded_finding": "graph_ac01_provenance: a call from main to the uniquely declared run is checked against exact bytes/range and fixture-resolver-v1; test asserts location and method.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-01",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "graph_ac01_provenance: a call from main to the uniquely declared run is checked against exact bytes/range and fixture-resolver-v1; test asserts location and method."
+      }
+    ],
+    "scope": "Known synthetic language with unique file-local function resolution, exact source ranges/bytes and fixture-resolver-v1. Deterministic 10,000-edge graph plus cycle; no general language semantic resolution or UI performance claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "task": "T004",
+    "criterion": "AC-02",
+    "requirement": "An inferred relationship incorrectly marked as verified is rejected; oracle: provenance schema/assertion.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-02.md",
+    "recorded_finding": "graph_ac02_inference: inferred+verified is rejected; explicit unverified inference is accepted; mismatched target/source is rejected.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-02",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "graph_ac02_inference: inferred+verified is rejected; explicit unverified inference is accepted; mismatched target/source is rejected."
+      }
+    ],
+    "scope": "Known synthetic language with unique file-local function resolution, exact source ranges/bytes and fixture-resolver-v1. Deterministic 10,000-edge graph plus cycle; no general language semantic resolution or UI performance claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "task": "T004",
+    "criterion": "AC-03",
+    "requirement": "A change removes a stale edge in the new snapshot; oracle: before/after fixture.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-03.md",
+    "recorded_finding": "graph_ac03_stale: identical bytes retain one edge; changed bytes remove it from the next snapshot.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-03",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "graph_ac03_stale: identical bytes retain one edge; changed bytes remove it from the next snapshot."
+      }
+    ],
+    "scope": "Known synthetic language with unique file-local function resolution, exact source ranges/bytes and fixture-resolver-v1. Deterministic 10,000-edge graph plus cycle; no general language semantic resolution or UI performance claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "task": "T004",
+    "criterion": "AC-04",
+    "requirement": "A subgraph query applies limits and reports truncation; oracle: deterministically generated large graph.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-04.md",
+    "recorded_finding": "graph_ac04_bounds: 10,000-edge hub stops at 10 nodes or seven examined edges with truncation; cyclic two-node graph terminates without false truncation.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-04",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "graph_ac04_bounds: 10,000-edge hub stops at 10 nodes or seven examined edges with truncation; cyclic two-node graph terminates without false truncation."
+      }
+    ],
+    "scope": "Known synthetic language with unique file-local function resolution, exact source ranges/bytes and fixture-resolver-v1. Deterministic 10,000-edge graph plus cycle; no general language semantic resolution or UI performance claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "task": "T004",
+    "criterion": "AC-01",
+    "requirement": "Output with a relevant error is summarized while preserving failure and location; oracle: command fixtures.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-01.md",
+    "recorded_finding": "output_ac01_failure: actual child exits 17 after a 4096-byte successful prefix and error at src/main.rs:12; 256-byte projection preserves exit and location, and original bytes remain exact.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-01",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "output_ac01_failure: actual child exits 17 after a 4096-byte successful prefix and error at src/main.rs:12; 256-byte projection preserves exit and location, and original bytes remain exact."
+      }
+    ],
+    "scope": "Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "task": "T004",
+    "criterion": "AC-02",
+    "requirement": "ANSI, partial UTF-8, binary output and unexpected formats receive explicit fallback; oracle: adversarial corpus.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-02.md",
+    "recorded_finding": "output_ac02_fallback: ANSI, incomplete UTF-8, binary NUL/FF and unknown format all explicitly fall back; no raw terminal escape remains in display; raw bytes match.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-02",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "output_ac02_fallback: ANSI, incomplete UTF-8, binary NUL/FF and unknown format all explicitly fall back; no raw terminal escape remains in display; raw bytes match."
+      }
+    ],
+    "scope": "Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "task": "T004",
+    "criterion": "AC-03",
+    "requirement": "Truncation is indicated with the location of complete raw output; oracle: output exceeding the limit.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-03.md",
+    "recorded_finding": "output_ac03_truncation: over-limit output produces a bounded display, TRUNCATED marker and actual complete raw path; existing raw file cannot be overwritten.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-03",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "output_ac03_truncation: over-limit output produces a bounded display, TRUNCATED marker and actual complete raw path; existing raw file cannot be overwritten."
+      }
+    ],
+    "scope": "Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "task": "T004",
+    "criterion": "AC-04",
+    "requirement": "An estimated count is not shown as billed tokens; oracle: case without provider information.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-04.md",
+    "recorded_finding": "output_ac04_estimates: nine bytes produce the labeled heuristic estimate 3, while billed_tokens remains None and billing=unknown.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-04",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "output_ac04_estimates: nine bytes produce the labeled heuristic estimate 3, while billed_tokens remains None and billing=unknown."
+      }
+    ],
+    "scope": "Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "task": "T004",
+    "criterion": "AC-01",
+    "requirement": "Usage without available pricing returns unknown cost, not zero; oracle: model fixture without a rate.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-01.md",
+    "recorded_finding": "usage_ac01_missing_price: no rate returns None; explicit rates return 230 integer units, distinguishing unknown from zero.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-01",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "usage_ac01_missing_price: no rate returns None; explicit rates return 230 integer units, distinguishing unknown from zero."
+      }
+    ],
+    "scope": "Synthetic provider contract: cached tokens are a subset of input; integer rates; provider/event identity; explicit UTC-03:00 fixed offset at 02:59:59/03:00:00 UTC. No real provider pricing, timezone database or DST acceptance.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "task": "T004",
+    "criterion": "AC-02",
+    "requirement": "Replaying an event with the same ID does not double the total; oracle: replay test.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-02.md",
+    "recorded_finding": "usage_ac02_replay: repeated provider/event returns unchanged totals (100,30,20); conflicting duplicate is rejected.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-02",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "usage_ac02_replay: repeated provider/event returns unchanged totals (100,30,20); conflicting duplicate is rejected."
+      }
+    ],
+    "scope": "Synthetic provider contract: cached tokens are a subset of input; integer rates; provider/event identity; explicit UTC-03:00 fixed offset at 02:59:59/03:00:00 UTC. No real provider pricing, timezone database or DST acceptance.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "task": "T004",
+    "criterion": "AC-03",
+    "requirement": "Cached, input and output tokens are aggregated according to the observed contract; oracle: provider fixture.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-03.md",
+    "recorded_finding": "usage_ac03_cache: total input+output=120, uncached input=70; cache>input is rejected, so cache is never double-added.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-03",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "usage_ac03_cache: total input+output=120, uncached input=70; cache>input is rejected, so cache is never double-added."
+      }
+    ],
+    "scope": "Synthetic provider contract: cached tokens are a subset of input; integer rates; provider/event identity; explicit UTC-03:00 fixed offset at 02:59:59/03:00:00 UTC. No real provider pricing, timezone database or DST acceptance.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "task": "T004",
+    "criterion": "AC-04",
+    "requirement": "The daily interval uses an explicit timezone and does not alter current context usage; oracle: day/hour boundary.",
+    "recorded_status": "APPROVED",
+    "consumer": "tools/governance/consumers/models.rs",
+    "oracle": "tools/governance/consumers/model_tests.rs",
+    "review": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-04.md",
+    "recorded_finding": "usage_ac04_day_boundary: adjacent seconds fall in different UTC-03:00 days; both expected buckets contain one event; context remains 4096.",
+    "execution": [
+      {
+        "id": "E-CONSUMER-RUN-AC-04",
+        "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+        "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+        "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+        "observed_result": "usage_ac04_day_boundary: adjacent seconds fall in different UTC-03:00 days; both expected buckets contain one event; context remains 4096."
+      }
+    ],
+    "scope": "Synthetic provider contract: cached tokens are a subset of input; integer rates; provider/event identity; explicit UTC-03:00 fixed offset at 02:59:59/03:00:00 UTC. No real provider pricing, timezone database or DST acceptance.",
+    "task_result": "Completion supported within the existing bounded consumer scope; original scenario and oracle definitions unchanged.",
+    "method": "Compare task completion condition to recorded per-criterion review/execution and verify all declared input/artifact identities against preserved pre-edit bytes.",
+    "limitations": "Documentary reconciliation, not independent execution/test audit or product acceptance. No new agent/GUI trial."
+  }
+]

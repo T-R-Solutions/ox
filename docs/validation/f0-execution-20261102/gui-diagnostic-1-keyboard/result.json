@@ -1,0 +1,19 @@
+{
+  "scale": "1",
+  "coverage": false,
+  "command": [
+    "cargo",
+    "test",
+    "-p",
+    "ox-app",
+    "--test",
+    "desktop",
+    "--offline",
+    "--",
+    "--ignored",
+    "keyboard_focus_activation_and_exit",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "exit": 101
+}

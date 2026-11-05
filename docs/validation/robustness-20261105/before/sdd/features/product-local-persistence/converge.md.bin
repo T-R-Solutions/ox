@@ -1,0 +1,10 @@
+# Convergence — design proposal only
+
+AC-01..07: UNVERIFIED. ADR and bounded specification are prepared; no storage code, dependency, migration, fault experiment or backup has been implemented/executed. T001 completion is a documentary result, not product acceptance.
+
+Requirement → decision/risk → task → proposed code boundary/oracle is in traceability.json. Its source/spec paths are explicit placeholders for future executable acceptance, not evidence of implemented functionality. Maintainer owns T002/D1..D4. Exact next step: record explicit authorization and durability/platform/operational bounds, then perform only the explicitly authorized paired experiment. Technology selection follows its results; integration requires a separate grant. Deferral from F0 to an independent pre-MVP delivery remains proposed, not adopted.
+
+Follow-up: E01..E08 and the results-first decision rule are prepared in the ADR;
+T007 is documentary completion. SQLite and snapshots remain UNVERIFIED; no winner,
+driver/version, operational default, experimental result or F0 closure is asserted.
+Documentary evidence is in product-f0-gate and its decision-preparation review.

@@ -1,0 +1,25 @@
+{
+  "results": {
+    "check": {
+      "command": "cargo check --workspace",
+      "exit_code": 0
+    },
+    "fmt": {
+      "command": "cargo fmt --all -- --check",
+      "exit_code": 0
+    },
+    "clippy": {
+      "command": "cargo clippy --workspace --all-targets -- -D warnings",
+      "exit_code": 0
+    },
+    "test": {
+      "command": "cargo test --workspace",
+      "exit_code": 0
+    },
+    "list": {
+      "command": "cargo test --workspace -- --list",
+      "exit_code": 0
+    }
+  },
+  "inputs_unchanged": true
+}

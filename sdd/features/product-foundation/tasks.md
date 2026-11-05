@@ -11,3 +11,12 @@ Conclusão das tarefas baseada na rodada 20261026T213221.531227Z e na primeira
 qualificação 20261026T213413.599021Z, ambas com êxito. Os envelopes finais
 serão conferidos por freshness e por nova extração após sua estabilização;
 tarefas concluídas não substituem os estados de aceitação de evidence.json.
+
+- T900: Inspeção e execução agregada concluídas em 2026-11-01; mapeamento semântico por critério e reconciliação das cláusulas sucedidas continuam pendentes. Registro: docs/validation/foundation-current-20261101/criteria.json.
+
+## Retomada documental — 2026-11-01
+
+- [x] T901: rotular a cláusula histórica das 36 pendências e vincular o registro sucessor; preservar a conclusão histórica das tarefas e os cinco estados.
+- [ ] T902: após decisão do mantenedor sobre o alcance da sucessão, conferir somente os critérios afetados e suas obrigações restantes; referência: docs/validation/f0-reconciliation-20261101/legacy-succession.md.
+
+T900 (quando presente) descreve o ponto anterior. A reavaliação inicial de 25 critérios já está registrada; não será repetida integralmente por esta alteração documental.

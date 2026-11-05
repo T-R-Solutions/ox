@@ -1,0 +1,31 @@
+# Proposal — OPEN-05 durable local task history
+
+Status: PROPOSED, not adopted. Preparation authorized on 2026-11-01; implementation requires the maintainer to authorize product-local-persistence and its bounded storage decision. No new dependency or storage engine is selected by this document.
+
+Observed need: Controller::new creates a new Engine and session identity; Engine keeps observations in a Vec. Attempt directories preserve request/result files but do not reconstruct task history, oracle definitions or verdict provenance after restart. Persisting a displayed APPROVED string would lose its validity conditions.
+
+Proposed invariants: stable task/attempt/observation identities; immutable observations with criterion, oracle, arguments, input content identity, result and predecessor; distinct missing, unknown and failed values; five acceptance states; no approval from completion alone. Loading must compare current inputs before presenting current acceptance. A recovered running attempt becomes interrupted/unknown, never silently restarted or approved. Filesystem side effects and database commits are not one atomic transaction: record intent before execution and reconcile outcomes using attempt identity after a crash.
+
+Alternatives to evaluate:
+
+| Alternative | Benefit | Cost / obligation |
+|---|---|---|
+| Versioned snapshot files with atomic replacement | Small dependency surface, easy inspection | Must implement serialization, checksums, durable write ordering, locking, migrations and whole-state rewrite |
+| Append journal plus checkpoints | Immutable sequence and replay | Torn-tail handling, replay bounds, compaction and checkpoint atomicity become application responsibilities |
+| Embedded transactional database, candidate SQLite | Transactional grouping and indexed history | Driver/license/version review, durability configuration, backup protocol and migration testing required |
+
+Recommendation for the next decision: evaluate an embedded transactional database against snapshot files using the same restart/fault corpus. Prefer transactional grouping if that evaluation demonstrates simpler recovery and acceptable dependency costs. SQLite is a candidate, not an adopted choice; FTS5 and graph storage are excluded. No engine-specific durability or performance claim has been verified here.
+
+Proposed transaction boundary: one observation and all required references become visible together. Enforce unique attempt/operation IDs and referential integrity; reject different payloads under the same ID. One writer per store initially; a second app instance must fail clearly or coordinate under a tested lock. Retry only bounded transient failures; resolve uncertain commit by durable operation identity, never repeat an external process blindly.
+
+Version the schema and payloads. Back up before migration; reject unsupported future versions without writing. Run migration in a recoverable transaction or new-store replacement with integrity verification. Never overwrite an unreadable/corrupt original. Record migration origin, target and outcome. Code rollback does not undo data migration.
+
+Backup must capture a consistent store plus referenced evidence, with a manifest and restore verification into a fresh directory. Proposed initial retention: no automatic deletion; explicit export and explicit user-authorized deletion only. Select limits, storage location and retention policy with the maintainer; disk-full must stop new durable writes with a visible error. Raw evidence may contain private code: local access policy applies, no external transmission. Encryption at rest and secret storage are separate decisions, not implied guarantees.
+
+Test corpus: clean restart; kill before intent, after intent, after process effect, before/after commit acknowledgement; truncated journal/store; missing or changed evidence; duplicate operation; concurrent second writer; permission denied and disk full; old/current/future schema; interrupted migration; backup while active and restore. Oracle: compare recovered entities and provenance to a separately specified expected history, assert no false approval and preservation of original damaged bytes. A process kill is not proof of power-loss durability; that claim needs an appropriate filesystem/device experiment.
+
+Proposed feature product-local-persistence: persist the existing controlled local task flow and verification history, reconnect it to Iced, show interrupted attempts, and invalidate stale observations after restart. Exclude remote agents, multi-device sync, graph/search, marketplace, generalized orchestration and automatic resumption of side effects. Dependencies: storage decision, location/retention limits, reviewed serialization contract and product-local-task-ui APIs.
+
+Proposed acceptance: (1) task/attempt/history round-trip across two processes; (2) fault corpus never invents success or loses acknowledged history within the adopted durability model; (3) changed inputs invalidate only dependent acceptance; (4) version upgrade and rejected downgrade preserve recoverable bytes; (5) consistent backup restores independently; (6) UI reports storage and recovery failures without blocking indefinitely; (7) second writer and duplicate operations obey the adopted contract. All are UNVERIFIED proposals. Adoption of these requirements and authorization to implement are still required.
+
+Method: database-engineering, .codex/skills/database-engineering/SKILL.md, no declared version; model-and-transactions reference consulted. Contribution: invariants, transaction/effect boundary, migration and recovery alternatives. This is design review of local code, not engine testing.

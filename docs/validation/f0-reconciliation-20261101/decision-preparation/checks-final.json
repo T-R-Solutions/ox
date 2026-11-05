@@ -1,0 +1,43 @@
+{
+  "checks": [
+    {
+      "name": "freshness",
+      "command": "python3 sdd/tools/validate.py --root . --require-fresh",
+      "exit": 0,
+      "artifact": "docs/validation/f0-reconciliation-20261101/decision-preparation/freshness.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "name": "links-policy",
+      "command": "python3 tools/governance/scripts/check-ox.py",
+      "exit": 0,
+      "artifact": "docs/validation/f0-reconciliation-20261101/decision-preparation/links-policy.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "name": "whitespace",
+      "command": "git diff --check",
+      "exit": 0,
+      "artifact": "docs/validation/f0-reconciliation-20261101/decision-preparation/whitespace.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "changed_existing_paths": [
+    "sdd/features/product-local-persistence/spec.md",
+    "sdd/features/product-local-persistence/plan.md",
+    "sdd/features/product-local-persistence/tasks.md",
+    "sdd/features/product-local-persistence/converge.md",
+    "sdd/features/product-f0-gate/spec.md",
+    "sdd/features/product-f0-gate/plan.md",
+    "sdd/features/product-f0-gate/tasks.md",
+    "sdd/features/product-f0-gate/traceability.json",
+    "sdd/features/product-f0-gate/evidence.json",
+    "sdd/features/product-f0-gate/converge.md",
+    "docs/decisions/local-persistence-proposal.md",
+    "docs/validation/foundation-current-20261101/f0.md",
+    "docs/validation/f0-reconciliation-20261101/f0-matrix.json"
+  ],
+  "unexpected_changes": [],
+  "preserved_application_files": 73,
+  "limits": "Governance structure, bindings and declared paths only; no product or storage execution."
+}

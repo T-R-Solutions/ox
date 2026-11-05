@@ -1,0 +1,64 @@
+[
+  {
+    "command": [
+      "cargo",
+      "check",
+      "--workspace",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "seconds": 0.07742041900019103,
+    "log": "check.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "seconds": 0.3040279440001541,
+    "log": "test.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked",
+      "--",
+      "--list"
+    ],
+    "exit_code": 0,
+    "seconds": 0.2725100930001645,
+    "log": "discovery.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.04161079999994399,
+    "log": "fmt.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--all-targets",
+      "--locked",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "seconds": 0.3085539730000164,
+    "log": "clippy.log"
+  }
+]

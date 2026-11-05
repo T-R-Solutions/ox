@@ -1,0 +1,23 @@
+{
+  "deliveries": {
+    "product-bootstrap": "accepted before successors; current AC-11 superseded",
+    "product-plugin-host": "6 APPROVED",
+    "product-agent-runtime": "5 APPROVED",
+    "product-verification-engine": "5 APPROVED"
+  },
+  "rust_tests": {
+    "passed": 19,
+    "ignored_in_regular_suite": 2,
+    "explicit_graphical_passed": 2
+  },
+  "governance_tests": 34,
+  "commits": false,
+  "publication": false,
+  "F0_complete": false,
+  "limitations": [
+    "GNOME main-session XTEST delivery not repaired",
+    "No real-agent integration, sandbox, persisted verification or UI wiring",
+    "Historical governance-reconciliation acceptance remains UNVERIFIED after its bound project scope change; current checks do not silently promote it"
+  ],
+  "next_step": "Stop at the four authorized deliveries; any expansion requires a new scope."
+}

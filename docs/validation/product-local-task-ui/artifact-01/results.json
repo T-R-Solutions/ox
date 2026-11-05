@@ -1,0 +1,43 @@
+{
+  "results": [
+    {
+      "scenario": "good",
+      "producer_exit": 0,
+      "oracle_exit": 0
+    },
+    {
+      "scenario": "bad",
+      "producer_exit": 0,
+      "oracle_exit": 17
+    },
+    {
+      "scenario": "failure",
+      "producer_exit": 17,
+      "oracle_exit": 17
+    },
+    {
+      "scenario": "missing",
+      "producer_exit": null,
+      "oracle_exit": 17
+    },
+    {
+      "scenario": "wrong-identity",
+      "producer_exit": 0,
+      "oracle_exit": 17
+    },
+    {
+      "scenario": "preserve",
+      "producer_exit": 17,
+      "oracle_exit": 17
+    }
+  ],
+  "inputs": {
+    "application/target/debug/local-task": "d6c1f570c89e2d86c3650565e208c30dc1f0f45fa3d411fdcf6407224695b25c",
+    "application/target/debug/task-oracle": "accb78da034da4407924c8dce48635dba33bf6342539e03351784811df533cea",
+    "application/crates/ox-agent/src/bin/local-task.rs": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
+    "application/crates/ox-verification/src/bin/task-oracle.rs": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999"
+  },
+  "limitations": [
+    "Direct fixture process checks only; no Runtime, Engine or Iced integration acceptance."
+  ]
+}

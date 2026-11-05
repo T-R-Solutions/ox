@@ -1,0 +1,54 @@
+{
+  "method": "Human-supplied screenshots named for each button; direct visual inspection, correlated with owned attempt files and native Wayland run.",
+  "observations": {
+    "validade_workspace.png": "Validated workspace, four execution buttons enabled; no acceptance claimed.",
+    "run_correct.png": "Attempt 1 process Success; explicitly UNVERIFIED, result actually contains identity and result=42.",
+    "run_incorrect.png": "Attempt 2 process Success; explicitly UNVERIFIED, result actually contains identity and result=41.",
+    "fail.png": "Attempt 3 Failed(Some(17)), no result file.",
+    "timeout.png": "Attempt 4 TimedOut, no result file.",
+    "verify_result.png": "UNVERIFIED with generic missing-file error; chronological screenshots and Refresh identify current attempt 4, not approved result. Diagnostic improved after review.",
+    "refresh-inputs.png": "UNVERIFIED/stale or missing, criterion bound to attempt 4, no history observations."
+  },
+  "files": [
+    {
+      "source": "erase/fail.png",
+      "artifact": "docs/validation/product-local-task-ui/human-photos-01/fail.png",
+      "sha256": "b05a0cc88de8896edaa20c6ba9c3a3d9dc935aa7bab1591b975d799f844dfe96"
+    },
+    {
+      "source": "erase/refresh-inputs.png",
+      "artifact": "docs/validation/product-local-task-ui/human-photos-01/refresh-inputs.png",
+      "sha256": "e906cdb93cf5f65ed1cc4b6e47a6df65bcd76b23e403b8131fd399d2a92a1371"
+    },
+    {
+      "source": "erase/run_correct.png",
+      "artifact": "docs/validation/product-local-task-ui/human-photos-01/run_correct.png",
+      "sha256": "18abc7ef28e887a159210103f9d63b072a74ea749efadb15a73b553ae40cb4e2"
+    },
+    {
+      "source": "erase/run_incorrect.png",
+      "artifact": "docs/validation/product-local-task-ui/human-photos-01/run_incorrect.png",
+      "sha256": "0ef7c434ae542e68435baf0011a1a6405c7482558572866ce4d80657defc9130"
+    },
+    {
+      "source": "erase/timeout.png",
+      "artifact": "docs/validation/product-local-task-ui/human-photos-01/timeout.png",
+      "sha256": "e084c248b4f7500af122e9a89eb49f33a1a7bbc9825a97f110718f2cdbbb0c5f"
+    },
+    {
+      "source": "erase/validade_workspace.png",
+      "artifact": "docs/validation/product-local-task-ui/human-photos-01/validade_workspace.png",
+      "sha256": "dccbdca06a441b858a22ec00b7dffb404e36503e4f1cd03fb7c5aef64c0665b0"
+    },
+    {
+      "source": "erase/verify_result.png",
+      "artifact": "docs/validation/product-local-task-ui/human-photos-01/verify_result.png",
+      "sha256": "c90d6d81711b741dec7ebec87068b432b56b895a1b020773ee06a21ddeb85786"
+    }
+  ],
+  "limitations": [
+    "No screenshot here proves APPROVED or REJECTED; those require Verify immediately after each produced result.",
+    "Generic missing-evidence diagnostic found and improved; this record preserves the original UI.",
+    "No cancellation or active-close approval inferred from these photos."
+  ]
+}

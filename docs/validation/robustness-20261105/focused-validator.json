@@ -1,0 +1,54 @@
+{
+  "product-verification-engine": {
+    "method": "actual validator evidence_errors + trace_errors + input_errors(require_fresh=True), no empty feature discovery",
+    "errors": [],
+    "states": {
+      "AC-01": "APPROVED",
+      "AC-02": "APPROVED",
+      "AC-03": "APPROVED",
+      "AC-04": "APPROVED",
+      "AC-05": "APPROVED"
+    }
+  },
+  "product-local-task-ui": {
+    "method": "actual validator evidence_errors + trace_errors + input_errors(require_fresh=True), no empty feature discovery",
+    "errors": [],
+    "states": {
+      "AC-01": "APPROVED",
+      "AC-02": "APPROVED",
+      "AC-03": "APPROVED",
+      "AC-04": "APPROVED",
+      "AC-05": "UNVERIFIED",
+      "AC-06": "APPROVED",
+      "AC-07": "APPROVED",
+      "AC-08": "APPROVED",
+      "AC-09": "APPROVED",
+      "AC-10": "UNVERIFIED",
+      "AC-11": "UNVERIFIED"
+    }
+  },
+  "product-local-persistence": {
+    "method": "actual validator evidence_errors + trace_errors + input_errors(require_fresh=True), no empty feature discovery",
+    "errors": [],
+    "states": {
+      "AC-01": "UNVERIFIED",
+      "AC-02": "UNVERIFIED",
+      "AC-03": "UNVERIFIED",
+      "AC-04": "UNVERIFIED",
+      "AC-05": "UNVERIFIED",
+      "AC-06": "UNVERIFIED",
+      "AC-07": "UNVERIFIED"
+    }
+  },
+  "product-f0-gate": {
+    "method": "actual validator evidence_errors + trace_errors + input_errors(require_fresh=True), no empty feature discovery",
+    "errors": [],
+    "states": {
+      "AC-01": "INCONCLUSIVE",
+      "AC-02": "INCONCLUSIVE",
+      "AC-03": "INCONCLUSIVE",
+      "AC-04": "INCONCLUSIVE",
+      "AC-05": "UNVERIFIED"
+    }
+  }
+}

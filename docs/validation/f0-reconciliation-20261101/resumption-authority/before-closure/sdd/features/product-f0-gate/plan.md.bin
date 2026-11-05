@@ -1,0 +1,204 @@
+# Plan — documentary reconciliation and operational F0 gate
+
+D-01 [REQ-01,04]: archive exact inputs and map evidence dependencies before editing; task completion records an existing bounded consumer result, not new product acceptance. R-01: false freshness by rehashing old results or borrowing aggregated approval.
+D-02 [REQ-02]: preserve the seven F0 rows, separate adopted policies from proposed milestone criteria and require maintainer adoption before closure. R-02: reducing a gate to fit existing code or turning a roadmap into authorization.
+D-03 [REQ-03]: compare storage alternatives against the same integrity/failure corpus and create a proposed feature only. R-03: assuming SQLite adoption or implementing before permission.
+D-04 [REQ-04]: new documentary inspections bind current contracts; historical execution inputs that changed are retained under exact-byte snapshot paths with their old digests. R-04: silently changing the identity/scope of historical execution. Original complete envelopes survive under before/; archive paths are explicitly mapped. No code/oracle change means no automatic full replay.
+
+Primary selected/consulted/used: autonomous-verification-engineering, .codex/skills/autonomous-verification-engineering/SKILL.md (no declared version), sdd/chain/autonomous-verification-engineering.md bridge_version 1. Question: criterion authority, independent oracles, input dependencies and false operational acceptance. Contribution: F0 matrix, separate states, selective evidence comparison and negative gate checks. Supporting distinct question: database-engineering, .codex/skills/database-engineering/SKILL.md (no declared version), sdd/chain/database-engineering.md bridge_version 1, references/model-and-transactions.md; contribution: common storage invariants, alternative costs and recovery contract. No delegated agent work or recursive skill activation.
+
+Alternatives rejected: checkbox-only reconciliation ignores bound inputs; whole-suite rerun does not establish semantic succession; adopting storage to close F0 invents authority; replacing history hides failures. Retain the 25-row starting matrix and annotate only affected legacy obligations. Named successor ADRs do not automatically expand their stated adoption scope.
+
+Observed source/skill versions are content hashes in docs/validation/f0-reconciliation-20261101/inputs-final.json. Commands verified from README, project and actual scripts: validate.py structure/fresh modes, check-ox.py, verify-maintenance.py, unittest test_technical_acceptance and test_reconciliation. Reuse existing Cargo/GUI observations only as inherited records; code and oracles are unchanged. Structural success does not accept operational F0. Current package qualification is not performed unless needed by an adopted distribution gate.
+
+## Recovery integration discovered by focused checks
+
+D-05 [REQ-04]: the existing recovery checker cannot resolve changed task/spec inputs through its translation-only mapping. Add a bounded documentary predecessor map (17 paths), retaining original hashes and unknown-mutation rejection. No product source/storage change. New module tests cover positive recovery, unknown current bytes, corrupt/missing/escaping predecessor, extra/missing/duplicate scope and unrelated input. Run existing recovery tests against the updated helper and preserve failures. The pre-edit foundation/layout plan/task review appendices also required authenticated historical recovery; this does not retroactively validate the inherited baseline.
+
+The recovered Portuguese tasks are derived by removing only the preexisting T900 appendix and matching the existing maintenance digest; translated plans use their already authenticated translation predecessors. Full pre-edit bytes remain in before/. Selection remains criterion/evidence engineering; no additional skill is activated.
+
+## Follow-up decision preparation
+
+D-06 [REQ-02,03,04]: distinguish actual absent storage from unproven F0 evidence
+coverage; compare SQLite/snapshots without preselection or direct-adoption bypass.
+R-05: calling current input hashes proof of criterion coverage, or choosing on design
+preference alone. Retain the same selected/consulted/used primary verification skill
+and supporting database skill, bridge versions 1 and content-identified unversioned
+SKILL.md entries. Their current contributions are blocker classification, common
+acknowledgement/fault oracles and results-first decision rules. No delegation.
+
+Preserve before bytes and the two affected observations under
+`docs/validation/f0-reconciliation-20261101/decision-preparation/`. Only this feature's
+decided documentary evidence depends on the changed paths. Reexamine AC-01..04 after
+contract changes; retain earlier reviews unchanged. Persistence AC-01..07 stay
+UNVERIFIED. Check links, SDD structure/current bindings and mutation rejection;
+no Cargo/GUI rerun is justified by these document-only inputs. Skill selection and
+failure cases are applied as review controls, not claimed as new model evaluations.
+
+## Quality refinement follow-up
+
+D-07 [REQ-02,04]: refine Q01–Q13 and F0-D5; retain current exact toolchain/lockfile
+while proposing controlled promotion. R-06: equating coverage percentage, performance
+baseline, API denial or Task abortion with sufficient behavior/security evidence;
+equating documentary refinement with milestone adoption. Use separate total/changed
+metrics, defect reproductions, adopted budgets and effect-based adversarial oracles.
+
+Primary selected/consulted/used: autonomous-verification-engineering,
+`.codex/skills/autonomous-verification-engineering/SKILL.md`, no declared version;
+bridge `sdd/chain/autonomous-verification-engineering.md`, bridge_version 1.
+Entry read in this conversation; content hash bound to review. Contribution:
+acceptance-method design, dependency-based review and negative freshness checks.
+No new supporting skill/delegation; earlier database consultation is historical.
+
+Preserve eight predecessor files under quality-refinement/before and record the
+dependency map. Update f0.md, f0-matrix.json and this feature; add quality-proposal.md
+and version-update-policy.md. Preserve application/storage, adopted ADRs and project
+authorities. Reexamine AC-01..04, retain the old envelope and bind a successor review.
+Run focused SDD structure/freshness, link checks and existing evidence mutation tests.
+These do not establish product coverage or F0 acceptance.
+
+Rejected: adopting versions without candidate results, using aggregate coverage to
+hide critical gaps, mandatory test categories for inapplicable behavior, screenshots
+as interaction evidence, or pin removal as update policy. Deferred to adoption and
+execution: tooling/baselines, performance budgets, precise accessibility/environment
+matrix and actual gap inventory.
+
+## Operational execution — 2026-11-02
+
+D-08 [REQ-05]: use the authorized existing foundation envelope to investigate
+independent gaps while milestone adoption is pending. R-07: mistaking unavailable
+GUI/coverage evidence or an unadopted budget for acceptance. Preserve immediate
+predecessors in docs/validation/f0-execution-20261102/before and baseline.json.
+D-09 [REQ-05]: reproduce cancellation/cleanup and inspect deadline boundaries before
+changing them; preserve backward-compatible entry points and exact dependencies.
+R-08: API cancellation without observed process exit, or false approval after cancel.
+
+Selected, read and used primary: autonomous-verification-engineering at
+.codex/skills/autonomous-verification-engineering/SKILL.md (no declared version;
+bridge version 1): criteria, falsification and input-bound verdicts. Auxiliary rust
+at .codex/skills/rust/SKILL.md (no declared version; bridge version 1): safe process
+ownership, cancellation implementation and compatible Rust validation. Auxiliary
+performance-engineering at .codex/skills/performance-engineering/SKILL.md (no
+declared version; bridge version 1): measured boundaries, workload and resource
+baseline. Consulted Rust concurrency-and-safety and performance measurement-and-
+diagnosis references. No subagents, upgrades or framework addition.
+
+Measurement protocol: existing controlled good/bad/hang fixture, serial operations,
+debug build on this Linux x86_64 host, three warmups and twenty measured repetitions
+for execution, verification and cancel-to-observed-exit; record min/median/max and
+raw samples, process CPU and maximum RSS. GUI input-to-visible-response/frame
+observations are separate and cannot be inferred from backend timers. Propose
+limits after measurement, obtain adoption before acceptance. Coverage uses installed
+LLVM 23 tools and Rust instrument-coverage in an isolated target, reports all
+first-party src (excluding test modules/fixture bins explicitly) and changed lines
+against preserved dirty/untracked baseline; helpers included when instrumentation
+flushes, killed-child loss explicit. Initial changed-line target remains 80%.
+
+D-10 [REQ-05]: F0-D1..D5 adopted by explicit maintainer reply on 2026-11-02;
+see docs/decisions/f0-boundary-20261102.md. This resolves the scope decision,
+not operational verdicts or numerical budgets. R-09: interpreting deferral as
+waiver of local persistence at MVP or borrowed historical approval.
+
+Auxiliary skills actually read/used for distinct remaining questions:
+application-security (.codex/skills/application-security/SKILL.md; unversioned,
+bridge version 1): threat/control/effect mapping, target dependency inventory and
+dated RustSec/risk dispositions. iced-engineering (.codex/skills/iced-engineering/
+SKILL.md; unversioned, bridge version 1), desktop-performance-and-accessibility
+reference: actual installed Iced button keyboard contract, focus/render checks,
+window/scale observations. No automatic recursive activation.
+
+D-11 [REQ-05]: owner explicitly accepts a temporary F0-only ttf-parser 0.25.1
+unmaintained-dependency exception; keep the lockfile and review before distribution,
+untrusted font ingestion or next monthly review. No vulnerability absence claim.
+D-12 [REQ-05]: owner adopts measured-corpus backend limits: execution and verification
+<=50 ms each, cancel-to-observed-exit <=100 ms, harness max RSS <=32 MiB. Three
+warmups/twenty samples, debug build, this identified host; excludes GUI, worst-case
+history and blocked filesystem I/O. No CPU or frame-presentation budget yet.
+
+D-13 [REQ-05]: after observing 1,997,060 KiB RSS for 32 large observations,
+maintainer adopts 128 MiB retained payload, explicit admission refusal before
+launch, no eviction, <=256 MiB RSS on the fixed stress corpus (three runs).
+R-10: count-only limits conceal large retained snapshots; reserve maximum after-
+capture before any oracle effect. Keep ordinary 32-observation bound.
+
+D-14 [REQ-05]: measure client draw/present return in an isolated iced_winit 0.14.1
+copy with a retained two-point timer patch; keep product sources, manifests and
+lockfile unchanged. This is not physical presentation or earlier layout time.
+Ten-second idle CPU observations supplement the original one-second samples.
+R-11: instrumentation, host input contention or hidden-window throttling may affect
+measurements. Retain all timed-out runs and successful unchanged rechecks; no silent
+relaxation. GUI/frame/CPU budgets remain proposals after the maintainer did not
+adopt the numerical GUI question; native human confirmation without correlated
+task artifacts cannot close Q05/Q06. Exact resumption is in T016/T017.
+
+D-15 [REQ-05]: operational F0 joins the existing product-record exclusions of the
+governance-only export. The old documentary F0 record could be included; its new
+application-dependent AC-05 cannot validate without sources intentionally excluded
+from that package. Keep governance authority reviews bound only to their actual
+inputs. R-12: broad shared evidence manifests couple separate delivery boundaries.
+New negative assertion plus independent-copy checks verify the bounded correction.
+No package/publication or general export redesign is authorized or performed.
+
+## Graphical resumption — 2026-11-03
+
+D-16 [REQ-05]: preserve the 220-input acceptance envelope and immediate predecessors
+in docs/validation/f0-resumption-20261103 before changes. Initial comparison found
+zero changed inputs. Investigate delivery of held modifiers and graphical timeouts
+with an isolated compositor/session where available; bind actual native protocol,
+workspace artifacts, outcomes, focus and owned-process exit. R-13: input injection
+failure or instrumentation overhead misidentified as a product defect; nested
+compositor observations incorrectly generalized to the primary desktop.
+
+Primary selected/read/used: iced-engineering, .codex/skills/iced-engineering/SKILL.md,
+no declared version, bridge sdd/chain/iced-engineering.md version 1. Contribution:
+inspect installed keyboard/focus and rendering contracts. Supporting distinct
+diagnostic question: observability-and-diagnostics,
+.codex/skills/observability-and-diagnostics/SKILL.md, no declared version, bridge
+sdd/chain/observability-and-diagnostics.md version 1; hypothesis-and-evidence
+reference. Contribution: discriminate product, harness, input and instrumentation
+failures with correlated observations. Exact skill bytes will be bound in the new
+input record. No delegation or dependency upgrade.
+
+T016/T017 continue on the full route. The concrete GUI proposal is recorded in
+docs/validation/f0-resumption-20261103/decision-proposal.md; adoption remains an
+explicit maintainer decision. Earlier observations and failed attempts stay intact.
+
+D-17 [REQ-05]: maintainer explicitly adopted decision-proposal.md during this
+resumption; authority recorded in f0-boundary-20261102.md. Collect each of the 12
+cells without borrowing measurements across scales/sizes/backends. Support
+performance-engineering (.codex/skills/performance-engineering/SKILL.md, no declared
+version, bridge version 1) and measurement-and-diagnosis were read/used for exact
+measurement boundaries, warmup, resource samples and corpus comparability. Rust
+(.codex/skills/rust/SKILL.md, no declared version, bridge version 1) was read/used
+for bounded copied-harness changes without unsafe or dependency changes.
+
+Native original-binary observations use isolated Mutter/PipeWire and actual protocol
+input. Primary-session human observation uses the previously isolated diagnostic
+build (message log/client frame timer) with only a prefilled controlled workspace.
+Separate matrix copies additionally select initial logical size by environment.
+All differences from product sources must remain explicit and archived. Native
+screenshots prove rendered behavior; client timers do not prove physical scanout.
+X11 Shift comparison retains the failed XTEST modifier precondition and successful
+compositor-delivered input; repeated scenarios remain necessary for stability.
+
+D-18 [REQ-05]: final full-corpus review found client draw up to 429.99 ms with
+history, despite passing toggle-only samples. R-14: accepting a workload subset
+while contrary raw observations exist. Keep F0 open; compare one bounded rendering
+change in a disposable copy before product edits. Current Iced column source culls
+offscreen children, whereas a single status paragraph draws every text run. Test
+separate status-line widgets while preserving all text and scroll access; do not
+change the 125 ms budget or hide history.
+
+D-19 [REQ-05]: line/word subdivision candidates failed the125ms history corpus and
+remain disposable experiments. Compare a package-only tiny-skia dev optimization
+with unchanged UI/dependency versions before any product change. Supporting
+software-delivery (.codex/skills/software-delivery/SKILL.md, no declared version,
+bridge version1; build-inputs-and-trust reference) read/used for build provenance,
+profile isolation and affected-input validation. Retain the dev profile and
+first-party checks; this is a code-generation change, not budget relaxation.
+
+Raster candidate outcome: unchanged full-text UI at200% reduced the maximum after
+initial three frames from429.99ms to43.86ms by optimizing only locked tiny-skia0.11.4
+in the dev profile. Apply this bounded Cargo profile override, with first-party
+dev optimization unchanged, and rerun the affected graphical/resource matrix plus
+ordinary workspace checks. Text-subdivision candidates remain unadopted.

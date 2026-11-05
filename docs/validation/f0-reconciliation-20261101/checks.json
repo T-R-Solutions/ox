@@ -1,0 +1,152 @@
+{
+  "environment": {
+    "platform": "Linux-7.3.0-1-default-x86_64-with-glibc2.44",
+    "python": "3.13.16",
+    "local_date": "2026-11-01",
+    "timezone": "America/Sao_Paulo"
+  },
+  "scope": "Documentary reconciliation and bounded governance helper correction; not F0/product acceptance",
+  "checks": [
+    {
+      "name": "structure",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+      "exit_code": 0,
+      "result": "Passed initial model check",
+      "artifact": "docs/validation/f0-reconciliation-20261101/structure.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+      "limitations": "Structure only"
+    },
+    {
+      "name": "fresh",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh",
+      "exit_code": 0,
+      "result": "Passed initial binding check",
+      "artifact": "docs/validation/f0-reconciliation-20261101/fresh.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+      "limitations": "Content identities, not semantic adequacy"
+    },
+    {
+      "name": "check-ox",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 1,
+      "result": "Rejected unregistered document successors and not-yet-created checks.json link",
+      "artifact": "docs/validation/f0-reconciliation-20261101/check-ox.log",
+      "sha256": "7422c39d39af9ef366344bf575464e6d67af886d2d9cf9b518e7e448b87f92ab",
+      "limitations": "Failure retained; no hidden hash renewal"
+    },
+    {
+      "name": "maintenance",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/verify-maintenance.py",
+      "exit_code": 1,
+      "result": "17 previous-byte and 14 layout mismatches; 425/439 recovered",
+      "artifact": "docs/validation/f0-reconciliation-20261101/maintenance.log",
+      "sha256": "cc56bd578e3d7aef664ecf32b44cd0d05a7a460c081fb17d68ffd8586eb58abd",
+      "limitations": "Initial failure includes preexisting review appendices"
+    },
+    {
+      "name": "technical-mutations",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -p test_technical_acceptance.py -v",
+      "exit_code": 0,
+      "result": "8 tests passed",
+      "artifact": "docs/validation/f0-reconciliation-20261101/technical-mutations.log",
+      "sha256": "74d344d3452d09458f97d3d189bc375f708eb5e2fb5842206abc5fee3d667672",
+      "limitations": "Evidence-gate mutations, not consumer execution"
+    },
+    {
+      "name": "maintenance-repaired",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/verify-maintenance.py",
+      "exit_code": 1,
+      "result": "Intermediate recovery: 438/439; two task predecessors still unavailable",
+      "artifact": "docs/validation/f0-reconciliation-20261101/maintenance-repaired.log",
+      "sha256": "438bbb4d560e74a28df5911ab869f1e8e12ef4edfd04b734aea947118f39a504",
+      "limitations": "Failure retained; exact historical task bytes then authenticated"
+    },
+    {
+      "name": "document-mutations",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -p test_document_succession.py -v",
+      "exit_code": 0,
+      "result": "4 tests passed",
+      "artifact": "docs/validation/f0-reconciliation-20261101/document-mutations.log",
+      "sha256": "550eca990768e2c60fb87234764f854f5b8c9e6c8adf271f2530a0be6d9da2da",
+      "limitations": "Bounded successor recovery, unknown-current, corrupt/missing/escaping predecessor and scope rejection"
+    },
+    {
+      "name": "maintenance-final",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/verify-maintenance.py",
+      "exit_code": 0,
+      "result": "485 governed historical files preserved; 439/439 layout inputs recovered; zero errors",
+      "artifact": "docs/validation/f0-reconciliation-20261101/maintenance-final.log",
+      "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+      "limitations": "Governance recovery, not product acceptance"
+    },
+    {
+      "name": "check-ox-repaired",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 0,
+      "result": "Passed after bounded successor correction",
+      "artifact": "docs/validation/f0-reconciliation-20261101/check-ox-repaired.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+      "limitations": "Not operational F0 or a qualified ZIP"
+    },
+    {
+      "name": "governance-tests",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -v",
+      "exit_code": 0,
+      "result": "46 tests passed in 164.756s",
+      "artifact": "docs/validation/f0-reconciliation-20261101/governance-tests.log",
+      "sha256": "56d4897c4aa5211cc55ce220592832fc52138c1224c6b266c519d005276fc96b",
+      "limitations": "Includes independent-copy fixture checks; not a newly qualified delivery ZIP. Run contract snapshots retained in governance-run-inputs.json"
+    },
+    {
+      "name": "structure-final",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+      "exit_code": 0,
+      "result": "Passed after documentary successor records",
+      "artifact": "docs/validation/f0-reconciliation-20261101/structure-final.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+      "limitations": "Structure only"
+    },
+    {
+      "name": "fresh-final",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh",
+      "exit_code": 0,
+      "result": "Passed current bindings",
+      "artifact": "docs/validation/f0-reconciliation-20261101/fresh-final.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+      "limitations": "Does not authenticate results or oracle adequacy"
+    },
+    {
+      "name": "check-ox-final",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 0,
+      "result": "Passed links, profiles, technical gate and preservation checks",
+      "artifact": "docs/validation/f0-reconciliation-20261101/check-ox-final.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+      "limitations": "Not a full milestone acceptance"
+    },
+    {
+      "name": "skill-bindings-final",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 docs/validation/skill-consumers-20261101/acceptance_check.py",
+      "exit_code": 0,
+      "result": "54 skill criteria and bound technical reviews passed; 36 are technical scenarios",
+      "artifact": "docs/validation/f0-reconciliation-20261101/skill-bindings-final.log",
+      "sha256": "c529415e0ddd0318a19e9488916b36cb7b2a04d4a92af6d9756bbb04a1513cde",
+      "limitations": "Recorded bounded consumer acceptance; no new technical execution"
+    },
+    {
+      "name": "diff-check",
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "No whitespace errors",
+      "artifact": "docs/validation/f0-reconciliation-20261101/diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "limitations": "Includes existing tracked changes; untracked artifacts separately structurally checked"
+    }
+  ],
+  "not_executed": [
+    "No new Cargo or graphical consumer/application run: their code/oracles were unchanged.",
+    "No storage implementation, driver installation, persistence fault experiment or power-loss test.",
+    "No new delivery ZIP qualification, third-party rights clearance or independent audit of the inherited 25 criteria."
+  ],
+  "post_envelope_note": "After this receipt and the product-f0-gate evidence envelope are stabilized, closure verification is recorded separately in closure-checks.json to avoid a self-hashed receipt."
+}

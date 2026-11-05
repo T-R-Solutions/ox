@@ -1,0 +1,19 @@
+{
+  "scale": "1",
+  "coverage": true,
+  "command": [
+    "cargo",
+    "test",
+    "-p",
+    "ox-app",
+    "--test",
+    "desktop",
+    "--locked",
+    "--",
+    "--ignored",
+    "cancel_verification_observes_oracle_exit_in_ui",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "exit": 0
+}

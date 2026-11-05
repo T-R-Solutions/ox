@@ -1,0 +1,17 @@
+{
+  "before_rss_kib": 1997060,
+  "after_rss_kib": [
+    164576,
+    164640,
+    160792
+  ],
+  "adopted_limit_kib": 262144,
+  "retained_payload_limit_bytes": 134217728,
+  "runs": 3,
+  "result": "APPROVED",
+  "limitations": [
+    "One before run; three corrected runs; same debug corpus and host",
+    "Payload budget includes before and after bytes, not a universal process heap cap",
+    "Two observations retained, next request refused before effect; no eviction"
+  ]
+}

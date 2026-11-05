@@ -1,0 +1,21 @@
+# Documentary delta review — product-local-task-ui
+
+Date: 2026-11-01. Method: compare the pre-edit envelope/contracts with the changed document inputs and bounded recovery helper, original criterion scope and retained observations. All prior declared input/artifact digests were checked before relocation. This is a new dependency-impact inspection. Governance tests were rerun for the helper change; product/skill consumer executions and the inherited 25-criterion review were not independently reproduced/audited. Original complete envelope: docs/validation/f0-reconciliation-20261101/before/sdd/features/product-local-task-ui/evidence.json.bin.
+
+The bounded governance helper extension has separate new execution evidence in governance-tests.log and maintenance-final.log. The latter records 439/439 historical inputs recovered. Historical observations keep their old digests; only paths to changed historical inputs now identify exact preserved bytes. New inspections bind the current contract. Remapping is listed in dependency-remapping.json. No old execution is relabeled as current execution.
+
+| Criterion | Preserved state | Documentary finding |
+|---|---|---|
+| AC-01 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-02 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-03 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-04 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-05 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-06 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-07 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-08 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-09 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-10 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+| AC-11 | APPROVED | Project/OPEN references clarify accepted local slice and proposed future persistence. No Controller/Engine/GUI/test/lockfile or accepted behavior changed; historical graphical and Cargo results remain scoped to their original executions. |
+
+Limitations: underlying execution results are retained observations, not independently reproduced here. Documentation does not grant scope, accept F0, implement persistence or resolve platform/rights gaps. Current operational acceptance still depends on complete relevant inputs and adequate original oracles.

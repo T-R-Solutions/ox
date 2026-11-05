@@ -1,35 +1,55 @@
-# Índice das features SDD do Ox
+# Ox SDD feature index
 
-As features desta pasta são independentes e permanecem diretamente em
-`sdd/features/` conforme o validador SDD 1.3.0 adotado.
+Features remain directly under `sdd/features/`. Each feature owns its requirements,
+scope, criteria and evidence. Read its spec, plan, tasks and latest convergence
+record before resuming. A directory or completed task list does not establish
+acceptance. [Workflow](../workflow.md) defines the local and full routes;
+[evidence.md](../evidence.md) defines the five states and content bindings.
 
-## Governança histórica
+## Ox product
 
-- `adoption-governance`: adoção da biblioteca e autoridades.
-- `governance-externalization`: retirada de dependências de estudos externos.
+| Feature | Scope and current interpretation |
+| --- | --- |
+| `product-foundation` | Governance transition into implementation; does not implement product engines |
+| `product-bootstrap` | Virtual workspace, 16 crates and minimal Iced shell |
+| `product-plugin-host` | Local Unix host, protocol negotiation, grants, failures and controlled shutdown |
+| `product-agent-runtime` | Direct-child supervision, attempts, events, cancellation and deadline |
+| `product-verification-engine` | Local oracle, byte snapshots, history and invalidation in memory |
+| `product-local-task-ui` | Controlled task and explicit verification integrated into the desktop |
+| `product-f0-gate` | Foundation gate and successive operational observations; final raster-profile successor accepts the adopted local corpus |
+| `product-local-persistence` | Proposed independent delivery after F0 and before F3/MVP; implementation awaits authorization |
 
-Os resultados históricos permanecem na baseline. Envelopes ativos afetados
-recebem observações novas conforme evidence.md; não se reaproveitam hashes antigos.
+F0's current report at `docs/validation/f0-resumption-20261103/report.md`
+supersedes earlier open conclusions only for the identified inputs and corpus.
+It does not authorize F1 or persistence implementation. Real agents, full engines,
+SDK and distribution remain future scopes. See the
+`application/README.md` and
+`docs/architecture/application.md` for the current implementation.
 
-## Ferramentas de governança
+Product paths above are repository-root references. Product implementation and
+operational records are excluded from the governance-only export, so this portable
+index lists their names without requiring them as link targets.
 
-- `governance-layout`: ferramentas em tools/governance/, configuração em
-  config/governance/; a reserva histórica de src/ foi sucedida por
-  `application/` na ADR `docs/decisions/product-bootstrap.md`.
+## Governance and library
 
-## Biblioteca de skills
+| Feature | Purpose |
+| --- | --- |
+| [adoption-governance](adoption-governance/spec.md) | Historical adoption of the library and authorities |
+| [governance-externalization](governance-externalization/spec.md) | Historical removal of external-study dependencies |
+| [governance-layout](governance-layout/spec.md) | Governance tools/configuration layout; application placement subsequently adopted in the bootstrap ADR |
+| [maintenance-001](maintenance-001/spec.md) | Preservation, recovery and sharing |
+| [governance-reconciliation](governance-reconciliation/spec.md) | Reconcile active governance with historical preservation |
+| [technical-acceptance](technical-acceptance/spec.md) | Criterion and evidence semantics |
+| [skill-ui-metadata-inventory](skill-ui-metadata-inventory/spec.md) | Skill metadata inventory |
+| [skill-consumer-validation](skill-consumer-validation/converge.md) | Executable bounded consumers for nine specializations; independent from product acceptance |
+| [readme-skill-integration](readme-skill-integration/converge.md) | README method import and governance integration; README preservation repair recorded separately |
+| [technical-documentation-visuals](technical-documentation-visuals/spec.md) | Source-grounded documentation and visual authoring method |
 
-- `skill-*`: autoria, roteamento e avaliação das nove especializações.
-- Critérios técnicos que exigem subsistemas reais continuam NÃO VERIFICADO
-  quando não há evidência de implementação.
+The nine `skill-*` features cover authoring, routing and evaluation of library
+specializations. Their methods are indexed in the [bridge catalog](../chain/README.md).
+Their technical criteria and consumer observations do not approve product modules.
 
-## Produto Ox
-
-- `product-foundation`: transição de fase e preparação verificável da fundação.
-- `product-bootstrap`: workspace virtual em application/, 16 crates e shell Iced;
-  fontes/testes por crate e evidências próprias (fora do pacote de governança).
-- Futuras `product-*`: funcionalidades dos módulos Rust/Iced, plugins, runtime, contexto,
-  grafos, verificação e demais capacidades, cada uma com evidências próprias.
-
-A rota local segue `sdd/workflow.md`. Não mover features para escapar dos gates,
-não promover aprovações históricas e não confundir documentação com implementação.
+Historical results retain their original bytes and scope. Changed inputs require
+new observations or an explicit undecided state, not renewed historical hashes.
+Do not move features to evade checks. Documentation maintenance follows the local
+route when contracts and authorization remain unchanged.

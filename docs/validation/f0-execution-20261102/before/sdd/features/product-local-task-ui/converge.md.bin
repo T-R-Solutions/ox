@@ -1,0 +1,48 @@
+# Convergence: product-local-task-ui
+
+All criteria UNVERIFIED. Specification is provisional; no integration code or graphical acceptance yet. Governance reconciliation is in progress.
+
+## Artifact protocol implementation
+
+Governance AC-01..04 and metadata inventory AC-01..02 were reexamined with new
+independent-export checks; current evidence is in governance-reconciliation/local-task-ui-03.
+New local-task and task-oracle binaries implement request identity plus result=42.
+Direct process scenarios good/bad/failure/missing/wrong-identity/preexisting-result
+behaved as expected; preserved sentinel bytes. See artifact-01/results.json.
+This is partial implementation: no Runtime/Engine/Iced wiring, cancellation, input
+refresh or actual graphical acceptance yet. All UI criteria remain UNVERIFIED.
+Next concrete implementation: worker-owned Runtime/Engine controller in ox-ui,
+correlated messages and graceful window close, then real graphical acceptance.
+
+## Implementation and current verification — 2026-10-30
+
+Controller, dedicated workers and actual Iced controls are implemented. Real Runtime
+and Engine process tests pass, including correct/incorrect results, missing evidence,
+staleness/history, inaccessible paths, cancellation and timeout. A late duplicated
+completion after editing a workspace path was found during review and corrected;
+request generations advance on edits and completion requires an active operation.
+All five Cargo commands passed with unchanged captured inputs in final-checks-02.
+The socket-restricted sandbox failure remains preserved separately.
+
+Final independent export: 957 files, exact manifest/input agreement, five checks and
+34 tests passed; no Git metadata or new product records leaked into governance.
+Evidence: docs/validation/product-local-task-ui/final-export.
+
+Graphical acceptance remains open. Wayland surface/commit protocol and real window
+interaction observed; maintainer confirmed workspace validation enabled all four
+execution buttons, then reported a difference without its details. A 600s manual
+session ended by supervisor SIGTERM, not graceful closure. A further session was
+opened for photographs at the maintainer request (1800s observation window).
+No approval is inferred from its existence or generated task artifacts.
+
+X11: native close passed, pointer-driven tests failed location/exit assertions.
+All attempts preserved in x11-01..04. The end-of-scenario pointer restoration
+experiment did not solve placement and was preserved then reverted; existing
+restoration behavior retained. New ignored local_task_rendered_flow adds real
+keyboard/pointer and captured-frame scenarios, not internal state calls. Do not
+claim XTEST repaired. Await the maintainer's photo/details, investigate the reported
+difference, then validate native close during active work and finish graphics.
+
+## Final acceptance — 2026-10-30
+
+All 11 declared criteria APPROVED. Current evidence.json binds new observations and explicitly reviewed reuse. See docs/validation/product-local-task-ui/acceptance/review.md and graphical-review.json. All five Cargo checks pass; 23 regular tests and all three explicit X11 tests pass. Native Wayland confirmed by protocol trace, human interaction and process exits. Earlier failures remain preserved. The bounded local slice is accepted; full F0 and excluded roadmap work remain outside scope.

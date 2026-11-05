@@ -1,0 +1,19 @@
+--- iced_winit-0.14.1/src/lib.rs
++++ instrumented/src/lib.rs
+@@ -947,6 +947,7 @@
+                         };
+                         interact_span.finish();
+ 
++                        let ox_frame_start = std::time::Instant::now();
+                         let draw_span = debug::draw(id);
+                         interface.draw(
+                             &mut window.renderer,
+@@ -987,6 +988,8 @@
+                             || window.raw.pre_present_notify(),
+                         ) {
+                             Ok(()) => {
++                                let ox_frame_ms = ox_frame_start.elapsed().as_secs_f64() * 1000.0;
++                                eprintln!("OX_CLIENT_FRAME_MS={ox_frame_ms}");
+                                 present_span.finish();
+                             }
+                             Err(error) => match error {

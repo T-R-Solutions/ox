@@ -1,0 +1,1086 @@
+{
+  "method": "cargo metadata --locked --offline --filter-platform x86_64-unknown-linux-gnu; compare installed dependency manifests with historical reviewed hashes",
+  "packages": [
+    {
+      "name": "ab_glyph",
+      "version": "0.2.32",
+      "previous": "57c5cd0f50fb3a5db53511c26a2c47b35597a059643057929430b12994e9f8d0",
+      "current": "57c5cd0f50fb3a5db53511c26a2c47b35597a059643057929430b12994e9f8d0",
+      "match": true
+    },
+    {
+      "name": "ab_glyph_rasterizer",
+      "version": "0.1.10",
+      "previous": "054c566cef83c7c0611c8b5ef89ccde66e37455ea160a0c6a633c8a62ecf7ea5",
+      "current": "054c566cef83c7c0611c8b5ef89ccde66e37455ea160a0c6a633c8a62ecf7ea5",
+      "match": true
+    },
+    {
+      "name": "ahash",
+      "version": "0.8.12",
+      "previous": "4ddbacdfae8fa9049a0f47b8f479a5e09536687917415f5c993c9c5438cbdbcd",
+      "current": "4ddbacdfae8fa9049a0f47b8f479a5e09536687917415f5c993c9c5438cbdbcd",
+      "match": true
+    },
+    {
+      "name": "arrayref",
+      "version": "0.3.9",
+      "previous": "517b570f4136de5b5a07e1c41a84d6876227b09aab84e69e578bfa8be2e67546",
+      "current": "517b570f4136de5b5a07e1c41a84d6876227b09aab84e69e578bfa8be2e67546",
+      "match": true
+    },
+    {
+      "name": "arrayvec",
+      "version": "0.7.8",
+      "previous": "20e9a4f27b17531ac0c3ab9f403e52c9d567eea254703df3b3b18ca36d5f7927",
+      "current": "20e9a4f27b17531ac0c3ab9f403e52c9d567eea254703df3b3b18ca36d5f7927",
+      "match": true
+    },
+    {
+      "name": "as-raw-xcb-connection",
+      "version": "1.0.1",
+      "previous": "dae814e3b0b70eecddb15987e39180ac987cf6a92703111c678e1310671804cb",
+      "current": "dae814e3b0b70eecddb15987e39180ac987cf6a92703111c678e1310671804cb",
+      "match": true
+    },
+    {
+      "name": "autocfg",
+      "version": "1.5.1",
+      "previous": "ed7c832b4250c3be736e040d68688c2b83a5b164a93ef533e61532cbe0d44e99",
+      "current": "ed7c832b4250c3be736e040d68688c2b83a5b164a93ef533e61532cbe0d44e99",
+      "match": true
+    },
+    {
+      "name": "bitflags",
+      "version": "2.13.2",
+      "previous": "562e660adbb084de042fc9ecc5ac7ba32b5f565d53188823bab9159a027b2b44",
+      "current": "562e660adbb084de042fc9ecc5ac7ba32b5f565d53188823bab9159a027b2b44",
+      "match": true
+    },
+    {
+      "name": "bytemuck",
+      "version": "1.25.2",
+      "previous": "7b99bce6fd19ac16efd0fa94051b95f6cee7945f9d76842e072e4176a152794c",
+      "current": "7b99bce6fd19ac16efd0fa94051b95f6cee7945f9d76842e072e4176a152794c",
+      "match": true
+    },
+    {
+      "name": "bytemuck_derive",
+      "version": "1.12.1",
+      "previous": "96446976e0d2e124d1b0ec6cdd476db3ead08069affb0b101ecaa3d321409b5b",
+      "current": "96446976e0d2e124d1b0ec6cdd476db3ead08069affb0b101ecaa3d321409b5b",
+      "match": true
+    },
+    {
+      "name": "bytes",
+      "version": "1.12.1",
+      "previous": "dc260d0d04b58aea819f8d6762c2feb51e66f8edd77e4e64cc1eac6f447a8143",
+      "current": "dc260d0d04b58aea819f8d6762c2feb51e66f8edd77e4e64cc1eac6f447a8143",
+      "match": true
+    },
+    {
+      "name": "calloop",
+      "version": "0.13.0",
+      "previous": "5de8eda097adb23bf1933f5175b80913eb160cd5f49a442698a36004cfbc2c11",
+      "current": "5de8eda097adb23bf1933f5175b80913eb160cd5f49a442698a36004cfbc2c11",
+      "match": true
+    },
+    {
+      "name": "calloop",
+      "version": "0.14.5",
+      "previous": "5b4b2bf814683166cdb306eed86871a64dba40d55bf7181b94a7c1d96ef6773e",
+      "current": "5b4b2bf814683166cdb306eed86871a64dba40d55bf7181b94a7c1d96ef6773e",
+      "match": true
+    },
+    {
+      "name": "calloop-wayland-source",
+      "version": "0.3.0",
+      "previous": "d192e456153a2a9407a05e9fd53a411ac403d9ac7d0096cf20ff45087f189e82",
+      "current": "d192e456153a2a9407a05e9fd53a411ac403d9ac7d0096cf20ff45087f189e82",
+      "match": true
+    },
+    {
+      "name": "calloop-wayland-source",
+      "version": "0.4.1",
+      "previous": "4d1bfee190e09296af0697bd0cb66b9f43d74142d597c1061ef1dd2b0fd104a9",
+      "current": "4d1bfee190e09296af0697bd0cb66b9f43d74142d597c1061ef1dd2b0fd104a9",
+      "match": true
+    },
+    {
+      "name": "cc",
+      "version": "1.10.0",
+      "previous": "e8486afb97f4debf50ed5e80f8a5db3e36b3b4bd899db0051bb9fcbd9c5706d5",
+      "current": "e8486afb97f4debf50ed5e80f8a5db3e36b3b4bd899db0051bb9fcbd9c5706d5",
+      "match": true
+    },
+    {
+      "name": "cfg-if",
+      "version": "1.0.5",
+      "previous": "d646663ec1bd4e8e795bd6a386cff9c374880d6237bbfa36bbac08b7f26ce65c",
+      "current": "d646663ec1bd4e8e795bd6a386cff9c374880d6237bbfa36bbac08b7f26ce65c",
+      "match": true
+    },
+    {
+      "name": "cfg_aliases",
+      "version": "0.2.2",
+      "previous": "714317efebb5635660abe816709d2a7e5831cd9496bc169d2f898c4bbcf470c1",
+      "current": "714317efebb5635660abe816709d2a7e5831cd9496bc169d2f898c4bbcf470c1",
+      "match": true
+    },
+    {
+      "name": "clipboard_wayland",
+      "version": "0.2.2",
+      "previous": "65222b9781dece1a1f6a44ecc81bb5ce4154145395d0786b5735bd6a2a485234",
+      "current": "65222b9781dece1a1f6a44ecc81bb5ce4154145395d0786b5735bd6a2a485234",
+      "match": true
+    },
+    {
+      "name": "clipboard_x11",
+      "version": "0.4.3",
+      "previous": "ce893e693e45a29e6bd421d0f3f6b738a65f017960c4e9474182c2d8f7855478",
+      "current": "ce893e693e45a29e6bd421d0f3f6b738a65f017960c4e9474182c2d8f7855478",
+      "match": true
+    },
+    {
+      "name": "core_maths",
+      "version": "0.1.1",
+      "previous": "1564fee10504e497a68aad04f7a6ebacb467956f4a50a85415227eaafa55b96e",
+      "current": "1564fee10504e497a68aad04f7a6ebacb467956f4a50a85415227eaafa55b96e",
+      "match": true
+    },
+    {
+      "name": "cosmic-text",
+      "version": "0.15.0",
+      "previous": "c94bfa31d26a91e846012a731449ec6a926fd7d2a15ce9ac7cf370003ac4bc07",
+      "current": "c94bfa31d26a91e846012a731449ec6a926fd7d2a15ce9ac7cf370003ac4bc07",
+      "match": true
+    },
+    {
+      "name": "ctor",
+      "version": "0.10.1",
+      "previous": "f27fee805e00b3891b79ade69c8e726388823bb8a7466936fe414bc9e139d6d9",
+      "current": "f27fee805e00b3891b79ade69c8e726388823bb8a7466936fe414bc9e139d6d9",
+      "match": true
+    },
+    {
+      "name": "cursor-icon",
+      "version": "1.2.0",
+      "previous": "ffd9ad3a6a7d3d953c1b48ab80ec864293f2d9ec63889b20ad74f0aa10892aa7",
+      "current": "ffd9ad3a6a7d3d953c1b48ab80ec864293f2d9ec63889b20ad74f0aa10892aa7",
+      "match": true
+    },
+    {
+      "name": "dlib",
+      "version": "0.5.3",
+      "previous": "24f313fe0c6ec29322019de4c0dd36dd3e3abafac60f7d338de8ce4d8eb27b6d",
+      "current": "24f313fe0c6ec29322019de4c0dd36dd3e3abafac60f7d338de8ce4d8eb27b6d",
+      "match": true
+    },
+    {
+      "name": "downcast-rs",
+      "version": "1.2.1",
+      "previous": "f20629badf8ae359e8b042b1423138a2dbb0fe78c0fb5333a1627e97b56b1e0d",
+      "current": "f20629badf8ae359e8b042b1423138a2dbb0fe78c0fb5333a1627e97b56b1e0d",
+      "match": true
+    },
+    {
+      "name": "dpi",
+      "version": "0.1.2",
+      "previous": "18024fe0bac2c56cc85f3ffff1776a57abfe54d6dfd4aea28f4e6607fac1827e",
+      "current": "18024fe0bac2c56cc85f3ffff1776a57abfe54d6dfd4aea28f4e6607fac1827e",
+      "match": true
+    },
+    {
+      "name": "dtor",
+      "version": "0.8.1",
+      "previous": "8cd1f10d5921b84f9eb0d5c299128bfe279aeb6cd0638ba8c7d8efd5f22cbce6",
+      "current": "8cd1f10d5921b84f9eb0d5c299128bfe279aeb6cd0638ba8c7d8efd5f22cbce6",
+      "match": true
+    },
+    {
+      "name": "errno",
+      "version": "0.3.14",
+      "previous": "a25f16ccaa127602fc0cc9d1c80186619a0b8f42331a27b6f04b6bfa4aa29de2",
+      "current": "a25f16ccaa127602fc0cc9d1c80186619a0b8f42331a27b6f04b6bfa4aa29de2",
+      "match": true
+    },
+    {
+      "name": "fastrand",
+      "version": "2.5.0",
+      "previous": "3f01725ad91d1a1705762821e9231ea15ddfa62648143516e68d64021ae31e08",
+      "current": "3f01725ad91d1a1705762821e9231ea15ddfa62648143516e68d64021ae31e08",
+      "match": true
+    },
+    {
+      "name": "find-msvc-tools",
+      "version": "0.1.15",
+      "previous": "d71ae71febecc514eaacb932c7ffecd9dce4ba3a935dce5c619dbb7114793625",
+      "current": "d71ae71febecc514eaacb932c7ffecd9dce4ba3a935dce5c619dbb7114793625",
+      "match": true
+    },
+    {
+      "name": "font-types",
+      "version": "0.10.1",
+      "previous": "f8d4aa7e77caa589299ffff11e343c76f57030973e463cdc667971a0ba59dc34",
+      "current": "f8d4aa7e77caa589299ffff11e343c76f57030973e463cdc667971a0ba59dc34",
+      "match": true
+    },
+    {
+      "name": "font-types",
+      "version": "0.12.7",
+      "previous": "59bf8ca1c20f797b0a3d4390c6de727bfe999bff8cc6ee6fe7a5ccb7146f442e",
+      "current": "59bf8ca1c20f797b0a3d4390c6de727bfe999bff8cc6ee6fe7a5ccb7146f442e",
+      "match": true
+    },
+    {
+      "name": "fontconfig-parser",
+      "version": "0.5.8",
+      "previous": "4ee2cc21f5f4d6e4054b04954a41d9f61f6432cd3e3fec008e80f39350d0253b",
+      "current": "4ee2cc21f5f4d6e4054b04954a41d9f61f6432cd3e3fec008e80f39350d0253b",
+      "match": true
+    },
+    {
+      "name": "fontdb",
+      "version": "0.23.0",
+      "previous": "a219479a2c1f6bbb773fdec842b16565fe4d30b05d91605a9a87310afe99331d",
+      "current": "a219479a2c1f6bbb773fdec842b16565fe4d30b05d91605a9a87310afe99331d",
+      "match": true
+    },
+    {
+      "name": "futures",
+      "version": "0.3.34",
+      "previous": "ed245fd7a5b103cd4729754fee28518e2e6618287bef273c4f41efee645f991b",
+      "current": "ed245fd7a5b103cd4729754fee28518e2e6618287bef273c4f41efee645f991b",
+      "match": true
+    },
+    {
+      "name": "futures-channel",
+      "version": "0.3.34",
+      "previous": "df27c9b8846e1c63057ae3b753328aa37c8c6a8b79c02beb12b6e6e375e780ee",
+      "current": "df27c9b8846e1c63057ae3b753328aa37c8c6a8b79c02beb12b6e6e375e780ee",
+      "match": true
+    },
+    {
+      "name": "futures-core",
+      "version": "0.3.34",
+      "previous": "fa88cec6d0c527df4ff51ad034de09d3c552f6174ab8e4aa83cfaeacc36c4c7d",
+      "current": "fa88cec6d0c527df4ff51ad034de09d3c552f6174ab8e4aa83cfaeacc36c4c7d",
+      "match": true
+    },
+    {
+      "name": "futures-executor",
+      "version": "0.3.34",
+      "previous": "7c6f37af69a02c53db2bd3bedfc2e079d6644dbb454c1706be280670a37e1781",
+      "current": "7c6f37af69a02c53db2bd3bedfc2e079d6644dbb454c1706be280670a37e1781",
+      "match": true
+    },
+    {
+      "name": "futures-io",
+      "version": "0.3.34",
+      "previous": "c42a07cdf88ac680f96f75df035d3193a449eec157d75b1c9e9024a05848654b",
+      "current": "c42a07cdf88ac680f96f75df035d3193a449eec157d75b1c9e9024a05848654b",
+      "match": true
+    },
+    {
+      "name": "futures-macro",
+      "version": "0.3.34",
+      "previous": "fdb87996803b9b64594a0849d2b396f2581d79451adb8f1b91ed56da8c9421c3",
+      "current": "fdb87996803b9b64594a0849d2b396f2581d79451adb8f1b91ed56da8c9421c3",
+      "match": true
+    },
+    {
+      "name": "futures-sink",
+      "version": "0.3.34",
+      "previous": "8f691b72a0ca88fbb82e626de2df8ae2d71a1c384da2dff9b47424d955ab258e",
+      "current": "8f691b72a0ca88fbb82e626de2df8ae2d71a1c384da2dff9b47424d955ab258e",
+      "match": true
+    },
+    {
+      "name": "futures-task",
+      "version": "0.3.34",
+      "previous": "7d9159735fa6a29df379bfff623f6cece41584334ca022ebd34ef56152637fa8",
+      "current": "7d9159735fa6a29df379bfff623f6cece41584334ca022ebd34ef56152637fa8",
+      "match": true
+    },
+    {
+      "name": "futures-util",
+      "version": "0.3.34",
+      "previous": "7e672d306e8de25359ed9c452e7cdc115121dc7e985008af31c85a36b70ac835",
+      "current": "7e672d306e8de25359ed9c452e7cdc115121dc7e985008af31c85a36b70ac835",
+      "match": true
+    },
+    {
+      "name": "gethostname",
+      "version": "1.1.0",
+      "previous": "ba6afa95445a0e7ad1d0f8e2d79829574b241dea77581bed9128fe1f0fb2ae3d",
+      "current": "ba6afa95445a0e7ad1d0f8e2d79829574b241dea77581bed9128fe1f0fb2ae3d",
+      "match": true
+    },
+    {
+      "name": "getrandom",
+      "version": "0.3.4",
+      "previous": "5fd1d61c342777480822b8f8259a7bd8cbf6c2486a3d389b2d5b235f667a7952",
+      "current": "5fd1d61c342777480822b8f8259a7bd8cbf6c2486a3d389b2d5b235f667a7952",
+      "match": true
+    },
+    {
+      "name": "glam",
+      "version": "0.25.0",
+      "previous": "0b368d03238251599a7f0015d3733561e789afa535a9ee833b0cc254d364f6af",
+      "current": "0b368d03238251599a7f0015d3733561e789afa535a9ee833b0cc254d364f6af",
+      "match": true
+    },
+    {
+      "name": "half",
+      "version": "2.7.1",
+      "previous": "cb0325b14b6e12ea7c027da7084877327b91368efc7a3c9cfac1c19c0fd4061d",
+      "current": "cb0325b14b6e12ea7c027da7084877327b91368efc7a3c9cfac1c19c0fd4061d",
+      "match": true
+    },
+    {
+      "name": "harfrust",
+      "version": "0.3.2",
+      "previous": "84a7cc4516659bc6aea7ae6bca47952614a9e4c2b2217dcba15f3974e3126aa0",
+      "current": "84a7cc4516659bc6aea7ae6bca47952614a9e4c2b2217dcba15f3974e3126aa0",
+      "match": true
+    },
+    {
+      "name": "iced",
+      "version": "0.14.0",
+      "previous": "22643883d0955af9243d3357ac7c572061e17e7b2f30e5c3b6132ce44e846efb",
+      "current": "22643883d0955af9243d3357ac7c572061e17e7b2f30e5c3b6132ce44e846efb",
+      "match": true
+    },
+    {
+      "name": "iced_core",
+      "version": "0.14.0",
+      "previous": "c1dc47aee9baad3e3e7443e7f5046ff505753016d8ad41a4c21d86c692b38481",
+      "current": "c1dc47aee9baad3e3e7443e7f5046ff505753016d8ad41a4c21d86c692b38481",
+      "match": true
+    },
+    {
+      "name": "iced_debug",
+      "version": "0.14.0",
+      "previous": "869be7da4e5fba844cce03e83d6598aed9e2f37eefb9a53c2e8bf01c2750ad68",
+      "current": "869be7da4e5fba844cce03e83d6598aed9e2f37eefb9a53c2e8bf01c2750ad68",
+      "match": true
+    },
+    {
+      "name": "iced_futures",
+      "version": "0.14.0",
+      "previous": "a8434116ebafa57274c7e6fff3ec93955cea2f8b1c526a6e68d221e19667e56a",
+      "current": "a8434116ebafa57274c7e6fff3ec93955cea2f8b1c526a6e68d221e19667e56a",
+      "match": true
+    },
+    {
+      "name": "iced_graphics",
+      "version": "0.14.0",
+      "previous": "10fb7ed20a980c74ccbdded78cacebf43ef330d06265f62de9c18497dbd35218",
+      "current": "10fb7ed20a980c74ccbdded78cacebf43ef330d06265f62de9c18497dbd35218",
+      "match": true
+    },
+    {
+      "name": "iced_program",
+      "version": "0.14.0",
+      "previous": "97a8ab4ce4f589af4954fe5a826bcfe61f391e6b1d85ac2d9fbc89a54778515c",
+      "current": "97a8ab4ce4f589af4954fe5a826bcfe61f391e6b1d85ac2d9fbc89a54778515c",
+      "match": true
+    },
+    {
+      "name": "iced_renderer",
+      "version": "0.14.0",
+      "previous": "f3e61946ce3daaaeaf9e8619ff1d2a275df5b49bb5cb6ff795ed0b02092e64c1",
+      "current": "f3e61946ce3daaaeaf9e8619ff1d2a275df5b49bb5cb6ff795ed0b02092e64c1",
+      "match": true
+    },
+    {
+      "name": "iced_runtime",
+      "version": "0.14.0",
+      "previous": "ec30e4ef4e4a9fa4be4bfa41a5919e369fad79e9079271489e6ac2351be8ef41",
+      "current": "ec30e4ef4e4a9fa4be4bfa41a5919e369fad79e9079271489e6ac2351be8ef41",
+      "match": true
+    },
+    {
+      "name": "iced_tiny_skia",
+      "version": "0.14.1",
+      "previous": "8f83ee815aec2f69de81634fe5d8399f5ac069857fe676dc157506aea42b39fb",
+      "current": "8f83ee815aec2f69de81634fe5d8399f5ac069857fe676dc157506aea42b39fb",
+      "match": true
+    },
+    {
+      "name": "iced_widget",
+      "version": "0.14.2",
+      "previous": "e8e6b9a72fc0f97c84b8fb2703fe6cdccd738c6c01d2fadf018a012182de93b5",
+      "current": "e8e6b9a72fc0f97c84b8fb2703fe6cdccd738c6c01d2fadf018a012182de93b5",
+      "match": true
+    },
+    {
+      "name": "iced_winit",
+      "version": "0.14.1",
+      "previous": "1931e5f26d014a2b17a74028ae5d73f0d155aa2d1bc265b8db43fd43198835f1",
+      "current": "1931e5f26d014a2b17a74028ae5d73f0d155aa2d1bc265b8db43fd43198835f1",
+      "match": true
+    },
+    {
+      "name": "jobserver",
+      "version": "0.1.35",
+      "previous": "5475de657d1c10b1c27f76a2d54fdd3162027705f663410b091294cd08482a72",
+      "current": "5475de657d1c10b1c27f76a2d54fdd3162027705f663410b091294cd08482a72",
+      "match": true
+    },
+    {
+      "name": "kurbo",
+      "version": "0.10.4",
+      "previous": "f6e53a3d7bc1c3d6c869b16146755c22a88d47f7b710f10c817acb61611b86f5",
+      "current": "f6e53a3d7bc1c3d6c869b16146755c22a88d47f7b710f10c817acb61611b86f5",
+      "match": true
+    },
+    {
+      "name": "libc",
+      "version": "0.2.191",
+      "previous": "c8e45fe04427917e1bbadf4b628353571c9a0f2574971231814bb71dc6a86f1f",
+      "current": "c8e45fe04427917e1bbadf4b628353571c9a0f2574971231814bb71dc6a86f1f",
+      "match": true
+    },
+    {
+      "name": "libloading",
+      "version": "0.8.9",
+      "previous": "c70a979f3e8987bcf85b377d310b895b4bbeae29f6b0a28735cf48230087d5e2",
+      "current": "c70a979f3e8987bcf85b377d310b895b4bbeae29f6b0a28735cf48230087d5e2",
+      "match": true
+    },
+    {
+      "name": "libm",
+      "version": "0.2.16",
+      "previous": "a2d94f9cbaa4a177bacde9737bfcc7b2ed9de5bddadafe507923a5b5748f9bd7",
+      "current": "a2d94f9cbaa4a177bacde9737bfcc7b2ed9de5bddadafe507923a5b5748f9bd7",
+      "match": true
+    },
+    {
+      "name": "lilt",
+      "version": "0.8.2",
+      "previous": "046a469b0a38bb3bd70b32f81ece0334f5b7c86db77b5b0c839bd3f953c67b17",
+      "current": "046a469b0a38bb3bd70b32f81ece0334f5b7c86db77b5b0c839bd3f953c67b17",
+      "match": true
+    },
+    {
+      "name": "linebender_resource_handle",
+      "version": "0.1.1",
+      "previous": "7b1037998d67ea7a1be7da89c071ac7f0d93eb974cebbbc7056688abaaa9eb64",
+      "current": "7b1037998d67ea7a1be7da89c071ac7f0d93eb974cebbbc7056688abaaa9eb64",
+      "match": true
+    },
+    {
+      "name": "linux-raw-sys",
+      "version": "0.4.15",
+      "previous": "0158431ac8b7b25dca745feef8cb28d5a58d0bf78b97e2a9027af5eeadc3af55",
+      "current": "0158431ac8b7b25dca745feef8cb28d5a58d0bf78b97e2a9027af5eeadc3af55",
+      "match": true
+    },
+    {
+      "name": "linux-raw-sys",
+      "version": "0.12.1",
+      "previous": "1d24fe227d87b23fc5220ddf2ca4708e5e0d794a3f77961b71cd8140bf33faa5",
+      "current": "1d24fe227d87b23fc5220ddf2ca4708e5e0d794a3f77961b71cd8140bf33faa5",
+      "match": true
+    },
+    {
+      "name": "log",
+      "version": "0.4.34",
+      "previous": "a6b553a374b237960e65d91de04e102a1755a7a20ff21f2c1ef6ba74b9d0ab76",
+      "current": "a6b553a374b237960e65d91de04e102a1755a7a20ff21f2c1ef6ba74b9d0ab76",
+      "match": true
+    },
+    {
+      "name": "memchr",
+      "version": "2.8.3",
+      "previous": "a14f68b8fa55f15fd03b15dced37bcf66a0a628f568eedc82817cdb7f9281951",
+      "current": "a14f68b8fa55f15fd03b15dced37bcf66a0a628f568eedc82817cdb7f9281951",
+      "match": true
+    },
+    {
+      "name": "memmap2",
+      "version": "0.9.12",
+      "previous": "0d919d68a9ffe7d5543682fc7d9b2ba0c814a85fd6ca6689c513ebaa9c98e171",
+      "current": "0d919d68a9ffe7d5543682fc7d9b2ba0c814a85fd6ca6689c513ebaa9c98e171",
+      "match": true
+    },
+    {
+      "name": "num-traits",
+      "version": "0.2.19",
+      "previous": "dd701a0da6cce7e6e047cc944b2330f3c5e48cd64329e10942ea7d9299d435be",
+      "current": "dd701a0da6cce7e6e047cc944b2330f3c5e48cd64329e10942ea7d9299d435be",
+      "match": true
+    },
+    {
+      "name": "once_cell",
+      "version": "1.21.4",
+      "previous": "87e5b7ee438abdef12e46386e86370f54ad70cabdcf949556b9ef012a9da9587",
+      "current": "87e5b7ee438abdef12e46386e86370f54ad70cabdcf949556b9ef012a9da9587",
+      "match": true
+    },
+    {
+      "name": "owned_ttf_parser",
+      "version": "0.25.1",
+      "previous": "8a71904f2a8c2508188c496a687d9cbf08e1fa9c84a95ef0114d1512eacf8a0d",
+      "current": "8a71904f2a8c2508188c496a687d9cbf08e1fa9c84a95ef0114d1512eacf8a0d",
+      "match": true
+    },
+    {
+      "name": "percent-encoding",
+      "version": "2.3.2",
+      "previous": "e4ea043c47bbd5551fc5fcf8151eab94428b4be6f2337834a0f9020a4392fb19",
+      "current": "e4ea043c47bbd5551fc5fcf8151eab94428b4be6f2337834a0f9020a4392fb19",
+      "match": true
+    },
+    {
+      "name": "pin-project-lite",
+      "version": "0.2.17",
+      "previous": "473f9cfe9738986d0d1c46e306bd11ad3e36bca8f1eab5bbe9f7297313fb33f4",
+      "current": "473f9cfe9738986d0d1c46e306bd11ad3e36bca8f1eab5bbe9f7297313fb33f4",
+      "match": true
+    },
+    {
+      "name": "pkg-config",
+      "version": "0.3.34",
+      "previous": "26612dc6bbb8c045f4c91f95fc026b926e9adb942655dddfd21ffecf2595b70b",
+      "current": "26612dc6bbb8c045f4c91f95fc026b926e9adb942655dddfd21ffecf2595b70b",
+      "match": true
+    },
+    {
+      "name": "polling",
+      "version": "3.11.0",
+      "previous": "ea3f2ed65b75e51a9ffdab8dfd2053e17ad68d0c99fa268ae635c7e2d89baa6c",
+      "current": "ea3f2ed65b75e51a9ffdab8dfd2053e17ad68d0c99fa268ae635c7e2d89baa6c",
+      "match": true
+    },
+    {
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "previous": "6bdbe54a7f052e552dcfca90351764476e2767237ec3f954df8bd9f602861056",
+      "current": "6bdbe54a7f052e552dcfca90351764476e2767237ec3f954df8bd9f602861056",
+      "match": true
+    },
+    {
+      "name": "quick-xml",
+      "version": "0.41.0",
+      "previous": "0e7df0b5caa523509bb47a3ce3cb282e49e64dcf59e39cd12ab8e3aacd732700",
+      "current": "0e7df0b5caa523509bb47a3ce3cb282e49e64dcf59e39cd12ab8e3aacd732700",
+      "match": true
+    },
+    {
+      "name": "quote",
+      "version": "1.0.47",
+      "previous": "13d8c50837f14aff48cd622349f98fb2c46350b7a0c08fd574cf7de4def27d06",
+      "current": "13d8c50837f14aff48cd622349f98fb2c46350b7a0c08fd574cf7de4def27d06",
+      "match": true
+    },
+    {
+      "name": "rangemap",
+      "version": "1.8.0",
+      "previous": "9f5bcf9d153186f9dd29f6e450b748f11e893948253aabe0cadc3e3c9f30e454",
+      "current": "9f5bcf9d153186f9dd29f6e450b748f11e893948253aabe0cadc3e3c9f30e454",
+      "match": true
+    },
+    {
+      "name": "raw-window-handle",
+      "version": "0.6.2",
+      "previous": "16454e56cca25a5d66d5cfb070db6e3741138334e4f2546e9c5010e5221889f5",
+      "current": "16454e56cca25a5d66d5cfb070db6e3741138334e4f2546e9c5010e5221889f5",
+      "match": true
+    },
+    {
+      "name": "read-fonts",
+      "version": "0.35.0",
+      "previous": "36a7460b5d0418edff28bc8d198fb12ddd234dbc82cf5ea9f60172d27dd8d7cd",
+      "current": "36a7460b5d0418edff28bc8d198fb12ddd234dbc82cf5ea9f60172d27dd8d7cd",
+      "match": true
+    },
+    {
+      "name": "read-fonts",
+      "version": "0.41.0",
+      "previous": "7f65d23f1f38deaedb00364ef284685edd96cbff7997c6e098099f2f58af85bd",
+      "current": "7f65d23f1f38deaedb00364ef284685edd96cbff7997c6e098099f2f58af85bd",
+      "match": true
+    },
+    {
+      "name": "roxmltree",
+      "version": "0.20.0",
+      "previous": "c24ce997568082ddfb3b40315d55eb2e0d405e3882785fc5dd281b7569349220",
+      "current": "c24ce997568082ddfb3b40315d55eb2e0d405e3882785fc5dd281b7569349220",
+      "match": true
+    },
+    {
+      "name": "rustc-hash",
+      "version": "1.1.0",
+      "previous": "647814b27b6fc4fbef1df70d796b53b723e776b68467372044e4182763007379",
+      "current": "647814b27b6fc4fbef1df70d796b53b723e776b68467372044e4182763007379",
+      "match": true
+    },
+    {
+      "name": "rustc-hash",
+      "version": "2.1.3",
+      "previous": "7e6727beb038213a2aa02f90cbbfb1d6651a9fda56f241dd95110a0cb287efc9",
+      "current": "7e6727beb038213a2aa02f90cbbfb1d6651a9fda56f241dd95110a0cb287efc9",
+      "match": true
+    },
+    {
+      "name": "rustix",
+      "version": "0.38.44",
+      "previous": "a3ef392e8b5aa8f4662a38db0f78ea353982e51b010dd8040df07bad7c63f59c",
+      "current": "a3ef392e8b5aa8f4662a38db0f78ea353982e51b010dd8040df07bad7c63f59c",
+      "match": true
+    },
+    {
+      "name": "rustix",
+      "version": "1.1.6",
+      "previous": "43d4bcaf19bf857aaa17ada056e7561a50abdcb3201a1722770948ce050c77cb",
+      "current": "43d4bcaf19bf857aaa17ada056e7561a50abdcb3201a1722770948ce050c77cb",
+      "match": true
+    },
+    {
+      "name": "scoped-tls",
+      "version": "1.0.1",
+      "previous": "34fd266d7e61276cf49fb2a9ea9887331ef4e72595fed99b7d8735c86cd13631",
+      "current": "34fd266d7e61276cf49fb2a9ea9887331ef4e72595fed99b7d8735c86cd13631",
+      "match": true
+    },
+    {
+      "name": "sctk-adwaita",
+      "version": "0.10.1",
+      "previous": "3fa242cc1f483ee9e475fc4fd286bb04fc37258751f4f779b130fb0afb1b4cb0",
+      "current": "3fa242cc1f483ee9e475fc4fd286bb04fc37258751f4f779b130fb0afb1b4cb0",
+      "match": true
+    },
+    {
+      "name": "self_cell",
+      "version": "1.3.0",
+      "previous": "749b8099307e198cce66b130b9905175e51ab6b7c0acf2a7125ef256ab72f316",
+      "current": "749b8099307e198cce66b130b9905175e51ab6b7c0acf2a7125ef256ab72f316",
+      "match": true
+    },
+    {
+      "name": "serde",
+      "version": "1.0.229",
+      "previous": "6883caefd46e86eb15d22d3a6d274ad304c5e7934ab70eb58d81b7c4a29ef9db",
+      "current": "6883caefd46e86eb15d22d3a6d274ad304c5e7934ab70eb58d81b7c4a29ef9db",
+      "match": true
+    },
+    {
+      "name": "serde_core",
+      "version": "1.0.229",
+      "previous": "c6049e170e4f7c2b48749fefab59db583bfac4e466cde6d0c53e4f49bc5044f7",
+      "current": "c6049e170e4f7c2b48749fefab59db583bfac4e466cde6d0c53e4f49bc5044f7",
+      "match": true
+    },
+    {
+      "name": "shlex",
+      "version": "2.0.1",
+      "previous": "b6ead6cf404555ced33f7574c6c11413e29e7bcd5eb0ceeb59452830a46675ed",
+      "current": "b6ead6cf404555ced33f7574c6c11413e29e7bcd5eb0ceeb59452830a46675ed",
+      "match": true
+    },
+    {
+      "name": "skrifa",
+      "version": "0.37.0",
+      "previous": "6ae64c3ecf56ff7450c6e109704a990fa412a732a009428bcf2fb5bb19043b5f",
+      "current": "6ae64c3ecf56ff7450c6e109704a990fa412a732a009428bcf2fb5bb19043b5f",
+      "match": true
+    },
+    {
+      "name": "skrifa",
+      "version": "0.44.0",
+      "previous": "82e3c73ed2b2a9fe2b8584a3caea757d29c65da2cc0a60ef91267b1ea1764257",
+      "current": "82e3c73ed2b2a9fe2b8584a3caea757d29c65da2cc0a60ef91267b1ea1764257",
+      "match": true
+    },
+    {
+      "name": "slab",
+      "version": "0.4.12",
+      "previous": "11f31284be0c30b612f4e2c2e46aa14494a81639b12661f01f07394e270c0070",
+      "current": "11f31284be0c30b612f4e2c2e46aa14494a81639b12661f01f07394e270c0070",
+      "match": true
+    },
+    {
+      "name": "slotmap",
+      "version": "1.1.1",
+      "previous": "051ed0c65137ce29c8b37ff66d16a9d9190eb1708849e4cc1babcd94b699d764",
+      "current": "051ed0c65137ce29c8b37ff66d16a9d9190eb1708849e4cc1babcd94b699d764",
+      "match": true
+    },
+    {
+      "name": "smallvec",
+      "version": "1.16.4",
+      "previous": "01b4c86d677ccf162137a6ce62ff6f243fdb6996322ad1863da1481d514a2cbb",
+      "current": "01b4c86d677ccf162137a6ce62ff6f243fdb6996322ad1863da1481d514a2cbb",
+      "match": true
+    },
+    {
+      "name": "smithay-client-toolkit",
+      "version": "0.19.2",
+      "previous": "171f33e042612d0dfd1b07c2d12843951a8e21e685e5ee436537aa648cd0ff34",
+      "current": "171f33e042612d0dfd1b07c2d12843951a8e21e685e5ee436537aa648cd0ff34",
+      "match": true
+    },
+    {
+      "name": "smithay-client-toolkit",
+      "version": "0.20.0",
+      "previous": "a08d8f42ff7f433c4bfb3dcf972cd42feeed49b57ef6a09bbd24fd60e35f1935",
+      "current": "a08d8f42ff7f433c4bfb3dcf972cd42feeed49b57ef6a09bbd24fd60e35f1935",
+      "match": true
+    },
+    {
+      "name": "smithay-clipboard",
+      "version": "0.7.3",
+      "previous": "9f7a1d198a1385bfe35775e3c8d335d93cc31ea8d2ce15f189bebb0c42a99c98",
+      "current": "9f7a1d198a1385bfe35775e3c8d335d93cc31ea8d2ce15f189bebb0c42a99c98",
+      "match": true
+    },
+    {
+      "name": "smol_str",
+      "version": "0.2.2",
+      "previous": "ddbc0a2fbeed9eb84ac10f9dd2c7a4118dbc123e0d806df831de517588be1557",
+      "current": "ddbc0a2fbeed9eb84ac10f9dd2c7a4118dbc123e0d806df831de517588be1557",
+      "match": true
+    },
+    {
+      "name": "softbuffer",
+      "version": "0.4.8",
+      "previous": "03d0b7990233f36fdd8f9f03fb8c463a212f2da2d00d47699d9318e59c7cb385",
+      "current": "03d0b7990233f36fdd8f9f03fb8c463a212f2da2d00d47699d9318e59c7cb385",
+      "match": true
+    },
+    {
+      "name": "strict-num",
+      "version": "0.1.1",
+      "previous": "5f6f9618b3af06a6d0774ca513f5b3dbf6800e13c5c13949df05492d309ea825",
+      "current": "5f6f9618b3af06a6d0774ca513f5b3dbf6800e13c5c13949df05492d309ea825",
+      "match": true
+    },
+    {
+      "name": "swash",
+      "version": "0.2.10",
+      "previous": "2c1e283f3b11dd67c26cc812dff5a24d2903c00a37ff08a258ed988c171c2d88",
+      "current": "2c1e283f3b11dd67c26cc812dff5a24d2903c00a37ff08a258ed988c171c2d88",
+      "match": true
+    },
+    {
+      "name": "syn",
+      "version": "2.0.119",
+      "previous": "da8b83ac2c66a7b404dc55d88ae42592f70714823251f51b620ae349b246a18f",
+      "current": "da8b83ac2c66a7b404dc55d88ae42592f70714823251f51b620ae349b246a18f",
+      "match": true
+    },
+    {
+      "name": "syn",
+      "version": "3.0.9",
+      "previous": "b6f7f6069d92142d3e294f84855a68049bebc5b886c557ed4ae980ddbc866e1c",
+      "current": "b6f7f6069d92142d3e294f84855a68049bebc5b886c557ed4ae980ddbc866e1c",
+      "match": true
+    },
+    {
+      "name": "sys-locale",
+      "version": "0.3.2",
+      "previous": "05107da8e8f26ad7178a481c9f3a52b59314de523d250e4f3189b60c976d6562",
+      "current": "05107da8e8f26ad7178a481c9f3a52b59314de523d250e4f3189b60c976d6562",
+      "match": true
+    },
+    {
+      "name": "thiserror",
+      "version": "1.0.69",
+      "previous": "d169d8e8b0ec46a191410fbaa6bac609204a411d770a22cb7afbaf71facef6a9",
+      "current": "d169d8e8b0ec46a191410fbaa6bac609204a411d770a22cb7afbaf71facef6a9",
+      "match": true
+    },
+    {
+      "name": "thiserror",
+      "version": "2.0.21",
+      "previous": "4ab1fdd3cba041dbaa5b813dff268978a93b1542dcc31935fb903772cc700a47",
+      "current": "4ab1fdd3cba041dbaa5b813dff268978a93b1542dcc31935fb903772cc700a47",
+      "match": true
+    },
+    {
+      "name": "thiserror-impl",
+      "version": "1.0.69",
+      "previous": "bffd948b1f0555744e242e035597a6c706a4f795986e2650a4bb193df5bf840d",
+      "current": "bffd948b1f0555744e242e035597a6c706a4f795986e2650a4bb193df5bf840d",
+      "match": true
+    },
+    {
+      "name": "thiserror-impl",
+      "version": "2.0.21",
+      "previous": "cc5e3660d65270da1302d5b24cbefb50b4993b258d344a9ac9b4b69a612aa27f",
+      "current": "cc5e3660d65270da1302d5b24cbefb50b4993b258d344a9ac9b4b69a612aa27f",
+      "match": true
+    },
+    {
+      "name": "tiny-skia",
+      "version": "0.11.4",
+      "previous": "76370c68002a8cf88f605f06e1d645d11045ae2bae97a7d8b490acf47362e6ad",
+      "current": "76370c68002a8cf88f605f06e1d645d11045ae2bae97a7d8b490acf47362e6ad",
+      "match": true
+    },
+    {
+      "name": "tiny-skia-path",
+      "version": "0.11.4",
+      "previous": "353de859699a92b541a06b08af74ae595c586aa4ae9eaaaf6193d3f4a2bd0393",
+      "current": "353de859699a92b541a06b08af74ae595c586aa4ae9eaaaf6193d3f4a2bd0393",
+      "match": true
+    },
+    {
+      "name": "tiny-xlib",
+      "version": "0.2.5",
+      "previous": "cfdd024cb546af4246ef4b5816229f3efc9b409e7f47171e6778d8f180b13311",
+      "current": "cfdd024cb546af4246ef4b5816229f3efc9b409e7f47171e6778d8f180b13311",
+      "match": true
+    },
+    {
+      "name": "tinyvec",
+      "version": "1.13.3",
+      "previous": "431976069fdb12e129521aa4c5c09d225d80a84afe678130d41bdd51ec361688",
+      "current": "431976069fdb12e129521aa4c5c09d225d80a84afe678130d41bdd51ec361688",
+      "match": true
+    },
+    {
+      "name": "tracing",
+      "version": "0.1.44",
+      "previous": "b7e201be4f3872fe25da1fa45aa404c8751a661755d4883fdbb5c0c558303e6d",
+      "current": "b7e201be4f3872fe25da1fa45aa404c8751a661755d4883fdbb5c0c558303e6d",
+      "match": true
+    },
+    {
+      "name": "tracing-attributes",
+      "version": "0.1.31",
+      "previous": "646214905e4c61a54c111ba9b16834c692fda2969be6f2cdb190a910ab1f2a51",
+      "current": "646214905e4c61a54c111ba9b16834c692fda2969be6f2cdb190a910ab1f2a51",
+      "match": true
+    },
+    {
+      "name": "tracing-core",
+      "version": "0.1.36",
+      "previous": "610cf318865f1d349164f4420b53b49b2b3662b6938c2e730873371eb92e050e",
+      "current": "610cf318865f1d349164f4420b53b49b2b3662b6938c2e730873371eb92e050e",
+      "match": true
+    },
+    {
+      "name": "ttf-parser",
+      "version": "0.25.1",
+      "previous": "6f2984ea56c0ccc30a5432cce5189d4e4a615a9c1527f82c66d517a5e56c25df",
+      "current": "6f2984ea56c0ccc30a5432cce5189d4e4a615a9c1527f82c66d517a5e56c25df",
+      "match": true
+    },
+    {
+      "name": "unicode-bidi",
+      "version": "0.3.18",
+      "previous": "bcb0d64219014de87ea032f13929f6b532e85628ea774ba87ea262f63efab811",
+      "current": "bcb0d64219014de87ea032f13929f6b532e85628ea774ba87ea262f63efab811",
+      "match": true
+    },
+    {
+      "name": "unicode-ident",
+      "version": "1.0.27",
+      "previous": "c0e96a9c7ee62f5f9ab12de69e0ad44826ad753911d47638f605c936f7ea2c1c",
+      "current": "c0e96a9c7ee62f5f9ab12de69e0ad44826ad753911d47638f605c936f7ea2c1c",
+      "match": true
+    },
+    {
+      "name": "unicode-linebreak",
+      "version": "0.1.5",
+      "previous": "7f8e0b5d66e9c5621c5fb57d4b16b801a24061e37ee337e06f8a004e6895a8dc",
+      "current": "7f8e0b5d66e9c5621c5fb57d4b16b801a24061e37ee337e06f8a004e6895a8dc",
+      "match": true
+    },
+    {
+      "name": "unicode-script",
+      "version": "0.5.8",
+      "previous": "c82368a7d35523034e33cdec7bccd839a4cdaead5655d2c0cd15883f364715a0",
+      "current": "c82368a7d35523034e33cdec7bccd839a4cdaead5655d2c0cd15883f364715a0",
+      "match": true
+    },
+    {
+      "name": "unicode-segmentation",
+      "version": "1.13.3",
+      "previous": "86f0e8158aae32d3791f182cf50131f678462da65a713b18cab6c0b5638f1a50",
+      "current": "86f0e8158aae32d3791f182cf50131f678462da65a713b18cab6c0b5638f1a50",
+      "match": true
+    },
+    {
+      "name": "version_check",
+      "version": "0.9.5",
+      "previous": "399ea74400a173c02eabe91cb9487d0cf351117857a5d2ebc6231f0efde67681",
+      "current": "399ea74400a173c02eabe91cb9487d0cf351117857a5d2ebc6231f0efde67681",
+      "match": true
+    },
+    {
+      "name": "wayland-backend",
+      "version": "0.3.17",
+      "previous": "856dde0a224d8443808c433727a51886be14a07b9a1f8d211a1c51d725680eb3",
+      "current": "856dde0a224d8443808c433727a51886be14a07b9a1f8d211a1c51d725680eb3",
+      "match": true
+    },
+    {
+      "name": "wayland-client",
+      "version": "0.31.15",
+      "previous": "955074bf4c108dc8ba7bf56a3b4609e9594554ffbff3937ea1032489a5bd81c2",
+      "current": "955074bf4c108dc8ba7bf56a3b4609e9594554ffbff3937ea1032489a5bd81c2",
+      "match": true
+    },
+    {
+      "name": "wayland-csd-frame",
+      "version": "0.3.0",
+      "previous": "22c15391adc5b09d19014d190a82d91ef57c7009a6f9bf717a54e67c92568c0f",
+      "current": "22c15391adc5b09d19014d190a82d91ef57c7009a6f9bf717a54e67c92568c0f",
+      "match": true
+    },
+    {
+      "name": "wayland-cursor",
+      "version": "0.31.14",
+      "previous": "f61573215a140091a2487d4376dd6282b5041aeb010150f44d0f477042f7d6f7",
+      "current": "f61573215a140091a2487d4376dd6282b5041aeb010150f44d0f477042f7d6f7",
+      "match": true
+    },
+    {
+      "name": "wayland-protocols",
+      "version": "0.32.13",
+      "previous": "6f6dc060f85419295e595aaa5ee0630d76d3e0fbf4838a953954be5927382ed9",
+      "current": "6f6dc060f85419295e595aaa5ee0630d76d3e0fbf4838a953954be5927382ed9",
+      "match": true
+    },
+    {
+      "name": "wayland-protocols-experimental",
+      "version": "20250721.0.1",
+      "previous": "5f0b18bf8b1d025311af0a3fe85a0bdc1fe2acaa7bb33f131c9df460e85d68e2",
+      "current": "5f0b18bf8b1d025311af0a3fe85a0bdc1fe2acaa7bb33f131c9df460e85d68e2",
+      "match": true
+    },
+    {
+      "name": "wayland-protocols-misc",
+      "version": "0.3.12",
+      "previous": "990116b44138d18b9445aba90d27c1cb7c3797eeddf8c490e1f82bda49141c53",
+      "current": "990116b44138d18b9445aba90d27c1cb7c3797eeddf8c490e1f82bda49141c53",
+      "match": true
+    },
+    {
+      "name": "wayland-protocols-plasma",
+      "version": "0.3.12",
+      "previous": "898c01b3c9c64bad9794bbd4701debc10922940ad9a2e7050bf522e17fed2ab1",
+      "current": "898c01b3c9c64bad9794bbd4701debc10922940ad9a2e7050bf522e17fed2ab1",
+      "match": true
+    },
+    {
+      "name": "wayland-protocols-wlr",
+      "version": "0.3.12",
+      "previous": "4a9c38e51e9536f97d78ca57d5dc398fd1c05662c397507ae2169cd8a6cab097",
+      "current": "4a9c38e51e9536f97d78ca57d5dc398fd1c05662c397507ae2169cd8a6cab097",
+      "match": true
+    },
+    {
+      "name": "wayland-scanner",
+      "version": "0.31.11",
+      "previous": "013f4b3178d50703f46109d517d86f89998f33c515ab2dd2482792d18e3c8f13",
+      "current": "013f4b3178d50703f46109d517d86f89998f33c515ab2dd2482792d18e3c8f13",
+      "match": true
+    },
+    {
+      "name": "wayland-sys",
+      "version": "0.31.11",
+      "previous": "9490484a9baf88ddcfef3473951b6212552cedd5f343bcb57999d54bed1d777f",
+      "current": "9490484a9baf88ddcfef3473951b6212552cedd5f343bcb57999d54bed1d777f",
+      "match": true
+    },
+    {
+      "name": "web-time",
+      "version": "1.1.0",
+      "previous": "9198de3124f782282d83fb54569440c3ccd660fe02a291376a1f935d6563ea9d",
+      "current": "9198de3124f782282d83fb54569440c3ccd660fe02a291376a1f935d6563ea9d",
+      "match": true
+    },
+    {
+      "name": "window_clipboard",
+      "version": "0.5.1",
+      "previous": "1722786340ce8d82b0b6c50d38aff8c850ae180a2d0f1f47d3014e994cc27602",
+      "current": "1722786340ce8d82b0b6c50d38aff8c850ae180a2d0f1f47d3014e994cc27602",
+      "match": true
+    },
+    {
+      "name": "winit",
+      "version": "0.30.13",
+      "previous": "2aeb741d47b763ee198ca915c330a6bf0b1fc094dd69357e80278b7852289c61",
+      "current": "2aeb741d47b763ee198ca915c330a6bf0b1fc094dd69357e80278b7852289c61",
+      "match": true
+    },
+    {
+      "name": "x11-dl",
+      "version": "2.21.0",
+      "previous": "050489fe79382bf918203cc32e7c5684e8298989ce7420ffa4221c59bd93176c",
+      "current": "050489fe79382bf918203cc32e7c5684e8298989ce7420ffa4221c59bd93176c",
+      "match": true
+    },
+    {
+      "name": "x11rb",
+      "version": "0.13.2",
+      "previous": "7fb1b2b413a498a799a9cc25038a62efb37d36a8765c38de28a4c004b6b795bb",
+      "current": "7fb1b2b413a498a799a9cc25038a62efb37d36a8765c38de28a4c004b6b795bb",
+      "match": true
+    },
+    {
+      "name": "x11rb-protocol",
+      "version": "0.13.2",
+      "previous": "89bc37314b825a5cd4df3f2a9d8815b73b6047ecd00a2dd9d059ec11afc97a39",
+      "current": "89bc37314b825a5cd4df3f2a9d8815b73b6047ecd00a2dd9d059ec11afc97a39",
+      "match": true
+    },
+    {
+      "name": "xcursor",
+      "version": "0.3.11",
+      "previous": "41f3e2fc8be0aa34ad9341d2e338022b281b0e2a2d41783b451c76e7d82449c1",
+      "current": "41f3e2fc8be0aa34ad9341d2e338022b281b0e2a2d41783b451c76e7d82449c1",
+      "match": true
+    },
+    {
+      "name": "xkbcommon-dl",
+      "version": "0.4.2",
+      "previous": "4ef7dd0d9c14dc5ca3f8170450592f2ceaa3b666d1cc873af88d13df0dd07169",
+      "current": "4ef7dd0d9c14dc5ca3f8170450592f2ceaa3b666d1cc873af88d13df0dd07169",
+      "match": true
+    },
+    {
+      "name": "xkeysym",
+      "version": "0.2.1",
+      "previous": "41be3cfb7ea7f6b299c35e71410b61f15bf08634164ba58ce54fd757f543b3a3",
+      "current": "41be3cfb7ea7f6b299c35e71410b61f15bf08634164ba58ce54fd757f543b3a3",
+      "match": true
+    },
+    {
+      "name": "yazi",
+      "version": "0.2.1",
+      "previous": "7d9dff169f99a01552370c09c6076e25adc7f0ec431745e0d7ae6811d015481f",
+      "current": "7d9dff169f99a01552370c09c6076e25adc7f0ec431745e0d7ae6811d015481f",
+      "match": true
+    },
+    {
+      "name": "zeno",
+      "version": "0.3.3",
+      "previous": "e3b0ec0e9f3cb01d3d28f2f057fd9da3b6665037e936bb13ebc1d9de2b043ca0",
+      "current": "e3b0ec0e9f3cb01d3d28f2f057fd9da3b6665037e936bb13ebc1d9de2b043ca0",
+      "match": true
+    },
+    {
+      "name": "zerocopy",
+      "version": "0.8.63",
+      "previous": "73182670f07c89a4b463e6369da7a6b8f87bf5a838627103bb606bd7b4e0a88d",
+      "current": "73182670f07c89a4b463e6369da7a6b8f87bf5a838627103bb606bd7b4e0a88d",
+      "match": true
+    },
+    {
+      "name": "zerocopy-derive",
+      "version": "0.8.63",
+      "previous": "f8b9128d66324adf3b6af5542fae833e3d370533f5a782ca785874f706209d16",
+      "current": "f8b9128d66324adf3b6af5542fae833e3d370533f5a782ca785874f706209d16",
+      "match": true
+    }
+  ],
+  "limitations": [
+    "Manifest and lockfile comparison only; no full dependency security audit. All-target offline metadata failed due to uncached android-activity; Linux-filtered metadata succeeded."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "photos": [],
+  "method": "Direct visual inspection of the seven maintainer-provided _new screenshots; subsequent explicit human confirmations of ordered scenarios.",
+  "observed": "Updated missing-evidence guidance, success without automatic approval, failure and timeout all visible. Screenshot Verify follows current attempt 4 (timeout), so no approval inferred from that screenshot.",
+  "replies": {
+    "correct_then_verify": "APPROVED",
+    "incorrect_then_verify": "Sim, observei REJECTED",
+    "cancel_and_responsiveness": "Sim, observei Cancelled e a janela respondeu",
+    "exit_button": "Sim, cliquei em Sair e ela fechou"
+  },
+  "run": "docs/validation/product-local-task-ui/manual-flow-retry-20261030T032628Z",
+  "limitations": [
+    "Verdicts/cancellation/responsiveness are human confirmations, not screenshot OCR or internal state calls.",
+    "The attempted external mutation was refused because the active attempt had already changed to a missing-result attempt; no mutation occurred. Invalidation is independently exercised by process integration tests."
+  ]
+}

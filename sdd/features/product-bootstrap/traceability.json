@@ -9,10 +9,11 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/Cargo.toml",
-    "oracle": "docs/validation/product-bootstrap/metadata.json"
+    "oracle": "docs/validation/product-local-task-ui/acceptance/cargo-metadata.json"
   },
   {
     "acceptance": "AC-02",
@@ -24,7 +25,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/crates/ox-ui/src/desktop.rs",
     "oracle": "application/crates/ox-app/tests/desktop.rs"
@@ -39,7 +41,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/crates/ox-app/src/main.rs",
     "oracle": "application/crates/ox-app/src/startup.rs"
@@ -54,7 +57,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/crates/ox-core/src/lib.rs",
     "oracle": "application/Cargo.toml"
@@ -69,7 +73,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/crates/ox-ui/src/lib.rs",
     "oracle": "application/crates/ox-ui/src/shell.rs"
@@ -84,7 +89,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/crates/ox-task/src/state.rs",
     "oracle": "application/crates/ox-task/tests/lifecycle.rs"
@@ -99,10 +105,11 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/Cargo.toml",
-    "oracle": "docs/validation/product-bootstrap/metadata.json"
+    "oracle": "docs/validation/product-local-task-ui/acceptance/cargo-metadata.json"
   },
   {
     "acceptance": "AC-08",
@@ -114,7 +121,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/crates/ox-workspace/src/root.rs",
     "oracle": "application/crates/ox-workspace/tests/root_contract.rs"
@@ -129,7 +137,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "sdd/features/product-bootstrap/plan.md",
     "oracle": "sdd/tools/validate.py"
@@ -144,7 +153,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "tools/governance/scripts/check-ox.py",
     "oracle": "tools/governance/tests/test_governance.py"
@@ -159,7 +169,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/crates/ox-plugin/src/protocol.rs",
     "oracle": "application/crates/ox-plugin/tests/compatibility.rs"
@@ -174,7 +185,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "tools/governance/scripts/governance_support.py",
     "oracle": "tools/governance/tests/test_governance.py"
@@ -189,7 +201,8 @@
       "T002",
       "T003",
       "T004",
-      "T005"
+      "T005",
+      "T012"
     ],
     "implementation": "application/crates/ox-agent/src/session.rs",
     "oracle": "docs/decisions/product-bootstrap.md"

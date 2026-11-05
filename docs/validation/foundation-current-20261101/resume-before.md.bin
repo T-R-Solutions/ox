@@ -1,0 +1,136 @@
+# Resumo do Ox — entregas e pendências
+
+Data da consulta: 2026-11-01. Retrato da árvore de trabalho local, incluindo alterações ainda não commitadas.
+
+## Como interpretar este resumo
+
+Este documento consolida as 23 features de `sdd/features/`, seus registros de tarefas, convergência e evidências, junto ao contexto do projeto e às decisões técnicas. É uma consulta documental pela rota local; não altera critérios, autorizações ou estados de aceitação.
+
+Os estados abaixo foram extraídos dos `evidence.json` presentes. Aprovação registrada significa aceitação no escopo e nos inputs identificados pela feature; não significa nova validação executada nesta consulta. Registros antigos de convergência podem conter etapas posteriormente superadas. Tarefas concluídas não substituem evidências e critérios não verificados não provam regressão.
+
+## Situação geral
+
+- Fase: `implementation-foundation`; aplicativo: `bootstrap-implemented`.
+- Existe uma fundação Rust/Iced com 16 crates, shell desktop e um fluxo local controlado integrado à interface.
+- Bootstrap, Plugin Host, Agent Runtime, Verification Engine e interface da tarefa local têm aceitação registrada em escopos delimitados.
+- F0 inteira continua incompleta; MVP e V1 não estão concluídos.
+- Os registros das 23 features somam **107 critérios APPROVED, 25 UNVERIFIED e 1 NOT APPLICABLE**. Isso não é uma porcentagem de progresso do produto: há critérios de governança, biblioteca e aplicativo com escopos distintos.
+
+## Stack adotada
+
+| Camada | Tecnologia/decisão atual |
+|---|---|
+| Aplicativo | Rust, edição 2024; toolchain 1.99.1; piso declarado 1.99 |
+| Interface | Iced 0.14.0, tiny-skia, X11, Wayland, fira-sans e thread-pool |
+| Plataforma inicial | Linux x86_64; observações gráficas delimitadas por ambiente |
+| Organização | Workspace Cargo virtual em `application/`, 16 crates e lockfile único |
+| Código próprio | `unsafe` proibido; isso não significa ausência de código nativo/unsafe nas dependências |
+| Host local de plugins | Socket Unix e protocolo ASCII 1.0 para fixture controlada |
+| Runtime local | Supervisão direta de processo com biblioteca padrão; sem adoção geral de runtime assíncrono |
+| Verificação | Oráculo local por exit code e snapshots exatos de bytes em memória |
+| Governança | Python 3.11+ e biblioteca padrão; SDD, evidências e validadores locais |
+| Licença própria | GPL-3.0-only; direitos de materiais de terceiros ainda pendentes |
+
+Fontes: [manifesto](application/Cargo.toml), [toolchain](application/rust-toolchain.toml), [contexto](sdd/project.md) e [decisões abertas](docs/decisions/open-questions.md). SQLite, Tokio, JSON-RPC/ACP e parsers ainda não devem ser apresentados como escolhas gerais adotadas.
+
+## Inventário completo das features
+
+Cada link leva à convergência; `spec.md`, `plan.md`, `tasks.md`, `evidence.json` e `traceability.json` ficam na mesma pasta.
+
+| Feature | Entrega e situação | Aceitação registrada |
+|---|---|---|
+| [adoption-governance](sdd/features/adoption-governance/converge.md) | Adoção das autoridades, baseline, nove especializações e pontes; reexaminar os quatro critérios afetados por mudanças posteriores. | 4 UNVERIFIED |
+| [governance-externalization](sdd/features/governance-externalization/converge.md) | Internalização das autoridades, retirada de dependências dos estudos externos e pacote independente; sete critérios aguardam reexame próprio. | 7 UNVERIFIED |
+| [governance-layout](sdd/features/governance-layout/converge.md) | Separação de ferramentas, configuração e aplicação; quatro critérios aguardam reexame próprio. | 4 UNVERIFIED |
+| [governance-reconciliation](sdd/features/governance-reconciliation/converge.md) | Perfil de 30 skills/pontes, recuperação histórica, sucessão de revisões, fronteiras do pacote e grupos de testes reconciliados. | 4 APPROVED |
+| [maintenance-001](sdd/features/maintenance-001/converge.md) | Manutenção de metadados, exportação, preservação e licenciamento; cinco critérios sem aceitação atual e direitos de terceiros pendentes. | 5 UNVERIFIED |
+| [product-agent-runtime](sdd/features/product-agent-runtime/converge.md) | Supervisão de processo local, estados, cancelamento, prazo, tentativas e rejeição de eventos atrasados/duplicados. | 5 APPROVED |
+| [product-bootstrap](sdd/features/product-bootstrap/converge.md) | Workspace de 16 crates, contratos e shell Iced. Wayland observado e X11 exercitado. AC-11 deixou de se aplicar pela sucessão autorizada do requisito de ausência de IPC. | 12 APPROVED; 1 NOT APPLICABLE |
+| [product-foundation](sdd/features/product-foundation/converge.md) | Transição da governança para implementação e separação da aceitação de produto; cinco critérios aguardam reexame. Não equivale à entrega de F0. | 5 UNVERIFIED |
+| [product-local-task-ui](sdd/features/product-local-task-ui/converge.md) | Integração Iced/Runtime/Verification para uma tarefa controlada, validação de workspace, cancelamento, verificação explícita, histórico e atualização dos inputs. | 11 APPROVED |
+| [product-plugin-host](sdd/features/product-plugin-host/converge.md) | Processo local, negociação de versão/capabilities, chamadas autorizadas, correlação, falhas, timeout e encerramento por socket Unix. | 6 APPROVED |
+| [product-verification-engine](sdd/features/product-verification-engine/converge.md) | Verificação por oráculo local, snapshots de bytes, histórico, invalidação seletiva e cinco estados de aceitação. | 5 APPROVED |
+| [skill-agent-runtime-engineering](sdd/features/skill-agent-runtime-engineering/converge.md) | Skill, referências, ponte e avaliação de autoria/comportamento entregues; quatro cenários técnicos aprovados nos consumidores identificados. A tarefa T004 ainda aparece desmarcada. | 6 APPROVED |
+| [skill-agent-usage-accounting](sdd/features/skill-agent-usage-accounting/converge.md) | Skill, referências, ponte e avaliação de autoria/comportamento entregues; quatro cenários técnicos aprovados nos consumidores identificados. A tarefa T004 ainda aparece desmarcada. | 6 APPROVED |
+| [skill-autonomous-verification-engineering](sdd/features/skill-autonomous-verification-engineering/converge.md) | Skill, referências, ponte e avaliação de autoria/comportamento entregues; quatro cenários técnicos aprovados nos consumidores identificados. A tarefa T004 ainda aparece desmarcada. | 6 APPROVED |
+| [skill-code-context-engineering](sdd/features/skill-code-context-engineering/converge.md) | Skill, referências, ponte e avaliação de autoria/comportamento entregues; quatro cenários técnicos aprovados nos consumidores identificados. A tarefa T004 ainda aparece desmarcada. | 6 APPROVED |
+| [skill-code-knowledge-graph-engineering](sdd/features/skill-code-knowledge-graph-engineering/converge.md) | Skill, referências, ponte e avaliação de autoria/comportamento entregues; quatro cenários técnicos aprovados nos consumidores identificados. A tarefa T004 ainda aparece desmarcada. | 6 APPROVED |
+| [skill-consumer-validation](sdd/features/skill-consumer-validation/converge.md) | Execução dos 28 cenários antes pendentes em consumidores delimitados, completando os 36 cenários técnicos das nove skills. | 4 APPROVED |
+| [skill-iced-engineering](sdd/features/skill-iced-engineering/converge.md) | Skill, referências, ponte e avaliação de autoria/comportamento entregues; quatro cenários técnicos aprovados nos consumidores identificados. A tarefa T004 ainda aparece desmarcada. | 6 APPROVED |
+| [skill-plugin-protocol-engineering](sdd/features/skill-plugin-protocol-engineering/converge.md) | Skill, referências, ponte e avaliação de autoria/comportamento entregues; quatro cenários técnicos aprovados nos consumidores identificados. A tarefa T004 ainda aparece desmarcada. | 6 APPROVED |
+| [skill-tool-output-engineering](sdd/features/skill-tool-output-engineering/converge.md) | Skill, referências, ponte e avaliação de autoria/comportamento entregues; quatro cenários técnicos aprovados nos consumidores identificados. A tarefa T004 ainda aparece desmarcada. | 6 APPROVED |
+| [skill-ui-metadata-inventory](sdd/features/skill-ui-metadata-inventory/converge.md) | Inventário dos 30 metadados de interface, hashes, predecessores e testes de mutação; não demonstra renderização da interface. | 2 APPROVED |
+| [skill-workspace-integrity-engineering](sdd/features/skill-workspace-integrity-engineering/converge.md) | Skill, referências, ponte e avaliação de autoria/comportamento entregues; quatro cenários técnicos aprovados nos consumidores identificados. A tarefa T004 ainda aparece desmarcada. | 6 APPROVED |
+| [technical-acceptance](sdd/features/technical-acceptance/converge.md) | Gates exigem execução e revisão semântica por critério; preservam histórico e distinguem consumidores avaliados do produto. | 4 APPROVED |
+
+## O que já funciona no escopo do aplicativo
+
+A interface permite validar um workspace existente, executar uma tarefa controlada, cancelar, verificar explicitamente um resultado e consultar o histórico da sessão. O artefato é exclusivo por tentativa; resultado correto e incorreto são diferenciados pelo oráculo. A atualização manual dos inputs identifica aceitação obsoleta. O Plugin Host permanece como API separada desse fluxo.
+
+A aceitação final da interface, de 2026-10-30, registra cinco verificações Cargo, 23 testes regulares e três testes X11 explícitos aprovados. Wayland teve observação de protocolo, interação humana e saída dos processos. As tentativas anteriores com falhas estão preservadas. Esses resultados são históricos consultados, não testes repetidos para este resumo.
+
+Os limites atuais são relevantes: histórico e verificação em memória; nenhum agente real/remoto integrado; sem persistência geral, sandbox de produção ou contenção de toda a árvore de processos. O runtime inicial não captura saída, uso ou custo. A verificação depende dos inputs fornecidos e não prova autenticidade de artefatos ou adequação de qualquer oráculo arbitrário. A cobertura X11 usa Xwayland temporário; permanece a limitação de entrada da sessão GNOME principal.
+
+## Governança e skills entregues
+
+A biblioteca vigente reúne 30 skills e 30 pontes. Foram implementados inventários, preservação de predecessores, recuperação, verificadores de integridade, testes de mutação e exportação independente da governança. O pacote de governança exclui o aplicativo e não é um instalador do Ox.
+
+A evolução da aceitação técnica passou a exigir execução concreta e revisão semântica vinculadas a consumidores e oráculos. A feature `skill-consumer-validation` registra 16 testes de modelo, sete de processos/arquivos, quatro tentativas isoladas de leitura e o teste gráfico completo. Também registra 42 testes de governança e seis métodos em cópia independente. A falha de recorte do botão Quit no tamanho mínimo foi corrigida no consumidor gráfico avaliado.
+
+As nove especializações agora registram **36/36 critérios técnicos e 54/54 critérios totais aprovados**, restritos aos consumidores identificados. Isso não implementa automaticamente os motores de contexto, grafo, contabilidade ou compactação do aplicativo, nem comprova eficácia geral de agentes.
+
+## O que falta fazer
+
+### Pendências explícitas de aceitação
+
+Há 25 critérios UNVERIFIED em cinco features: `adoption-governance` (4), `governance-externalization` (7), `governance-layout` (4), `maintenance-001` (5) e `product-foundation` (5). As observações anteriores foram preservadas, mas alterações em inputs impedem tratar aquelas aprovações como atuais. A retomada registrada é reexaminar cada critério afetado com seu próprio oráculo. A reconciliação mais recente não aprova automaticamente essas features antigas.
+
+### Documentação a reconciliar
+
+- As nove features de especialização ainda mantêm T004 desmarcada em `tasks.md`, embora a convergência e as evidências atuais registrem aprovação dos cenários nos consumidores delimitados.
+- README, contexto do projeto e passagens históricas ainda mencionam 36 cenários pendentes. O registro posterior de `skill-consumer-validation` e a ADR de aceitação técnica devem orientar a atualização desses resumos.
+- O bootstrap conserva notas intermediárias de Wayland futuro/inconclusivo e testes X11 falhos; a aceitação final posterior resolve o escopo observado, sem ampliar suporte para todos os ambientes.
+- Algumas tarefas não usam checkboxes. Sua conclusão precisa ser consultada na convergência e nas evidências, não inferida da formatação.
+
+Essas divergências foram registradas aqui; os documentos de origem não foram alterados por esta consolidação.
+
+### Capacidades de produto ainda fora das entregas aceitas
+
+- Agentes reais, adaptadores, permissões, rede, segredos e orquestração completa.
+- Persistência local geral, histórico durável, recuperação após reinício, backup e retenção.
+- Integração de plugins de terceiros, SDK público, LSP e recursos avançados na interface.
+- Motores próprios de contexto incremental, grafos estrutural/exploratório e compactação de saída.
+- Captura robusta de saída, contabilidade de tokens/cache/custos e observabilidade de produto além das fatias atuais.
+- Sandbox por plataforma, limites de recursos e contenção de processos descendentes.
+- Acessibilidade, UX final e validação de suporte em outras plataformas/ambientes.
+- Empacotamento e distribuição do aplicativo, assinatura, atualização e resolução dos direitos de terceiros.
+
+A existência de contratos/crates ou de consumidores de teste não conclui essas capacidades. Cada expansão requer escopo e aceitação próprios.
+
+### Decisões ainda abertas
+
+O [registro de decisões abertas](docs/decisions/open-questions.md) inclui protocolos e agentes definitivos; banco, busca e armazenamento do grafo; sandbox; direitos de terceiros e distribuição; metas de CPU/RAM/latência; parsers e linguagens prioritárias; acessibilidade e UX final. Embeddings, nuvem opcional e marketplace permanecem hipóteses futuras. Linux e Rust/Iced têm decisões iniciais; isso não resolve todas as escolhas de plataforma/runtime.
+
+## Roadmap registrado
+
+| Marco | Escopo previsto |
+|---|---|
+| F0 | Fundação e contratos — ainda não concluído integralmente |
+| F1 | Shell local e plugins |
+| F2 | Agentes e workspace |
+| F3 / MVP | Verificação e observabilidade essencial |
+| F4 | Contexto incremental |
+| F5 | Grafo estrutural |
+| F6 | Grafo exploratório e output |
+| F7 / V1 | Plugins avançados e robustez |
+| F8 | Expansões opcionais |
+
+Fonte: [mapa arquitetural](docs/architecture/context.md). Existem fatias implementadas em temas desses marcos; isso não equivale a declarar os marcos completos. O mapa não estabelece datas de entrega nem autoriza automaticamente sua execução.
+
+## Método, verificação e manutenção deste resumo
+
+Critério desta entrega: cobrir todas as features existentes, distinguir entrega de aceitação e apontar pendências sem promover estados. Método: inspeção documental e extração dos estados dos 23 `evidence.json`; comparação com tarefas, convergências, contexto, arquitetura, ADRs e manifesto. Resultado: inventário de 23 features e 133 critérios registrados, com divergências documentais explícitas. Links locais e cobertura do inventário conferidos após a escrita.
+
+Limitações: não houve nova execução do aplicativo, dos testes de produto ou dos validadores completos de evidências; não foi reavaliada a atualidade de todos os hashes. A consolidação reproduz os estados registrados, sem emitir nova aprovação. Alterações preexistentes foram preservadas.
+
+Método auxiliar consultado: [technical-documentation](.codex/skills/technical-documentation/SKILL.md), sem versão declarada, usado para rastreabilidade das afirmações, separação entre execução observada e relato e conferência de referências. Atualizar este resumo quando mudarem os estados das features, a stack ou o roadmap; as autoridades e evidências originais continuam sendo a fonte canônica.

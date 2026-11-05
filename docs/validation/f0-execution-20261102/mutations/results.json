@@ -1,0 +1,71 @@
+[
+  {
+    "name": "stale-input",
+    "mutation": {
+      "path": "crates/ox-verification/src/engine.rs",
+      "before": "observation.check != *check || observation.before != current",
+      "after": "observation.check != *check"
+    },
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "ox-verification",
+      "--locked",
+      "--offline",
+      "failure_history_survives_repair",
+      "--",
+      "--nocapture"
+    ],
+    "exit": 101,
+    "log": "stale-input.log",
+    "compiled": true,
+    "test_failed": true
+  },
+  {
+    "name": "grant-bypass",
+    "mutation": {
+      "path": "crates/ox-plugin/src/host.rs",
+      "before": "if !self.allowed {",
+      "after": "if false {"
+    },
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "ox-plugin",
+      "--locked",
+      "--offline",
+      "incompatible_and_unauthorized",
+      "--",
+      "--nocapture"
+    ],
+    "exit": 101,
+    "log": "grant-bypass.log",
+    "compiled": true,
+    "test_failed": true
+  },
+  {
+    "name": "late-ui",
+    "mutation": {
+      "path": "crates/ox-ui/src/desktop.rs",
+      "before": "if g == self.generation && self.busy",
+      "after": "if self.busy"
+    },
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "ox-ui",
+      "--locked",
+      "--offline",
+      "busy_and_stale_events",
+      "--",
+      "--nocapture"
+    ],
+    "exit": 101,
+    "log": "late-ui.log",
+    "compiled": true,
+    "test_failed": true
+  }
+]

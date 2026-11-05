@@ -1,0 +1,67 @@
+{
+  "status": "REJECTED",
+  "criterion": "Q08 client draw/present <=125ms across the adopted functional corpus",
+  "finding": "Toggle-only 20-sample measurements do not cover history drawing; full journey logs contain values above budget. No limit revision.",
+  "rows": [
+    {
+      "run": "native-support-1-640",
+      "max_after_first_three_frames_ms": 90.315583,
+      "artifact": "docs/validation/f0-resumption-20261103/native-support-1-640/wayland.log"
+    },
+    {
+      "run": "native-support-1-900",
+      "max_after_first_three_frames_ms": 171.561365,
+      "artifact": "docs/validation/f0-resumption-20261103/native-support-1-900/wayland.log"
+    },
+    {
+      "run": "native-support-1.5-640",
+      "max_after_first_three_frames_ms": 135.46913999999998,
+      "artifact": "docs/validation/f0-resumption-20261103/native-support-1.5-640/wayland.log"
+    },
+    {
+      "run": "native-support-1.5-900",
+      "max_after_first_three_frames_ms": 285.93145,
+      "artifact": "docs/validation/f0-resumption-20261103/native-support-1.5-900/wayland.log"
+    },
+    {
+      "run": "native-support-2-640",
+      "max_after_first_three_frames_ms": 200.438942,
+      "artifact": "docs/validation/f0-resumption-20261103/native-support-2-640/wayland.log"
+    },
+    {
+      "run": "native-support-2-900",
+      "max_after_first_three_frames_ms": 429.9852,
+      "artifact": "docs/validation/f0-resumption-20261103/native-support-2-900/wayland.log"
+    },
+    {
+      "run": "x11-support-1-640",
+      "max_after_first_three_frames_ms": 73.48781,
+      "artifact": "docs/validation/f0-resumption-20261103/x11-support-1-640/test.log"
+    },
+    {
+      "run": "x11-support-1-900",
+      "max_after_first_three_frames_ms": 86.305965,
+      "artifact": "docs/validation/f0-resumption-20261103/x11-support-1-900/test.log"
+    },
+    {
+      "run": "x11-support-1.5-640",
+      "max_after_first_three_frames_ms": 85.285263,
+      "artifact": "docs/validation/f0-resumption-20261103/x11-support-1.5-640/test.log"
+    },
+    {
+      "run": "x11-support-1.5-900",
+      "max_after_first_three_frames_ms": 126.66398500000001,
+      "artifact": "docs/validation/f0-resumption-20261103/x11-support-1.5-900/test.log"
+    },
+    {
+      "run": "x11-support-2-640",
+      "max_after_first_three_frames_ms": 95.047286,
+      "artifact": "docs/validation/f0-resumption-20261103/x11-support-2-640/test.log"
+    },
+    {
+      "run": "x11-support-2-900",
+      "max_after_first_three_frames_ms": 182.752982,
+      "artifact": "docs/validation/f0-resumption-20261103/x11-support-2-900/test.log"
+    }
+  ]
+}

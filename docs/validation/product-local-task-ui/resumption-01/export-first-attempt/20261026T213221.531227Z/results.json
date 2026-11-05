@@ -1,0 +1,39 @@
+{
+  "scope": "governance/SDD/skills",
+  "product_acceptance": false,
+  "environment": {
+    "python": "3.13.16",
+    "system": "Linux-7.3.0-1-default-x86_64-with-glibc2.44"
+  },
+  "results": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .",
+      "exit_code": 0,
+      "log": "docs/validation/runs/20261026T213221.531227Z/01.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+      "exit_code": 0,
+      "log": "docs/validation/runs/20261026T213221.531227Z/02.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 src/scripts/check-ox.py",
+      "exit_code": 0,
+      "log": "docs/validation/runs/20261026T213221.531227Z/03.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s src/tests -v",
+      "exit_code": 0,
+      "log": "docs/validation/runs/20261026T213221.531227Z/04.log",
+      "sha256": "9dc5b0abb170d2e53692dcfd3a02eb242cc479a0c5d60ce54236bd7afe647fc3"
+    }
+  ],
+  "limitations": [
+    "Governance, SDD and skill-contract checks only.",
+    "No Rust compilation, application integration, sandbox effectiveness or product acceptance is established."
+  ],
+  "input_manifest": "docs/validation/runs/20261026T213221.531227Z/inputs.json"
+}

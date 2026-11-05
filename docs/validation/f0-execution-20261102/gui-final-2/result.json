@@ -1,0 +1,19 @@
+{
+  "scale": "2",
+  "coverage": false,
+  "command": [
+    "cargo",
+    "test",
+    "-p",
+    "ox-app",
+    "--test",
+    "desktop",
+    "--locked",
+    "--",
+    "--ignored",
+    "visual_response_and_window_matrix",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "exit": 0
+}

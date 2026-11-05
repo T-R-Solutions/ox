@@ -1,0 +1,61 @@
+{
+  "observed_utc": "2026-11-04T00:45:41.893845+00:00",
+  "features": [
+    {
+      "name": "product-f0-gate",
+      "states": {
+        "AC-01": "APPROVED",
+        "AC-02": "APPROVED",
+        "AC-03": "APPROVED",
+        "AC-04": "APPROVED",
+        "AC-05": "APPROVED"
+      },
+      "current_schema_trace_inputs": "PASS",
+      "changed_input_negative_control": "REJECTED as expected",
+      "missing_evidence_negative_control": "REJECTED as expected"
+    },
+    {
+      "name": "product-bootstrap",
+      "states": {
+        "AC-01": "APPROVED",
+        "AC-02": "APPROVED",
+        "AC-03": "APPROVED",
+        "AC-04": "APPROVED",
+        "AC-05": "APPROVED",
+        "AC-06": "APPROVED",
+        "AC-07": "APPROVED",
+        "AC-08": "APPROVED",
+        "AC-09": "APPROVED",
+        "AC-10": "APPROVED",
+        "AC-11": "NOT APPLICABLE",
+        "AC-12": "APPROVED",
+        "AC-13": "APPROVED"
+      },
+      "current_schema_trace_inputs": "PASS",
+      "changed_input_negative_control": "REJECTED as expected",
+      "missing_evidence_negative_control": "REJECTED as expected"
+    },
+    {
+      "name": "product-local-task-ui",
+      "states": {
+        "AC-01": "APPROVED",
+        "AC-02": "APPROVED",
+        "AC-03": "APPROVED",
+        "AC-04": "APPROVED",
+        "AC-05": "APPROVED",
+        "AC-06": "APPROVED",
+        "AC-07": "APPROVED",
+        "AC-08": "APPROVED",
+        "AC-09": "APPROVED",
+        "AC-10": "APPROVED",
+        "AC-11": "APPROVED"
+      },
+      "current_schema_trace_inputs": "PASS",
+      "changed_input_negative_control": "REJECTED as expected",
+      "missing_evidence_negative_control": "REJECTED as expected"
+    }
+  ],
+  "limits": [
+    "schema/hash validation does not establish authenticity or oracle suitability; operational and visual evidence reviewed separately"
+  ]
+}

@@ -1,0 +1,56 @@
+# Contexto e fases do produto
+
+**Fase atual:** `implementation-foundation`; aplicativo `bootstrap-implemented`.
+A feature `product-foundation` entrega a transição da governança. F0 permanece aberto por exceder o limite de desenho ao exibir histórico; a evidência atual está em
+`docs/validation/f0-resumption-20261103/`. Isso não autoriza uma nova fase.
+
+**Escopo arquitetural vigente:** resumo autocontido do produto e seus estados. Ox é agent-first, local-first e extensível, com Rust/Iced, LSP e serviços avançados por plugins, dois modos de grafo e confiabilidade verificável como prioridade. Motores de contexto, grafo e compactação serão próprios; bibliotecas auxiliares exigem avaliação. Os 16 crates de `application/` fornecem os contratos da fundação. O shell Iced
+e fatias locais do Plugin Host, Agent Runtime e Verification Engine têm execução
+validada nas respectivas features product-*. O manifesto virtual e o lockfile ficam em `application/`;
+fontes e testes externos pertencem a `application/crates/<crate>/src/` e
+`application/crates/<crate>/tests/`. Não há crate na raiz do workspace. Contexto, grafos e demais motores fora dessas fatias continuam previstos. Novos detalhes dependem de ADRs. O planejamento externo não é requisito de execução ou validação.
+
+A futura interface SDD apresentará arquivos portáveis como autoridade, sem estado concorrente: distinguir indicação/seleção/consulta/uso de skills, tarefas/aceitação/permissões e falhas de sincronização. Mudanças propostas por agentes respeitam escopo e autorizações. Esses comportamentos futuros não foram testados. Tokio, SQLite, IPC, Tree-sitter, plataformas e sandbox seguem em [decisões abertas](../decisions/open-questions.md).
+
+O núcleo futuro coordena tarefas, agentes, permissões, workspace e evidências. Plugins opcionais fornecem integrações; Iced apresenta estados do domínio. Contexto extrai dados por snapshot; grafo deriva relações com proveniência; output gera projeções do bruto; contabilidade conserva semântica de uso. Dois modos de grafo são vistas do mesmo grafo lógico. O estado de implementação deverá ser acompanhado nas features `product-*`
+e em seus artefatos de verificação. A baseline de governança não contém
+implementação desses componentes; sua presença futura só poderá ser declarada
+após inspeção do código e das evidências atuais.
+
+| Marco | Escopo futuro | Dependência relevante |
+|---|---|---|
+| F0 | Fundação e contratos | Decisões de risco e plataforma |
+| F1 | Shell local e plugins | Protocolo, dados e falhas |
+| F2 | Agentes e workspace | Autorizações, concorrência e recuperação |
+| F3 / MVP | Verificação e observabilidade essencial | Critérios e evidências reais |
+| F4 | Contexto incremental | Snapshots íntegros |
+| F5 | Grafo estrutural | Contexto e proveniência |
+| F6 | Grafo exploratório e output | Limites de trabalho e raw preservado |
+| F7 / V1 | Plugins avançados e robustez | Integração multiplataforma |
+| F8 | Expansões opcionais | Validação prévia do produto local |
+
+A preparação das skills P0/P1 foi registrada historicamente e não altera
+a ordem dos marcos do produto. Na fase `implementation-foundation`, somente
+features `product-*` e evidências próprias demonstram entregas do aplicativo.
+Persistência, avaliação de agentes e distribuição continuam abrangidas pelas
+competências existentes quando pertinentes.
+
+## Fatias locais aceitas — 2026-10-29
+
+- product-bootstrap: Wayland nativo observado pelo mantenedor; testes X11
+  explícitos em Xwayland temporário. A sessão GNOME principal conserva limitação
+  de entrada XTEST; não há alegação de reparo desse ambiente.
+- product-plugin-host: socket Unix, protocolo textual 1.0, echo autorizado,
+  falhas e encerramento de processo local controlado; sem sandbox.
+- product-agent-runtime: supervisão de processo local sem saída, estados,
+  cancelamento, prazo e tentativas/eventos ordenados; sem agente real.
+- product-verification-engine: execução local com oráculo de exit code e
+  snapshots por bytes, histórico e invalidação; armazenamento apenas em memória.
+
+A feature product-local-task-ui integra Agent Runtime e Verification Engine à
+interface Iced para uma única tarefa controlada, artefato exclusivo por tentativa,
+verificação explícita e invalidação por atualização manual dos inputs. Plugin Host
+continua como API independente. Os critérios e limites da integração ficam na
+feature própria; não há agente remoto, sandbox ou histórico persistente.
+F0 inteira, orquestração completa, provedores remotos, persistência e distribuição
+continuam fora da aceitação dessas entregas.

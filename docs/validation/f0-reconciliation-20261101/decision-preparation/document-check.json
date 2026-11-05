@@ -1,0 +1,43 @@
+{
+  "archived_inputs": {
+    "docs/validation/foundation-current-20261101/f0.md": true,
+    "docs/validation/f0-reconciliation-20261101/f0-matrix.json": true,
+    "docs/decisions/local-persistence-proposal.md": true,
+    "sdd/features/product-f0-gate/spec.md": true,
+    "sdd/features/product-f0-gate/plan.md": true,
+    "sdd/features/product-f0-gate/tasks.md": true,
+    "sdd/features/product-f0-gate/traceability.json": true,
+    "sdd/features/product-f0-gate/evidence.json": true,
+    "sdd/features/product-f0-gate/converge.md": true,
+    "sdd/features/product-local-persistence/spec.md": true,
+    "sdd/features/product-local-persistence/plan.md": true,
+    "sdd/features/product-local-persistence/tasks.md": true,
+    "sdd/features/product-local-persistence/traceability.json": true,
+    "sdd/features/product-local-persistence/evidence.json": true,
+    "sdd/features/product-local-persistence/converge.md": true
+  },
+  "changed_existing_paths": [
+    "sdd/features/product-local-persistence/spec.md",
+    "sdd/features/product-local-persistence/plan.md",
+    "sdd/features/product-local-persistence/tasks.md",
+    "sdd/features/product-local-persistence/converge.md",
+    "sdd/features/product-f0-gate/spec.md",
+    "sdd/features/product-f0-gate/plan.md",
+    "sdd/features/product-f0-gate/tasks.md",
+    "sdd/features/product-f0-gate/traceability.json",
+    "docs/decisions/local-persistence-proposal.md",
+    "docs/validation/foundation-current-20261101/f0.md",
+    "docs/validation/f0-reconciliation-20261101/f0-matrix.json"
+  ],
+  "unexpected_changes": [],
+  "unchanged_application_files": 73,
+  "legacy_criteria_unchanged": true,
+  "AC-01": "36 recorded definitions/statuses agree with nine checked T004 tasks; bounded scope retained; no execution repeated",
+  "AC-02": "Seven rows retain undecided states and complete required fields; semantic review is separate in review.md",
+  "AC-03": "Eight shared cases, results-first rule and no bypass; seven operational ACs still UNVERIFIED",
+  "limits": [
+    "Document checks do not execute storage or accept F0.",
+    "Only enumerated workspace files and declared product inputs compared.",
+    "Semantic review remains necessary for oracle sufficiency."
+  ]
+}

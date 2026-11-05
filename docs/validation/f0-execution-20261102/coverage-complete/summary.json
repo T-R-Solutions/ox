@@ -1,0 +1,249 @@
+{
+  "baseline": "../baseline.json dirty/untracked immediate pre-task bytes",
+  "tool": "rustc 1.99.1 LLVM 23.1.1; llvm-cov/profdata 23.1.4; merge accepted profile format",
+  "profile_count": 200,
+  "objects": 42,
+  "scope": "first-party src including handwritten UI; excludes cfg(test) modules and controlled fixture bins, tests/examples/dependencies; explicit X11 GUI tests executed separately",
+  "limitations": [
+    "Killed subprocesses do not flush counters; normal helper process profiles included",
+    "Graphical X11 coverage merged separately; native Wayland not instrumented; zero denominator means N/A, never 100%",
+    "Line eligibility from LLVM DA mapping, not source line count; dev build instrumentation changes timing"
+  ],
+  "total": {
+    "covered": 908,
+    "eligible": 987,
+    "changed_covered": 199,
+    "changed_eligible": 220,
+    "excluded": 171
+  },
+  "components": {
+    "ox-agent": {
+      "covered": 113,
+      "eligible": 126,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "excluded": 40
+    },
+    "ox-app": {
+      "covered": 6,
+      "eligible": 6,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "excluded": 0
+    },
+    "ox-plugin": {
+      "covered": 213,
+      "eligible": 240,
+      "changed_covered": 40,
+      "changed_eligible": 45,
+      "excluded": 36
+    },
+    "ox-task": {
+      "covered": 7,
+      "eligible": 7,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "excluded": 5
+    },
+    "ox-ui": {
+      "covered": 405,
+      "eligible": 431,
+      "changed_covered": 122,
+      "changed_eligible": 136,
+      "excluded": 49
+    },
+    "ox-verification": {
+      "covered": 159,
+      "eligible": 169,
+      "changed_covered": 37,
+      "changed_eligible": 39,
+      "excluded": 41
+    },
+    "ox-workspace": {
+      "covered": 5,
+      "eligible": 8,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "excluded": 0
+    }
+  },
+  "files": [
+    {
+      "path": "application/crates/ox-agent/src/bin/local-agent.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 7,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-agent/src/bin/local-task.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 33,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-agent/src/runtime.rs",
+      "covered": 113,
+      "eligible": 126,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-app/src/main.rs",
+      "covered": 3,
+      "eligible": 3,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-app/src/startup.rs",
+      "covered": 3,
+      "eligible": 3,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-plugin/src/bin/local-plugin.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 36,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-plugin/src/host.rs",
+      "covered": 210,
+      "eligible": 237,
+      "excluded": 0,
+      "changed_covered": 40,
+      "changed_eligible": 45,
+      "uncovered_changed": [
+        198,
+        200,
+        201,
+        215,
+        221
+      ]
+    },
+    {
+      "path": "application/crates/ox-plugin/src/protocol.rs",
+      "covered": 3,
+      "eligible": 3,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-task/src/state.rs",
+      "covered": 7,
+      "eligible": 7,
+      "excluded": 5,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-ui/src/desktop.rs",
+      "covered": 252,
+      "eligible": 270,
+      "excluded": 41,
+      "changed_covered": 118,
+      "changed_eligible": 132,
+      "uncovered_changed": [
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        89,
+        91,
+        93,
+        178,
+        180,
+        184,
+        196,
+        330
+      ]
+    },
+    {
+      "path": "application/crates/ox-ui/src/local_task.rs",
+      "covered": 144,
+      "eligible": 152,
+      "excluded": 0,
+      "changed_covered": 4,
+      "changed_eligible": 4,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-ui/src/shell.rs",
+      "covered": 9,
+      "eligible": 9,
+      "excluded": 8,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-verification/src/bin/held-task-oracle.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 4,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-verification/src/bin/local-oracle.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 24,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-verification/src/bin/task-oracle.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 13,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-verification/src/engine.rs",
+      "covered": 159,
+      "eligible": 169,
+      "excluded": 0,
+      "changed_covered": 37,
+      "changed_eligible": 39,
+      "uncovered_changed": [
+        157,
+        159
+      ]
+    },
+    {
+      "path": "application/crates/ox-workspace/src/root.rs",
+      "covered": 5,
+      "eligible": 8,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    }
+  ]
+}

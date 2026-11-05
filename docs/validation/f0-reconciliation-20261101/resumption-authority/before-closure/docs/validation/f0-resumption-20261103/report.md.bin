@@ -1,0 +1,55 @@
+# Current disposition: F0 OPEN
+
+The provisional conclusion below is superseded by history-counterevidence.json.
+Full-history client drawing exceeds 125 ms; toggle-only measurements cannot close
+Q08 or AC-05. A bounded candidate is being tested without changing product sources.
+
+# F0 resumption acceptance report
+
+Operational observations now support closure of F0 within the explicitly adopted
+local foundation boundary, subject to the final recorded integrity/governance
+checks. The current criterion matrix is matrix.json; raw checks and numerical
+samples are in observation-checks.json and each named run directory. This record
+supersedes the open graphical/performance findings in f0-execution-20261102 only
+for the new observations. Earlier failures and their original identities remain.
+
+| Former blocker | Current evidence and disposition |
+| --- | --- |
+| Native Wayland journey lacked workspace correlation | Identified primary-session run: workspace, exact artifacts, APPROVED/REJECTED history, native keyboard events, child disappearance and natural exit 0; original-binary isolated flow and six support cells corroborate it |
+| Shift+Tab and unstable graphical observation | XTEST modifier failure reproduced; compositor input delivers Shift, reverse focus and activation. Native first-input readiness corrected. 36 X11 tests across six cells, three native held-verification runs and three coverage-instrumented X11 held runs pass |
+| GUI/frame/CPU budgets and support matrix were proposals | Maintainer explicitly adopted decision-proposal.md; twelve separate metric cells satisfy the adopted limits, with backend/session and observer boundaries retained |
+
+| Metric | Maximum observed across 12 cells | Adopted limit |
+| --- | ---: | ---: |
+| Input to observed GUI pixels | 95.30 ms | 120 ms |
+| Client draw through presentation-call return | 82.21 ms | 125 ms |
+| GUI RSS | 49.37 MiB | 64 MiB |
+| Idle CPU, each 10-second window | 0 measured ticks | <=5% of one core |
+
+Every cell has three warmups and twenty measured response samples; the client
+instrumentation captures the corresponding draw/present calls. Each cell has three
+10-second idle observations. CPU uses process ticks at 100 Hz: zero delta is below
+the measurement resolution, not a claim of zero work. Wayland RSS is sampled at
+20 ms; X11 records the kernel lifetime high-water mark, a conservative upper bound
+for that cell. The independent large-history budget remains unchanged.
+
+Scope: Linux x86_64 on the identified host; X11 and native Wayland; scales
+100/150/200%; logical content sizes 640x480 and 900x700. Native matrix measurements
+use isolated headless Mutter with compositor capture; X11 uses Xwayland within that
+isolated environment and client framebuffer capture. The primary Wayland desktop
+journey is separately identified. Neither method measures physical scanout, and
+neither grants universal compositor/GPU support, assistive-technology conformance,
+a sandbox, durable storage or later roadmap capabilities.
+
+Changes are bounded to reproducible observation harnesses, SDD/decision/evidence
+records and one governance-export exclusion for this operational evidence directory.
+The new export regression fails before the exclusion and passes afterward. No
+application source, product dependency or lockfile changed. The initial 220 bindings
+matched; unchanged backend, security, coverage, domain and extension observations
+are retained by identity and scope, not claimed as newly executed.
+
+See graphical-review.md for competing explanations, failed probes, successful
+repetitions and limitations. Current P01/P05/Q05–Q08/Q13 and AC-05 require the
+new evidence and final integrity checks; other clauses retain their independently
+supported scope. Persistence remains a separate authorized-decision track before
+F3/MVP. No commits, publication, global installation or new roadmap execution.

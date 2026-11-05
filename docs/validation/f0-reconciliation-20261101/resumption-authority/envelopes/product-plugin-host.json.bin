@@ -1,0 +1,2332 @@
+{
+  "schema_version": 2,
+  "environment": "Current local F0 execution 2026-11-02/03 on identified Linux x86_64 host. New inspection and retained executed observations; predecessor inputs archived byte-identically. See inputs-current.json, report and criterion matrix.",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "A real local plugin process negotiates protocol 1.0 and completes a correlated echo request.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST",
+        "E-F0-EXECUTION-CURRENT",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-FINAL-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "An incompatible major version is rejected before any operation.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST",
+        "E-F0-EXECUTION-CURRENT",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-FINAL-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Echo requires both plugin-advertised support and caller grant; denied operations are not sent.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST",
+        "E-F0-EXECUTION-CURRENT",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-FINAL-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Malformed, oversized and mismatched response frames fail the host without approval.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST",
+        "E-F0-EXECUTION-CURRENT",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-FINAL-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-05",
+      "criterion": "A silent plugin times out within the configured deadline and an unexpected exit is distinguished.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST",
+        "E-F0-EXECUTION-CURRENT",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-FINAL-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Shutdown closes admission, reaps the child and releases its socket; recovery starts a new independent host.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST",
+        "E-F0-EXECUTION-CURRENT",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-FINAL-REVIEW"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-UI-RECONCILIATION",
+      "artifact": "docs/validation/product-local-task-ui/library-reconciliation/product-plugin-host-review.md",
+      "sha256": "64eb75dbdf8d09fd82ff6969a7a60ee7f07c5e4b2126c06c2a39b097cc91ec22",
+      "kind": "inspection",
+      "command_or_method": "Compare prior input hashes and lockfile diff; reexamine unchanged criterion-to-test mappings",
+      "observed_result": "Existing library criteria supported by unchanged implementation/oracles and new passing workspace tests; see review.",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/before/application/crates/ox-plugin/src/bin/local-plugin.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/before/application/crates/ox-plugin/src/host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/before/application/crates/ox-plugin/tests/host.rs",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/plan.md",
+          "sha256": "0141ac0312ec87f25d0e208d44d3301cac261f22255f308085be3825f242c09f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/skills.json",
+          "sha256": "679d0d986bff071c940d219233e7d4fc1aeaeb39a0535d453d6ee7502ed69037",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/spec.md",
+          "sha256": "67fad09f437ead8b0170764c594f7bd8a37d3700837548b8804bace1cf7f5000",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/tasks.md",
+          "sha256": "1fd16a8ef819cc6ed6127311da0df9286bce5838224110754b29962aea5d01f7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/traceability.json",
+          "sha256": "97fd1ce2239cfd88e4a0478e2ec3b8c4bf04584f3f8d384c19af3ddd6074b5bc",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-UI-TEST",
+      "artifact": "docs/validation/product-local-task-ui/final-checks-01/test-unsandboxed.log",
+      "sha256": "2402b76f0e5c205b0d426fa5daa43cfe32ab7da7cc4d610eab4107068b369170",
+      "kind": "test",
+      "command_or_method": "cargo test --workspace (outside socket-restricting sandbox)",
+      "observed_result": "Existing library criteria supported by unchanged implementation/oracles and new passing workspace tests; see review.",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/before/application/crates/ox-plugin/src/bin/local-plugin.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/before/application/crates/ox-plugin/src/host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/before/application/crates/ox-plugin/tests/host.rs",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/plan.md",
+          "sha256": "0141ac0312ec87f25d0e208d44d3301cac261f22255f308085be3825f242c09f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/skills.json",
+          "sha256": "679d0d986bff071c940d219233e7d4fc1aeaeb39a0535d453d6ee7502ed69037",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/spec.md",
+          "sha256": "67fad09f437ead8b0170764c594f7bd8a37d3700837548b8804bace1cf7f5000",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/tasks.md",
+          "sha256": "1fd16a8ef819cc6ed6127311da0df9286bce5838224110754b29962aea5d01f7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/traceability.json",
+          "sha256": "97fd1ce2239cfd88e4a0478e2ec3b8c4bf04584f3f8d384c19af3ddd6074b5bc",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-EXECUTION-CURRENT",
+      "kind": "inspection",
+      "command_or_method": "Reexamine affected criteria against current source, adopted F0 boundary, actual assertion/fixture bodies and execution logs; compare only changed dependencies. Separate real processes/X11, human native statement, measurements and unresolved observations. No borrowed product acceptance.",
+      "observed_result": "Host and verifier bounded criteria supported by new actual tests. Current static/backend checks pass. Uninstrumented X11 six tests pass; covered held-toggle timeout then unchanged targeted pass retained. Native identified exit 0 has no task artifacts; full GUI/native acceptance remains INCONCLUSIVE. Other project-only changes reexamined for documentary impact. F0 closure not approved.",
+      "artifact": "docs/validation/f0-execution-20261102/acceptance-review.md",
+      "sha256": "41b4a104fe5198b6bd87d03b7610cbded2ba11dd6ba7457f51cde5bffdadca26",
+      "inputs": [
+        {
+          "path": ".codex/skills/application-security/SKILL.md",
+          "sha256": "0d992c0538df30bd5e0c6be689990184ec51671225809eac0f01759cc08257c4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/autonomous-verification-engineering/SKILL.md",
+          "sha256": "3b8e2a6fbd6b09ba79f2316fdb444de0d2dda2ac0907b34c352ad09d1e360c94",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/performance-engineering/SKILL.md",
+          "sha256": "e2fe6bd6724a3b176fd559875252d6ac5479a83bf453dddb4e31a3fc7da9692e",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/rust/SKILL.md",
+          "sha256": "da7b9ada8326b2d2cb4288ac6f67864c7b9defb833641470904c6fe9221d8891",
+          "role": "other"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "c7a3ef68712b2754b5d23c40b53df9f3b2c315d3c8307d8b40d9943faa9440fe",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/bin/local-agent.rs",
+          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/bin/local-task.rs",
+          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/runtime.rs",
+          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/tests/runtime.rs",
+          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "e0aa467f78912091308216b05f8a2ce13b7c191db372e9ba2c650866ef19b168",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/bin/local-plugin.rs",
+          "sha256": "06d37ca20c92aeddc0d9da97f6c94a178d80bd35cebf40231485a02c5b133d36",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/host.rs",
+          "sha256": "a95c271d61ec0b3584b9c5fd17606202aa6ace52a680444b61e17686f3027fdd",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/host.rs",
+          "sha256": "f63b0568c5d65fc36f0d8d4c752bd58e8f4df0d4599455f22e643fa40addbde8",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/examples/f0_measure.rs",
+          "sha256": "3956e9af566c832bcec3008ecae775ea2b5a629b481cf4a82520e70d2c3d57be",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "3ee74a3de72e2002cf1d44b45a6810b96e49e51aa6e0937fa25a499643e60881",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/local_task.rs",
+          "sha256": "093a03c0f2e76866b12c7c72429027b7b4c4bba9991ebcbe331ce4537d6b3dec",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/local_task.rs",
+          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/examples/history_measure.rs",
+          "sha256": "a412e9545f880b4b3975d7318bebf4aca711993d069539954aa821a669fd4f4b",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/bin/held-task-oracle.rs",
+          "sha256": "7658d9023e8c7d6f8e363b4f1849a295c126a0a92b2b09d237739b90062b9c11",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/bin/local-oracle.rs",
+          "sha256": "591812074d92e9046890b7cf4ebfd0e84415da0062700f300ec6f442e7cb2640",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/bin/task-oracle.rs",
+          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/engine.rs",
+          "sha256": "4d1e2797a027e9e82d3adc44a19c46f9fa7361f86087f6b36f34b8c0514ba2a5",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/tests/engine.rs",
+          "sha256": "7e23f63a41994906f119438827dbad3353bb15c58d29ef798d8a007198dfbbe4",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "8193e63ec37f1198daeb5040a57a1c7baba644a0d8d4850a868efbdc2c9e3e93",
+          "role": "other"
+        },
+        {
+          "path": "docs/constitution.md",
+          "sha256": "ae44bf96f769493a9bdc518e7e692a95cdac2dea72076c45439eade95103f1f8",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/f0-boundary-20261102.md",
+          "sha256": "2529c274c9a37a2653da3ed4a87c1b9c1bb0172096bf548f02af40d4b5b0198c",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/local-persistence-proposal.md",
+          "sha256": "b8769a02eaf4343c9f42197cc5ac49580a6d3985187ef2af65e07fd8b8b92233",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "fb750bb57f20695b7a9cffe8b5a8c8ee18780abc37650e6a6df537cd2ca59374",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/version-update-policy.md",
+          "sha256": "82d9611371d3d527577e38cfa727cb680ca303b3828a33a3515a8a1e2ce03da4",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "dc7c5008608684141ca7ca5d7009005e90989d34f39a9cfe0773fecd9cb457a4",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "2261d4f19c690132ad5f016d11394499ac73a6ee96fca3830b03b26fec8a78ed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/backend-final-resources.txt",
+          "sha256": "cdec97c8bd187586b980cfb2ff711a16e3a3726ccf788b95cee56b87f2d2565b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/backend-final-summary.json",
+          "sha256": "28dd3ce533c1ac90fa40dc84942d7bef80fbb9617dc63c8fc72c10e7d9701df8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/backend-final.csv",
+          "sha256": "3ba9591ce99dc3c06af6742400c1bb4ed3d9ae4093446d6ca4fe9ed2608325ab",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/baseline.json",
+          "sha256": "85aa123c0c1529ed6e1b15d9411446113e224f80f5a0be1db36d9287d6089a5e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/cargo-metadata.json",
+          "sha256": "f26b1656195b83b1d24a3fea00ae5f3afed4f861ca9da9949c8ec7fa01c8813f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/check-current.log",
+          "sha256": "3c29a242534000eb26e8e890ebed52573761a4d4415f3a8975a293fb3339c401",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/clippy-current.log",
+          "sha256": "9ddcb7a97f3589835ba8f354c41d25b0a805bd5f85ddbccaff009e6f6dc7236c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/contrast.json",
+          "sha256": "b1fb90b6bbb6720ae35642c7425637aa8fee6720a44d592b8349a048c7e2aa2c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/coverage-complete/summary.json",
+          "sha256": "4158b30adcf937e291c646a234ac4323613af987aacb241da5ba11c441eac942",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/dependency-boundaries.json",
+          "sha256": "c55d8a9abddfdeb7fc28c222fe81dd8cfd48c0def4cbefd9c0ed2f8e939b4d07",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/dependency-inventory.json",
+          "sha256": "bf90ce33d04bd4aa240e19b39e1cbd03d0ed27a8402be285959217113078c83f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/environment.json",
+          "sha256": "e92f0016f432718e7bc16d8a0011cc212d78308c07a7367fd7a4c21b87d064a6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/fmt-current.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/frame-cpu-summary.json",
+          "sha256": "393ebe74f394f399374d722f994e66759e49da864f98eef434630dc161cd485b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/frame-instrumentation.json",
+          "sha256": "cf956457e8e908a4957b51d872dfebf0b94393cdecf6416b28605c117d5eef07",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/frame-instrumentation.patch",
+          "sha256": "0d86f7c245936d7d0b3c53f485b7201168511584fe8dc20bbddd993d2d7adbb4",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-covered/desktop.log",
+          "sha256": "35a4b32974a5bb9b5a77a0cded22e6e4085c3f6efc578f61cb152b67af4dfe64",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-covered-held-recheck/desktop.log",
+          "sha256": "a0a52c5fb10f6069eadf8e0b049b61a872384524b1df90ff74b188824558533c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-final-1/desktop.log",
+          "sha256": "fd53e8b820ff93611ad9fbad3078663e3b4afe640c90bb56c032b1009bde23c6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-final-1/result.json",
+          "sha256": "f8d058eb89a98cdff328054a9d8531f60cc88cfe0991096223d1bfc8331c1f92",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-final-1.5/desktop.log",
+          "sha256": "5ed282799fcd6b00114b04bd494182d3800534b21b4b090fccd193dba5f206d6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-final-2/desktop.log",
+          "sha256": "61a8b8010f1c03a69e220471bf7a4133b00a3a7e63534426c06d0276428bc729",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-metrics-final.json",
+          "sha256": "606a31a3843ce3be781bc6ac324d1937282a87d5def836661dc6f266666a111c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/history-regression-before.log",
+          "sha256": "4ac6757989e7519a4b22778bee865634c558b7fe6a6a6ccf18ed0e70d59f783d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/history-summary.json",
+          "sha256": "fbc2e89a30b0b9bf4aebf1d43f367cf9589692c81e4b836ab0664faf63f9830d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/host-regression-before.log",
+          "sha256": "b0b5908149fac252a465bb2ac40b79865d0e4a618e8cc90b1128c2e117be432d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/legacy-review.md",
+          "sha256": "13435e49080bfb7bd35dc23524db90bc37be167335e3704e4f71d3db1dedf65c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/library-lineage.json",
+          "sha256": "a9d017ff4bdc344c855baf40d3b6fbaa5d341fc5e62345cc23bd2af4ffc3be72",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/license-files.json",
+          "sha256": "901f5f927fe1ad825e4d0b1ab55b66bbd8af12c58510fcf72b26adb36d8e6612",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/mutations/results.json",
+          "sha256": "2a1b5123aef03acc273d0ac7fc579130ef87a734216e930c4e12562048d4a486",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/relocation-lineage.json",
+          "sha256": "ab088d0f0430acc0d30a9b4811a845f294214b828ac226e49d5bbb31dd55eb2e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/rustsec-review.json",
+          "sha256": "1440c6ae17d3749ff3e031d804e38a4d85bca3de8493eb3e4f2d36f6b9e7e761",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/scenario-inventory.json",
+          "sha256": "0211a5ca76d40e8b4663c275af3ce210ffbc0d75352cba62794492e9abae6d8d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/security-review.md",
+          "sha256": "1fa9efeeb60a75d4cc4a9035720edb92f9c2f08d4e6d79c228c89cd59832e10e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/sources.md",
+          "sha256": "3973bbd3a26cc0c60dfc45e3759b5165f438e62b970bcaa816df4c55caaaad25",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/tests-current.log",
+          "sha256": "d4d10796a17ccecf411399faf07fb94597cadda5940fe1fd2fc1c2a3fc69593e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/verifier-regression-before-clean.log",
+          "sha256": "d4c26b05193c9d5a107f3463eb5edb164a40fef8f3bf5d63bcf3ec2a17aa7a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/wayland-identified/human-observation.json",
+          "sha256": "0fb261b76266bd3c423ccd7cc2b0faaba3b1fb8f9a4551e0b899274494448a3c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/wayland-identified/result.json",
+          "sha256": "b3b423dfc8697bfe80a131e0e200321a515ce9d3d042728feb4af5c5044f97c8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/quality-proposal.md",
+          "sha256": "37109bc2aa9c935eac7df2b3e1b1e94e3f6a2eeb77a72f3393850123849cc39b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/quality-refinement/dependency-impact.json",
+          "sha256": "a7575af684b87049846cea3477652c0ad09c491c2db85a036538ae69d4cfbeee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/skill-t004.json",
+          "sha256": "5011ceea5bc4924784d45195e68389bbe1a97a9e1d52cd7f3085420b675084ee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/stage1/f0-link-before.md.bin",
+          "sha256": "cf0b391ee832c1bb280e712c6ef10d3d6c3395611c9cba11de2674b34480f00b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-local-task-ui/acceptance/cargo-metadata.json",
+          "sha256": "ebf18540b273e32b3945dd920af9c952d662c82d6643cc58fde43fcc5eec5b6e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/governance-reconciliation/plan.md",
+          "sha256": "5300606199322501eb6dfe47a64cc9d3cf30f0d020d69c62fe1ff8e918e21ce9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/governance-reconciliation/spec.md",
+          "sha256": "2d31894be6bd0f46feb1747267a201ad6ed8702bfd263699126775eeac77b8b8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/governance-reconciliation/tasks.md",
+          "sha256": "ec3cae30754b26c8d2797935c917c3263eab7ca4b391c432bad584ff66cf11fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/governance-reconciliation/traceability.json",
+          "sha256": "733c825257d6ed4b937a89242c26736f82e87546fe1996d61726614943b9e447",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "4ae4bd322e64b6a668163d50a2150a55a794dc22cf8040638cb6512a29ab1999",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "c9c97cec47ee9a2868dde7e64f3bfe32744ae2bb40471eacf04c22f126deaa25",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "035e1e1fe9798e39fbedf4f6b6a56f45d63238f182c394be5ee9b959831bac0e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "744d4d3daf7b4cf28b070f070258a336f251eae972aa204768596d1a24ab1a44",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/stage1/product-f0-gate-plan.md.bin",
+          "sha256": "d41d9c171318548241413b8359692130e60354d4284bf601759d7127053a2933",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-f0-gate/spec.md",
+          "sha256": "e1497da08bb76a905b6517bb5c6c8b52cda9d3d73f4ab757aae0f2b20f12a604",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/stage1/product-f0-gate-tasks.md.bin",
+          "sha256": "e4c281b4aa8345c30d7b699331fc64c79a54ae04bfa1ba018de1af516178fc57",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-f0-gate/traceability.json",
+          "sha256": "5906c003bc45dfcbaab089bdcd4b3cd7872da762dcb329d782f3348c97ed7440",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-foundation/plan.md",
+          "sha256": "04e60480d07170af321d0dd77a3188aeded737cbcb5223a126f1fcf1ef0c8b73",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-foundation/spec.md",
+          "sha256": "37c6d7896e66568c497885d8bba745961d25cf3b7057234e5333fe70dc4b8987",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-foundation/tasks.md",
+          "sha256": "210b7ee10869597150a901d62e98136c8ce6b61b1bd37d4467fb4b2834ef5fb9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-foundation/traceability.json",
+          "sha256": "f34d69cfffc7466869c04ffb31de7137cf4f3423172f47f3413db769238c918f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-task-ui/plan.md",
+          "sha256": "81e533d89d499f335194152a9b9ff55134ea21a4df56e6c040ce163e5f21db8b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-task-ui/spec.md",
+          "sha256": "e90f9f8b9ab4e7bbbcdaa8a4db41be38b06825a93ff994f72899bcece2226efd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-task-ui/tasks.md",
+          "sha256": "404ab24cdf01eacf8699b44cfda671a2c5a3a630aa0dfe3f36cdd4dc9e273bfc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-task-ui/traceability.json",
+          "sha256": "f3d890afe93504f49b6be428d42e0af27af713eca3fd3a62e99c93462f95bfea",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/plan.md",
+          "sha256": "0141ac0312ec87f25d0e208d44d3301cac261f22255f308085be3825f242c09f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/spec.md",
+          "sha256": "67fad09f437ead8b0170764c594f7bd8a37d3700837548b8804bace1cf7f5000",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/tasks.md",
+          "sha256": "1fd16a8ef819cc6ed6127311da0df9286bce5838224110754b29962aea5d01f7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/traceability.json",
+          "sha256": "97fd1ce2239cfd88e4a0478e2ec3b8c4bf04584f3f8d384c19af3ddd6074b5bc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/plan.md",
+          "sha256": "32e44a6fdb6db661b6b9e3617923b945b06f93e7d7896e2e3b9e710f7e50cd92",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/spec.md",
+          "sha256": "c8346607aae205a5e5f8b7dc4311634b2f549c8d98c064bb6c1c0d4157af56ba",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/tasks.md",
+          "sha256": "fbcaded6dff9e450cb49e62fbc376bd37c7226af9bd15883b9b1e899da9ec6fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/traceability.json",
+          "sha256": "c289adf75ab69f8ecdcf89fd26d5a66bc5bf7b537ff9c8341500015d5e4b4dd5",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/plan.md",
+          "sha256": "2d929c0ce7c5d4c0388340daba8328ae9d3f4cf5b469eb44085aba3f0d685d2d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/spec.md",
+          "sha256": "d0a56e8a0e5b4fcfb90c95b0d5d5c162fa604ebbb55d787535f3a91679ce418a",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/tasks.md",
+          "sha256": "798ff6e673bbf4260e959f26494be5144ec1f2571e27cd2757acc628522fb7c8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/traceability.json",
+          "sha256": "46e8b9c7505d8e4510ae278c4f02cc524dc495cc2711a74be8230653b9d81639",
+          "role": "other"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "88fc1c0de045e16d43bac289dc108098a4a2385fe872b072d05081b8eb694311",
+          "role": "other"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "3e9453a7b55b1896e77a9d2cc951cbe7bc9b4a8aec9f943dfe2f1de219d83435",
+          "role": "other"
+        },
+        {
+          "path": "sdd/workflow.md",
+          "sha256": "76fed784c36ba322d1cac3438c2328f3d7a603e414443fe7a2890b5b86be0ea2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/execution-authority-before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "c873fa5055265691f0a3d42db120af2f30ee9d1f52ec96051415432763dccc72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/package-ox.py",
+          "sha256": "06a9951293f3b367db22c8b1c11055fee7cbf749e35b9c19fef194f30a5bab46",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/run-tests.py",
+          "sha256": "8f4ff9b602d2b1ebbf3de9c2f8d2606d72abd24b4f2a29f279712f50f3523ceb",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/verify-maintenance.py",
+          "sha256": "5d88a7002fef02f6c7fa3e5c45c0b875898954f8db4c528019c1109dcf75a5fd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/execution-authority-before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "935e9360d92e0dd3790ba24df31955c26b290371ded094a8a50645296e1a4641",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_reconciliation.py",
+          "sha256": "7c7604821830fade3416f606edefb902b8b5ff43e4ca82b8c988cb1470dfa626",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_ui_metadata_inventory.py",
+          "sha256": "972e0fb7892ff89561ed2940eafdf992287a306424616a26ee8aee263fd9a5d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/inputs-current.json",
+          "sha256": "25d1811942cde033c874adbc5e246fd17c2a1b29414858b62337ea10b2a4eaf8",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-EXPORT-BOUNDARY-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Inspect two-prefix product-record exclusion and regression assertion delta; authenticate old bytes; reexamine scope of unchanged preservation/acceptance algorithms and unchanged technical consumers. See execution-authority-review.md.",
+      "observed_result": "Operational F0 evidence excluded from governance-only export; prior scoped feature verdicts retained, pending current independent-copy results. No skill or product approval transferred.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/execution-authority-review.md",
+      "sha256": "ed47b44829f55104a01fe26acf09190f588fd016f2de1ab20be13b3b5a5d0b9e",
+      "inputs": [
+        {
+          "path": "application/crates/ox-plugin/src/host.rs",
+          "sha256": "a95c271d61ec0b3584b9c5fd17606202aa6ace52a680444b61e17686f3027fdd",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/host.rs",
+          "sha256": "f63b0568c5d65fc36f0d8d4c752bd58e8f4df0d4599455f22e643fa40addbde8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/plan.md",
+          "sha256": "0141ac0312ec87f25d0e208d44d3301cac261f22255f308085be3825f242c09f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/spec.md",
+          "sha256": "67fad09f437ead8b0170764c594f7bd8a37d3700837548b8804bace1cf7f5000",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/tasks.md",
+          "sha256": "1fd16a8ef819cc6ed6127311da0df9286bce5838224110754b29962aea5d01f7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/traceability.json",
+          "sha256": "97fd1ce2239cfd88e4a0478e2ec3b8c4bf04584f3f8d384c19af3ddd6074b5bc",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "96f45b7e2eafb02e92e701705501cac0ccf7d62a0605b0fe91293a78dd175b33",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "19ad9f877ea6b3eec612a79646a606ce2d1985f720c5c80c4527c234293d9fb2",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-FINAL-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Final criterion-by-criterion review of current code/oracle/contract identities, 29 ordinary tests plus explicit GUI results, 46 current governance tests, targeted before/after defects, measurements and remaining contradictory/missing observations. See report/matrix and graphical review.",
+      "observed_result": "F0 OPEN: P02/P03/P04/P06/P07 and Q01/Q02/Q03/Q04/Q09/Q10/Q11/Q12 APPROVED in adopted local boundary; P01/P05 and Q05/Q06/Q07/Q08/Q13 INCONCLUSIVE. Native full flow uncorrelated; Shift input precondition fails in X11; numerical GUI/frame/CPU/support adoption pending. Current structural/freshness/negative governance checks pass without approving F0.",
+      "artifact": "docs/validation/f0-execution-20261102/report.md",
+      "sha256": "a5145bb02b6a33fae520aa72bbed3a6ed5766b804d74f21e8bb314c4f482c76c",
+      "inputs": [
+        {
+          "path": ".codex/skills/application-security/SKILL.md",
+          "sha256": "0d992c0538df30bd5e0c6be689990184ec51671225809eac0f01759cc08257c4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/autonomous-verification-engineering/SKILL.md",
+          "sha256": "3b8e2a6fbd6b09ba79f2316fdb444de0d2dda2ac0907b34c352ad09d1e360c94",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/performance-engineering/SKILL.md",
+          "sha256": "e2fe6bd6724a3b176fd559875252d6ac5479a83bf453dddb4e31a3fc7da9692e",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/rust/SKILL.md",
+          "sha256": "da7b9ada8326b2d2cb4288ac6f67864c7b9defb833641470904c6fe9221d8891",
+          "role": "other"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "c7a3ef68712b2754b5d23c40b53df9f3b2c315d3c8307d8b40d9943faa9440fe",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/bin/local-agent.rs",
+          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/bin/local-task.rs",
+          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/runtime.rs",
+          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/tests/runtime.rs",
+          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/Cargo.toml",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/src/lib.rs",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/src/main.rs",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/src/startup.rs",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/tests/desktop.rs",
+          "sha256": "e0aa467f78912091308216b05f8a2ce13b7c191db372e9ba2c650866ef19b168",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-app/tests/initialization.rs",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-context/Cargo.toml",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-context/src/lib.rs",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-context/src/query.rs",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-core/Cargo.toml",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-core/src/capability.rs",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-core/src/lib.rs",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-graph/Cargo.toml",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-graph/src/lib.rs",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-graph/src/relation.rs",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-observability/Cargo.toml",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-observability/src/lib.rs",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-observability/src/measurement.rs",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-output/Cargo.toml",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-output/src/capture.rs",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-output/src/lib.rs",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/Cargo.toml",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/bin/local-plugin.rs",
+          "sha256": "06d37ca20c92aeddc0d9da97f6c94a178d80bd35cebf40231485a02c5b133d36",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/host.rs",
+          "sha256": "a95c271d61ec0b3584b9c5fd17606202aa6ace52a680444b61e17686f3027fdd",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/lib.rs",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/src/protocol.rs",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/compatibility.rs",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-plugin/tests/host.rs",
+          "sha256": "f63b0568c5d65fc36f0d8d4c752bd58e8f4df0d4599455f22e643fa40addbde8",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-policy/Cargo.toml",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-policy/src/authorization.rs",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-policy/src/lib.rs",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-sdd/Cargo.toml",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/artifact.rs",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-sdd/src/lib.rs",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-skills/Cargo.toml",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-skills/src/lib.rs",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-skills/src/reference.rs",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-storage/Cargo.toml",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-storage/src/lib.rs",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-storage/src/local.rs",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-task/Cargo.toml",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-task/src/lib.rs",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-task/src/state.rs",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-task/tests/lifecycle.rs",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/Cargo.toml",
+          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/examples/f0_measure.rs",
+          "sha256": "3956e9af566c832bcec3008ecae775ea2b5a629b481cf4a82520e70d2c3d57be",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "3ee74a3de72e2002cf1d44b45a6810b96e49e51aa6e0937fa25a499643e60881",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/local_task.rs",
+          "sha256": "093a03c0f2e76866b12c7c72429027b7b4c4bba9991ebcbe331ce4537d6b3dec",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/local_task.rs",
+          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/tests/shell_contract.rs",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/Cargo.toml",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/examples/history_measure.rs",
+          "sha256": "a412e9545f880b4b3975d7318bebf4aca711993d069539954aa821a669fd4f4b",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/bin/held-task-oracle.rs",
+          "sha256": "7658d9023e8c7d6f8e363b4f1849a295c126a0a92b2b09d237739b90062b9c11",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/bin/local-oracle.rs",
+          "sha256": "591812074d92e9046890b7cf4ebfd0e84415da0062700f300ec6f442e7cb2640",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/bin/task-oracle.rs",
+          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/engine.rs",
+          "sha256": "4d1e2797a027e9e82d3adc44a19c46f9fa7361f86087f6b36f34b8c0514ba2a5",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/lib.rs",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/src/verdict.rs",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-verification/tests/engine.rs",
+          "sha256": "7e23f63a41994906f119438827dbad3353bb15c58d29ef798d8a007198dfbbe4",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-workspace/Cargo.toml",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/lib.rs",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-workspace/src/root.rs",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-workspace/tests/root_contract.rs",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "8193e63ec37f1198daeb5040a57a1c7baba644a0d8d4850a868efbdc2c9e3e93",
+          "role": "other"
+        },
+        {
+          "path": "docs/constitution.md",
+          "sha256": "ae44bf96f769493a9bdc518e7e692a95cdac2dea72076c45439eade95103f1f8",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/f0-boundary-20261102.md",
+          "sha256": "2529c274c9a37a2653da3ed4a87c1b9c1bb0172096bf548f02af40d4b5b0198c",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/local-persistence-proposal.md",
+          "sha256": "b8769a02eaf4343c9f42197cc5ac49580a6d3985187ef2af65e07fd8b8b92233",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/open-questions.md",
+          "sha256": "fb750bb57f20695b7a9cffe8b5a8c8ee18780abc37650e6a6df537cd2ca59374",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/product-bootstrap.md",
+          "sha256": "4c1df974f2a5d724867ab1ebab4837b0385cd576978d76019f1af41951ba209e",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/version-update-policy.md",
+          "sha256": "82d9611371d3d527577e38cfa727cb680ca303b3828a33a3515a8a1e2ce03da4",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "dc7c5008608684141ca7ca5d7009005e90989d34f39a9cfe0773fecd9cb457a4",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "2261d4f19c690132ad5f016d11394499ac73a6ee96fca3830b03b26fec8a78ed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/backend-final-resources.txt",
+          "sha256": "cdec97c8bd187586b980cfb2ff711a16e3a3726ccf788b95cee56b87f2d2565b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/backend-final-summary.json",
+          "sha256": "28dd3ce533c1ac90fa40dc84942d7bef80fbb9617dc63c8fc72c10e7d9701df8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/backend-final.csv",
+          "sha256": "3ba9591ce99dc3c06af6742400c1bb4ed3d9ae4093446d6ca4fe9ed2608325ab",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/baseline.json",
+          "sha256": "85aa123c0c1529ed6e1b15d9411446113e224f80f5a0be1db36d9287d6089a5e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/binaries-current.json",
+          "sha256": "128a8c6da96eb9661327bc9b761df2b49133cb6976ed3a8fb31d617be5af7390",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/cargo-metadata.json",
+          "sha256": "f26b1656195b83b1d24a3fea00ae5f3afed4f861ca9da9949c8ec7fa01c8813f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/check-current.log",
+          "sha256": "3c29a242534000eb26e8e890ebed52573761a4d4415f3a8975a293fb3339c401",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/clippy-current.log",
+          "sha256": "9ddcb7a97f3589835ba8f354c41d25b0a805bd5f85ddbccaff009e6f6dc7236c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/contrast.json",
+          "sha256": "b1fb90b6bbb6720ae35642c7425637aa8fee6720a44d592b8349a048c7e2aa2c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/coverage-complete/summary.json",
+          "sha256": "4158b30adcf937e291c646a234ac4323613af987aacb241da5ba11c441eac942",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/coverage-components.json",
+          "sha256": "41611f68e59055de15afebfbc0cf0b9d65278ee8f3336e0cd1b367a6e1dab1ca",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/dependency-boundaries.json",
+          "sha256": "c55d8a9abddfdeb7fc28c222fe81dd8cfd48c0def4cbefd9c0ed2f8e939b4d07",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/dependency-inventory.json",
+          "sha256": "bf90ce33d04bd4aa240e19b39e1cbd03d0ed27a8402be285959217113078c83f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/detached-diagnostic.log",
+          "sha256": "1ed8dc6c5a246079ec411d2e898d85ae08ce2185d62452b58cc9f55d698ffb53",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/environment.json",
+          "sha256": "e92f0016f432718e7bc16d8a0011cc212d78308c07a7367fd7a4c21b87d064a6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/export-regression-after.log",
+          "sha256": "1f20b4bb09e92cbcce01708cba7f639a6af4cf5f0fada2ca4293503ee06b0027",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/export-regression-before.log",
+          "sha256": "990bdeb386c7c60914c42d520edebdee0c300db25c1a622b46ca10fc66888d59",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/fmt-current.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/frame-Cargo.lock.bin",
+          "sha256": "f960087e9d96171fbc8c8565a94c8c2b914fb2d95f7bb04250e2564d6372724b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/frame-Cargo.toml.bin",
+          "sha256": "bcc6de403b68ca6fa7137a2e2b6cc91495735b43927cff4d93bf1ea56b426707",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/frame-cpu-summary.json",
+          "sha256": "393ebe74f394f399374d722f994e66759e49da864f98eef434630dc161cd485b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/frame-iced-winit-lib.rs.bin",
+          "sha256": "83043ec0baea1515d9f45c3bd311643322bc0bd170e5f0d0f250382ddf055b73",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/frame-instrumentation.json",
+          "sha256": "cf956457e8e908a4957b51d872dfebf0b94393cdecf6416b28605c117d5eef07",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/frame-instrumentation.patch",
+          "sha256": "0d86f7c245936d7d0b3c53f485b7201168511584fe8dc20bbddd993d2d7adbb4",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/governance-final.json",
+          "sha256": "66f101c1e3d39e36d25cb933a4823ea1ca2582dd0367aa50d8076df09585b7df",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/governance-final.log",
+          "sha256": "d4bdda2d054b4bfe2a06619fbc213bc73d5cc4692b085a403d3d57b68a9ae6f9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/graphical-review.md",
+          "sha256": "6425cbbc1d01afcdcb27dda3dc7d188f878a42167816f265432601c63f782ca2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-covered/desktop.log",
+          "sha256": "35a4b32974a5bb9b5a77a0cded22e6e4085c3f6efc578f61cb152b67af4dfe64",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-covered-held-recheck/desktop.log",
+          "sha256": "a0a52c5fb10f6069eadf8e0b049b61a872384524b1df90ff74b188824558533c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-fixtures/desktop-ui.rs.bin",
+          "sha256": "e3ffb32b9d0bd61d75f80a3ab9e853f3ca4e60dde715e81a4a4e927e26f6be2b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-fixtures/desktop.log",
+          "sha256": "36e3ab1deb3dde932617704209d952be65855d65be0610dc8a364859f93cb34e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-fixtures/desktop.rs.bin",
+          "sha256": "319af03498ac4362d5927b5df5dd8bdf170a42a75e821f871610b50aa864c9d8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-fixtures/result.json",
+          "sha256": "0b01f033c2e605acf0a8ccaf088aa4f5e5507739980685bec8cf7ee6be45adb2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-keyboard/desktop-ui.rs.bin",
+          "sha256": "e3ffb32b9d0bd61d75f80a3ab9e853f3ca4e60dde715e81a4a4e927e26f6be2b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-keyboard/desktop.log",
+          "sha256": "0faccb27a95b07198ba213c1cdae21f96a937f6aae10a26691120990fe6ed137",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-keyboard/desktop.rs.bin",
+          "sha256": "554e0cc45013fd6aa72c38eb556054b5bba775819db5188137852ee7c5e4c762",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-keyboard/result.json",
+          "sha256": "9781f2d0098bb4d9738bc0bee03a6bbfc9ba499296463f979fc4d8357d575b2e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-keyboard-held/desktop-ui.rs.bin",
+          "sha256": "e3ffb32b9d0bd61d75f80a3ab9e853f3ca4e60dde715e81a4a4e927e26f6be2b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-keyboard-held/desktop.log",
+          "sha256": "009c3985018c8b864b00da498b6a78dae6da6616eaf4bb7518738e7393a5b3be",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-keyboard-held/desktop.rs.bin",
+          "sha256": "fab5abfaa21e22a59b9ab0dbcd0ad16864c755b29828b921fd8fbd6f778f9c10",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic-1-keyboard-held/result.json",
+          "sha256": "9781f2d0098bb4d9738bc0bee03a6bbfc9ba499296463f979fc4d8357d575b2e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-diagnostic.py",
+          "sha256": "6c325792ba012e41ebdfac74659b062c780618940c2fbffd295d8e626e8c66d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-final-1/desktop.log",
+          "sha256": "fd53e8b820ff93611ad9fbad3078663e3b4afe640c90bb56c032b1009bde23c6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-final-1/result.json",
+          "sha256": "f8d058eb89a98cdff328054a9d8531f60cc88cfe0991096223d1bfc8331c1f92",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-final-1.5/desktop.log",
+          "sha256": "5ed282799fcd6b00114b04bd494182d3800534b21b4b090fccd193dba5f206d6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-final-2/desktop.log",
+          "sha256": "61a8b8010f1c03a69e220471bf7a4133b00a3a7e63534426c06d0276428bc729",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-final.py",
+          "sha256": "18551fbb8ca292268eeb4935ff350cfa45952cf429028bbe51e8f2a1de9e89c2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-1/desktop-ui.rs.bin",
+          "sha256": "3ee74a3de72e2002cf1d44b45a6810b96e49e51aa6e0937fa25a499643e60881",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-1/desktop.log",
+          "sha256": "2c53ec4b82a2ebaa87310d35386feca63390f9a1e3d90e533c6dd08623152344",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-1/desktop.rs.bin",
+          "sha256": "256c03a20d8daaca7f599a12ae0bdd1a1c9e6b3ce0a79e103ba7049fa40db034",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-1/result.json",
+          "sha256": "9abf0363e637ccafb5de563792957efb80634a2c7989d78b9a5f3c141c2eb619",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-1.5/desktop-ui.rs.bin",
+          "sha256": "3ee74a3de72e2002cf1d44b45a6810b96e49e51aa6e0937fa25a499643e60881",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-1.5/desktop.log",
+          "sha256": "7d0b6575ec4c14bdb0c5d3fbbc696dd082d4c0f3268ca8b92c4fe378009cf454",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-1.5/desktop.rs.bin",
+          "sha256": "256c03a20d8daaca7f599a12ae0bdd1a1c9e6b3ce0a79e103ba7049fa40db034",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-1.5/result.json",
+          "sha256": "d1c67fcba2c25a034825ef3bf1028207938628669be8f368ad926cfe37c1633d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-2/desktop-ui.rs.bin",
+          "sha256": "3ee74a3de72e2002cf1d44b45a6810b96e49e51aa6e0937fa25a499643e60881",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-2/desktop.log",
+          "sha256": "dc58a99bd90ed6f18ea17ca69a5a919902f71a291773e689ed043304b0a80c15",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-2/desktop.rs.bin",
+          "sha256": "256c03a20d8daaca7f599a12ae0bdd1a1c9e6b3ce0a79e103ba7049fa40db034",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame-2/result.json",
+          "sha256": "1f35f2e76041ba2e240030208e43d3665c76c7f40525267a7a0684a1fafae2c3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-frame.py",
+          "sha256": "e09415a0961580a9ebc323f248f849d6a63a2878609cd233cdab8e84c00c0e7b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/gui-metrics-final.json",
+          "sha256": "606a31a3843ce3be781bc6ac324d1937282a87d5def836661dc6f266666a111c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/history-regression-before.log",
+          "sha256": "4ac6757989e7519a4b22778bee865634c558b7fe6a6a6ccf18ed0e70d59f783d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/history-summary.json",
+          "sha256": "fbc2e89a30b0b9bf4aebf1d43f367cf9589692c81e4b836ab0664faf63f9830d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/host-regression-before.log",
+          "sha256": "b0b5908149fac252a465bb2ac40b79865d0e4a618e8cc90b1128c2e117be432d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/legacy-review.md",
+          "sha256": "13435e49080bfb7bd35dc23524db90bc37be167335e3704e4f71d3db1dedf65c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/library-lineage.json",
+          "sha256": "a9d017ff4bdc344c855baf40d3b6fbaa5d341fc5e62345cc23bd2af4ffc3be72",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/license-files.json",
+          "sha256": "901f5f927fe1ad825e4d0b1ab55b66bbd8af12c58510fcf72b26adb36d8e6612",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/matrix.json",
+          "sha256": "1e1081cbda725c993b22418a054fd5fcdad1126c1268c6bff7ec92948222b253",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/mutations/results.json",
+          "sha256": "2a1b5123aef03acc273d0ac7fc579130ef87a734216e930c4e12562048d4a486",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/preservation-current.json",
+          "sha256": "4aeecccdc56ae3c32f3d5dec2cdb122c14d41f742b6d5a3f9d04ba820c9bbbef",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/relocation-lineage.json",
+          "sha256": "ab088d0f0430acc0d30a9b4811a845f294214b828ac226e49d5bbb31dd55eb2e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/report.md",
+          "sha256": "a5145bb02b6a33fae520aa72bbed3a6ed5766b804d74f21e8bb314c4f482c76c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/rustsec-review.json",
+          "sha256": "1440c6ae17d3749ff3e031d804e38a4d85bca3de8493eb3e4f2d36f6b9e7e761",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/scenario-inventory.json",
+          "sha256": "0211a5ca76d40e8b4663c275af3ce210ffbc0d75352cba62794492e9abae6d8d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/security-review.md",
+          "sha256": "1fa9efeeb60a75d4cc4a9035720edb92f9c2f08d4e6d79c228c89cd59832e10e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/sources.md",
+          "sha256": "3973bbd3a26cc0c60dfc45e3759b5165f438e62b970bcaa816df4c55caaaad25",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/tests-current.log",
+          "sha256": "d4d10796a17ccecf411399faf07fb94597cadda5940fe1fd2fc1c2a3fc69593e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/verifier-regression-before-clean.log",
+          "sha256": "d4c26b05193c9d5a107f3463eb5edb164a40fef8f3bf5d63bcf3ec2a17aa7a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/wayland-identified/human-observation.json",
+          "sha256": "0fb261b76266bd3c423ccd7cc2b0faaba3b1fb8f9a4551e0b899274494448a3c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/wayland-identified/result.json",
+          "sha256": "b3b423dfc8697bfe80a131e0e200321a515ce9d3d042728feb4af5c5044f97c8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/quality-proposal.md",
+          "sha256": "37109bc2aa9c935eac7df2b3e1b1e94e3f6a2eeb77a72f3393850123849cc39b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/quality-refinement/dependency-impact.json",
+          "sha256": "a7575af684b87049846cea3477652c0ad09c491c2db85a036538ae69d4cfbeee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/skill-t004.json",
+          "sha256": "5011ceea5bc4924784d45195e68389bbe1a97a9e1d52cd7f3085420b675084ee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/foundation-current-20261101/f0.md",
+          "sha256": "5fbab15e54a2e75fe32dc4033aab0f4756c50ff92cc22990f8f9b8a6884b34b3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/product-local-task-ui/acceptance/cargo-metadata.json",
+          "sha256": "ebf18540b273e32b3945dd920af9c952d662c82d6643cc58fde43fcc5eec5b6e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/governance-reconciliation/plan.md",
+          "sha256": "5300606199322501eb6dfe47a64cc9d3cf30f0d020d69c62fe1ff8e918e21ce9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/governance-reconciliation/spec.md",
+          "sha256": "2d31894be6bd0f46feb1747267a201ad6ed8702bfd263699126775eeac77b8b8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/governance-reconciliation/tasks.md",
+          "sha256": "ec3cae30754b26c8d2797935c917c3263eab7ca4b391c432bad584ff66cf11fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/governance-reconciliation/traceability.json",
+          "sha256": "733c825257d6ed4b937a89242c26736f82e87546fe1996d61726614943b9e447",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/plan.md",
+          "sha256": "4ae4bd322e64b6a668163d50a2150a55a794dc22cf8040638cb6512a29ab1999",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/spec.md",
+          "sha256": "c9c97cec47ee9a2868dde7e64f3bfe32744ae2bb40471eacf04c22f126deaa25",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/tasks.md",
+          "sha256": "035e1e1fe9798e39fbedf4f6b6a56f45d63238f182c394be5ee9b959831bac0e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-bootstrap/traceability.json",
+          "sha256": "744d4d3daf7b4cf28b070f070258a336f251eae972aa204768596d1a24ab1a44",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-f0-gate/plan.md",
+          "sha256": "a445e3993701b06c1a0a679c98557b194d6c80a4b140b1981ee70ce78be381d1",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-f0-gate/spec.md",
+          "sha256": "e1497da08bb76a905b6517bb5c6c8b52cda9d3d73f4ab757aae0f2b20f12a604",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-f0-gate/tasks.md",
+          "sha256": "3a7e1316ee04ffde1937e9f597d4b127f4355efbe268bf6e43871ad7c3212427",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-f0-gate/traceability.json",
+          "sha256": "5906c003bc45dfcbaab089bdcd4b3cd7872da762dcb329d782f3348c97ed7440",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-foundation/plan.md",
+          "sha256": "04e60480d07170af321d0dd77a3188aeded737cbcb5223a126f1fcf1ef0c8b73",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-foundation/spec.md",
+          "sha256": "37c6d7896e66568c497885d8bba745961d25cf3b7057234e5333fe70dc4b8987",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-foundation/tasks.md",
+          "sha256": "210b7ee10869597150a901d62e98136c8ce6b61b1bd37d4467fb4b2834ef5fb9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-foundation/traceability.json",
+          "sha256": "f34d69cfffc7466869c04ffb31de7137cf4f3423172f47f3413db769238c918f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-task-ui/plan.md",
+          "sha256": "81e533d89d499f335194152a9b9ff55134ea21a4df56e6c040ce163e5f21db8b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-task-ui/spec.md",
+          "sha256": "e90f9f8b9ab4e7bbbcdaa8a4db41be38b06825a93ff994f72899bcece2226efd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-task-ui/tasks.md",
+          "sha256": "404ab24cdf01eacf8699b44cfda671a2c5a3a630aa0dfe3f36cdd4dc9e273bfc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-task-ui/traceability.json",
+          "sha256": "f3d890afe93504f49b6be428d42e0af27af713eca3fd3a62e99c93462f95bfea",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/plan.md",
+          "sha256": "0141ac0312ec87f25d0e208d44d3301cac261f22255f308085be3825f242c09f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/spec.md",
+          "sha256": "67fad09f437ead8b0170764c594f7bd8a37d3700837548b8804bace1cf7f5000",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/tasks.md",
+          "sha256": "1fd16a8ef819cc6ed6127311da0df9286bce5838224110754b29962aea5d01f7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-plugin-host/traceability.json",
+          "sha256": "97fd1ce2239cfd88e4a0478e2ec3b8c4bf04584f3f8d384c19af3ddd6074b5bc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/plan.md",
+          "sha256": "32e44a6fdb6db661b6b9e3617923b945b06f93e7d7896e2e3b9e710f7e50cd92",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/spec.md",
+          "sha256": "c8346607aae205a5e5f8b7dc4311634b2f549c8d98c064bb6c1c0d4157af56ba",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/tasks.md",
+          "sha256": "fbcaded6dff9e450cb49e62fbc376bd37c7226af9bd15883b9b1e899da9ec6fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-verification-engine/traceability.json",
+          "sha256": "c289adf75ab69f8ecdcf89fd26d5a66bc5bf7b537ff9c8341500015d5e4b4dd5",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/plan.md",
+          "sha256": "2d929c0ce7c5d4c0388340daba8328ae9d3f4cf5b469eb44085aba3f0d685d2d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/spec.md",
+          "sha256": "d0a56e8a0e5b4fcfb90c95b0d5d5c162fa604ebbb55d787535f3a91679ce418a",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/tasks.md",
+          "sha256": "798ff6e673bbf4260e959f26494be5144ec1f2571e27cd2757acc628522fb7c8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/traceability.json",
+          "sha256": "46e8b9c7505d8e4510ae278c4f02cc524dc495cc2711a74be8230653b9d81639",
+          "role": "other"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "88fc1c0de045e16d43bac289dc108098a4a2385fe872b072d05081b8eb694311",
+          "role": "other"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "3e9453a7b55b1896e77a9d2cc951cbe7bc9b4a8aec9f943dfe2f1de219d83435",
+          "role": "other"
+        },
+        {
+          "path": "sdd/workflow.md",
+          "sha256": "76fed784c36ba322d1cac3438c2328f3d7a603e414443fe7a2890b5b86be0ea2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "96f45b7e2eafb02e92e701705501cac0ccf7d62a0605b0fe91293a78dd175b33",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/package-ox.py",
+          "sha256": "06a9951293f3b367db22c8b1c11055fee7cbf749e35b9c19fef194f30a5bab46",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/run-tests.py",
+          "sha256": "8f4ff9b602d2b1ebbf3de9c2f8d2606d72abd24b4f2a29f279712f50f3523ceb",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/verify-maintenance.py",
+          "sha256": "5d88a7002fef02f6c7fa3e5c45c0b875898954f8db4c528019c1109dcf75a5fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "19ad9f877ea6b3eec612a79646a606ce2d1985f720c5c80c4527c234293d9fb2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_reconciliation.py",
+          "sha256": "7c7604821830fade3416f606edefb902b8b5ff43e4ca82b8c988cb1470dfa626",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_ui_metadata_inventory.py",
+          "sha256": "972e0fb7892ff89561ed2940eafdf992287a306424616a26ee8aee263fd9a5d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+          "sha256": "191996d686c8fe1c803b8ba2f3218aa19950e8a180897765b0ffc89d5d78258f",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Current successor: F0 OPEN. Historical limitations below describe their original observations. Full native journey, GUI/frame/CPU adopted limits and instrumented GUI intermittency remain unresolved; see current report. No persistence/distribution/remote-agent implementation or commits.",
+    "Linux-only Unix sockets; controlled fixture, no authentication against malicious same-user clients or OS sandbox.",
+    "One direct child supervised; descendants, CPU/RAM enforcement and hostile executable cleanup are not covered.",
+    "Deadline per connection/frame/shutdown, not one aggregate session budget; no retry or persistent recovery.",
+    "No desktop UI or third-party plugin integration, installation, publication or remote service."
+  ]
+}

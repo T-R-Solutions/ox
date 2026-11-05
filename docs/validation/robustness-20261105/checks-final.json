@@ -1,0 +1,123 @@
+{
+  "artifacts": [
+    {
+      "path": "docs/validation/robustness-20261105/build.log",
+      "sha256": "03a853899eccf26f3f4a6b975a59088b7b02adb90d5c9801321ecca85f941a73"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/check.log",
+      "sha256": "cb32bc0bc53a5afe8f0f800239baea5ff9c571d761693945a57d399f0bd00f62"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/clippy.log",
+      "sha256": "709362cbcd484271c9ba1a2ab155cab62b3837e9234a210ed32f0d29f553a17f"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/workspace-test.log",
+      "sha256": "386fec7ca8bd70371dbc6d8f7b534ebfdcb00d655144e7732c175cc25bcf5043"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/workspace-test-unrestricted.log",
+      "sha256": "b999e4dc445350ae7eab4b1bcbb32a780644de74c3bc7a8db170bf7a5e80cd47"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/final-focused.log",
+      "sha256": "49409f2d7b872470e69b77ccf11007c164b252fd043fa5de4ec1335fdd48ad7f"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/final-clippy.log",
+      "sha256": "3a26154539a951a1ac30048602ab08a214b97105b0b72a3f9ad63891261b3f43"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/final-fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/final-sdd-02.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/final-freshness.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/final-check-ox-02.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/focused-validator.json",
+      "sha256": "885c7a7cfabc1c95b8fd53655b0c8261967c8fe136b307be6c121d1779a90a31"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/fifo-before.log",
+      "sha256": "a977718d4695138af19ed7de4833238c058b83a0798308f10e683ae768bc3ed6"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/cleanup-before.log",
+      "sha256": "1e2e2a2b4c492e89051ca41735c0e84f1dac7f923f74845bbf8fe888fcea73f4"
+    },
+    {
+      "path": "docs/validation/robustness-20261105/diff-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "excluded_as_acceptance": [
+    "Initial wrong relative-path probe ran zero tests.",
+    "engine-acceptance.log/ui-freshness.log/persistence-freshness.log used --features with a single feature rather than its parent; no features discovered. Replaced by global --require-fresh and direct actual validator calls recorded in focused-validator.json."
+  ],
+  "pending": [
+    "Actual graphical response/close/display and performance on changed Engine inputs (T903).",
+    "D2/D3/D4/D4-deps persistence decisions; D5/D6 later."
+  ],
+  "ordinary_workspace_limit": "Full workspace passed before final source-preserving error-wrapper refinement; final affected-package tests and workspace Clippy pass after it.",
+  "governance_final": {
+    "scope": "governance/SDD/skills",
+    "product_acceptance": false,
+    "environment": {
+      "python": "3.13.16",
+      "system": "Linux-7.3.1-1-default-x86_64-with-glibc2.44"
+    },
+    "results": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .",
+        "exit_code": 0,
+        "log": "docs/validation/runs/20261105T131528.427384Z/01.log",
+        "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+        "exit_code": 0,
+        "log": "docs/validation/runs/20261105T131528.427384Z/02.log",
+        "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+        "exit_code": 0,
+        "log": "docs/validation/runs/20261105T131528.427384Z/03.log",
+        "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/verify-maintenance.py",
+        "exit_code": 0,
+        "log": "docs/validation/runs/20261105T131528.427384Z/04.log",
+        "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/run-tests.py --group all",
+        "exit_code": 0,
+        "log": "docs/validation/runs/20261105T131528.427384Z/05.log",
+        "sha256": "58e058c6d48ed7d61bc1542091bfe7678edf1f3fd6031f02720f136b90543bb7"
+      }
+    ],
+    "limitations": [
+      "Governance, SDD and skill-contract checks only.",
+      "No Rust compilation, application integration, sandbox effectiveness or product acceptance is established."
+    ],
+    "input_manifest": "docs/validation/runs/20261105T131528.427384Z/inputs.json"
+  },
+  "governance_suite": "62 tests passed, 310.724 s"
+}

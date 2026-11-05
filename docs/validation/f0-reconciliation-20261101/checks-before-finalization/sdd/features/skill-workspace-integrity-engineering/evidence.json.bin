@@ -1,0 +1,2040 @@
+{
+  "schema_version": 2,
+  "environment": "Linux-7.3.0-1-default-x86_64-with-glibc2.44; 2026-11-01 criterion review; historical agent observations dated 2026-10-26",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "An attempted write outside the root through .. or a symlink is rejected; oracle: adversarial path fixture.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-CONSUMER-REVIEW-AC-01",
+        "E-CONSUMER-RUN-AC-01",
+        "E-DOCUMENTARY-DELTA-AC-01"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+        "review": "E-DOCUMENTARY-DELTA-AC-01",
+        "execution": [
+          "E-CONSUMER-RUN-AC-01"
+        ],
+        "consumer": "tools/governance/consumers/operations.rs",
+        "oracle": "tools/governance/consumers/operation_tests.rs"
+      }
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Two agents edit the same version: the second write conflicts or applies a verified merge; oracle: concurrency test.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-CONSUMER-REVIEW-AC-02",
+        "E-CONSUMER-RUN-AC-02",
+        "E-DOCUMENTARY-DELTA-AC-02"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+        "review": "E-DOCUMENTARY-DELTA-AC-02",
+        "execution": [
+          "E-CONSUMER-RUN-AC-02"
+        ],
+        "consumer": "tools/governance/consumers/operations.rs",
+        "oracle": "tools/governance/consumers/operation_tests.rs"
+      }
+    },
+    {
+      "id": "AC-03",
+      "criterion": "An injected failure between temporary-file creation and rename leaves no incorrect “done” record; oracle: crash test.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-CONSUMER-REVIEW-AC-03",
+        "E-CONSUMER-RUN-AC-03",
+        "E-DOCUMENTARY-DELTA-AC-03"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+        "review": "E-DOCUMENTARY-DELTA-AC-03",
+        "execution": [
+          "E-CONSUMER-RUN-AC-03"
+        ],
+        "consumer": "tools/governance/consumers/operations.rs",
+        "oracle": "tools/governance/consumers/operation_tests.rs"
+      }
+    },
+    {
+      "id": "AC-04",
+      "criterion": "An externally changed file invalidates the hash/snapshot; oracle: watcher plus actual-read verification.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-CONSUMER-REVIEW-AC-04",
+        "E-CONSUMER-RUN-AC-04",
+        "E-DOCUMENTARY-DELTA-AC-04"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+        "review": "E-DOCUMENTARY-DELTA-AC-04",
+        "execution": [
+          "E-CONSUMER-RUN-AC-04"
+        ],
+        "consumer": "tools/governance/consumers/operations.rs",
+        "oracle": "tools/governance/consumers/operation_tests.rs"
+      }
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED",
+        "E-DOCUMENTARY-DELTA-AC-05"
+      ]
+    },
+    {
+      "id": "AC-06",
+      "criterion": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED",
+        "E-DOCUMENTARY-DELTA-AC-06"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-AUTHORING-REEXAMINED",
+      "kind": "inspection",
+      "command_or_method": "New semantic comparison of preserved authoring observations against unchanged skill/contracts and evolved checker; historical agent replies reexamined, not rerun.",
+      "observed_result": "Authoring content and historical response conclusions remain supported; see authoring-reexamination.md.",
+      "artifact": "docs/validation/technical-acceptance-20261101/authoring-reexamination.md",
+      "sha256": "4542f83abe975221f6d7852061aeaa52b8b4ac4e018ab3971eb4c52302a73509",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/file-operations.md",
+          "sha256": "8a74d3e3725a3c1bd64a1f44cff0ec769738fe28e9f67fa0dcaea1948ed6d32c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/git-worktrees-and-conflicts.md",
+          "sha256": "775bc0fc1519f1e7365d20835538b9cabaf65f8373c75b01959df40a68b46358",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/watcher-and-recovery.md",
+          "sha256": "046382bbb97faa08006f341eedcce2720c499a83b05bce71566d948710693867",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/workspace-integrity-engineering.md",
+          "sha256": "0b5fa3fd2d2df813c599ae71289d41a1ca7e81d6d6b27b40f71592153d025d73",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+          "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/group-2.md",
+          "sha256": "3dc662147da5749db245ba817c4049d514d98b8228ec04559a7a70ba597faac7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/review.md",
+          "sha256": "5d37a57db655b1a9bdecc5f3fdc8cf7edd1fcd79c114cc2ec8ade315f3ee77d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.json",
+          "sha256": "f34cdf9bc5cc097efe8659f63c611af2a4c7fb555f1dd56cf523d32b56d91021",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.tar.gz",
+          "sha256": "688a84de1f008b784df1ea699cdfb9c1889390bc8dcf26bab9a99c0ad5c5a820",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "9935c6d4c2370147c683ecdd0213f22e56a1a67ebb9940ec543201b9e022aade",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/before.json",
+          "sha256": "b558b16d52000c7e3299d1c41e3f80a8f555aa24e5831ce16f7246db4cebdac7",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-CONSUMER-REVIEW-AC-01",
+      "kind": "inspection",
+      "artifact": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-01.md",
+      "sha256": "6f5246ea1c48efd34372f01151ab381d4d99a2229ccf336ca3342695cff6e479",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "implementation"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "Criterion-specific source and independent-oracle inspection; full log review; graphical pixel review where applicable. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "workspace_ac01_paths: ../ and symlink writes fail, inside/outside sentinels remain unchanged; normal in-root edit succeeds as positive control."
+    },
+    {
+      "id": "E-CONSUMER-RUN-AC-01",
+      "kind": "test",
+      "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+      "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+      "inputs": [
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "workspace_ac01_paths: ../ and symlink writes fail, inside/outside sentinels remain unchanged; normal in-root edit succeeds as positive control."
+    },
+    {
+      "id": "E-CONSUMER-REVIEW-AC-02",
+      "kind": "inspection",
+      "artifact": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-02.md",
+      "sha256": "f5f7f13350d303d016b987c7a5175668d4f7381bea6294cbf99494b9d498f909",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "implementation"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "Criterion-specific source and independent-oracle inspection; full log review; graphical pixel review where applicable. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "workspace_ac02_concurrent: two actual processes use the same base; exactly one exits 0 and one conflicts with exit 23; final file is one complete proposal."
+    },
+    {
+      "id": "E-CONSUMER-RUN-AC-02",
+      "kind": "test",
+      "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+      "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+      "inputs": [
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "workspace_ac02_concurrent: two actual processes use the same base; exactly one exits 0 and one conflicts with exit 23; final file is one complete proposal."
+    },
+    {
+      "id": "E-CONSUMER-REVIEW-AC-03",
+      "kind": "inspection",
+      "artifact": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-03.md",
+      "sha256": "68804ec366570c5e220e9cdff43a44ee3f87fba4c90df14e7b702a3dc43c6b3b",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "implementation"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "Criterion-specific source and independent-oracle inspection; full log review; graphical pixel review where applicable. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "workspace_ac03_crash: child exits 91 after PREPARED/before rename; original is unchanged, no DONE is recorded; after reaping, recovery preserves the unapplied proposal and records RECOVERED_UNAPPLIED."
+    },
+    {
+      "id": "E-CONSUMER-RUN-AC-03",
+      "kind": "test",
+      "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+      "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+      "inputs": [
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "workspace_ac03_crash: child exits 91 after PREPARED/before rename; original is unchanged, no DONE is recorded; after reaping, recovery preserves the unapplied proposal and records RECOVERED_UNAPPLIED."
+    },
+    {
+      "id": "E-CONSUMER-REVIEW-AC-04",
+      "kind": "inspection",
+      "artifact": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-04.md",
+      "sha256": "a261838ad24a7593bf29da8a3618144bdc3a24a956cf74e2e564aa7302b5d287",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "implementation"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "Criterion-specific source and independent-oracle inspection; full log review; graphical pixel review where applicable. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "workspace_ac04_watcher: external write produces a polling hint; actual read invalidates old snapshot. After stopping the watcher, another write is still detected through reconciliation."
+    },
+    {
+      "id": "E-CONSUMER-RUN-AC-04",
+      "kind": "test",
+      "artifact": "docs/validation/skill-consumers-20261101/replay-final/operations.log",
+      "sha256": "11a6ca8578d94687956e0800bf604459b7416e2caa6360a3684c208da6a9745d",
+      "inputs": [
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "workspace_ac04_watcher: external write produces a polling hint; actual read invalidates old snapshot. After stopping the watcher, another write is still detected through reconciliation."
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-01",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "T004 checkbox/closure note now agrees with the already recorded four bounded consumer observations; scenario/spec, skill source, concrete consumer and oracle are unchanged. Recorded scope: Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-workspace-integrity-engineering.md",
+      "sha256": "59fdc229e3b0f5d6f48782fcd4e3c61a1c7a8181676d4c92c5d0804ba88d25a1",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-02",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "T004 checkbox/closure note now agrees with the already recorded four bounded consumer observations; scenario/spec, skill source, concrete consumer and oracle are unchanged. Recorded scope: Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-workspace-integrity-engineering.md",
+      "sha256": "59fdc229e3b0f5d6f48782fcd4e3c61a1c7a8181676d4c92c5d0804ba88d25a1",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-03",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "T004 checkbox/closure note now agrees with the already recorded four bounded consumer observations; scenario/spec, skill source, concrete consumer and oracle are unchanged. Recorded scope: Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-workspace-integrity-engineering.md",
+      "sha256": "59fdc229e3b0f5d6f48782fcd4e3c61a1c7a8181676d4c92c5d0804ba88d25a1",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-04",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "T004 checkbox/closure note now agrees with the already recorded four bounded consumer observations; scenario/spec, skill source, concrete consumer and oracle are unchanged. Recorded scope: Owned Linux temporary fixtures, static paths, cooperating cross-process writers and a single transaction. Exact bytes represent snapshots. Polling hint plus actual read. No hostile path replacement/noncooperating write-race guarantee, PID reuse recovery or power-loss durability.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-workspace-integrity-engineering.md",
+      "sha256": "59fdc229e3b0f5d6f48782fcd4e3c61a1c7a8181676d4c92c5d0804ba88d25a1",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-05",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "Authoring/selection and historical agent replies are unchanged; task note no longer claims pending technical execution. No new agent trial.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-workspace-integrity-engineering.md",
+      "sha256": "59fdc229e3b0f5d6f48782fcd4e3c61a1c7a8181676d4c92c5d0804ba88d25a1",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/file-operations.md",
+          "sha256": "8a74d3e3725a3c1bd64a1f44cff0ec769738fe28e9f67fa0dcaea1948ed6d32c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/git-worktrees-and-conflicts.md",
+          "sha256": "775bc0fc1519f1e7365d20835538b9cabaf65f8373c75b01959df40a68b46358",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/watcher-and-recovery.md",
+          "sha256": "046382bbb97faa08006f341eedcce2720c499a83b05bce71566d948710693867",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/chain/workspace-integrity-engineering.md",
+          "sha256": "0b5fa3fd2d2df813c599ae71289d41a1ca7e81d6d6b27b40f71592153d025d73",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+          "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/group-2.md",
+          "sha256": "3dc662147da5749db245ba817c4049d514d98b8228ec04559a7a70ba597faac7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/review.md",
+          "sha256": "5d37a57db655b1a9bdecc5f3fdc8cf7edd1fcd79c114cc2ec8ade315f3ee77d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.json",
+          "sha256": "f34cdf9bc5cc097efe8659f63c611af2a4c7fb555f1dd56cf523d32b56d91021",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.tar.gz",
+          "sha256": "688a84de1f008b784df1ea699cdfb9c1889390bc8dcf26bab9a99c0ad5c5a820",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "9935c6d4c2370147c683ecdd0213f22e56a1a67ebb9940ec543201b9e022aade",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/before.json",
+          "sha256": "b558b16d52000c7e3299d1c41e3f80a8f555aa24e5831ce16f7246db4cebdac7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-06",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "Authoring/selection and historical agent replies are unchanged; task note no longer claims pending technical execution. No new agent trial.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-workspace-integrity-engineering.md",
+      "sha256": "59fdc229e3b0f5d6f48782fcd4e3c61a1c7a8181676d4c92c5d0804ba88d25a1",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-workspace-integrity-engineering/tasks.md.bin",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/file-operations.md",
+          "sha256": "8a74d3e3725a3c1bd64a1f44cff0ec769738fe28e9f67fa0dcaea1948ed6d32c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/git-worktrees-and-conflicts.md",
+          "sha256": "775bc0fc1519f1e7365d20835538b9cabaf65f8373c75b01959df40a68b46358",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/watcher-and-recovery.md",
+          "sha256": "046382bbb97faa08006f341eedcce2720c499a83b05bce71566d948710693867",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/chain/workspace-integrity-engineering.md",
+          "sha256": "0b5fa3fd2d2df813c599ae71289d41a1ca7e81d6d6b27b40f71592153d025d73",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+          "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/group-2.md",
+          "sha256": "3dc662147da5749db245ba817c4049d514d98b8228ec04559a7a70ba597faac7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/review.md",
+          "sha256": "5d37a57db655b1a9bdecc5f3fdc8cf7edd1fcd79c114cc2ec8ade315f3ee77d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.json",
+          "sha256": "f34cdf9bc5cc097efe8659f63c611af2a4c7fb555f1dd56cf523d32b56d91021",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.tar.gz",
+          "sha256": "688a84de1f008b784df1ea699cdfb9c1889390bc8dcf26bab9a99c0ad5c5a820",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "9935c6d4c2370147c683ecdd0213f22e56a1a67ebb9940ec543201b9e022aade",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/before.json",
+          "sha256": "b558b16d52000c7e3299d1c41e3f80a8f555aa24e5831ce16f7246db4cebdac7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Acceptance restricted to governance/authoring; no Rust compilation, Iced integration or product effectiveness.",
+    "Executor review is not independent human review; historical trials were not rerun.",
+    "Previous envelopes are in docs/validation/governance-layout/before.tar.gz; collection outputs are checked separately through freshness and final extraction.",
+    "Initial package qualification has its own inputs preceding consolidation; the final delivery receipt is in dist/.",
+    "The skills' 36 technical scenarios remain UNVERIFIED.",
+    "maintenance-001: affected observations are preserved in docs/validation/maintenance-001/previous/sdd/features/skill-workspace-integrity-engineering/evidence.json.bin; awaiting review or new execution without renewing old hashes.",
+    "maintenance-001 observations are new; previous results are preserved. Actual-package criteria, a new agent trial and unresolved ownership/permissions remain UNVERIFIED.",
+    "Inputs changed by bootstrap; previous observations and historical approvals are preserved in docs/validation/bootstrap-governance/previous. Dependent criteria await their own reacceptance; old hashes were not renewed.",
+    "2026-11-01: new criterion review at docs/validation/skill-criteria-review-20261101/matrix.json. Technical observations do not automatically promote formal AC-01..04 under the existing guard; no product expansion. AC-06 reexamines historical replies, not new agents.",
+    "2026-11-01 technical-acceptance supersedes the former unconditional guard. Decided technical criteria concern frozen evaluated consumers only; semantic review and original limits remain mandatory.",
+    "2026-11-01 pending-criterion execution: only bounded evaluated consumers are accepted. Full scopes, failures and positive/negative controls in skill-consumers-20261101; product adoption remains independent. Existing AC-05/06 retain historical-response review, not new agent trials.",
+    "2026-11-01 documentary reconciliation: old input digests preserved under explicit snapshot paths; new task/successor inspections do not represent operational reruns. See docs/validation/f0-reconciliation-20261101/dependency-impact.json."
+  ]
+}

@@ -1,0 +1,13 @@
+# Current convergence — adoption-governance
+
+Historical observations remain intact in docs/validation/bootstrap-governance/previous.
+Changed bootstrap inputs invalidate only the criteria below; this does not demonstrate a regression.
+
+| Criterion | Current state |
+|---|---|
+| AC-01 | UNVERIFIED |
+| AC-02 | UNVERIFIED |
+| AC-03 | UNVERIFIED |
+| AC-04 | UNVERIFIED |
+
+Resume by reexamining dependent criteria with their own oracles. General bootstrap tests do not reaccept these features.

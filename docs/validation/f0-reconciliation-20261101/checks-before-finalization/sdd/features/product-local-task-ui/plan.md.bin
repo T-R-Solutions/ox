@@ -1,0 +1,84 @@
+# Plan: product-local-task-ui
+
+Full route. Product implementation follows governance-reconciliation AC-01..04.
+D-01 / R-01: Validate a manually entered existing directory by canonicalization
+and directory enumeration on a worker. Test writable access by exclusive attempt-
+directory creation at Start, before spawning; avoid creating probe files on selection.
+Do not equate lexical absolute paths with access or confinement. Reject unreadable
+paths before launching. Each attempt owns a newly created directory; never reuse,
+overwrite or recursively delete a preexisting path. Keep generated artifacts on exit.
+D-02 / R-02: One active task and one verification at a time. Correlate session,
+task, attempt, workspace generation and verification run. Reject duplicate actions
+and stale result messages. Disable workspace changes while work is active.
+D-03 / R-03: Adapter produces a result in its attempt directory using create_new.
+Independent oracle compares the result against a controller-created request carrying
+the attempt identity; it must not approve unrelated sample content. Bind request,
+result, adapter and oracle bytes in verification inputs. Separate process success,
+task result availability and criterion approval. Provide controlled good/bad/failure/
+hang scenarios without a command text field.
+D-04 / R-04: Dedicated worker owns Runtime and Engine; no blocking spawn, wait,
+snapshot or verification in update/view. Reuse the existing maximum ten-second
+process deadline and snapshot/history bounds; these are fixture bounds, not latency
+SLOs or OS resource isolation. Close stops admission, requests task cancellation,
+waits for worker cleanup and observed child exit; in-flight verification finishes
+under its existing deadline before exit. Forced external termination is outside
+this graceful-close guarantee. No child descendants are introduced.
+D-05 / R-05: Explicit Refresh action re-observes inputs off-thread and timestamps
+the observation. Display approval as of that observation, never as continuous
+monitoring. Detected change removes current approval and retains historical evidence;
+Verify again creates a new observation. Restart loses in-memory history and starts
+UNVERIFIED; retained files alone do not restore acceptance.
+D-06 / R-06: Real Wayland interaction and protocol/backend/process diagnostics are
+required for graphical acceptance; domain calls do not replace it. Keep X11 checks
+separate. Preserve failures and request human observation if automation is blocked.
+
+Primary skill: .codex/skills/iced-engineering/SKILL.md, bridge
+sdd/chain/iced-engineering.md version 1: generation-aware messages, worker ownership,
+responsive view and actual graphical interaction. Supporting .codex/skills/rust/SKILL.md,
+bridge sdd/chain/rust.md version 1: safe process ownership and bounded shutdown.
+Entries have no semantic version; consulted content SHA-256 is in skills.json.
+
+T001 specifies; T002 reconciles governance; T003 implements; T004 validates;
+T005 records acceptance. Plans are not evidence of implementation.
+
+## Implementation decisions
+
+D-07 / R-07: Controller in ox-ui owns Engine; each admitted operation gets one named
+OS worker, with a oneshot result into Iced Task. The UI never locks the controller.
+At most one operation is admitted; cancellation is an AtomicBool observed by Runtime
+polling every 10ms (fixture polling cadence, not a responsiveness SLA). Runtime owns
+and reaps its child even on worker unwind. A worker completion means process work
+is over; graceful close waits for that message. Verification completes under its
+existing 10s deadline. Channels disappearing yield UNVERIFIED, never approval.
+Session nonce in artifact identity uses current epoch nanoseconds; Runtime session
+uses app PID, with task=1 and the same monotonic attempt. These are distinct namespaces
+within the in-memory controller; neither claims global persistent identity.
+Engine retains at most 32 observations across workspace selections; attempt results
+remain in exclusive directories, with no deletion. No file picker dependency added.
+
+D-08 / R-08: request.txt contains ox-task-v1:<session>:1:<attempt> and newline.
+local-task creates result.txt exclusively, echoing identity plus result=42 newline
+(or controlled result=41). task-oracle independently reconstructs both expected
+byte sequences from the immutable check argument. Snapshot inputs include request,
+result, producer binary and oracle binary. Modes are a closed enum at the UI boundary.
+Real fixture processes are trusted local binaries, not confinement enforcement.
+
+D-09 / R-09: Graphical human session permits up to 600s for the multi-step checklist
+(ten prior 60s interaction slots); each task/oracle still has the existing 10s bound.
+The supervisor timeout is not successful shutdown. At the maintainer request to
+photograph results, subsequent manual sessions allow 1800s; this extends only the
+human observation window, never the task or verifier deadline. Record exact human replies and
+protocol/exit diagnostics independently. X11 input interference remains separate.
+
+D-10 / R-10: Final X11 harness uses the existing 15s observation bound to wait
+for actual pointer placement (still fails when placement is not observed), preserves
+80ms event settling and pointer restoration, and uses an alphanumeric relative
+fixture path with app cwd=/tmp to avoid layout-dependent slash synthesis. This
+changes only the harness, not application input or assertions. The captured run
+proves all three scenarios; main-session XTEST remains outside that result.
+
+D-11 / R-11: User photographs exposed an unclear missing-evidence error after
+verification of a timed-out attempt. Retain the failure and show attempt/path and
+explicit no-approval guidance. Display small recorded input bytes in history so
+current changed files are not confused with prior observations. Regular Cargo
+tests, final X11 frames and subsequent native human replies validate the change.

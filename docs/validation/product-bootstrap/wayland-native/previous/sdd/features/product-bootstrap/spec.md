@@ -1,0 +1,35 @@
+# Specification: product-bootstrap
+
+Request: execute iniciar-projeto-revisado.md v2.0. Actor: local desktop user.
+Action: open Ox, show/hide foundation details and exit. No agent, persistence or plugin runs.
+Future actions are not presented as available. Closing has no external work to cancel.
+
+- REQ-01: Virtual workspace with 16 compilable crates and a single lockfile.
+- AC-01 → REQ-01: Virtual workspace with 16 compilable crates and a single lockfile; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-02: The Iced window opens, interaction reveals details, and both the button and window close it.
+- AC-02 → REQ-02: The Iced window opens, interaction reveals details, and both the button and window close it; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-03: The ox binary delegates to the library.
+- AC-03 → REQ-03: The ox binary delegates to the library; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-04: All first-party roots prohibit unsafe; dependencies are evaluated separately.
+- AC-04 → REQ-04: All first-party roots prohibit unsafe; dependencies are evaluated separately; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-05: External modules without mod.rs.
+- AC-05 → REQ-05: External modules without mod.rs; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-06: Unit and external tests are discovered and executed.
+- AC-06 → REQ-06: Unit and external tests are discovered and executed; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-07: Acyclic graph and UI separate from domains.
+- AC-07 → REQ-07: Acyclic graph and UI separate from domains; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-08: Distinct identities are used, UUID v7 only for globally persistent entities.
+- AC-08 → REQ-08: Distinct identities are used, UUID v7 only for globally persistent entities; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-09: Evidence with actual inputs and results.
+- AC-09 → REQ-09: Evidence with actual inputs and results; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-10: Governance checkers remain operational.
+- AC-10 → REQ-10: Governance checkers remain operational; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-11: Versioned plugin contract; IPC and sandbox unavailable.
+- AC-11 → REQ-11: Versioned plugin contract; IPC and sandbox unavailable; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-12: Product separate from governance distribution.
+- AC-12 → REQ-12: Product separate from governance distribution; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-13: 16 useful contracts and future capabilities explicitly unavailable.
+- AC-13 → REQ-13: 16 useful contracts and future capabilities explicitly unavailable; verify with Cargo, inspection or graphical execution according to the plan.
+
+Risks: native dependencies, unavailable display, false positive from treating a state test as a visual test.
+OPEN-01: the maintainer confirmed Linux x86_64 as the initial target. Exact toolchain 1.99.1 by the reconciliation request; declared Rust floor remains 1.99.

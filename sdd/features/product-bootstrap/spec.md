@@ -1,35 +1,44 @@
-# Especificação: product-bootstrap
+# Specification: product-bootstrap
 
-Pedido: executar iniciar-projeto-revisado.md v2.0. Ator: usuário desktop local.
-Ação: abrir Ox, revelar/ocultar detalhes da fundação e sair. Nenhum agente, persistência ou plugin é executado.
-Ações futuras não são apresentadas como disponíveis. Fechamento não possui trabalho externo a cancelar.
+Request: execute iniciar-projeto-revisado.md v2.0. Actor: local desktop user.
+Action: open Ox, show/hide foundation details and exit. No agent, persistence or plugin runs.
+Future actions are not presented as available. Closing has no external work to cancel.
 
-- REQ-01: Workspace virtual com 16 crates compiláveis e lockfile único.
-- AC-01 → REQ-01: Workspace virtual com 16 crates compiláveis e lockfile único; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-02: Janela Iced abre, interação revela detalhes e encerra pelo botão e pela janela.
-- AC-02 → REQ-02: Janela Iced abre, interação revela detalhes e encerra pelo botão e pela janela; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-03: Binário ox delega à biblioteca.
-- AC-03 → REQ-03: Binário ox delega à biblioteca; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-04: Todas as raízes próprias proíbem unsafe; dependências avaliadas separadamente.
-- AC-04 → REQ-04: Todas as raízes próprias proíbem unsafe; dependências avaliadas separadamente; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-05: Módulos externos sem mod.rs.
-- AC-05 → REQ-05: Módulos externos sem mod.rs; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-06: Testes unitários e externos descobertos e executados.
-- AC-06 → REQ-06: Testes unitários e externos descobertos e executados; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-07: Grafo acíclico e UI separada dos domínios.
-- AC-07 → REQ-07: Grafo acíclico e UI separada dos domínios; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-08: Identidades usadas distintas, UUID v7 somente para entidades persistentes globais.
-- AC-08 → REQ-08: Identidades usadas distintas, UUID v7 somente para entidades persistentes globais; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-09: Evidências com inputs e resultados reais.
-- AC-09 → REQ-09: Evidências com inputs e resultados reais; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-10: Verificadores de governança continuam operacionais.
-- AC-10 → REQ-10: Verificadores de governança continuam operacionais; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-11: Contrato versionado de plugins; IPC e sandbox indisponíveis.
-- AC-11 → REQ-11: Contrato versionado de plugins; IPC e sandbox indisponíveis; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-12: Produto separado da distribuição de governança.
-- AC-12 → REQ-12: Produto separado da distribuição de governança; verificar com Cargo, inspeção ou execução gráfica conforme plan.
-- REQ-13: 16 contratos úteis e capacidades futuras explicitamente indisponíveis.
-- AC-13 → REQ-13: 16 contratos úteis e capacidades futuras explicitamente indisponíveis; verificar com Cargo, inspeção ou execução gráfica conforme plan.
+- REQ-01: Virtual workspace with 16 compilable crates and a single lockfile.
+- AC-01 → REQ-01: Virtual workspace with 16 compilable crates and a single lockfile; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-02: The Iced window opens, interaction reveals details, and both the button and window close it.
+- AC-02 → REQ-02: The Iced window opens, interaction reveals details, and both the button and window close it; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-03: The ox binary delegates to the library.
+- AC-03 → REQ-03: The ox binary delegates to the library; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-04: All first-party roots prohibit unsafe; dependencies are evaluated separately.
+- AC-04 → REQ-04: All first-party roots prohibit unsafe; dependencies are evaluated separately; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-05: External modules without mod.rs.
+- AC-05 → REQ-05: External modules without mod.rs; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-06: Unit and external tests are discovered and executed.
+- AC-06 → REQ-06: Unit and external tests are discovered and executed; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-07: Acyclic graph and UI separate from domains.
+- AC-07 → REQ-07: Acyclic graph and UI separate from domains; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-08: Distinct identities are used, UUID v7 only for globally persistent entities.
+- AC-08 → REQ-08: Distinct identities are used, UUID v7 only for globally persistent entities; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-09: Evidence with actual inputs and results.
+- AC-09 → REQ-09: Evidence with actual inputs and results; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-10: Governance checkers remain operational.
+- AC-10 → REQ-10: Governance checkers remain operational; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-11: Versioned plugin contract; IPC and sandbox unavailable.
+- AC-11 → REQ-11: Versioned plugin contract; IPC and sandbox unavailable; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-12: Product separate from governance distribution.
+- AC-12 → REQ-12: Product separate from governance distribution; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-13: 16 useful contracts and future capabilities explicitly unavailable.
+- AC-13 → REQ-13: 16 useful contracts and future capabilities explicitly unavailable; verify with Cargo, inspection or graphical execution according to the plan.
 
-Riscos: dependências nativas, display indisponível, falso positivo de teste de estado como teste visual.
-OPEN-01: mantenedor confirmou Linux x86_64 como alvo inicial. Toolchain stable por pedido explícito posterior.
+Risks: native dependencies, unavailable display, false positive from treating a state test as a visual test.
+OPEN-01: the maintainer confirmed Linux x86_64 as the initial target. Exact toolchain 1.99.1 by the reconciliation request; declared Rust floor remains 1.99.
+
+## Authorized local UI succession
+
+The original no-adapter-execution actor description is historical to the initial
+shell. The maintainer-authorized product-local-task-ui delivery adds only controlled
+local task fixtures and explicit verification. Existing launch, details and exit
+requirements remain; new task behavior is accepted in its own feature. General
+agents, sandbox, persisted history and plugin-host UI remain unavailable. This
+supersedes no other policy and does not complete F0.

@@ -1,0 +1,115 @@
+# F0 operational gate proposal — 2026-11-01
+
+**F0 remains open.** The architectural authority adopts “foundation and contracts” and a dependency on risk/platform decisions. It does not adopt an operational closure specification. This document makes all seven predecessor rows verifiable without making them adopted requirements. The predecessor is preserved in docs/validation/f0-reconciliation-20261101/before/docs/validation/foundation-current-20261101/f0.md.bin.
+
+The maintainer is the decision owner. Proposed boundary for decision: Linux x86_64 foundation/contracts, the existing bounded local host/runtime/verifier/UI slices, criterion-bound evidence and preservation. Defer durable history to a separately authorized next slice and before MVP; defer public plugins/agents, remote access, production sandbox claims, other OS targets and public distribution. This is a recommendation, not an adopted exclusion or a claim that present code is sufficient. POL-02 says local persistence **at MVP**, not at F0; only a new explicit milestone decision can include it in F0. Including it leaves F0-P04 blocked until actual storage acceptance.
+
+The authorized quality refinement adds [Q01–Q13](../f0-reconciliation-20261101/quality-proposal.md) and a [proposed version-update ADR](../../decisions/version-update-policy.md). These clauses expand the proposed gate; their operational evidence is not established by this documentary update. The immediate predecessor is preserved in `../f0-reconciliation-20261101/quality-refinement/before/`.
+
+The complete machine-readable matrix is [f0-matrix.json](../f0-reconciliation-20261101/f0-matrix.json). Each entry records requirement/origin, adoption, scope, objective pass condition, oracle, inputs, evidence, five-state verdict, limitations and exact remaining action. “PROPOSED” describes authority, not a sixth acceptance state.
+
+| ID / authority | Objective pass condition and method | Available evidence / limit | State | Remaining action |
+|---|---|---|---|---|
+| F0-P01 / POL-01, bootstrap ADR, architecture F0 | Named platform; Q01–Q08 build, unit/integration/regression/coverage, real X11/Wayland UX/accessibility, bounded concurrency and measured/adopted performance limits; inspect first-party unsafe prohibition | Bootstrap and local-task-ui evidence envelopes; scoped display observations, no new run | INCONCLUSIVE | Maintainer adopts envelope; executor maps assertions and environment to the gate |
+| F0-P02 / architecture F0, POL-04/05/10 | Adopted OPEN-01..11 dispositions; Q09/Q10 threat-to-control-to-denied-effect tests, integrity and dependency/license review | Existing local decisions; complete risk acceptance absent | UNVERIFIED | Maintainer adopts decision docket, with exclusions and revisit triggers |
+| F0-P03 / POL-03, host spec | Q02/Q07/Q11 real handshake/call, version/grant/frame rejection, cancellation, bounded concurrency, timeout/exit/reap/cleanup meet the contract | Host AC-01..06 and host.rs process tests; no public SDK or sandbox evidence | INCONCLUSIVE | Decide contract sufficiency; map exact test assertions without expanding fixture claims |
+| F0-P04 / POL-02, OPEN-05 | Q12 deferral requires explicit decision retaining pre-MVP AC-01..07; current volatile history cannot support durable guarantees. Inclusion requires real recovery/restore oracles | Controller starts fresh Engine; storage boundary unimplemented; no restart experiment | UNVERIFIED | Adopt or reject separate pre-MVP delivery; no automatic NOT APPLICABLE |
+| F0-P05 / POL-06, GOV-05/06 | Q02/Q03/Q04/Q13 current inputs, adequate independent oracles, critical paths, measured coverage and fail-before/pass-after regressions; missing/changed evidence cannot approve | Verifier/UI cases, recorded graphical review, governance bindings; hashes alone insufficient | INCONCLUSIVE | Review coverage and negative controls against adopted F0 clauses |
+| F0-P06 / GOV-01..08 | Q01/Q10/Q13 traceability, controlled updates and explicit legacy succession; evidence for every applicable preservation/qualification obligation | Unchanged 25-criterion baseline and legacy-succession.md; no new ZIP or rights evidence | INCONCLUSIVE | Resolve succession and applicability, then verify each remaining clause |
+| F0-P07 / roadmap F1..F8 | Q11 explicit deferral with extension contracts and later milestone/revisit trigger, or independently accepted inclusion; no zero-redesign promise | Existing exclusions and roadmap; no acceptance of full engines/agents/distribution | UNVERIFIED | Maintainer records deferrals; no roadmap completion inferred |
+
+## Current diagnosis and minimal boundary
+
+The immediate sequencing blocker is adoption of the F0 boundary, but closure is
+also blocked by incomplete evidence coverage. It is not established that adoption
+alone would finish F0, nor that new foundation code is necessary. The expanded
+quality proposal requires a fresh criterion-level inventory distinguishing implemented
+and evidenced, implemented without sufficient evidence, absent, and justified outside
+scope; these labels remain separate from the five acceptance states. The source
+inspection establishes one concrete missing implementation: durable history. Under
+the proposed boundary it belongs to the separate pre-MVP delivery, not F0.
+
+Read-only comparison in `../f0-reconciliation-20261101/decision-preparation/product-bindings.json`
+found no mismatches in 3,514 declared input/artifact bindings across 38 observations
+of bootstrap, host, runtime, verifier and local-task-ui. This establishes byte
+agreement only. It does not authenticate historical runs, reobserve today's display
+environment, discover undeclared dependencies or approve the seven F0 rows.
+The earlier reference to check/fmt/clippy/test logs under foundation-current was
+not resolvable; use raw artifact paths in the individual feature envelopes.
+
+For F0-P03, inspect host tests `real_process_negotiation_shutdown_and_recovery`,
+`incompatible_and_unauthorized_are_rejected`,
+`malformed_oversized_and_wrong_correlation_fail_closed` and
+`timeout_and_crash_are_distinct_and_bounded`. For F0-P05, inspect verifier cases
+`approval_requires_observation_not_completion_claims`,
+`failure_history_survives_repair_and_content_invalidation_is_selective`,
+`incomplete_and_not_applicable_are_not_approval` and
+`contradictory_current_pass_does_not_erase_observed_failure`, together with UI
+`real_result_identity_history_invalidation_and_preservation` and the graphical
+acceptance review. These are existing candidate oracles, not new execution results.
+
+Proposed minimum: existing Rust/Iced foundation; bounded trusted local host/runtime
+contracts; controlled task UI; independent verification, preservation and current
+input semantics. No requirement to integrate the host into the UI, support a real
+agent, implement full engines or deliver persistent history just to close F0.
+This proposal retains all original obligations for explicit disposition; it does
+not waive a currently applicable policy or silently shrink an adopted criterion.
+
+## Decision form and smallest remaining work
+
+No milestone-adoption answer is recorded. The maintainer authorized the recommended
+documentary refinements; the revised decisions below remain available for adoption:
+
+| Decision | Proposed answer | Consequence / revisit |
+|---|---|---|
+| F0-D1 | Adopt F0-P01..03/05/06 plus Q01–Q13 as applicable to existing Linux x86_64 slices: backend/frontend quality, tests/coverage, integrity/security, concurrency and measured performance | Preserve X11/Wayland limitations; adopt methods/thresholds and exceptions before closure; revisit platform, permissions, public contracts and expanded workloads |
+| F0-D2 | Defer the durable-storage implementation in F0-P04 to product-local-persistence, accepted after F0 and before F3/MVP | Retain Q12 now: volatile history cannot justify durable guarantees or restored acceptance; storage implementation requires independent authorization and acceptance |
+| F0-D3 | Defer full engines, real agents, public SDK/distribution and platform expansion in F0-P07 to their roadmap features | F1..F8 remain open; Q11 extension boundaries, compatibility/revisit triggers and preservation still apply; no promise against future redesign |
+| F0-D4 | Explicitly interpret/extend legacy succession only for obsolete skill-status clauses listed in legacy-succession.md | Preserve lineage, failures/recovery and applicable package/rights obligations; Q13 technical review and automated evidence controls; no blanket waiver or transfer of skill approvals |
+| F0-D5 | Adopt the [controlled version-update ADR](../../decisions/version-update-policy.md): exact validated Rust, compatible requirements with justified exceptions, retained lockfile, isolated candidate evaluation and release baseline | Explicit proposed succession of earlier version decisions; actual upgrades need affected validation; revisit MSRV, renderer, platform, public API/runtime and distribution changes |
+
+Compatibility: POL-02 requires local persistence at MVP; the architecture names F0
+as foundation/contracts and F3 as MVP, without assigning storage to F0. Therefore
+the proposed independent delivery between F0 and MVP is compatible with those
+texts. It does not prove MVP readiness or complete F1/F2/F3. The maintainer must
+adopt the milestone assignment; the constitution and roadmap remain unchanged.
+
+| Work / owner | Dependency | Observable completion |
+|---|---|---|
+| G1 / maintainer | This proposal | Recorded F0-D1..D5, Q01–Q13 applicability and OPEN dispositions; each inclusion/deferral has rationale and trigger |
+| G2 / executor | G1 | Per-clause mapping for P01..07/Q01..13 to actual assertions, artifacts and inputs; implementation/evidence/absence inventory, total/changed coverage plan and explicit gaps |
+| G3 / executor | G2; effective test permissions | Missing/affected observations, coverage/UI/performance baselines and adopted numeric budgets; permanent defect reproductions and bounded authorized fixes; no skip counted as pass |
+| G4 / executor + maintainer | G3 | Every applicable gate APPROVED or justified NOT APPLICABLE; explicit F0 closure record |
+| P1 / maintainer, then executor | Separate experiment grant and adopted corpus/bounds | Paired snapshots/SQLite results and dependency review; no product integration |
+| P2 / maintainer, then executor | G4, P1 results, technology decision and integration grant | Independently accepted product-local-persistence before MVP |
+
+G1 is the next decision; G2 is the next executable verification work after it.
+Planning does not require new product code. P1 scheduling may be authorized
+separately, but persistence delivery remains after F0 under this proposal.
+
+## Risk and platform decision docket
+
+| Open decision | Already adopted/observed | F0 decision still needed | Proposed disposition and revisit trigger |
+|---|---|---|---|
+| OPEN-01 | Linux x86_64; scoped X11/Xwayland and human Wayland observations | Name OS/display/filesystem support and residual GNOME input limit | Confine initial envelope to identified local environment; reevaluate on OS/FS/GPU/display change |
+| OPEN-02 | Rust 1.99.1, edition 2024, declared floor 1.99, Iced 0.14.0 | Decide F0-D5 controlled updates; no demonstrated 1.99.0 minimum | Retain exact validated baseline/lockfile; periodically evaluate candidates separately; std supervision/Iced thread-pool remain until concrete needs justify change |
+| OPEN-03 | ASCII 1.0/Unix socket fixture only | Contract stability, version/failure boundary sufficient for F0? | Bounded fixture contract; public JSON-RPC/ACP/SDK deferred until adapters |
+| OPEN-04 | Controlled local task, no real agents/network/credentials | Accept permitted effects and direct-child limits for F0 | No autonomous replay/remote providers; revisit adapters and grants |
+| OPEN-05 | Local MVP policy, in-memory history today | Include persistence in F0 or explicitly defer? | Separate next feature; location, retention, durability and engine require decision |
+| OPEN-06 | No product sandbox, effective environment permissions | Adopt Q09 threat model and denied-effect controls; accept bounded trusted-fixture risk or require isolation? | Threat/control/effect mapping required for claimed controls; no sandbox claim without supported OS enforcement/tests |
+| OPEN-07 | Own GPL decision; third-party rights unresolved | Is any distribution/public SDK included in F0? | Defer publication; retain rights blocker and separate artifact qualification obligations |
+| OPEN-08 | No product CPU/RAM/latency/accessibility target adopted | Adopt Q05..Q08 UX/accessibility, concurrency and performance measurement/budget process | Real keyboard/focus/contrast/scale/visual checks; measure latency/frame/CPU/memory baseline and adopt limits before closure on named workload/environment |
+| OPEN-09 | First-party forbid unsafe; native/transitive dependencies exist | Adopt Q10 dependency/license/advisory/native-boundary review and risk dispositions | Resolved dependency inventory and dated review; no blanket absence-of-C claim; revisit updates/storage/driver/parser |
+| OPEN-10 | Future hypotheses only | Confirm outside F0 | Revisit only with explicit feature authorization |
+| OPEN-11 | Controlled existing UI; final UX/language choices open | Adopt Q05/Q06 minimal design system and backend-consistent approval/error/stale presentation | Apply shared tokens/states to existing journey; explicit verification, processing/errors and keyboard/focus/scale checks; broader UX separately scoped |
+
+These decisions cannot be delegated to a successful test or a checkbox. A maintainer decision must identify alternatives, consequences, exclusions and review triggers. No owner acceptance is recorded here.
+
+## Execution and closure procedure
+
+1. Maintainer records F0-D1–D5, applicable Q01–Q13 and dispositions by F0-P ID, including F0-P04 and unresolved legacy succession scope. Preserve this proposal and original clauses.
+2. Executor inventories implemented/evidenced, implemented/unproven and absent behavior, stabilizes criteria and maps implementation/oracle/configuration/environment inputs; use the full traceability and five-state contract in sdd/evidence.md. A statement of scope is not operational evidence.
+3. Compare retained bindings before selecting reruns. Existing code/oracles were not changed in this documentary task, so Cargo/GUI consumer runs are not repeated solely for document updates. The inherited 25-criterion review is not independently audited or rerun here. Targeted structural/freshness/mutation checks and documentary comparisons are recorded in ../f0-reconciliation-20261101/checks.json.
+4. For changed functional inputs, confirm commands in README and prerequisites: Rust 1.99.1 and cached dependencies, local socket permission, actual named X11/Wayland environment, graphical input permission/human observer. Run check/fmt/clippy/tests and explicit ignored desktop cases only where affected. A skipped graphical case is not approval. Persistence has no implemented oracle yet; follow its proposed feature after authorization.
+5. Measure total and changed-line coverage; collect UI/performance baselines and adopt numeric performance budgets before closure. Verify missing scenarios and regressions against defective/corrected snapshots. Collect per-criterion failures, negative controls, logs, versions and limitations. ZIP qualification, rights, production controls and unavailable observations remain dependencies, never structural substitutes.
+6. Close F0 only after scope adoption and every applicable gate and Q clause is APPROVED or explicitly justified NOT APPLICABLE under that scope. Any REJECTED, INCONCLUSIVE or UNVERIFIED applicable row prevents closure. Do not sum the 25 legacy states or the 36 skill verdicts into F0 acceptance.

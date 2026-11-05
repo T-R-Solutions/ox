@@ -8,11 +8,11 @@ PROPOSTA ou HIPÓTESE.
 
 | ID | Estado | Decisão / impacto | Retomada |
 |---|---|---|---|
-| OPEN-01 | PARCIALMENTE DECIDIDO | Linux x86_64 inicialmente, confirmado pelo mantenedor; [ADR bootstrap](product-bootstrap.md) | X11 exercitado; Wayland nativo, outros SO/FS/GPU e isolamento aguardam validação |
-| OPEN-02 | DECIDIDO PARA BOOTSTRAP | stable, edição 2024, piso 1.99; Iced 0.14.0 com tiny-skia e thread-pool; [ADR](product-bootstrap.md) | Rever runtime quando houver I/O externo; lockfile em application |
+| OPEN-01 | PARCIALMENTE DECIDIDO | Linux x86_64 inicialmente, confirmado pelo mantenedor; [ADR bootstrap](product-bootstrap.md) | X11 exercitado em Xwayland temporário e Wayland nativo observado pelo mantenedor nas fatias aceitas; outros SO/FS/GPU e isolamento aguardam decisão/validação |
+| OPEN-02 | DECIDIDO PARA BOOTSTRAP | 1.99.1 fixado, edição 2024, piso declarado 1.99; Iced 0.14.0 com tiny-skia e thread-pool; [ADR](product-bootstrap.md) | Rever runtime quando houver I/O externo; lockfile em application |
 | OPEN-03 | PROPOSTA | Processo externo/IPC versionado, JSON-RPC, ACP | Escolher protocolo/transportes e agentes após verificar versões/capabilities reais; sem ABI ou sandbox presumidos |
 | OPEN-04 | PENDENTE | Primeiros agentes, rede, segredos e graus de autonomia | Definir adaptadores e grants; distinguir mediação do host de ferramentas diretas |
-| OPEN-05 | PROPOSTA | SQLite, FTS5, formato de grafo, backup e retenção | Comparar alternativas com workload, recuperação e política de dados |
+| OPEN-05 | PROPOSTA | Persistência local: snapshots, journal ou banco embarcado; SQLite é candidato; FTS5/grafo separados | Decidir a [ADR proposta](local-persistence-proposal.md), o escopo e a autorização de product-local-persistence; nenhuma tecnologia escolhida |
 | OPEN-06 | PENDENTE | Sandbox por plataforma e plugins confiáveis | Modelo de ameaças e testes de efeitos negados em SO alvo |
 | OPEN-07 | PARCIALMENTE DECIDIDO | GPL-3.0-only para material próprio conforme [ADR](licensing.md); titular próprio Rodrigo Batista; termos de terceiros, distribuição, assinatura, atualização e SDK ainda pendentes | Confirmar direitos por origem antes de publicar; software-delivery cobre o método |
 | OPEN-08 | PENDENTE | Metas de CPU/RAM/latência, corpus e acessibilidade | Spike/benchmark autorizado com hardware fixado; nenhum número adotado agora |
@@ -24,3 +24,48 @@ Uma proposta ainda não aprovada não concede permissões. A implementação loc
 do produto exige feature e escopo autorizados; dependências, agentes externos,
 transmissão de código, gastos, operações destrutivas e publicação continuam
 sujeitos às permissões efetivas e às decisões aplicáveis.
+
+## Bounded local decisions — 2026-10-29
+
+The authorized product-plugin-host plan selects Unix stream sockets and a strict
+ASCII 1.0 test protocol for its local fixture only; JSON-RPC/ACP and third-party
+agent/plugin protocols remain open. product-agent-runtime selects std direct-child
+supervision for a no-output controlled adapter. product-verification-engine uses
+in-memory exact-byte snapshots and an explicit exit-code oracle. These decisions
+do not adopt a production sandbox, remote provider, persistence engine or public SDK.
+Native Wayland has now been observed manually; X11 automated coverage uses a
+temporary rootful Xwayland, with the main-session input limitation retained.
+
+## Decisões para o gate F0
+
+A matriz docs/validation/foundation-current-20261101/f0.md identifica a decisão necessária por OPEN-01..11. O mantenedor deve adotar o envelope de risco/plataforma e incluir ou adiar explicitamente persistência. Nenhum adiamento é registrado como adotado nesta reconciliação.
+
+## F0 decision successor — 2026-11-02
+
+[F0-D1..D5 adopted](f0-boundary-20261102.md) resolves the F0 boundary for
+OPEN-01..07/10/11: existing Linux x86_64 slices, separate X11/Wayland observations,
+controlled trusted fixtures without sandbox, version lifecycle, post-F0/pre-MVP
+persistence and later roadmap capabilities. The rows above retain broader product
+questions; they do not negate this bounded adoption. OPEN-08 measured numerical
+budgets/support matrix and OPEN-09 dependency risk review remain open for F0.
+Storage technology/experiment/integration and publication rights remain undecided.
+
+F0 execution update 2026-11-03: OPEN-09 has a bounded local disposition in the
+F0 decision record and dependency/security review, including the explicit temporary
+ttf-parser exception. OPEN-08 backend and history budgets are adopted; GUI response,
+frame, sustained CPU and exact support matrix remain proposals. Native Wayland full
+flow remains INCONCLUSIVE despite identified-window exit 0.
+
+F0 graphical resumption successor: OPEN-08 GUI/client-frame/idle-CPU budgets and
+the exact 12-cell support matrix were explicitly adopted by the maintainer. Current
+measurements satisfy them; correlated native journeys and keyboard/cancellation
+observations are in docs/validation/f0-resumption-20261103. Broader platform/GPU,
+physical presentation, accessibility and storage decisions remain outside this
+bounded foundation acceptance.
+
+Final OPEN-08 observation: the full-history counterevidence temporarily reopened
+performance acceptance after adoption. A bounded tiny-skia dev-profile correction
+and a fresh 12-cell corpus now satisfy the unchanged contract. Proposal content
+remains preserved; actual adoption is in f0-boundary-20261102.md. No remaining F0
+GUI limit/matrix decision is pending; broader platform and storage questions retain
+their distinct scope.

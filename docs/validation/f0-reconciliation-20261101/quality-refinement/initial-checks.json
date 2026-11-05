@@ -1,0 +1,29 @@
+{
+  "records": [
+    {
+      "name": "initial-structure-wrong-directory",
+      "chunk_id": "1fb70d",
+      "wall_time_seconds": 0.00001015,
+      "exit_code": 0,
+      "original_token_count": 38,
+      "output": "PASS: portable files, configured bridges and requested evidence checks\nNot proof of semantic adequacy, agent execution or comparative effectiveness.\n"
+    },
+    {
+      "name": "initial-freshness-wrong-directory",
+      "chunk_id": "c25b0e",
+      "wall_time_seconds": 0.00001062,
+      "exit_code": 0,
+      "original_token_count": 38,
+      "output": "PASS: portable files, configured bridges and requested evidence checks\nNot proof of semantic adequacy, agent execution or comparative effectiveness.\n"
+    },
+    {
+      "name": "evidence-mutation-tests",
+      "chunk_id": "64f71f",
+      "wall_time_seconds": 0.071151702,
+      "exit_code": 0,
+      "original_token_count": 345,
+      "output": "test_all_states_and_legacy_aliases (test_technical_acceptance.TechnicalAcceptanceTests.test_all_states_and_legacy_aliases) ... ok\ntest_bare_status_or_authoring_review_never_approves (test_technical_acceptance.TechnicalAcceptanceTests.test_bare_status_or_authoring_review_never_approves) ... ok\ntest_missing_files_escape_and_duplicate_references (test_technical_acceptance.TechnicalAcceptanceTests.test_missing_files_escape_and_duplicate_references) ... ok\ntest_partial_states_require_review_and_scope (test_technical_acceptance.TechnicalAcceptanceTests.test_partial_states_require_review_and_scope) ... ok\ntest_review_cannot_borrow_contract_binding_from_execution (test_technical_acceptance.TechnicalAcceptanceTests.test_review_cannot_borrow_contract_binding_from_execution) ... ok\ntest_stale_artifacts_and_each_bound_input_rejected (test_technical_acceptance.TechnicalAcceptanceTests.test_stale_artifacts_and_each_bound_input_rejected) ... ok\ntest_symlink_alias_does_not_hide_authoring_substitution (test_technical_acceptance.TechnicalAcceptanceTests.test_symlink_alias_does_not_hide_authoring_substitution) ... ok\ntest_unrelated_change_does_not_invalidate_acceptance (test_technical_acceptance.TechnicalAcceptanceTests.test_unrelated_change_does_not_invalidate_acceptance) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.124s\n\nOK\n"
+    }
+  ],
+  "limitations": "The first two invocations supplied a feature itself to --features, which expects a parent directory. They inspected no feature and are NOT evidence of feature validity; corrected global invocations are recorded separately. Eight existing mutation tests did execute."
+}

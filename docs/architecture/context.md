@@ -1,12 +1,14 @@
 # Contexto e fases do produto
 
 **Fase atual:** `implementation-foundation`; aplicativo `bootstrap-implemented`.
-A feature `product-foundation` entrega a transição da governança; F0 não está concluído.
+A feature `product-foundation` entrega a transição da governança. F0 está aprovado no corpus local adotado, após corrigir e revalidar o desenho do histórico; a evidência atual está em
+`docs/validation/f0-resumption-20261103/`. Isso não autoriza uma nova fase.
 
-**Escopo arquitetural vigente:** resumo autocontido do produto e seus estados. Ox é agent-first, local-first e extensível, com Rust/Iced, LSP e serviços avançados por plugins, dois modos de grafo e confiabilidade verificável como prioridade. Motores de contexto, grafo e compactação serão próprios; bibliotecas auxiliares exigem avaliação. Os 16 crates de `application/` fornecem contratos mínimos; somente o shell Iced
-tem execução nesta fatia. O manifesto virtual e o lockfile ficam em `application/`;
+**Escopo arquitetural vigente:** resumo autocontido do produto e seus estados. Ox é agent-first, local-first e extensível, com Rust/Iced, LSP e serviços avançados por plugins, dois modos de grafo e confiabilidade verificável como prioridade. Motores de contexto, grafo e compactação serão próprios; bibliotecas auxiliares exigem avaliação. Os 16 crates de `application/` fornecem os contratos da fundação. O shell Iced
+e fatias locais do Plugin Host, Agent Runtime e Verification Engine têm execução
+validada nas respectivas features product-*. O manifesto virtual e o lockfile ficam em `application/`;
 fontes e testes externos pertencem a `application/crates/<crate>/src/` e
-`application/crates/<crate>/tests/`. Não há crate na raiz do workspace. Demais motores abaixo continuam previstos, não implementados. Novos detalhes dependem de ADRs. O planejamento externo não é requisito de execução ou validação.
+`application/crates/<crate>/tests/`. Não há crate na raiz do workspace. Contexto, grafos e demais motores fora dessas fatias continuam previstos. Novos detalhes dependem de ADRs. O planejamento externo não é requisito de execução ou validação.
 
 A futura interface SDD apresentará arquivos portáveis como autoridade, sem estado concorrente: distinguir indicação/seleção/consulta/uso de skills, tarefas/aceitação/permissões e falhas de sincronização. Mudanças propostas por agentes respeitam escopo e autorizações. Esses comportamentos futuros não foram testados. Tokio, SQLite, IPC, Tree-sitter, plataformas e sandbox seguem em [decisões abertas](../decisions/open-questions.md).
 
@@ -32,3 +34,23 @@ a ordem dos marcos do produto. Na fase `implementation-foundation`, somente
 features `product-*` e evidências próprias demonstram entregas do aplicativo.
 Persistência, avaliação de agentes e distribuição continuam abrangidas pelas
 competências existentes quando pertinentes.
+
+## Fatias locais aceitas — 2026-10-29
+
+- product-bootstrap: Wayland nativo observado pelo mantenedor; testes X11
+  explícitos em Xwayland temporário. A sessão GNOME principal conserva limitação
+  de entrada XTEST; não há alegação de reparo desse ambiente.
+- product-plugin-host: socket Unix, protocolo textual 1.0, echo autorizado,
+  falhas e encerramento de processo local controlado; sem sandbox.
+- product-agent-runtime: supervisão de processo local sem saída, estados,
+  cancelamento, prazo e tentativas/eventos ordenados; sem agente real.
+- product-verification-engine: execução local com oráculo de exit code e
+  snapshots por bytes, histórico e invalidação; armazenamento apenas em memória.
+
+A feature product-local-task-ui integra Agent Runtime e Verification Engine à
+interface Iced para uma única tarefa controlada, artefato exclusivo por tentativa,
+verificação explícita e invalidação por atualização manual dos inputs. Plugin Host
+continua como API independente. Os critérios e limites da integração ficam na
+feature própria; não há agente remoto, sandbox ou histórico persistente.
+F0 inteira, orquestração completa, provedores remotos, persistência e distribuição
+continuam fora da aceitação dessas entregas.

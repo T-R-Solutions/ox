@@ -1,0 +1,20 @@
+{
+  "product_source_changes": false,
+  "bootstrap_approved": 11,
+  "bootstrap_inconclusive": [
+    "AC-02",
+    "AC-06"
+  ],
+  "checks": {
+    "cargo_check": 0,
+    "cargo_fmt": 0,
+    "cargo_clippy": 0,
+    "cargo_test": 0,
+    "cargo_discovery": 0,
+    "governance": 0,
+    "sdd_freshness": 0,
+    "git_diff_check": 0
+  },
+  "blocked_by": "GNOME ScreenshotWindow/GetWindows AccessDenied; no human visual observations received; unresolved historical X11 graphical test",
+  "later_slices": "not started; predecessor acceptance gate unsatisfied"
+}

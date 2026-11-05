@@ -35,3 +35,7 @@ unsafe_code = "forbid"
 
 [profile.dev]
 debug = 0
+
+# Keep software rasterization responsive while first-party dev code stays unoptimized.
+[profile.dev.package.tiny-skia]
+opt-level = 3

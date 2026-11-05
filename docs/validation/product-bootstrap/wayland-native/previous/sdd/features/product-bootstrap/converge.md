@@ -1,0 +1,106 @@
+# Convergence — product-bootstrap
+
+## Historical bootstrap observation — 2026-10-28
+
+Linux x86_64, observed Rust/Cargo stable 1.99.1; Iced 0.14.0,
+tiny-skia and X11 in an XWayland session. The 16 crates compile from application.
+Stable toolchain as requested by the maintainer. Source and evidence identified
+by SHA-256 in the historical evidence.json, including feature contracts and oracles.
+The table below records the previous acceptance; current status after translation
+is described at the end of this document.
+
+| Criterion | Requirement / decision / risk / tasks | Change | Evidence | Historical state |
+|---|---|---|---|---|
+| AC-01 | REQ-01 / D-01 / R-01 / T001–T005 | `application/Cargo.toml` | E-STRUCTURE-LAYOUT, E-CHECK-LAYOUT | APPROVED |
+| AC-02 | REQ-02 / D-01 / R-01 / T001–T005 | `application/crates/ox-ui/src/desktop.rs` | E-GUI-LAYOUT, E-REVIEW-LAYOUT | APPROVED |
+| AC-03 | REQ-03 / D-01 / R-01 / T001–T005 | `application/crates/ox-app/src/main.rs` | E-REVIEW-LAYOUT, E-TEST-LAYOUT | APPROVED |
+| AC-04 | REQ-04 / D-01 / R-01 / T001–T005 | `application/crates/ox-core/src/lib.rs` | E-STRUCTURE-LAYOUT, E-DEPS-LAYOUT | APPROVED |
+| AC-05 | REQ-05 / D-01 / R-01 / T001–T005 | `application/crates/ox-ui/src/lib.rs` | E-STRUCTURE-LAYOUT | APPROVED |
+| AC-06 | REQ-06 / D-01 / R-01 / T001–T005 | `application/crates/ox-task/src/state.rs` | E-TEST-LAYOUT, E-DISCOVERY-LAYOUT, E-GUI-LAYOUT | APPROVED |
+| AC-07 | REQ-07 / D-01 / R-01 / T001–T005 | `application/Cargo.toml` | E-STRUCTURE-LAYOUT, E-CHECK-LAYOUT, E-REVIEW-LAYOUT | APPROVED |
+| AC-08 | REQ-08 / D-01 / R-01 / T001–T005 | `application/crates/ox-workspace/src/root.rs` | E-REVIEW-LAYOUT, E-TEST-LAYOUT | APPROVED |
+| AC-09 | REQ-09 / D-01 / R-01 / T001–T005 | `sdd/features/product-bootstrap/plan.md` | E-SDD-LAYOUT, E-REVIEW-LAYOUT | APPROVED |
+| AC-10 | REQ-10 / D-01 / R-01 / T001–T005 | `tools/governance/scripts/check-ox.py` | E-GOV-LAYOUT | APPROVED |
+| AC-11 | REQ-11 / D-01 / R-01 / T001–T005 | `application/crates/ox-plugin/src/protocol.rs` | E-REVIEW-LAYOUT, E-TEST-LAYOUT | APPROVED |
+| AC-12 | REQ-12 / D-01 / R-01 / T001–T005 | `tools/governance/scripts/governance_support.py` | E-GOV-LAYOUT, E-REVIEW-LAYOUT | APPROVED |
+| AC-13 | REQ-13 / D-01 / R-01 / T001–T005 | `application/crates/ox-agent/src/session.rs` | E-REVIEW-LAYOUT, E-CHECK-LAYOUT, E-GUI-LAYOUT | APPROVED |
+
+9 Cargo tests discovered: 7 regular tests passed; 2 graphical tests are skipped in
+the regular suite and passed when explicitly executed. No duplication between unit
+and integration tests. The startup test without a display rejects success and
+requires a diagnostic in a bounded child. Check, fmt and Clippy with -D warnings
+passed. Governance: 23 tests and three checks passed, including independent export;
+recovery preserves the 439 historical inputs.
+
+Actual window: Show details → Hide details, changed pixels and title; reversal
+observed. Exit and native closing returned zero. Screenshots in
+`docs/validation/product-bootstrap/collapsed.png` and `expanded.png`.
+Previous attempts with timeout, executor configuration error and title type error
+are retained in logs. The graphical harness passed after explicit focus and spacing
+press/release; no criterion was reduced to conceal failures.
+
+Limitations: native Wayland, other platforms, accessibility and operation under
+load were not exercised. Transitive unsafe identified separately; no full audit
+or distribution authorization. UUID was not introduced because no globally
+persistent entity exists. IPC, agents, storage and engines remain future work.
+
+This delivery completes the bounded bootstrap, not all of F0. Next slice: specify
+handshake/transports, authorization and plugin-host failures before executing IPC.
+Historical approvals were preserved byte for byte; current evidence dependent on
+changed authorities was selectively invalidated (invalidation.json), without
+transferring these tests' approval to those features.
+
+Reproduce using Cargo commands in README and historical evidence.json; graphical
+tests require an X11 session and may temporarily move the pointer. On resumption,
+run the validator with --require-fresh; do not require global approval of pending
+historical/skill features.
+
+## Local adjustment — empty directories
+
+After the maintainer's observation, application/src and application/tests were
+removed; both were preexisting and empty (listing observed; rmdir completed).
+The virtual manifest keeps sources and tests in crates. Verification: both paths
+absent; no file or compilation input changed, so Cargo did not need repeating.
+
+## Local review — layout references
+
+Maintainer request: scan files outside application/. Inventory: 849 files,
+818 UTF-8 texts and 31 binaries; immediate members of 25 archives cataloged.
+.git/.aws/.agents metadata, symlinks and Python caches were outside the audited content.
+Matches in 212 files; 7 active files corrected (changes.json). README, context,
+feature index, architecture, sharing and licensing now point to application/crates;
+fixtures test exclusion of the current structure. History and generic examples
+retained without changing their decisions or hashes. Binaries cataloged by hash
+without claiming semantic reading of their content.
+
+Method, files/lines and hashes: docs/validation/product-bootstrap/layout-audit/
+(inventory-before.json, matches-before.json, changes.json, report.json).
+Previous copies and evidence envelope are preserved in that record.
+Rust/graphical observations reexamined: product implementation and test inputs
+unchanged; previous executions were neither repeated nor presented as new.
+Governance observations rerun: 23 tests passed and checks returned exit 0.
+Recovery: 439/439 historical inputs intact. No change in application/.
+
+## Current status — English documentation translation
+
+All AC-01 through AC-13 are UNVERIFIED against the translated feature contract.
+Previous acceptance and the original evidence envelope remain preserved in
+`docs/validation/product-bootstrap/english-documentation/previous/sdd/features/product-bootstrap/evidence.json.bin`.
+Changing spec.md and plan.md affects every bound observation; no old input hash
+was renewed and no historical execution is presented as a new run. Application
+sources and tests are unchanged. Resume by reviewing the translated contract
+against each criterion's oracle and recording fresh observations for affected inputs.
+
+## Current reconciliation — 2026-10-29
+
+13 criteria reexamined against their Portuguese predecessors: no semantic change
+from translation. The separately authorized toolchain change pins 1.99.1.
+Current result: 11 APPROVED; AC-02 and AC-06 INCONCLUSIVE. The real X11 window
+rendered and native close passed; toggle timed out after 15s and button exit
+was not reached. This failed observation is preserved, not overwritten by history.
+Seven regular Rust tests pass; all nine tests are discovered. Check/fmt/Clippy
+pass. All per-criterion methods, changed inputs, reuse justification and limits
+are in docs/validation/product-bootstrap/reconciliation/review.md and evidence.json.
+Resume graphical acceptance on a dedicated X11 session with controlled focus/input
+and event-delivery observation. Wayland/Windows/macOS work remains future scoped
+work, with no expansion of official support. Full F0 is not accepted.

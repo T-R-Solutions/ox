@@ -1,0 +1,32 @@
+{
+  "status": "INCONCLUSIVE for mixed frame rows",
+  "cause": "Cross-process resource sampler stderr and instrumented child stderr share a file; Rust formatting writes can interleave. No inference of huge product frame time from mixed numeric PID bytes.",
+  "rows": [
+    {
+      "run": "optimized-x11-1-900",
+      "mixed_frame_lines": []
+    },
+    {
+      "run": "optimized-x11-1-640",
+      "mixed_frame_lines": []
+    },
+    {
+      "run": "optimized-x11-1.5-900",
+      "mixed_frame_lines": [
+        {
+          "line": 2294,
+          "text": "F0_GUI_RESOURCE pid=OX_CLIENT_FRAME_MS=26551161 .VmRSS:\t   30296 kB5455320000000001 "
+        }
+      ]
+    },
+    {
+      "run": "optimized-x11-1.5-640",
+      "mixed_frame_lines": [
+        {
+          "line": 2595,
+          "text": "OX_CLIENT_FRAME_MS=F0_GUI_RESOURCE pid=0.2657359310201 "
+        }
+      ]
+    }
+  ]
+}

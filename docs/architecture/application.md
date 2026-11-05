@@ -1,0 +1,197 @@
+# Aplicação: funcionamento e implementações
+
+Referência descritiva da árvore local de 04/11/2026, versão interna 0.1.0.
+Público: quem executa, contribui ou precisa entender o escopo implementado.
+[guia da aplicação](../../application/README.md) contém o primeiro uso e os testes;
+[contratos](contracts.md) detalha APIs e limites. As autoridades de escopo
+continuam em [sdd/project.md](../../sdd/project.md) e nas features, não neste guia.
+
+## Propósito e estado
+
+Ox pretende coordenar trabalho com agentes em projetos locais, conectando tarefas,
+workspace, permissões, evidências e extensões. Local-first significa a direção de
+persistência sob controle do usuário; a entrega atual mantém observações apenas em
+memória. Agent-first é a direção da experiência, enquanto a execução disponível
+hoje usa fixtures determinísticas, sem modelo de IA ou provedor remoto.
+
+A fundação combina shell gráfico e contratos de domínio pequenos, com fatias
+executáveis de Plugin Host, Agent Runtime e Verification Engine. F0 está aprovado
+somente no envelope local adotado. As [medições F0](../validation/f0-resumption-20261103/report.md)
+não constituem suporte universal a Linux, GPUs, acessibilidade ou plataformas.
+
+## Visão dos componentes
+
+[![Arquitetura executável do Controller, Runtime e Engine com filhos e arquivos locais](../assets/architecture.svg)](../assets/architecture.svg)
+
+*As setas representam chamadas e acesso a arquivos existentes no código; não serviços de IA.* [Abrir em tamanho integral](../assets/architecture.svg).
+
+[Fonte Mermaid com ícones Lucide](../assets/diagrams/architecture.mmd).
+
+O processo Ox contém a UI e o Controller. Runtime e Engine lançam filhos diretos
+para a fixture e o oráculo. Arquivos da tentativa são o contrato entre esses dois
+processos. Plugin Host é uma fatia independente, sem seta de integração à UI.
+Storage, contexto e grafos não aparecem como serviços executáveis porque ainda
+são contratos de fundação.
+
+## Caminho executado pelo desktop
+
+`ox-app::run` delega a `ox_ui::run`, que constrói o aplicativo Iced. A janela inicia
+sem workspace ou subprocesso ativo. `Desktop` guarda seleção, operação em andamento,
+foco, geração e texto do status. `Controller` mantém sessão, tentativa atual,
+workspace, critério e `Engine` em memória.
+
+1. **Seleção:** o Controller canonicaliza o caminho, exige diretório e tenta
+   listá-lo. A UI invalida a seleção ao editar o campo. Nenhum sandbox é criado.
+2. **Execução:** um diretório exclusivo `.ox-task-<sessão>-<tentativa>` recebe um
+   `request.txt` criado sem substituir arquivo existente. `Runtime` lança
+   `local-task` com modo fixo, nesse diretório, e observa seu término.
+3. **Resultado:** o produtor grava a identidade e `result=42` ou `result=41` em
+   `result.txt`, também com criação exclusiva. Sucesso do processo permanece
+   `UNVERIFIED`. Falha, timeout ou cancelamento podem deixar só o pedido.
+4. **Verificação:** uma ação explícita executa `task-oracle`. O Engine captura os
+   inputs e o executável do oráculo antes/depois. Só o exit code esperado, com
+   conteúdo estável e atual, pode fundamentar aprovação.
+5. **Atualidade:** `Refresh inputs` apenas reavalia contra os bytes atuais. Alterar
+   pedido, resultado, produtor ou oráculo pode invalidar uma observação. O histórico
+   preserva observações anteriores; não existe watcher ou restauração após reinício.
+
+Seleção, execução, verificação e refresh usam uma thread de trabalho, com Controller
+em `Arc<Mutex<_>>` e retorno por canal oneshot integrado a `Task` do Iced. A UI admite
+uma operação por vez. O identificador de geração impede respostas antigas de
+substituírem estado novo. Cancelamento usa `AtomicBool`; fechar a janela interrompe
+admissão, solicita parada e aguarda o retorno. I/O de filesystem e reap do SO não
+possuem garantia de prazo total.
+
+Tab/Shift+Tab percorrem controles disponíveis; Enter/Espaço ativam o controle,
+PageUp/PageDown rolam conteúdo. O foco dos botões é tratado pelo aplicativo. Isso
+não implica conformidade geral com tecnologias assistivas.
+
+## Mapa dos 16 crates
+
+As fontes ficam em `application/crates/<nome>/src/`. A presença de um tipo não
+significa que seu serviço correspondente esteja disponível no desktop.
+
+| Crate | Implementação atual | Relação com a aplicação |
+| --- | --- | --- |
+| `ox-app` | Binário `ox`, composição e propagação de falhas de startup | Chama `ox-ui` |
+| `ox-ui` | Desktop Iced, shell e Controller de tarefa local | Usa `ox-agent` e `ox-verification` |
+| `ox-agent` | Modelo de sessão, reducer de eventos e supervisão de filho direto; `local-agent` e `local-task` | Runtime usado pelo Controller; sem agente real |
+| `ox-plugin` | Tipos de versão/descriptor e host Unix com fixture `local-plugin` | API/testes independentes; sem integração ao desktop |
+| `ox-verification` | Critérios/verdicts, Check, Engine de snapshots e oráculos locais | Engine usado pelo Controller; demais oráculos atendem fixtures |
+| `ox-task` | Máquina de estados de tarefa com transições restritas | Contrato independente, sem scheduler |
+| `ox-workspace` | Wrapper que exige caminho absoluto | Contrato lexical; o Controller faz validação própria de existência |
+| `ox-policy` | Decisão explícita: aprovação necessária, negada ou concedida | Tipos, sem executor de políticas do SO |
+| `ox-core` | Disponibilidade técnica com motivo de indisponibilidade | Tipos, sem concessão de autoridade |
+| `ox-storage` | Localização e erros de storage | Sem implementação de persistência |
+| `ox-context` | Query, hit com snapshot e erros de índice | Sem indexador ou busca |
+| `ox-graph` | Nós/relações com evidência verificada ou inferida | Sem motor, consulta ou visualização de grafos |
+| `ox-output` | Captura bruta e projeção com perdas explícitas | Sem compactador; Runtime atual descarta stdout/stderr |
+| `ox-observability` | Medição com origem, unidade, período e incerteza | Sem coletor/ledger de uso ou custo |
+| `ox-sdd` | Referências a artefatos SDD e erros de leitura | Sem parser ou interface SDD do usuário |
+| `ox-skills` | Referência de skill e estado de seleção/consulta/uso | Sem carregamento ou execução de skills no desktop |
+
+O workspace é virtual: não há `application/src/` ou `application/tests/`. Os testes
+externos pertencem a cada crate. [Cargo.toml](../../application/Cargo.toml) e
+[Cargo.lock](../../application/Cargo.lock) definem membros e dependências efetivas;
+`cargo doc --workspace --no-deps` pode gerar a referência Rust local quando desejado.
+Esse último comando é uma orientação, não um resultado de execução desta revisão.
+
+## Sequência de uma tentativa
+
+[![Sequência com usuário, Controller, produtor e oráculo independente, incluindo resultados incorretos e interrupções](../assets/execution.svg)](../assets/execution.svg)
+
+*O produtor cria o candidato; o Engine só avalia uma observação aplicável e atual.* [Abrir em tamanho integral](../assets/execution.svg).
+
+<details>
+<summary>Diagrama Mermaid — fonte editável</summary>
+
+```mermaid
+sequenceDiagram
+    accTitle: Produção e verificação são operações distintas
+    accDescr: O Controller lança o produtor pelo Runtime. O exit code do produtor não aprova o artefato. Sob ação explícita o Engine captura inputs, executa o oráculo, recaptura e avalia atualidade. Cancelamento aguarda saída observada.
+    actor U as Usuário
+    participant C as Controller
+    participant R as Runtime / local-task
+    participant E as Engine / task-oracle
+    U->>C: Run correct ou Run incorrect
+    C->>C: Criar tentativa e request.txt exclusivos
+    C->>R: Lançar produtor no diretório da tentativa
+    R-->>C: Saída observada e possível result.txt
+    C-->>U: Término do processo · UNVERIFIED
+    U->>C: Verify result
+    C->>E: Check com identidade e inputs
+    E->>E: Capturar antes / executar / capturar depois
+    alt Observação estável e oráculo aceita
+        E-->>C: APPROVED se não houver contradição aplicável
+    else Resultado estável e incorreto
+        E-->>C: REJECTED
+    else Interrupção ou inputs instáveis
+        E-->>C: INCONCLUSIVE
+    end
+    C-->>U: Verdict, inputs e histórico em memória
+    opt Edição posterior dos arquivos
+        U->>C: Refresh inputs
+        C->>E: Recapturar e reavaliar sem executar oráculo
+        E-->>U: Evidência anterior pode perder aplicabilidade
+    end
+    Note over R,E: Cancelamento e timeout exigem observar saída e não aprovam.
+```
+
+</details>
+
+A captura inicial e posterior pertencem à verificação. Uma edição posterior exige
+**Refresh inputs** e pode tornar a observação antiga inaplicável. O histórico
+continua em memória; nenhum passo desta figura restaura dados após reinício.
+A [referência do Engine](contracts.md#verification-engine) detalha a precedência
+entre contradição, interrupção e aprovação.
+
+## Tecnologia e decisões
+
+Rust 2024/resolver 3, toolchain fixado em 1.99.1, piso declarado 1.99 e Iced
+=0.14.0 com tiny-skia, x11, wayland, fira-sans e thread-pool. O perfil dev usa
+`debug = 0` e `opt-level = 3` apenas para tiny-skia; a correção e o corpus estão no
+[relatório F0](../validation/f0-resumption-20261103/report.md). Não há adoção de
+Tokio, SQLite, JSON-RPC ou ACP para essas fatias. O host usa `std` e socket Unix;
+o runtime e o engine usam `std::process`.
+
+Fontes próprias usam `forbid(unsafe_code)`. Isso não proíbe unsafe transitivo.
+As decisões vigentes incluem a [fronteira F0](../decisions/f0-boundary-20261102.md),
+a [reconciliação de toolchain](../decisions/governance-reconciliation.md) e a
+[política de versões](../decisions/version-update-policy.md). A ADR de bootstrap
+conserva escolhas históricas, sucedidas nos pontos indicados por essas decisões.
+
+## O que ainda não foi entregue
+
+- Agentes de IA, adaptadores de provedores, prompts, transmissão e gestão de segredos.
+- Orquestração multitarefa, recuperação de processo, contenção de descendentes e sandbox.
+- Persistência de histórico, backup/restore de dados da aplicação e migração de schema.
+- Indexação incremental, contexto semântico, motores e dois modos visuais de grafo.
+- Compactação de output e contabilidade de tokens/cache/custo.
+- LSP e integrações avançadas por plugins, SDK público, marketplace e distribuição.
+- Interface para arquivos SDD e skills de projetos do usuário.
+
+Persistência é uma entrega independente após F0 e antes de F3/MVP, ainda proposta.
+O [mapa de marcos](context.md) e as [decisões abertas](../decisions/open-questions.md)
+registram direção e decisões pendentes; não constituem funcionalidades disponíveis.
+
+## Fontes, evidências e manutenção
+
+As implementações executáveis estão em
+[desktop.rs](../../application/crates/ox-ui/src/desktop.rs),
+[local_task.rs](../../application/crates/ox-ui/src/local_task.rs),
+[runtime.rs](../../application/crates/ox-agent/src/runtime.rs),
+[host.rs](../../application/crates/ox-plugin/src/host.rs) e
+[engine.rs](../../application/crates/ox-verification/src/engine.rs).
+A [referência de contratos](contracts.md) aponta testes e semântica de falhas.
+As features [bootstrap](../../sdd/features/product-bootstrap/converge.md),
+[host](../../sdd/features/product-plugin-host/converge.md),
+[runtime](../../sdd/features/product-agent-runtime/converge.md),
+[verificação](../../sdd/features/product-verification-engine/converge.md) e
+[UI local](../../sdd/features/product-local-task-ui/converge.md) conservam seus
+critérios e observações. A análise documental não transfere aceitação entre elas.
+
+Ao mudar código, dependências, binários auxiliares, workflow ou escopo aceito,
+atualize o README e a seção correspondente destes guias, reexaminando apenas
+observações afetadas. Responsabilidade de manutenção: contribuinte da mudança e
+mantenedor do Ox. O [registro desta revisão](../validation/application-documentation-20261104/report.md)
+identifica os bytes inspecionados, checks e limites.

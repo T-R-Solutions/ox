@@ -1,0 +1,10 @@
+# Tarefas — reconciliação e gate F0
+
+- [x] T001 [REQ-01,04, D-01, R-01]: inspecionar autoridades/estado; preservar bytes e mapa de dependências antes das edições.
+- [x] T002 [REQ-01, D-01, R-01]: confrontar nove T004 com AC-01..04, corrigir tarefas/resumos e vincular sucessores sem apagar histórico.
+- [x] T003 [REQ-02, D-02, R-02]: detalhar sete linhas de F0, decisões de risco/plataforma, oráculos e bloqueios; não declarar adoção/encerramento.
+- [x] T004 [REQ-03, D-03, R-03]: preparar ADR comparativa e product-local-persistence apenas como proposta.
+- [x] T005 [REQ-04, D-04, R-04]: reexaminar vínculos documentais afetados, executar checks focados, registrar resultados/limites e convergir.
+- [ ] T006 [REQ-02,03, D-02,03, R-02,03]: mantenedor decide escopo F0 e D1..D4 da persistência; implementação depende de autorização explícita. Esta decisão externa não é substituída pela aceitação documental AC-01..04.
+
+T005: 46 testes de governança passaram; preservação recuperou 439/439 inputs históricos. Falhas iniciais de sucessão preservadas. A função de recuperação recebeu mapa delimitado de 17 documentos e quatro testes adversariais, sem código de produto. Checks finais de vínculos/estrutura constam em docs/validation/f0-reconciliation-20261101/checks.json.

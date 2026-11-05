@@ -1,0 +1,706 @@
+2032019 09:46:26.511337 ppoll([{fd=4, events=POLLIN}], 1, NULL, NULL, 8) = 1 ([{fd=4, revents=POLLIN}])
+2032019 09:46:26.512226 ppoll([{fd=4, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032021 09:46:26.513497 connect(6, {sa_family=AF_UNIX, sun_path="/run/dbus/system_bus_socket"}, 110) = 0
+2032021 09:46:26.514454 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\0", iov_len=1}], msg_iovlen=1, msg_control=[{cmsg_len=28, cmsg_level=SOL_SOCKET, cmsg_type=SCM_CREDENTIALS, cmsg_data={pid=2032017, uid=1000, gid=1000}}], msg_controllen=32, msg_flags=0}, MSG_NOSIGNAL) = 1
+2032021 09:46:26.514973 ppoll([{fd=10, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999999000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.515034 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:26.515153 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\0\0\0\0\1\0\0\0n\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=128}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 128
+2032022 09:46:26.515208 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 2 ([{fd=6, revents=POLLIN}, {fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:26.515304 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\f\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.515359 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\1\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=76}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 76
+2032022 09:46:26.515450 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032021 09:46:26.515529 <... ppoll resumed>) = 1 ([{fd=10, revents=POLLIN}], left {tv_sec=24, tv_nsec=999480979})
+2032022 09:46:26.515562 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1\f\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.515598 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.515638 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 156
+2032022 09:46:26.515670 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.515747 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:26.515796 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, NULL, NULL, 8 <unfinished ...>
+2032023 09:46:26.516520 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.516608 connect(9, {sa_family=AF_UNIX, sun_path="/tmp/ox-f0-private-bus-2032013"}, 110) = 0
+2032023 09:46:26.516753 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\0", iov_len=1}], msg_iovlen=1, msg_control=[{cmsg_len=28, cmsg_level=SOL_SOCKET, cmsg_type=SCM_CREDENTIALS, cmsg_data={pid=2032017, uid=1000, gid=1000}}], msg_controllen=32, msg_flags=0}, MSG_NOSIGNAL) = 1
+2032022 09:46:26.516983 <... ppoll resumed>) = 1 ([{fd=7, revents=POLLIN}])
+2032023 09:46:26.517032 ppoll([{fd=11, events=POLLIN}], 1, {tv_sec=25, tv_nsec=0}, NULL, 8 <unfinished ...>
+2032022 09:46:26.517056 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:26.517096 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\0\0\0\0\1\0\0\0n\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=128}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 128
+2032022 09:46:26.517136 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.517179 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:46:26.517392 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\t\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.517436 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\1\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=73}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 73
+2032022 09:46:26.517490 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:26.517576 <... ppoll resumed>) = 1 ([{fd=11, revents=POLLIN}], left {tv_sec=24, tv_nsec=999474779})
+2032022 09:46:26.517718 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1\t\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.517779 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:26.517926 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8 <unfinished ...>
+2032022 09:46:26.517951 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\200\0\0\0\2\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=272}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL <unfinished ...>
+2032023 09:46:26.517974 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:26.517987 <... sendmsg resumed>) = 272
+2032022 09:46:26.518013 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=153}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 153
+2032023 09:46:26.518052 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999732000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.518066 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:26.518105 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1~\0\0\0\3\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=270}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 270
+2032022 09:46:26.518168 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.518212 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.518243 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1u\0\0\0\4\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=261}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 261
+2032022 09:46:26.518290 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\2\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.518320 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.518351 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1}\0\0\0\5\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=269}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 269
+2032023 09:46:26.518428 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999374619})
+2032023 09:46:26.518488 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999338000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.518539 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.518580 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.518622 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\226\0\0\0\6\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=294}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 294
+2032022 09:46:26.518679 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\3\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.518725 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.518766 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999075019})
+2032022 09:46:26.518800 recvmsg(9 <unfinished ...>
+2032023 09:46:26.518811 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999095000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.518823 <... recvmsg resumed>, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.518847 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.518888 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\4\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.518920 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.518963 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=998961330})
+2032023 09:46:26.519035 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=998890000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.519080 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.519125 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.519170 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\5\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.519204 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.519249 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=998696189})
+2032023 09:46:26.519307 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=998729000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.519344 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.519374 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.519419 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\6\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.519454 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.519490 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=998558950})
+2032023 09:46:26.519551 ppoll([{fd=8, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032022 09:46:26.519599 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:26.519640 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8 <unfinished ...>
+2032030 09:46:26.644988 +++ exited with 0 +++
+2032029 09:46:26.645294 +++ exited with 0 +++
+2032028 09:46:26.645695 +++ exited with 0 +++
+2032037 09:46:26.673206 +++ exited with 0 +++
+2032036 09:46:26.673455 +++ exited with 0 +++
+2032035 09:46:26.673896 +++ exited with 0 +++
+2032023 09:46:26.677995 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}])
+2032022 09:46:26.678138 <... ppoll resumed>) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:26.678180 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\210\0\0\0\7\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=280}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL <unfinished ...>
+2032023 09:46:26.678207 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999949000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.678221 <... sendmsg resumed>) = 280
+2032022 09:46:26.678247 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.678298 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\201\0\0\0\10\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=273}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 273
+2032022 09:46:26.678360 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=9, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:26.678409 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.678457 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\7\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.678546 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:26.678616 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999556130})
+2032023 09:46:26.678683 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999508000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.678730 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.678768 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.678804 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\10\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.678852 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.678894 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999313450})
+2032023 09:46:26.678964 ppoll([{fd=8, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032022 09:46:26.679016 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:26.679061 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8 <unfinished ...>
+2032023 09:46:26.685225 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}])
+2032022 09:46:26.685453 <... ppoll resumed>) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:26.685520 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\213\0\0\0\t\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=283}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 283
+2032022 09:46:26.685560 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=9, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:26.685620 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999840000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.685634 recvmsg(9 <unfinished ...>
+2032023 09:46:26.685644 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999839490})
+2032022 09:46:26.685656 <... recvmsg resumed>, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032023 09:46:26.685682 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999774000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.685693 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\t\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.685757 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\214\0\0\0\n\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=284}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 284
+2032022 09:46:26.685789 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:26.685848 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999620250})
+2032022 09:46:26.685870 recvmsg(9 <unfinished ...>
+2032023 09:46:26.685885 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999609000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.685895 <... recvmsg resumed>, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.685914 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\220\0\0\0\v\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=288}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 288
+2032022 09:46:26.685946 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.685989 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\n\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.686022 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\213\0\0\0\f\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=283}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 283
+2032022 09:46:26.686079 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.686144 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999362529})
+2032023 09:46:26.686196 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999326000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.686234 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.686265 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\204\0\0\0\r\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=276}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 276
+2032022 09:46:26.686296 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.686340 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\v\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.686381 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.686425 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999110960})
+2032023 09:46:26.686478 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999095000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.686510 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.686543 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.686580 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\f\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.686610 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.686649 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=998937200})
+2032022 09:46:26.686671 recvmsg(9 <unfinished ...>
+2032023 09:46:26.686680 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=998939000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.686692 <... recvmsg resumed>, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.686708 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:26.686742 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\r\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.686773 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:26.686802 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=998829260})
+2032023 09:46:26.686852 ppoll([{fd=8, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032022 09:46:26.686894 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:26.686922 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8 <unfinished ...>
+2032047 09:46:26.689718 ppoll([{fd=19, events=POLLIN}], 1, NULL, NULL, 8) = 1 ([{fd=19, revents=POLLIN}])
+2032017 09:46:26.689770 ppoll([{fd=20, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032047 09:46:26.706625 ppoll([{fd=19, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032017 09:46:26.706648 <... ppoll resumed>) = 1 ([{fd=20, revents=POLLIN}])
+2032022 09:46:26.712546 <... ppoll resumed>) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:46:26.712598 ppoll([{fd=20, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999985000}, NULL, 8 <unfinished ...>
+2032022 09:46:26.712623 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\242\0\0\0\16\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=306}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 306
+2032022 09:46:26.712671 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=9, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:26.712735 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:26.712794 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\16\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:26.712872 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\34\0\0\0\17\0\0\0\203\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=180}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 180
+2032022 09:46:26.712914 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:26.713010 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:26.713063 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8 <unfinished ...>
+2032021 09:46:42.211093 +++ exited with 0 +++
+2032017 09:46:51.737631 <... ppoll resumed>) = 0 (Timeout)
+2032022 09:46:51.737968 <... ppoll resumed>) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.738088 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\242\0\0\0\20\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=306}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 306
+2032022 09:46:51.738165 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.738209 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:46:51.738507 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.738571 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\20\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.738645 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.738714 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.738748 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8 <unfinished ...>
+2032047 09:46:51.739630 <... ppoll resumed>) = 1 ([{fd=19, revents=POLLIN}])
+2032047 09:46:51.739706 ppoll([{fd=19, events=POLLIN}], 1, NULL, NULL, 8) = 1 ([{fd=19, revents=POLLIN}])
+2032047 09:46:51.743085 ppoll([{fd=19, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032023 09:46:51.743147 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}])
+2032022 09:46:51.743326 <... ppoll resumed>) = 1 ([{fd=7, revents=POLLIN}])
+2032023 09:46:51.743457 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999878000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.743481 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\205\0\0\0\21\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=277}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 277
+2032022 09:46:51.743523 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.743577 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\204\0\0\0\22\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=276}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 276
+2032022 09:46:51.743611 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=9, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.743654 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.743706 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\21\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.743769 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:51.743829 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999538649})
+2032022 09:46:51.743859 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032023 09:46:51.743889 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999553000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.743903 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.743934 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\22\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.743965 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:51.744005 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999454560})
+2032023 09:46:51.744072 ppoll([{fd=8, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032022 09:46:51.744116 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.744150 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:46:51.745507 ppoll([{fd=30, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999999000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.745533 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\2\1$\0\0\0\23\0\0\0\217\0\0\0\1\1o\0\31\0\0\0/org/gno"..., iov_len=196}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 196
+2032022 09:46:51.745564 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=9, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.745607 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1\37\0\0\0\377\377\377\377u\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.745650 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\23\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=151}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 151
+2032022 09:46:51.745712 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:46:51.745772 <... ppoll resumed>) = 1 ([{fd=30, revents=POLLIN}], left {tv_sec=24, tv_nsec=999747299})
+2032022 09:46:51.745811 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.745853 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:46:51.745894 ppoll([{fd=30, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999999000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.745919 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\2\1,\0\0\0\24\0\0\0\224\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=212}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 212
+2032022 09:46:51.745950 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.745980 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:46:51.746022 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.746067 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\24\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.746128 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:46:51.746184 <... ppoll resumed>) = 1 ([{fd=30, revents=POLLIN}], left {tv_sec=24, tv_nsec=999720960})
+2032022 09:46:51.746224 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.746292 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8 <unfinished ...>
+2032023 09:46:51.746429 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}])
+2032022 09:46:51.746617 <... ppoll resumed>) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.746727 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\205\0\0\0\25\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=277}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL <unfinished ...>
+2032023 09:46:51.746745 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999891000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.746757 <... sendmsg resumed>) = 277
+2032023 09:46:51.746764 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999890530})
+2032022 09:46:51.746774 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 2 ([{fd=7, revents=POLLIN}, {fd=9, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:51.746802 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999821000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.746831 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.746872 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\25\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.746927 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\201\0\0\0\26\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=273}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 273
+2032022 09:46:51.746959 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:51.747015 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999621829})
+2032022 09:46:51.747040 recvmsg(9 <unfinished ...>
+2032023 09:46:51.747050 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999659000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.747062 <... recvmsg resumed>, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.747082 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\211\0\0\0\27\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=281}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 281
+2032022 09:46:51.747116 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.747150 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\26\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.747182 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:51.747217 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999505760})
+2032022 09:46:51.747247 recvmsg(9 <unfinished ...>
+2032023 09:46:51.747259 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999472000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.747269 <... recvmsg resumed>, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.747326 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.747360 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\27\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.747390 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032023 09:46:51.747426 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999319619})
+2032023 09:46:51.747478 ppoll([{fd=8, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032022 09:46:51.747500 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.747529 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.747943 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\247\0\0\0\2\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=311}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL <unfinished ...>
+2032017 09:46:51.747956 ppoll([{fd=30, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999999000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.747967 <... sendmsg resumed>) = 311
+2032022 09:46:51.747978 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.748001 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1 \0\0\0\3\0\0\0\203\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.748031 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=6, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.748068 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.748105 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\2\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.748157 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.748222 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.748259 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=6, revents=POLLIN}])
+2032022 09:46:51.819521 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\0010\0\0\0\377\377\377\377\211\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.819612 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=192}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 192
+2032022 09:46:51.819675 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.819748 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.819777 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.819813 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\3\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.819845 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032017 09:46:51.819890 <... ppoll resumed>) = 1 ([{fd=30, revents=POLLIN}], left {tv_sec=24, tv_nsec=928081714})
+2032022 09:46:51.819946 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:46:51.820028 ppoll([{fd=30, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999994000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.820059 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\34\0\0\0\4\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=172}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 172
+2032022 09:46:51.820088 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=6, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.820125 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\f\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.820161 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\4\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=76}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 76
+2032022 09:46:51.820213 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:46:51.820312 <... ppoll resumed>) = 1 ([{fd=30, revents=POLLIN}], left {tv_sec=24, tv_nsec=999728360})
+2032022 09:46:51.820388 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.820463 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:46:51.820531 ppoll([{fd=30, events=POLLIN}], 1, {tv_sec=0, tv_nsec=100000000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.820569 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\34\0\0\0\5\0\0\0w\0\0\0\1\1o\0\30\0\0\0/org/fre"..., iov_len=164}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 164
+2032022 09:46:51.820607 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.820642 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=6, revents=POLLIN}])
+2032022 09:46:51.820696 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\21\1\0\0\5\0\0\08\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.820737 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\5\0\0\0\6\1s\0\7\0\0\0:1.1337\0\10\1g\0\5a{s"..., iov_len=329}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 329
+2032022 09:46:51.820788 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:46:51.820849 <... ppoll resumed>) = 1 ([{fd=30, revents=POLLIN}], left {tv_sec=0, tv_nsec=99703650})
+2032022 09:46:51.820894 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.820951 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8 <unfinished ...>
+2032047 09:46:51.820978 <... ppoll resumed>) = 1 ([{fd=19, revents=POLLIN}])
+2032022 09:46:51.821003 <... ppoll resumed>) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.821036 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\247\0\0\0\6\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=311}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 311
+2032022 09:46:51.821072 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=6, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:51.821099 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}])
+2032022 09:46:51.821124 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.821179 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\6\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032023 09:46:51.821222 ppoll([{fd=8, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999998000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.821327 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.821372 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1|\0\0\0\30\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=268}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 268
+2032022 09:46:51.821451 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 2 ([{fd=7, revents=POLLIN}, {fd=9, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.821521 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.821568 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\30\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.821645 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032023 09:46:51.821710 <... ppoll resumed>) = 1 ([{fd=8, revents=POLLIN}], left {tv_sec=24, tv_nsec=999532839})
+2032023 09:46:51.821794 ppoll([{fd=8, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032017 09:46:51.821812 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 2 ([{fd=3, revents=POLLIN}, {fd=10, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.821858 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.821899 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.822200 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\246\0\0\0\7\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=310}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 310
+2032022 09:46:51.822239 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 2 ([{fd=6, revents=POLLIN}, {fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.822403 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.822457 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\7\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.822881 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\33\0\0\0\10\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=171}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 171
+2032022 09:46:51.822934 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0\31\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.822982 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 2 ([{fd=7, revents=POLLIN}, {fd=9, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.823047 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1#\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032017 09:46:51.823075 ppoll([{fd=32, events=POLLIN}], 1, {tv_sec=25, tv_nsec=0}, NULL, 8 <unfinished ...>
+2032022 09:46:51.823098 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=179}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 179
+2032022 09:46:51.823178 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\t\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.823213 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\225\0\0\0\t\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=293}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 293
+2032022 09:46:51.823240 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\256\0\0\0\32\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=318}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 318
+2032022 09:46:51.823273 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.823348 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.823394 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\10\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=73}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 73
+2032022 09:46:51.823427 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\246\0\0\0\n\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=310}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 310
+2032022 09:46:51.823457 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1#\0\0\0\33\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=179}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 179
+2032022 09:46:51.823490 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.823523 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\31\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.823574 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.823604 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\33\0\0\0\v\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=171}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 171
+2032022 09:46:51.823639 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\316\0\0\0\34\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=350}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 350
+2032022 09:46:51.823673 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.823732 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.823776 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\t\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.823810 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\246\0\0\0\f\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=310}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 310
+2032022 09:46:51.823840 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\214\0\0\0\35\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=284}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 284
+2032022 09:46:51.823873 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.823910 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\32\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.823958 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.823989 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\33\0\0\0\r\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=171}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 171
+2032022 09:46:51.824017 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1#\0\0\0\36\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=179}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 179
+2032022 09:46:51.824051 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.824092 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1$\0\0\0\377\377\377\377u\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.824131 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\n\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.824159 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\254\0\0\0\16\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=316}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 316
+2032022 09:46:51.824192 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\265\0\0\0\37\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=325}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 325
+2032022 09:46:51.824226 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.824263 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\33\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 156
+2032022 09:46:51.824309 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1$\0\0\0\377\377\377\377x\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.824336 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1!\0\0\0\17\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=177}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 177
+2032022 09:46:51.824367 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1*\0\0\0 \0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=186}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 186
+2032022 09:46:51.824399 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.824440 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.824486 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\v\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 156
+2032022 09:46:51.824516 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\310\0\0\0\20\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=344}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 344
+2032022 09:46:51.824547 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\334\0\0\0!\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=364}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 364
+2032022 09:46:51.824578 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.824615 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\34\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.824683 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.824715 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\206\0\0\0\21\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=278}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 278
+2032022 09:46:51.824747 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\232\0\0\0\"\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=298}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 298
+2032022 09:46:51.824778 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.824818 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.824855 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\f\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.824882 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0\22\0\0\0\203\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=192}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 192
+2032022 09:46:51.824914 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1*\0\0\0#\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=186}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 186
+2032022 09:46:51.824945 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.824976 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\35\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.825019 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\n\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.825052 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0$\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.825080 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.825119 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1$\0\0\0\377\377\377\377u\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.825164 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\r\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=74}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 74
+2032022 09:46:51.825196 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\250\0\0\0%\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=312}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 312
+2032022 09:46:51.825238 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.825273 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\36\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 156
+2032022 09:46:51.825335 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.825365 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\35\0\0\0&\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=173}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 173
+2032022 09:46:51.825394 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.825524 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.825597 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\16\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.825633 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\274\0\0\0'\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=332}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 332
+2032022 09:46:51.825663 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.825700 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\37\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.825756 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\n\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.825782 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\35\0\0\0(\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=173}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 173
+2032022 09:46:51.825810 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.825848 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1$\0\0\0\377\377\377\377u\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.825888 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\17\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=74}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 74
+2032022 09:46:51.825924 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.825955 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0 \0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 156
+2032022 09:46:51.826002 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.826034 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.826075 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.826117 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\20\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.826155 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.826187 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0!\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.826248 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.826298 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.826352 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.826391 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\21\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.826418 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.826453 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\"\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.826500 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.826526 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.826561 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1$\0\0\0\377\377\377\377u\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.826602 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\22\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.826628 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.826661 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0#\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 156
+2032022 09:46:51.826736 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.826806 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1\"\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.826835 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.826868 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=178}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 178
+2032022 09:46:51.826899 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.826953 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.826979 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.827014 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0$\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.827042 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.827094 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.827120 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.827153 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0%\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.827182 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.827224 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1$\0\0\0\377\377\377\377u\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.827249 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.827283 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0&\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 156
+2032022 09:46:51.827313 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.827354 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.827379 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.827411 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0'\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.827441 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.827485 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1$\0\0\0\377\377\377\377u\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.827510 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.827543 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0(\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 156
+2032022 09:46:51.827572 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032017 09:46:51.827617 <... ppoll resumed>) = 1 ([{fd=32, revents=POLLIN}], left {tv_sec=24, tv_nsec=995474471})
+2032022 09:46:51.827660 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.827698 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.828020 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0)\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.828051 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=9, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.828085 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1!\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.828128 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=177}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 177
+2032022 09:46:51.828190 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0*\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.828220 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.828376 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.828405 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1$\0\0\0+\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=180}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 180
+2032017 09:46:51.828430 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8 <unfinished ...>
+2032022 09:46:51.828440 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8 <unfinished ...>
+2032017 09:46:51.828450 <... ppoll resumed>) = 2 ([{fd=3, revents=POLLIN}, {fd=10, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.828462 <... ppoll resumed>) = 0 (Timeout)
+2032022 09:46:51.828486 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0)\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.828513 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0,\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.828542 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032017 09:46:51.828647 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8 <unfinished ...>
+2032022 09:46:51.828656 recvmsg(9 <unfinished ...>
+2032017 09:46:51.828665 <... ppoll resumed>) = 1 ([{fd=3, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.828674 <... recvmsg resumed>, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1\"\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.828703 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0-\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.828813 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.828955 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=178}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 178
+2032022 09:46:51.828990 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\256\0\0\0.\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=318}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL <unfinished ...>
+2032017 09:46:51.829003 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}, {fd=21, events=POLLIN}, {fd=22, events=POLLIN}], 5, {tv_sec=0, tv_nsec=0}, NULL, 8 <unfinished ...>
+2032022 09:46:51.829014 <... sendmsg resumed>) = 318
+2032017 09:46:51.829021 <... ppoll resumed>) = 1 ([{fd=21, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.829030 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\33\0\0\0\23\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=171}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 171
+2032022 09:46:51.829065 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 2 ([{fd=6, revents=POLLIN}, {fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.829125 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\n\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.829175 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\23\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=74}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 74
+2032022 09:46:51.829329 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.829361 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1#\0\0\0/\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=179}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 179
+2032022 09:46:51.829393 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\266\0\0\0\24\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=326}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 326
+2032022 09:46:51.829425 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.829488 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.829531 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0*\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.829564 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0000\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.829595 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1t\0\0\0\25\0\0\0y\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=260}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 260
+2032022 09:46:51.829705 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.829738 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\24\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.829801 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1 \0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.829828 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0001\0\0\0|\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.829854 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1 \0\0\0\26\0\0\0\203\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=184}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 184
+2032022 09:46:51.829885 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.829930 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.829968 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=176}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 176
+2032022 09:46:51.830000 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1!\0\0\0\27\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=177}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 177
+2032022 09:46:51.830028 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.830064 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\25\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.830121 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.830149 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.830186 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.830233 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0+\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.830274 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.830321 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\26\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.830385 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1#\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.830417 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.830472 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\n\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.830510 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=179}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 179
+2032022 09:46:51.830538 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.830572 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\27\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=74}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 74
+2032022 09:46:51.830642 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.830668 ppoll([{fd=7, events=POLLIN}], 1, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.830760 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0,\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.830791 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.830866 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1\"\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.830891 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.830927 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=178}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 178
+2032022 09:46:51.830955 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831007 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.831034 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831069 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0-\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.831096 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831153 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\0\0\0\0\377\377\377\377>\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.831180 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831214 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0.\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=64}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 64
+2032022 09:46:51.831249 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831286 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1$\0\0\0\377\377\377\377u\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.831314 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831347 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0/\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 156
+2032022 09:46:51.831374 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831427 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1!\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.831454 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831486 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=177}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 177
+2032022 09:46:51.831514 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831564 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.831591 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831621 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0000\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.831648 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831733 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\4\1\1$\0\0\0\377\377\377\377\217\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.831759 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831795 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\7\1s\0\24\0\0\0org.freedesktop.DBus\0\0\0\0"..., iov_len=180}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 180
+2032022 09:46:51.831822 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831878 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.831905 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.831939 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0001\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.831966 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.832033 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.832072 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8 <unfinished ...>
+2032047 09:46:51.832106 ppoll([{fd=19, events=POLLIN}], 1, NULL, NULL, 8) = 1 ([{fd=19, revents=POLLIN}])
+2032047 09:46:51.832150 ppoll([{fd=19, events=POLLIN}], 1, NULL, NULL, 8 <unfinished ...>
+2032017 09:46:51.898810 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=3, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.898933 <... ppoll resumed>) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:46:51.899015 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}, {fd=21, events=POLLIN}, {fd=22, events=POLLIN}, {fd=30, events=POLLIN}], 6, {tv_sec=0, tv_nsec=0}, NULL, 8 <unfinished ...>
+2032022 09:46:51.899026 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\33\0\0\0\30\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=171}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL <unfinished ...>
+2032017 09:46:51.899042 <... ppoll resumed>) = 0 (Timeout)
+2032022 09:46:51.899050 <... sendmsg resumed>) = 171
+2032022 09:46:51.899066 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=6, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.899109 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\n\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.899154 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\30\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=74}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 74
+2032022 09:46:51.899218 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1!\0\0\0\31\0\0\0w\0\0\0\1\1o\0\35\0\0\0/org/fre"..., iov_len=169}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 169
+2032022 09:46:51.899252 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:46:51.899335 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=3, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.899386 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:46:51.899436 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}, {fd=21, events=POLLIN}, {fd=22, events=POLLIN}, {fd=30, events=POLLIN}], 6, {tv_sec=24, tv_nsec=999538000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.899474 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\33\0\0\0\32\0\0\0o\0\0\0\1\1o\0\27\0\0\0/org/fre"..., iov_len=155}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 155
+2032022 09:46:51.899505 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=6, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.899546 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\210\0\0\0\302\0\0\0006\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.899588 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\6\1s\0\7\0\0\0:1.1337\0\10\1g\0\5a{sv}\0\0\0\0\0\0"..., iov_len=192}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 192
+2032022 09:46:51.899685 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:46:51.899777 <... ppoll resumed>) = 1 ([{fd=3, revents=POLLIN}], left {tv_sec=24, tv_nsec=999218270})
+2032022 09:46:51.899807 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1x\0\0\0\0\276\2\0006\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.899845 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032017 09:46:51.899896 ppoll([{fd=32, events=POLLIN}], 1, {tv_sec=25, tv_nsec=0}, NULL, 8 <unfinished ...>
+2032022 09:46:51.899910 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\6\1s\0\7\0\0\0:1.1337\0\10\1g\0\5a{sv}\0\0\0\0\0\0"..., iov_len=176}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 176
+2032022 09:46:51.899949 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.899998 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0\33\0\0\0\203\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=192}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 192
+2032022 09:46:51.900073 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\4\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.900111 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.900157 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\33\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=68}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 68
+2032022 09:46:51.900193 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032017 09:46:51.900243 <... ppoll resumed>) = 1 ([{fd=32, revents=POLLIN}], left {tv_sec=24, tv_nsec=999672810})
+2032017 09:46:51.900422 ppoll([{fd=32, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999977000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.900437 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.900487 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1!\0\0\0\34\0\0\0}\0\0\0\1\1o\0\25\0\0\0/org/fre"..., iov_len=177}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 177
+2032022 09:46:51.900525 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=6, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.900571 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\n\0\0\0\377\377\377\377?\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.900625 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\5\1u\0\34\0\0\0\7\1s\0\24\0\0\0org.freedesktop."..., iov_len=74}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 74
+2032022 09:46:51.900677 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:46:51.900726 <... ppoll resumed>) = 1 ([{fd=32, revents=POLLIN}], left {tv_sec=24, tv_nsec=999690280})
+2032017 09:46:51.900797 ppoll([{fd=32, events=POLLIN}], 1, {tv_sec=24, tv_nsec=999997000}, NULL, 8 <unfinished ...>
+2032022 09:46:51.900814 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:46:51.900849 sendmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1!\0\0\0\35\0\0\0w\0\0\0\1\1o\0\35\0\0\0/org/fre"..., iov_len=169}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 169
+2032022 09:46:51.900876 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:46:51.900900 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=6, revents=POLLIN}])
+2032022 09:46:51.900970 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\210\0\0\0\303\0\0\0006\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:46:51.901007 recvmsg(6, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\6\1s\0\7\0\0\0:1.1337\0\10\1g\0\5a{sv}\0\0\0\0\0\0"..., iov_len=192}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 192
+2032022 09:46:51.901056 ppoll([{fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:46:51.901105 <... ppoll resumed>) = 1 ([{fd=32, revents=POLLIN}], left {tv_sec=24, tv_nsec=999702780})
+2032022 09:46:51.901143 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:46:51.901177 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8 <unfinished ...>
+2032019 09:46:51.901469 <... ppoll resumed>) = 1 ([{fd=4, revents=POLLIN}])
+2032019 09:46:51.901525 ppoll([{fd=4, events=POLLIN}, {fd=32, events=POLLIN}], 2, NULL, NULL, 8) = 1 ([{fd=4, revents=POLLIN}])
+2032019 09:46:51.901778 ppoll([{fd=4, events=POLLIN}, {fd=32, events=POLLIN}], 2, {tv_sec=7, tv_nsec=60469000}, NULL, 8 <unfinished ...>
+2032017 09:46:51.902631 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=3, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:46:51.902687 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}, {fd=21, events=POLLIN}, {fd=22, events=POLLIN}, {fd=30, events=POLLIN}], 6, NULL, NULL, 8 <unfinished ...>
+2032019 09:46:58.969640 <... ppoll resumed>) = 0 (Timeout)
+2032019 09:46:58.969772 ppoll([{fd=4, events=POLLIN}, {fd=32, events=POLLIN}], 2, NULL, NULL, 8 <unfinished ...>
+2032390 09:47:07.321668 +++ exited with 0 +++
+2032022 09:47:21.491980 <... ppoll resumed>) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.492084 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\0\0\0\0\2\0\0\0\245\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.492162 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Remote"..., iov_len=168}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 168
+2032022 09:47:21.492243 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.492366 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.492411 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\251\6\0\0002\0\0\0 \0\0\0\6\1s\0\4\0\0\0:1.1\0\0\0\0"..., iov_len=1753}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 1753
+2032022 09:47:21.492463 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.492512 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.492604 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1$\0\0\0\3\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.492652 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Remote"..., iov_len=196}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 196
+2032022 09:47:21.492713 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.492808 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.492850 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1<\0\0\0003\0\0\0P\0\0\0\4\1s\0&\0\0\0org.free"..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 156
+2032022 09:47:21.492878 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.492902 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.492991 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0\4\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.493029 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Remote"..., iov_len=200}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 200
+2032022 09:47:21.493078 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.493148 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.493185 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1@\0\0\0004\0\0\0P\0\0\0\4\1s\0&\0\0\0org.free"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 160
+2032022 09:47:21.493212 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.493240 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.493301 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\36\0\0\0\5\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.493339 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Remote"..., iov_len=190}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 190
+2032022 09:47:21.493389 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.493457 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.493497 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\0016\0\0\0005\0\0\0P\0\0\0\4\1s\0&\0\0\0org.free"..., iov_len=150}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 150
+2032022 09:47:21.493523 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.493546 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.493612 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1#\0\0\0\6\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.493650 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Remote"..., iov_len=195}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 195
+2032022 09:47:21.493698 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:47:21.493774 <... ppoll resumed>) = 1 ([{fd=3, revents=POLLIN}])
+2032022 09:47:21.493789 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032022 09:47:21.493821 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:47:21.493946 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}, {fd=21, events=POLLIN}, {fd=22, events=POLLIN}, {fd=30, events=POLLIN}], 6, NULL, NULL, 8 <unfinished ...>
+2032022 09:47:21.493993 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1<\0\0\0006\0\0\0(\0\0\0\6\1s\0\4\0\0\0:1.1\0\0\0\0"..., iov_len=116}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 116
+2032022 09:47:21.494026 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.494055 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.497000 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\0\0\0\0\2\0\0\0\245\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.497091 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\34\0\0\0/org/gnome/Mutter/Screen"..., iov_len=168}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 168
+2032022 09:47:21.497181 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.497331 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.497388 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\236\6\0\0007\0\0\0 \0\0\0\6\1s\0\4\0\0\0:1.2\0\0\0\0"..., iov_len=1742}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 1742
+2032022 09:47:21.497425 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.497453 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.497554 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1$\0\0\0\3\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.497593 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\34\0\0\0/org/gnome/Mutter/Screen"..., iov_len=196}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 196
+2032022 09:47:21.497647 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.497726 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.497764 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1<\0\0\08\0\0\0P\0\0\0\4\1s\0&\0\0\0org.free"..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 156
+2032022 09:47:21.497794 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.497819 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.497900 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0\4\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.497939 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\34\0\0\0/org/gnome/Mutter/Screen"..., iov_len=200}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 200
+2032022 09:47:21.497989 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.498065 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.498102 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1@\0\0\09\0\0\0P\0\0\0\4\1s\0&\0\0\0org.free"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 160
+2032022 09:47:21.498130 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.498155 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.498219 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\36\0\0\0\5\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.498263 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\34\0\0\0/org/gnome/Mutter/Screen"..., iov_len=190}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 190
+2032022 09:47:21.498313 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.498387 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.498424 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\0016\0\0\0:\0\0\0P\0\0\0\4\1s\0&\0\0\0org.free"..., iov_len=150}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 150
+2032022 09:47:21.498453 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.498477 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.498543 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1 \0\0\0\6\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.498582 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\34\0\0\0/org/gnome/Mutter/Screen"..., iov_len=192}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 192
+2032022 09:47:21.498634 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:47:21.498686 <... ppoll resumed>) = 1 ([{fd=3, revents=POLLIN}])
+2032022 09:47:21.498745 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:47:21.498779 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}, {fd=21, events=POLLIN}, {fd=22, events=POLLIN}, {fd=30, events=POLLIN}], 6, NULL, NULL, 8 <unfinished ...>
+2032022 09:47:21.498804 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\34\0\0\0;\0\0\0(\0\0\0\6\1s\0\4\0\0\0:1.2\0\0\0\0"..., iov_len=84}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 84
+2032022 09:47:21.498833 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.498864 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.501237 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\0\0\0\0\2\0\0\0\245\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.501295 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Displa"..., iov_len=168}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 168
+2032022 09:47:21.501363 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.501500 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.501542 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\337\21\0\0<\0\0\0 \0\0\0\6\1s\0\4\0\0\0:1.3\0\0\0\0"..., iov_len=4623}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 4623
+2032022 09:47:21.501576 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.501618 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.501782 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1$\0\0\0\3\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.501827 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Displa"..., iov_len=196}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 196
+2032022 09:47:21.501885 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.501970 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.502007 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1<\0\0\0=\0\0\0P\0\0\0\4\1s\0&\0\0\0org.free"..., iov_len=156}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 156
+2032022 09:47:21.502035 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.502059 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.502137 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1(\0\0\0\4\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.502175 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Displa"..., iov_len=200}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 200
+2032022 09:47:21.502230 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.502305 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.502342 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\1@\0\0\0>\0\0\0P\0\0\0\4\1s\0&\0\0\0org.free"..., iov_len=160}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 160
+2032022 09:47:21.502368 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.502392 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.502454 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1\36\0\0\0\5\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.502492 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Displa"..., iov_len=190}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 190
+2032022 09:47:21.502540 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.502610 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032022 09:47:21.502646 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\3\1\0016\0\0\0?\0\0\0P\0\0\0\4\1s\0&\0\0\0org.free"..., iov_len=150}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 150
+2032022 09:47:21.502672 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.502695 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=9, revents=POLLIN}])
+2032022 09:47:21.502756 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\1\0\1#\0\0\0\6\0\0\0\235\0\0\0", iov_len=16}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 16
+2032022 09:47:21.502793 recvmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="\1\1o\0\37\0\0\0/org/gnome/Mutter/Displa"..., iov_len=195}], msg_iovlen=1, msg_controllen=0, msg_flags=MSG_CMSG_CLOEXEC}, MSG_CMSG_CLOEXEC) = 195
+2032022 09:47:21.502842 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}], 2, {tv_sec=0, tv_nsec=0}, NULL, 8) = 1 ([{fd=7, revents=POLLIN}], left {tv_sec=0, tv_nsec=0})
+2032017 09:47:21.502893 <... ppoll resumed>) = 1 ([{fd=3, revents=POLLIN}])
+2032022 09:47:21.502986 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8) = 1 ([{fd=7, revents=POLLIN}])
+2032017 09:47:21.503066 ppoll([{fd=3, events=POLLIN}, {fd=5, events=POLLIN}, {fd=10, events=POLLIN}, {fd=21, events=POLLIN}, {fd=22, events=POLLIN}, {fd=30, events=POLLIN}], 6, NULL, NULL, 8 <unfinished ...>
+2032022 09:47:21.503100 sendmsg(9, {msg_name=NULL, msg_namelen=0, msg_iov=[{iov_base="l\2\1\1\340\0\0\0@\0\0\0(\0\0\0\6\1s\0\4\0\0\0:1.3\0\0\0\0"..., iov_len=280}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, MSG_NOSIGNAL) = 280
+2032022 09:47:21.503129 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, {tv_sec=0, tv_nsec=0}, NULL, 8) = 0 (Timeout)
+2032022 09:47:21.503158 ppoll([{fd=6, events=POLLIN}, {fd=7, events=POLLIN}, {fd=9, events=POLLIN}], 3, NULL, NULL, 8

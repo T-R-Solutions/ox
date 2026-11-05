@@ -1,0 +1,687 @@
+{
+  "scope": "F0 bounded closure resumption; original matrix preserved; unchanged observations reused only by exact input and scope review.",
+  "decisions": "docs/decisions/f0-boundary-20261102.md",
+  "requirements": [
+    {
+      "id": "F0-P01",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "Rust/Iced foundation",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Adopt named OS/filesystem/display envelope. Exact-toolchain check/fmt/clippy and workspace tests pass, skips enumerated; explicit graphical tests and native Wayland interaction cover render/toggle/exit. First-party forbid(unsafe_code) and workspace contracts inspected. No claim for 1.99.0 or other platforms. Require measured total/changed coverage, critical unit/integration/regression scenarios, minimal design system and real keyboard/focus/contrast/scale/reference-image interaction, actual cancellation/stale rejection, bounded concurrency and performance baseline followed by adopted numeric budgets before closure.",
+      "method": "Cargo commands in README plus explicit desktop tests and human/protocol Wayland observation; semantic first-party source review, not crate count. Coverage numerator/denominator with per-component critical scenarios; UI input/backend state traces; repeatable measurements compared with adopted budgets. See Q01\u2013Q08.",
+      "limit": "Adopted F0-D1..D5; trusted local Linux foundation; see constituent Q rows",
+      "owner": "maintainer for decisions; executor for verification",
+      "approval_condition": "Adopt named OS/filesystem/display envelope. Exact-toolchain check/fmt/clippy and workspace tests pass, skips enumerated; explicit graphical tests and native Wayland interaction cover render/toggle/exit. First-party forbid(unsafe_code) and workspace contracts inspected. No claim for 1.99.0 or other platforms. Require measured total/changed coverage, critical unit/integration/regression scenarios, minimal design system and real keyboard/focus/contrast/scale/reference-image interaction, actual cancellation/stale rejection, bounded concurrency and performance baseline followed by adopted numeric budgets before closure.",
+      "code": [
+        "application/Cargo.lock",
+        "application/Cargo.toml",
+        "application/crates/ox-agent/src/runtime.rs",
+        "application/crates/ox-plugin/src/host.rs",
+        "application/crates/ox-ui/examples/f0_measure.rs",
+        "application/crates/ox-ui/src/desktop.rs",
+        "application/crates/ox-ui/src/local_task.rs",
+        "application/crates/ox-verification/examples/history_measure.rs",
+        "application/crates/ox-verification/src/engine.rs",
+        "application/rust-toolchain.toml"
+      ],
+      "oracle": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04",
+        "Q05",
+        "Q06",
+        "Q07",
+        "Q08"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/acceptance-review.md",
+        "docs/validation/f0-execution-20261102/legacy-review.md",
+        "docs/validation/f0-resumption-20261103/report.md",
+        "docs/validation/f0-resumption-20261103/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/observation-checks.json"
+      ],
+      "observed_inputs": "docs/validation/f0-resumption-20261103/inputs-final.json",
+      "gap": "No open F0 blocker in adopted corpus; retain controlled-session, physical-presentation and future-scope limitations in resumption report.",
+      "authority_origin": [
+        "POL-01; product-bootstrap ADR; governance-reconciliation D-03; architecture F0"
+      ],
+      "predecessor_status": "INCONCLUSIVE"
+    },
+    {
+      "id": "F0-P02",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "Risk and platform decisions",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Every applicable risk has explicit adopted owner/decision, supported control or explicit bounded exclusion with rationale and revisit trigger. No pending decision hidden as NOT APPLICABLE. Require initial threat model linking assets/trust boundaries/permissions to claimed controls and adversarial denied-effect observations, integrity checks and resolved dependency/license/advisory review. API denial cannot prove OS isolation.",
+      "method": "Maintainer decision record plus criterion-specific denied-effect/recovery tests for any claimed control; documentation alone cannot establish isolation.",
+      "limit": "Adopted F0-D1..D5; trusted local Linux foundation; see constituent Q rows",
+      "owner": "maintainer for decisions; executor for verification",
+      "approval_condition": "Every applicable risk has explicit adopted owner/decision, supported control or explicit bounded exclusion with rationale and revisit trigger. No pending decision hidden as NOT APPLICABLE. Require initial threat model linking assets/trust boundaries/permissions to claimed controls and adversarial denied-effect observations, integrity checks and resolved dependency/license/advisory review. API denial cannot prove OS isolation.",
+      "code": [
+        "application/Cargo.lock",
+        "application/crates/ox-plugin/src/host.rs",
+        "application/crates/ox-ui/src/local_task.rs",
+        "application/crates/ox-verification/src/engine.rs"
+      ],
+      "oracle": [
+        "Q09",
+        "Q10"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/acceptance-review.md",
+        "docs/validation/f0-execution-20261102/legacy-review.md"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "No mandatory open decision within controlled trust/target scope; publication/native distribution review retained",
+      "authority_origin": [
+        "architecture F0; POL-04/05/10; GOV-07; OPEN-01..11"
+      ],
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "F0-P03",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "Extensibility contracts",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Compatible handshake/capability call succeeds; malformed/incompatible/unauthorized calls fail without persistent mutation; correlated replies, timeout, exit and cleanup meet host contract. Adopt whether this bounded contract suffices for F0. Require explicit cancellation, bounded concurrency/failure tests, actual shutdown/resource cleanup and identified extension/version/migration boundaries for current fixtures. No public SDK or zero-redesign guarantee.",
+      "method": "application/crates/ox-plugin/tests/host.rs and contract tests; independent expected protocol/error assertions and actual child/socket checks",
+      "limit": "Adopted F0-D1..D5; trusted local Linux foundation; see constituent Q rows",
+      "owner": "maintainer for decisions; executor for verification",
+      "approval_condition": "Compatible handshake/capability call succeeds; malformed/incompatible/unauthorized calls fail without persistent mutation; correlated replies, timeout, exit and cleanup meet host contract. Adopt whether this bounded contract suffices for F0. Require explicit cancellation, bounded concurrency/failure tests, actual shutdown/resource cleanup and identified extension/version/migration boundaries for current fixtures. No public SDK or zero-redesign guarantee.",
+      "code": [
+        "application/crates/ox-agent/src/runtime.rs",
+        "application/crates/ox-plugin/src/host.rs",
+        "application/crates/ox-plugin/src/protocol.rs",
+        "application/crates/ox-ui/src/desktop.rs",
+        "application/crates/ox-ui/src/local_task.rs",
+        "application/crates/ox-verification/src/engine.rs"
+      ],
+      "oracle": [
+        "Q02",
+        "Q07",
+        "Q11"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/acceptance-review.md",
+        "docs/validation/f0-execution-20261102/legacy-review.md"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Only host portion of Q07 accepted; no general UI/platform claim",
+      "authority_origin": [
+        "POL-03; architecture F0; product-plugin-host spec/plan"
+      ],
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "F0-P04",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "Local durable data",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "If included: adopted durability/retention/location/model and product-local-persistence AC-01..07 pass against real storage; independent restore and crash corpus show no invented approval. If deferred: explicit maintainer F0 exclusion, retaining MVP obligation. Even if storage is deferred, current core/UI must not claim volatile session history establishes durable recovery or restart-safe acceptance. This present honesty obligation remains applicable independently of future storage acceptance.",
+      "method": "Two-process restart and fault injection with independently specified expected entity/history manifests; fresh restore; UI fault observation. No persistence oracle currently exists.",
+      "limit": "Adopted F0-D1..D5; trusted local Linux foundation; see constituent Q rows",
+      "owner": "maintainer for decisions; executor for verification",
+      "approval_condition": "If included: adopted durability/retention/location/model and product-local-persistence AC-01..07 pass against real storage; independent restore and crash corpus show no invented approval. If deferred: explicit maintainer F0 exclusion, retaining MVP obligation. Even if storage is deferred, current core/UI must not claim volatile session history establishes durable recovery or restart-safe acceptance. This present honesty obligation remains applicable independently of future storage acceptance.",
+      "code": [
+        "application/crates/ox-ui/src/desktop.rs",
+        "application/crates/ox-verification/src/engine.rs",
+        "docs/decisions/local-persistence-proposal.md"
+      ],
+      "oracle": [
+        "Q12"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/acceptance-review.md",
+        "docs/validation/f0-execution-20261102/legacy-review.md"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Current honesty accepted; durable storage still absent, separately required before F3/MVP",
+      "authority_origin": [
+        "POL-02; OPEN-05; local-persistence-proposal ADR"
+      ],
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "F0-P05",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "Evidence validity",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Each adopted gate has criterion-specific adequate current evidence, execution separate from permission, immutable prior observations, all five states and selective stale detection. Changed oracle/input cannot retain current approval; completion text cannot approve. Require traceable coverage/critical scenarios and fail-before/pass-after regression evidence, or a justified repeatable alternative. Expanded requirements need their own adequate observations; existing approval cannot transfer automatically.",
+      "method": "Independent expected verdict cases in ox-verification/tests/engine.rs and local_task tests; technical acceptance adversarial tests only for governance bindings; semantic per-criterion review",
+      "limit": "Adopted F0-D1..D5; trusted local Linux foundation; see constituent Q rows",
+      "owner": "maintainer for decisions; executor for verification",
+      "approval_condition": "Each adopted gate has criterion-specific adequate current evidence, execution separate from permission, immutable prior observations, all five states and selective stale detection. Changed oracle/input cannot retain current approval; completion text cannot approve. Require traceable coverage/critical scenarios and fail-before/pass-after regression evidence, or a justified repeatable alternative. Expanded requirements need their own adequate observations; existing approval cannot transfer automatically.",
+      "code": [
+        "application/Cargo.toml",
+        "application/crates/ox-agent/src/runtime.rs",
+        "application/crates/ox-plugin/src/host.rs",
+        "application/crates/ox-ui/src/desktop.rs",
+        "application/crates/ox-ui/src/local_task.rs",
+        "application/crates/ox-verification/src/engine.rs",
+        "sdd/evidence.md",
+        "sdd/features/product-f0-gate/spec.md"
+      ],
+      "oracle": [
+        "Q02",
+        "Q03",
+        "Q04",
+        "Q13"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/acceptance-review.md",
+        "docs/validation/f0-execution-20261102/legacy-review.md",
+        "docs/validation/f0-resumption-20261103/report.md",
+        "docs/validation/f0-resumption-20261103/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/observation-checks.json"
+      ],
+      "observed_inputs": "docs/validation/f0-resumption-20261103/inputs-final.json",
+      "gap": "No open F0 blocker in adopted corpus; retain controlled-session, physical-presentation and future-scope limitations in resumption report.",
+      "authority_origin": [
+        "POL-06; GOV-05/06; sdd/evidence.md; technical-acceptance ADR"
+      ],
+      "predecessor_status": "INCONCLUSIVE"
+    },
+    {
+      "id": "F0-P06",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "Governance and historical succession",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "T004 and summaries agree with scoped consumer evidence; old observations retained; each legacy compound gate has explicit adopted successor/applicability, and remaining applicable archive/licensing obligations have their own evidence. No aggregate pass is transferred. Require controlled update procedure, technical review, automated criterion/evidence checks and traceability to actual tested snapshots, preserving failures, historical succession and applicable dependency/license obligations.",
+      "method": "Document/contract comparison, content-dependency audit, existing technical mutations; if distribution included, actual new ZIP recursive inspection and independent extraction qualification, not structure-only checks",
+      "limit": "Adopted F0-D1..D5; trusted local Linux foundation; see constituent Q rows",
+      "owner": "maintainer for decisions; executor for verification",
+      "approval_condition": "T004 and summaries agree with scoped consumer evidence; old observations retained; each legacy compound gate has explicit adopted successor/applicability, and remaining applicable archive/licensing obligations have their own evidence. No aggregate pass is transferred. Require controlled update procedure, technical review, automated criterion/evidence checks and traceability to actual tested snapshots, preserving failures, historical succession and applicable dependency/license obligations.",
+      "code": [
+        "application/Cargo.lock",
+        "application/Cargo.toml",
+        "application/rust-toolchain.toml",
+        "sdd/evidence.md",
+        "sdd/features/product-f0-gate/spec.md"
+      ],
+      "oracle": [
+        "Q01",
+        "Q10",
+        "Q13"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/acceptance-review.md",
+        "docs/validation/f0-execution-20261102/legacy-review.md",
+        "docs/validation/f0-execution-20261102/governance-final.json",
+        "docs/validation/f0-execution-20261102/check-ox-export-final.log",
+        "docs/validation/f0-execution-20261102/fresh-export-final.log",
+        "docs/validation/f0-execution-20261102/detached-diagnostic.log"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Local lineage and current governance checks supported:46 tests pass, fresh bindings/profile/links and detached copy pass. Distribution/rights gates remain deferred without historical approval.",
+      "authority_origin": [
+        "GOV-01..08; workflow/evidence; adopted succession ADRs"
+      ],
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "F0-P07",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "Full engines, agents and distribution",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Maintainer explicitly adopts whether each is outside F0 and records later milestone/revisit trigger. Any inclusion receives full authorized spec and real operational oracle before closure. Retain bounded extension contracts, version/migration ownership and concrete revisit triggers for deferred capabilities without promising no future redesign.",
+      "method": "Scope/authority review for deferral; operational criteria and independent tests required for included capabilities. No blanket acceptance from skill fixtures.",
+      "limit": "Adopted F0-D1..D5; trusted local Linux foundation; see constituent Q rows",
+      "owner": "maintainer for decisions; executor for verification",
+      "approval_condition": "Maintainer explicitly adopts whether each is outside F0 and records later milestone/revisit trigger. Any inclusion receives full authorized spec and real operational oracle before closure. Retain bounded extension contracts, version/migration ownership and concrete revisit triggers for deferred capabilities without promising no future redesign.",
+      "code": [
+        "application/crates/ox-plugin/src/host.rs",
+        "application/crates/ox-plugin/src/protocol.rs"
+      ],
+      "oracle": [
+        "Q11"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/acceptance-review.md",
+        "docs/validation/f0-execution-20261102/legacy-review.md"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Direction and bounded extension contracts accepted; later full engines remain roadmap obligations",
+      "authority_origin": [
+        "architecture F1..F8; POL-03/07/08/09; OPEN-04/07/09/10/11"
+      ],
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "Q01",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "check/fmt/clippy/workspace tests with pinned inputs",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "No errors; six named graphical cases ignored in common suite and executed separately",
+      "method": "Existing Cargo commands; inspection of target metadata",
+      "limit": "Rust 1.99.1, current lockfile, Linux x86_64 dev; no byte-reproducible-build claim",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "No errors; six named graphical cases ignored in common suite and executed separately",
+      "code": [
+        "application/Cargo.toml",
+        "application/Cargo.lock",
+        "application/rust-toolchain.toml"
+      ],
+      "oracle": [
+        "application/crates/ox-app/tests/desktop.rs"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/check-current.log",
+        "docs/validation/f0-execution-20261102/fmt-current.log",
+        "docs/validation/f0-execution-20261102/clippy-current.log",
+        "docs/validation/f0-execution-20261102/tests-current.log",
+        "docs/validation/f0-execution-20261102/environment.json"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Other platforms and dependency promotion remain outside this observation",
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "Q02",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "success/rejection/errors/ordering/limits and real communication",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Expected states and forbidden effects observed against independent fixture rules",
+      "method": "Unit assertions plus real child/socket/file integration",
+      "limit": "Trusted fixtures, declared inputs and direct children",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "Expected states and forbidden effects observed against independent fixture rules",
+      "code": [
+        "application/crates/ox-agent/src/runtime.rs",
+        "application/crates/ox-plugin/src/host.rs",
+        "application/crates/ox-verification/src/engine.rs",
+        "application/crates/ox-ui/src/local_task.rs"
+      ],
+      "oracle": [
+        "application/crates/ox-agent/tests/runtime.rs",
+        "application/crates/ox-plugin/tests/host.rs",
+        "application/crates/ox-verification/tests/engine.rs",
+        "application/crates/ox-ui/tests/local_task.rs"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/tests-current.log",
+        "docs/validation/f0-execution-20261102/security-review.md"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "GUI/full platform adequacy is separately unresolved in Q05/Q06; absence of a test alone was not treated as a defect",
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "Q03",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "total and changed executable source coverage",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Report both denominators; changed lines >=80%; retain component gaps and critical scenario review",
+      "method": "LLVM source instrumentation, helper profiles and separate X11 GUI profile merge",
+      "limit": "908/987 total; 199/220 changed; zero denominator N/A; killed children cannot flush",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "Report both denominators; changed lines >=80%; retain component gaps and critical scenario review",
+      "code": [
+        "application/Cargo.toml"
+      ],
+      "oracle": [
+        "docs/validation/f0-execution-20261102/coverage-complete-method.py",
+        "docs/validation/f0-execution-20261102/coverage-merge-gui.py"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/coverage-complete/summary.json",
+        "docs/validation/f0-execution-20261102/baseline.json",
+        "docs/validation/f0-execution-20261102/gui-covered/result.json",
+        "docs/validation/f0-execution-20261102/gui-covered-held-recheck/result.json"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Native Wayland not instrumented; coverage is reachability, not effectiveness; failed GUI observation retained",
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "Q04",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "real verifier/host cancellation, keyboard activation and history budget defects",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Reproductions fail before and corrected behavior passes for intended reason",
+      "method": "Isolated predecessor copies; compatibility adapters explicitly retained; real GUI keyboard before/after; three targeted deliberate defects",
+      "limit": "No full mutation campaign or arbitrary mutation percentage",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "Reproductions fail before and corrected behavior passes for intended reason",
+      "code": [
+        "application/crates/ox-verification/src/engine.rs",
+        "application/crates/ox-plugin/src/host.rs",
+        "application/crates/ox-ui/src/desktop.rs"
+      ],
+      "oracle": [
+        "application/crates/ox-verification/tests/engine.rs",
+        "application/crates/ox-plugin/tests/host.rs",
+        "application/crates/ox-app/tests/desktop.rs"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/verifier-regression-before-clean.log",
+        "docs/validation/f0-execution-20261102/verifier-budget-after.log",
+        "docs/validation/f0-execution-20261102/host-regression-before.log",
+        "docs/validation/f0-execution-20261102/host-after.log",
+        "docs/validation/f0-execution-20261102/history-regression-before.log",
+        "docs/validation/f0-execution-20261102/mutations/results.json",
+        "docs/validation/f0-execution-20261102/gui-final-1/result.json"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Keyboard pre/post runner paths and harness failures preserved; instrumented GUI intermittency remains Q05",
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "Q05",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "actual GUI task, verdict, error, cancel, focus and keyboard journey",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "UI success follows independent verdict; controls remain operable during work",
+      "method": "Separate six-test X11 suite, screenshots, real child effects; native identified human session",
+      "limit": "Shared Iced Light style, explicit focus border/input style and wrapped rows",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "UI success follows independent verdict; controls remain operable during work",
+      "code": [
+        "application/crates/ox-ui/src/desktop.rs",
+        "application/crates/ox-ui/src/local_task.rs"
+      ],
+      "oracle": [
+        "application/crates/ox-app/tests/desktop.rs"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/gui-final-1/result.json",
+        "docs/validation/f0-execution-20261102/gui-covered/result.json",
+        "docs/validation/f0-execution-20261102/gui-covered-held-recheck/result.json",
+        "docs/validation/f0-execution-20261102/wayland-identified/human-observation.json",
+        "docs/validation/f0-execution-20261102/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/report.md",
+        "docs/validation/f0-resumption-20261103/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/observation-checks.json"
+      ],
+      "observed_inputs": "docs/validation/f0-resumption-20261103/inputs-final.json",
+      "gap": "No open F0 blocker in adopted corpus; retain controlled-session, physical-presentation and future-scope limitations in resumption report.",
+      "predecessor_status": "INCONCLUSIVE"
+    },
+    {
+      "id": "Q06",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "keyboard/focus/contrast/scale/size and separate displays",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Selected text >=4.5, focus >=3; essential controls/history reachable; intended image differences reviewed",
+      "method": "Image/source inspection, sRGB ratio, Tab/Enter and PageDown/PageUp real input",
+      "limit": "Observed X11 100/150/200%, logical640x480/900x700; matrix proposed, no full WCAG/assistive technology claim",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "Selected text >=4.5, focus >=3; essential controls/history reachable; intended image differences reviewed",
+      "code": [
+        "application/crates/ox-ui/src/desktop.rs"
+      ],
+      "oracle": [
+        "application/crates/ox-app/tests/desktop.rs"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/contrast.json",
+        "docs/validation/f0-execution-20261102/gui-final-1/result.json",
+        "docs/validation/f0-execution-20261102/gui-final-1.5/result.json",
+        "docs/validation/f0-execution-20261102/gui-final-2/result.json",
+        "docs/validation/f0-execution-20261102/wayland-identified/result.json",
+        "docs/validation/f0-execution-20261102/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/report.md",
+        "docs/validation/f0-resumption-20261103/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/observation-checks.json"
+      ],
+      "observed_inputs": "docs/validation/f0-resumption-20261103/inputs-final.json",
+      "gap": "No open F0 blocker in adopted corpus; retain controlled-session, physical-presentation and future-scope limitations in resumption report.",
+      "predecessor_status": "INCONCLUSIVE"
+    },
+    {
+      "id": "Q07",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "cancel execution/verification/in-flight host, clean owned resources, reject old events",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Cancellation never approves and returns only after owned child exit; no stale/duplicate state effect",
+      "method": "Ready barriers and /proc absence/socket cleanup; late-generation/sequence assertions; held verification GUI",
+      "limit": "Single worker/controller; &mut host serial admission; deadline covers subprocess supervision, not total FS/reap latency",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "Cancellation never approves and returns only after owned child exit; no stale/duplicate state effect",
+      "code": [
+        "application/crates/ox-agent/src/runtime.rs",
+        "application/crates/ox-plugin/src/host.rs",
+        "application/crates/ox-verification/src/engine.rs",
+        "application/crates/ox-ui/src/desktop.rs"
+      ],
+      "oracle": [
+        "application/crates/ox-agent/tests/runtime.rs",
+        "application/crates/ox-plugin/tests/host.rs",
+        "application/crates/ox-verification/tests/engine.rs",
+        "application/crates/ox-app/tests/desktop.rs"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/tests-current.log",
+        "docs/validation/f0-execution-20261102/gui-final-1/result.json",
+        "docs/validation/f0-execution-20261102/gui-covered/desktop.log",
+        "docs/validation/f0-execution-20261102/gui-covered-held-recheck/desktop.log",
+        "docs/validation/f0-execution-20261102/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/report.md",
+        "docs/validation/f0-resumption-20261103/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/observation-checks.json"
+      ],
+      "observed_inputs": "docs/validation/f0-resumption-20261103/inputs-final.json",
+      "gap": "No open F0 blocker in adopted corpus; retain controlled-session, physical-presentation and future-scope limitations in resumption report.",
+      "predecessor_status": "INCONCLUSIVE"
+    },
+    {
+      "id": "Q08",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "backend, history, GUI response, client frame and CPU workloads",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Meet explicitly adopted corpus limits; no unknown metric treated as zero",
+      "method": "3 warmups/20 backend and visible-response samples;3 history runs; isolated client frame timers;10s idle CPU",
+      "limit": "Adopted GUI <=120 ms, client draw/present-return <=125 ms, GUI RSS <=64 MiB, idle CPU <=5% one core; three warmups/twenty response samples and three 10-second idle windows per each of twelve separate cells. Existing backend/history limits unchanged.",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "Meet explicitly adopted corpus limits; no unknown metric treated as zero",
+      "code": [
+        "application/crates/ox-ui/examples/f0_measure.rs",
+        "application/crates/ox-verification/examples/history_measure.rs"
+      ],
+      "oracle": [
+        "docs/validation/f0-execution-20261102/gui-final.py",
+        "docs/validation/f0-execution-20261102/gui-frame.py",
+        "docs/validation/f0-execution-20261102/frame-instrumentation.patch"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/backend-final-summary.json",
+        "docs/validation/f0-execution-20261102/backend-final-resources.txt",
+        "docs/validation/f0-execution-20261102/history-summary.json",
+        "docs/validation/f0-execution-20261102/gui-metrics-final.json",
+        "docs/validation/f0-execution-20261102/frame-cpu-summary.json",
+        "docs/validation/f0-execution-20261102/frame-instrumentation.json",
+        "docs/validation/f0-resumption-20261103/report.md",
+        "docs/validation/f0-resumption-20261103/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/observation-checks.json"
+      ],
+      "observed_inputs": "docs/validation/f0-resumption-20261103/inputs-final.json",
+      "gap": "No open F0 blocker in adopted corpus; retain controlled-session, physical-presentation and future-scope limitations in resumption report.",
+      "predecessor_status": "INCONCLUSIVE"
+    },
+    {
+      "id": "Q09",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "threats to grant, workspace, process lifecycle and evidence",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Every claimed control has denied-effect or preservation assertion; no sandbox claim",
+      "method": "Threat/control/effect review and forbidden marker/child/socket/sentinel checks",
+      "limit": "Controlled trusted local direct-child envelope, no hostile executable/descendant confinement",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "Every claimed control has denied-effect or preservation assertion; no sandbox claim",
+      "code": [
+        "application/crates/ox-plugin/src/host.rs",
+        "application/crates/ox-ui/src/local_task.rs",
+        "application/crates/ox-verification/src/engine.rs"
+      ],
+      "oracle": [
+        "application/crates/ox-plugin/tests/host.rs",
+        "application/crates/ox-ui/tests/local_task.rs",
+        "application/crates/ox-verification/tests/engine.rs"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/security-review.md",
+        "docs/validation/f0-execution-20261102/tests-current.log"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Noncooperating writers, network FS and real agent permissions require later threat review",
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "Q10",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "resolved target dependencies, licenses, advisories/native/unsafe boundaries",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Dated target inventory and explicit dispositions, no hidden unresolved F0 exception",
+      "method": "Cargo target metadata, pinned RustSec revision/range review, declared licenses/files/native linkage inspection",
+      "limit": "170 packages/16 own,21 advisory candidates,20 unaffected or patched,one accepted temporary unmaintained exception",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "Dated target inventory and explicit dispositions, no hidden unresolved F0 exception",
+      "code": [
+        "application/Cargo.lock"
+      ],
+      "oracle": [
+        "docs/validation/f0-execution-20261102/rustsec-review.json",
+        "docs/validation/f0-execution-20261102/dependency-boundaries.json"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/dependency-inventory.json",
+        "docs/validation/f0-execution-20261102/license-files.json",
+        "docs/validation/f0-execution-20261102/rustsec-review.json",
+        "docs/validation/f0-execution-20261102/native-libraries.txt",
+        "docs/validation/f0-execution-20261102/security-review.md"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "No claim of exhaustive vulnerability/soundness scan or distribution license clearance; review exception monthly/before distribution/untrusted fonts",
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "Q11",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "versioned local host contract and extension seams",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "1.0 negotiation, correlated request, deterministic rejection, cancel/shutdown/recovery",
+      "method": "Real local fixture states/errors with no-CALL denied oracle and actual resource exit",
+      "limit": "Versioned bounded local host; no public SDK, migration implementation or zero-redesign guarantee",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "1.0 negotiation, correlated request, deterministic rejection, cancel/shutdown/recovery",
+      "code": [
+        "application/crates/ox-plugin/src/protocol.rs",
+        "application/crates/ox-plugin/src/host.rs"
+      ],
+      "oracle": [
+        "application/crates/ox-plugin/tests/compatibility.rs",
+        "application/crates/ox-plugin/tests/host.rs"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/host-after.log",
+        "docs/validation/f0-execution-20261102/tests-current.log"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Reassess with new major/capabilities, third-party trust or concurrent sessions",
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "Q12",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "volatile session honesty and pre-MVP storage obligation",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "Current UI does not advertise durable acceptance; new engine has no previous approval",
+      "method": "Source inspection and restart-new-Engine/history tests; adopted deferral",
+      "limit": "Persistence implementation absent and NOT APPLICABLE to F0 only; required before F3/MVP",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "Current UI does not advertise durable acceptance; new engine has no previous approval",
+      "code": [
+        "application/crates/ox-ui/src/desktop.rs",
+        "application/crates/ox-verification/src/engine.rs",
+        "docs/decisions/local-persistence-proposal.md"
+      ],
+      "oracle": [
+        "application/crates/ox-verification/tests/engine.rs"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/tests-current.log",
+        "docs/validation/f0-execution-20261102/security-review.md"
+      ],
+      "observed_inputs": "docs/validation/f0-execution-20261102/inputs-acceptance.json",
+      "gap": "Technology and paired crash/corruption/backup/migration/concurrency/idempotency experiment remain separately authorized future work",
+      "predecessor_status": "APPROVED",
+      "reexamination": "Original product/contract/oracle bytes retained; documentary/export delta separately reviewed. No operational replay claimed."
+    },
+    {
+      "id": "Q13",
+      "status": "APPROVED",
+      "classification": "implemented with sufficient current evidence",
+      "scenario": "all applicable criteria have adequate current independent evidence",
+      "environment": "docs/validation/f0-execution-20261102/environment.json",
+      "expected": "No missing/stale/contradictory result can approve F0",
+      "method": "Selective input binding, historical exact bytes, negative controls, clause matrix and review",
+      "limit": "Hashes prove input identity only",
+      "owner": "executor for evidence/fixes; maintainer for boundary/limits",
+      "approval_condition": "No missing/stale/contradictory result can approve F0",
+      "code": [
+        "sdd/evidence.md",
+        "sdd/features/product-f0-gate/spec.md"
+      ],
+      "oracle": [
+        "sdd/tools/validate.py",
+        "tools/governance/tests/test_technical_acceptance.py"
+      ],
+      "evidence": [
+        "docs/validation/f0-execution-20261102/acceptance-review.md",
+        "docs/validation/f0-execution-20261102/legacy-review.md",
+        "docs/validation/f0-execution-20261102/baseline.json",
+        "docs/validation/f0-resumption-20261103/report.md",
+        "docs/validation/f0-resumption-20261103/graphical-review.md",
+        "docs/validation/f0-resumption-20261103/observation-checks.json"
+      ],
+      "observed_inputs": "docs/validation/f0-resumption-20261103/inputs-final.json",
+      "gap": "All applicable clauses supported; final current-input and negative-control checks are recorded with their independent limits.",
+      "predecessor_status": "INCONCLUSIVE"
+    }
+  ],
+  "excluded": [
+    {
+      "requirement": "durable persistence implementation at F0",
+      "status": "NOT APPLICABLE",
+      "classification": "absent, justified outside F0",
+      "reason": "F0-D2; separate required pre-F3/MVP delivery; present honesty Q12 remains applicable"
+    },
+    {
+      "requirement": "public SDK/distribution, hostile plugins, other platforms, later engines",
+      "status": "NOT APPLICABLE",
+      "classification": "outside scope by adopted decision",
+      "reason": "F0-D1/D3; current bounded contracts and risk review still apply"
+    }
+  ]
+}

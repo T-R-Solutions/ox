@@ -1,0 +1,15 @@
+{
+  "method": "native Wayland process with DISPLAY removed; WAYLAND_DEBUG=1; bounded 15-second observation",
+  "environment": {
+    "WAYLAND_DISPLAY": "wayland-0",
+    "XDG_SESSION_TYPE": "wayland",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "DISPLAY": null
+  },
+  "pid": 250289,
+  "exit_before_capture": null,
+  "screenshot_error": "org.freedesktop.DBus.Error.AccessDenied: ScreenshotWindow is not allowed",
+  "windows_error": "org.freedesktop.DBus.Error.AccessDenied: GetWindows is not allowed",
+  "cleanup": "SIGTERM to owned probe process; not UI/native-close acceptance",
+  "exit_code": -15
+}

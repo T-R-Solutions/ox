@@ -1,0 +1,72 @@
+# Plan: product-bootstrap
+
+Authorities read: AGENTS, constitution, workflow/evidence, context and transition/layout/open-questions ADRs.
+Full route. No operational Git; existing files preserved through byte comparison.
+
+D-01 / R-01: all REQ-01 through REQ-13 use an explicit workspace, small contracts and proportionate validation. Risk: skeleton mistaken for operation. Cargo oracles, contract inspection and separate graphical execution. Revisit when implementing capabilities.
+D-02: Iced 0.14.0, edition 2024, stable toolchain by explicit maintainer instruction (observed 1.99.1); conservative MSRV 1.99 (deliberate floor for this first delivery, not a claim of technical minimum). Tiny-skia + X11 + Wayland + fira-sans + thread-pool (required to compile Iced), without Tokio or an additional runtime. Confirm resolution/build. The wgpu alternative is deferred because this window needs no GPU.
+D-03: no persistent entities in F0; do not introduce UUID or serde without a consumer. Plugins use name and version; IPC transport remains unselected.
+D-04: expandable foundation details are actual UI interaction; they do not simulate agent execution. Exit returns an iced::exit task; native closing uses default behavior.
+R-02: the maintainer initially confirmed Linux x86_64. Windows/macOS are unsupported in this slice. Graphical execution still requires independent observation.
+
+## Skills consulted and used
+
+Primary .codex/skills/rust/SKILL.md: ownership, manifests, public APIs and test discovery. Supporting .codex/skills/iced-engineering/SKILL.md: Message/update/view and exit effect. Bridges sdd/chain/rust.md and sdd/chain/iced-engineering.md, bridge_version 1. SHA-256 identities in this feature's skills.json file (entries without semantic versions). Contribution: pure state, external modules, effects outside view and distinction between state and window tests. No delegation.
+
+## Execution
+
+T001 specify; T002 workspace/contracts; T003 GUI; T004 validate; T005 evidence. Test repeated toggles, policy without a grant, incompatible plugin, raw bytes and failures. Do not create fake processes, databases, IPC or executors. Logs in docs/validation/product-bootstrap. No public distribution changes.
+
+## Decision outcomes
+
+Linux x86_64, stable and configuration described in the product-bootstrap ADR. X11/XWayland exercised; native Wayland only compiled. The graphical test uses x11rb 0.13.2 with xtest only as a dev-dependency; this is not product IPC. The harness restores pointer position after clicks and terminates its own children during cleanup. It captures only its own window.
+Dependencies: Iced declares MIT and rust-version 1.88; the first-party 1.99 floor is conservative, not an inferred technical minimum. Linux inventory in dependency-review.json; winit/softbuffer and platform libraries contain unsafe/FFI. Review limited to manifests and scanning, without claiming a full audit or distribution authorization.
+Authority changes invalidate historical E-HOLDER-REVIEW observations. Previous bytes and approvals are preserved in docs/validation/bootstrap-governance/previous; invalidation.json records the exact pending criteria. Current tests do not automatically promote those criteria.
+
+## Reconciliation — 2026-10-29
+
+D-05: the explicit reconciliation request supersedes floating stable with exact
+1.99.1; rust-version 1.99 remains the conservative declared floor. R-03: 1.99.0
+is not executed. Rerun Cargo and graphical tests after this configuration change.
+Reconcile each translated criterion against its retained Portuguese predecessor.
+Future tasks: native Wayland on the supported Linux target; Windows/macOS only
+after a support decision and available environments. No support expansion here.
+
+## Native Wayland acceptance — 2026-10-29
+
+D-06 / R-04: explicitly validate native Wayland without removing X11 coverage.
+Use GNOME/Mutter session facilities if available, real pointer/keyboard events
+and captured frames; never call Shell state directly as a graphical oracle.
+Prove backend through process Wayland protocol traffic (surface creation,
+configure and buffer commit), not environment alone. Bound exploratory calls
+to 15 seconds and complete GUI attempts to 60 seconds; preserve diagnostics
+and distinguish timeout/test-mechanism failure from application failure.
+Separate executions must cover button exit and compositor-native close.
+No host implementation until applicable bootstrap acceptance is supported.
+Primary skill for this extension: .codex/skills/iced-engineering/SKILL.md,
+bridge sdd/chain/iced-engineering.md version 1; entry has no semantic version.
+Content identity is recorded in wayland-native/skill.json. Contribution: distinguish
+state tests from rendered interaction, effects and actual process termination.
+
+D-07 / R-05 (AC-02/06): investigate XWayland event delivery using the same
+XTEST channel for absolute pointer motion and button events. Current harness
+reproduced a 15-second toggle timeout despite QueryPointer reporting the target.
+Hypothesis: WarpPointer and XTEST operate through different input paths.
+Retain failed baseline and compare a bounded XTEST-motion attempt, preserving
+all title/pixel/reversal/exit assertions and pointer restoration. No product
+behavior change or acceptance relaxation. Protocol reference:
+https://www.x.org/releases/X11R7.7/doc/xextproto/xtest.pdf
+Absolute MotionNotify uses detail=0 and root coordinates. x11rb 0.13.2
+installed API inspected. Supporting rust skill consulted again at
+.codex/skills/rust/SKILL.md, bridge sdd/chain/rust.md version 1; no semantic
+entry version. Identity in x11-motion/skill.json. Contribution: safe typed
+protocol calls, unchanged dependency contract, focused test validation.
+Human Wayland observation accepted as the visual oracle when capture is denied;
+process protocol and exit observations remain independent, preserved per run.
+
+D-07 outcome: retain XTEST motion/button path after controlled comparison.
+Rootful temporary Xwayland (-geometry 800x600 -nolisten tcp -shm) runs the
+unchanged test assertions; original WarpPointer variant failed reversal, XTEST
+variant passed both tests. Use the retained x11-nested-motion/runner.py with a
+new output directory per run. GNOME main-session XTEST remains unavailable;
+this result does not claim it was repaired. No new dependencies or global setup.

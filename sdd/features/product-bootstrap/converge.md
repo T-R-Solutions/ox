@@ -1,76 +1,230 @@
-# Convergência — product-bootstrap
+# Convergence — product-bootstrap
 
-28/10/2026. Linux x86_64, Rust/Cargo stable observados 1.99.1; Iced 0.14.0,
-tiny-skia e X11 em sessão XWayland. Os 16 crates compilam a partir de application.
-Toolchain stable conforme pedido do mantenedor. Fonte e evidências identificadas
-por SHA-256 em evidence.json, incluindo contratos e oráculos da feature.
+## Historical bootstrap observation — 2026-10-28
 
-| Critério | Requisito / decisão / risco / tarefas | Alteração | Evidência | Estado |
+Linux x86_64, observed Rust/Cargo stable 1.99.1; Iced 0.14.0,
+tiny-skia and X11 in an XWayland session. The 16 crates compile from application.
+Stable toolchain as requested by the maintainer. Source and evidence identified
+by SHA-256 in the historical evidence.json, including feature contracts and oracles.
+The table below records the previous acceptance; current status after translation
+is described at the end of this document.
+
+| Criterion | Requirement / decision / risk / tasks | Change | Evidence | Historical state |
 |---|---|---|---|---|
-| AC-01 | REQ-01 / D-01 / R-01 / T001–T005 | `application/Cargo.toml` | E-STRUCTURE-LAYOUT, E-CHECK-LAYOUT | APROVADO |
-| AC-02 | REQ-02 / D-01 / R-01 / T001–T005 | `application/crates/ox-ui/src/desktop.rs` | E-GUI-LAYOUT, E-REVIEW-LAYOUT | APROVADO |
-| AC-03 | REQ-03 / D-01 / R-01 / T001–T005 | `application/crates/ox-app/src/main.rs` | E-REVIEW-LAYOUT, E-TEST-LAYOUT | APROVADO |
-| AC-04 | REQ-04 / D-01 / R-01 / T001–T005 | `application/crates/ox-core/src/lib.rs` | E-STRUCTURE-LAYOUT, E-DEPS-LAYOUT | APROVADO |
-| AC-05 | REQ-05 / D-01 / R-01 / T001–T005 | `application/crates/ox-ui/src/lib.rs` | E-STRUCTURE-LAYOUT | APROVADO |
-| AC-06 | REQ-06 / D-01 / R-01 / T001–T005 | `application/crates/ox-task/src/state.rs` | E-TEST-LAYOUT, E-DISCOVERY-LAYOUT, E-GUI-LAYOUT | APROVADO |
-| AC-07 | REQ-07 / D-01 / R-01 / T001–T005 | `application/Cargo.toml` | E-STRUCTURE-LAYOUT, E-CHECK-LAYOUT, E-REVIEW-LAYOUT | APROVADO |
-| AC-08 | REQ-08 / D-01 / R-01 / T001–T005 | `application/crates/ox-workspace/src/root.rs` | E-REVIEW-LAYOUT, E-TEST-LAYOUT | APROVADO |
-| AC-09 | REQ-09 / D-01 / R-01 / T001–T005 | `sdd/features/product-bootstrap/plan.md` | E-SDD-LAYOUT, E-REVIEW-LAYOUT | APROVADO |
-| AC-10 | REQ-10 / D-01 / R-01 / T001–T005 | `tools/governance/scripts/check-ox.py` | E-GOV-LAYOUT | APROVADO |
-| AC-11 | REQ-11 / D-01 / R-01 / T001–T005 | `application/crates/ox-plugin/src/protocol.rs` | E-REVIEW-LAYOUT, E-TEST-LAYOUT | APROVADO |
-| AC-12 | REQ-12 / D-01 / R-01 / T001–T005 | `tools/governance/scripts/governance_support.py` | E-GOV-LAYOUT, E-REVIEW-LAYOUT | APROVADO |
-| AC-13 | REQ-13 / D-01 / R-01 / T001–T005 | `application/crates/ox-agent/src/session.rs` | E-REVIEW-LAYOUT, E-CHECK-LAYOUT, E-GUI-LAYOUT | APROVADO |
+| AC-01 | REQ-01 / D-01 / R-01 / T001–T005 | `application/Cargo.toml` | E-STRUCTURE-LAYOUT, E-CHECK-LAYOUT | APPROVED |
+| AC-02 | REQ-02 / D-01 / R-01 / T001–T005 | `application/crates/ox-ui/src/desktop.rs` | E-GUI-LAYOUT, E-REVIEW-LAYOUT | APPROVED |
+| AC-03 | REQ-03 / D-01 / R-01 / T001–T005 | `application/crates/ox-app/src/main.rs` | E-REVIEW-LAYOUT, E-TEST-LAYOUT | APPROVED |
+| AC-04 | REQ-04 / D-01 / R-01 / T001–T005 | `application/crates/ox-core/src/lib.rs` | E-STRUCTURE-LAYOUT, E-DEPS-LAYOUT | APPROVED |
+| AC-05 | REQ-05 / D-01 / R-01 / T001–T005 | `application/crates/ox-ui/src/lib.rs` | E-STRUCTURE-LAYOUT | APPROVED |
+| AC-06 | REQ-06 / D-01 / R-01 / T001–T005 | `application/crates/ox-task/src/state.rs` | E-TEST-LAYOUT, E-DISCOVERY-LAYOUT, E-GUI-LAYOUT | APPROVED |
+| AC-07 | REQ-07 / D-01 / R-01 / T001–T005 | `application/Cargo.toml` | E-STRUCTURE-LAYOUT, E-CHECK-LAYOUT, E-REVIEW-LAYOUT | APPROVED |
+| AC-08 | REQ-08 / D-01 / R-01 / T001–T005 | `application/crates/ox-workspace/src/root.rs` | E-REVIEW-LAYOUT, E-TEST-LAYOUT | APPROVED |
+| AC-09 | REQ-09 / D-01 / R-01 / T001–T005 | `sdd/features/product-bootstrap/plan.md` | E-SDD-LAYOUT, E-REVIEW-LAYOUT | APPROVED |
+| AC-10 | REQ-10 / D-01 / R-01 / T001–T005 | `tools/governance/scripts/check-ox.py` | E-GOV-LAYOUT | APPROVED |
+| AC-11 | REQ-11 / D-01 / R-01 / T001–T005 | `application/crates/ox-plugin/src/protocol.rs` | E-REVIEW-LAYOUT, E-TEST-LAYOUT | APPROVED |
+| AC-12 | REQ-12 / D-01 / R-01 / T001–T005 | `tools/governance/scripts/governance_support.py` | E-GOV-LAYOUT, E-REVIEW-LAYOUT | APPROVED |
+| AC-13 | REQ-13 / D-01 / R-01 / T001–T005 | `application/crates/ox-agent/src/session.rs` | E-REVIEW-LAYOUT, E-CHECK-LAYOUT, E-GUI-LAYOUT | APPROVED |
 
-9 testes Cargo descobertos: 7 comuns passaram; 2 gráficos são ignorados na suíte
-comum e passaram na execução explícita. Sem duplicação entre unitários e integrações.
-Teste de inicialização sem display rejeita sucesso e exige diagnóstico em filho limitado.
-Check, fmt e Clippy com -D warnings passaram. Governança: 23 testes e os três checks
-passaram, incluindo exportação independente; recuperação preserva os 439 inputs históricos.
+9 Cargo tests discovered: 7 regular tests passed; 2 graphical tests are skipped in
+the regular suite and passed when explicitly executed. No duplication between unit
+and integration tests. The startup test without a display rejects success and
+requires a diagnostic in a bounded child. Check, fmt and Clippy with -D warnings
+passed. Governance: 23 tests and three checks passed, including independent export;
+recovery preserves the 439 historical inputs.
 
-Janela real: Mostrar detalhes → Ocultar detalhes, pixels e título alterados;
-reversão observada. Sair e fechamento nativo retornaram zero. Capturas em
-`docs/validation/product-bootstrap/collapsed.png` e `expanded.png`.
-Tentativas anteriores com timeout, erro de configuração de executor e erro de tipo
-do título estão preservadas nos logs. O harness gráfico passou após usar foco
-explícito e espaçar press/release; nenhum critério foi reduzido para encobrir as falhas.
+Actual window: Show details → Hide details, changed pixels and title; reversal
+observed. Exit and native closing returned zero. Screenshots in
+`docs/validation/product-bootstrap/collapsed.png` and `expanded.png`.
+Previous attempts with timeout, executor configuration error and title type error
+are retained in logs. The graphical harness passed after explicit focus and spacing
+press/release; no criterion was reduced to conceal failures.
 
-Limitações: Wayland nativo, outras plataformas, acessibilidade e operação sob carga
-não exercitados. Unsafe transitivo identificado separadamente; nenhuma auditoria
-integral ou autorização de distribuição. UUID não foi introduzido porque nenhuma
-entidade persistente global existe. IPC, agentes, armazenamento e motores são futuros.
+Limitations: native Wayland, other platforms, accessibility and operation under
+load were not exercised. Transitive unsafe identified separately; no full audit
+or distribution authorization. UUID was not introduced because no globally
+persistent entity exists. IPC, agents, storage and engines remain future work.
 
-Esta entrega conclui o bootstrap delimitado, não toda a F0. Próxima fatia: especificar
-handshake/transportes, autorização e falhas do host de plugins antes de executar IPC.
-As aprovações históricas foram conservadas em bytes; evidências correntes dependentes
-das autoridades alteradas foram invalidadas seletivamente (invalidation.json), sem
-transferir a aprovação destes testes para aquelas features.
+This delivery completes the bounded bootstrap, not all of F0. Next slice: specify
+handshake/transports, authorization and plugin-host failures before executing IPC.
+Historical approvals were preserved byte for byte; current evidence dependent on
+changed authorities was selectively invalidated (invalidation.json), without
+transferring these tests' approval to those features.
 
-Reproduzir: comandos Cargo no README e em evidence.json; teste gráfico requer sessão
-X11 e pode mover temporariamente o ponteiro. Ao retomar, executar validador com
---require-fresh; não exigir aprovação global das features históricas/skills pendentes.
+Reproduce using Cargo commands in README and historical evidence.json; graphical
+tests require an X11 session and may temporarily move the pointer. On resumption,
+run the validator with --require-fresh; do not require global approval of pending
+historical/skill features.
 
-## Ajuste local — diretórios vazios
+## Local adjustment — empty directories
 
-Após observação do mantenedor, removidos application/src e application/tests,
-ambos preexistentes e vazios (listagem observada; rmdir concluído). O manifesto
-virtual mantém fontes e testes nos crates. Verificação: ambos os caminhos ausentes;
-nenhum arquivo ou input de compilação alterado, sem necessidade de repetir Cargo.
+After the maintainer's observation, application/src and application/tests were
+removed; both were preexisting and empty (listing observed; rmdir completed).
+The virtual manifest keeps sources and tests in crates. Verification: both paths
+absent; no file or compilation input changed, so Cargo did not need repeating.
 
-## Revisão local — referências de layout
+## Local review — layout references
 
-Pedido do mantenedor: varrer arquivos fora de application/. Inventário: 849 arquivos,
-818 textos UTF-8 e 31 binários; 25 archives com membros imediatos catalogados.
-Metadados .git/.aws/.agents, symlinks e caches Python não integram o conteúdo auditado.
-Correspondências em 212 arquivos; 7 arquivos ativos corrigidos (changes.json).
-README, contexto, índice de features, arquitetura, compartilhamento e licenciamento
-agora apontam para application/crates; fixtures testam a exclusão da estrutura atual.
-Históricos e exemplos genéricos conservados, sem alterar suas decisões ou hashes.
-Binários catalogados por hash, sem alegar leitura semântica de seu conteúdo.
+Maintainer request: scan files outside application/. Inventory: 849 files,
+818 UTF-8 texts and 31 binaries; immediate members of 25 archives cataloged.
+.git/.aws/.agents metadata, symlinks and Python caches were outside the audited content.
+Matches in 212 files; 7 active files corrected (changes.json). README, context,
+feature index, architecture, sharing and licensing now point to application/crates;
+fixtures test exclusion of the current structure. History and generic examples
+retained without changing their decisions or hashes. Binaries cataloged by hash
+without claiming semantic reading of their content.
 
-Método, arquivos/linhas e hashes: docs/validation/product-bootstrap/layout-audit/
+Method, files/lines and hashes: docs/validation/product-bootstrap/layout-audit/
 (inventory-before.json, matches-before.json, changes.json, report.json).
-Cópias anteriores e envelope de evidências preservados nesse registro.
-Observações Rust/gráficas reexaminadas: inputs de implementação e testes de produto
-inalterados; execuções anteriores não foram repetidas nem apresentadas como novas.
-Observações de governança reexecutadas: 23 testes passaram e checks deram exit 0.
-Recuperação: 439/439 inputs históricos íntegros. Nenhuma mudança em application/.
+Previous copies and evidence envelope are preserved in that record.
+Rust/graphical observations reexamined: product implementation and test inputs
+unchanged; previous executions were neither repeated nor presented as new.
+Governance observations rerun: 23 tests passed and checks returned exit 0.
+Recovery: 439/439 historical inputs intact. No change in application/.
+
+## Current status — English documentation translation
+
+All AC-01 through AC-13 are UNVERIFIED against the translated feature contract.
+Previous acceptance and the original evidence envelope remain preserved in
+`docs/validation/product-bootstrap/english-documentation/previous/sdd/features/product-bootstrap/evidence.json.bin`.
+Changing spec.md and plan.md affects every bound observation; no old input hash
+was renewed and no historical execution is presented as a new run. Application
+sources and tests are unchanged. Resume by reviewing the translated contract
+against each criterion's oracle and recording fresh observations for affected inputs.
+
+## Current reconciliation — 2026-10-29
+
+13 criteria reexamined against their Portuguese predecessors: no semantic change
+from translation. The separately authorized toolchain change pins 1.99.1.
+Current result: 11 APPROVED; AC-02 and AC-06 INCONCLUSIVE. The real X11 window
+rendered and native close passed; toggle timed out after 15s and button exit
+was not reached. This failed observation is preserved, not overwritten by history.
+Seven regular Rust tests pass; all nine tests are discovered. Check/fmt/Clippy
+pass. All per-criterion methods, changed inputs, reuse justification and limits
+are in docs/validation/product-bootstrap/reconciliation/review.md and evidence.json.
+Resume graphical acceptance on a dedicated X11 session with controlled focus/input
+and event-delivery observation. Wayland/Windows/macOS work remains future scoped
+work, with no expansion of official support. Full F0 is not accepted.
+
+## Native Wayland resumption — 2026-10-29
+
+Current result: AC-02/AC-06 remain INCONCLUSIVE; other bootstrap criteria are
+reexamined below in the evidence record. No product source was changed.
+Process protocol trace proves native Wayland surface creation, configuration and
+buffer commits. It does not establish visible contents or successful interaction.
+GNOME 50.5 denied ScreenshotWindow and GetWindows; Shell Eval returned false.
+The probe process was terminated by its supervisor (exit -15), not by the UI.
+Showing/hiding details, button exit and native closing remain unobserved in Wayland.
+X11's previous toggle timeout and native-close success remain historical; no X11
+repair or new successful execution is claimed.
+
+All five Cargo commands returned zero; seven regular tests pass, two graphical
+tests remain ignored, and nine tests are discovered. No source/lockfile changes
+required additional Rust tests. See wayland-native/cargo-commands.json and logs.
+
+Evidence reuse is an explicit new comparison: 81 of 83 prior bound inputs were
+identical before final recording; only the appended plan/tasks changed. Reexamine
+unchanged requirements against unchanged sources/oracles, retain dependency and
+structural review limits. Previous envelopes are saved byte-for-byte. The updated
+project scope invalidates governance-reconciliation's project-bound observations;
+those are preserved and marked pending rather than silently rehashed.
+
+Resume T008 with an authorized capture/input mechanism or a human observer in
+the actual GNOME session. Run two owned ox processes with WAYLAND_DEBUG=1 and
+DISPLAY removed: observe collapsed → expanded → collapsed and button exit, then
+observe native close in the second process; retain each exit status and logs.
+Re-run the explicit X11 ignored tests independently to resolve AC-06's existing
+test obligation. Only then consolidate bootstrap acceptance and create the
+Plugin Host feature before implementation. Agent Runtime and Verification Engine
+remain authorized but gated; no new product slice or F0 completion is claimed.
+
+## Human-observed native Wayland acceptance — 2026-10-29 21:22–21:23 UTC
+
+The maintainer explicitly confirmed rendering, Show details, Hide details and
+button exit in process 388610; exit 0 after 3.63 seconds. In separate process
+402236 the maintainer confirmed rendering and closing via the native X control;
+exit 0 after 8.73 seconds. Neither process required supervisor termination.
+The corresponding human-observation.json files retain verbatim replies, and
+result.json records binary/source hashes, environment and process result.
+Native Wayland xdg surface/configure/buffer traffic is retained; the first
+trace independently records the title expanding and reverting. Visual content
+is supported by human observation, not automated screenshots.
+
+AC-02 is now APPROVED. AC-06 remains INCONCLUSIVE: explicit X11 run returned
+101, native close passed and toggle again timed out after 15 seconds. A bounded
+XTEST-motion experiment failed its placement precondition (target 80,130; actual
+359,698), identifying an input delivery limitation without proving root cause.
+Original test bytes restored, experimental source and failed logs preserved.
+No claim of X11 repair; no product code changed.
+
+Resume AC-06 on a session where XTEST motion/button delivery is available, or
+implement and validate an authorized input mechanism while preserving all
+rendering, title, reversal and exit assertions. Then consolidate bootstrap
+acceptance before Plugin Host. No further human Wayland demonstration is needed
+for these unchanged inputs. F0 and later slices remain incomplete.
+
+## Bootstrap acceptance after controlled X11 comparison
+
+Final controlled run: x11-nested-motion/result.json, both tests passed in 2.10s.
+Original harness in equivalent rootful Xwayland failed reversal; XTEST motion
+plus button events passed all existing assertions. Keep the minimal harness
+change and all failed observations. Native Wayland acceptance remains human
+observed with independent process/protocol records; X11 acceptance belongs
+to the temporary rootful Xwayland environment, not the GNOME main X server.
+AC-02 and AC-06 are now APPROVED within these stated environments. Other
+criteria reexamined against the additive plan/tasks and test-only change.
+This accepts product-bootstrap, not F0; proceed to the separately specified
+Plugin Host slice. Current check results are retained in wayland-native/acceptance.
+
+## Successor reconciliation
+
+All 13 bootstrap criteria were accepted before implementing the three successor
+slices. The exact accepted envelope and reconstructed/hash-checked input copies
+are retained in wayland-native/succession. Current workspace: AC-11 is NOT
+APPLICABLE because its absence-of-IPC requirement was explicitly superseded by
+the authorized, accepted product-plugin-host. This is a post-acceptance scope
+transition, not a lowered graphical gate. Other criteria are reexamined against
+the evolved workspace. UI sources, binary source and graphical harness remain
+unchanged since the accepted runs, so graphical observations are reused with
+that limitation. Current workspace test count includes successor tests.
+
+## Final acceptance — 2026-10-30
+
+12 criteria APPROVED; AC-11 NOT APPLICABLE for its previously authorized IPC supersession. Current evidence.json binds new observations and explicitly reviewed reuse. See docs/validation/product-local-task-ui/acceptance/review.md and graphical-review.json. All five Cargo checks pass; 23 regular tests and all three explicit X11 tests pass. Native Wayland confirmed by protocol trace, human interaction and process exits. Earlier failures remain preserved. The bounded local slice is accepted; full F0 and excluded roadmap work remain outside scope.
+
+## Technical gate reexamination — 2026-11-01
+
+Previous accepted criteria retained through new per-criterion inspection and governance checks. Only the checker and its governance tests changed among prior inputs. Review, exact predecessor and current receipts are in docs/validation/technical-acceptance-20261101/. No new graphical execution is claimed.
+
+## Reading historical checkpoints — 2026-11-01
+
+Earlier Wayland-future/inconclusive and X11-failure passages are historical checkpoints, superseded by Final acceptance — 2026-10-30 above and the current evidence envelope. Bootstrap ADR toolchain text is superseded only by governance-reconciliation D-03 (1.99.1); that ADR's Wayland-future note is followed by the human observations above. No earlier failure, date or platform limitation is removed. See docs/validation/f0-reconciliation-20261101/feature-reviews/product-bootstrap.md for the task-note-only reexamination.
+
+## F0 operational successor — 2026-11-03
+
+Current evidence is E-F0-EXECUTION-CURRENT in evidence.json and the
+operational report at `docs/validation/f0-execution-20261102/report.md`.
+Historical results above retain their original scope and inputs. F0 remains OPEN;
+GUI/native/performance limitations are explicit in the current matrix.
+
+Final review: E-F0-FINAL-REVIEW. F0 stays OPEN; current per-criterion states are
+in evidence.json and docs/validation/f0-execution-20261102/matrix.json. Product
+operational records are excluded from the governance-only export.
+
+## Graphical resumption successor
+
+The former open graphical criteria are supported by the identified primary native
+journey, six native support cells, 36 X11 tests, three native held-verification runs
+and three covered X11 held-verification repeats. Twelve separately measured cells
+meet the explicitly adopted GUI contract. See E-F0-RESUMPTION and
+docs/validation/f0-resumption-20261103/report.md for inputs, methods, checks and
+limits. Earlier open conclusions above remain historical. This accepts the bounded
+F0 foundation; no subsequent feature or persistence implementation is authorized.
+
+## Final raster-profile successor
+
+E-F0-RASTER-CLOSURE supersedes the withdrawn provisional conclusion and the
+full-history failure after a bounded package-only tiny-skia dev optimization.
+Current 12-cell functional/performance evidence, original-product corroboration
+and ordinary checks support the applicable criteria. F0 is accepted only in the
+adopted local foundation corpus; no subsequent roadmap or persistence work is
+authorized. Exact historical bytes and failure observations remain preserved.
