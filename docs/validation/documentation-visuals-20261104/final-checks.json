@@ -1,0 +1,54 @@
+[
+  {
+    "command": [
+      "python3",
+      "docs/assets/check.py"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/documentation-visuals-20261104/final-1.log",
+    "output": "222 local targets/anchors, 11 SVGs; 0 failures\n"
+  },
+  {
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--structure-only"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/documentation-visuals-20261104/final-2.log",
+    "output": "PASS: portable files, configured bridges and requested evidence checks\nNot proof of semantic adequacy, agent execution or comparative effectiveness.\n"
+  },
+  {
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--require-fresh"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/documentation-visuals-20261104/final-3.log",
+    "output": "PASS: portable files, configured bridges and requested evidence checks\nNot proof of semantic adequacy, agent execution or comparative effectiveness.\n"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/governance/scripts/check-ox.py"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/documentation-visuals-20261104/final-4.log",
+    "output": "PASS: local profile, catalog, bridges, skill copies, SDD, normative IDs, links and archive/content inspection. No product acceptance.\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/documentation-visuals-20261104/final-5.log",
+    "output": ""
+  }
+]

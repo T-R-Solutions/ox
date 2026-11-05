@@ -1,0 +1,180 @@
+{
+  "group": "all",
+  "discovered": 34,
+  "executed": 34,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "tests": [
+    {
+      "test": "test_governance.GovernanceTests.test_archive_content_and_names",
+      "group": "fast",
+      "seconds": 0.0015987930019036867
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_archive_traversal_and_symlink",
+      "group": "fast",
+      "seconds": 0.00027433099603513256
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_bridge_identity_and_unconfigured",
+      "group": "fast",
+      "seconds": 0.0009533510019537061
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_clean_export_and_recovery",
+      "group": "integration",
+      "seconds": 1.6149264160048915
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_declared_criteria_ignore_examples",
+      "group": "fast",
+      "seconds": 0.0003389810008229688
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_directory_links_stay_within_root",
+      "group": "integration",
+      "seconds": 4.841888312999799
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_duplicate_criterion_rejected",
+      "group": "fast",
+      "seconds": 0.0001608399979886599
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_duplicate_json_rejected",
+      "group": "fast",
+      "seconds": 0.00017945999570656568
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_english_and_legacy_states_enforce_the_same_evidence_gates",
+      "group": "fast",
+      "seconds": 0.00040588100091554224
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_freshness_selective_invalidation",
+      "group": "fast",
+      "seconds": 0.0004278109990991652
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_governance_package_not_product_release",
+      "group": "fast",
+      "seconds": 0.0024841339982231148
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_historical_files_remain_immutable",
+      "group": "integration",
+      "seconds": 4.398182753997389
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_implementation_phase_consistency",
+      "group": "integration",
+      "seconds": 0.17842706300143618
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_independent_copy_and_corrupt_resource",
+      "group": "integration",
+      "seconds": 33.48474720399827
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_isolation_oracle_rejects_source_access",
+      "group": "fast",
+      "seconds": 0.03381567900214577
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_missing_artifact_not_approved",
+      "group": "fast",
+      "seconds": 0.00018359000387135893
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_missing_evidence_artifact",
+      "group": "fast",
+      "seconds": 0.00016504099767189473
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_normative_hash_requires_review",
+      "group": "integration",
+      "seconds": 3.3051998739974806
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_path_escape_and_symlink",
+      "group": "fast",
+      "seconds": 0.000464751006802544
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_product_feature_isolated_from_skill_acceptance",
+      "group": "integration",
+      "seconds": 3.2874307629972463
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_product_records_stay_out_of_governance_export",
+      "group": "fast",
+      "seconds": 0.0536948249937268
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_relocated_contracts_remain_protected",
+      "group": "integration",
+      "seconds": 4.331961876996502
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_specialized_frontmatter_preserves_original_content",
+      "group": "integration",
+      "seconds": 25.891711738993763
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_technical_pending_and_history",
+      "group": "fast",
+      "seconds": 0.013017653000133578
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_translation_predecessor_is_authenticated",
+      "group": "integration",
+      "seconds": 0.17439575599564705
+    },
+    {
+      "test": "test_reconciliation.GitBoundaryTests.test_archived_git_metadata_rejected_recursively",
+      "group": "fast",
+      "seconds": 0.00031171100272331387
+    },
+    {
+      "test": "test_reconciliation.GitBoundaryTests.test_nested_git_directories_and_worktree_files_excluded",
+      "group": "fast",
+      "seconds": 0.004059917002450675
+    },
+    {
+      "test": "test_reconciliation.SuccessionTests.test_current_original_and_metadata_integrity",
+      "group": "integration",
+      "seconds": 2.4068272759977845
+    },
+    {
+      "test": "test_reconciliation.SuccessionTests.test_profile_still_rejects_unauthorized_skills_and_bridges",
+      "group": "integration",
+      "seconds": 3.279585309996037
+    },
+    {
+      "test": "test_reconciliation.SuccessionTests.test_succession_predecessor_and_scope_fail_closed",
+      "group": "integration",
+      "seconds": 0.17803381299745524
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_corruption_and_deletion_fail_for_new_and_existing_metadata",
+      "group": "integration",
+      "seconds": 15.708040304998576
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_invalid_revision_records_rejected",
+      "group": "integration",
+      "seconds": 0.20029250199877424
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_revision_matches_current_files_and_preserves_prior_revisions",
+      "group": "integration",
+      "seconds": 1.745157453995489
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_unrelated_preservation_still_enforced",
+      "group": "integration",
+      "seconds": 3.293252723997284
+    }
+  ]
+}

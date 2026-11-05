@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "environment": "Linux-7.3.0-1-default-x86_64-with-glibc2.44; 2026-11-01 criterion review; historical agent observations dated 2026-10-26",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Output with a relevant error is summarized while preserving failure and location; oracle: command fixtures.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "ANSI, partial UTF-8, binary output and unexpected formats receive explicit fallback; oracle: adversarial corpus.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Truncation is indicated with the location of complete raw output; oracle: output exceeding the limit.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "An estimated count is not shown as billed tokens; oracle: case without provider information.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED"
+      ]
+    },
+    {
+      "id": "AC-06",
+      "criterion": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-AUTHORING-REEXAMINED",
+      "kind": "inspection",
+      "command_or_method": "New semantic comparison of preserved authoring observations against unchanged skill/contracts and evolved checker; historical agent replies reexamined, not rerun.",
+      "observed_result": "Authoring content and historical response conclusions remain supported; see authoring-reexamination.md.",
+      "artifact": "docs/validation/technical-acceptance-20261101/authoring-reexamination.md",
+      "sha256": "4542f83abe975221f6d7852061aeaa52b8b4ac4e018ab3971eb4c52302a73509",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/loss-aware-transformations.md",
+          "sha256": "fb4b14a18194d6d6f9a7a592f095bc22e8f3c03cbb080c5605fa73b01d282647",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/tool-parsers-and-fallbacks.md",
+          "sha256": "fff670b43ed083b684d4835e54be59d08472aaf1233602e23529f4ef1317aa95",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/token-measurement.md",
+          "sha256": "05f7fb7d405b84e2680518031486b8a843b0891f47fd11464105b8f410ee3303",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/tool-output-engineering.md",
+          "sha256": "6cd949046aa022320beef01d338b2553ef439411cd46efefc2055a8ffdea0b5c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+          "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/group-3.md",
+          "sha256": "692cacfa1f1b62d3e6e1b540caadfae480ec9b55f7ca8e7ac583406e7fc8c2d6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/review.md",
+          "sha256": "5d37a57db655b1a9bdecc5f3fdc8cf7edd1fcd79c114cc2ec8ade315f3ee77d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.json",
+          "sha256": "f34cdf9bc5cc097efe8659f63c611af2a4c7fb555f1dd56cf523d32b56d91021",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.tar.gz",
+          "sha256": "688a84de1f008b784df1ea699cdfb9c1889390bc8dcf26bab9a99c0ad5c5a820",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "9935c6d4c2370147c683ecdd0213f22e56a1a67ebb9940ec543201b9e022aade",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/before.json",
+          "sha256": "b558b16d52000c7e3299d1c41e3f80a8f555aa24e5831ce16f7246db4cebdac7",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Acceptance restricted to governance/authoring; no Rust compilation, Iced integration or product effectiveness.",
+    "Executor review is not independent human review; historical trials were not rerun.",
+    "Previous envelopes are in docs/validation/governance-layout/before.tar.gz; collection outputs are checked separately through freshness and final extraction.",
+    "Initial package qualification has its own inputs preceding consolidation; the final delivery receipt is in dist/.",
+    "The skills' 36 technical scenarios remain UNVERIFIED.",
+    "maintenance-001: affected observations are preserved in docs/validation/maintenance-001/previous/sdd/features/skill-tool-output-engineering/evidence.json.bin; awaiting review or new execution without renewing old hashes.",
+    "maintenance-001 observations are new; previous results are preserved. Actual-package criteria, a new agent trial and unresolved ownership/permissions remain UNVERIFIED.",
+    "Inputs changed by bootstrap; previous observations and historical approvals are preserved in docs/validation/bootstrap-governance/previous. Dependent criteria await their own reacceptance; old hashes were not renewed.",
+    "2026-11-01: new criterion review at docs/validation/skill-criteria-review-20261101/matrix.json. Technical observations do not automatically promote formal AC-01..04 under the existing guard; no product expansion. AC-06 reexamines historical replies, not new agents.",
+    "2026-11-01 technical-acceptance supersedes the former unconditional guard. Decided technical criteria concern frozen evaluated consumers only; semantic review and original limits remain mandatory."
+  ]
+}

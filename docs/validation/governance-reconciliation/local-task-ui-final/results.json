@@ -1,0 +1,55 @@
+{
+  "results": [
+    {
+      "command": [
+        "python3",
+        "sdd/tools/validate.py",
+        "--root",
+        "."
+      ],
+      "exit_code": 0,
+      "log": "01.log"
+    },
+    {
+      "command": [
+        "python3",
+        "sdd/tools/validate.py",
+        "--root",
+        ".",
+        "--structure-only"
+      ],
+      "exit_code": 0,
+      "log": "02.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/check-ox.py"
+      ],
+      "exit_code": 1,
+      "log": "03.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/verify-maintenance.py"
+      ],
+      "exit_code": 0,
+      "log": "04.log"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/run-tests.py",
+        "--group",
+        "all",
+        "--timings",
+        "/home/rodrigo/Projetos/ox/docs/validation/governance-reconciliation/local-task-ui-final/timings.json"
+      ],
+      "exit_code": 1,
+      "log": "05.log"
+    }
+  ],
+  "source_inputs_unchanged": true,
+  "export_files": 961
+}

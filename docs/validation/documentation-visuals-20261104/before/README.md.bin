@@ -1,0 +1,105 @@
+# Ox
+
+Aplicação desktop em Rust/Iced para coordenar tarefas e agentes em projetos
+locais, com execução supervisionada, permissões explícitas e verificação por
+evidências. A direção do produto é **agent-first, local-first e extensível**.
+
+A entrega atual é uma **fundação executável com uma tarefa local controlada**:
+selecione um workspace, execute um cenário, acompanhe o processo e verifique o
+artefato com um oráculo independente. Agentes de IA reais, persistência durável,
+indexação de código e motores de grafo continuam planejados.
+
+## Estado atual
+
+Versão interna **0.1.0**, `publish = false`, 16 crates em `application/`.
+Fase `implementation-foundation`; aplicativo `bootstrap-implemented`.
+F0 foi aceito no corpus local Linux x86_64 adotado, com X11 e Wayland avaliados
+separadamente. Consulte o [relatório F0 e seus limites](docs/validation/f0-resumption-20261103/report.md)
+e o [escopo autorizado](sdd/project.md). A expressão histórica
+`not-yet-implemented` descreve o início do projeto.
+
+| Disponível | Limite da entrega |
+| --- | --- |
+| Janela Iced, seleção de workspace e navegação por teclado | Uma operação por vez |
+| Tarefa local com sucesso, resultado incorreto, falha, timeout e cancelamento | Fixture determinística, sem agente de IA |
+| Supervisão de processo e verificação de artefatos | Filho direto, sem sandbox; histórico em memória |
+| Host de plugins por socket Unix, protocolo textual 1.0 | API local independente da interface |
+| Contratos de contexto, grafo, output, storage, SDD e skills | Não implementam os respectivos motores |
+
+## Executar
+
+Requer Linux x86_64, sessão gráfica X11 ou Wayland e Rust **1.99.1**.
+O [toolchain](application/rust-toolchain.toml) inclui rustfmt e clippy.
+Dependências do lockfile e bibliotecas de sistema para Iced/winit precisam estar
+disponíveis; não há instalador público ou lista universal de pacotes Linux.
+
+Na raiz do repositório:
+
+```bash
+cd application
+cargo build --workspace --locked
+cargo run --locked -p ox-app --bin ox
+```
+
+O build prepara `ox`, `local-task` e `task-oracle` em `target/debug/`.
+Mantenha os três executáveis juntos. Na janela:
+
+1. Informe um diretório de demonstração existente e gravável; clique em
+   **Validate workspace**.
+2. Clique em **Run correct**. O processo produz um artefato; a aceitação permanece
+   `UNVERIFIED` até a verificação.
+3. Clique em **Verify result** para verificar a identidade da tentativa e `result=42`.
+4. Compare com **Run incorrect** seguido de **Verify result**: o resultado é
+   `REJECTED`, mesmo que o processo produtor termine com sucesso.
+
+Cada tentativa cria `.ox-task-<sessão>-<tentativa>/` no diretório escolhido.
+Esses arquivos permanecem após sair; o histórico e as aprovações em memória são
+perdidos ao reiniciar. O [guia da aplicação](application/README.md) detalha uso,
+falhas, atualização dos inputs e testes.
+
+## Verificar
+
+Em `application/`, depois do build do workspace:
+
+```bash
+cargo test --workspace --locked
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets --locked -- -D warnings
+```
+
+Os testes comuns cobrem contratos e processos locais. Os seis testes desktop
+ignorados exigem uma sessão X11 dedicada e interação com janelas; consulte as
+[instruções específicas](application/README.md#testes-e-referência-rust).
+Os [checks Python de governança](docs/development/governance.md) têm escopo próprio.
+
+## Documentação
+
+| Preciso… | Entrada |
+| --- | --- |
+| Executar a demonstração ou contribuir no Rust | [Aplicação](application/README.md) |
+| Encontrar guias, decisões e evidências | [Índice da documentação](docs/README.md) |
+| Entender os componentes e suas implementações | [Arquitetura da aplicação](docs/architecture/application.md) |
+| Consultar inputs, estados, efeitos e erros | [Contratos](docs/architecture/contracts.md) |
+| Retomar trabalho autorizado | [Contexto do projeto](sdd/project.md) e [workflow](sdd/workflow.md) |
+| Selecionar métodos de desenvolvimento | [Catálogo de skills](.codex/skills/README.md) |
+
+Antes de modificar o projeto, consulte [AGENTS.md](AGENTS.md) e a
+[constituição](docs/constitution.md). As [features SDD](sdd/features/README.md)
+registram escopos e aceitação. A biblioteca de 31 skills e suas
+[pontes](sdd/chain/README.md) apoiam o desenvolvimento; não significam que o
+aplicativo carrega skills de projetos do usuário.
+
+## Compartilhamento e licença
+
+`application/Cargo.toml` define o workspace do produto. O pacote
+`ox-governance.zip` declara `product_included=false`: contém somente governança,
+sem `application/`, binários ou instaladores. O pipeline do aplicativo exige
+build, testes e distribuição próprios. Consulte
+[compartilhamento e recuperação](docs/development/sharing.md).
+
+Material próprio: **GPL-3.0-only**, Rodrigo Batista. Veja [LICENSE](LICENSE),
+[NOTICE](NOTICE) e a [revisão de licenciamento](docs/licensing/review.md).
+Direitos de materiais copiados e condições de distribuição pública permanecem
+pendentes.
+
+Revisão documental: 04/11/2026. [Verificações e limitações](docs/validation/documentation-refresh-20261104/report.md).

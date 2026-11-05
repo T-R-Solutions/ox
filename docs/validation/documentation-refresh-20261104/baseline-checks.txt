@@ -1,0 +1,5 @@
+python3 sdd/tools/validate.py --root . --structure-only
+Exit 0: PASS: portable files, configured bridges and requested evidence checks
+
+python3 tools/governance/scripts/check-ox.py
+Exit 1: FAIL: README integration current changed/missing: README.md

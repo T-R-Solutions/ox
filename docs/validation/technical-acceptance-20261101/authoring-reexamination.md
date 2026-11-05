@@ -1,0 +1,5 @@
+# Authoring evidence reexamination
+
+2026-11-01: the only changed bound executable in the nine authoring observations is check-ox.py. The new technical_review gate replaces the unconditional pending restriction; existing content/frontmatter/reference/bridge checks remain unchanged. Compared the preserved envelopes, current skill/reference/bridge/feature contracts and 2026-10-26 raw replies against the prior skill-criteria-review-20261101 matrix. All those content inputs are byte-identical. The criterion-specific semantic conclusions in that review remain applicable; it is not a new agent trial. Prior envelopes and hashes are in previous/. New local checker validation is recorded separately in final-checks.log and the independent-export receipt after completion.
+
+This new inspection supports AC-05/06 only. The current checker is an input to this review, not an assertion that historical agents saw it. Technical consumers below have independent execution/review records; no product verdict is inherited.

@@ -1,0 +1,542 @@
+[
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "criterion": "AC-01",
+    "description": "A compatible, authorized plugin negotiates only granted capabilities; oracle: client/provider fixture and message assertions.",
+    "observation_status": "APPROVED",
+    "finding": "Host tests negotiate echo and reject denied/unsupported CALLs using a peer that exits 21 on any unauthorized CALL.",
+    "limitation_or_resume": "Local trusted ASCII fixture only; no sandbox or third-party interoperability.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/cargo-tests-host.log"
+    ]
+  },
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "criterion": "AC-02",
+    "description": "An incompatible or malformed plugin receives an explicit failure without persistent mutation; oracle: compatibility harness.",
+    "observation_status": "INCONCLUSIVE",
+    "finding": "Incompatible/malformed/oversized frames are rejected and later calls fail closed, but tests do not independently compare persistent state before/after.",
+    "limitation_or_resume": "Add a persistent-state sentinel oracle around incompatible and malformed startup/requests.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/cargo-tests-host.log"
+    ]
+  },
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "criterion": "AC-03",
+    "description": "A plugin exits during an operation and the host recovers/expires resources without blocking; oracle: crash and timeout test.",
+    "observation_status": "APPROVED",
+    "finding": "Crash and timeout are distinct and bounded below 3 seconds; separate shutdown/recovery test observes socket directory removal and a fresh instance.",
+    "limitation_or_resume": "Direct child and local fixture only.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/cargo-tests-host.log"
+    ]
+  },
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "criterion": "AC-04",
+    "description": "An unauthorized plugin attempts to read a protected path and the host blocks the effect; oracle: sandbox integration on the target OS.",
+    "observation_status": "UNVERIFIED",
+    "finding": "Host has no OS sandbox; grant mediation cannot deny direct filesystem reads.",
+    "limitation_or_resume": "Choose and implement a contained consumer, then test a denied sentinel read through IPC and direct access.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "criterion": "AC-05",
+    "description": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+    "observation_status": "APPROVED",
+    "finding": "Negotiation intersects supported/requested/granted capabilities; references distinguish direct process effects and require persistent before/after fault checks.",
+    "limitation_or_resume": "Semantic content inspection plus local structural check; no external-source/API compatibility verification or effectiveness claim.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/check-ox.log"
+    ]
+  },
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "criterion": "AC-06",
+    "description": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+    "observation_status": "APPROVED",
+    "finding": "Historical positive selects plugin protocol; negative selects software-design with stable-SDK rationale; adversarial reply grants read A only, rejects sandbox inference and reconciles uncertain writes.",
+    "limitation_or_resume": "New review of preserved 2026-10-26 raw responses against current criteria; not a new agent run or generalization claim. Original model/version and contamination limitations remain.",
+    "artifacts": [
+      "docs/validation/agent-evals/group-1.md"
+    ]
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "criterion": "AC-01",
+    "description": "An out-of-order event does not cause an unwarranted completion; oracle: transition test with an adversarial sequence.",
+    "observation_status": "APPROVED",
+    "finding": "Adversarial reducer test rejects wrong generation, duplicate start, sequence gap and late success without corrupting terminal state.",
+    "limitation_or_resume": "Reducer evidence is not sender authentication.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/cargo-tests-host.log"
+    ]
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "criterion": "AC-02",
+    "description": "Process death produces a status and cleanup of associated resources; oracle: controlled process with an injected failure.",
+    "observation_status": "APPROVED",
+    "finding": "Real failure returns Failed(17); additional Linux consumer asserts the PID disappears from /proc after observed completion.",
+    "limitation_or_resume": "Direct-child/no-output fixture; descendants and stream resources absent.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/consumer-tests.log"
+    ]
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "criterion": "AC-03",
+    "description": "Cancellation during heavy output leaves no orphaned tasks; oracle: harness with streams and a deadline.",
+    "observation_status": "UNVERIFIED",
+    "finding": "Runtime redirects output to null and has no stream drainers or descendant containment.",
+    "limitation_or_resume": "Provide a streaming adapter and bounded emitter with stdout/stderr, cancellation and descendant/resource assertions.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "criterion": "AC-04",
+    "description": "A “done” message without a validated artifact does not change the verdict to approved; oracle: deterministic adversarial case.",
+    "observation_status": "APPROVED",
+    "finding": "Engine receives literal agent completion claim and remains NotVerified until a real oracle executes.",
+    "limitation_or_resume": "Controlled deterministic engine consumer, not arbitrary agent integration.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/cargo-tests-host.log"
+    ]
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "criterion": "AC-05",
+    "description": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+    "observation_status": "APPROVED",
+    "finding": "Procedure separates identities, observed exits and claims; references require bounded stream draining and observed process-tree cleanup.",
+    "limitation_or_resume": "Semantic content inspection plus local structural check; no external-source/API compatibility verification or effectiveness claim.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/check-ox.log"
+    ]
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "criterion": "AC-06",
+    "description": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+    "observation_status": "APPROVED",
+    "finding": "Historical positive selects runtime, negative ai-engineering; adversarial reply isolates A/B generations, refuses done as acceptance and specifies draining/escalation/reaping.",
+    "limitation_or_resume": "New review of preserved 2026-10-26 raw responses against current criteria; not a new agent run or generalization claim. Original model/version and contamination limitations remain.",
+    "artifacts": [
+      "docs/validation/agent-evals/group-1.md"
+    ]
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "criterion": "AC-01",
+    "description": "A criterion with a real test and versioned input can be marked APPROVED; oracle: bound execution artifact.",
+    "observation_status": "APPROVED",
+    "finding": "Real oracle exit and captured input bytes produce Approved with run identity; test asserts observation/check bindings.",
+    "limitation_or_resume": "Local in-memory consumer; no authenticity or persistence guarantee.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/cargo-tests-host.log"
+    ]
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "criterion": "AC-02",
+    "description": "A skipped or unavailable test remains UNVERIFIED; oracle: fixture without an executable.",
+    "observation_status": "APPROVED",
+    "finding": "New consumer uses nonexistent oracle: execution returns NotFound, observations remain empty, verdict stays NotVerified before and after.",
+    "limitation_or_resume": "Exercises unavailable executable branch; does not claim all wrapper/skip protocols.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/consumer-tests.log"
+    ]
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "criterion": "AC-03",
+    "description": "A change after validation invalidates only criteria dependent on changed inputs; oracle: freshness test.",
+    "observation_status": "APPROVED",
+    "finding": "Mutation test invalidates changed candidate/contract while independent criterion remains approved and rejected history is retained.",
+    "limitation_or_resume": "Declared local inputs only.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/cargo-tests-host.log"
+    ]
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "criterion": "AC-04",
+    "description": "An agent without deployment authorization cannot publish even after verification passes; oracle: boundary mock plus permitted integration.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No publication adapter/gate with a permitted integration endpoint exists in this consumer.",
+    "limitation_or_resume": "Implement an authorized disposable publication boundary and test absent grants after passing verification.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "criterion": "AC-05",
+    "description": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+    "observation_status": "APPROVED",
+    "finding": "Procedure binds criteria to actual input bytes and independent oracles; references distinguish absent tests, contradictory evidence and publication authorization.",
+    "limitation_or_resume": "Semantic content inspection plus local structural check; no external-source/API compatibility verification or effectiveness claim.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/check-ox.log"
+    ]
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "criterion": "AC-06",
+    "description": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+    "observation_status": "APPROVED",
+    "finding": "Historical positive selects verification, negative software-testing; adversarial response invalidates A selectively, conditions B on all inputs, leaves C unverified and refuses unauthorized publication.",
+    "limitation_or_resume": "New review of preserved 2026-10-26 raw responses against current criteria; not a new agent run or generalization claim. Original model/version and contamination limitations remain.",
+    "artifacts": [
+      "docs/validation/agent-evals/group-1.md"
+    ]
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "criterion": "AC-01",
+    "description": "An attempted write outside the root through .. or a symlink is rejected; oracle: adversarial path fixture.",
+    "observation_status": "UNVERIFIED",
+    "finding": "WorkspaceRoot validates only absolute paths; no confined write API.",
+    "limitation_or_resume": "Exercise traversal and symlink escapes against a real write boundary.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "criterion": "AC-02",
+    "description": "Two agents edit the same version: the second write conflicts or applies a verified merge; oracle: concurrency test.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No multiauthor transaction/compare-and-write consumer exists.",
+    "limitation_or_resume": "Run competing writers from H0 and assert conflict or verified merge with H1 retained.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "criterion": "AC-03",
+    "description": "An injected failure between temporary-file creation and rename leaves no incorrect “done” record; oracle: crash test.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No staging/journal commit-and-recovery implementation exists.",
+    "limitation_or_resume": "Inject crash between staging and rename, recover and assert no false completion.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "criterion": "AC-04",
+    "description": "An externally changed file invalidates the hash/snapshot; oracle: watcher plus actual-read verification.",
+    "observation_status": "UNVERIFIED",
+    "finding": "Engine snapshots exist but the criterion explicitly requires watcher plus actual-read verification; no watcher consumer exists.",
+    "limitation_or_resume": "Suppress a watcher event, mutate bytes and demonstrate content reconciliation invalidates snapshot.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "criterion": "AC-05",
+    "description": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+    "observation_status": "APPROVED",
+    "finding": "Procedure and references cover base preconditions, path races, staging/journal recovery, non-cooperative writers and watcher reconciliation without claiming portable atomicity.",
+    "limitation_or_resume": "Semantic content inspection plus local structural check; no external-source/API compatibility verification or effectiveness claim.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/check-ox.log"
+    ]
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "criterion": "AC-06",
+    "description": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+    "observation_status": "APPROVED",
+    "finding": "Historical positive selects workspace, negative database-engineering; reply preserves H1 against stale H2, rejects escaping symlink, exposes TOCTOU and reconciles journal/content after crash.",
+    "limitation_or_resume": "New review of preserved 2026-10-26 raw responses against current criteria; not a new agent run or generalization claim. Original model/version and contamination limitations remain.",
+    "artifacts": [
+      "docs/validation/agent-evals/group-2.md"
+    ]
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "criterion": "AC-01",
+    "description": "A simulated slow operation does not block navigation/interaction; oracle: integration test with a UI heartbeat.",
+    "observation_status": "INCONCLUSIVE",
+    "finding": "Existing product records demonstrate interaction during a task; the specialization requires an instrumented UI heartbeat, which was not measured here.",
+    "limitation_or_resume": "Add heartbeat/input observations under a defined slow workload in a graphical session.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "criterion": "AC-02",
+    "description": "An expanded/collapsed pane preserves the defined content and focus; oracle: functional state test.",
+    "observation_status": "INCONCLUSIVE",
+    "finding": "Existing expand/collapse evidence checks content/pixels; no complete keyboard-focus restoration oracle for the specialization.",
+    "limitation_or_resume": "Exercise focused controls through collapse/expand and assert visible focus fallback/restoration.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "criterion": "AC-03",
+    "description": "Extreme resizing does not lose essential actions; oracle: layout review at documented sizes.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No documented extreme-size acceptance observations found for this criterion.",
+    "limitation_or_resume": "Define sizes/scales and observe reachability of essential controls in the real window.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "criterion": "AC-04",
+    "description": "A hidden graph does not schedule continuous relayout; oracle: instrumentation under a controlled workload.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No graph-layout scheduler exists to measure hidden-view work.",
+    "limitation_or_resume": "Provide a graph consumer with scheduling counters; hide/reopen and challenge late completion.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "criterion": "AC-05",
+    "description": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+    "observation_status": "APPROVED",
+    "finding": "Procedure checks actual Iced version, generation-aware messages, off-thread work, subscription lifetime, focus, window sizes and hidden-view work; references separate state tests from accessibility/graphics.",
+    "limitation_or_resume": "Semantic content inspection plus local structural check; no external-source/API compatibility verification or effectiveness claim.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/check-ox.log"
+    ]
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "criterion": "AC-06",
+    "description": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+    "observation_status": "APPROVED",
+    "finding": "Historical positive selects Iced, negative design-review; reply rejects stale search generations, suspends hidden layout, specifies visible focus fallback and refuses invented APIs without lockfile.",
+    "limitation_or_resume": "New review of preserved 2026-10-26 raw responses against current criteria; not a new agent run or generalization claim. Original model/version and contamination limitations remain.",
+    "artifacts": [
+      "docs/validation/agent-evals/group-2.md"
+    ]
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "criterion": "AC-01",
+    "description": "A symbol query reports file, range, snapshot and method; oracle: fixtures with verified positions.",
+    "observation_status": "UNVERIFIED",
+    "finding": "ContextQuery/ContextHit are data contracts; no query executor or symbol ranges/method extraction.",
+    "limitation_or_resume": "Implement consumer and verify exact symbol/range/snapshot/method against known corpus.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "criterion": "AC-02",
+    "description": "A rename/edit invalidates old entries and updates affected ones; oracle: controlled repository mutations.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No incremental index exists.",
+    "limitation_or_resume": "Run rename/edit mutation and compare old/new generation entries.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "criterion": "AC-03",
+    "description": "An ambiguous call without semantics is not labeled a verified reference; oracle: same-name code and imports.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No resolver/index consumer exists.",
+    "limitation_or_resume": "Query ambiguous same-name calls and assert no verified reference without resolution.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "criterion": "AC-04",
+    "description": "An absent LSP results in explicit degradation without invented results; oracle: deliberately unavailable server.",
+    "observation_status": "UNVERIFIED",
+    "finding": "IndexUnavailable enum alone does not exercise absent-LSP fallback.",
+    "limitation_or_resume": "Disable semantic provider in a real consumer and verify explicitly degraded results.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "criterion": "AC-05",
+    "description": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+    "observation_status": "APPROVED",
+    "finding": "Procedure distinguishes syntax/semantic resolution, symbol/document identity, range encoding, coherent snapshots and explicit fallback; references call for measured corpus evaluation.",
+    "limitation_or_resume": "Semantic content inspection plus local structural check; no external-source/API compatibility verification or effectiveness claim.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/check-ox.log"
+    ]
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "criterion": "AC-06",
+    "description": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+    "observation_status": "APPROVED",
+    "finding": "Historical positive selects context, negative ai-engineering; reply preserves homonym ambiguity, recalculates Unicode ranges, invalidates renamed document and labels absent LSP.",
+    "limitation_or_resume": "New review of preserved 2026-10-26 raw responses against current criteria; not a new agent run or generalization claim. Original model/version and contamination limitations remain.",
+    "artifacts": [
+      "docs/validation/agent-evals/group-2.md"
+    ]
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "criterion": "AC-01",
+    "description": "A valid call edge can be traced to its location and method; oracle: known synthetic corpus.",
+    "observation_status": "UNVERIFIED",
+    "finding": "Relation is a data structure; no extractor or graph query implementation.",
+    "limitation_or_resume": "Verify known call edges against source location/method in a fixed corpus.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "criterion": "AC-02",
+    "description": "An inferred relationship incorrectly marked as verified is rejected; oracle: provenance schema/assertion.",
+    "observation_status": "UNVERIFIED",
+    "finding": "Verified/Inferred variants have no provenance validator; callers can construct either variant.",
+    "limitation_or_resume": "Implement an evidence validator and challenge inference mislabeled as verified.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "criterion": "AC-03",
+    "description": "A change removes a stale edge in the new snapshot; oracle: before/after fixture.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No incremental graph store exists.",
+    "limitation_or_resume": "Mutate source and verify removal/invalidation in the next snapshot.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "criterion": "AC-04",
+    "description": "A subgraph query applies limits and reports truncation; oracle: deterministically generated large graph.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No bounded traversal executor exists.",
+    "limitation_or_resume": "Query deterministic dense cyclic graph and assert examined-work/result limits and truncation.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "criterion": "AC-05",
+    "description": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+    "observation_status": "APPROVED",
+    "finding": "Procedure and references distinguish evidence classes, incremental edge invalidation, bounded cyclic traversal and graphical projections; no similarity-to-fact promotion.",
+    "limitation_or_resume": "Semantic content inspection plus local structural check; no external-source/API compatibility verification or effectiveness claim.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/check-ox.log"
+    ]
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "criterion": "AC-06",
+    "description": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+    "observation_status": "APPROVED",
+    "finding": "Historical positive selects graph, negative no specialized skill; reply rejects verified similarity, invalidates dependent edges and budgets examined work with explicit truncation.",
+    "limitation_or_resume": "New review of preserved 2026-10-26 raw responses against current criteria; not a new agent run or generalization claim. Original model/version and contamination limitations remain.",
+    "artifacts": [
+      "docs/validation/agent-evals/group-3.md"
+    ]
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "criterion": "AC-01",
+    "description": "Output with a relevant error is summarized while preserving failure and location; oracle: command fixtures.",
+    "observation_status": "UNVERIFIED",
+    "finding": "RawOutput/Projection are containers; no summarizer implementation.",
+    "limitation_or_resume": "Transform real failure fixtures and compare error/exit/location against raw bytes.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "criterion": "AC-02",
+    "description": "ANSI, partial UTF-8, binary output and unexpected formats receive explicit fallback; oracle: adversarial corpus.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No parser/fallback pipeline exists.",
+    "limitation_or_resume": "Execute ANSI, partial UTF-8, binary and unknown-format fixtures and observe fallback.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "criterion": "AC-03",
+    "description": "Truncation is indicated with the location of complete raw output; oracle: output exceeding the limit.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No budgeted projection/retention pipeline exists.",
+    "limitation_or_resume": "Exceed output budget and verify truncation metadata and recoverable complete raw artifact.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "criterion": "AC-04",
+    "description": "An estimated count is not shown as billed tokens; oracle: case without provider information.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No token-estimate presentation consumer exists.",
+    "limitation_or_resume": "Use missing provider usage and verify estimate is labeled separately from billing.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "criterion": "AC-05",
+    "description": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+    "observation_status": "APPROVED",
+    "finding": "Procedure preserves raw bytes/termination and explicit loss; references cover parser failure, unknown formats and measured versus billed tokens.",
+    "limitation_or_resume": "Semantic content inspection plus local structural check; no external-source/API compatibility verification or effectiveness claim.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/check-ox.log"
+    ]
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "criterion": "AC-06",
+    "description": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+    "observation_status": "APPROVED",
+    "finding": "Historical positive selects output, negative observability; reply preserves exit=1 despite stdout success, labels unknown parser/partial encoding, treats injection as data and refuses invented billing savings.",
+    "limitation_or_resume": "New review of preserved 2026-10-26 raw responses against current criteria; not a new agent run or generalization claim. Original model/version and contamination limitations remain.",
+    "artifacts": [
+      "docs/validation/agent-evals/group-3.md"
+    ]
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "criterion": "AC-01",
+    "description": "Usage without available pricing returns unknown cost, not zero; oracle: model fixture without a rate.",
+    "observation_status": "UNVERIFIED",
+    "finding": "Measurement::Unknown is a generic type; no pricing/usage consumer.",
+    "limitation_or_resume": "Run a usage event with absent tariff and assert unknown cost.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "criterion": "AC-02",
+    "description": "Replaying an event with the same ID does not double the total; oracle: replay test.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No ledger/event deduplication implementation exists.",
+    "limitation_or_resume": "Replay identical event and conflicting duplicate payload; verify totals and reconciliation.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "criterion": "AC-03",
+    "description": "Cached, input and output tokens are aggregated according to the observed contract; oracle: provider fixture.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No provider normalization/aggregation implementation exists.",
+    "limitation_or_resume": "Use a versioned cache-inclusive fixture and verify independent totals.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "criterion": "AC-04",
+    "description": "The daily interval uses an explicit timezone and does not alter current context usage; oracle: day/hour boundary.",
+    "observation_status": "UNVERIFIED",
+    "finding": "No daily accounting/timezone consumer exists.",
+    "limitation_or_resume": "Execute boundary timestamps in explicit timezone and ensure current context remains separate.",
+    "artifacts": []
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "criterion": "AC-05",
+    "description": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+    "observation_status": "APPROVED",
+    "finding": "Procedure and references define event idempotency, cumulative versus delta reports, cache subsets, exact monetary units, absent prices and half-open timezone intervals.",
+    "limitation_or_resume": "Semantic content inspection plus local structural check; no external-source/API compatibility verification or effectiveness claim.",
+    "artifacts": [
+      "docs/validation/skill-criteria-review-20261101/check-ox.log"
+    ]
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "criterion": "AC-06",
+    "description": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+    "observation_status": "APPROVED",
+    "finding": "Historical positive selects usage, negative observability; reply derives 120 tokens once, keeps cache as subset, cumulative total 15, cost unknown and event-time day attribution.",
+    "limitation_or_resume": "New review of preserved 2026-10-26 raw responses against current criteria; not a new agent run or generalization claim. Original model/version and contamination limitations remain.",
+    "artifacts": [
+      "docs/validation/agent-evals/group-3.md"
+    ]
+  }
+]

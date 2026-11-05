@@ -1,0 +1,77 @@
+"""Current UI revision acceptance and preservation rejection cases."""
+from pathlib import Path
+import hashlib
+import importlib.util
+import json
+import tempfile
+import unittest
+
+ROOT = Path(__file__).resolve().parents[3]
+spec = importlib.util.spec_from_file_location('ui_checker', ROOT/'tools/governance/scripts/check-ox.py')
+C = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(C)
+from governance_support import copy_distribution
+
+
+class MetadataInventoryTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='ox-ui-inventory-')
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        copy_distribution(ROOT, self.root)
+        self.manifest = self.root/'docs/structure/files.json'
+
+    def read(self, path):
+        return C.validator(self.root).strict_json(path)
+
+    def test_revision_matches_current_files_and_preserves_prior_revisions(self):
+        rows = C.metadata_revision(self.root, self.read)
+        self.assertEqual(len(rows), 30)
+        for path, row in rows.items():
+            self.assertEqual(hashlib.sha256((self.root/path).read_bytes()).hexdigest(), row['sha256'])
+        previous = self.read(self.root/'docs/validation/skill-ui-metadata/inventory-before/docs/structure/files.json')
+        self.assertEqual(self.read(self.manifest)['revisions'][:-1], previous['revisions'])
+        self.assertEqual(C.check(self.root), ["Skill inventory differs from authorized profile: {'commit-governance'}"])
+
+    def test_corruption_and_deletion_fail_for_new_and_existing_metadata(self):
+        for name in ('rust', 'prompt', 'ai-engineering', 'agent-runtime-engineering', 'commit-governance'):
+            path = self.root/f'.codex/skills/{name}/agents/openai.yaml'
+            original = path.read_bytes()
+            for mutation in ('corrupt', 'delete'):
+                with self.subTest(skill=name, mutation=mutation):
+                    if mutation == 'corrupt':
+                        path.write_bytes(original+b'\n# changed\n')
+                    else:
+                        path.unlink()
+                    try:
+                        self.assertTrue(any('UI metadata changed/missing' in e for e in C.check(self.root)))
+                    finally:
+                        path.write_bytes(original)
+
+    def test_invalid_revision_records_rejected(self):
+        original = self.manifest.read_text()
+        for mutation in ('duplicate', 'predecessor', 'missing', 'unrelated'):
+            doc = json.loads(original)
+            rows = doc['revisions'][-1]['records']
+            if mutation == 'duplicate':
+                rows.append(rows[0])
+            elif mutation == 'predecessor':
+                rows[0]['previous_sha256'] = '0'*64
+            elif mutation == 'missing':
+                rows.pop()
+            else:
+                rows[0]['destination'] = '.codex/skills/rust/SKILL.md'
+            with self.subTest(mutation=mutation):
+                self.manifest.write_text(json.dumps(doc))
+                with self.assertRaises(ValueError):
+                    C.metadata_revision(self.root, self.read)
+        self.manifest.write_text(original)
+
+    def test_unrelated_preservation_still_enforced(self):
+        path = self.root/'.codex/skills/rust/agents/unregistered.yaml'
+        path.write_text('unregistered')
+        self.assertTrue(any('Unexpected copied resource:' in e for e in C.check(self.root)))
+        path.unlink()
+        path = self.root/'.codex/skills/rust/references/design.md'
+        path.write_bytes(path.read_bytes()+b'\ncorruption\n')
+        self.assertTrue(any('Copied resource changed/missing:' in e for e in C.check(self.root)))

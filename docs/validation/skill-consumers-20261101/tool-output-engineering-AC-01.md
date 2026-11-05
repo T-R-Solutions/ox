@@ -1,0 +1,13 @@
+# Criterion review: tool-output-engineering AC-01
+
+Output with a relevant error is summarized while preserving failure and location; oracle: command fixtures.
+
+APPROVED in the following evaluated scope: Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.
+
+Observed: output_ac01_failure: actual child exits 17 after a 4096-byte successful prefix and error at src/main.rs:12; 256-byte projection preserves exit and location, and original bytes remain exact.
+
+Method: inspect the independent assertions and concrete implementation, execute commands captured in replay/receipt.json or environment.json/gui-02/result.json, and inspect their full logs. Expected values are independently specified fixture values; exit zero alone is insufficient. The original criterion and skill contracts are unchanged.
+
+Consumer: tools/governance/consumers/models.rs; oracle: tools/governance/consumers/model_tests.rs. Broader contracts/exclusions: tools/governance/consumers/README.md. All prior envelopes are byte-preserved in previous/. This does not accept a production Ox subsystem or infer new agent effectiveness.
+
+Final input stabilization: rustfmt joined two lines in model_tests.rs without changing behavior. The exact previous source, reviews and envelopes are preserved in before-format/. All 16 model tests, seven process/filesystem tests, isolation controls and the complete graphical flow were rerun successfully with the stabilized file set: replay-final/ and gui-final/. This is a new observed execution, not a hash-only renewal. No original skill criterion or product source changed.

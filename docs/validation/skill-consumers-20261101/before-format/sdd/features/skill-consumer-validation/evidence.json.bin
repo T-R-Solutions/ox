@@ -1,0 +1,1949 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64; Rust 1.99.1; Iced 0.14; Xwayland; bwrap; exact identities in environment.json",
+  "limitations": [
+    "Bounded evaluation consumers, not product subsystem adoption.",
+    "Independent export verifies Python governance; native execution observed separately.",
+    "Historical agent replies reexamined earlier, not regenerated."
+  ],
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "See spec and final per-criterion review",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-FINAL-REVIEW",
+        "E-EXEC-1"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "See spec and final per-criterion review",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-FINAL-REVIEW",
+        "E-EXEC-2"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "See spec and final per-criterion review",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-FINAL-REVIEW",
+        "E-EXEC-3"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "See spec and final per-criterion review",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-FINAL-REVIEW",
+        "E-EXEC-4"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-FINAL-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Criterion-by-criterion source/oracle review, actual replay logs, GUI pixel/focus review, prior-input comparison and six independent-export methods.",
+      "observed_result": "Four delivery criteria supported; 28 new bounded technical approvals; prior 26 approved requirement objects unchanged.",
+      "artifact": "docs/validation/skill-consumers-20261101/review.md",
+      "sha256": "d81fc904f1ff31b14391638d31ec1b0370e5003d60712bdab36d7477909be316",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-consumer-validation/spec.md",
+          "sha256": "113ca403d6a125a6a6c43af4c7fcd9422b8cfdb56263ef21f50fae10ec42e534",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/plan.md",
+          "sha256": "7bd37e22ba205fee33bfb5c35662abcdeb41a165875a479e7035cc34fd36784d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/tasks.md",
+          "sha256": "0397507c12f6ea0c71cb14ef23687638e4c7876dd40f326df25fc694918f7328",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/traceability.json",
+          "sha256": "5d3cea5ce11f30537db06ab2ec7a5dd87b73dbdfbce43b43482956f71d16597c",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "3d6f06829c540a13cd9f79b269ac17cdd398929921ba0dcba356869d9472f171",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/acceptance_check.py",
+          "sha256": "656bba2a06bbac56eebd8f62bb88cca9c3691a94d4d7c65ec0b051d85f59f1ba",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export_check.py",
+          "sha256": "dd1abcec5642a8295d5d171ff5aff86ccbfd18465800ea07ce820bdf08949e87",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/before.json",
+          "sha256": "323f6667120aa460ed88c5c0243c1b5ffa54d63d41284184254727182b73b25c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "184ceaca3dba71daffd5b8f2ffafd3cbef55749ce6954fb7b9d6d76d8126ebbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/matrix.json",
+          "sha256": "4941d6d86aae61800f16a63d0bd97312f81177ddaeb38e9af7e0b41fa714c2c7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-before.log",
+          "sha256": "dd4492aac26c6cb451e44a7844bc957183969192dceac47d0c8c7574dc50544a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-timings.json",
+          "sha256": "c093b1a7aae2dc9ce069e300e1916575d1f0b83eeda9e903f05588133a84bc87",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/receipt.json",
+          "sha256": "4f0de18f014e7262281c3786a5f341c41586aa8e3de46726bbbe6d0932c0cc26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/models.log",
+          "sha256": "ec2c3caf3cf5a334ddf7fc56d023215b9cf8e704ebcdaef1a10065f34c68b001",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/operations.log",
+          "sha256": "f0bb04b4b45c65aee25436eb505cad1431d53e1c5df6c419dbbc5d10e98bf901",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/isolation.json",
+          "sha256": "665c60fc0785f41683b782410fd817a04d9425dde5a92d447da890846f2a8d8d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/tests.log",
+          "sha256": "86534341d5e1d1df6f1d88665d16af990b4b8e46746ffe603c5a2ba23df79dc5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/result.json",
+          "sha256": "109b616506e86358e2ccb65c4330ad933e7ffcded39f430c89f75ed50153d181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/receipt.json",
+          "sha256": "4f73713f8f11dbcb00d5aa9d6b0dde8f955b10327c4c8883b4fb83903fe5935d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-240x180.png",
+          "sha256": "a25e89a47018d0643865856c34f5134f6d83bc5d08f8f9b6f0e781a5e8bba453",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-1600x1000.png",
+          "sha256": "f78b6e20c14bcdbc1e5b2e7c68828d88eb83ecb891c653a1c3336eb1a9bdb09f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-0.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-1.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-2.log",
+          "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-3.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-4.log",
+          "sha256": "7b56a00b2c3611171545b0aaac3402c7649880eb6d6a4cc2382ea237f0162cee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-5.log",
+          "sha256": "c529415e0ddd0318a19e9488916b36cb7b2a04d4a92af6d9756bbb04a1513cde",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-02.md",
+          "sha256": "273631bdfe2bd8f42cef27ed889cfe2d66774239cbd64bf490c9590db8945198",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-04.md",
+          "sha256": "561c2722fdcc72d8c8fdcd972d62400873708788a04221913bf7cdee5251ebdb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-runtime-engineering-AC-03.md",
+          "sha256": "d555ddaf5c03acf145c7982a7cf22a4cf22dcae7e44a0c63462e0cee82c73184",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/autonomous-verification-engineering-AC-04.md",
+          "sha256": "cea402fdd71c40b8563552cb18e6f092c5899c747252f132ba9a9201e4ad0a14",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-01.md",
+          "sha256": "849fe97825c247dac005aa7f2f66fd0b4bad2fd9c27bc94e44011a55e92c2fa6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-02.md",
+          "sha256": "d192c06352e5dd6904ef2ae41110c89a1925b2ced626cb9f0a6ec83b7ea1ac20",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-03.md",
+          "sha256": "68511eff23f36b4efb74811ec403e04769763bf2b3977e5dafdf8a3f1e3f692f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-04.md",
+          "sha256": "2b2b4d0d93b995ac009b649f1b8ef1d6778af7c4cc77c6dc218ba78e98ac07ae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-01.md",
+          "sha256": "4df0954dae0244a63e8a99b5198c755197c8c8ea9ebe81846dceef591873e25f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-02.md",
+          "sha256": "c780623af394bdedd19037404b8123e9bc5c76fdb48ec7d9ec4ff045aa0b1f76",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-03.md",
+          "sha256": "8868bb80d54ae7064a33c880e0629fbec2f12761d6e3b020b02a06d14859ee09",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-04.md",
+          "sha256": "852a48c837aba504902775e744af1c332e2a509a650d10f79f260885f4ea0cbc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-01.md",
+          "sha256": "361913c842dd9640e96dbaea78899c073713bb3e663b4438a44885844d4646fd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-02.md",
+          "sha256": "87d96e3f5737e66ff5c4699cd880d2aa1d6dd1e04042014e16304f7fced67f6f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-03.md",
+          "sha256": "218f981021ba31e7489c029839b8fd0f2464d66b27996d9b482e16bf11dde991",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-04.md",
+          "sha256": "e517b4ccc66e28491612b78fddb986aad0a57eaa092ff1518e8d4626c10c4f50",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-01.md",
+          "sha256": "8525d002e4405dcbc38cdd2a8096c9dac69fdca9d9a315b1393d793d261961c9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-02.md",
+          "sha256": "926bc022c2cc13c8099445c14dc07a3871467d5639b7d45f0d90662c7a0cb822",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-03.md",
+          "sha256": "b0839a73085af8df87b8799a38180353d8bd491c5761166b7e174407ff67c5ac",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-04.md",
+          "sha256": "323de989d5a54d2acb6bf54d1608da986101246fc1442998e25b6ee38a96a4a3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-01.md",
+          "sha256": "27fada77a347c7fb836ae5b3c1fc2a29f6298005f4df9706e5e2c3045af4800f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-02.md",
+          "sha256": "bf9dcd0863d8d7cf79850171c23a707f205d8770d9721a7d886523740fd3f1d1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-03.md",
+          "sha256": "2593ba2e1192fa68b644adae2d352db7d3b0d36b9957f05aa80d628c8869ef42",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-04.md",
+          "sha256": "0362131659a5c179403e305a0b79d99a44dea3cd473890703706e4c83e7d0a7b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-01.md",
+          "sha256": "166554375494b8c63ea57773d61054b110e10789039784d26ac9e20df425287b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-02.md",
+          "sha256": "64ff1223672639a4dc1465f975320a5eca3a8d0b8011392ca2764603d8cd6000",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-03.md",
+          "sha256": "0aea725af0008f7b4db05b87a4bbffe7813270a02275e5e9b43c00b19a897ecb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-04.md",
+          "sha256": "ef8f01ceed1e694ea6487883acee81504a0342ca2790384257662f63f17ede64",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/skills.json",
+          "sha256": "6009fb941f43b9b6e237c49e4c57a964b3966321b67496cb7eab6667159ef2e4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-EXEC-1",
+      "kind": "test",
+      "command_or_method": "Captured commands in replay/receipt.json, environment.json and independent-export receipt; final metadata-only consultation change reexamined in E-FINAL-REVIEW.",
+      "observed_result": "Observed execution supports delivery AC-01 within the final semantic review.",
+      "artifact": "docs/validation/skill-consumers-20261101/replay/models.log",
+      "sha256": "ec2c3caf3cf5a334ddf7fc56d023215b9cf8e704ebcdaef1a10065f34c68b001",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-consumer-validation/spec.md",
+          "sha256": "113ca403d6a125a6a6c43af4c7fcd9422b8cfdb56263ef21f50fae10ec42e534",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/plan.md",
+          "sha256": "7bd37e22ba205fee33bfb5c35662abcdeb41a165875a479e7035cc34fd36784d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/tasks.md",
+          "sha256": "0397507c12f6ea0c71cb14ef23687638e4c7876dd40f326df25fc694918f7328",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/traceability.json",
+          "sha256": "5d3cea5ce11f30537db06ab2ec7a5dd87b73dbdfbce43b43482956f71d16597c",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "3d6f06829c540a13cd9f79b269ac17cdd398929921ba0dcba356869d9472f171",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/acceptance_check.py",
+          "sha256": "656bba2a06bbac56eebd8f62bb88cca9c3691a94d4d7c65ec0b051d85f59f1ba",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export_check.py",
+          "sha256": "dd1abcec5642a8295d5d171ff5aff86ccbfd18465800ea07ce820bdf08949e87",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/before.json",
+          "sha256": "323f6667120aa460ed88c5c0243c1b5ffa54d63d41284184254727182b73b25c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "184ceaca3dba71daffd5b8f2ffafd3cbef55749ce6954fb7b9d6d76d8126ebbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/matrix.json",
+          "sha256": "4941d6d86aae61800f16a63d0bd97312f81177ddaeb38e9af7e0b41fa714c2c7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-before.log",
+          "sha256": "dd4492aac26c6cb451e44a7844bc957183969192dceac47d0c8c7574dc50544a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-timings.json",
+          "sha256": "c093b1a7aae2dc9ce069e300e1916575d1f0b83eeda9e903f05588133a84bc87",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/receipt.json",
+          "sha256": "4f0de18f014e7262281c3786a5f341c41586aa8e3de46726bbbe6d0932c0cc26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/models.log",
+          "sha256": "ec2c3caf3cf5a334ddf7fc56d023215b9cf8e704ebcdaef1a10065f34c68b001",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/operations.log",
+          "sha256": "f0bb04b4b45c65aee25436eb505cad1431d53e1c5df6c419dbbc5d10e98bf901",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/isolation.json",
+          "sha256": "665c60fc0785f41683b782410fd817a04d9425dde5a92d447da890846f2a8d8d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/tests.log",
+          "sha256": "86534341d5e1d1df6f1d88665d16af990b4b8e46746ffe603c5a2ba23df79dc5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/result.json",
+          "sha256": "109b616506e86358e2ccb65c4330ad933e7ffcded39f430c89f75ed50153d181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/receipt.json",
+          "sha256": "4f73713f8f11dbcb00d5aa9d6b0dde8f955b10327c4c8883b4fb83903fe5935d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-240x180.png",
+          "sha256": "a25e89a47018d0643865856c34f5134f6d83bc5d08f8f9b6f0e781a5e8bba453",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-1600x1000.png",
+          "sha256": "f78b6e20c14bcdbc1e5b2e7c68828d88eb83ecb891c653a1c3336eb1a9bdb09f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-0.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-1.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-2.log",
+          "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-3.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-4.log",
+          "sha256": "7b56a00b2c3611171545b0aaac3402c7649880eb6d6a4cc2382ea237f0162cee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-5.log",
+          "sha256": "c529415e0ddd0318a19e9488916b36cb7b2a04d4a92af6d9756bbb04a1513cde",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-02.md",
+          "sha256": "273631bdfe2bd8f42cef27ed889cfe2d66774239cbd64bf490c9590db8945198",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-04.md",
+          "sha256": "561c2722fdcc72d8c8fdcd972d62400873708788a04221913bf7cdee5251ebdb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-runtime-engineering-AC-03.md",
+          "sha256": "d555ddaf5c03acf145c7982a7cf22a4cf22dcae7e44a0c63462e0cee82c73184",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/autonomous-verification-engineering-AC-04.md",
+          "sha256": "cea402fdd71c40b8563552cb18e6f092c5899c747252f132ba9a9201e4ad0a14",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-01.md",
+          "sha256": "849fe97825c247dac005aa7f2f66fd0b4bad2fd9c27bc94e44011a55e92c2fa6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-02.md",
+          "sha256": "d192c06352e5dd6904ef2ae41110c89a1925b2ced626cb9f0a6ec83b7ea1ac20",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-03.md",
+          "sha256": "68511eff23f36b4efb74811ec403e04769763bf2b3977e5dafdf8a3f1e3f692f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-04.md",
+          "sha256": "2b2b4d0d93b995ac009b649f1b8ef1d6778af7c4cc77c6dc218ba78e98ac07ae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-01.md",
+          "sha256": "4df0954dae0244a63e8a99b5198c755197c8c8ea9ebe81846dceef591873e25f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-02.md",
+          "sha256": "c780623af394bdedd19037404b8123e9bc5c76fdb48ec7d9ec4ff045aa0b1f76",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-03.md",
+          "sha256": "8868bb80d54ae7064a33c880e0629fbec2f12761d6e3b020b02a06d14859ee09",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-04.md",
+          "sha256": "852a48c837aba504902775e744af1c332e2a509a650d10f79f260885f4ea0cbc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-01.md",
+          "sha256": "361913c842dd9640e96dbaea78899c073713bb3e663b4438a44885844d4646fd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-02.md",
+          "sha256": "87d96e3f5737e66ff5c4699cd880d2aa1d6dd1e04042014e16304f7fced67f6f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-03.md",
+          "sha256": "218f981021ba31e7489c029839b8fd0f2464d66b27996d9b482e16bf11dde991",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-04.md",
+          "sha256": "e517b4ccc66e28491612b78fddb986aad0a57eaa092ff1518e8d4626c10c4f50",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-01.md",
+          "sha256": "8525d002e4405dcbc38cdd2a8096c9dac69fdca9d9a315b1393d793d261961c9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-02.md",
+          "sha256": "926bc022c2cc13c8099445c14dc07a3871467d5639b7d45f0d90662c7a0cb822",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-03.md",
+          "sha256": "b0839a73085af8df87b8799a38180353d8bd491c5761166b7e174407ff67c5ac",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-04.md",
+          "sha256": "323de989d5a54d2acb6bf54d1608da986101246fc1442998e25b6ee38a96a4a3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-01.md",
+          "sha256": "27fada77a347c7fb836ae5b3c1fc2a29f6298005f4df9706e5e2c3045af4800f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-02.md",
+          "sha256": "bf9dcd0863d8d7cf79850171c23a707f205d8770d9721a7d886523740fd3f1d1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-03.md",
+          "sha256": "2593ba2e1192fa68b644adae2d352db7d3b0d36b9957f05aa80d628c8869ef42",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-04.md",
+          "sha256": "0362131659a5c179403e305a0b79d99a44dea3cd473890703706e4c83e7d0a7b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-01.md",
+          "sha256": "166554375494b8c63ea57773d61054b110e10789039784d26ac9e20df425287b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-02.md",
+          "sha256": "64ff1223672639a4dc1465f975320a5eca3a8d0b8011392ca2764603d8cd6000",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-03.md",
+          "sha256": "0aea725af0008f7b4db05b87a4bbffe7813270a02275e5e9b43c00b19a897ecb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-04.md",
+          "sha256": "ef8f01ceed1e694ea6487883acee81504a0342ca2790384257662f63f17ede64",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/skills.json",
+          "sha256": "6009fb941f43b9b6e237c49e4c57a964b3966321b67496cb7eab6667159ef2e4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-EXEC-2",
+      "kind": "test",
+      "command_or_method": "Captured commands in replay/receipt.json, environment.json and independent-export receipt; final metadata-only consultation change reexamined in E-FINAL-REVIEW.",
+      "observed_result": "Observed execution supports delivery AC-02 within the final semantic review.",
+      "artifact": "docs/validation/skill-consumers-20261101/replay/operations.log",
+      "sha256": "f0bb04b4b45c65aee25436eb505cad1431d53e1c5df6c419dbbc5d10e98bf901",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-consumer-validation/spec.md",
+          "sha256": "113ca403d6a125a6a6c43af4c7fcd9422b8cfdb56263ef21f50fae10ec42e534",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/plan.md",
+          "sha256": "7bd37e22ba205fee33bfb5c35662abcdeb41a165875a479e7035cc34fd36784d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/tasks.md",
+          "sha256": "0397507c12f6ea0c71cb14ef23687638e4c7876dd40f326df25fc694918f7328",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/traceability.json",
+          "sha256": "5d3cea5ce11f30537db06ab2ec7a5dd87b73dbdfbce43b43482956f71d16597c",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "3d6f06829c540a13cd9f79b269ac17cdd398929921ba0dcba356869d9472f171",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/acceptance_check.py",
+          "sha256": "656bba2a06bbac56eebd8f62bb88cca9c3691a94d4d7c65ec0b051d85f59f1ba",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export_check.py",
+          "sha256": "dd1abcec5642a8295d5d171ff5aff86ccbfd18465800ea07ce820bdf08949e87",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/before.json",
+          "sha256": "323f6667120aa460ed88c5c0243c1b5ffa54d63d41284184254727182b73b25c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "184ceaca3dba71daffd5b8f2ffafd3cbef55749ce6954fb7b9d6d76d8126ebbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/matrix.json",
+          "sha256": "4941d6d86aae61800f16a63d0bd97312f81177ddaeb38e9af7e0b41fa714c2c7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-before.log",
+          "sha256": "dd4492aac26c6cb451e44a7844bc957183969192dceac47d0c8c7574dc50544a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-timings.json",
+          "sha256": "c093b1a7aae2dc9ce069e300e1916575d1f0b83eeda9e903f05588133a84bc87",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/receipt.json",
+          "sha256": "4f0de18f014e7262281c3786a5f341c41586aa8e3de46726bbbe6d0932c0cc26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/models.log",
+          "sha256": "ec2c3caf3cf5a334ddf7fc56d023215b9cf8e704ebcdaef1a10065f34c68b001",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/operations.log",
+          "sha256": "f0bb04b4b45c65aee25436eb505cad1431d53e1c5df6c419dbbc5d10e98bf901",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/isolation.json",
+          "sha256": "665c60fc0785f41683b782410fd817a04d9425dde5a92d447da890846f2a8d8d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/tests.log",
+          "sha256": "86534341d5e1d1df6f1d88665d16af990b4b8e46746ffe603c5a2ba23df79dc5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/result.json",
+          "sha256": "109b616506e86358e2ccb65c4330ad933e7ffcded39f430c89f75ed50153d181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/receipt.json",
+          "sha256": "4f73713f8f11dbcb00d5aa9d6b0dde8f955b10327c4c8883b4fb83903fe5935d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-240x180.png",
+          "sha256": "a25e89a47018d0643865856c34f5134f6d83bc5d08f8f9b6f0e781a5e8bba453",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-1600x1000.png",
+          "sha256": "f78b6e20c14bcdbc1e5b2e7c68828d88eb83ecb891c653a1c3336eb1a9bdb09f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-0.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-1.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-2.log",
+          "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-3.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-4.log",
+          "sha256": "7b56a00b2c3611171545b0aaac3402c7649880eb6d6a4cc2382ea237f0162cee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-5.log",
+          "sha256": "c529415e0ddd0318a19e9488916b36cb7b2a04d4a92af6d9756bbb04a1513cde",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-02.md",
+          "sha256": "273631bdfe2bd8f42cef27ed889cfe2d66774239cbd64bf490c9590db8945198",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-04.md",
+          "sha256": "561c2722fdcc72d8c8fdcd972d62400873708788a04221913bf7cdee5251ebdb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-runtime-engineering-AC-03.md",
+          "sha256": "d555ddaf5c03acf145c7982a7cf22a4cf22dcae7e44a0c63462e0cee82c73184",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/autonomous-verification-engineering-AC-04.md",
+          "sha256": "cea402fdd71c40b8563552cb18e6f092c5899c747252f132ba9a9201e4ad0a14",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-01.md",
+          "sha256": "849fe97825c247dac005aa7f2f66fd0b4bad2fd9c27bc94e44011a55e92c2fa6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-02.md",
+          "sha256": "d192c06352e5dd6904ef2ae41110c89a1925b2ced626cb9f0a6ec83b7ea1ac20",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-03.md",
+          "sha256": "68511eff23f36b4efb74811ec403e04769763bf2b3977e5dafdf8a3f1e3f692f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-04.md",
+          "sha256": "2b2b4d0d93b995ac009b649f1b8ef1d6778af7c4cc77c6dc218ba78e98ac07ae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-01.md",
+          "sha256": "4df0954dae0244a63e8a99b5198c755197c8c8ea9ebe81846dceef591873e25f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-02.md",
+          "sha256": "c780623af394bdedd19037404b8123e9bc5c76fdb48ec7d9ec4ff045aa0b1f76",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-03.md",
+          "sha256": "8868bb80d54ae7064a33c880e0629fbec2f12761d6e3b020b02a06d14859ee09",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-04.md",
+          "sha256": "852a48c837aba504902775e744af1c332e2a509a650d10f79f260885f4ea0cbc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-01.md",
+          "sha256": "361913c842dd9640e96dbaea78899c073713bb3e663b4438a44885844d4646fd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-02.md",
+          "sha256": "87d96e3f5737e66ff5c4699cd880d2aa1d6dd1e04042014e16304f7fced67f6f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-03.md",
+          "sha256": "218f981021ba31e7489c029839b8fd0f2464d66b27996d9b482e16bf11dde991",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-04.md",
+          "sha256": "e517b4ccc66e28491612b78fddb986aad0a57eaa092ff1518e8d4626c10c4f50",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-01.md",
+          "sha256": "8525d002e4405dcbc38cdd2a8096c9dac69fdca9d9a315b1393d793d261961c9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-02.md",
+          "sha256": "926bc022c2cc13c8099445c14dc07a3871467d5639b7d45f0d90662c7a0cb822",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-03.md",
+          "sha256": "b0839a73085af8df87b8799a38180353d8bd491c5761166b7e174407ff67c5ac",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-04.md",
+          "sha256": "323de989d5a54d2acb6bf54d1608da986101246fc1442998e25b6ee38a96a4a3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-01.md",
+          "sha256": "27fada77a347c7fb836ae5b3c1fc2a29f6298005f4df9706e5e2c3045af4800f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-02.md",
+          "sha256": "bf9dcd0863d8d7cf79850171c23a707f205d8770d9721a7d886523740fd3f1d1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-03.md",
+          "sha256": "2593ba2e1192fa68b644adae2d352db7d3b0d36b9957f05aa80d628c8869ef42",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-04.md",
+          "sha256": "0362131659a5c179403e305a0b79d99a44dea3cd473890703706e4c83e7d0a7b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-01.md",
+          "sha256": "166554375494b8c63ea57773d61054b110e10789039784d26ac9e20df425287b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-02.md",
+          "sha256": "64ff1223672639a4dc1465f975320a5eca3a8d0b8011392ca2764603d8cd6000",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-03.md",
+          "sha256": "0aea725af0008f7b4db05b87a4bbffe7813270a02275e5e9b43c00b19a897ecb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-04.md",
+          "sha256": "ef8f01ceed1e694ea6487883acee81504a0342ca2790384257662f63f17ede64",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/skills.json",
+          "sha256": "6009fb941f43b9b6e237c49e4c57a964b3966321b67496cb7eab6667159ef2e4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-EXEC-3",
+      "kind": "trace",
+      "command_or_method": "Captured commands in replay/receipt.json, environment.json and independent-export receipt; final metadata-only consultation change reexamined in E-FINAL-REVIEW.",
+      "observed_result": "Observed execution supports delivery AC-03 within the final semantic review.",
+      "artifact": "docs/validation/skill-consumers-20261101/gui-02/tests.log",
+      "sha256": "86534341d5e1d1df6f1d88665d16af990b4b8e46746ffe603c5a2ba23df79dc5",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-consumer-validation/spec.md",
+          "sha256": "113ca403d6a125a6a6c43af4c7fcd9422b8cfdb56263ef21f50fae10ec42e534",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/plan.md",
+          "sha256": "7bd37e22ba205fee33bfb5c35662abcdeb41a165875a479e7035cc34fd36784d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/tasks.md",
+          "sha256": "0397507c12f6ea0c71cb14ef23687638e4c7876dd40f326df25fc694918f7328",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/traceability.json",
+          "sha256": "5d3cea5ce11f30537db06ab2ec7a5dd87b73dbdfbce43b43482956f71d16597c",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "3d6f06829c540a13cd9f79b269ac17cdd398929921ba0dcba356869d9472f171",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/acceptance_check.py",
+          "sha256": "656bba2a06bbac56eebd8f62bb88cca9c3691a94d4d7c65ec0b051d85f59f1ba",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export_check.py",
+          "sha256": "dd1abcec5642a8295d5d171ff5aff86ccbfd18465800ea07ce820bdf08949e87",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/before.json",
+          "sha256": "323f6667120aa460ed88c5c0243c1b5ffa54d63d41284184254727182b73b25c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "184ceaca3dba71daffd5b8f2ffafd3cbef55749ce6954fb7b9d6d76d8126ebbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/matrix.json",
+          "sha256": "4941d6d86aae61800f16a63d0bd97312f81177ddaeb38e9af7e0b41fa714c2c7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-before.log",
+          "sha256": "dd4492aac26c6cb451e44a7844bc957183969192dceac47d0c8c7574dc50544a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-timings.json",
+          "sha256": "c093b1a7aae2dc9ce069e300e1916575d1f0b83eeda9e903f05588133a84bc87",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/receipt.json",
+          "sha256": "4f0de18f014e7262281c3786a5f341c41586aa8e3de46726bbbe6d0932c0cc26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/models.log",
+          "sha256": "ec2c3caf3cf5a334ddf7fc56d023215b9cf8e704ebcdaef1a10065f34c68b001",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/operations.log",
+          "sha256": "f0bb04b4b45c65aee25436eb505cad1431d53e1c5df6c419dbbc5d10e98bf901",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/isolation.json",
+          "sha256": "665c60fc0785f41683b782410fd817a04d9425dde5a92d447da890846f2a8d8d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/tests.log",
+          "sha256": "86534341d5e1d1df6f1d88665d16af990b4b8e46746ffe603c5a2ba23df79dc5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/result.json",
+          "sha256": "109b616506e86358e2ccb65c4330ad933e7ffcded39f430c89f75ed50153d181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/receipt.json",
+          "sha256": "4f73713f8f11dbcb00d5aa9d6b0dde8f955b10327c4c8883b4fb83903fe5935d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-240x180.png",
+          "sha256": "a25e89a47018d0643865856c34f5134f6d83bc5d08f8f9b6f0e781a5e8bba453",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-1600x1000.png",
+          "sha256": "f78b6e20c14bcdbc1e5b2e7c68828d88eb83ecb891c653a1c3336eb1a9bdb09f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-0.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-1.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-2.log",
+          "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-3.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-4.log",
+          "sha256": "7b56a00b2c3611171545b0aaac3402c7649880eb6d6a4cc2382ea237f0162cee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-5.log",
+          "sha256": "c529415e0ddd0318a19e9488916b36cb7b2a04d4a92af6d9756bbb04a1513cde",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-02.md",
+          "sha256": "273631bdfe2bd8f42cef27ed889cfe2d66774239cbd64bf490c9590db8945198",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-04.md",
+          "sha256": "561c2722fdcc72d8c8fdcd972d62400873708788a04221913bf7cdee5251ebdb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-runtime-engineering-AC-03.md",
+          "sha256": "d555ddaf5c03acf145c7982a7cf22a4cf22dcae7e44a0c63462e0cee82c73184",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/autonomous-verification-engineering-AC-04.md",
+          "sha256": "cea402fdd71c40b8563552cb18e6f092c5899c747252f132ba9a9201e4ad0a14",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-01.md",
+          "sha256": "849fe97825c247dac005aa7f2f66fd0b4bad2fd9c27bc94e44011a55e92c2fa6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-02.md",
+          "sha256": "d192c06352e5dd6904ef2ae41110c89a1925b2ced626cb9f0a6ec83b7ea1ac20",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-03.md",
+          "sha256": "68511eff23f36b4efb74811ec403e04769763bf2b3977e5dafdf8a3f1e3f692f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-04.md",
+          "sha256": "2b2b4d0d93b995ac009b649f1b8ef1d6778af7c4cc77c6dc218ba78e98ac07ae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-01.md",
+          "sha256": "4df0954dae0244a63e8a99b5198c755197c8c8ea9ebe81846dceef591873e25f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-02.md",
+          "sha256": "c780623af394bdedd19037404b8123e9bc5c76fdb48ec7d9ec4ff045aa0b1f76",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-03.md",
+          "sha256": "8868bb80d54ae7064a33c880e0629fbec2f12761d6e3b020b02a06d14859ee09",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-04.md",
+          "sha256": "852a48c837aba504902775e744af1c332e2a509a650d10f79f260885f4ea0cbc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-01.md",
+          "sha256": "361913c842dd9640e96dbaea78899c073713bb3e663b4438a44885844d4646fd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-02.md",
+          "sha256": "87d96e3f5737e66ff5c4699cd880d2aa1d6dd1e04042014e16304f7fced67f6f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-03.md",
+          "sha256": "218f981021ba31e7489c029839b8fd0f2464d66b27996d9b482e16bf11dde991",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-04.md",
+          "sha256": "e517b4ccc66e28491612b78fddb986aad0a57eaa092ff1518e8d4626c10c4f50",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-01.md",
+          "sha256": "8525d002e4405dcbc38cdd2a8096c9dac69fdca9d9a315b1393d793d261961c9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-02.md",
+          "sha256": "926bc022c2cc13c8099445c14dc07a3871467d5639b7d45f0d90662c7a0cb822",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-03.md",
+          "sha256": "b0839a73085af8df87b8799a38180353d8bd491c5761166b7e174407ff67c5ac",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-04.md",
+          "sha256": "323de989d5a54d2acb6bf54d1608da986101246fc1442998e25b6ee38a96a4a3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-01.md",
+          "sha256": "27fada77a347c7fb836ae5b3c1fc2a29f6298005f4df9706e5e2c3045af4800f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-02.md",
+          "sha256": "bf9dcd0863d8d7cf79850171c23a707f205d8770d9721a7d886523740fd3f1d1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-03.md",
+          "sha256": "2593ba2e1192fa68b644adae2d352db7d3b0d36b9957f05aa80d628c8869ef42",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-04.md",
+          "sha256": "0362131659a5c179403e305a0b79d99a44dea3cd473890703706e4c83e7d0a7b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-01.md",
+          "sha256": "166554375494b8c63ea57773d61054b110e10789039784d26ac9e20df425287b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-02.md",
+          "sha256": "64ff1223672639a4dc1465f975320a5eca3a8d0b8011392ca2764603d8cd6000",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-03.md",
+          "sha256": "0aea725af0008f7b4db05b87a4bbffe7813270a02275e5e9b43c00b19a897ecb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-04.md",
+          "sha256": "ef8f01ceed1e694ea6487883acee81504a0342ca2790384257662f63f17ede64",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/skills.json",
+          "sha256": "6009fb941f43b9b6e237c49e4c57a964b3966321b67496cb7eab6667159ef2e4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-EXEC-4",
+      "kind": "trace",
+      "command_or_method": "Captured commands in replay/receipt.json, environment.json and independent-export receipt; final metadata-only consultation change reexamined in E-FINAL-REVIEW.",
+      "observed_result": "Observed execution supports delivery AC-04 within the final semantic review.",
+      "artifact": "docs/validation/skill-consumers-20261101/export-before-finalization/receipt.json",
+      "sha256": "4f73713f8f11dbcb00d5aa9d6b0dde8f955b10327c4c8883b4fb83903fe5935d",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-consumer-validation/spec.md",
+          "sha256": "113ca403d6a125a6a6c43af4c7fcd9422b8cfdb56263ef21f50fae10ec42e534",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/plan.md",
+          "sha256": "7bd37e22ba205fee33bfb5c35662abcdeb41a165875a479e7035cc34fd36784d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/tasks.md",
+          "sha256": "0397507c12f6ea0c71cb14ef23687638e4c7876dd40f326df25fc694918f7328",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/traceability.json",
+          "sha256": "5d3cea5ce11f30537db06ab2ec7a5dd87b73dbdfbce43b43482956f71d16597c",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "3d6f06829c540a13cd9f79b269ac17cdd398929921ba0dcba356869d9472f171",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/acceptance_check.py",
+          "sha256": "656bba2a06bbac56eebd8f62bb88cca9c3691a94d4d7c65ec0b051d85f59f1ba",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export_check.py",
+          "sha256": "dd1abcec5642a8295d5d171ff5aff86ccbfd18465800ea07ce820bdf08949e87",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/before.json",
+          "sha256": "323f6667120aa460ed88c5c0243c1b5ffa54d63d41284184254727182b73b25c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "184ceaca3dba71daffd5b8f2ffafd3cbef55749ce6954fb7b9d6d76d8126ebbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/matrix.json",
+          "sha256": "4941d6d86aae61800f16a63d0bd97312f81177ddaeb38e9af7e0b41fa714c2c7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-before.log",
+          "sha256": "dd4492aac26c6cb451e44a7844bc957183969192dceac47d0c8c7574dc50544a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/governance-timings.json",
+          "sha256": "c093b1a7aae2dc9ce069e300e1916575d1f0b83eeda9e903f05588133a84bc87",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/receipt.json",
+          "sha256": "4f0de18f014e7262281c3786a5f341c41586aa8e3de46726bbbe6d0932c0cc26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/models.log",
+          "sha256": "ec2c3caf3cf5a334ddf7fc56d023215b9cf8e704ebcdaef1a10065f34c68b001",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/operations.log",
+          "sha256": "f0bb04b4b45c65aee25436eb505cad1431d53e1c5df6c419dbbc5d10e98bf901",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay/isolation.json",
+          "sha256": "665c60fc0785f41683b782410fd817a04d9425dde5a92d447da890846f2a8d8d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/tests.log",
+          "sha256": "86534341d5e1d1df6f1d88665d16af990b4b8e46746ffe603c5a2ba23df79dc5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/result.json",
+          "sha256": "109b616506e86358e2ccb65c4330ad933e7ffcded39f430c89f75ed50153d181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/receipt.json",
+          "sha256": "4f73713f8f11dbcb00d5aa9d6b0dde8f955b10327c4c8883b4fb83903fe5935d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-240x180.png",
+          "sha256": "a25e89a47018d0643865856c34f5134f6d83bc5d08f8f9b6f0e781a5e8bba453",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/gui-02/layout-1600x1000.png",
+          "sha256": "f78b6e20c14bcdbc1e5b2e7c68828d88eb83ecb891c653a1c3336eb1a9bdb09f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-0.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-1.log",
+          "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-2.log",
+          "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-3.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-4.log",
+          "sha256": "7b56a00b2c3611171545b0aaac3402c7649880eb6d6a4cc2382ea237f0162cee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/export-before-finalization/export-5.log",
+          "sha256": "c529415e0ddd0318a19e9488916b36cb7b2a04d4a92af6d9756bbb04a1513cde",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-02.md",
+          "sha256": "273631bdfe2bd8f42cef27ed889cfe2d66774239cbd64bf490c9590db8945198",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/plugin-protocol-engineering-AC-04.md",
+          "sha256": "561c2722fdcc72d8c8fdcd972d62400873708788a04221913bf7cdee5251ebdb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-runtime-engineering-AC-03.md",
+          "sha256": "d555ddaf5c03acf145c7982a7cf22a4cf22dcae7e44a0c63462e0cee82c73184",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/autonomous-verification-engineering-AC-04.md",
+          "sha256": "cea402fdd71c40b8563552cb18e6f092c5899c747252f132ba9a9201e4ad0a14",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-01.md",
+          "sha256": "849fe97825c247dac005aa7f2f66fd0b4bad2fd9c27bc94e44011a55e92c2fa6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-02.md",
+          "sha256": "d192c06352e5dd6904ef2ae41110c89a1925b2ced626cb9f0a6ec83b7ea1ac20",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-03.md",
+          "sha256": "68511eff23f36b4efb74811ec403e04769763bf2b3977e5dafdf8a3f1e3f692f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/workspace-integrity-engineering-AC-04.md",
+          "sha256": "2b2b4d0d93b995ac009b649f1b8ef1d6778af7c4cc77c6dc218ba78e98ac07ae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-01.md",
+          "sha256": "4df0954dae0244a63e8a99b5198c755197c8c8ea9ebe81846dceef591873e25f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-02.md",
+          "sha256": "c780623af394bdedd19037404b8123e9bc5c76fdb48ec7d9ec4ff045aa0b1f76",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-03.md",
+          "sha256": "8868bb80d54ae7064a33c880e0629fbec2f12761d6e3b020b02a06d14859ee09",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/iced-engineering-AC-04.md",
+          "sha256": "852a48c837aba504902775e744af1c332e2a509a650d10f79f260885f4ea0cbc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-01.md",
+          "sha256": "361913c842dd9640e96dbaea78899c073713bb3e663b4438a44885844d4646fd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-02.md",
+          "sha256": "87d96e3f5737e66ff5c4699cd880d2aa1d6dd1e04042014e16304f7fced67f6f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-03.md",
+          "sha256": "218f981021ba31e7489c029839b8fd0f2464d66b27996d9b482e16bf11dde991",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-context-engineering-AC-04.md",
+          "sha256": "e517b4ccc66e28491612b78fddb986aad0a57eaa092ff1518e8d4626c10c4f50",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-01.md",
+          "sha256": "8525d002e4405dcbc38cdd2a8096c9dac69fdca9d9a315b1393d793d261961c9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-02.md",
+          "sha256": "926bc022c2cc13c8099445c14dc07a3871467d5639b7d45f0d90662c7a0cb822",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-03.md",
+          "sha256": "b0839a73085af8df87b8799a38180353d8bd491c5761166b7e174407ff67c5ac",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/code-knowledge-graph-engineering-AC-04.md",
+          "sha256": "323de989d5a54d2acb6bf54d1608da986101246fc1442998e25b6ee38a96a4a3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-01.md",
+          "sha256": "27fada77a347c7fb836ae5b3c1fc2a29f6298005f4df9706e5e2c3045af4800f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-02.md",
+          "sha256": "bf9dcd0863d8d7cf79850171c23a707f205d8770d9721a7d886523740fd3f1d1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-03.md",
+          "sha256": "2593ba2e1192fa68b644adae2d352db7d3b0d36b9957f05aa80d628c8869ef42",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-04.md",
+          "sha256": "0362131659a5c179403e305a0b79d99a44dea3cd473890703706e4c83e7d0a7b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-01.md",
+          "sha256": "166554375494b8c63ea57773d61054b110e10789039784d26ac9e20df425287b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-02.md",
+          "sha256": "64ff1223672639a4dc1465f975320a5eca3a8d0b8011392ca2764603d8cd6000",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-03.md",
+          "sha256": "0aea725af0008f7b4db05b87a4bbffe7813270a02275e5e9b43c00b19a897ecb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/agent-usage-accounting-AC-04.md",
+          "sha256": "ef8f01ceed1e694ea6487883acee81504a0342ca2790384257662f63f17ede64",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-consumer-validation/skills.json",
+          "sha256": "6009fb941f43b9b6e237c49e4c57a964b3966321b67496cb7eab6667159ef2e4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        }
+      ]
+    }
+  ]
+}

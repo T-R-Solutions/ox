@@ -1,0 +1,80 @@
+[
+  {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/governance/tests",
+      "-p",
+      "test_readme_skill_integration.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/readme-preservation-20261104/verify-1.log"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/governance/scripts/verify-maintenance.py"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/readme-preservation-20261104/verify-2.log"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/governance/scripts/run-tests.py",
+      "--group",
+      "all"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/readme-preservation-20261104/verify-3.log"
+  },
+  {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/governance/tests",
+      "-p",
+      "test_readme_skill_integration.py",
+      "-k",
+      "DistributionTests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/readme-preservation-20261104/verify-4.log"
+  },
+  {
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--require-fresh"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/readme-preservation-20261104/verify-5.log"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/governance/scripts/check-ox.py"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/readme-preservation-20261104/verify-6.log"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/readme-preservation-20261104/verify-7.log"
+  }
+]

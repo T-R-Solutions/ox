@@ -1,0 +1,29 @@
+sequenceDiagram
+    accTitle: Produção e verificação são operações distintas
+    accDescr: O Controller lança o produtor pelo Runtime. O exit code do produtor não aprova o artefato. Sob ação explícita o Engine captura inputs, executa o oráculo, recaptura e avalia atualidade. Cancelamento aguarda saída observada.
+    actor U as Usuário
+    participant C as Controller
+    participant R as Runtime / local-task
+    participant E as Engine / task-oracle
+    U->>C: Run correct ou Run incorrect
+    C->>C: Criar tentativa e request.txt exclusivos
+    C->>R: Lançar produtor no diretório da tentativa
+    R-->>C: Saída observada e possível result.txt
+    C-->>U: Término do processo · UNVERIFIED
+    U->>C: Verify result
+    C->>E: Check com identidade e inputs
+    E->>E: Capturar antes / executar / capturar depois
+    alt Observação estável e oráculo aceita
+        E-->>C: APPROVED se não houver contradição aplicável
+    else Resultado estável e incorreto
+        E-->>C: REJECTED
+    else Interrupção ou inputs instáveis
+        E-->>C: INCONCLUSIVE
+    end
+    C-->>U: Verdict, inputs e histórico em memória
+    opt Edição posterior dos arquivos
+        U->>C: Refresh inputs
+        C->>E: Recapturar e reavaliar sem executar oráculo
+        E-->>U: Evidência anterior pode perder aplicabilidade
+    end
+    Note over R,E: Cancelamento e timeout exigem observar saída e não aprovam.

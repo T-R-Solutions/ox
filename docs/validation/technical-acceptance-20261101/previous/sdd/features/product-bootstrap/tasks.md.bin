@@ -1,0 +1,27 @@
+# Tarefas: product-bootstrap
+
+- [x] T001 [REQ-01..13, AC-01..13, D-01, R-01]: inspecionar e especificar antes do código.
+- [x] T002 [REQ-01,03..08,11,13, D-01, R-01]: 16 manifests, contratos e compilação; estrutura observada pelo oracle inspect.py.
+- [x] T003 [REQ-02, AC-02, D-04, R-02]: janela real, toggle e dois encerramentos observados; capturas e teste X11. Harness anterior com eventos sintéticos/foco inadequado preservado nos logs; correção usa foco e press/release espaçados.
+- [x] T004 [REQ-06,10,12, D-01, R-01]: Cargo e governança; logs e limitações em converge.
+- [x] T005 [REQ-09, D-01, R-01]: evidências schema 2 e observações históricas preservadas. Aprovação do bootstrap não reaprova features históricas com inputs alterados.
+
+Continuidade: host IPC real em feature própria após decidir transporte, handshake, política e recuperação. Validar Wayland nativo, acessibilidade e outras plataformas antes de prometer suporte. F0 completa e demais marcos não são concluídos por este bootstrap.
+
+- T006: Reconciliar tradução e evidências, executar toolchain exato 1.99.1 e registrar lacunas.
+- T007 (futuro): Validar Wayland nativo no Linux suportado; Windows/macOS dependem de decisão de suporte e ambientes disponíveis.
+
+- [x] T008 [REQ-02,06, AC-02,06, D-06, R-04]: observar backend Wayland nativo, renderização, mostrar/ocultar, saída pelo botão e fechamento nativo em nova execução; preservar tentativas e diagnósticos.
+- [x] T009 [REQ-09,10, D-06, R-04]: reexaminar inputs e evidências afetadas, executar verificadores e registrar retomada concreta se o ambiente impedir aceitação.
+
+T008 permanece inconclusiva: protocolo Wayland observado, mas GNOME negou captura e enumeração; interação e encerramentos não observados. Retomar com observador humano ou mecanismo de captura/entrada autorizado. As fatias seguintes aguardam aceitação do bootstrap.
+
+- [x] T010 [REQ-02,06, AC-02,06, D-07, R-05]: comparar movimento XTEST com WarpPointer no teste X11, preservar tentativa falha e validar títulos, pixels, reversão e saída sem reduzir as asserções.
+
+Atualização após observação humana: renderização, mostrar/ocultar e saída pelo botão confirmados pelo mantenedor na execução Wayland 388610; fechamento pelo X confirmado na execução 402236. Ambos exit 0, sem intervenção do supervisor. Parte Wayland de T008 concluída; AC-06 continua inconclusivo pelo teste X11. T010 executada como investigação: movimento XTEST não atingiu o alvo; experimento preservado e fonte original restaurada, sem correção alegada.
+
+Conclusão posterior T010: em Xwayland temporário, a fonte original falhou na reversão; a variante com movimento e clique XTEST passou os dois testes. Correção mantida no harness, sem alterar aplicação. AC-06 sustentado por execução explícita nessa configuração; a restrição de entrada da sessão GNOME principal permanece registrada.
+
+- [x] T011 [D-08, R-06, REQ-09,11,13]: preservar aceitação anterior às entregas sucessoras, registrar sucessão do requisito de ausência de IPC e reexaminar somente evidências dependentes dos inputs alterados.
+
+- [x] T012 [D-10, R-08, AC-01..13]: reconciliar contratos e evidências após a integração local, preservando observações anteriores e sem concluir toda a F0.

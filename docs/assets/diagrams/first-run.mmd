@@ -1,0 +1,22 @@
+flowchart TD
+    accTitle: Da seleção do workspace ao resultado verificado
+    accDescr: Validar o diretório habilita a tarefa. Executar produz um candidato ainda não verificado. Verificar exige observação estável do oráculo. Resultado incorreto é rejeitado; interrupção ou instabilidade não aprova. Após editar inputs, atualizar a observação de atualidade.
+    W["1 · Validar workspace"] --> D{"Diretório acessível?"}
+    D -->|não| FIX["Corrigir caminho ou acesso"]
+    FIX --> W
+    D -->|sim| RUN["2 · Executar tarefa local"]
+    RUN --> RAW["Artefato candidato · UNVERIFIED"]
+    RAW --> CHECK["3 · Verify result"]
+    CHECK --> RESULT{"Observação aplicável?"}
+    RESULT -->|estável e aceita| OK["APPROVED"]
+    RESULT -->|estável e contradiz| BAD["REJECTED"]
+    RESULT -->|interrompida ou instável| INC["INCONCLUSIVE"]
+    RESULT -->|ausente ou ilegível| NONE["UNVERIFIED"]
+    OK --> EDIT["Editou um input?"]
+    EDIT --> REFRESH["Refresh inputs · reavaliar atualidade"]
+    classDef good fill:#ecfdf5,stroke:#047857,color:#064e3b
+    classDef bad fill:#fff1f2,stroke:#be123c,color:#881337
+    classDef uncertain fill:#fff7ed,stroke:#9a3412,color:#7c2d12
+    class OK good
+    class BAD bad
+    class INC,NONE uncertain

@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "environment": "Linux-7.3.0-1-default-x86_64-with-glibc2.44; Python 3.13.16",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "30 current metadata hashes registered and earlier inventory revisions preserved",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Bounded current revision acceptance and mutation rejection",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Current inventory and adversarial preservation only; no skill UI rendering or product acceptance. Historical envelope retained byte-for-byte.",
+    "Local task UI distribution change invalidates dependent observations; original envelope retained in docs/validation/product-local-task-ui/resumption-01/previous. Reexamination required; no historical hash refreshed."
+  ]
+}

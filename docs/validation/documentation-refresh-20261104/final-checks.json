@@ -1,0 +1,41 @@
+[
+  {
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--structure-only"
+    ],
+    "exit_code": 0,
+    "output": "PASS: portable files, configured bridges and requested evidence checks\nNot proof of semantic adequacy, agent execution or comparative effectiveness.\n"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/governance/scripts/check-ox.py"
+    ],
+    "exit_code": 1,
+    "output": "FAIL: README integration current changed/missing: README.md\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "README.md",
+      "application/README.md",
+      "docs/README.md",
+      "sdd/features/README.md",
+      "docs/architecture/application.md",
+      "docs/development/governance.md",
+      "docs/validation/documentation-refresh-20261104/report.md",
+      "sdd/features/readme-skill-integration/converge.md",
+      "sdd/features/product-f0-gate/converge.md",
+      "sdd/features/product-f0-gate/evidence.json"
+    ],
+    "exit_code": 0,
+    "output": ""
+  }
+]

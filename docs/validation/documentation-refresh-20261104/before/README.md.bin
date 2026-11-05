@@ -1,0 +1,174 @@
+# Ox
+
+Ox é uma aplicação desktop em Rust/Iced para trabalhar com tarefas e agentes em
+workspaces locais, com execução supervisionada e aceitação baseada em evidências.
+A direção do produto é **agent-first, local-first e extensível**: o usuário deverá
+coordenar agentes, contexto de código, plugins e verificações sem perder a origem
+dos resultados ou o controle das permissões.
+
+Hoje está disponível uma **fundação executável com uma tarefa local controlada**.
+Ela permite validar um diretório, executar cenários de sucesso/erro, cancelar o
+processo e verificar o artefato produzido com um oráculo independente. Ainda não
+há integração com agentes de IA reais, indexação de código ou persistência durável.
+
+**Estado:** fase `implementation-foundation`, aplicativo `bootstrap-implemented`,
+workspace com 16 crates, versão interna 0.1.0 (`publish = false`). F0 foi aprovado
+no corpus local Linux x86_64 adotado, com X11 e Wayland avaliados separadamente;
+veja o [relatório vigente e seus limites](docs/validation/f0-resumption-20261103/report.md)
+e o [contexto autorizado](sdd/project.md). A baseline histórica
+`not-yet-implemented` descreve o início do projeto, não o código atual.
+
+## O que funciona
+
+| Capacidade | Implementação disponível | Limite atual |
+| --- | --- | --- |
+| Desktop | Janela Iced, detalhes, navegação por teclado, seleção de workspace e estados da operação | Uma operação por vez; interface de fundação |
+| Tarefa local | `local-task` gera pedido/resultado por tentativa, com cenários correto, incorreto, falha e timeout | Fixture controlada; não executa prompts ou comandos arbitrários |
+| Supervisão | Agent Runtime observa saída, cancelamento, prazo e eventos por tentativa | Filho direto, sem captura de stdout/stderr ou sandbox |
+| Verificação | Oráculo `task-oracle`, snapshots por bytes, histórico e invalidação ao atualizar inputs | Histórico em memória; atualização manual |
+| Plugins | Host local Unix com negociação 1.0, grant de echo, correlação, falhas e encerramento | API independente, sem integração à UI ou SDK público |
+| Contratos de fundação | Tipos para política, tarefas, workspace, contexto, grafo, output, métricas, SDD, skills e storage | Tipos não equivalem a motores implementados |
+
+O [guia da aplicação](docs/architecture/application.md) descreve o fluxo e os 16
+crates. A [referência de contratos](docs/architecture/contracts.md) detalha estados,
+inputs, efeitos, limites e erros, com links para as fontes e testes.
+
+## Executar localmente
+
+Pré-requisitos: Linux x86_64, toolchain Rust **1.99.1** com Cargo, rustfmt e clippy,
+e ambiente gráfico X11 ou Wayland com as bibliotecas de sistema necessárias às
+dependências Iced/winit. O repositório fixa o toolchain em
+[application/rust-toolchain.toml](application/rust-toolchain.toml); uma compilação
+inicial também precisa das dependências do lockfile disponíveis no cache ou de
+acesso autorizado para obtê-las. Não há instalador público nem lista de pacotes
+validada para todas as distribuições Linux.
+
+Na raiz do repositório:
+
+```bash
+cd application
+cargo build --workspace
+cargo run -p ox-app --bin ox
+```
+
+O build do workspace prepara `ox`, `local-task` e `task-oracle` em `target/debug/`.
+Os três precisam permanecer lado a lado: executar apenas o build de `ox-app` não
+prepara necessariamente os executáveis auxiliares. Em caso de erro de inicialização
+gráfica, confira a sessão e suas variáveis de display; o processo reporta a falha.
+
+1. Informe um diretório local existente, acessível e gravável para a demonstração e
+   clique em **Validate workspace**. A validação confere diretório e leitura; a
+   permissão de escrita será exercida na execução.
+2. Clique em **Run correct**. A tarefa cria `.ox-task-<sessão>-<tentativa>/` dentro
+   do workspace, com `request.txt` e `result.txt`. Saída bem-sucedida ainda aparece
+   como `UNVERIFIED`.
+3. Clique em **Verify result**. O oráculo exige a identidade da tentativa e
+   `result=42`; a observação correspondente pode produzir `APPROVED`.
+4. Execute **Run incorrect** e depois **Verify result** para observar `REJECTED`,
+   mesmo com saída bem-sucedida do produtor. **Fail**, **Timeout** e **Cancel**
+   exercitam falha e interrupção; podem não produzir resultado verificável.
+5. Após editar um artefato da tentativa exibida, use **Refresh inputs** para
+   reavaliar sua atualidade. Não há monitoramento automático de arquivos.
+
+**Sair** e o fechamento da janela aguardam a operação em andamento terminar após
+solicitar cancelamento. Os diretórios de tentativa permanecem no workspace;
+reiniciar o Ox perde o histórico em memória e não recupera aprovações desses
+arquivos. Há mais detalhes na [reprodução do fluxo](docs/validation/product-local-task-ui/reproduce.md).
+
+## Verificar o aplicativo
+
+Em `application/`, após o build dos auxiliares:
+
+```bash
+cargo check --workspace
+cargo fmt --all -- --check
+cargo test --workspace
+cargo test --workspace -- --list
+cargo clippy --workspace --all-targets -- -D warnings
+```
+
+Os testes comuns cobrem contratos e processos locais. Testes do host precisam de
+permissão para sockets Unix. Os seis testes desktop marcados como ignorados exigem
+sessão X11 dedicada, interação e captura; não são executados pela suíte comum:
+
+```bash
+cargo test -p ox-app --test desktop -- --ignored --nocapture --test-threads=1
+```
+
+Esse comando pode mover o ponteiro e interagir com janelas. A aceitação Wayland e
+a matriz gráfica F0 têm [evidências próprias](docs/validation/f0-resumption-20261103/report.md).
+Testes Python verificam governança, não o funcionamento Rust/Iced.
+
+## Arquitetura, contratos e próximos escopos
+
+Rust 2024, piso declarado 1.99 (não mínimo técnico demonstrado), Iced =0.14.0,
+renderer tiny-skia, executor thread-pool e lockfile único. Fontes próprias proíbem
+`unsafe`; dependências podem conter código nativo/unsafe. O perfil dev otimiza
+somente tiny-skia para atender ao corpus gráfico adotado.
+
+- [Implementações e fluxo](docs/architecture/application.md): responsabilidades,
+  dependências, funcionalidades e lacunas.
+- [Contratos do código](docs/architecture/contracts.md): APIs locais, protocolo,
+  transições e validade das evidências.
+- [Mapa arquitetural e marcos](docs/architecture/context.md): direção F0–F8.
+- [Decisões abertas](docs/decisions/open-questions.md) e
+  [fronteiras de confiança](docs/security/trust-boundaries.md).
+- [Persistência proposta](docs/decisions/local-persistence-proposal.md): entrega
+  independente após F0 e antes de F3/MVP; tecnologia e implementação não autorizadas.
+
+Context Engine, motores de grafo, compactação de output, agentes reais,
+orquestração completa, LSP por plugins, marketplace e expansão de plataformas
+continuam planejados. F0 aprovado não equivale à entrega desses recursos.
+
+## Repositório e governança
+
+| Caminho | Conteúdo |
+| --- | --- |
+| `application/` | Workspace Cargo virtual, `Cargo.toml`, lockfile, 16 crates; fontes/testes em `crates/<crate>/src/` e `tests/` |
+| `docs/` | Arquitetura, decisões, desenvolvimento, segurança e registros de validação |
+| `sdd/` | Processo, features, critérios, rastreabilidade e evidências |
+| `.codex/skills/` | Biblioteca de métodos para o desenvolvimento do Ox |
+| `tools/governance/` | Scripts e testes Python de governança |
+| `config/governance/` | Perfil versionado e cobertura normativa |
+
+Autoridades: [constituição](docs/constitution.md), [AGENTS](AGENTS.md),
+[contexto](sdd/project.md), [workflow SDD](sdd/workflow.md) e
+[contrato de evidências](sdd/evidence.md). Consulte também as
+[features](sdd/features/README.md) e o [guia de integração SDD/skills](docs/development/sdd-skills.md).
+
+O catálogo tem [31 skills](.codex/skills/README.md) e [31 pontes](sdd/chain/README.md):
+17 gerais, 5 condicionais e 9 especializações. Disponibilidade, indicação, seleção,
+consulta e uso são estados distintos; skills não concedem permissões. A biblioteca
+do repositório não significa carregamento de skills pelo desktop. Para consulta
+explícita, peça ao agente: “Leia `.codex/skills/<nome>/SKILL.md` para revisar
+[questão]”. Para retomada, indique `sdd/project.md`, `sdd/workflow.md` e a feature.
+
+Com Python 3.11+ e stdlib, na raiz:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/run-tests.py --group fast
+```
+
+O grupo rápido é parcial. A suíte completa, freshness, recuperação, exportação e
+empacotamento estão no [guia de governança](docs/development/governance.md).
+`--structure-only` não aprova critérios; `--require-fresh` verifica vínculos de
+conteúdo, não a adequação do oráculo. Os 36 cenários de skills aceitos nos
+[consumidores delimitados](sdd/features/skill-consumer-validation/converge.md)
+não aprovam os componentes homônimos da aplicação.
+
+## Compartilhamento e licença
+
+O pacote `ox-governance.zip` declara `product_included=false` e inclui somente a
+governança elegível. Não contém `application/`, binários ou instaladores; o
+pipeline do aplicativo precisa de build, testes e distribuição próprios. Veja
+[compartilhamento e recuperação](docs/development/sharing.md).
+
+Material próprio: GPL-3.0-only, Rodrigo Batista; [LICENSE](LICENSE), [NOTICE](NOTICE)
+e [revisão local de licenciamento](docs/licensing/review.md). Direitos de materiais
+copiados e condições de distribuição pública permanecem pendentes. Os três estudos
+externos não são distribuídos nem necessários à validação.
+
+Esta revisão documental foi conferida contra a árvore local de 04/11/2026;
+[métodos, inputs e limitações da revisão](docs/validation/application-documentation-20261104/report.md).

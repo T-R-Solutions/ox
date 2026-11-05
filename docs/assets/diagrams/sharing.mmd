@@ -1,0 +1,13 @@
+flowchart TB
+    accTitle: Escopos distintos para produto e governança
+    accDescr: O repositório contém o aplicativo e a governança. A exportação elegível copia apenas governança. O ZIP de governança declara product_included=false. O aplicativo exige pipeline próprio; gerar pacote local não publica nada.
+    REPO["Repositório Ox"] --> GOV["Governança elegível"]
+    REPO --> APP["application/ · produto Rust/Iced"]
+    GOV --> COPY["Cópia independente · export-clean"]
+    GOV --> ZIP["ox-governance.zip"]
+    ZIP --> SCOPE["product_included=false"]
+    APP --> PIPE["Build, testes e distribuição próprios"]
+    COPY --> CHECK["Inspeção, checks e recuperação"]
+    ZIP --> CHECK
+    classDef product fill:#eef2ff,stroke:#4f46e5,color:#312e81
+    class APP,PIPE product

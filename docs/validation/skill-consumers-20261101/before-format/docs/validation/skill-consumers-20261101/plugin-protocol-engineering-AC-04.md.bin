@@ -1,0 +1,11 @@
+# Criterion review: plugin-protocol-engineering AC-04
+
+An unauthorized plugin attempts to read a protected path and the host blocks the effect; oracle: sandbox integration on the target OS.
+
+APPROVED in the following evaluated scope: Frozen local Host and plugin fixture for protocol rejection; separate bwrap read-probe process for actual filesystem/PID/network namespace isolation. Disposable files only. Neither result adopts or approves an Ox production sandbox.
+
+Observed: isolation_test: outside baseline reads protected fixture; inside bwrap the allowed file remains readable and protected host path fails with exit 13/NotFound, including /proc/1/root route; protected bytes unchanged.
+
+Method: inspect the independent assertions and concrete implementation, execute commands captured in replay/receipt.json or environment.json/gui-02/result.json, and inspect their full logs. Expected values are independently specified fixture values; exit zero alone is insufficient. The original criterion and skill contracts are unchanged.
+
+Consumer: tools/governance/consumers/fixture.rs; oracle: tools/governance/consumers/isolation_test.py. Broader contracts/exclusions: tools/governance/consumers/README.md. All prior envelopes are byte-preserved in previous/. This does not accept a production Ox subsystem or infer new agent effectiveness.

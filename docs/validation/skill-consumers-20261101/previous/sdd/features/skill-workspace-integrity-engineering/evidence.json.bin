@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "environment": "Linux-7.3.0-1-default-x86_64-with-glibc2.44; 2026-11-01 criterion review; historical agent observations dated 2026-10-26",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "An attempted write outside the root through .. or a symlink is rejected; oracle: adversarial path fixture.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Two agents edit the same version: the second write conflicts or applies a verified merge; oracle: concurrency test.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "An injected failure between temporary-file creation and rename leaves no incorrect “done” record; oracle: crash test.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "An externally changed file invalidates the hash/snapshot; oracle: watcher plus actual-read verification.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED"
+      ]
+    },
+    {
+      "id": "AC-06",
+      "criterion": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-AUTHORING-REEXAMINED",
+      "kind": "inspection",
+      "command_or_method": "New semantic comparison of preserved authoring observations against unchanged skill/contracts and evolved checker; historical agent replies reexamined, not rerun.",
+      "observed_result": "Authoring content and historical response conclusions remain supported; see authoring-reexamination.md.",
+      "artifact": "docs/validation/technical-acceptance-20261101/authoring-reexamination.md",
+      "sha256": "4542f83abe975221f6d7852061aeaa52b8b4ac4e018ab3971eb4c52302a73509",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "9bd81c5229def53f0c7baf2da419fd1d891f254f05f24e67e54d05979f5d641e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/file-operations.md",
+          "sha256": "8a74d3e3725a3c1bd64a1f44cff0ec769738fe28e9f67fa0dcaea1948ed6d32c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/git-worktrees-and-conflicts.md",
+          "sha256": "775bc0fc1519f1e7365d20835538b9cabaf65f8373c75b01959df40a68b46358",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/watcher-and-recovery.md",
+          "sha256": "046382bbb97faa08006f341eedcce2720c499a83b05bce71566d948710693867",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/workspace-integrity-engineering.md",
+          "sha256": "0b5fa3fd2d2df813c599ae71289d41a1ca7e81d6d6b27b40f71592153d025d73",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+          "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/group-2.md",
+          "sha256": "3dc662147da5749db245ba817c4049d514d98b8228ec04559a7a70ba597faac7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/review.md",
+          "sha256": "5d37a57db655b1a9bdecc5f3fdc8cf7edd1fcd79c114cc2ec8ade315f3ee77d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.json",
+          "sha256": "f34cdf9bc5cc097efe8659f63c611af2a4c7fb555f1dd56cf523d32b56d91021",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.tar.gz",
+          "sha256": "688a84de1f008b784df1ea699cdfb9c1889390bc8dcf26bab9a99c0ad5c5a820",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "9935c6d4c2370147c683ecdd0213f22e56a1a67ebb9940ec543201b9e022aade",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/before.json",
+          "sha256": "b558b16d52000c7e3299d1c41e3f80a8f555aa24e5831ce16f7246db4cebdac7",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Acceptance restricted to governance/authoring; no Rust compilation, Iced integration or product effectiveness.",
+    "Executor review is not independent human review; historical trials were not rerun.",
+    "Previous envelopes are in docs/validation/governance-layout/before.tar.gz; collection outputs are checked separately through freshness and final extraction.",
+    "Initial package qualification has its own inputs preceding consolidation; the final delivery receipt is in dist/.",
+    "The skills' 36 technical scenarios remain UNVERIFIED.",
+    "maintenance-001: affected observations are preserved in docs/validation/maintenance-001/previous/sdd/features/skill-workspace-integrity-engineering/evidence.json.bin; awaiting review or new execution without renewing old hashes.",
+    "maintenance-001 observations are new; previous results are preserved. Actual-package criteria, a new agent trial and unresolved ownership/permissions remain UNVERIFIED.",
+    "Inputs changed by bootstrap; previous observations and historical approvals are preserved in docs/validation/bootstrap-governance/previous. Dependent criteria await their own reacceptance; old hashes were not renewed.",
+    "2026-11-01: new criterion review at docs/validation/skill-criteria-review-20261101/matrix.json. Technical observations do not automatically promote formal AC-01..04 under the existing guard; no product expansion. AC-06 reexamines historical replies, not new agents.",
+    "2026-11-01 technical-acceptance supersedes the former unconditional guard. Decided technical criteria concern frozen evaluated consumers only; semantic review and original limits remain mandatory."
+  ]
+}

@@ -1,0 +1,15 @@
+--- sdd/chain/technical-documentation.md (before)
++++ sdd/chain/technical-documentation.md (current)
+@@ -22,9 +22,9 @@
+ | --- | --- |
+ | Constitution | Read repository documentation conventions, source authority, preservation and publication permissions; add no publishing policy automatically. |
+ | Spec | State audience/task, prerequisites, supported version/environment and observable documentation acceptance. Distinguish the documented contract from implementation behavior needing a decision. |
+-| Plan / ADR | Link requirement/decision/risk IDs to document type, canonical sources/revisions, examples, verification boundary and maintenance location. Do not invent a separate documentation system. |
+-| Tasks | Name actual documents, affected references and executable or illustrative examples. Verify authorized reader paths, arguments, outputs and effects with the available environment. |
+-| Evidence / convergence | Return criterion IDs, document locations, consulted versions, checks and actual command outcomes. Distinguish proofreading, compilation, execution, external lookup and reader validation. Missing prerequisites remain visible gaps. |
++| Plan / ADR | Link requirement/decision/risk IDs to document type, canonical sources/revisions, examples, visual purpose/renderer, measurable quality gates, verification boundary and maintenance location. Do not invent a separate documentation system. |
++| Tasks | Name actual documents, affected references, Mermaid sources/exports and licensed/data-backed assets where useful, plus executable or illustrative examples. Verify authorized reader paths, arguments, outputs and effects with the available environment. |
++| Evidence / convergence | Return criterion IDs, document locations, consulted versions, checks and actual command outcomes. Distinguish proofreading, parsing, rendering, visual inspection, compilation, execution, external lookup and reader validation. Return observed viewport/theme/contrast/legibility results; no aesthetic score overrides failures. Missing prerequisites remain visible gaps. |
+ 
+ ## Conditional handoff
+ 

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "decision": "docs/decisions/readme-preservation.md",
+  "records": [
+    {
+      "source": "README.md",
+      "sha256": "449e8292a94b6ff8353cc57baa7315b1fe437a9f6bbf972e3c415ae98c46003c",
+      "targets": {
+        "docs/validation/f0-resumption-20261103/report.md": "2673d54e6f9ebf1f64fe3ba23c322766d1f4833d42193453418f62097ce16653",
+        "application/rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+        "application/README.md": "f9380477aadf1718409ff6d4cf7ef47db286a53d5cd8df6613c489f08aa35929"
+      }
+    },
+    {
+      "source": "docs/README.md",
+      "sha256": "3c591581fac522735196f7f46fa960a766a8180df06506e12d85a16556cb1243",
+      "targets": {
+        "application/README.md": "f9380477aadf1718409ff6d4cf7ef47db286a53d5cd8df6613c489f08aa35929",
+        "docs/validation/f0-resumption-20261103/report.md": "2673d54e6f9ebf1f64fe3ba23c322766d1f4833d42193453418f62097ce16653"
+      }
+    },
+    {
+      "source": "docs/development/governance.md",
+      "sha256": "618cd167d7f10757f30d376094b71efd8bac755f2ea4628af258a8faec562eaf",
+      "targets": {
+        "application/README.md": "f9380477aadf1718409ff6d4cf7ef47db286a53d5cd8df6613c489f08aa35929"
+      }
+    },
+    {
+      "source": "docs/architecture/application.md",
+      "sha256": "3edc2b4f21443b7a64503f83f62c0ed6d87a89900e21f94ef873d217c6dd8ddc",
+      "targets": {
+        "application/README.md": "f9380477aadf1718409ff6d4cf7ef47db286a53d5cd8df6613c489f08aa35929",
+        "docs/validation/f0-resumption-20261103/report.md": "2673d54e6f9ebf1f64fe3ba23c322766d1f4833d42193453418f62097ce16653",
+        "application/Cargo.toml": "dc542da62042555c1f1a450212a92a3618c7be5b7d46447bf85818e7bb244e2e",
+        "application/Cargo.lock": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+        "application/crates/ox-ui/src/desktop.rs": "3ee74a3de72e2002cf1d44b45a6810b96e49e51aa6e0937fa25a499643e60881",
+        "application/crates/ox-ui/src/local_task.rs": "093a03c0f2e76866b12c7c72429027b7b4c4bba9991ebcbe331ce4537d6b3dec",
+        "application/crates/ox-agent/src/runtime.rs": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+        "application/crates/ox-plugin/src/host.rs": "a95c271d61ec0b3584b9c5fd17606202aa6ace52a680444b61e17686f3027fdd",
+        "application/crates/ox-verification/src/engine.rs": "4d1e2797a027e9e82d3adc44a19c46f9fa7361f86087f6b36f34b8c0514ba2a5",
+        "sdd/features/product-bootstrap/converge.md": "134b46771219f8c73cc9095a2cd1845e8eb60f8c96df080b772914cf46b1beb2",
+        "sdd/features/product-plugin-host/converge.md": "8d02b1a85d36881b824d7b02257b2786692a370a65f250845344414308bc0e35",
+        "sdd/features/product-agent-runtime/converge.md": "5181fe73914419b54f2c66657b1fa1cbd3800a1c4c707766bbf866dbda43c32d",
+        "sdd/features/product-verification-engine/converge.md": "518cb42435cc98dc0c19f353eea44766e180263e9187b3bf4b8cdc8ff4269eca",
+        "sdd/features/product-local-task-ui/converge.md": "e1cb4d52b26ceb00da4bb62f937a6fa7924d22318d1d823c236e46ae8b84079c"
+      }
+    },
+    {
+      "source": "docs/architecture/contracts.md",
+      "sha256": "decbd91eab89513691d44dce1665304209182c230776b79badc68f9fc4c0a2db",
+      "targets": {
+        "application/crates/ox-app/src/startup.rs": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+        "application/crates/ox-app/tests/initialization.rs": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+        "application/crates/ox-ui/src/local_task.rs": "093a03c0f2e76866b12c7c72429027b7b4c4bba9991ebcbe331ce4537d6b3dec",
+        "application/crates/ox-ui/tests/local_task.rs": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+        "application/crates/ox-agent/src/bin/local-task.rs": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
+        "application/crates/ox-verification/src/bin/task-oracle.rs": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
+        "application/crates/ox-agent/src/runtime.rs": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+        "application/crates/ox-agent/tests/runtime.rs": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+        "application/crates/ox-plugin/src/protocol.rs": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+        "application/crates/ox-plugin/src/host.rs": "a95c271d61ec0b3584b9c5fd17606202aa6ace52a680444b61e17686f3027fdd",
+        "application/crates/ox-plugin/tests/host.rs": "f63b0568c5d65fc36f0d8d4c752bd58e8f4df0d4599455f22e643fa40addbde8",
+        "application/crates/ox-plugin/tests/compatibility.rs": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+        "application/crates/ox-verification/src/engine.rs": "4d1e2797a027e9e82d3adc44a19c46f9fa7361f86087f6b36f34b8c0514ba2a5",
+        "application/crates/ox-verification/src/verdict.rs": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+        "application/crates/ox-verification/tests/engine.rs": "7e23f63a41994906f119438827dbad3353bb15c58d29ef798d8a007198dfbbe4",
+        "application/crates/ox-core/src/capability.rs": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+        "application/crates/ox-policy/src/authorization.rs": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+        "application/crates/ox-task/src/state.rs": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+        "application/crates/ox-workspace/src/root.rs": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+        "application/crates/ox-storage/src/local.rs": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+        "application/crates/ox-context/src/query.rs": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+        "application/crates/ox-graph/src/relation.rs": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+        "application/crates/ox-output/src/capture.rs": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+        "application/crates/ox-observability/src/measurement.rs": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+        "application/crates/ox-sdd/src/artifact.rs": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+        "application/crates/ox-skills/src/reference.rs": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424"
+      }
+    }
+  ]
+}

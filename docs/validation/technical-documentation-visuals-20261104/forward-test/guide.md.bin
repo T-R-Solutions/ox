@@ -1,0 +1,104 @@
+# Operação do sistema local de workers
+
+Guia de referência para quem acompanha tarefas no aplicativo desktop e avalia seus resultados.
+
+**Base documental:** fatos fornecidos para esta entrega, em 4 de novembro de 2026. A versão do sistema não foi informada. **Estado da entrega:** texto revisado; diagramas Mermaid em fonte, com renderização pendente.
+
+## 1. O que precisa estar claro antes de operar
+
+O desktop admite **uma tarefa por vez**. O worker grava um **artefato candidato**. A aceitação depende de um verificador independente: o resultado precisa corresponder ao esperado e as entradas precisam permanecer inalteradas.
+
+Solicitar cancelamento não comprova que a execução terminou. O cancelamento aguarda a saída do processo filho pertencente à execução. O histórico é volátil; não o trate como registro durável de auditoria.
+
+Este guia descreve o contrato operacional disponível. Comandos, nomes de controles, caminhos dos artefatos e procedimentos de recuperação não foram fornecidos. Para executar ações na instalação real, primeiro identifique essas interfaces na documentação da versão em uso.
+
+## 2. Responsabilidades e limites
+
+| Papel ou elemento | Responsabilidade conhecida | Implicação para a operação |
+| --- | --- | --- |
+| Desktop | Admitir uma tarefa por vez | Planeje o trabalho sem pressupor execução simultânea de tarefas. |
+| Worker | Gravar um artefato candidato | A existência do artefato comprova produção de um candidato; sua aceitação exige verificação. |
+| Verificador independente | Aceitar somente o resultado esperado com entradas inalteradas | Confira as duas condições antes de tratar o candidato como aceito. |
+| Processo filho pertencente à execução | Sua saída é aguardada no cancelamento | Aguarde a saída; a solicitação isolada não comprova encerramento. |
+| Histórico | Manter informações de forma volátil | Preserve externamente os registros necessários, por um procedimento autorizado. |
+
+**Iconografia de papéis:** nenhum pacote de ícones, versão, licença ou mecanismo de registro do visualizador foi disponibilizado. Esta edição identifica os papéis por rótulos. A iconografia profissional solicitada permanece pendente; os blocos dos fluxos abaixo expressam o processo e não constituem uma ilustração com ícones.
+
+## 3. Conduzir uma tarefa e interpretar seu resultado
+
+1. **Defina o resultado esperado.** Antes da execução, identifique quais entradas e qual resultado servirão de referência. Esta é uma recomendação operacional; o mecanismo de configuração não foi informado.
+2. **Submeta uma tarefa pelo mecanismo disponível na sua versão.** O desktop admite uma tarefa por vez. Não pressuponha a existência de fila, agendamento ou paralelismo.
+3. **Acompanhe a produção do candidato.** O worker grava o artefato. Sua gravação, por si só, não estabelece aceitação.
+4. **Confira a avaliação independente.** A aceitação exige resultado esperado **e** entradas inalteradas. Se uma condição não for satisfeita, não trate o candidato como aceito. O comportamento de erros do verificador não foi especificado.
+5. **Preserve o registro necessário.** Se houver exigência de rastreabilidade, use um destino durável autorizado. O produto não teve um recurso de exportação ou auditoria persistente confirmado.
+
+### Fluxo de produção e aceitação
+
+```mermaid
+graph TD
+    desktop["Desktop: uma tarefa por vez"] --> worker["Worker executa a tarefa"]
+    worker -->|grava| candidate["Artefato candidato"]
+    candidate --> verifier["Verificador independente"]
+    verifier --> conditions{"Resultado esperado e entradas inalteradas?"}
+    conditions -->|Sim| accepted["Candidato aceito"]
+    conditions -->|Não| unaccepted["Não tratar como aceito"]
+```
+
+*Figura 1 — Condições necessárias de aceitação. Fonte: contrato informado. Fonte Mermaid editável; renderização no visualizador de destino não verificada. O fluxo não especifica protocolo, ordem interna das checagens ou tratamento de falhas.*
+
+**Equivalente textual:** o desktop admite uma tarefa; o worker grava um candidato; o verificador independente exige simultaneamente resultado esperado e entradas inalteradas para aceitá-lo. Sem essas condições, não há base para declarar aceitação.
+
+## 4. Cancelar e confirmar o encerramento
+
+Use o mecanismo de cancelamento da versão instalada. Após solicitá-lo, aguarde a saída do processo filho pertencente à execução. Só a solicitação não permite afirmar que esse processo já encerrou.
+
+Não foi informado prazo máximo, sinal utilizado, escalonamento de término ou procedimento para um processo que não sai. Se a saída não puder ser confirmada, registre essa incerteza e consulte o procedimento operacional da implementação; este guia não estabelece encerramento forçado.
+
+### Fluxo de espera no cancelamento
+
+```mermaid
+graph TD
+    request["Cancelamento solicitado"] --> wait["Aguardar a saída do processo filho da execução"]
+    wait --> exited{"A saída foi confirmada?"}
+    exited -->|Não| wait
+    exited -->|Sim| confirmed["Saída do processo confirmada"]
+```
+
+*Figura 2 — Confirmação necessária durante o cancelamento. Fonte: contrato informado. Fonte Mermaid editável; renderização não verificada. O ciclo representa a condição de espera e não afirma que a implementação usa polling.*
+
+**Equivalente textual:** o cancelamento aguarda a saída do processo filho pertencente à execução. Enquanto não houver confirmação da saída, o encerramento permanece não confirmado. Não há garantia documental de duração dessa espera.
+
+## 5. Histórico e registro operacional
+
+O histórico é volátil. A duração de sua retenção e os eventos que o eliminam não foram especificados. Não o use como única evidência de uma operação que precisa ser reconstituída posteriormente.
+
+Quando a organização exigir rastreabilidade, um registro externo autorizado pode incluir a identificação da tarefa, as entradas de referência, o resultado esperado, a identificação do candidato e a conclusão observada do verificador. Para cancelamentos, registre separadamente a solicitação e a confirmação de saída. Esses campos são uma proposta de procedimento, não capacidades confirmadas do sistema.
+
+## 6. Desempenho: dados necessários antes de traçar o gráfico
+
+**Não há medições de desempenho disponíveis.** Portanto, esta entrega não apresenta um gráfico numérico. Valores ausentes não são zero; admitir uma tarefa por vez também não informa latência, vazão ou consumo de recursos.
+
+A tabela abaixo é um plano de coleta proposto para uma avaliação futura. Não contém resultados medidos nem pressupõe que a instrumentação já exista.
+
+| Pergunta | Medida proposta | Unidade | Estado atual |
+| --- | --- | --- | --- |
+| Quanto demora produzir o candidato? | Tempo entre início do worker e conclusão da gravação do candidato | ms ou s | Sem observações |
+| Quanto demora a verificação? | Tempo entre início e conclusão da avaliação independente | ms ou s | Sem observações |
+| Quanto demora confirmar um cancelamento? | Tempo entre solicitação e saída confirmada do processo filho da execução | ms ou s | Sem observações |
+| Quanto trabalho é concluído? | Tarefas aceitas em uma janela de observação definida | tarefas/min ou tarefas/h | Sem observações |
+
+Para produzir um gráfico comparável, registre versão do sistema, ambiente, carga, período, número de observações, definições dos eventos e método de medição. Declare tentativas não concluídas e observações incompletas. Preserve a tabela de dados junto ao gráfico e apresente dispersão somente quando os dados a sustentarem. Não foi definido objetivo de desempenho nem linha de base.
+
+## 7. Apresentação no visualizador do repositório
+
+Os dois fluxos usam sintaxe Mermaid básica e dispensam ícones e fontes remotas. Isso reduz dependências, mas não comprova compatibilidade. A versão do Mermaid, a configuração e o suporte do visualizador continuam desconhecidos.
+
+Se o visualizador exibir apenas os blocos de código, use os equivalentes textuais junto às figuras. A fonte fica preservada neste arquivo. Não foram gerados SVG, PNG ou capturas, e não há afirmação de legibilidade visual, contraste, temas ou responsividade verificados.
+
+Para concluir a apresentação solicitada, será necessário identificar o visualizador e sua versão, verificar uma família licenciada de ícones e seu registro ou exportação, renderizar os fluxos e inspecionar os resultados no destino. O gráfico de desempenho depende da coleta de dados reais.
+
+## 8. Manutenção
+
+Este arquivo é a fonte editável desta edição. O responsável pela documentação operacional deve revisá-lo quando mudar a admissão de tarefas, a produção de candidatos, a regra de aceitação, o cancelamento, a retenção do histórico ou o visualizador Markdown. A organização ainda precisa designar esse responsável e a localização canônica no repositório.
+
+O registro de entrega e revisão desta edição está em [review.md](review.md).

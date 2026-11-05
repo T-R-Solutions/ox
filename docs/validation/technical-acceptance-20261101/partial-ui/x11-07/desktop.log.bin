@@ -1,0 +1,29 @@
+   Compiling ox-app v0.1.0 (/home/rodrigo/Projetos/ox/application/crates/ox-app)
+    Finished `test` profile [unoptimized] target(s) in 0.19s
+     Running tests/desktop.rs (target/debug/deps/desktop-fd9c2bf83d05f0f6)
+
+running 3 tests
+test local_task_rendered_flow ... pointer target=(300,225), actual=(300,225), same_screen=true
+pointer target=(100,275), actual=(100,275), same_screen=true
+pointer target=(80,322), actual=(80,322), same_screen=true
+pointer target=(180,368), actual=(180,368), same_screen=true
+pointer target=(300,368), actual=(300,368), same_screen=true
+pointer target=(180,368), actual=(180,368), same_screen=true
+pointer target=(363,322), actual=(363,322), same_screen=true
+pointer target=(80,130), actual=(80,130), same_screen=true
+Real pointer/keyboard flow and task artifacts observed; verdict text requires captured-frame review. Workspace /tmp/oxuitest1793332185778054765
+ok
+test native_close_returns_success ... Observed native WM_DELETE_WINDOW exit=0
+ok
+test real_window_toggle_and_exit_button ... window found 4194306, initial title Ox — Fundação
+pointer target=(80,130), actual=(80,130), same_screen=true
+expanded observed
+pointer target=(80,130), actual=(80,130), same_screen=true
+collapse observed
+collapsed again; clicking Sair
+pointer target=(45,175), actual=(45,175), same_screen=true
+Observed window, expanded/collapsed title and pixels, Sair exit=0
+ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.12s
+

@@ -1,0 +1,62 @@
+[
+  {
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T002",
+      "T006"
+    ],
+    "implementation": "sdd/project.md",
+    "oracle": "tools/governance/tests/test_governance.py"
+  },
+  {
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T003",
+      "T006"
+    ],
+    "implementation": "docs/development/sdd-skills.md",
+    "oracle": "tools/governance/tests/test_governance.py"
+  },
+  {
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T003",
+      "T006"
+    ],
+    "implementation": "sdd/features/product-foundation/spec.md",
+    "oracle": "tools/governance/tests/test_governance.py"
+  },
+  {
+    "acceptance": "AC-04",
+    "requirement": "REQ-04",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T004",
+      "T006"
+    ],
+    "implementation": "tools/governance/scripts/package-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py"
+  },
+  {
+    "acceptance": "AC-05",
+    "requirement": "REQ-05",
+    "decision": "D-04",
+    "risk": "R-04",
+    "tasks": [
+      "T005",
+      "T006"
+    ],
+    "implementation": "tools/governance/scripts/check-ox.py",
+    "oracle": "tools/governance/tests/test_governance.py"
+  }
+]

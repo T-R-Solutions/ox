@@ -1,0 +1,55 @@
+[
+  {
+    "command": [
+      "cargo",
+      "check",
+      "--workspace",
+      "--locked",
+      "--offline"
+    ],
+    "cwd": "application",
+    "exit_code": 0,
+    "log": "command-1.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "cwd": "application",
+    "exit_code": 0,
+    "log": "command-2.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--all-targets",
+      "--locked",
+      "--offline",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "application",
+    "exit_code": 0,
+    "log": "command-3.log"
+  },
+  {
+    "command": [
+      "cargo",
+      "doc",
+      "--workspace",
+      "--no-deps",
+      "--locked",
+      "--offline"
+    ],
+    "cwd": "application",
+    "exit_code": 0,
+    "log": "command-4.log"
+  }
+]

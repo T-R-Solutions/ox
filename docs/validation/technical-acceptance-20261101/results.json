@@ -1,0 +1,36 @@
+{
+  "scope": "technical-acceptance governance evolution",
+  "skill_criteria": {
+    "APPROVED": 26,
+    "INCONCLUSIVE": 3,
+    "UNVERIFIED": 25
+  },
+  "technical_criteria": {
+    "APPROVED": 8,
+    "INCONCLUSIVE": 3,
+    "UNVERIFIED": 25
+  },
+  "governance_tests": 42,
+  "new_gate_tests": 8,
+  "rust_tests": 15,
+  "sdd": "PASS",
+  "check_ox": "PASS",
+  "diff_check": "PASS",
+  "independent_export_methods_passed": 5,
+  "final_export_files": 1262,
+  "limitations": [
+    "Evidence structure/freshness does not establish authenticity, semantic sufficiency or authorization.",
+    "Skill technical approvals concern frozen observed consumers; current product acceptance remains independent.",
+    "No new agent evaluation or graphical run."
+  ],
+  "artifacts": {
+    "docs/validation/technical-acceptance-20261101/review.md": "5f7df092a9f6064868a6bd8c7c6fe897f71327e6c985286de1a764def44e0408",
+    "docs/validation/technical-acceptance-20261101/all-tests.log": "c7a08236ec3da78f7cb82cfef7291d5f3b489cdf62387e17dc35cba1bf50989e",
+    "docs/validation/technical-acceptance-20261101/unit.log": "0f3931a3e34b5d6a1117e7a10d57e07d6d23812ec5a385c2ffd46b8ae59cc506",
+    "docs/validation/technical-acceptance-20261101/cargo.log": "479d67912906f1e7db38a3ac00b62bd9248e750336ae4482b4e78e70dee99884",
+    "docs/validation/technical-acceptance-20261101/consumer.log": "f34b5471a57bd7a9e7a953d2d75ea17cd8479607d6616689a9ba6998acbe561a",
+    "docs/validation/technical-acceptance-20261101/final-checks.log": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+    "docs/validation/technical-acceptance-20261101/sdd-final.log": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+    "docs/validation/technical-acceptance-20261101/final-export/export-receipt.json": "877163f85acc6e81e7eb74bf2f2af3d3b9a3bffbcb7bb1dc76c65b1a5ca39d86"
+  }
+}

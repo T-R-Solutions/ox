@@ -1,0 +1,405 @@
+{
+  "schema_version": 2,
+  "environment": "Local Ox dirty workspace, 2026-11-04; Python stdlib/YAML validator; independent isolated agent-generated guide; no Mermaid renderer execution.",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Preserved grounded documentation and renderer-aware Mermaid method",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-VISUAL-METHOD",
+        "E-README-PRESERVATION-REPAIR"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Measurable visual quality gates and honest defaults",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-VISUAL-METHOD",
+        "E-README-PRESERVATION-REPAIR"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Assets/data guidance and adverse-input behavior",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-VISUAL-METHOD",
+        "E-README-PRESERVATION-REPAIR"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Bounded exact preservation with negative controls",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-VISUAL-PRESERVATION",
+        "E-VISUAL-METHOD",
+        "E-README-PRESERVATION-REPAIR"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-VISUAL-METHOD",
+      "kind": "inspection",
+      "command_or_method": "Source/contract review, independent isolated forward test and arithmetic quality-gate boundary examples.",
+      "observed_result": "The skill preserves grounded writing and adds renderer-aware Mermaid and measurable visual contracts. The forward test marks unsupported visuals unverified and avoids invented measurements; actual visual rendering is not claimed.",
+      "artifact": "docs/validation/technical-documentation-visuals-20261104/review.md",
+      "sha256": "25060355d24f588fa415439e0e399c12cec073b49d24a7070baac6ac2c8dde9a",
+      "inputs": [
+        {
+          "path": "sdd/features/technical-documentation-visuals/spec.md",
+          "sha256": "7aa112ed73ccf106d2d1fb5fd8f05c1939d343c45b752366cb1841c22d78b732",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/plan.md",
+          "sha256": "0f28f8c45830268aac689f9691a0d968d9d28b2089d3cbc7629af818ba292544",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/tasks.md",
+          "sha256": "1789a701aa4dc3e39fbd2be8b3aaeea78716a3537c16a7b0509b786ae02839eb",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/traceability.json",
+          "sha256": "781e3eb256444e1aa65aee6f305cb8aa69f000358048e282fd308f9b30340cc2",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/SKILL.md",
+          "sha256": "f128a9f1c328151c05f6f4364b2de4553dd1eefd24f7028a1057daa17c408483",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/chain/technical-documentation.md",
+          "sha256": "3ebc0979693730d8e4ae88e75e171427c71f3b9deb02a8b23d5f8e9053f8f5b5",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/scripts/documentation_revision.py",
+          "sha256": "feeb53469f58dd40343cb3d693baf2a0db9afc1ce2a48c32f6f0336d9f28a27b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "d3a7726cc92eba7f258ca57969bd09cb423aec0efb1d28258cd7a0bb3bd7b1e2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "b0a84a13c773e295149cc47263f3589f549114527f23f54b8f39d4e9dbda118e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_documentation_revision.py",
+          "sha256": "68fa6794a27a6a662dd52342453a7d371f4f7f6f9959880dd4f8f524a6c19cb9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/revision.json",
+          "sha256": "4b8722c80f7e057f1c424682c612b0e8a41d137214569f969837140f25905e00",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/rubric-boundaries.json",
+          "sha256": "0d6681171a93dd12ff984ec37628b0fdc1317066cebabd72716a0e719f18fefd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/forward-test/guide.md.bin",
+          "sha256": "1751a2eb696dbf624fe3cb2316f8e9c281f4c9755751275047602235e731f91a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/forward-test/review.md.bin",
+          "sha256": "5c6a0b6ee69380395d3000e8bb257a1742b8ea10770de4ec2bcbab8c5b074b63",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/visual-quality.md",
+          "sha256": "e08f066fd27749df837ee10dbf18d6048a63216bd7e39bf5e1cd4dde97724da1",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/mermaid.md",
+          "sha256": "99436772b89bfb4678b0f2a7671d43cfba1ec1ed39eda0bfb4e0a6ef8e1b4d34",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/media-and-data.md",
+          "sha256": "a33f448a7e21931c538d1fd71bbc125d5e21c5d1846d7274d503f2d69eaf52a1",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/evaluation-cases.md",
+          "sha256": "5180d7ef33afb21a29a939f4101b4372eac0d6e5e0cfda1af334de2004376fc9",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/review.md",
+          "sha256": "25060355d24f588fa415439e0e399c12cec073b49d24a7070baac6ac2c8dde9a",
+          "role": "oracle"
+        }
+      ]
+    },
+    {
+      "id": "E-VISUAL-PRESERVATION",
+      "kind": "test",
+      "command_or_method": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -p test_documentation_revision.py -v",
+      "observed_result": "5 tests pass in 7.856 seconds, including independent-copy original-byte recovery and denied mutations; this does not assert the inherited global README guard is passing.",
+      "artifact": "docs/validation/technical-documentation-visuals-20261104/preservation-tests.log",
+      "sha256": "0ae42948e4a3b3a1cb46f98c429d553974feea4fb4615de6684edd9b70ae73c2",
+      "inputs": [
+        {
+          "path": "sdd/features/technical-documentation-visuals/spec.md",
+          "sha256": "7aa112ed73ccf106d2d1fb5fd8f05c1939d343c45b752366cb1841c22d78b732",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/plan.md",
+          "sha256": "0f28f8c45830268aac689f9691a0d968d9d28b2089d3cbc7629af818ba292544",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/tasks.md",
+          "sha256": "1789a701aa4dc3e39fbd2be8b3aaeea78716a3537c16a7b0509b786ae02839eb",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/traceability.json",
+          "sha256": "781e3eb256444e1aa65aee6f305cb8aa69f000358048e282fd308f9b30340cc2",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/SKILL.md",
+          "sha256": "f128a9f1c328151c05f6f4364b2de4553dd1eefd24f7028a1057daa17c408483",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/chain/technical-documentation.md",
+          "sha256": "3ebc0979693730d8e4ae88e75e171427c71f3b9deb02a8b23d5f8e9053f8f5b5",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/scripts/documentation_revision.py",
+          "sha256": "feeb53469f58dd40343cb3d693baf2a0db9afc1ce2a48c32f6f0336d9f28a27b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "d3a7726cc92eba7f258ca57969bd09cb423aec0efb1d28258cd7a0bb3bd7b1e2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "b0a84a13c773e295149cc47263f3589f549114527f23f54b8f39d4e9dbda118e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_documentation_revision.py",
+          "sha256": "68fa6794a27a6a662dd52342453a7d371f4f7f6f9959880dd4f8f524a6c19cb9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/revision.json",
+          "sha256": "4b8722c80f7e057f1c424682c612b0e8a41d137214569f969837140f25905e00",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/rubric-boundaries.json",
+          "sha256": "0d6681171a93dd12ff984ec37628b0fdc1317066cebabd72716a0e719f18fefd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/forward-test/guide.md.bin",
+          "sha256": "1751a2eb696dbf624fe3cb2316f8e9c281f4c9755751275047602235e731f91a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/forward-test/review.md.bin",
+          "sha256": "5c6a0b6ee69380395d3000e8bb257a1742b8ea10770de4ec2bcbab8c5b074b63",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/visual-quality.md",
+          "sha256": "e08f066fd27749df837ee10dbf18d6048a63216bd7e39bf5e1cd4dde97724da1",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/mermaid.md",
+          "sha256": "99436772b89bfb4678b0f2a7671d43cfba1ec1ed39eda0bfb4e0a6ef8e1b4d34",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/media-and-data.md",
+          "sha256": "a33f448a7e21931c538d1fd71bbc125d5e21c5d1846d7274d503f2d69eaf52a1",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/evaluation-cases.md",
+          "sha256": "5180d7ef33afb21a29a939f4101b4372eac0d6e5e0cfda1af334de2004376fc9",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/review.md",
+          "sha256": "25060355d24f588fa415439e0e399c12cec073b49d24a7070baac6ac2c8dde9a",
+          "role": "oracle"
+        }
+      ]
+    },
+    {
+      "id": "E-README-PRESERVATION-REPAIR",
+      "kind": "inspection",
+      "command_or_method": "Inspect exact README successor and unchanged original registration, source/partial-governance reference boundary and preserved preimages; run focused mutation/distribution tests and current governance checks. See report and checks.json.",
+      "observed_result": "Changed documentary/tool inputs have an explicit successor inspection; prior input hashes are preserved at exact-byte preimages. README navigation matches current authorities; unknown current bytes and malformed/missing/escaping resources remain rejected. Product code and prior operational observations are unchanged; no skill effectiveness or runtime reacceptance inferred.",
+      "artifact": "docs/validation/readme-preservation-20261104/report.md",
+      "sha256": "d7a270dfae483e50b96ae4ab1738f3ee086c145edc19b11186d82d67f6b8cbf9",
+      "inputs": [
+        {
+          "path": ".codex/skills/technical-documentation/SKILL.md",
+          "sha256": "f128a9f1c328151c05f6f4364b2de4553dd1eefd24f7028a1057daa17c408483",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/media-and-data.md",
+          "sha256": "a33f448a7e21931c538d1fd71bbc125d5e21c5d1846d7274d503f2d69eaf52a1",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/visual-quality.md",
+          "sha256": "e08f066fd27749df837ee10dbf18d6048a63216bd7e39bf5e1cd4dde97724da1",
+          "role": "other"
+        },
+        {
+          "path": "README.md",
+          "sha256": "449e8292a94b6ff8353cc57baa7315b1fe437a9f6bbf972e3c415ae98c46003c",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "3c591581fac522735196f7f46fa960a766a8180df06506e12d85a16556cb1243",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/readme-preservation.md",
+          "sha256": "186d139116e3e0346075be896d6b2cb95b476abdbb83581cdb3a29ba1e08fac2",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/governance.md",
+          "sha256": "618cd167d7f10757f30d376094b71efd8bac755f2ea4628af258a8faec562eaf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/product-references.json",
+          "sha256": "67f918594ee4a5b042004c072bb24cbaec0757bb4bc73c6efe343b95bee3ccaa",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/revision.json",
+          "sha256": "2e8df96df7c08afa51d8c887d79547c00115e8176c5ee771e7d1b39001167c7c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/review.md",
+          "sha256": "25060355d24f588fa415439e0e399c12cec073b49d24a7070baac6ac2c8dde9a",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/README.md",
+          "sha256": "4281dc9443ced4c704bfa72131cac53fa625ab37a4fac8db9029ff5b289132cf",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/converge.md",
+          "sha256": "f5610e4d3f8a5ac0595836f53f9c3c3dd4e8ad0ca58bda7038cbb24c87718821",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/plan.md",
+          "sha256": "841fd470795938ac574790e95e788c98d5fbc19be247c681cba7455005aef322",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/spec.md",
+          "sha256": "a0cd0854a542b1514923e5d294172206c1f2eb18526c4b7ede1a707d063030e5",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/tasks.md",
+          "sha256": "e43548a188d09c5ab259b05da1860eb49042510d17407343cac88cac8211c8de",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/traceability.json",
+          "sha256": "41042dcda65fdac4ff835d65d22333ac75346407124e33291983d453d958e505",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/plan.md",
+          "sha256": "0f28f8c45830268aac689f9691a0d968d9d28b2089d3cbc7629af818ba292544",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/spec.md",
+          "sha256": "7aa112ed73ccf106d2d1fb5fd8f05c1939d343c45b752366cb1841c22d78b732",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/tasks.md",
+          "sha256": "1789a701aa4dc3e39fbd2be8b3aaeea78716a3537c16a7b0509b786ae02839eb",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/technical-documentation-visuals/traceability.json",
+          "sha256": "781e3eb256444e1aa65aee6f305cb8aa69f000358048e282fd308f9b30340cc2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "277d83e2663aeaf35981a010bec806c57a955ed5bdbe062d54b9dd59a5725748",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/documentation_revision.py",
+          "sha256": "feeb53469f58dd40343cb3d693baf2a0db9afc1ce2a48c32f6f0336d9f28a27b",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/readme_revision.py",
+          "sha256": "c04db67e4ce38e4700d1c4f43e447e4cbcaed5161eba09b9d9f95b771287ee41",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/skill_revision.py",
+          "sha256": "1a7c29e200ac37853276ce8f07e03bf10294a2310cca00427989334de411fbab",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_documentation_revision.py",
+          "sha256": "68fa6794a27a6a662dd52342453a7d371f4f7f6f9959880dd4f8f524a6c19cb9",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "98015daeb455c19a8c1b83ced13d72a6c6d915ef364615ebb2b38117ebeda1e7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_readme_skill_integration.py",
+          "sha256": "f5ed9b3809043d0487fff17c9737321bebd6149ddfed8ac11cd839decf2bbbf6",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Acceptance is for skill authoring/method and bounded preservation, not completed rendering, general aesthetic effectiveness, WCAG conformance or product behavior.",
+    "The inherited README current-byte guard failure is separate and not waived.",
+    "Actual Mermaid parse/render, professional icon assets, screenshot checks and responsive/theme/export inspection were not executed; the skill requires them when producing real visual deliverables."
+  ]
+}

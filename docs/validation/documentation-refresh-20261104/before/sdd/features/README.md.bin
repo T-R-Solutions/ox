@@ -1,0 +1,41 @@
+# Ox SDD feature index
+
+Features in this directory are independent and remain directly under
+`sdd/features/` according to the adopted SDD 1.3.0 validator.
+
+## Historical governance
+
+- `adoption-governance`: library and authority adoption.
+- `governance-externalization`: removal of external-study dependencies.
+
+Historical results remain in the baseline. Affected active envelopes receive new
+observations according to evidence.md; old hashes are not reused.
+
+## Governance tools
+
+- `governance-layout`: tools in tools/governance/, configuration in
+  config/governance/; the historical reservation of src/ was superseded by
+  `application/` in ADR `docs/decisions/product-bootstrap.md`.
+
+## Skill library
+
+- `skill-*`: authoring, routing and evaluation of the nine specializations.
+- Technical criteria requiring actual subsystems remain UNVERIFIED when there
+  is no implementation evidence.
+
+## Ox product
+
+- `product-foundation`: phase transition and verifiable foundation preparation.
+- `product-bootstrap`: virtual workspace in application/, 16 crates and Iced shell;
+  per-crate sources/tests and separate evidence (outside the governance package).
+- Future `product-*`: functionality of Rust/Iced modules, plugins, runtime, context,
+  graphs, verification and other capabilities, each with its own evidence.
+
+The local route follows `sdd/workflow.md`. Do not move features to evade gates,
+promote historical approvals or confuse documentation with implementation.
+
+## Current decision preparation — 2026-11-01
+
+- `product-f0-gate`: documentary reconciliation and operational gate proposal; completion of this documentation does not complete F0.
+- `product-local-persistence`: proposed requirements and storage ADR, with implementation awaiting explicit maintainer authorization.
+- Nine specialization T004 tasks now reflect the recorded bounded-consumer executions; product acceptance remains separate.

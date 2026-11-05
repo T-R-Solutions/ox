@@ -1,0 +1,219 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64, Rust 1.99.1",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "A controlled local adapter runs to success or nonzero failure with observed process exit and ordered lifecycle events.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Cancellation enters Cancelling before an observed terminal Cancelled outcome and reaps the owned child.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Wrong-generation, duplicate, out-of-order and late completion events cannot corrupt terminal or current session state.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Execution deadlines stop a hanging local adapter and recovery creates a fresh attempt with no old events or grants.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST"
+      ]
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Runtime and controlled adapter preserve a workspace sentinel; output and supervision limitations are explicit.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-UI-RECONCILIATION",
+        "E-UI-TEST"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-UI-RECONCILIATION",
+      "artifact": "docs/validation/product-local-task-ui/library-reconciliation/product-agent-runtime-review.md",
+      "sha256": "8c0894e5faf5abb184feee275b5b994aa6ad0987b3c0262daa728f434f6d8d6e",
+      "kind": "inspection",
+      "command_or_method": "Compare prior input hashes and lockfile diff; reexamine unchanged criterion-to-test mappings",
+      "observed_result": "Existing library criteria supported by unchanged implementation/oracles and new passing workspace tests; see review.",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/bin/local-agent.rs",
+          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/runtime.rs",
+          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/tests/runtime.rs",
+          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/plan.md",
+          "sha256": "dabe3c5e53c76d447e9c58bf6cfec870ae827743e4718b715d737c51adef7ca8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/skills.json",
+          "sha256": "c5c120a00075decf0d934233bdab8479b85304d7720deb32b160ff4df2c851e3",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/spec.md",
+          "sha256": "a905068a80d131e635b7c5968a50a645f149d9d1cc853535b0d1ee6050fd2755",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/tasks.md",
+          "sha256": "dd97bc1aa351f95fe3c19f04c190339eed35ad0420c22e35826d892464a9b10d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/traceability.json",
+          "sha256": "8a0de4e802d13fcf3432e7aa01073cac68c5a89e0d5a539480d3b56dd339c104",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-UI-TEST",
+      "artifact": "docs/validation/product-local-task-ui/final-checks-01/test-unsandboxed.log",
+      "sha256": "2402b76f0e5c205b0d426fa5daa43cfe32ab7da7cc4d610eab4107068b369170",
+      "kind": "test",
+      "command_or_method": "cargo test --workspace (outside socket-restricting sandbox)",
+      "observed_result": "Existing library criteria supported by unchanged implementation/oracles and new passing workspace tests; see review.",
+      "inputs": [
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/Cargo.toml",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/bin/local-agent.rs",
+          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/lib.rs",
+          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/runtime.rs",
+          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/src/session.rs",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-agent/tests/runtime.rs",
+          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+          "role": "other"
+        },
+        {
+          "path": "application/rust-toolchain.toml",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/plan.md",
+          "sha256": "dabe3c5e53c76d447e9c58bf6cfec870ae827743e4718b715d737c51adef7ca8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/skills.json",
+          "sha256": "c5c120a00075decf0d934233bdab8479b85304d7720deb32b160ff4df2c851e3",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/spec.md",
+          "sha256": "a905068a80d131e635b7c5968a50a645f149d9d1cc853535b0d1ee6050fd2755",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/tasks.md",
+          "sha256": "dd97bc1aa351f95fe3c19f04c190339eed35ad0420c22e35826d892464a9b10d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-agent-runtime/traceability.json",
+          "sha256": "8a0de4e802d13fcf3432e7aa01073cac68c5a89e0d5a539480d3b56dd339c104",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Controlled local no-output adapter only; no real agent, provider, credentials, network or code transmission.",
+    "Caller must poll to enforce runtime deadline; process-tree containment and OS CPU/memory limits absent.",
+    "Drop kills/reaps direct child only; no durable state, crash restart, pause, resume, usage or output capture.",
+    "Workspace preservation demonstrated with controlled fixture; arbitrary executable retains OS permissions."
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 2,
+  "environment": "2026-11-01 Linux; environment identity in docs/validation/foundation-current-20261101/environment.json",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "The local manifest and baseline confirm library-copy integrity without depending on the three external studies.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "CURRENT-REVIEW",
+        "E-README-SKILL-INTEGRATION-REVIEW"
+      ],
+      "reason": "Current recovery verifies historical identities; semantic mapping of all library-copy succession records remains incomplete."
+    },
+    {
+      "id": "AC-02",
+      "criterion": "The exact inventory, intact resources and 29 bridges with valid identity and path pass the local auditor.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "CURRENT-REVIEW",
+        "E-README-SKILL-INTEGRATION-REVIEW"
+      ],
+      "reason": "The literal 29-bridge inventory is superseded by governance-reconciliation (30); no current approval of the original compound criterion."
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Coverage of current local IDs and review preserve open decisions, five states and nine authoring features.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "CURRENT-REVIEW",
+        "E-README-SKILL-INTEGRATION-REVIEW"
+      ],
+      "reason": "Current local IDs pass check-ox; full criterion-specific semantic coverage review remains incomplete."
+    },
+    {
+      "id": "AC-04",
+      "criterion": "The copied validator and local tests pass; the report separates structure, review, simulation, agent and integration.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "CURRENT-REVIEW",
+        "E-README-SKILL-INTEGRATION-REVIEW"
+      ],
+      "reason": "Current validator and all governance tests pass; the required report separation and historical trial scope need explicit mapping."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "CURRENT-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Criterion-specific comparison described in review artifact; current aggregate executions are supporting context only.",
+      "observed_result": "Insufficient evidence for current approval; missing execution distinguished from inconclusive review. Preserved plan/tasks restored after preservation guard rejected additive edits; review scope/tasks remain in the current review artifact.",
+      "artifact": "docs/validation/foundation-current-20261101/adoption-governance-review.md",
+      "sha256": "00f5a03c6d27325931fb0b51c1bf98065c005b836d40bc7879314e2f670133b5",
+      "inputs": [
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/.codex/skills/README.md.bin",
+          "sha256": "b5d6bbd5445c1570578af57078722bae7e0860ca3139eb7c772c49e95601c0da",
+          "role": "other"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "c7a3ef68712b2754b5d23c40b53df9f3b2c315d3c8307d8b40d9943faa9440fe",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/governance-reconciliation.md",
+          "sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/docs/structure/files.json.bin",
+          "sha256": "2261d4f19c690132ad5f016d11394499ac73a6ee96fca3830b03b26fec8a78ed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/normative-coverage.md",
+          "sha256": "3315979d583b13b6ff843a5f91ffbac2711f790c4b779ce4934aaa69325220fe",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/runs/20261101T232924.409428Z/results.json",
+          "sha256": "559a03bb8e4ceb06ab2bfc9ec279895ef0a6eac0a75d962ed053bf4e6232f086",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/adoption-governance/plan.md",
+          "sha256": "d994c3c59ca12c514a43305257308a8f4d405a6ed857015030f4e4cd01d65850",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/adoption-governance/spec.md",
+          "sha256": "9cb369d149ad4816395fb239cba964086432190b3cf587bd3ffb5f76a9b17fc1",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/adoption-governance/tasks.md",
+          "sha256": "832f75280b1bf589eee5083128b6d245403c1f680e6df9143975e46df3f14944",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/adoption-governance/traceability.json",
+          "sha256": "cc1dda7f33c15de526e73b19a497e9ccc921fca3e506a429b2140d2a3a758392",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/run-checks.py",
+          "sha256": "54bb060ff172dd6917d4c5f6dd5ba3c889b35e10d435733303bd881cd8ae79dd",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-README-SKILL-INTEGRATION-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Compare actual enumerated profile/import/preservation/doc delta against each affected criterion consumer. Retain old observations and identical input/artifact bytes; current profile receives independent import acceptance.",
+      "observed_result": "Existing scoped criterion states retained; no product execution or scientific/reader-effectiveness claim inferred. New conditional resource identity and negative preservation cases examined separately.",
+      "artifact": "docs/validation/readme-skill-integration-20261104/shared-input-review.md",
+      "sha256": "317f66f9089cdad0ec12524cfaf5d1fd1a9a3aa310e94562dddea655a9c784da",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "6161cee65caa6a19ae61cba0c56cc5751d90c6fe54c42a07c0c72a2ee11f05b7",
+          "role": "other"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "c7a3ef68712b2754b5d23c40b53df9f3b2c315d3c8307d8b40d9943faa9440fe",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/readme-skill-integration.md",
+          "sha256": "f8f53eba58ebf0e9e0b7892ab41dbe880806b31bccfe85d3090d31389c613e1d",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/profile-revisions.json",
+          "sha256": "30f821a9adf357116a8d3b53114a0074da099be735446a79757899d56df972dc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/normative-coverage.md",
+          "sha256": "3315979d583b13b6ff843a5f91ffbac2711f790c4b779ce4934aaa69325220fe",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "c573f472c39f89270a1c405919be1079c165aba77b7223a03fd13d2248544ab9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/adoption-governance/plan.md",
+          "sha256": "d994c3c59ca12c514a43305257308a8f4d405a6ed857015030f4e4cd01d65850",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/adoption-governance/spec.md",
+          "sha256": "9cb369d149ad4816395fb239cba964086432190b3cf587bd3ffb5f76a9b17fc1",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/adoption-governance/tasks.md",
+          "sha256": "832f75280b1bf589eee5083128b6d245403c1f680e6df9143975e46df3f14944",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/adoption-governance/traceability.json",
+          "sha256": "cc1dda7f33c15de526e73b19a497e9ccc921fca3e506a429b2140d2a3a758392",
+          "role": "other"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "5a6a68c5cb41a268d7bedafaa81c4583b60cd87f25603a79d2f4a80f46db72cc",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "15b4ad904e3d1c950446ded93c7bb85bea5731198c18a56153f1667f8c88bda3",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/run-checks.py",
+          "sha256": "54bb060ff172dd6917d4c5f6dd5ba3c889b35e10d435733303bd881cd8ae79dd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/skill_revision.py",
+          "sha256": "692cb74cb6a25dde4eca0309616fa3acaf27acc17af0732328108eefd3af1f8a",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_readme_skill_integration.py",
+          "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Acceptance restricted to governance/authoring; no Rust compilation, Iced integration or product effectiveness.",
+    "Executor review is not independent human review; historical trials were not rerun.",
+    "Previous envelopes are in docs/validation/governance-layout/before.tar.gz; collection outputs are checked separately through freshness and final extraction.",
+    "Initial package qualification has its own inputs preceding consolidation; the final delivery receipt is in dist/.",
+    "The skills' 36 technical scenarios remain UNVERIFIED.",
+    "maintenance-001: affected observations are preserved in docs/validation/maintenance-001/previous/sdd/features/adoption-governance/evidence.json.bin; awaiting review or new execution without renewing old hashes.",
+    "maintenance-001 observations are new; previous results are preserved. Actual-package criteria, a new agent trial and unresolved ownership/permissions remain UNVERIFIED.",
+    "Inputs changed by bootstrap; previous observations and historical approvals are preserved in docs/validation/bootstrap-governance/previous. Dependent criteria await their own reacceptance; old hashes were not renewed."
+  ]
+}

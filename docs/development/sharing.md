@@ -1,5 +1,39 @@
 # Organização, compartilhamento e recuperação
 
+## Fronteira de compartilhamento
+
+[![Diagrama separando application do conjunto de governança exportado e indicando a inspeção da cópia e do ZIP](../assets/sharing.svg)](../assets/sharing.svg)
+
+*Copiar ou empacotar governança não entrega nem publica o aplicativo.* [Abrir em tamanho integral](../assets/sharing.svg).
+
+<details>
+<summary>Diagrama Mermaid — fonte editável</summary>
+
+```mermaid
+flowchart TB
+    accTitle: Escopos distintos para produto e governança
+    accDescr: O repositório contém o aplicativo e a governança. A exportação elegível copia apenas governança. O ZIP de governança declara product_included=false. O aplicativo exige pipeline próprio; gerar pacote local não publica nada.
+    REPO["Repositório Ox"] --> GOV["Governança elegível"]
+    REPO --> APP["application/ · produto Rust/Iced"]
+    GOV --> COPY["Cópia independente · export-clean"]
+    GOV --> ZIP["ox-governance.zip"]
+    ZIP --> SCOPE["product_included=false"]
+    APP --> PIPE["Build, testes e distribuição próprios"]
+    COPY --> CHECK["Inspeção, checks e recuperação"]
+    ZIP --> CHECK
+    classDef product fill:#eef2ff,stroke:#4f46e5,color:#312e81
+    class APP,PIPE product
+```
+
+</details>
+
+O produto e a governança têm pipelines distintos. A exportação usa uma allowlist;
+`application/` fica fora dela. Os procedimentos abaixo preservam histórico e
+conferem a cópia sem publicar conteúdo. Para executar o produto, use o
+guia `application/README.md`.
+
+## Composição histórica da árvore
+
 Medição inicial em 27/10/2026: 609 arquivos, 80.950.232 bytes lógicos
 (77,20 MiB); du indicou aproximadamente 79 MiB alocados. Os 73 MB do arquivo
 externo informado pelo mantenedor não foram usados como tamanho desta árvore.
@@ -73,3 +107,19 @@ ADRs históricas são contexto da migração, não requisitos atuais.
 Não remover registros de docs por tamanho sem revisar links, evidence inputs,
 guards e cadeia de recuperação. Um futuro perfil de exportação menor exige decisão
 própria e validação independente, mantendo disponíveis os históricos necessários.
+
+## Reconciliação de 29/10/2026
+
+A inspeção prévia usa a mesma fronteira que a cópia/ZIP: não percorre `.git`,
+`application/target`, saídas da raiz ou dist. Archives incluídos continuam sob
+inspeção recursiva e o mesmo limite de expansão. Componentes exatamente `.git`
+são excluídos em qualquer profundidade, como diretório ou arquivo de worktree;
+`.gitignore` e `.github` continuam elegíveis dentro das raízes governadas.
+
+A recuperação histórica resolve hashes antigos sem substituir o conteúdo vigente.
+`governance-reconciliation-001` em files.json conserva predecessores explícitos.
+A revisão skill-ui-metadata-001 permanece intacta; prompt/rust originais são
+recuperados da baseline autenticada de adoção. AGENTS original foi reconstruído
+e conferido contra os hashes históricos, com método registrado em
+docs/validation/governance-reconciliation/recovery-method.txt. O inventário anterior
+está em skill-ui-metadata/inventory-before. Nunca restaurar sobre trabalho existente.

@@ -1,0 +1,83 @@
+# Desenvolvimento e verificação da governança
+
+Guia operacional da governança. Para build, uso e testes Rust/Iced, consulte o
+[guia da aplicação](../../application/README.md); o [índice da documentação](../README.md)
+organiza as demais referências.
+Os comandos abaixo são executados na raiz do Ox, com Python 3.11+ e stdlib.
+Validam governança/skills; não substituem build, testes ou aceitação Rust/Iced.
+
+## Verificação da governança e skills
+
+Na raiz do Ox, Python 3.11+ e stdlib:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .
+PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -v
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/run-checks.py
+PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/package-ox.py
+```
+
+O runner conserva rodadas, logs, ambiente e hashes em `docs/validation/runs/`. O empacotador cria `ox-governance.zip` e relatório novos em `dist/`, inspeciona archives, extrai fora da árvore e executa os cinco comandos principais; não publica nada. O manifesto usa a allowlist da governança e exclui scratch, caches e arquivos da raiz fora desse contrato, incluindo todo o workspace `application/`. Os testes usam cópia explícita e processos com auditoria de leitura da raiz de origem.
+
+O modo padrão aceita pendências documentadas; `--structure-only` não aceita a mudança. `--require-fresh` confere vínculos de conteúdo, não adequação do oráculo. Os 36 cenários técnicos têm aprovação registrada nos consumidores delimitados em [skill-consumer-validation](../../sdd/features/skill-consumer-validation/converge.md); isso não aceita componentes do produto. Não exigir aprovação global enquanto houver critérios aplicáveis INCONCLUSIVE ou UNVERIFIED; o registro dos 25 critérios anteriores permanece em [criteria.json](../../docs/validation/foundation-current-20261101/criteria.json).
+
+## Histórico e limites
+
+Scripts de autoria inicial e verify-boundary foram retirados da distribuição; não são comandos suportados. O backup anterior completo está fora do projeto; nomes/checksums da retirada estão na migração. Não há dependência desse backup. Observações antigas conservadas em archives/relatórios históricos não demonstram a configuração atual. As evidências correntes são as das features e do registro de transição; o relatório anterior conserva seu escopo histórico.
+
+As baselines históricas de skills, recursos e SDD conservam os bytes originais. A revisão de idioma atual traduz skills, AGENTS e SDD para inglês, mantendo tasks.md em pt-BR e compatibilidade dos estados antigos; registro em docs/validation/english-documentation/. Estrutura, inspeção semântica, resposta observada de agente e integração de produto são níveis distintos. Termos de terceiros, distribuição comercial, plataforma e sandbox aguardam decisões antes de produto público; não são resolvidos por esta migração.
+
+## Pacote de governança
+
+`tools/governance/scripts/package-ox.py` produz exclusivamente `ox-governance.zip`, com
+`package_kind=governance` e `product_included=false` no ZIP e no recibo externo.
+A allowlist inclui `tools/governance/` e `config/governance/`; não inclui `src/`,
+`application/` (manifesto, lockfile, crates, testes e target), `Cargo.toml`,
+`Cargo.lock` ou `crates/` soltos na raiz, outras ferramentas/configurações, binários ou instaladores.
+O pipeline do aplicativo exigirá manifestos, build, testes e distribuição próprios.
+O comando não publica o pacote.
+
+## Compartilhamento limpo e licenciamento
+
+Consulte [organização e recuperação](../../docs/development/sharing.md) e
+[análise de licenciamento](../../docs/licensing/review.md). A revisão de preservação das
+nove especializações está na [ADR maintenance-001](../../docs/decisions/maintenance-001.md).
+Para copiar somente o conteúdo governado, sem compactar, use um destino novo:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/export-clean.py /tmp/ox-share-review
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/verify-maintenance.py
+```
+
+O comando de exportação cria uma pasta, não publica nada e não gera ZIP. GPL-3.0-only foi escolhida para material próprio, com texto em [LICENSE](../../LICENSE)
+e escopo em [NOTICE](../../NOTICE). Titular do material próprio: Rodrigo Batista. Os direitos dos materiais copiados continuam pendentes; não há prontidão para
+distribuição pública. O relatório de composição usa bytes da árvore, não os 73 MB
+do arquivo externo enviado anteriormente pelo mantenedor.
+
+## Verificação rápida e completa
+
+`python3 tools/governance/scripts/run-tests.py --group fast` executa fixtures pequenas
+(sem cópias integrais). `--group integration` executa isolamento, preservação,
+recuperação e mutações em cópias completas. Sem opção, ou `--group all`, executa
+ambos. `unittest discover` também conserva a suíte inteira. Use
+`--timings /tmp/ox-times-new.json` para um relatório novo por teste.
+`run-checks.py` executa SDD, check-ox, verify-maintenance e todos os testes.
+O grupo rápido é feedback parcial; não substitui a verificação completa.
+
+A [reconciliação](../../docs/decisions/governance-reconciliation.md) registrou a integração de 30 skills; o perfil atual tem 31. Ela
+fixa Rust 1.99.1 e mantém a recuperação das revisões históricas. Pacotes oficiais
+excluem componentes `.git` em qualquer profundidade, preservando `.gitignore`.
+Arquivos ZIP arbitrários na raiz não são inputs da distribuição governada.
+
+
+## Preservação das revisões do README
+
+A falha anterior `README integration current changed/missing` está preservada nos
+[registros da reestruturação](../validation/documentation-refresh-20261104/report.md).
+O [sucessor do README](../decisions/readme-preservation.md) registra os bytes atuais
+e recupera a versão exata exigida pela integração original. Alterações posteriores
+não registradas continuam sendo rejeitadas. Os checks e seus limites estão no
+[relatório da correção](../validation/readme-preservation-20261104/report.md).

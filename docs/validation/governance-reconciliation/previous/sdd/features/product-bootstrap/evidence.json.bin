@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "environment": "{\n  \"system\": \"Linux-7.3.0-1-default-x86_64-with-glibc2.44\",\n  \"machine\": \"x86_64\",\n  \"rustc\": \"rustc 1.99.1 (58cf8f9c3 2026-10-13)\",\n  \"cargo\": \"cargo 1.99.1 (5f94df478 2026-08-27)\",\n  \"toolchain\": \"stable\",\n  \"display\": \":0\",\n  \"wayland_display\": \"wayland-0\",\n  \"gui_backend\": \"X11 via XWayland session, WAYLAND_DISPLAY removed only in test child; tiny-skia software renderer\",\n  \"python\": \"3.13.16\"\n}",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Virtual workspace with 16 compilable crates and a single lockfile; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "The Iced window opens, interaction reveals details, and both the button and window close it; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "The ox binary delegates to the library; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "All first-party roots prohibit unsafe; dependencies are evaluated separately; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "External modules without mod.rs; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Unit and external tests are discovered and executed; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-07",
+      "criterion": "Acyclic graph and UI separate from domains; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-08",
+      "criterion": "Distinct identities are used, UUID v7 only for globally persistent entities; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-09",
+      "criterion": "Evidence with actual inputs and results; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-10",
+      "criterion": "Governance checkers remain operational; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-11",
+      "criterion": "Versioned plugin contract; IPC and sandbox unavailable; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-12",
+      "criterion": "Product separate from governance distribution; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-13",
+      "criterion": "16 useful contracts and future capabilities explicitly unavailable; verify with Cargo, inspection or graphical execution according to the plan.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Acceptance only of the product-bootstrap slice; full F0 is incomplete.",
+    "Linux x86_64 X11/XWayland observed; native Wayland and other platforms not exercised.",
+    "Observed stable 1.99.1; compiler 1.99.0 was not tested and a minimum technical MSRV was not proven.",
+    "IPC, sandbox, agents, persistence, indexes and engines remain unavailable; no persistent UUID in this slice.",
+    "Dependencies contain unsafe/FFI; the inventory does not certify safety or distribution rights.",
+    "Historical approvals are preserved in bootstrap-governance/previous; criteria with changed inputs remain UNVERIFIED, listed in invalidation.json.",
+    "Hashes check bytes, not authenticity or oracle sufficiency.",
+    "English documentation translation changed spec.md and plan.md, affecting all previously bound observations. The original envelope is preserved in docs/validation/product-bootstrap/english-documentation/previous/sdd/features/product-bootstrap/evidence.json.bin. No previous input hash was renewed and no historical execution was repeated or represented as new. Current criteria await fresh review or execution against the translated contract."
+  ]
+}

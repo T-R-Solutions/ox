@@ -1,0 +1,202 @@
+{
+  "scope": "54 existing skill criteria; local review and tests; no product implementation changes",
+  "commands": [
+    {
+      "command": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline",
+      "cwd": "application",
+      "environment": "execution sandbox",
+      "exit_code": 101,
+      "artifact": "docs/validation/skill-criteria-review-20261101/cargo-tests.log",
+      "finding": "Unix socket PermissionDenied; not a plugin behavior rejection"
+    },
+    {
+      "command": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline",
+      "cwd": "application",
+      "environment": "approved host execution",
+      "exit_code": 0,
+      "tests_passed": 13,
+      "artifact": "docs/validation/skill-criteria-review-20261101/cargo-tests-host.log"
+    },
+    {
+      "command": "rustc +1.99.1 --edition=2024 --test docs/validation/skill-criteria-review-20261101/consumer.rs -o /tmp/ox-skill-criteria-20261101-tests",
+      "exit_code": 0
+    },
+    {
+      "command": "/tmp/ox-skill-criteria-20261101-tests --nocapture",
+      "exit_code": 0,
+      "tests_passed": 2,
+      "artifact": "docs/validation/skill-criteria-review-20261101/consumer-tests.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .",
+      "exit_code": 0,
+      "artifact": "docs/validation/skill-criteria-review-20261101/sdd-final.log"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 0,
+      "artifact": "docs/validation/skill-criteria-review-20261101/check-ox-final.log"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "changed_observed_inputs": [
+    "sdd/features/skill-agent-runtime-engineering/converge.md",
+    "sdd/features/skill-agent-runtime-engineering/evidence.json",
+    "sdd/features/skill-agent-usage-accounting/converge.md",
+    "sdd/features/skill-agent-usage-accounting/evidence.json",
+    "sdd/features/skill-autonomous-verification-engineering/converge.md",
+    "sdd/features/skill-autonomous-verification-engineering/evidence.json",
+    "sdd/features/skill-code-context-engineering/converge.md",
+    "sdd/features/skill-code-context-engineering/evidence.json",
+    "sdd/features/skill-code-knowledge-graph-engineering/converge.md",
+    "sdd/features/skill-code-knowledge-graph-engineering/evidence.json",
+    "sdd/features/skill-iced-engineering/converge.md",
+    "sdd/features/skill-iced-engineering/evidence.json",
+    "sdd/features/skill-plugin-protocol-engineering/converge.md",
+    "sdd/features/skill-plugin-protocol-engineering/evidence.json",
+    "sdd/features/skill-tool-output-engineering/converge.md",
+    "sdd/features/skill-tool-output-engineering/evidence.json",
+    "sdd/features/skill-workspace-integrity-engineering/converge.md",
+    "sdd/features/skill-workspace-integrity-engineering/evidence.json"
+  ],
+  "additional_inputs": [
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/consumer.rs",
+      "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8"
+    },
+    {
+      "path": "application/target/debug/local-agent",
+      "sha256": "4538d99fa5961d3d6ef06e6da1ebcf1059c6e839150f888662a744cd92f20216"
+    },
+    {
+      "path": "application/target/debug/local-agent",
+      "sha256": "4538d99fa5961d3d6ef06e6da1ebcf1059c6e839150f888662a744cd92f20216"
+    },
+    {
+      "path": "application/target/debug/local-plugin",
+      "sha256": "3b1ab9f55244be901af302416f784e5a45b79470c7c9cbfbb327faf44bf64b7b"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/cargo-tests-host.log",
+      "sha256": "1e626e5cd2c26cad84b17aaa0a1ef7c3b7b575ccfa211d59e65d3386eec6ed8b"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/cargo-tests.log",
+      "sha256": "639a082998e5ddd3c4de9c4ea981a8ddb1d0ce7cd6fb154a69c14f2a3fa7b045"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/check-ox-final.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/check-ox.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/consumer-tests.log",
+      "sha256": "f34b5471a57bd7a9e7a953d2d75ea17cd8479607d6616689a9ba6998acbe561a"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/consumer.rs",
+      "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/inputs-before.json",
+      "sha256": "ea736df4d27024bfe0132ab59c256c1ac6ce4a49352c6aa15273e821c04bb5b1"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+      "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-agent-runtime-engineering/converge.md.bin",
+      "sha256": "74526e71b81ae46e2f92e49fef7c33a96f4e2496fd18138d5d1c95550486be0e"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-agent-runtime-engineering/evidence.json.bin",
+      "sha256": "44287578573119f60182b78da740e340295432b64278b77860e5f052555630fd"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-agent-usage-accounting/converge.md.bin",
+      "sha256": "c23bbe238cbc8dc5e32be169bc98b891d440ddb394413c5ea5fe66e9147043a8"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-agent-usage-accounting/evidence.json.bin",
+      "sha256": "a93b4b11fc2487720eb4c5c623110f7b922724d0801d27d38547bdb4aa12e9eb"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-autonomous-verification-engineering/converge.md.bin",
+      "sha256": "3e14d35ecf1ca160bbe2f067aa20936bfbaae434c063360c80792439d80e7d94"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-autonomous-verification-engineering/evidence.json.bin",
+      "sha256": "614a6fdc9940b0e3af0f908cccc24b5479c3993f4e4b8cda632e268b69e01d6f"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-code-context-engineering/converge.md.bin",
+      "sha256": "11b2c1ecf0f1b3bc8700bb6a459376ae65b9561450eeb4a51a2c862486571c3e"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-code-context-engineering/evidence.json.bin",
+      "sha256": "a6d181686367888b8d85d7603c5af44498f7659bdda54ae1998d774566cba267"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-code-knowledge-graph-engineering/converge.md.bin",
+      "sha256": "1f273342f1cfc3a48300ca1cf13dd1517c1042551c60569c897500165453c262"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-code-knowledge-graph-engineering/evidence.json.bin",
+      "sha256": "eaec107c63649b591ed932c7ce7b93b233118f732d20819fe25ec7418ca750ca"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-iced-engineering/converge.md.bin",
+      "sha256": "356e59fad1ff965a998a7e9e1d3598ea1eaa314590005d4b840e9baeb11e11e1"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-iced-engineering/evidence.json.bin",
+      "sha256": "e93926f658e93c0dae204292b51a981daeeb4c48fb7c3256fea9d5777d486cbc"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-plugin-protocol-engineering/converge.md.bin",
+      "sha256": "0b8367dd3dc24edd8e687f6650f5a8cd191c9fbdd527bbec895904f72eebeeb0"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-plugin-protocol-engineering/evidence.json.bin",
+      "sha256": "f5b02f688646781e1910be383ab74961ef30b28360e7d49fad6ad68c6c670276"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-tool-output-engineering/converge.md.bin",
+      "sha256": "db608458ebe449815eeb357e3b3cc5a1920d2ab7ad4f393164c7e211cf3610bb"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-tool-output-engineering/evidence.json.bin",
+      "sha256": "0c47ac98614f712aa7d303384bc8db5b6f1be225257c7cddaa234ddfe5fc24e2"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-workspace-integrity-engineering/converge.md.bin",
+      "sha256": "6ddca0b0d808cca6b751012c29f5f100ff8b595cc92c98e4ed5902765378dab1"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/previous/skill-workspace-integrity-engineering/evidence.json.bin",
+      "sha256": "e7790c19a4add952176f8e756eaf63a51771bd3872dab8e04eec634b03c4b497"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/review.md",
+      "sha256": "8f695b51dd099609eedba379d5d6e355b90e8a00c459e435372173c98a91faff"
+    },
+    {
+      "path": "docs/validation/skill-criteria-review-20261101/sdd-final.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    }
+  ],
+  "limitations": [
+    "Historical agent trial reexamination, not new agent execution.",
+    "Technical formal acceptance blocked by unconditional existing guard; observation decisions in matrix are separate.",
+    "No source/fixture/lockfile inputs changed during the process tests; only 18 evidence/convergence files changed afterward."
+  ]
+}

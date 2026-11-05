@@ -1,0 +1,179 @@
+{
+  "criterion": "AC-05",
+  "status": "APPROVED",
+  "renderer": "Mermaid 11.12.2",
+  "browser": "141.0.7390.37",
+  "metrics": {
+    "parsed_rendered_mermaid_models": 9,
+    "document_views": 49,
+    "svg_assets": 11,
+    "broken_images": 0,
+    "horizontal_document_overflow": 0,
+    "text_outside_svg_bounds": 0,
+    "external_svg_runtime_references": 0
+  },
+  "contrast": [
+    {
+      "foreground": "#172554",
+      "background": "#ffffff",
+      "ratio": 14.69,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#172554",
+      "background": "#eef2ff",
+      "ratio": 13.14,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#172554",
+      "background": "#f8fafc",
+      "ratio": 14.04,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#475569",
+      "background": "#f8fafc",
+      "ratio": 7.24,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#134e4a",
+      "background": "#f0fdfa",
+      "ratio": 9.09,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#064e3b",
+      "background": "#ecfdf5",
+      "ratio": 9.23,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#881337",
+      "background": "#fff1f2",
+      "ratio": 8.71,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#7c2d12",
+      "background": "#fff7ed",
+      "ratio": 8.83,
+      "required": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#4338ca",
+      "background": "#ffffff",
+      "ratio": 7.9,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "foreground": "#6366f1",
+      "background": "#ffffff",
+      "ratio": 4.47,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "foreground": "#475569",
+      "background": "#ffffff",
+      "ratio": 7.58,
+      "required": 3,
+      "pass": true
+    },
+    {
+      "foreground": "#4f46e5",
+      "background": "#eef2ff",
+      "ratio": 5.62,
+      "required": 3,
+      "pass": true
+    }
+  ],
+  "visual_inspection": {
+    "method": "Viewed rendered captures through image tool, separating full-size figure review from embedded-page inspection. Automated matrix checks covered all 49 views; manual review sampled the listed captures and every reader-facing figure.",
+    "captures": [
+      "README-above-fold-light.png",
+      "README-above-fold-dark.png",
+      "README-360-light.png",
+      "README-zoom200.png",
+      "application_README-768-dark.png",
+      "docs_architecture_contracts-768-light.png",
+      "figure-architecture.png",
+      "figure-runtime-states.png",
+      "figure-execution.png",
+      "figure-first-run.png",
+      "figure-plugin-protocol.png",
+      "figure-governance.png",
+      "figure-sharing.png",
+      "figure-documentation.png",
+      "figure-task-cycle.png"
+    ],
+    "corrections": [
+      "Replaced tall/wide automated reader-facing architecture with compact model-equivalent icon layout.",
+      "Wrapped five-step overview labels to retain readable embedded labels.",
+      "Moved hand-authored architecture branch labels away from arrows.",
+      "Inserted opaque edge-label backgrounds after observing lines behind state and flow labels.",
+      "Normalized SVG serialization and captured figures through HTML image embeds."
+    ],
+    "result": "No remaining observed clipping, missing icons/glyphs or arrow-through-label defects in inspected reader-facing exports. Source/behavior review retained separate production, verification and evidence states."
+  },
+  "gates": [
+    {
+      "id": "truth",
+      "status": "APPROVED",
+      "method": "Compared source-described nodes/edges, screenshot origin and captions; no product changes."
+    },
+    {
+      "id": "hierarchy",
+      "status": "APPROVED",
+      "method": "check.py heading levels plus manual reader-path review."
+    },
+    {
+      "id": "contrast",
+      "status": "APPROVED",
+      "method": "Computed rendered theme/style foreground/surface pairs using sRGB relative luminance; decorative pale borders excluded."
+    },
+    {
+      "id": "legibility",
+      "status": "APPROVED",
+      "method": "Individual figures and embedded captures inspected; text bounds measured. Full-size links plus adjacent text serve narrow-screen reading."
+    },
+    {
+      "id": "responsive",
+      "status": "APPROVED",
+      "method": "All 49 views loaded with no document overflow or failed images; sampled actual narrow/medium/desktop and CSS zoom captures."
+    },
+    {
+      "id": "theme",
+      "status": "APPROVED",
+      "method": "Light/dark previews preserve bounded opaque light figure surfaces; no native theme-adaptation claim."
+    },
+    {
+      "id": "accessibility",
+      "status": "APPROVED",
+      "method": "SVG title/description, Markdown alt/captions, visible icon/status labels and textual equivalents checked."
+    },
+    {
+      "id": "maintenance",
+      "status": "APPROVED",
+      "method": "Editable sources, config, versions, exact icon data/license, reproduction command and source/output hashes retained."
+    }
+  ],
+  "limitations": [
+    "Local CSS Markdown preview, not the actual VS Code webview.",
+    "200% uses CSS zoom:2 on the whole document, not browser UI zoom or physical screen scaling.",
+    "49 views checked automatically; manual image inspection is sampled as listed, not a reader study.",
+    "Figures shrink at 360/768px; explicit full-size links and equivalent adjacent text are required alternatives.",
+    "The automatic architecture Mermaid export is a source/model view; the reader-facing SVG uses its separately editable designed layout.",
+    "No general WCAG certification, runtime reacceptance, package publication or user-effectiveness claim."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "scope": "governance/SDD/skills",
+  "product_acceptance": false,
+  "environment": {
+    "python": "3.13.16",
+    "system": "Linux-7.3.1-1-default-x86_64-with-glibc2.44"
+  },
+  "results": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .",
+      "exit_code": 1,
+      "log": "docs/validation/runs/20261105T131030.513992Z/01.log",
+      "sha256": "74608ec2ee7c5fd48d5970ab3a67f13bfd78975a944d8be6ef68ea1a4347d517"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+      "exit_code": 0,
+      "log": "docs/validation/runs/20261105T131030.513992Z/02.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 1,
+      "log": "docs/validation/runs/20261105T131030.513992Z/03.log",
+      "sha256": "926e356463f436271e4841f20c64e8ea20415089e23cc05879e05aa8ee52e547"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/verify-maintenance.py",
+      "exit_code": 1,
+      "log": "docs/validation/runs/20261105T131030.513992Z/04.log",
+      "sha256": "8d538d4003da573e886ea526c8bd076e02af33dafde1fa72598895c7beec5ce6"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/run-tests.py --group all",
+      "exit_code": 1,
+      "log": "docs/validation/runs/20261105T131030.513992Z/05.log",
+      "sha256": "fb4b5b271e62ca9232ed024db9d5ae5a2630056769bd6393e9c193900dd01d16"
+    }
+  ],
+  "limitations": [
+    "Governance, SDD and skill-contract checks only.",
+    "No Rust compilation, application integration, sandbox effectiveness or product acceptance is established."
+  ],
+  "input_manifest": "docs/validation/runs/20261105T131030.513992Z/inputs.json"
+}

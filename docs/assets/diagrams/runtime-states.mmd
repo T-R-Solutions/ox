@@ -1,0 +1,14 @@
+stateDiagram-v2
+    accTitle: Estados do supervisor de filho direto
+    accDescr: Idle passa a Running após Started. Running termina ao observar Success ou Failed, ou passa a Cancelling após pedido. Cancelling só termina quando a saída Cancelled ou TimedOut é observada. Finished é terminal.
+    direction TB
+    [*] --> Idle
+    Idle --> Running: Started
+    Running --> Finished: Exited · Success ou Failed
+    Running --> Cancelling: CancelRequested
+    Cancelling --> Finished: Exited · Cancelled ou TimedOut
+    Finished --> [*]
+    note right of Cancelling
+        Solicitar parada não basta.
+        É preciso observar a saída.
+    end note

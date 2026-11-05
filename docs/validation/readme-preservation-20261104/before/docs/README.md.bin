@@ -1,0 +1,61 @@
+# Documentação do Ox
+
+Comece pelo [README principal](../README.md) para conhecer o estado do produto,
+ou pelo [guia da aplicação](../application/README.md) para executar a tarefa local.
+Este índice organiza a documentação mantida; registros históricos conservam a
+situação observada na data de cada execução.
+
+## Entender a aplicação
+
+| Documento | Pergunta que responde |
+| --- | --- |
+| [Aplicação e implementações](architecture/application.md) | Como o fluxo funciona e o que cada crate implementa? |
+| [Contratos](architecture/contracts.md) | Quais são os inputs, estados, efeitos, limites e erros? |
+| [Contexto arquitetural](architecture/context.md) | Qual é a direção do produto e a sequência dos marcos? |
+| [Fronteiras de confiança](security/trust-boundaries.md) | Onde estão os limites de confiança e as garantias ainda ausentes? |
+
+## Desenvolver e verificar
+
+| Documento | Uso |
+| --- | --- |
+| [Guia da aplicação](../application/README.md) | Build, primeiro uso, problemas e testes Rust/Iced |
+| [Contexto e escopo vigente](../sdd/project.md) | Fase, permissões e entregas autorizadas |
+| [Workflow](../sdd/workflow.md) | Escolher rota local ou completa e retomar trabalho |
+| [Evidências](../sdd/evidence.md) | Registrar critérios, métodos, inputs, resultados e limites |
+| [Índice de features](../sdd/features/README.md) | Encontrar especificações e aceitação por entrega |
+| [Integração SDD/skills](development/sdd-skills.md) | Selecionar e registrar métodos sem ativação automática |
+| [Governança](development/governance.md) | Checks Python, preservação, exportação e empacotamento |
+| [Compartilhamento e recuperação](development/sharing.md) | Fronteiras da cópia e recuperação histórica |
+
+## Consultar decisões
+
+A [constituição](constitution.md) contém as políticas permanentes;
+[AGENTS.md](../AGENTS.md) aponta as instruções operacionais. ADRs detalham decisões
+e propostas, respeitando seus estados e sucessores:
+
+- [Bootstrap](decisions/product-bootstrap.md) e
+  [reconciliação](decisions/governance-reconciliation.md): fundação e toolchain.
+- [Fronteira F0](decisions/f0-boundary-20261102.md): corpus adotado e limites.
+- [Atualização de versões](decisions/version-update-policy.md): avaliação e promoção.
+- [Persistência local](decisions/local-persistence-proposal.md): proposta ainda sem implementação autorizada.
+- [Decisões abertas](decisions/open-questions.md): escolhas pendentes.
+- [Licenciamento](licensing/review.md): material próprio e direitos pendentes.
+
+## Interpretar as evidências
+
+A aceitação pertence aos critérios de cada feature e aos inputs efetivamente
+observados. Aprovação de uma skill não demonstra funcionamento do módulo de
+mesmo nome. Relatórios anteriores permanecem como histórico; um sucessor explicita
+o que foi reavaliado.
+
+- [F0 vigente](validation/f0-resumption-20261103/report.md): aceitação da fundação
+  no corpus local adotado, sem expansão automática de fase ou plataforma.
+- [Análise da aplicação](validation/application-documentation-20261104/report.md):
+  fontes e contratos inspecionados na revisão anterior.
+- [Reestruturação documental](validation/documentation-refresh-20261104/report.md):
+  arquivos, checks e limitações desta revisão.
+
+Mantenha este índice ao criar ou mover uma entrada de documentação. Atualize a
+explicação canônica quando o código mudar, preservando relatórios de execução e
+seus hashes. O pacote de governança exclui o aplicativo; links de produto nesta
+árvore não significam que ele esteja incluído na exportação.

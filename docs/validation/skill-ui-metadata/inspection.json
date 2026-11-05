@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-28",
+  "route": "local",
+  "goal": "Provide agents/openai.yaml for every local skill, following commit-governance.",
+  "skill_used": {
+    "name": "skill-creator",
+    "path": "/home/rodrigo/.codex/skills/.system/skill-creator/SKILL.md",
+    "version": "not declared",
+    "contribution": "UI schema, generator and preservation rules"
+  },
+  "criterion": "All 30 local skills have named UI metadata, a 25\u201364 character description and a default prompt referencing the exact skill; existing unrelated content and policy remain unchanged.",
+  "method": "PyYAML safe_load of all 30 files; field, length and invocation checks; SHA-256 comparison of every preexisting skill-library file against the pre-edit snapshot; manual comparison of descriptions and prompts with each SKILL.md frontmatter.",
+  "observed_result": {
+    "skills": 30,
+    "created": 27,
+    "completed": [
+      ".codex/skills/prompt/agents/openai.yaml",
+      ".codex/skills/rust/agents/openai.yaml"
+    ],
+    "preexisting_other_files_unchanged": true,
+    "prompt_policy_preserved": true
+  },
+  "status": "APPROVED",
+  "inputs_sha256": {
+    ".codex/skills/agent-runtime-engineering/SKILL.md": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+    ".codex/skills/agent-runtime-engineering/agents/openai.yaml": "5b0622c834438ed024894e558b6a557223f470226ac1924c6218a594c8c0472e",
+    ".codex/skills/agent-usage-accounting/SKILL.md": "1eb3a7c2e18ffbc2e7fec5b9726bb1075eff644b822d26e248f49da8e1bde156",
+    ".codex/skills/agent-usage-accounting/agents/openai.yaml": "7a2d1cae08f0bf6779839b0216ec235cba3f610be8f5ba481a753d8d6a8097cd",
+    ".codex/skills/ai-engineering/SKILL.md": "af749b1b5b65d5116c69b637f8d5c6407cec37b3f200a0157566895a11ebf079",
+    ".codex/skills/ai-engineering/agents/openai.yaml": "9df477edca976ad8330169ac97da67053fed5f6b82de8f537ea5e2e9d068e903",
+    ".codex/skills/api-testing/SKILL.md": "10007c2c78eb4249ae7c646107b32a21b63b0d7eb1a98860ff420e6d0a33cf5e",
+    ".codex/skills/api-testing/agents/openai.yaml": "f47440dfb0f47575a4b09d6c0d440195f43ae3b6f343c24e67bcb711c16e1b10",
+    ".codex/skills/application-security/SKILL.md": "0d992c0538df30bd5e0c6be689990184ec51671225809eac0f01759cc08257c4",
+    ".codex/skills/application-security/agents/openai.yaml": "18ad79ae563118e3800a61adedda1e646e3dbaa930732b721e4440de2331223d",
+    ".codex/skills/autonomous-verification-engineering/SKILL.md": "3b8e2a6fbd6b09ba79f2316fdb444de0d2dda2ac0907b34c352ad09d1e360c94",
+    ".codex/skills/autonomous-verification-engineering/agents/openai.yaml": "36e71ebbc575868be39fbd325d1f9f0efff32cc725b9d993624793f94e7afec9",
+    ".codex/skills/code-context-engineering/SKILL.md": "1c1aed61b045d68576152c000a2bf25987c31b141d962cead4ddca12a8d492e5",
+    ".codex/skills/code-context-engineering/agents/openai.yaml": "cf5b01e100a69053b589e6d228e4f72daf80f33ccd2714eb1b43d1b10f492315",
+    ".codex/skills/code-knowledge-graph-engineering/SKILL.md": "cb19c8def84a62fe29de37903eddde1fe0740f585ed877c4f241635275e8a996",
+    ".codex/skills/code-knowledge-graph-engineering/agents/openai.yaml": "a09878205c213ba04578d3eabe72b7356bd1717ca27f51498bedb89b6e847293",
+    ".codex/skills/commit-governance/SKILL.md": "ba960d6f089969c73c2b75a0ebe29aba01b82d9194c24c5b52c54f3dcdf57e43",
+    ".codex/skills/commit-governance/agents/openai.yaml": "855bab233567cb2789f80084db06d18fb5110250265eb6c54e11291405d76aca",
+    ".codex/skills/database-engineering/SKILL.md": "9fcee66df99fda30e51a004dd16143e2ac1fde12a4398cb8da88ec4ca72ab686",
+    ".codex/skills/database-engineering/agents/openai.yaml": "2b99aca4784341b096a42e7e075d8c25c5eec9c1b4b6d3ec328409273a8abc16",
+    ".codex/skills/design-review/SKILL.md": "b5b4716458d9f14a43292434f46f5c46ce523bffbf90f30b9cfad0d929252c29",
+    ".codex/skills/design-review/agents/openai.yaml": "910d8b636b7cfefdfde51abe38c17ca13df3d44df2569a24bf30eb30d1ee2085",
+    ".codex/skills/design-system/SKILL.md": "bd5c8bac71c275efc4cfc2ae31b2ac7d2e009014a32ffecb91918e5b39279e96",
+    ".codex/skills/design-system/agents/openai.yaml": "244440a0047dcc4a00e1784de92aa7fbeeef6d6ce514fb30590f4b4b290f9ae7",
+    ".codex/skills/distributed-systems/SKILL.md": "8b23f56dfa9e47ad13153e4118cc9c0a2433faf0bf27470200a1bf65c5849f16",
+    ".codex/skills/distributed-systems/agents/openai.yaml": "49f8aeac3efa97fc428c48e07fe438082bf4b04cbbd30847992b1057cc721876",
+    ".codex/skills/domain-modeling/SKILL.md": "abf26d78093f28ec3491415c9eb5cfd8ed1ae878a00513caf0c9a7a461faa87f",
+    ".codex/skills/domain-modeling/agents/openai.yaml": "26e6d1f0521f2136b8e3802b45481cdbcd849bc32d93ad92d0a0683ff11513b8",
+    ".codex/skills/engineering-productivity/SKILL.md": "35dc54ead1b8bd7bcc0fa2dc348aa154cf3d11137bcdf38f972d74441416feac",
+    ".codex/skills/engineering-productivity/agents/openai.yaml": "0b3b325bd05637d16d229edca798b2800e304c6ab1949d87ef8074fc98caf17c",
+    ".codex/skills/iced-engineering/SKILL.md": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+    ".codex/skills/iced-engineering/agents/openai.yaml": "57b174e0c0f88f5e5f8d2b35a8c87eb4ca109f4c3bd737e3d3259e73dd8e9728",
+    ".codex/skills/observability-and-diagnostics/SKILL.md": "1d8e057e9dbfa7050a8315f35fbca65aa7e86de2678621f8e97fe424956ffc4f",
+    ".codex/skills/observability-and-diagnostics/agents/openai.yaml": "fdb89e79567f000e74d8d4d714a93af87d18e3db264a3a08c37df41d0ea79f28",
+    ".codex/skills/performance-engineering/SKILL.md": "e2fe6bd6724a3b176fd559875252d6ac5479a83bf453dddb4e31a3fc7da9692e",
+    ".codex/skills/performance-engineering/agents/openai.yaml": "efcf46fd9163d5b55f574fcb2a8adb505717ecf88ea5165ed6f4ccfa09799055",
+    ".codex/skills/plugin-protocol-engineering/SKILL.md": "c6b9857e9bd80734b4c4c98a3227406b46d8e7fa2149c0881bd93f452efada95",
+    ".codex/skills/plugin-protocol-engineering/agents/openai.yaml": "9db53b60491567395cfb75f150829356af1e2ca2ba56366479785894c60916b8",
+    ".codex/skills/prompt/SKILL.md": "b03935db88ba5a2da0e3e367bd1cd5424a7d5983c8e8bc915c16d3d86327f561",
+    ".codex/skills/prompt/agents/openai.yaml": "e95795a175718df6b56bf5fde549dc74cfa318cfef40fd47ffe4e406425a48d7",
+    ".codex/skills/reliability-engineering/SKILL.md": "28651751ea7505bae0bcc67b0fff54b87c062bbe772e500d45d8cca627a67a9d",
+    ".codex/skills/reliability-engineering/agents/openai.yaml": "7c05b297f31439fd24dd606d7096141ca39a3840c58edcb752d8280a62139782",
+    ".codex/skills/rust/SKILL.md": "da7b9ada8326b2d2cb4288ac6f67864c7b9defb833641470904c6fe9221d8891",
+    ".codex/skills/rust/agents/openai.yaml": "61c496ae4d9bb073390dfb9375129eaf4e0a36fc43cfbfa2ba104806e42eb399",
+    ".codex/skills/software-architecture/SKILL.md": "739571c2d2d28a4bd8ad389cc30ed59e599f4c8d65068f6d7e86ee0094dcefba",
+    ".codex/skills/software-architecture/agents/openai.yaml": "2df6efff9a60518d3e99c5f9e2206afed6fabd189649315e4545a563172cf5d7",
+    ".codex/skills/software-delivery/SKILL.md": "cfa0249938fb4dd95fe8dc9b93ffd5dfd71ca137014327090aaeb8e196dc7480",
+    ".codex/skills/software-delivery/agents/openai.yaml": "64816ff241416f2f0880a87ebf6b9e5e93ba391e1a7ed1425fc0982d728fd078",
+    ".codex/skills/software-design/SKILL.md": "4e214fd5dbf141ee437814a5c817b6924a05e8ad75cf6bc208281155204f6143",
+    ".codex/skills/software-design/agents/openai.yaml": "01fbc2fca737f8ca307453866bd8ad07ef3b1a18cfdfe9d1d0102e159c460eb9",
+    ".codex/skills/software-evolution/SKILL.md": "b6649a9db5f2653cccca8b9e53c0489face98a398f2cca8ca7473087ff8b124c",
+    ".codex/skills/software-evolution/agents/openai.yaml": "f8b80a5637ea6e49cd798d3b62798a14afb44762858a4036b038958ae681d541",
+    ".codex/skills/software-testing/SKILL.md": "2d2fbc0b44e19a2d4428eb98b8602fc7dc58884294a9f6902606423959f34aba",
+    ".codex/skills/software-testing/agents/openai.yaml": "ad921163723ad852df45b7c88b38e7a0d7fa2604f7937f82ebe314a42e6adf61",
+    ".codex/skills/technical-documentation/SKILL.md": "66818d9b61bd373fc64eee7bbcfec7a61f0825b37bf8a2f135fdf2c4f1ead059",
+    ".codex/skills/technical-documentation/agents/openai.yaml": "1ea12cbfb19d87253cb821cb701d5486db63626490361d22334bc8936af78300",
+    ".codex/skills/tool-output-engineering/SKILL.md": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+    ".codex/skills/tool-output-engineering/agents/openai.yaml": "34332f59e9be0409aa25d26ce68561c4763d1de99ffa804a92cd2f0d61a1da06",
+    ".codex/skills/workspace-integrity-engineering/SKILL.md": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+    ".codex/skills/workspace-integrity-engineering/agents/openai.yaml": "7f2e47dce012aeae680eafaa5018d4e674df0dab4a6e9c36e6677f4f5d08e38a"
+  },
+  "limitations": [
+    "Checks cover local metadata and content preservation; UI rendering and skill effectiveness were not exercised.",
+    "The global governance check fails on historical preservation rules affected by the requested metadata additions, plus the existing commit-governance/profile discrepancy. Focused metadata acceptance does not imply global governance acceptance."
+  ],
+  "additional_checks": [
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "No whitespace errors in tracked changes."
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 1,
+      "result": "Preservation checks reject the new metadata files in copied skills and changed prompt/rust metadata; inventory also reports commit-governance outside the 29-skill profile. Historical manifests and profile were not rewritten."
+    }
+  ]
+}

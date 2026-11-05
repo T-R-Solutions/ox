@@ -1,0 +1,1046 @@
+{
+  "schema_version": 2,
+  "environment": "Linux-7.3.0-1-default-x86_64-with-glibc2.44; 2026-11-01 criterion review; historical agent observations dated 2026-10-26",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "A simulated slow operation does not block navigation/interaction; oracle: integration test with a UI heartbeat.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-TECH-REVIEW-AC-01"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+        "review": "E-TECH-REVIEW-AC-01",
+        "execution": []
+      }
+    },
+    {
+      "id": "AC-02",
+      "criterion": "An expanded/collapsed pane preserves the defined content and focus; oracle: functional state test.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-TECH-REVIEW-AC-02"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Frozen Linux local consumer identified by consumer-snapshot.json; no live-product or generalized skill effectiveness claim.",
+        "review": "E-TECH-REVIEW-AC-02",
+        "execution": []
+      }
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Extreme resizing does not lose essential actions; oracle: layout review at documented sizes.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "A hidden graph does not schedule continuous relayout; oracle: instrumentation under a controlled workload.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED"
+      ]
+    },
+    {
+      "id": "AC-06",
+      "criterion": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-AUTHORING-REEXAMINED",
+      "kind": "inspection",
+      "command_or_method": "New semantic comparison of preserved authoring observations against unchanged skill/contracts and evolved checker; historical agent replies reexamined, not rerun.",
+      "observed_result": "Authoring content and historical response conclusions remain supported; see authoring-reexamination.md.",
+      "artifact": "docs/validation/technical-acceptance-20261101/authoring-reexamination.md",
+      "sha256": "4542f83abe975221f6d7852061aeaa52b8b4ac4e018ab3971eb4c52302a73509",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-iced-engineering/spec.md",
+          "sha256": "aa9fe545d3d09df385d9bbcef7ab408cb2d30db88df8f7a12f9014ea4486c50f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-iced-engineering/plan.md",
+          "sha256": "f760a462959e152eb2f85b7e59095c0a4edfee819b1a6b7332bc1ac626dffc1b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-iced-engineering/tasks.md",
+          "sha256": "3c5800d6763634f783aeb2665e6d8ee4d8cf80c204170a65003e7f49711b56e1",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-iced-engineering/traceability.json",
+          "sha256": "3e6fd2e915a7d81fb68a37464be1b007d3a2ef4fa83ba5d597434b41be2d0596",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/message-update-state.md",
+          "sha256": "7f839c26a57da34de2728202a27fdc23d0249e5765db5548b03d39221d25ac9c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/layout-and-custom-widgets.md",
+          "sha256": "a2a797e843b93904f00c46c191a6cfade6d3d7325fb23f7d1e5f466437c44a31",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/desktop-performance-and-accessibility.md",
+          "sha256": "d9f04bbb1b1443eb8a786b0503e800e2111f81e9c50f565f09be8151b51ebc12",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/evaluation-cases.md",
+          "sha256": "4f9328f318b66b6181a9362c20d3128faa567d96866d229f78779140efec8614",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/iced-engineering.md",
+          "sha256": "c3f97e900c0e0b4815194b17fa45db499aaad83a370ab5c561911defbb7a74f3",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+          "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/group-2.md",
+          "sha256": "3dc662147da5749db245ba817c4049d514d98b8228ec04559a7a70ba597faac7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/review.md",
+          "sha256": "5d37a57db655b1a9bdecc5f3fdc8cf7edd1fcd79c114cc2ec8ade315f3ee77d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.json",
+          "sha256": "f34cdf9bc5cc097efe8659f63c611af2a4c7fb555f1dd56cf523d32b56d91021",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.tar.gz",
+          "sha256": "688a84de1f008b784df1ea699cdfb9c1889390bc8dcf26bab9a99c0ad5c5a820",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "9935c6d4c2370147c683ecdd0213f22e56a1a67ebb9940ec543201b9e022aade",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/before.json",
+          "sha256": "b558b16d52000c7e3299d1c41e3f80a8f555aa24e5831ce16f7246db4cebdac7",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-TECH-REVIEW-AC-01",
+      "kind": "inspection",
+      "command_or_method": "Read criterion, actual source and independent test assertions; compare frozen consumer snapshot; inspect execution/partial observation and limits.",
+      "observed_result": "Existing product records demonstrate interaction during a task; the specialization requires an instrumented UI heartbeat, which was not measured here. Add heartbeat/input observations under a defined slow workload in a graphical session.",
+      "artifact": "docs/validation/technical-acceptance-20261101/skill-iced-engineering-AC-01.md",
+      "sha256": "0d3ec3408becc0fe087ab243dd7c786ae4a43e0e1c057e6ce3c445f54ca63a50",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-iced-engineering/spec.md",
+          "sha256": "aa9fe545d3d09df385d9bbcef7ab408cb2d30db88df8f7a12f9014ea4486c50f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-iced-engineering/plan.md",
+          "sha256": "f760a462959e152eb2f85b7e59095c0a4edfee819b1a6b7332bc1ac626dffc1b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-iced-engineering/tasks.md",
+          "sha256": "3c5800d6763634f783aeb2665e6d8ee4d8cf80c204170a65003e7f49711b56e1",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-iced-engineering/traceability.json",
+          "sha256": "3e6fd2e915a7d81fb68a37464be1b007d3a2ef4fa83ba5d597434b41be2d0596",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/evaluation-cases.md",
+          "sha256": "4f9328f318b66b6181a9362c20d3128faa567d96866d229f78779140efec8614",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/Cargo.toml.bin",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/Cargo.toml.bin",
+          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/Cargo.toml.bin",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/Cargo.toml.bin",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/Cargo.toml.bin",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/Cargo.toml.bin",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/Cargo.toml.bin",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/Cargo.toml.bin",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/Cargo.toml.bin",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/Cargo.toml.bin",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/Cargo.toml.bin",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/Cargo.toml.bin",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/Cargo.toml.bin",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/Cargo.toml.bin",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/Cargo.toml.bin",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/Cargo.toml.bin",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/lib.rs.bin",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/reference.rs.bin",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/lib.rs.bin",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/artifact.rs.bin",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/lib.rs.bin",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/measurement.rs.bin",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/lib.rs.bin",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/verdict.rs.bin",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
+          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
+          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/local-oracle.rs.bin",
+          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/task-oracle.rs.bin",
+          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/lib.rs.bin",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/capture.rs.bin",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/lib.rs.bin",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/relation.rs.bin",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/lib.rs.bin",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/query.rs.bin",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/lib.rs.bin",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/local.rs.bin",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/lib.rs.bin",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/root.rs.bin",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/tests/root_contract.rs.bin",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/lib.rs.bin",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/state.rs.bin",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/tests/lifecycle.rs.bin",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/lib.rs.bin",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/authorization.rs.bin",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/lib.rs.bin",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/protocol.rs.bin",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/compatibility.rs.bin",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/bin/local-plugin.rs.bin",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/lib.rs.bin",
+          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/session.rs.bin",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
+          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin",
+          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-agent.rs.bin",
+          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-task.rs.bin",
+          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/lib.rs.bin",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/capability.rs.bin",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/lib.rs.bin",
+          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/shell.rs.bin",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/desktop.rs.bin",
+          "sha256": "686e976baffce2332862c26b42e6557dd31bc0e9b85c04902223b05ebff2b042",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/local_task.rs.bin",
+          "sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/shell_contract.rs.bin",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/local_task.rs.bin",
+          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/main.rs.bin",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/lib.rs.bin",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/startup.rs.bin",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/desktop.rs.bin",
+          "sha256": "1b11ba4d8078afa389675ca1e9792076e01d42f1559630fa3b62e0b82aa27b55",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/initialization.rs.bin",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
+          "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot.json",
+          "sha256": "d15f43fc7cd4862d897fcc7b7f9b1745975791e97c834ea61fa6a76cb4ab15cb",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/partial-ui/acceptance/graphical-review.json.bin",
+          "sha256": "c47b42fa24ba0fa6aa438478baae69b88d564bacde5cc26cff9b307ce46f6839",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/partial-ui/acceptance/review.md.bin",
+          "sha256": "2aa217b61a502291057fad0de968df3fa7117b892c4a73f0de0532380358c241",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/partial-ui/x11-07/desktop.log.bin",
+          "sha256": "0e87587bb91a2c405e5457aca876f6d1b5a0a829c7cf0f41d12b0cde80c39f57",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-TECH-REVIEW-AC-02",
+      "kind": "inspection",
+      "command_or_method": "Read criterion, actual source and independent test assertions; compare frozen consumer snapshot; inspect execution/partial observation and limits.",
+      "observed_result": "Existing expand/collapse evidence checks content/pixels; no complete keyboard-focus restoration oracle for the specialization. Exercise focused controls through collapse/expand and assert visible focus fallback/restoration.",
+      "artifact": "docs/validation/technical-acceptance-20261101/skill-iced-engineering-AC-02.md",
+      "sha256": "e4c0cf56ca5cb3b7d8a55e01768461c836c50a4825153f23fb32e1b548cfe6da",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-iced-engineering/spec.md",
+          "sha256": "aa9fe545d3d09df385d9bbcef7ab408cb2d30db88df8f7a12f9014ea4486c50f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-iced-engineering/plan.md",
+          "sha256": "f760a462959e152eb2f85b7e59095c0a4edfee819b1a6b7332bc1ac626dffc1b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-iced-engineering/tasks.md",
+          "sha256": "3c5800d6763634f783aeb2665e6d8ee4d8cf80c204170a65003e7f49711b56e1",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-iced-engineering/traceability.json",
+          "sha256": "3e6fd2e915a7d81fb68a37464be1b007d3a2ef4fa83ba5d597434b41be2d0596",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "5e01a7f693441317cd13bb1e2f9236ead921f6d0834594392044dda5f42da7db",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/evaluation-cases.md",
+          "sha256": "4f9328f318b66b6181a9362c20d3128faa567d96866d229f78779140efec8614",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/Cargo.toml.bin",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/Cargo.toml.bin",
+          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/Cargo.toml.bin",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/Cargo.toml.bin",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/Cargo.toml.bin",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/Cargo.toml.bin",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/Cargo.toml.bin",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/Cargo.toml.bin",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/Cargo.toml.bin",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/Cargo.toml.bin",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/Cargo.toml.bin",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/Cargo.toml.bin",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/Cargo.toml.bin",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/Cargo.toml.bin",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/Cargo.toml.bin",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/Cargo.toml.bin",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/lib.rs.bin",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/reference.rs.bin",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/lib.rs.bin",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/artifact.rs.bin",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/lib.rs.bin",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/measurement.rs.bin",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/lib.rs.bin",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/verdict.rs.bin",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
+          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
+          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/local-oracle.rs.bin",
+          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/task-oracle.rs.bin",
+          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/lib.rs.bin",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/capture.rs.bin",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/lib.rs.bin",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/relation.rs.bin",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/lib.rs.bin",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/query.rs.bin",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/lib.rs.bin",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/local.rs.bin",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/lib.rs.bin",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/root.rs.bin",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/tests/root_contract.rs.bin",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/lib.rs.bin",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/state.rs.bin",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/tests/lifecycle.rs.bin",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/lib.rs.bin",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/authorization.rs.bin",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/lib.rs.bin",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/protocol.rs.bin",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/compatibility.rs.bin",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/bin/local-plugin.rs.bin",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/lib.rs.bin",
+          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/session.rs.bin",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
+          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin",
+          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-agent.rs.bin",
+          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-task.rs.bin",
+          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/lib.rs.bin",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/capability.rs.bin",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/lib.rs.bin",
+          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/shell.rs.bin",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/desktop.rs.bin",
+          "sha256": "686e976baffce2332862c26b42e6557dd31bc0e9b85c04902223b05ebff2b042",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/local_task.rs.bin",
+          "sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/shell_contract.rs.bin",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/local_task.rs.bin",
+          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/main.rs.bin",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/lib.rs.bin",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/startup.rs.bin",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/desktop.rs.bin",
+          "sha256": "1b11ba4d8078afa389675ca1e9792076e01d42f1559630fa3b62e0b82aa27b55",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/initialization.rs.bin",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
+          "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot.json",
+          "sha256": "d15f43fc7cd4862d897fcc7b7f9b1745975791e97c834ea61fa6a76cb4ab15cb",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/partial-ui/acceptance/graphical-review.json.bin",
+          "sha256": "c47b42fa24ba0fa6aa438478baae69b88d564bacde5cc26cff9b307ce46f6839",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/partial-ui/acceptance/review.md.bin",
+          "sha256": "2aa217b61a502291057fad0de968df3fa7117b892c4a73f0de0532380358c241",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/partial-ui/x11-07/desktop.log.bin",
+          "sha256": "0e87587bb91a2c405e5457aca876f6d1b5a0a829c7cf0f41d12b0cde80c39f57",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Acceptance restricted to governance/authoring; no Rust compilation, Iced integration or product effectiveness.",
+    "Executor review is not independent human review; historical trials were not rerun.",
+    "Previous envelopes are in docs/validation/governance-layout/before.tar.gz; collection outputs are checked separately through freshness and final extraction.",
+    "Initial package qualification has its own inputs preceding consolidation; the final delivery receipt is in dist/.",
+    "The skills' 36 technical scenarios remain UNVERIFIED.",
+    "maintenance-001: affected observations are preserved in docs/validation/maintenance-001/previous/sdd/features/skill-iced-engineering/evidence.json.bin; awaiting review or new execution without renewing old hashes.",
+    "maintenance-001 observations are new; previous results are preserved. Actual-package criteria, a new agent trial and unresolved ownership/permissions remain UNVERIFIED.",
+    "Inputs changed by bootstrap; previous observations and historical approvals are preserved in docs/validation/bootstrap-governance/previous. Dependent criteria await their own reacceptance; old hashes were not renewed.",
+    "2026-11-01: new criterion review at docs/validation/skill-criteria-review-20261101/matrix.json. Technical observations do not automatically promote formal AC-01..04 under the existing guard; no product expansion. AC-06 reexamines historical replies, not new agents.",
+    "2026-11-01 technical-acceptance supersedes the former unconditional guard. Decided technical criteria concern frozen evaluated consumers only; semantic review and original limits remain mandatory."
+  ]
+}

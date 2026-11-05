@@ -1,0 +1,15 @@
+"""Run standard acceptance/freshness gates, reporting only this feature's gates."""
+from pathlib import Path
+import importlib.util
+import sys
+root = Path.cwd()
+spec = importlib.util.spec_from_file_location('validator', root/'sdd/tools/validate.py')
+v = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(v)
+prefix = 'sdd/features/skill-ui-metadata-inventory'
+errors = v.feature_errors(root, require_approved=True, require_fresh=True)
+selected = [e for e in errors if e.startswith(prefix+':') or e == 'No feature directories found']
+for error in selected:
+    print('FAIL:', error)
+print('Feature acceptance/freshness:', 'FAIL' if selected else 'PASS')
+sys.exit(bool(selected))

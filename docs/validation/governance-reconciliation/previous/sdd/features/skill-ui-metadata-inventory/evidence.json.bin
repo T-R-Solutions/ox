@@ -1,0 +1,782 @@
+{
+  "schema_version": 2,
+  "environment": "Linux-7.3.0-1-default-x86_64-with-glibc2.44; Python 3.13.16",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "30 current metadata hashes registered and earlier inventory revisions preserved",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-01",
+        "E-02"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Bounded current revision acceptance and mutation rejection",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-01",
+        "E-02",
+        "E-03"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-01",
+      "kind": "test",
+      "command_or_method": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -p test_ui_metadata_inventory.py -v",
+      "observed_result": "4 tests passed; 30 current hashes and unchanged prior revisions verified; corruption/deletion, invalid revision records and unrelated preservation mutations rejected.",
+      "artifact": "docs/validation/skill-ui-metadata/inventory-tests.log",
+      "sha256": "33439535a34c4ad01afed6df4803ae521bc023374eb3cf52d2a36e9925f46655",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/spec.md",
+          "sha256": "d0a56e8a0e5b4fcfb90c95b0d5d5c162fa604ebbb55d787535f3a91679ce418a",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/plan.md",
+          "sha256": "2d929c0ce7c5d4c0388340daba8328ae9d3f4cf5b469eb44085aba3f0d685d2d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/tasks.md",
+          "sha256": "798ff6e673bbf4260e959f26494be5144ec1f2571e27cd2757acc628522fb7c8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/traceability.json",
+          "sha256": "46e8b9c7505d8e4510ae278c4f02cc524dc495cc2711a74be8230653b9d81639",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "e7acd1be96c3a8e8cdf583bf072c19fcb9892ff3fc71c79ffc20af765d54d8cc",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "1e980554b42af0d34952c939c9f7d314533d8dd4e4163c7568852cd3fbec96c2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "bd84d05f71a55daef6c9a64d2c28872214ccefc2f45b214ffea48a0049235882",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_ui_metadata_inventory.py",
+          "sha256": "5277ae9a334e42d00aa6b57801096651491b74316131c990e9412186eefab288",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "b424a2ce3b7e418a929e13e82a694b5f1f4f088189a893ca9347e626df83feaa",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/skill-ui-metadata-inventory.md",
+          "sha256": "19f89a1bcdfeec60a62e34ceb74d638d8e7e77096f2acdfc00b1569024d84827",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-ui-metadata/inspection.json",
+          "sha256": "64146db49903d1918f6d53c4b98dac3728167e5f23ac5913f9a835f4e3b54a04",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-ui-metadata/inventory-before/docs/structure/files.json",
+          "sha256": "f253d7ac255389bff8195790997da201970bf85aa502d0e5b04aa306abd7e75c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-ui-metadata/inventory-before/tools/governance/scripts/check-ox.py",
+          "sha256": "32b22325b737292e285f29e815fea27f06e6f38502b7592f89c6b5e7d6589703",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "922c5720dec8a45fd9f94da22b0e3b53a78b2c58f2af1bc78c753e81c3ec4516",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/implementation-transition/before.json",
+          "sha256": "42d4bda8d5cf8a32e27915342b9ec80906ad6c026b41c15eca939d995fc7f4e7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/implementation-transition/before.tar.gz",
+          "sha256": "96ae61e880ab31ebafc415b458accb390f8fa4cabd732fa4530d3494f6a745d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/adoption-baseline/copied-before-adaptation.tar.gz",
+          "sha256": "64a34f4ecdfc4dba79d70c4b789058d41d52b5ad57c73164dc893d7541230f9c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/english-documentation/translations.json",
+          "sha256": "90d7cd3e9a5540000fb95f46249b2404985d3083e3bcfb25f13df62966cf0884",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/agents/openai.yaml",
+          "sha256": "5b0622c834438ed024894e558b6a557223f470226ac1924c6218a594c8c0472e",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-usage-accounting/agents/openai.yaml",
+          "sha256": "7a2d1cae08f0bf6779839b0216ec235cba3f610be8f5ba481a753d8d6a8097cd",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/ai-engineering/agents/openai.yaml",
+          "sha256": "9df477edca976ad8330169ac97da67053fed5f6b82de8f537ea5e2e9d068e903",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/api-testing/agents/openai.yaml",
+          "sha256": "f47440dfb0f47575a4b09d6c0d440195f43ae3b6f343c24e67bcb711c16e1b10",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/application-security/agents/openai.yaml",
+          "sha256": "18ad79ae563118e3800a61adedda1e646e3dbaa930732b721e4440de2331223d",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/autonomous-verification-engineering/agents/openai.yaml",
+          "sha256": "36e71ebbc575868be39fbd325d1f9f0efff32cc725b9d993624793f94e7afec9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/code-context-engineering/agents/openai.yaml",
+          "sha256": "cf5b01e100a69053b589e6d228e4f72daf80f33ccd2714eb1b43d1b10f492315",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/code-knowledge-graph-engineering/agents/openai.yaml",
+          "sha256": "a09878205c213ba04578d3eabe72b7356bd1717ca27f51498bedb89b6e847293",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/commit-governance/agents/openai.yaml",
+          "sha256": "855bab233567cb2789f80084db06d18fb5110250265eb6c54e11291405d76aca",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/database-engineering/agents/openai.yaml",
+          "sha256": "2b99aca4784341b096a42e7e075d8c25c5eec9c1b4b6d3ec328409273a8abc16",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/agents/openai.yaml",
+          "sha256": "910d8b636b7cfefdfde51abe38c17ca13df3d44df2569a24bf30eb30d1ee2085",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/agents/openai.yaml",
+          "sha256": "244440a0047dcc4a00e1784de92aa7fbeeef6d6ce514fb30590f4b4b290f9ae7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/distributed-systems/agents/openai.yaml",
+          "sha256": "49f8aeac3efa97fc428c48e07fe438082bf4b04cbbd30847992b1057cc721876",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/domain-modeling/agents/openai.yaml",
+          "sha256": "26e6d1f0521f2136b8e3802b45481cdbcd849bc32d93ad92d0a0683ff11513b8",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/engineering-productivity/agents/openai.yaml",
+          "sha256": "0b3b325bd05637d16d229edca798b2800e304c6ab1949d87ef8074fc98caf17c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/agents/openai.yaml",
+          "sha256": "57b174e0c0f88f5e5f8d2b35a8c87eb4ca109f4c3bd737e3d3259e73dd8e9728",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/observability-and-diagnostics/agents/openai.yaml",
+          "sha256": "fdb89e79567f000e74d8d4d714a93af87d18e3db264a3a08c37df41d0ea79f28",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/performance-engineering/agents/openai.yaml",
+          "sha256": "efcf46fd9163d5b55f574fcb2a8adb505717ecf88ea5165ed6f4ccfa09799055",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/plugin-protocol-engineering/agents/openai.yaml",
+          "sha256": "9db53b60491567395cfb75f150829356af1e2ca2ba56366479785894c60916b8",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/prompt/agents/openai.yaml",
+          "sha256": "e95795a175718df6b56bf5fde549dc74cfa318cfef40fd47ffe4e406425a48d7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/reliability-engineering/agents/openai.yaml",
+          "sha256": "7c05b297f31439fd24dd606d7096141ca39a3840c58edcb752d8280a62139782",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/rust/agents/openai.yaml",
+          "sha256": "61c496ae4d9bb073390dfb9375129eaf4e0a36fc43cfbfa2ba104806e42eb399",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-architecture/agents/openai.yaml",
+          "sha256": "2df6efff9a60518d3e99c5f9e2206afed6fabd189649315e4545a563172cf5d7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-delivery/agents/openai.yaml",
+          "sha256": "64816ff241416f2f0880a87ebf6b9e5e93ba391e1a7ed1425fc0982d728fd078",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-design/agents/openai.yaml",
+          "sha256": "01fbc2fca737f8ca307453866bd8ad07ef3b1a18cfdfe9d1d0102e159c460eb9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-evolution/agents/openai.yaml",
+          "sha256": "f8b80a5637ea6e49cd798d3b62798a14afb44762858a4036b038958ae681d541",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-testing/agents/openai.yaml",
+          "sha256": "ad921163723ad852df45b7c88b38e7a0d7fa2604f7937f82ebe314a42e6adf61",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/agents/openai.yaml",
+          "sha256": "1ea12cbfb19d87253cb821cb701d5486db63626490361d22334bc8936af78300",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/agents/openai.yaml",
+          "sha256": "34332f59e9be0409aa25d26ce68561c4763d1de99ffa804a92cd2f0d61a1da06",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/agents/openai.yaml",
+          "sha256": "7f2e47dce012aeae680eafaa5018d4e674df0dab4a6e9c36e6677f4f5d08e38a",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-02",
+      "kind": "test",
+      "command_or_method": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=tools/governance/tests python3 -m unittest test_governance.GovernanceTests.test_historical_files_remain_immutable test_governance.GovernanceTests.test_relocated_contracts_remain_protected test_governance.GovernanceTests.test_specialized_frontmatter_preserves_original_content -v",
+      "observed_result": "3 existing historical preservation tests passed.",
+      "artifact": "docs/validation/skill-ui-metadata/inventory-preservation-tests.log",
+      "sha256": "982af00f8bc5de8f0a484b26741040e981b1b8b23ea04dd1391990ade7b1afe1",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/spec.md",
+          "sha256": "d0a56e8a0e5b4fcfb90c95b0d5d5c162fa604ebbb55d787535f3a91679ce418a",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/plan.md",
+          "sha256": "2d929c0ce7c5d4c0388340daba8328ae9d3f4cf5b469eb44085aba3f0d685d2d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/tasks.md",
+          "sha256": "798ff6e673bbf4260e959f26494be5144ec1f2571e27cd2757acc628522fb7c8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/traceability.json",
+          "sha256": "46e8b9c7505d8e4510ae278c4f02cc524dc495cc2711a74be8230653b9d81639",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "e7acd1be96c3a8e8cdf583bf072c19fcb9892ff3fc71c79ffc20af765d54d8cc",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "1e980554b42af0d34952c939c9f7d314533d8dd4e4163c7568852cd3fbec96c2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "bd84d05f71a55daef6c9a64d2c28872214ccefc2f45b214ffea48a0049235882",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_ui_metadata_inventory.py",
+          "sha256": "5277ae9a334e42d00aa6b57801096651491b74316131c990e9412186eefab288",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "b424a2ce3b7e418a929e13e82a694b5f1f4f088189a893ca9347e626df83feaa",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/skill-ui-metadata-inventory.md",
+          "sha256": "19f89a1bcdfeec60a62e34ceb74d638d8e7e77096f2acdfc00b1569024d84827",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-ui-metadata/inspection.json",
+          "sha256": "64146db49903d1918f6d53c4b98dac3728167e5f23ac5913f9a835f4e3b54a04",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-ui-metadata/inventory-before/docs/structure/files.json",
+          "sha256": "f253d7ac255389bff8195790997da201970bf85aa502d0e5b04aa306abd7e75c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-ui-metadata/inventory-before/tools/governance/scripts/check-ox.py",
+          "sha256": "32b22325b737292e285f29e815fea27f06e6f38502b7592f89c6b5e7d6589703",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "922c5720dec8a45fd9f94da22b0e3b53a78b2c58f2af1bc78c753e81c3ec4516",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/implementation-transition/before.json",
+          "sha256": "42d4bda8d5cf8a32e27915342b9ec80906ad6c026b41c15eca939d995fc7f4e7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/implementation-transition/before.tar.gz",
+          "sha256": "96ae61e880ab31ebafc415b458accb390f8fa4cabd732fa4530d3494f6a745d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/adoption-baseline/copied-before-adaptation.tar.gz",
+          "sha256": "64a34f4ecdfc4dba79d70c4b789058d41d52b5ad57c73164dc893d7541230f9c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/english-documentation/translations.json",
+          "sha256": "90d7cd3e9a5540000fb95f46249b2404985d3083e3bcfb25f13df62966cf0884",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/agents/openai.yaml",
+          "sha256": "5b0622c834438ed024894e558b6a557223f470226ac1924c6218a594c8c0472e",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-usage-accounting/agents/openai.yaml",
+          "sha256": "7a2d1cae08f0bf6779839b0216ec235cba3f610be8f5ba481a753d8d6a8097cd",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/ai-engineering/agents/openai.yaml",
+          "sha256": "9df477edca976ad8330169ac97da67053fed5f6b82de8f537ea5e2e9d068e903",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/api-testing/agents/openai.yaml",
+          "sha256": "f47440dfb0f47575a4b09d6c0d440195f43ae3b6f343c24e67bcb711c16e1b10",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/application-security/agents/openai.yaml",
+          "sha256": "18ad79ae563118e3800a61adedda1e646e3dbaa930732b721e4440de2331223d",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/autonomous-verification-engineering/agents/openai.yaml",
+          "sha256": "36e71ebbc575868be39fbd325d1f9f0efff32cc725b9d993624793f94e7afec9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/code-context-engineering/agents/openai.yaml",
+          "sha256": "cf5b01e100a69053b589e6d228e4f72daf80f33ccd2714eb1b43d1b10f492315",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/code-knowledge-graph-engineering/agents/openai.yaml",
+          "sha256": "a09878205c213ba04578d3eabe72b7356bd1717ca27f51498bedb89b6e847293",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/commit-governance/agents/openai.yaml",
+          "sha256": "855bab233567cb2789f80084db06d18fb5110250265eb6c54e11291405d76aca",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/database-engineering/agents/openai.yaml",
+          "sha256": "2b99aca4784341b096a42e7e075d8c25c5eec9c1b4b6d3ec328409273a8abc16",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/agents/openai.yaml",
+          "sha256": "910d8b636b7cfefdfde51abe38c17ca13df3d44df2569a24bf30eb30d1ee2085",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/agents/openai.yaml",
+          "sha256": "244440a0047dcc4a00e1784de92aa7fbeeef6d6ce514fb30590f4b4b290f9ae7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/distributed-systems/agents/openai.yaml",
+          "sha256": "49f8aeac3efa97fc428c48e07fe438082bf4b04cbbd30847992b1057cc721876",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/domain-modeling/agents/openai.yaml",
+          "sha256": "26e6d1f0521f2136b8e3802b45481cdbcd849bc32d93ad92d0a0683ff11513b8",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/engineering-productivity/agents/openai.yaml",
+          "sha256": "0b3b325bd05637d16d229edca798b2800e304c6ab1949d87ef8074fc98caf17c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/agents/openai.yaml",
+          "sha256": "57b174e0c0f88f5e5f8d2b35a8c87eb4ca109f4c3bd737e3d3259e73dd8e9728",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/observability-and-diagnostics/agents/openai.yaml",
+          "sha256": "fdb89e79567f000e74d8d4d714a93af87d18e3db264a3a08c37df41d0ea79f28",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/performance-engineering/agents/openai.yaml",
+          "sha256": "efcf46fd9163d5b55f574fcb2a8adb505717ecf88ea5165ed6f4ccfa09799055",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/plugin-protocol-engineering/agents/openai.yaml",
+          "sha256": "9db53b60491567395cfb75f150829356af1e2ca2ba56366479785894c60916b8",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/prompt/agents/openai.yaml",
+          "sha256": "e95795a175718df6b56bf5fde549dc74cfa318cfef40fd47ffe4e406425a48d7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/reliability-engineering/agents/openai.yaml",
+          "sha256": "7c05b297f31439fd24dd606d7096141ca39a3840c58edcb752d8280a62139782",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/rust/agents/openai.yaml",
+          "sha256": "61c496ae4d9bb073390dfb9375129eaf4e0a36fc43cfbfa2ba104806e42eb399",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-architecture/agents/openai.yaml",
+          "sha256": "2df6efff9a60518d3e99c5f9e2206afed6fabd189649315e4545a563172cf5d7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-delivery/agents/openai.yaml",
+          "sha256": "64816ff241416f2f0880a87ebf6b9e5e93ba391e1a7ed1425fc0982d728fd078",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-design/agents/openai.yaml",
+          "sha256": "01fbc2fca737f8ca307453866bd8ad07ef3b1a18cfdfe9d1d0102e159c460eb9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-evolution/agents/openai.yaml",
+          "sha256": "f8b80a5637ea6e49cd798d3b62798a14afb44762858a4036b038958ae681d541",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-testing/agents/openai.yaml",
+          "sha256": "ad921163723ad852df45b7c88b38e7a0d7fa2604f7937f82ebe314a42e6adf61",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/agents/openai.yaml",
+          "sha256": "1ea12cbfb19d87253cb821cb701d5486db63626490361d22334bc8936af78300",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/agents/openai.yaml",
+          "sha256": "34332f59e9be0409aa25d26ce68561c4763d1de99ffa804a92cd2f0d61a1da06",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/agents/openai.yaml",
+          "sha256": "7f2e47dce012aeae680eafaa5018d4e674df0dab4a6e9c36e6677f4f5d08e38a",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-03",
+      "kind": "test",
+      "command_or_method": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "observed_result": "Exit 1: only remaining diagnostic is Skill inventory differs from authorized profile: {'commit-governance'}. Global governance remains REJECTED.",
+      "artifact": "docs/validation/skill-ui-metadata/inventory-governance.log",
+      "sha256": "2376401cee2571de6d0d2fc5265f3200c5a074aaf25fd8e74e2ee54f76c3bc1d",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/spec.md",
+          "sha256": "d0a56e8a0e5b4fcfb90c95b0d5d5c162fa604ebbb55d787535f3a91679ce418a",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/plan.md",
+          "sha256": "2d929c0ce7c5d4c0388340daba8328ae9d3f4cf5b469eb44085aba3f0d685d2d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/tasks.md",
+          "sha256": "798ff6e673bbf4260e959f26494be5144ec1f2571e27cd2757acc628522fb7c8",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-ui-metadata-inventory/traceability.json",
+          "sha256": "46e8b9c7505d8e4510ae278c4f02cc524dc495cc2711a74be8230653b9d81639",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "e7acd1be96c3a8e8cdf583bf072c19fcb9892ff3fc71c79ffc20af765d54d8cc",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "1e980554b42af0d34952c939c9f7d314533d8dd4e4163c7568852cd3fbec96c2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "bd84d05f71a55daef6c9a64d2c28872214ccefc2f45b214ffea48a0049235882",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_ui_metadata_inventory.py",
+          "sha256": "5277ae9a334e42d00aa6b57801096651491b74316131c990e9412186eefab288",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "b424a2ce3b7e418a929e13e82a694b5f1f4f088189a893ca9347e626df83feaa",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/skill-ui-metadata-inventory.md",
+          "sha256": "19f89a1bcdfeec60a62e34ceb74d638d8e7e77096f2acdfc00b1569024d84827",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-ui-metadata/inspection.json",
+          "sha256": "64146db49903d1918f6d53c4b98dac3728167e5f23ac5913f9a835f4e3b54a04",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-ui-metadata/inventory-before/docs/structure/files.json",
+          "sha256": "f253d7ac255389bff8195790997da201970bf85aa502d0e5b04aa306abd7e75c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-ui-metadata/inventory-before/tools/governance/scripts/check-ox.py",
+          "sha256": "32b22325b737292e285f29e815fea27f06e6f38502b7592f89c6b5e7d6589703",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "922c5720dec8a45fd9f94da22b0e3b53a78b2c58f2af1bc78c753e81c3ec4516",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/implementation-transition/before.json",
+          "sha256": "42d4bda8d5cf8a32e27915342b9ec80906ad6c026b41c15eca939d995fc7f4e7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/implementation-transition/before.tar.gz",
+          "sha256": "96ae61e880ab31ebafc415b458accb390f8fa4cabd732fa4530d3494f6a745d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/adoption-baseline/copied-before-adaptation.tar.gz",
+          "sha256": "64a34f4ecdfc4dba79d70c4b789058d41d52b5ad57c73164dc893d7541230f9c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/english-documentation/translations.json",
+          "sha256": "90d7cd3e9a5540000fb95f46249b2404985d3083e3bcfb25f13df62966cf0884",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/agents/openai.yaml",
+          "sha256": "5b0622c834438ed024894e558b6a557223f470226ac1924c6218a594c8c0472e",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-usage-accounting/agents/openai.yaml",
+          "sha256": "7a2d1cae08f0bf6779839b0216ec235cba3f610be8f5ba481a753d8d6a8097cd",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/ai-engineering/agents/openai.yaml",
+          "sha256": "9df477edca976ad8330169ac97da67053fed5f6b82de8f537ea5e2e9d068e903",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/api-testing/agents/openai.yaml",
+          "sha256": "f47440dfb0f47575a4b09d6c0d440195f43ae3b6f343c24e67bcb711c16e1b10",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/application-security/agents/openai.yaml",
+          "sha256": "18ad79ae563118e3800a61adedda1e646e3dbaa930732b721e4440de2331223d",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/autonomous-verification-engineering/agents/openai.yaml",
+          "sha256": "36e71ebbc575868be39fbd325d1f9f0efff32cc725b9d993624793f94e7afec9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/code-context-engineering/agents/openai.yaml",
+          "sha256": "cf5b01e100a69053b589e6d228e4f72daf80f33ccd2714eb1b43d1b10f492315",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/code-knowledge-graph-engineering/agents/openai.yaml",
+          "sha256": "a09878205c213ba04578d3eabe72b7356bd1717ca27f51498bedb89b6e847293",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/commit-governance/agents/openai.yaml",
+          "sha256": "855bab233567cb2789f80084db06d18fb5110250265eb6c54e11291405d76aca",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/database-engineering/agents/openai.yaml",
+          "sha256": "2b99aca4784341b096a42e7e075d8c25c5eec9c1b4b6d3ec328409273a8abc16",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/agents/openai.yaml",
+          "sha256": "910d8b636b7cfefdfde51abe38c17ca13df3d44df2569a24bf30eb30d1ee2085",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/agents/openai.yaml",
+          "sha256": "244440a0047dcc4a00e1784de92aa7fbeeef6d6ce514fb30590f4b4b290f9ae7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/distributed-systems/agents/openai.yaml",
+          "sha256": "49f8aeac3efa97fc428c48e07fe438082bf4b04cbbd30847992b1057cc721876",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/domain-modeling/agents/openai.yaml",
+          "sha256": "26e6d1f0521f2136b8e3802b45481cdbcd849bc32d93ad92d0a0683ff11513b8",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/engineering-productivity/agents/openai.yaml",
+          "sha256": "0b3b325bd05637d16d229edca798b2800e304c6ab1949d87ef8074fc98caf17c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/agents/openai.yaml",
+          "sha256": "57b174e0c0f88f5e5f8d2b35a8c87eb4ca109f4c3bd737e3d3259e73dd8e9728",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/observability-and-diagnostics/agents/openai.yaml",
+          "sha256": "fdb89e79567f000e74d8d4d714a93af87d18e3db264a3a08c37df41d0ea79f28",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/performance-engineering/agents/openai.yaml",
+          "sha256": "efcf46fd9163d5b55f574fcb2a8adb505717ecf88ea5165ed6f4ccfa09799055",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/plugin-protocol-engineering/agents/openai.yaml",
+          "sha256": "9db53b60491567395cfb75f150829356af1e2ca2ba56366479785894c60916b8",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/prompt/agents/openai.yaml",
+          "sha256": "e95795a175718df6b56bf5fde549dc74cfa318cfef40fd47ffe4e406425a48d7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/reliability-engineering/agents/openai.yaml",
+          "sha256": "7c05b297f31439fd24dd606d7096141ca39a3840c58edcb752d8280a62139782",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/rust/agents/openai.yaml",
+          "sha256": "61c496ae4d9bb073390dfb9375129eaf4e0a36fc43cfbfa2ba104806e42eb399",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-architecture/agents/openai.yaml",
+          "sha256": "2df6efff9a60518d3e99c5f9e2206afed6fabd189649315e4545a563172cf5d7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-delivery/agents/openai.yaml",
+          "sha256": "64816ff241416f2f0880a87ebf6b9e5e93ba391e1a7ed1425fc0982d728fd078",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-design/agents/openai.yaml",
+          "sha256": "01fbc2fca737f8ca307453866bd8ad07ef3b1a18cfdfe9d1d0102e159c460eb9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-evolution/agents/openai.yaml",
+          "sha256": "f8b80a5637ea6e49cd798d3b62798a14afb44762858a4036b038958ae681d541",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/software-testing/agents/openai.yaml",
+          "sha256": "ad921163723ad852df45b7c88b38e7a0d7fa2604f7937f82ebe314a42e6adf61",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/agents/openai.yaml",
+          "sha256": "1ea12cbfb19d87253cb821cb701d5486db63626490361d22334bc8936af78300",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/agents/openai.yaml",
+          "sha256": "34332f59e9be0409aa25d26ce68561c4763d1de99ffa804a92cd2f0d61a1da06",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/agents/openai.yaml",
+          "sha256": "7f2e47dce012aeae680eafaa5018d4e674df0dab4a6e9c36e6677f4f5d08e38a",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Global governance remains REJECTED due to the out-of-scope commit-governance/profile discrepancy.",
+    "No UI rendering, skill effectiveness, product behavior or package publication was tested.",
+    "Hashes detect drift against the local reviewed manifest; they do not authenticate authorship."
+  ]
+}

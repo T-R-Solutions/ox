@@ -1,0 +1,45 @@
+# README Lifecycle Engineering — standalone Ec-compatible skill candidate
+
+This package contains **one new candidate skill**, formatted like the supplied Ec skills:
+`SKILL.md` with `name`/`description` frontmatter, progressive `references/` and an optional
+SDD bridge. Its optional `agents/openai.yaml` follows the Ox UI metadata convention.
+
+## Scope
+
+Create, restructure and maintain repository and package READMEs through product growth.
+The central principle is **one discoverable README entry point plus canonical task-oriented
+documentation where needed**, not one giant mandatory file and not one file per feature.
+
+## Installation (manual, after project authorization)
+
+Copy `skills/readme-lifecycle-engineering/` (the complete folder) under the consumer's
+real skills directory. If the consuming project uses SDD 1.3.0 and wants a bridge,
+copy `sdd/chain/readme-lifecycle-engineering.md` and replace `UNCONFIGURED` with the
+actual project-relative path to its `SKILL.md`.
+
+The skill works independently of SDD and other skills. Installation, invocation, profile
+adoption, changes to the Ec README and compliance acceptance are separate steps; this
+artifact does **not** perform any of them.
+
+## Source discipline
+
+Method based on GitHub, Google, GitLab and Diátaxis guidance; university resources from
+Harvard, Cornell, Johns Hopkins, Toronto, Singapore Management University and Monash;
+and peer-reviewed studies described with scopes and limits in
+`skills/readme-lifecycle-engineering/references/sources-and-decisions.md` and
+`skills/readme-lifecycle-engineering/references/scientific-evidence-and-limits.md`.
+
+## Relation to the prior catalog
+
+The previous 66-entry recommendation is unchanged until this new skill is deliberately
+adopted. This candidate would be **entry 67** if adopted without replacing another entry.
+It **does overlap** general documentation at the margins; the selection boundary is explicit
+in `references/routing-and-oracles.md` to avoid redundant activation.
+
+## Applicable Ec norms
+
+`EC-REGRAS-DE-DESIGN-E-PRODUTO.md` (primary), with
+`EC-REGRAS-CRIACAO-DE-TELAS-E-IMAGENS.md` consulted for README screenshots and UI evidence.
+No existing product configuration, skill or SDD record was changed. Any discrepancy between
+current Ec norms and exploratory architecture (e.g., gRPC vs versioned HTTP) stays a
+**proposal** until adopted by the authorized architecture process.

@@ -1,0 +1,24 @@
+from pathlib import Path
+import json,re,hashlib
+original=json.loads(Path('/tmp/ox-english/before.json').read_text())
+tasks=[];specs=[];pending=[]
+for rel,sha in original.items():
+ p=Path(rel)
+ if p.name=='tasks.md':
+  assert hashlib.sha256(p.read_bytes()).hexdigest()==sha,rel
+  tasks.append(rel)
+ if p.name=='spec.md':
+  ids=lambda s:re.findall(r'^(?:- )?((?:AC|REQ)-\d+)',s,re.M)
+  assert ids(p.read_text())==ids((Path('/tmp/ox-english/before')/p).read_text()),rel
+  specs.append(rel)
+ if p.suffix in {'.md','.yaml','.json'} and p.name!='tasks.md':
+  for n,l in enumerate(p.read_text().splitlines(),1):
+   clean=re.sub(r'https?://[^ )>]+|[\w./-]+\.md','',l)
+   if re.search(r'\b(não|selecionar|avaliações|tarefa|tarefas|critérios|requisitos|somente|preservados|convergência|projeto|disponibilidade|saída|método|concluído|execução|ambiente|verificações|autoria|ponte|instaladas|preencher|assinaturas|dezembro|maio|condicional)\b|[1-9]ª|\bcap\.',clean,re.I):pending.append((rel,n,l))
+assert not pending,pending
+print('Unchanged pt-BR task files:',len(tasks))
+print('Specs retaining ordered REQ/AC IDs:',len(specs))
+print('Portuguese prose scan: no matches outside tasks (fixed vocabulary, followed by manual review)')
+assert all(r['status'] in {'APPROVED','REJECTED','UNVERIFIED','INCONCLUSIVE','NOT APPLICABLE'} for p in Path('sdd/features').glob('*/evidence.json') for r in json.loads(p.read_text())['requirements'])
+print('All active evidence status values use English.')
+print('Retained literal data: Unicode Rust fixtures, historical filenames and proper names.')

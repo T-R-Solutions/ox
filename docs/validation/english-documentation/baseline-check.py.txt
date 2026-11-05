@@ -1,0 +1,17 @@
+from pathlib import Path
+import importlib.util,sys,tempfile,subprocess,os
+root=Path('/home/rodrigo/Projetos/ox')
+sys.path.insert(0,str(root/'tools/governance/scripts'))
+from governance_support import copy_distribution
+folder=Path(tempfile.mkdtemp(prefix='ox-before-translation-'))
+copy_distribution(root,folder)
+for original in Path('/tmp/ox-english/before').rglob('*'):
+ if original.is_file():
+  dest=folder/original.relative_to('/tmp/ox-english/before')
+  if dest.is_file():dest.write_bytes(original.read_bytes())
+for relative in ['tools/governance/scripts/check-ox.py','tools/governance/scripts/governance_support.py','tools/governance/scripts/verify-maintenance.py','tools/governance/tests/test_governance.py']:
+ (folder/relative).write_bytes(subprocess.check_output(['git','show','HEAD:'+relative],cwd=root))
+for script in ['check-ox.py','verify-maintenance.py']:
+ result=subprocess.run([sys.executable,'tools/governance/scripts/'+script],cwd=folder,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1'),capture_output=True,text=True)
+ print(script, 'exit',result.returncode);print(result.stdout);print(result.stderr)
+print('Observed pre-translation reconstruction:',folder)

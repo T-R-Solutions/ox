@@ -1,0 +1,51 @@
+# Registro de entrega e revisão
+
+**Data:** 2026-11-04. **Destino autorizado:** `/tmp/ox-documentation-forward-test`. **Resultado:** guia operacional em português entregue como fonte Markdown; apresentação visual completa pendente.
+
+## Entradas e método
+
+Fonte funcional exclusiva: cinco fatos fornecidos no pedido — uma tarefa por vez no desktop; worker grava candidato; aceitação independente exige resultado esperado e entradas inalteradas; cancelamento aguarda saída do processo filho pertencente à execução; histórico volátil. Versão do produto não informada. Não foram fornecidos medições, capturas, ícones ou renderizador de destino.
+
+Skill aplicada: `/home/rodrigo/Projetos/ox/.codex/skills/technical-documentation/SKILL.md`, sem versão declarada. Consultadas apenas suas referências `visual-quality.md`, `mermaid.md`, `media-and-data.md` e `evaluation-cases.md`. Contribuição: separar fatos e recomendações, preservar Mermaid editável, não inventar desempenho e distinguir revisão de fonte de renderização e inspeção visual.
+
+Executado: leitura desses cinco arquivos; `ls -ld /tmp/ox-documentation-forward-test` (diretório inicialmente ausente); descoberta de ferramentas com `command -v mmdc node python3 magick convert rsvg-convert inkscape chromium google-chrome firefox`. Localizados Node, Python, ImageMagick e Firefox; `mmdc` não foi localizado no PATH. Nenhum renderizador foi executado. Não se conclui daí que toda possível ferramenta de renderização esteja ausente.
+
+Os arquivos foram criados localmente e revistos contra os fatos fornecidos. A verificação estrutural usa Python local; seu resultado observado é registrado abaixo. Não houve rede, instalação, abertura de aplicativos, leitura de código do produto ou alteração no repositório.
+
+## Artefatos e inventário visual
+
+| Artefato | Conteúdo e origem | Estado |
+| --- | --- | --- |
+| `guide.md` | Guia em português; fatos do pedido e recomendações rotuladas | Entregue |
+| Figura 1 em `guide.md` | Fonte Mermaid de produção/aceitação; legenda e equivalente textual | Sem exportação; não analisada por parser Mermaid nem renderizada |
+| Figura 2 em `guide.md` | Fonte Mermaid de espera no cancelamento; legenda e equivalente textual | Sem exportação; não analisada por parser Mermaid nem renderizada |
+| `review.md` | Este registro, método, resultados e limitações | Entregue |
+
+Não há ativos de terceiros incorporados, ícones, fontes remotas, fotografias ou capturas. Não foi selecionada família/licença de ícones. Não há dataset nem gráfico numérico: a tabela de coleta é uma proposta, não um benchmark. A propriedade intelectual de futuros ativos deve ser verificada antes de sua incorporação.
+
+## Critérios, evidências e limites
+
+| Critério | Método e entradas observadas | Resultado e limitação |
+| --- | --- | --- |
+| Fidelidade | Revisão de fonte contra os cinco fatos do pedido | Atendido no texto; recomendações e lacunas identificadas. Nenhuma execução do produto foi observada. |
+| Hierarquia e consistência | Revisão do Markdown e checagem estrutural local | Seções sequenciais; duas figuras com legenda e equivalente textual. Composição final no host não verificada. |
+| Ícones profissionais | Inspeção dos insumos disponíveis | Pendente: não há pacote/versionamento/licença nem suporte de registro confirmados. Blocos de fluxo não são apresentados como iconografia acabada. |
+| Gráfico de desempenho | Inspeção dos insumos quantitativos | Pendente: nenhuma observação disponível. Substituído explicitamente por uma tabela de coleta proposta. |
+| Contraste | Exigiria pares de cores do resultado renderizado | Não executado; nenhuma medição de contraste. |
+| Legibilidade e disposição | Exigiria inspeção no tamanho final | Não executado; tamanho efetivo de rótulos, recortes, glifos e setas não medidos. |
+| Responsividade | Exigiria visualização a 360/768/1280 CSS px e zoom de 200% | Não executado; não há viewport observado. Equivalentes textuais fornecidos. |
+| Tema e exportação | Exigiria renderizador/configuração e inspeção dos temas | Não executado; nenhum SVG/PNG, tema claro/escuro ou exportação validado. |
+| Acessibilidade | Revisão de títulos, legendas e equivalentes na fonte | Estrutura textual presente. Sem inspeção do markup final, leitor de tela ou certificação de acessibilidade. |
+| Manutenção | Inspeção de fontes editáveis e gatilhos de atualização | Fonte e gatilhos presentes; responsável nominal e destino canônico não informados. Reprodutibilidade de renderização pendente. |
+
+## Verificação local observada
+
+Executada com `python3 -` em `/tmp/ox-documentation-forward-test`, Python **3.13.16**, saída **0**. Entradas: bytes dos dois arquivos. Resultado observado: existem exatamente `guide.md` e `review.md`; ambos são UTF-8, terminam com quebra de linha, têm cercas de código balanceadas, hierarquia de títulos sem saltos, links locais existentes e nenhuma incorporação de imagem, script, iframe ou folha de estilo. O guia contém dois blocos Mermaid, duas legendas e dois equivalentes textuais. A inspeção de incorporação não é uma auditoria geral de segurança ou rede.
+
+Identidade do guia verificado, SHA-256: `1751a2eb696dbf624fe3cb2316f8e9c281f4c9755751275047602235e731f91a`. Identidade da skill consultada, SHA-256: `f128a9f1c328151c05f6f4364b2de4553dd1eefd24f7028a1057daa17c408483`.
+
+Essa checagem não valida sintaxe Mermaid, renderização, eficácia de leitura ou comportamento do produto. O registro foi atualizado com o resultado e submetido novamente à checagem estrutural; o guia permaneceu com a identidade acima.
+
+## Pendências para aceite visual completo
+
+Identificar visualizador/versão/configuração e biblioteca de ícones; verificar ativos e licença; renderizar e inspecionar figuras no destino; coletar medições reais antes do gráfico. Não foi realizado estudo com leitores. O resultado atual é uma entrega documental parcial quanto ao pedido visual, sem alegação de acabamento enterprise verificado.

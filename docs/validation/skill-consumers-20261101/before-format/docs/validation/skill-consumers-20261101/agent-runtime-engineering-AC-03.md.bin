@@ -1,0 +1,11 @@
+# Criterion review: agent-runtime-engineering AC-03
+
+Cancellation during heavy output leaves no orphaned tasks; oracle: harness with streams and a deadline.
+
+APPROVED in the following evaluated scope: Controlled direct child continuously writes stdout/stderr; bounded retained output, observed kill/wait and two joined reader threads. No arbitrary process tree/grandchild-pipe supervision.
+
+Observed: runtime_ac03_cancel_output: replay observes 8,601,600 stdout and 12,804,096 stderr bytes before cancellation, retains 4096 per stream, reaps the PID and joins both readers in under two seconds.
+
+Method: inspect the independent assertions and concrete implementation, execute commands captured in replay/receipt.json or environment.json/gui-02/result.json, and inspect their full logs. Expected values are independently specified fixture values; exit zero alone is insufficient. The original criterion and skill contracts are unchanged.
+
+Consumer: tools/governance/consumers/operations.rs; oracle: tools/governance/consumers/operation_tests.rs. Broader contracts/exclusions: tools/governance/consumers/README.md. All prior envelopes are byte-preserved in previous/. This does not accept a production Ox subsystem or infer new agent effectiveness.

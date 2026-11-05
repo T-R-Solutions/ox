@@ -1,0 +1,15 @@
+{
+  "reason": "Historical byte snapshots used .md names at a different relative location, so link checks correctly treated them as live documents. Preserve exact bytes as .md.bin, the existing repository snapshot convention; no checker relaxation.",
+  "records": [
+    {
+      "previous_name": "docs/validation/governance-reconciliation/local-task-ui-final/previous/README.md",
+      "preserved_bytes": "docs/validation/governance-reconciliation/local-task-ui-final/previous/README.md.bin",
+      "sha256": "ec09e443a081a895686b8678f78b2074df59daaadd07b181cd678dc1d1be5b28"
+    },
+    {
+      "previous_name": "docs/validation/governance-reconciliation/local-task-ui-final/previous/docs/architecture/context.md",
+      "preserved_bytes": "docs/validation/governance-reconciliation/local-task-ui-final/previous/docs/architecture/context.md.bin",
+      "sha256": "319ffc59e2313578d30d38ffa38c472d5af768207a8bbd06a3c3823655048426"
+    }
+  ]
+}

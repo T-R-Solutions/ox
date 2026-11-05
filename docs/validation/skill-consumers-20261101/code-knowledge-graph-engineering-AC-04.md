@@ -1,0 +1,13 @@
+# Criterion review: code-knowledge-graph-engineering AC-04
+
+A subgraph query applies limits and reports truncation; oracle: deterministically generated large graph.
+
+APPROVED in the following evaluated scope: Known synthetic language with unique file-local function resolution, exact source ranges/bytes and fixture-resolver-v1. Deterministic 10,000-edge graph plus cycle; no general language semantic resolution or UI performance claim.
+
+Observed: graph_ac04_bounds: 10,000-edge hub stops at 10 nodes or seven examined edges with truncation; cyclic two-node graph terminates without false truncation.
+
+Method: inspect the independent assertions and concrete implementation, execute commands captured in replay/receipt.json or environment.json/gui-02/result.json, and inspect their full logs. Expected values are independently specified fixture values; exit zero alone is insufficient. The original criterion and skill contracts are unchanged.
+
+Consumer: tools/governance/consumers/models.rs; oracle: tools/governance/consumers/model_tests.rs. Broader contracts/exclusions: tools/governance/consumers/README.md. All prior envelopes are byte-preserved in previous/. This does not accept a production Ox subsystem or infer new agent effectiveness.
+
+Final input stabilization: rustfmt joined two lines in model_tests.rs without changing behavior. The exact previous source, reviews and envelopes are preserved in before-format/. All 16 model tests, seven process/filesystem tests, isolation controls and the complete graphical flow were rerun successfully with the stabilized file set: replay-final/ and gui-final/. This is a new observed execution, not a hash-only renewal. No original skill criterion or product source changed.

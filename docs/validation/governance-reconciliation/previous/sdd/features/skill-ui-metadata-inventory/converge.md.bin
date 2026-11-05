@@ -1,0 +1,16 @@
+# Convergence — 2026-10-29
+
+| Criterion | Trace | Evidence | State |
+| --- | --- | --- | --- |
+| AC-01 | REQ-01 / D-01 / R-01 / T001,T003 / files.json revision | E-01, E-02: 30 hashes match current bytes; prior revisions and archive contents preserved | APPROVED |
+| AC-02 | REQ-02 / D-01 / R-01 / T002,T003 / checker | E-01, E-02, E-03: mutation rejection and unchanged historical gates; only profile discrepancy remains | APPROVED |
+
+Earlier UI inspection remains unchanged. The first focused test attempt failed
+because the new feature evidence file had not yet been created; after creating
+its UNVERIFIED record, the four focused tests passed. This was an assembly-order
+failure, not a metadata hash failure. Current evidence records the subsequent
+executions without renewing the earlier inspection's hashes or results.
+
+Global governance remains REJECTED for commit-governance outside the 29-skill
+profile. Resolving that requires a separate profile decision and bridge/catalog
+reconciliation. UI and application acceptance remain outside scope.

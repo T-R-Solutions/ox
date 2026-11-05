@@ -1,0 +1,49 @@
+# Convergence — governance-reconciliation
+
+AC-01, AC-02, AC-03 and AC-04: APPROVED for their bounded governance scope.
+Profile/catalog/installed skills/bridges: 30, including conditional commit-governance.
+Historical recovery: 485 governed files, all 439 layout inputs. Eight explicit
+succession records retain exact predecessors; metadata revision remains unchanged.
+Negative tests reject unregistered skills, mismatched bridges, corrupted/deleted
+current and historical bytes, invalid predecessor bindings and nested Git metadata.
+
+17 fast tests and 17 full-copy integration tests passed. The complete default and
+unittest discovery retain all 34. Equivalent timing comparison and its failed
+first setup are preserved; no complete-suite speedup is claimed.
+
+Frozen-source package passed recursive archive inspection, manifest/extraction,
+and all five independent checks. First build correctly rejected source drift caused
+by new observation files written during that build; its results remain preserved.
+Current envelope binds observed implementation/oracle/contracts, not itself.
+
+Product-bootstrap is independently reconciled: 11 APPROVED, AC-02/AC-06 INCONCLUSIVE.
+X11 toggle timed out; future Wayland and conditional Windows/macOS coverage is
+recorded without support expansion. No commit, publication or history deletion.
+Exact commands, logs, hashes and limits: docs/validation/governance-reconciliation/.
+
+## Dependent input invalidation — native Wayland resumption
+
+The authorized roadmap scope appended to sdd/project.md changes a bound input.
+Affected criteria are now UNVERIFIED, with the exact prior envelope preserved
+in docs/validation/product-bootstrap/wayland-native/previous/. This is not a
+regression observation. Resume by rerunning/reexamining the seven project-bound
+observations against the new scope; do not silently renew historical hashes.
+
+## Local task UI scope reconciliation
+
+Current declared criteria APPROVED by new independent checks and criterion-specific review in docs/validation/governance-reconciliation/local-task-ui-03/review.md. Earlier observations remain historical. No product acceptance.
+
+## Final local task UI documentation reconciliation
+
+Current declared criteria APPROVED by fresh independent export, all five methods and 34 measured tests. See docs/validation/governance-reconciliation/local-task-ui-final-02/review.md. Previous envelopes and snapshot-format failure retained.
+
+## Technical gate reexamination — 2026-11-01
+
+Previous accepted criteria retained through new per-criterion inspection and governance checks. Only the checker and its governance tests changed among prior inputs. Review, exact predecessor and current receipts are in docs/validation/technical-acceptance-20261101/. No new graphical execution is claimed.
+
+## F0 operational successor — 2026-11-03
+
+Current evidence is E-F0-EXECUTION-CURRENT in evidence.json and the
+operational report at `docs/validation/f0-execution-20261102/report.md`.
+Historical results above retain their original scope and inputs. F0 remains OPEN;
+GUI/native/performance limitations are explicit in the current matrix.

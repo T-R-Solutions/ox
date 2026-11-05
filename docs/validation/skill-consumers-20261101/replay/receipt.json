@@ -1,0 +1,133 @@
+{
+  "platform": "Linux-7.3.0-1-default-x86_64-with-glibc2.44",
+  "sources_sha256": {
+    "models.rs": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+    "model_tests.rs": "3d6f06829c540a13cd9f79b269ac17cdd398929921ba0dcba356869d9472f171",
+    "operations.rs": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+    "fixture.rs": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+    "operation_tests.rs": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+    "plugin_host.rs": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+    "plugin_fixture.rs": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+    "isolation_test.py": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+    "gui.rs": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+    "gui_tests.rs": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+    "gui_test.py": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+    "output_fixture.rs": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+    "run_base.py": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+    "README.md": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b"
+  },
+  "binaries_sha256": {
+    "operations": "a728220e1bca645438dac9673287d41741dd5c8e8cdad7a0b6a9f25778c93aa0",
+    "models": "d82224cc42fe0a60c92645f75db2570cfb84771658b883d5b3291388ec673db4",
+    "output": "783c3643583db60da3092dc945878aed808e8723e3fcd19691b2041154f04614",
+    "plugin": "540d1df9d2ba492ca327c8f9f760f9122756d8bf1043f7fffece4c88320e246a",
+    "fixture": "da081f6ee2debf20001c63674fbea4d018a4c4c7092349956f65aebff8f38414"
+  },
+  "build_directory": "/tmp/ox-consumer-build-tkhaa9kh",
+  "commands": [
+    {
+      "command": [
+        "rustc",
+        "+1.99.1",
+        "-Vv"
+      ],
+      "exit": 0,
+      "log": "compiler.log"
+    },
+    {
+      "command": [
+        "rustc",
+        "+1.99.1",
+        "--edition=2024",
+        "-Dwarnings",
+        "/home/rodrigo/Projetos/ox/tools/governance/consumers/fixture.rs",
+        "-o",
+        "/tmp/ox-consumer-build-tkhaa9kh/fixture"
+      ],
+      "exit": 0,
+      "log": "build-fixture.log"
+    },
+    {
+      "command": [
+        "rustc",
+        "+1.99.1",
+        "--edition=2024",
+        "-Dwarnings",
+        "/home/rodrigo/Projetos/ox/tools/governance/consumers/plugin_fixture.rs",
+        "-o",
+        "/tmp/ox-consumer-build-tkhaa9kh/plugin"
+      ],
+      "exit": 0,
+      "log": "build-plugin.log"
+    },
+    {
+      "command": [
+        "rustc",
+        "+1.99.1",
+        "--edition=2024",
+        "-Dwarnings",
+        "/home/rodrigo/Projetos/ox/tools/governance/consumers/output_fixture.rs",
+        "-o",
+        "/tmp/ox-consumer-build-tkhaa9kh/output"
+      ],
+      "exit": 0,
+      "log": "build-output.log"
+    },
+    {
+      "command": [
+        "rustc",
+        "+1.99.1",
+        "--edition=2024",
+        "-Dwarnings",
+        "--test",
+        "/home/rodrigo/Projetos/ox/tools/governance/consumers/model_tests.rs",
+        "-o",
+        "/tmp/ox-consumer-build-tkhaa9kh/models"
+      ],
+      "exit": 0,
+      "log": "build-models.log"
+    },
+    {
+      "command": [
+        "rustc",
+        "+1.99.1",
+        "--edition=2024",
+        "-Dwarnings",
+        "--test",
+        "/home/rodrigo/Projetos/ox/tools/governance/consumers/operation_tests.rs",
+        "-o",
+        "/tmp/ox-consumer-build-tkhaa9kh/operations"
+      ],
+      "exit": 0,
+      "log": "build-operations.log"
+    },
+    {
+      "command": [
+        "/tmp/ox-consumer-build-tkhaa9kh/models",
+        "--nocapture"
+      ],
+      "exit": 0,
+      "log": "models.log"
+    },
+    {
+      "command": [
+        "/tmp/ox-consumer-build-tkhaa9kh/operations",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit": 0,
+      "log": "operations.log"
+    },
+    {
+      "command": [
+        "python3",
+        "/home/rodrigo/Projetos/ox/tools/governance/consumers/isolation_test.py"
+      ],
+      "exit": 0,
+      "log": "isolation.json"
+    }
+  ],
+  "error": null,
+  "isolation_requested": true,
+  "status": "PASS"
+}

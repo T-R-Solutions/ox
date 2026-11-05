@@ -1,0 +1,158 @@
+ M .codex/skills/README.md
+ M .codex/skills/agent-runtime-engineering/SKILL.md
+ M .codex/skills/agent-runtime-engineering/references/evaluation-cases.md
+ M .codex/skills/agent-usage-accounting/SKILL.md
+ M .codex/skills/agent-usage-accounting/references/evaluation-cases.md
+ M .codex/skills/api-testing/references/portable-sources.md
+ M .codex/skills/application-security/references/imported/api-testing/portable-sources.md
+ M .codex/skills/application-security/references/imported/prompt/portable-sources.md
+ M .codex/skills/application-security/references/portable-sources.md
+ M .codex/skills/autonomous-verification-engineering/SKILL.md
+ M .codex/skills/autonomous-verification-engineering/references/evaluation-cases.md
+ M .codex/skills/code-context-engineering/SKILL.md
+ M .codex/skills/code-context-engineering/references/evaluation-cases.md
+ M .codex/skills/code-knowledge-graph-engineering/SKILL.md
+ M .codex/skills/code-knowledge-graph-engineering/references/evaluation-cases.md
+ M .codex/skills/commit-governance/SKILL.md
+ M .codex/skills/commit-governance/agents/openai.yaml
+ M .codex/skills/iced-engineering/SKILL.md
+ M .codex/skills/iced-engineering/references/evaluation-cases.md
+ M .codex/skills/performance-engineering/references/portable-sources.md
+ M .codex/skills/plugin-protocol-engineering/SKILL.md
+ M .codex/skills/plugin-protocol-engineering/references/evaluation-cases.md
+ M .codex/skills/prompt/agents/openai.yaml
+ M .codex/skills/prompt/references/portable-sources.md
+ M .codex/skills/reliability-engineering/references/portable-sources.md
+ M .codex/skills/rust/agents/openai.yaml
+ M .codex/skills/rust/references/portable-sources.md
+ M .codex/skills/software-architecture/references/portable-sources.md
+ M .codex/skills/tool-output-engineering/SKILL.md
+ M .codex/skills/tool-output-engineering/references/evaluation-cases.md
+ M .codex/skills/workspace-integrity-engineering/SKILL.md
+ M .codex/skills/workspace-integrity-engineering/references/evaluation-cases.md
+ M AGENTS.md
+ M README.md
+ M docs/structure/files.json
+ M sdd/README.md
+ M sdd/chain/README.md
+ M sdd/chain/agent-runtime-engineering.md
+ M sdd/chain/agent-usage-accounting.md
+ M sdd/chain/autonomous-verification-engineering.md
+ M sdd/chain/code-context-engineering.md
+ M sdd/chain/code-knowledge-graph-engineering.md
+ M sdd/chain/distributed-systems.md
+ M sdd/chain/engineering-productivity.md
+ M sdd/chain/iced-engineering.md
+ M sdd/chain/plugin-protocol-engineering.md
+ M sdd/chain/prompt.md
+ M sdd/chain/tool-output-engineering.md
+ M sdd/chain/workspace-integrity-engineering.md
+ M sdd/constitution.md
+ M sdd/evidence.md
+ M sdd/features/README.md
+ M sdd/features/adoption-governance/converge.md
+ M sdd/features/adoption-governance/evidence.json
+ M sdd/features/adoption-governance/plan.md
+ M sdd/features/adoption-governance/spec.md
+ M sdd/features/governance-externalization/converge.md
+ M sdd/features/governance-externalization/evidence.json
+ M sdd/features/governance-externalization/plan.md
+ M sdd/features/governance-externalization/spec.md
+ M sdd/features/governance-layout/converge.md
+ M sdd/features/governance-layout/evidence.json
+ M sdd/features/governance-layout/plan.md
+ M sdd/features/governance-layout/spec.md
+ M sdd/features/maintenance-001/converge.md
+ M sdd/features/maintenance-001/evidence.json
+ M sdd/features/maintenance-001/plan.md
+ M sdd/features/maintenance-001/spec.md
+ M sdd/features/product-bootstrap/converge.md
+ M sdd/features/product-bootstrap/evidence.json
+ M sdd/features/product-bootstrap/plan.md
+ M sdd/features/product-bootstrap/spec.md
+ M sdd/features/product-foundation/converge.md
+ M sdd/features/product-foundation/evidence.json
+ M sdd/features/product-foundation/plan.md
+ M sdd/features/product-foundation/spec.md
+ M sdd/features/skill-agent-runtime-engineering/converge.md
+ M sdd/features/skill-agent-runtime-engineering/evidence.json
+ M sdd/features/skill-agent-runtime-engineering/plan.md
+ M sdd/features/skill-agent-runtime-engineering/spec.md
+ M sdd/features/skill-agent-usage-accounting/converge.md
+ M sdd/features/skill-agent-usage-accounting/evidence.json
+ M sdd/features/skill-agent-usage-accounting/plan.md
+ M sdd/features/skill-agent-usage-accounting/spec.md
+ M sdd/features/skill-autonomous-verification-engineering/converge.md
+ M sdd/features/skill-autonomous-verification-engineering/evidence.json
+ M sdd/features/skill-autonomous-verification-engineering/plan.md
+ M sdd/features/skill-autonomous-verification-engineering/spec.md
+ M sdd/features/skill-code-context-engineering/converge.md
+ M sdd/features/skill-code-context-engineering/evidence.json
+ M sdd/features/skill-code-context-engineering/plan.md
+ M sdd/features/skill-code-context-engineering/spec.md
+ M sdd/features/skill-code-knowledge-graph-engineering/converge.md
+ M sdd/features/skill-code-knowledge-graph-engineering/evidence.json
+ M sdd/features/skill-code-knowledge-graph-engineering/plan.md
+ M sdd/features/skill-code-knowledge-graph-engineering/spec.md
+ M sdd/features/skill-iced-engineering/converge.md
+ M sdd/features/skill-iced-engineering/evidence.json
+ M sdd/features/skill-iced-engineering/plan.md
+ M sdd/features/skill-iced-engineering/spec.md
+ M sdd/features/skill-plugin-protocol-engineering/converge.md
+ M sdd/features/skill-plugin-protocol-engineering/evidence.json
+ M sdd/features/skill-plugin-protocol-engineering/plan.md
+ M sdd/features/skill-plugin-protocol-engineering/spec.md
+ M sdd/features/skill-tool-output-engineering/converge.md
+ M sdd/features/skill-tool-output-engineering/evidence.json
+ M sdd/features/skill-tool-output-engineering/plan.md
+ M sdd/features/skill-tool-output-engineering/spec.md
+ M sdd/features/skill-workspace-integrity-engineering/converge.md
+ M sdd/features/skill-workspace-integrity-engineering/evidence.json
+ M sdd/features/skill-workspace-integrity-engineering/plan.md
+ M sdd/features/skill-workspace-integrity-engineering/spec.md
+ M sdd/project.md
+ M sdd/templates/README.md
+ M sdd/templates/checklist.md
+ M sdd/templates/converge.md
+ M sdd/templates/plan.md
+ M sdd/templates/spec.md
+ M sdd/tools/validate.py
+ M sdd/workflow.md
+ M tools/governance/scripts/check-ox.py
+ M tools/governance/scripts/governance_support.py
+ M tools/governance/scripts/verify-maintenance.py
+ M tools/governance/tests/test_governance.py
+?? .codex/skills/agent-runtime-engineering/agents/
+?? .codex/skills/agent-usage-accounting/agents/
+?? .codex/skills/ai-engineering/agents/
+?? .codex/skills/api-testing/agents/
+?? .codex/skills/application-security/agents/
+?? .codex/skills/autonomous-verification-engineering/agents/
+?? .codex/skills/code-context-engineering/agents/
+?? .codex/skills/code-knowledge-graph-engineering/agents/
+?? .codex/skills/database-engineering/agents/
+?? .codex/skills/design-review/agents/
+?? .codex/skills/design-system/agents/
+?? .codex/skills/distributed-systems/agents/
+?? .codex/skills/domain-modeling/agents/
+?? .codex/skills/engineering-productivity/agents/
+?? .codex/skills/iced-engineering/agents/
+?? .codex/skills/observability-and-diagnostics/agents/
+?? .codex/skills/performance-engineering/agents/
+?? .codex/skills/plugin-protocol-engineering/agents/
+?? .codex/skills/reliability-engineering/agents/
+?? .codex/skills/software-architecture/agents/
+?? .codex/skills/software-delivery/agents/
+?? .codex/skills/software-design/agents/
+?? .codex/skills/software-evolution/agents/
+?? .codex/skills/software-testing/agents/
+?? .codex/skills/technical-documentation/agents/
+?? .codex/skills/tool-output-engineering/agents/
+?? .codex/skills/workspace-integrity-engineering/agents/
+?? docs/decisions/skill-ui-metadata-inventory.md
+?? docs/validation/english-documentation/
+?? docs/validation/product-bootstrap/english-documentation/
+?? docs/validation/skill-ui-metadata/
+?? ox.zip
+?? sdd/features/skill-ui-metadata-inventory/
+?? tools/governance/tests/test_ui_metadata_inventory.py

@@ -1,0 +1,56 @@
+{
+  "method": "Historical expected hashes read unchanged from original before.json files; current hashes read from actual bytes. See verify-maintenance historical_bytes for authenticated recovery locations.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "current_sha256": "c7a3ef68712b2754b5d23c40b53df9f3b2c315d3c8307d8b40d9943faa9440fe",
+      "historical": {
+        "maintenance-001": "d6ea8e54fe065e1054bbdb3b1c8715509d70b372b84106e1615adeed7a6688b6",
+        "governance-layout": "d6ea8e54fe065e1054bbdb3b1c8715509d70b372b84106e1615adeed7a6688b6"
+      }
+    },
+    {
+      "path": ".codex/skills/prompt/agents/openai.yaml",
+      "current_sha256": "e95795a175718df6b56bf5fde549dc74cfa318cfef40fd47ffe4e406425a48d7",
+      "historical": {
+        "maintenance-001": "be73ad7961ac7e097b0ac2aa41360a17f8a104a79af1f6680d3738cbcdfc9a9d",
+        "governance-layout": "be73ad7961ac7e097b0ac2aa41360a17f8a104a79af1f6680d3738cbcdfc9a9d"
+      },
+      "current_revision": {
+        "destination": ".codex/skills/prompt/agents/openai.yaml",
+        "previous_sha256": "be73ad7961ac7e097b0ac2aa41360a17f8a104a79af1f6680d3738cbcdfc9a9d",
+        "sha256": "e95795a175718df6b56bf5fde549dc74cfa318cfef40fd47ffe4e406425a48d7"
+      }
+    },
+    {
+      "path": ".codex/skills/rust/agents/openai.yaml",
+      "current_sha256": "61c496ae4d9bb073390dfb9375129eaf4e0a36fc43cfbfa2ba104806e42eb399",
+      "historical": {
+        "maintenance-001": "9e6ce9bfecf2c000d289ec7f3084add309db56159cbc1611d451dea0dfbc1c1a",
+        "governance-layout": "9e6ce9bfecf2c000d289ec7f3084add309db56159cbc1611d451dea0dfbc1c1a"
+      },
+      "current_revision": {
+        "destination": ".codex/skills/rust/agents/openai.yaml",
+        "previous_sha256": "9e6ce9bfecf2c000d289ec7f3084add309db56159cbc1611d451dea0dfbc1c1a",
+        "sha256": "61c496ae4d9bb073390dfb9375129eaf4e0a36fc43cfbfa2ba104806e42eb399"
+      }
+    },
+    {
+      "path": "docs/structure/files.json",
+      "current_sha256": "2261d4f19c690132ad5f016d11394499ac73a6ee96fca3830b03b26fec8a78ed",
+      "historical": {
+        "maintenance-001": "f253d7ac255389bff8195790997da201970bf85aa502d0e5b04aa306abd7e75c",
+        "governance-layout": "242cb4a6fc13fafc9f53965d5f708fe626e5d7a70823390dd2b4460f49ec3513"
+      }
+    },
+    {
+      "path": "docs/structure/profile-revisions.json",
+      "current_sha256": "e7ad8828f6f321f354c213ec2c7f2bdf66ed28cc3f08debc2b1e9fb27833c0e3",
+      "historical": {
+        "maintenance-001": "75ea9a7dff0b3ee98eeb8619b7e1712e75cff64c6ced509b5ba9349a52e5cbc6",
+        "governance-layout": "75ea9a7dff0b3ee98eeb8619b7e1712e75cff64c6ced509b5ba9349a52e5cbc6"
+      }
+    }
+  ],
+  "ui_revision_unchanged": true
+}

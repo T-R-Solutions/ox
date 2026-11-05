@@ -1,0 +1,25 @@
+{
+  "path": "dist/20261029T134536.318394Z/ox-governance.zip",
+  "bytes": 13093375,
+  "sha256": "137890350a435bafcb7e582fe8bcaff316a7159787d6780c41063b97b4cbeefa",
+  "entries": 908,
+  "git_entries": 0,
+  "product_entries": 0,
+  "required_files": {
+    "LICENSE": true,
+    "NOTICE": true,
+    "AGENTS.md": true,
+    "config/governance/profile.json": true,
+    "tools/governance/scripts/verify-maintenance.py": true,
+    "docs/validation/governance-layout/before.tar.gz": true
+  },
+  "scope": {
+    "package_kind": "governance",
+    "product_included": false,
+    "limitations": [
+      "Validation covers governance/skills/SDD, not the Ox Rust application.",
+      "Cargo workspace, binaries, installers and product integration tests are out of this package."
+    ]
+  },
+  "source_unchanged_during_build": true
+}

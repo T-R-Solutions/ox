@@ -1,0 +1,702 @@
+[
+  {
+    "path": ".codex/skills/readme-lifecycle-engineering/SKILL.md",
+    "sha256": "4a68d48bfa52160ab3cacbe7f04da1d7faadd6c76cde126617cbd945969473c9"
+  },
+  {
+    "path": "README.md",
+    "sha256": "0b143d64f24c0e46f4963ffd2a0dd654f63227478333a9ca2e7cdf89a346cbcc"
+  },
+  {
+    "path": "config/governance/profile.json",
+    "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1"
+  },
+  {
+    "path": "docs/README.md",
+    "sha256": "be06191c52c21ef5b93e040c8411081c8e850e276876dd6e055f764813749e5e"
+  },
+  {
+    "path": "docs/architecture/application.md",
+    "sha256": "da1268c1322105f0f2acc935439153b56d755a37636483be1819f56446031b91"
+  },
+  {
+    "path": "docs/architecture/contracts.md",
+    "sha256": "02fa510bf9267c370dad050a23f14d4875fdb6dc53e0fb57743e42c1140cff70"
+  },
+  {
+    "path": "docs/assets/README.md",
+    "sha256": "e03d56dd59b249f585910ae35777f50f5582d978d3d0c14b794b4b8a82d3df49"
+  },
+  {
+    "path": "docs/assets/architecture-layout.mjs",
+    "sha256": "03353433139dd055f7e817581f4fbc0fb0ae1170170e1409774a39f45d5e6f16"
+  },
+  {
+    "path": "docs/assets/architecture-mermaid.svg",
+    "sha256": "0bbcc5610df1783078a3f59694d0f5bdc0a20d58c81e6fc05da30cde7a22d780"
+  },
+  {
+    "path": "docs/assets/architecture.svg",
+    "sha256": "10b4b5d8a10155ac7de3f035214cbac10f170def5ba6adc8b266afc581e59fe8"
+  },
+  {
+    "path": "docs/assets/check.py",
+    "sha256": "22729caee1df17e6994e246c8d7655d072494a28f4fac3da71df3101b974798c"
+  },
+  {
+    "path": "docs/assets/diagrams/architecture.mmd",
+    "sha256": "84a3d10c7e91d27068581f57929e1d2ca8e0cefae9519a905d5fece8e28f8049"
+  },
+  {
+    "path": "docs/assets/diagrams/documentation.mmd",
+    "sha256": "b10ef027040e3d693c31e105cb55ba3e8ee10d88ece31495875524faa3b93cc8"
+  },
+  {
+    "path": "docs/assets/diagrams/execution.mmd",
+    "sha256": "ecaa0934513d35cdd989317026a78331b746f39b2c4973556bb3af542635c2ce"
+  },
+  {
+    "path": "docs/assets/diagrams/first-run.mmd",
+    "sha256": "1fbc52d7ce96ec0a7b1c8a6eb91ab1a49f3f5bbf7d57036f17595c3f09216f21"
+  },
+  {
+    "path": "docs/assets/diagrams/governance.mmd",
+    "sha256": "f42c676f6b3e92f0f94a4f9d966329f87ddbf8fbf5bff5126e0a9798ecb69e53"
+  },
+  {
+    "path": "docs/assets/diagrams/plugin-protocol.mmd",
+    "sha256": "d02df06d0caf092725710d208d03b4f61ae94c28f009c5afb6f45900973ea13c"
+  },
+  {
+    "path": "docs/assets/diagrams/runtime-states.mmd",
+    "sha256": "53b73a081dfcac7b8843a0da895ebb8ae404f9f92af0e939d11eaa4683920df9"
+  },
+  {
+    "path": "docs/assets/diagrams/sharing.mmd",
+    "sha256": "95c7ffef473c6fa24a6a9b7201427a1ffbafe2de789c7bc81412fede7d83b846"
+  },
+  {
+    "path": "docs/assets/diagrams/task-cycle.mmd",
+    "sha256": "ff4540259285c2a8cadec0b04ebdc7ef2c840e95722466992b3b091056e8fe79"
+  },
+  {
+    "path": "docs/assets/documentation.svg",
+    "sha256": "c0a1d11fe3390d2ac1113fbd19dffa771e97b48d7b077172f15dbda44d719093"
+  },
+  {
+    "path": "docs/assets/execution.svg",
+    "sha256": "16810cc8ef8cbd28ee22398d1a56374dc5dc3f05b734c5da4ccbb213c3752297"
+  },
+  {
+    "path": "docs/assets/first-run.svg",
+    "sha256": "c126170ac2202aeda4da1d751f0fd261aa50b006179a18af311b5b4dd372465d"
+  },
+  {
+    "path": "docs/assets/governance.svg",
+    "sha256": "7fe0417f36fac438689d5002dad04636050aa705c8a38072b05b6486fc17313e"
+  },
+  {
+    "path": "docs/assets/images/reference_001.jpeg",
+    "sha256": "7a4c5fe7892fd91e0f05865e5477ff4852f16853b38ad7d2229cd5deb748b786"
+  },
+  {
+    "path": "docs/assets/images/reference_002.jpeg",
+    "sha256": "cdfdef5e55a4f12cdd3c6ed89346c02aacb04ebd453b3259966e8ccd975eeb30"
+  },
+  {
+    "path": "docs/assets/mermaid.json",
+    "sha256": "92d668657c60445321c0ad111e9b6a57155a77c9e809768c64c6871fe3d97d4f"
+  },
+  {
+    "path": "docs/assets/ox-approved.png",
+    "sha256": "5b3c14acdf0bf4e1a174920bdd28c78f17eb26658109658d342ea75149253762"
+  },
+  {
+    "path": "docs/assets/ox-overview.svg",
+    "sha256": "89e25de7e3e752747957722348263d0da98c626d66c17337166f255d4158669b"
+  },
+  {
+    "path": "docs/assets/ox-rejected.png",
+    "sha256": "633848ef2e724fb362919c09c25d1978035532f0cd23491cf0d573caf26c532f"
+  },
+  {
+    "path": "docs/assets/plugin-protocol.svg",
+    "sha256": "0a4026e8d61b249eba74238788c4e79c5090e42b350a5578dbab6d47a01b995a"
+  },
+  {
+    "path": "docs/assets/render.mjs",
+    "sha256": "8cf6fd7c61ba0bd91de59e4bfe9e16d3c9c01dc44121a03f72a57770b0eda490"
+  },
+  {
+    "path": "docs/assets/runtime-states.svg",
+    "sha256": "1c606790cdc160c45a9d0d31366e0a7a13ab61a3827116f10a4b35e438dfffb2"
+  },
+  {
+    "path": "docs/assets/sharing.svg",
+    "sha256": "f7fab77dbc4576444a363f22806f496776fbcc68999908abfe53798bff2a0862"
+  },
+  {
+    "path": "docs/assets/task-cycle.svg",
+    "sha256": "1213903962ca39a09211286f6d42256d116cc2402e9c48380a9825bbeae9879c"
+  },
+  {
+    "path": "docs/assets/tooling.json",
+    "sha256": "8cdb50e078d2632163a91a9946cca3d57a3f88abd07dcd5075ac72d8b6d1480c"
+  },
+  {
+    "path": "docs/assets/vendor/lucide/LICENSE",
+    "sha256": "3c57143f22dac950efebf84002e360bba5458c7b90fe583b0667aaaef1a7256e"
+  },
+  {
+    "path": "docs/assets/vendor/lucide/icons.json",
+    "sha256": "fe3598f28c7ecfa6f3de288266a88c9c7ad7f616f10eaa994adb074e896aed19"
+  },
+  {
+    "path": "docs/assets/vendor/lucide/info.json",
+    "sha256": "0c7a972d32a2d0a665fdc15bd564bb28c01434aff2d3242027e0985eb2c02ea6"
+  },
+  {
+    "path": "docs/decisions/documentation-visuals.md",
+    "sha256": "536a9e74466ab55a07d701f52ae83428f8b5f9d46abf0e4fd2eee5da28c3fd0d"
+  },
+  {
+    "path": "docs/development/governance.md",
+    "sha256": "8d6fd5542a4d37ef885360c8e447d98e9ba7852a680d277673d823f77537fb57"
+  },
+  {
+    "path": "docs/development/sharing.md",
+    "sha256": "9a2d09fc06aa3bb2a8fd0d3aeebbfbc280c7443eea63beaa79ffcca1913c3e31"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/asset-checks.json",
+    "sha256": "c334fc2e7471c86efffae36fb339c63641fb6a192a5dded6f238737ef82ec603"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/assets.json",
+    "sha256": "4150a298eb0c1dd06c9840b1f89044b459dca36e57ed9d967ab55b3c74f01de3"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/README.md.bin",
+    "sha256": "449e8292a94b6ff8353cc57baa7315b1fe437a9f6bbf972e3c415ae98c46003c"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/application/README.md.bin",
+    "sha256": "f9380477aadf1718409ff6d4cf7ef47db286a53d5cd8df6613c489f08aa35929"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/docs/README.md.bin",
+    "sha256": "3c591581fac522735196f7f46fa960a766a8180df06506e12d85a16556cb1243"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/docs/architecture/application.md.bin",
+    "sha256": "3edc2b4f21443b7a64503f83f62c0ed6d87a89900e21f94ef873d217c6dd8ddc"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/docs/architecture/contracts.md.bin",
+    "sha256": "decbd91eab89513691d44dce1665304209182c230776b79badc68f9fc4c0a2db"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/docs/development/governance.md.bin",
+    "sha256": "618cd167d7f10757f30d376094b71efd8bac755f2ea4628af258a8faec562eaf"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/docs/development/sharing.md.bin",
+    "sha256": "32e3e3d737c88bb783747957d20108cd387beeb54a473469bc4d7ea150dc4189"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/adoption-governance/evidence.json.bin",
+    "sha256": "69a9add7249a3ce3f2f4818bc465dcf05ce6298925030693b0767cb6628456e0"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/governance-externalization/evidence.json.bin",
+    "sha256": "df5ad6293d3633e1f0bf2ce505f7821709b3745a25502b8585c2b4f3d574b443"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/governance-layout/evidence.json.bin",
+    "sha256": "22c458c7183bf7bb2206157b37c0c2c4a5c7f1a2fedcc35fb02dffc8fbbb49f5"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/governance-reconciliation/evidence.json.bin",
+    "sha256": "9440d92a28693078bd59189e1315362fd64b4d49b06c6fad77de6476e12045a3"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/maintenance-001/evidence.json.bin",
+    "sha256": "67c524c5e2722c563bfca72754f4b51583608ca8e9988ea127f77277dfb6436d"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/product-agent-runtime/evidence.json.bin",
+    "sha256": "f838133b1c91a73c7c53d20cd125bd108f2864e19bb41c0df505de5654466aee"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/product-bootstrap/evidence.json.bin",
+    "sha256": "e2efc5216be3ec4547baa75cb4bc53e5cdc46e009a13ab46fd08c032c10706f7"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/product-f0-gate/evidence.json.bin",
+    "sha256": "1b7ea8126db2dbab291f0aa845213fe5a8f4b252c2db5c98bc014aff5881cf5b"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/product-foundation/evidence.json.bin",
+    "sha256": "5572743f3b52387b0e67279cd417de1f6619c99a65d8fd6cf9845a4fbb712c33"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/product-local-task-ui/evidence.json.bin",
+    "sha256": "75f627ff338e42cfac8b515654ca7d7950e07208c153ad650e4151a92bec4d8c"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/product-plugin-host/evidence.json.bin",
+    "sha256": "e114674dbd81a51fb3d6403236807c2e02a8d842da15205d1f639962600ee0b1"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/product-verification-engine/evidence.json.bin",
+    "sha256": "72b83a02d35d8b17cfb8ec1b8283f2c27efd9cd0207be05bf99f047f7569093d"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/converge.md.bin",
+    "sha256": "f5610e4d3f8a5ac0595836f53f9c3c3dd4e8ad0ca58bda7038cbb24c87718821"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/evidence.json.bin",
+    "sha256": "6f6a080bc46c975c69a47796c652927576d1b224e8143a701682f73f69e06b09"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/plan.md.bin",
+    "sha256": "841fd470795938ac574790e95e788c98d5fbc19be247c681cba7455005aef322"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/spec.md.bin",
+    "sha256": "a0cd0854a542b1514923e5d294172206c1f2eb18526c4b7ede1a707d063030e5"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/tasks.md.bin",
+    "sha256": "e43548a188d09c5ab259b05da1860eb49042510d17407343cac88cac8211c8de"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/traceability.json.bin",
+    "sha256": "41042dcda65fdac4ff835d65d22333ac75346407124e33291983d453d958e505"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-agent-runtime-engineering/evidence.json.bin",
+    "sha256": "e6951de868f7a2bb310815815e57d4466a8bf520c8485a21c2a47305af65d289"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-agent-usage-accounting/evidence.json.bin",
+    "sha256": "b5d0ab3ad66101ec32be7b125323ad3bbcbf002b5117054cd5fc4de9589e2928"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-autonomous-verification-engineering/evidence.json.bin",
+    "sha256": "6c6205b5aef218138546161dd9b7cbfdd4c12648d2bb3f13a76f20310fbf1b3a"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-code-context-engineering/evidence.json.bin",
+    "sha256": "70ae9e1f1c54b78cb994a85b90969a5f865f61fb573c9c0e03405771474d0150"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-code-knowledge-graph-engineering/evidence.json.bin",
+    "sha256": "d2f353b7b18e7c81f117b29a38b2207a343dc5af2416433c771469a2dcc223e9"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-consumer-validation/evidence.json.bin",
+    "sha256": "b0928f3862fc5a76ebeb425db2e420d127ae2023eb05706a2cada14f030489b0"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-iced-engineering/evidence.json.bin",
+    "sha256": "4d86daa01528864cec338178efc4005d9117820669483d86eb10f989adf5244b"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-plugin-protocol-engineering/evidence.json.bin",
+    "sha256": "0bfd2e230eed45e7780142029f56f352a4d52eced80ce5f15028fffefd48f4c3"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-tool-output-engineering/evidence.json.bin",
+    "sha256": "2bf3e53815d858c557e0803f656cb850728ef968f0d2b092551e8ba4aefbf45e"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-ui-metadata-inventory/evidence.json.bin",
+    "sha256": "183673511f09f7007a8b9ca4758b2ccd8c46f0b5cfac6fbb6c895103910a2228"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/skill-workspace-integrity-engineering/evidence.json.bin",
+    "sha256": "350e38dbf1008c0ec61cb3a468e7eb91a5b0099f50a5b83d074773bf1d570220"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/technical-acceptance/evidence.json.bin",
+    "sha256": "5d721744c19a334eac1cbc288d2232dcab940b1d06d891e39f2a91bde7d1995a"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/technical-documentation-visuals/evidence.json.bin",
+    "sha256": "ccc51349004b6fb5a693aaa114eed70ce8242198363bb691410c40adab86fe64"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/tools/governance/scripts/readme_revision.py.bin",
+    "sha256": "c04db67e4ce38e4700d1c4f43e447e4cbcaed5161eba09b9d9f95b771287ee41"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
+    "sha256": "f5ed9b3809043d0487fff17c9737321bebd6149ddfed8ac11cd839decf2bbbf6"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/checks.json",
+    "sha256": "0ac30c9692a6b30f91e19514d07ca3adbc68e66a0bde162ecc3d60add0358c8f"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/final-1.log",
+    "sha256": "fdec2dca1aaf099601952f6ea30a47f15f8fdf3b252c94da05cdb6ca07d27702"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/final-2.log",
+    "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/final-3.log",
+    "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/final-4.log",
+    "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/final-5.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/final-checks.json",
+    "sha256": "ef83a3a58f8221c7c7a01e7ac58e42de4e780cbe16fff10c11b611e702773e1c"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/inputs-before.json",
+    "sha256": "b8f7373c2fb74385fd1b63bc2ff09a06a3297ea6ae3e653c14b32f8b3101f94c"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/observed/application/README.md.bin",
+    "sha256": "7dcc55fb0f6db678e66d3de821b3b5ad9ac55c4af402472f41468b59fb005865"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/product-references.json",
+    "sha256": "b0ab3d70090e149996df19b773ec0225c0eb840069d81b12c0f0b2e97747ab68"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/protected-inputs.json",
+    "sha256": "ddc0b095e78ee2ae6688fb6b8838d4147b8ff320714ede48dbc039a295ef589c"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render-initial.json",
+    "sha256": "f9cedb9fed9622e6f7b361e9d41ba11455fb329ca5feaf686819ffa73b463a31"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render-results.json",
+    "sha256": "71228a132b5013f5b4abde4d8b1cb72a8aaa70730ec89c9e53f96d7de47c966e"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/README-1280-dark.png",
+    "sha256": "359f5149f2342b66bee193e312ab858397d4dbe65518ba013784d13525a3d566"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/README-1280-light.png",
+    "sha256": "440c787dabfa38872e6e2042e18a7eb0434932077cd65c6c2fb6b6418f2be4f3"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/README-360-dark.png",
+    "sha256": "415813591b19e9ff2bbe421d07f4a8bde358f648e798de071a49dee729badae5"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/README-360-light.png",
+    "sha256": "c64151e9a4b135ddddbddbf40402e3ed1dadc88926a51927f262340742d90661"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/README-768-dark.png",
+    "sha256": "a33137679ed104d4648aaabd32b3916892e3927f4ad71b3eaf479db8e9721ff7"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/README-768-light.png",
+    "sha256": "48309dad93bc08fd4c485b5d8d9980f1a7fe0b298200a029256c019fd13b4aba"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/README-above-fold-dark.png",
+    "sha256": "611595d4400c5c3b6ff8c92b00ae0c77f18855b66680720965fb8b6a655fb92c"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/README-above-fold-light.png",
+    "sha256": "0916f658b3c24c854c16d9332c80c6a7a46491ebfab0fc1ca18b8b8a56b3fe29"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/README-zoom200.png",
+    "sha256": "f15c90c758a71988a1d7d6fec92d76c81dba2fedc0de57acd62e71e64a278ecf"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/application_README-1280-dark.png",
+    "sha256": "26db97355fdb76c5ab7234690c8e9d4fc53efde93de75b73ac7cde3993be79c5"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/application_README-1280-light.png",
+    "sha256": "26d298ff4189617e0d9d13cf655987fda522cfcbc37a905a9d9bbadd89d6ebeb"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/application_README-360-dark.png",
+    "sha256": "87b30ad07aa08e7179fcd75b59302fbf1fa11f90bbd5eaf4d957a52a22709755"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/application_README-360-light.png",
+    "sha256": "1a7d9f6235a82240ba1cfb705062bc6b842c75f776b741ff4b546f8755f79e44"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/application_README-768-dark.png",
+    "sha256": "ecf9c11d2d2e868b8990a025a81373f61168b7ea466215278f9633424af54e26"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/application_README-768-light.png",
+    "sha256": "1a44f6cca0c0cf07da22be73490fd5b8d0a25a23acfe0f2c49e8ede3f01bef33"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/application_README-zoom200.png",
+    "sha256": "380db2b8be639575e6df324e0c3efa1a4dce7349206703ade66e42ab97079fa1"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_README-1280-dark.png",
+    "sha256": "b5ffc4db0048b410cade0b52f07ff94abaea007095c9dd7d2411778674cd38b2"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_README-1280-light.png",
+    "sha256": "a05f29a43fcf0d59e90117021e085a120ca15e19a1e6ba2e629b3620c692fa05"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_README-360-dark.png",
+    "sha256": "be93c0f341dd791c6922c822b37b6bb103734fff7012bddfaad36786a09807f1"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_README-360-light.png",
+    "sha256": "a0c8fad4c1e93d521b446120409aaad46ffc0c5d639eb081fb47b69b0482d7e6"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_README-768-dark.png",
+    "sha256": "b40836069ee2be399eac10e82e9f411eab816fc1559b5a8e1451b21026715e27"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_README-768-light.png",
+    "sha256": "b187c356b854165b33bc1f4ff90ebbfdf73ba2375961254aacfcbc6eea56dfb7"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_README-zoom200.png",
+    "sha256": "8f7188cd855a5e112b3f1cc760bcb6fda8efff9039b39d753350483a627ef6d0"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_application-1280-dark.png",
+    "sha256": "a6570cb79c0178c2606fb3bb88c2d95c4fd0ce61ac9383a657a845b113b45ecb"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_application-1280-light.png",
+    "sha256": "6509dde5516f6d254b55e5d82694fc993dc62cfce75f904a191462ab871e2ba8"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_application-360-dark.png",
+    "sha256": "98322d64c21dbcaf746e6bc586b2b1a813ab35139bf6237d4fb873fdc9798138"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_application-360-light.png",
+    "sha256": "2f7fc27b9474a06416d1a0fdcf027860648bc2c2c637b38e629471b006690992"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_application-768-dark.png",
+    "sha256": "b45519e81fa7eba9fca03468d3d8ba9eb7479fcfebc86df9f92ec3d067ecd2f8"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_application-768-light.png",
+    "sha256": "68efaf97777fa3661f41ca75a63d09fbdba69f3fdacddb96370d541ba25b7554"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_application-zoom200.png",
+    "sha256": "2117c118fc477de89eb4c1c3a6a6eaa41b984c5db62f90ca459fd97972a42b43"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_contracts-1280-dark.png",
+    "sha256": "b187ad5532721b1251d56548604c42610e45ad8c0ad58c87fdfd1d64abdf628e"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_contracts-1280-light.png",
+    "sha256": "e0952691c1b543cb19261896eb75881638362464a07bff0578eecbade10ef240"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_contracts-360-dark.png",
+    "sha256": "fd5b30f18b06ab23cb38bd8bbd2a1787c27c28548f55b3640741b7e1abe729f9"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_contracts-360-light.png",
+    "sha256": "d2d1c697656c17e22cf14987a96bc03a8df3e25389935a978a3581c2ee3c9a52"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_contracts-768-dark.png",
+    "sha256": "381dc0e14a3b07d42d491169c301153202ba7a9ec180edecec5424738eacb173"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_contracts-768-light.png",
+    "sha256": "f576f8a98b5700d14164143ac484c027fdb1883ab930fa086a7439d65d6a522f"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_architecture_contracts-zoom200.png",
+    "sha256": "4f82176ad4cd21a61ab40ec20590fa012579963630ba6702eec8a57b0979250e"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_governance-1280-dark.png",
+    "sha256": "b7226ee8eaa1c5818c5103da92ed0c40fced086a5adbb6194db69fbffc5bfcd8"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_governance-1280-light.png",
+    "sha256": "2404720e886ec4be958674869c4ef09430e76cc3ea1b4716a0768d1f63f2b439"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_governance-360-dark.png",
+    "sha256": "4d963bae662f67199f28915bd6c9d2f225684551669bc45d2dcf920497f1a79a"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_governance-360-light.png",
+    "sha256": "614761cdf76fe659bdb36a43d5c90474ed1e480f9be2641ac9da0eca6de10558"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_governance-768-dark.png",
+    "sha256": "465f615be6f78a079356c836f46f5fab33bfcd8271c653e49efe28e5b5a1c35e"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_governance-768-light.png",
+    "sha256": "abae760a8b49809b18099af3f8f7f4967461e2fd250b50bab8f883d3e1d711f7"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_governance-zoom200.png",
+    "sha256": "bee847d7291657b14aef266a92e4ecaaad0ba95948805e1d8c550829d391f846"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_sharing-1280-dark.png",
+    "sha256": "1ab35c9cfbe174de06f75a928b4c45aa227e74dd7c3e128ff67c0419058909ae"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_sharing-1280-light.png",
+    "sha256": "9ecd3b1b4c1364b0871a26904f9ee441bc5c1dddf65159bf38c11d72d62b630d"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_sharing-360-dark.png",
+    "sha256": "e89118addadbd55f840ffc10452afad5af8aeac957cf8f1747726a150b0186dc"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_sharing-360-light.png",
+    "sha256": "f0b0c7f953834797cfd3f489e7e204d0fc3cb36f27674a0fbd7120ff1ffa777a"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_sharing-768-dark.png",
+    "sha256": "3e5a51e36eb0a7bda0a523409f106eb694ea6940e287a4cd48057405147f8491"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_sharing-768-light.png",
+    "sha256": "01c10ec25e4e54b046fe6bece93b269ba9175f93d843ff22e487bb47318f5f57"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/docs_development_sharing-zoom200.png",
+    "sha256": "836c1709926ae0617a2ba0a35da9c8d09522466511ac7f0c17e32cf9ecf02637"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-architecture-mermaid.png",
+    "sha256": "3d97fd0bf30f4e0cf2425260005a9cfb24a7a3e7143a7f206df23b4fb61c000f"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-architecture.png",
+    "sha256": "2415b86eba0ce39ccc95d45821e761237881670397d43ef637ef22b25c5a9bc6"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-documentation.png",
+    "sha256": "424119deb5ed85db70313ccec24000e5dd959df39b2a217d67e086c9c37206b2"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-execution.png",
+    "sha256": "ad5b18e7633070a0f568789fff681fcf7d4c4a0b7d94d3d0c057394f4973f89c"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-first-run.png",
+    "sha256": "c68f4a3925500ef9bbea5b9910362ea0b5a4d7cb1906e61bdf819294900f9af8"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-governance.png",
+    "sha256": "bb372833fbdb6f4ec5228226fad75980e9a1d1f9e64053050cbf4bd37a285b6d"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-ox-overview.png",
+    "sha256": "062a7a58c66d60cac90bf47644f52440866d5748826dc446f1e2c56951e73d2c"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-plugin-protocol.png",
+    "sha256": "9d501c1b1741600ddcdf5b532bc63bbbb26fc1ec2a70598e7962f43403400acc"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-runtime-states.png",
+    "sha256": "2ff9af698dd6ebe2a4a6c401851fca18422b23f6aae82305eabe9c1a27a6b592"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-sharing.png",
+    "sha256": "a6dc9faa7e4e970c09bfed10675b63fdc5fd34c788a656e3d3395e8320ea3be9"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/render/figure-task-cycle.png",
+    "sha256": "bfe7fdd996704702d7a6bf912c1cd99dcd57de9269d1e436c43add4f3749cc32"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/report.md",
+    "sha256": "053e74993ede11f51f05ebd8743effde7de3d49827a311786a8765b3b222b780"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/result.md",
+    "sha256": "d67febd07a5357e14b62faea8a6f7b1ca993e27edfbea469636b17f833fe69cd"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/revision.json",
+    "sha256": "43dc261b2e556107b59a0e04a3781f6916617831c4609a2bf07eb95cbb53aa8b"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/test-1.log",
+    "sha256": "350acc56898bf122416ff7195c0752f2738def6231dcfc84d15b4a3f9287625b"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/test-2.log",
+    "sha256": "88073a212ee0ade64d65d419b78cace12c467142d2920e5acaf72e580553880c"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/test-3.log",
+    "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff"
+  },
+  {
+    "path": "docs/validation/documentation-visuals-20261104/visual-review.json",
+    "sha256": "e0a70703a15401949bd608be4711b7e998c79d10d87276cf8795234cbba403a3"
+  },
+  {
+    "path": "sdd/features/readme-skill-integration/converge.md",
+    "sha256": "972cd0b88e69a4c7100ca77e3d82cfdf27293df353009de031fda06233a7af7f"
+  },
+  {
+    "path": "sdd/features/readme-skill-integration/evidence.json",
+    "sha256": "4597cc52400b65ef20548e42c770e8e16c097538603ba15970e0ad509f0cf9d3"
+  },
+  {
+    "path": "sdd/features/readme-skill-integration/plan.md",
+    "sha256": "9530c9c0423b86173706e799da23a0132050c0aa32351c4f1656c362b76b5351"
+  },
+  {
+    "path": "sdd/features/readme-skill-integration/spec.md",
+    "sha256": "7bbea9cd601871decab32273d0d033addf2dff64da92a5bab7d0e22ab0c0742b"
+  },
+  {
+    "path": "sdd/features/readme-skill-integration/tasks.md",
+    "sha256": "53409ce30dc70452a96d518b40b462fc13a112346fd345b9d1e9e16e07c5f986"
+  },
+  {
+    "path": "sdd/features/readme-skill-integration/traceability.json",
+    "sha256": "699662640bfa906f0e8040a956b4bb31b75c44610e5ee1d1214287c195915b8a"
+  },
+  {
+    "path": "tools/governance/scripts/readme_revision.py",
+    "sha256": "c27c60ff0752cf1915b4d0d6bd1b93224b3e00608a4409645d30b5356083d025"
+  },
+  {
+    "path": "tools/governance/scripts/skill_revision.py",
+    "sha256": "1a7c29e200ac37853276ce8f07e03bf10294a2310cca00427989334de411fbab"
+  },
+  {
+    "path": "tools/governance/tests/test_readme_skill_integration.py",
+    "sha256": "a3ed2f23aa06eb3bbccf84785ca814e2cbf6a001ddb6cb7cbefc88076e3337e8"
+  }
+]

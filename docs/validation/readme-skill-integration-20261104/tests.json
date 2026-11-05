@@ -1,0 +1,270 @@
+{
+  "group": "all",
+  "discovered": 52,
+  "executed": 52,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "tests": [
+    {
+      "test": "test_document_succession.DocumentSuccessionTests.test_corrupt_missing_and_escaping_predecessor_fail",
+      "group": "fast",
+      "seconds": 0.003646583005320281
+    },
+    {
+      "test": "test_document_succession.DocumentSuccessionTests.test_recovers_exact_original_and_rejects_unknown_current",
+      "group": "fast",
+      "seconds": 0.00912067003082484
+    },
+    {
+      "test": "test_document_succession.DocumentSuccessionTests.test_scope_duplicate_and_invalid_digest_fail",
+      "group": "fast",
+      "seconds": 0.003341513976920396
+    },
+    {
+      "test": "test_document_succession.DocumentSuccessionTests.test_unrelated_file_is_not_rewritten",
+      "group": "fast",
+      "seconds": 0.0027403029962442815
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_archive_content_and_names",
+      "group": "fast",
+      "seconds": 0.0015834809746593237
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_archive_traversal_and_symlink",
+      "group": "fast",
+      "seconds": 0.0003564209910109639
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_bridge_identity_and_unconfigured",
+      "group": "fast",
+      "seconds": 0.0017112409695982933
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_clean_export_and_recovery",
+      "group": "integration",
+      "seconds": 4.143546795996372
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_declared_criteria_ignore_examples",
+      "group": "fast",
+      "seconds": 0.0005355209577828646
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_directory_links_stay_within_root",
+      "group": "integration",
+      "seconds": 12.20483373501338
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_duplicate_criterion_rejected",
+      "group": "fast",
+      "seconds": 0.00019723002333194017
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_duplicate_json_rejected",
+      "group": "fast",
+      "seconds": 0.00028950098203495145
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_english_and_legacy_states_enforce_the_same_evidence_gates",
+      "group": "fast",
+      "seconds": 0.0006381500279530883
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_freshness_selective_invalidation",
+      "group": "fast",
+      "seconds": 0.0005807810230180621
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_governance_package_not_product_release",
+      "group": "fast",
+      "seconds": 0.0025244730059057474
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_historical_files_remain_immutable",
+      "group": "integration",
+      "seconds": 7.473259683989454
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_implementation_phase_consistency",
+      "group": "integration",
+      "seconds": 0.6700017640250735
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_independent_copy_and_corrupt_resource",
+      "group": "integration",
+      "seconds": 88.13823868101463
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_isolation_oracle_rejects_source_access",
+      "group": "fast",
+      "seconds": 0.04318190598860383
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_missing_artifact_not_approved",
+      "group": "fast",
+      "seconds": 0.00017000996740534902
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_missing_evidence_artifact",
+      "group": "fast",
+      "seconds": 0.00024982099421322346
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_normative_hash_requires_review",
+      "group": "integration",
+      "seconds": 8.385499675991014
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_path_escape_and_symlink",
+      "group": "fast",
+      "seconds": 0.0005536600365303457
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_product_feature_isolated_from_skill_acceptance",
+      "group": "integration",
+      "seconds": 8.517417636991013
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_product_records_stay_out_of_governance_export",
+      "group": "fast",
+      "seconds": 0.31692124699475244
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_relocated_contracts_remain_protected",
+      "group": "integration",
+      "seconds": 7.517578870989382
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_specialized_frontmatter_preserves_original_content",
+      "group": "integration",
+      "seconds": 42.58569507999346
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_technical_pending_and_history",
+      "group": "fast",
+      "seconds": 0.24005619599483907
+    },
+    {
+      "test": "test_governance.GovernanceTests.test_translation_predecessor_is_authenticated",
+      "group": "integration",
+      "seconds": 0.6608305440167896
+    },
+    {
+      "test": "test_readme_skill_integration.ReadmeDistributionTests.test_independent_distribution_retains_import_and_preserved_originals",
+      "group": "integration",
+      "seconds": 8.436586261028424
+    },
+    {
+      "test": "test_readme_skill_integration.ReadmeImportTests.test_every_registered_current_mutation_or_deletion_is_rejected",
+      "group": "fast",
+      "seconds": 0.05954038299387321
+    },
+    {
+      "test": "test_readme_skill_integration.ReadmeImportTests.test_missing_corrupt_escaping_or_symlink_predecessor_is_rejected",
+      "group": "fast",
+      "seconds": 0.008456608979031444
+    },
+    {
+      "test": "test_readme_skill_integration.ReadmeImportTests.test_new_resource_and_metadata_bytes_are_actually_protected",
+      "group": "fast",
+      "seconds": 0.0050597559893503785
+    },
+    {
+      "test": "test_readme_skill_integration.ReadmeImportTests.test_registered_files_recover_exact_predecessors",
+      "group": "fast",
+      "seconds": 0.04759159998502582
+    },
+    {
+      "test": "test_readme_skill_integration.ReadmeImportTests.test_scope_decision_and_digest_mutations_are_rejected",
+      "group": "fast",
+      "seconds": 0.01427148497896269
+    },
+    {
+      "test": "test_reconciliation.GitBoundaryTests.test_archived_git_metadata_rejected_recursively",
+      "group": "fast",
+      "seconds": 0.00035270099760964513
+    },
+    {
+      "test": "test_reconciliation.GitBoundaryTests.test_nested_git_directories_and_worktree_files_excluded",
+      "group": "fast",
+      "seconds": 0.004850254976190627
+    },
+    {
+      "test": "test_reconciliation.SuccessionTests.test_current_original_and_metadata_integrity",
+      "group": "integration",
+      "seconds": 6.04168445803225
+    },
+    {
+      "test": "test_reconciliation.SuccessionTests.test_profile_still_rejects_unauthorized_skills_and_bridges",
+      "group": "integration",
+      "seconds": 7.8409798860084265
+    },
+    {
+      "test": "test_reconciliation.SuccessionTests.test_succession_predecessor_and_scope_fail_closed",
+      "group": "integration",
+      "seconds": 0.6264392170123756
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_all_states_and_legacy_aliases",
+      "group": "fast",
+      "seconds": 0.019823290989734232
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_bare_status_or_authoring_review_never_approves",
+      "group": "fast",
+      "seconds": 0.01856444898294285
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_missing_files_escape_and_duplicate_references",
+      "group": "fast",
+      "seconds": 0.017482078983448446
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_partial_states_require_review_and_scope",
+      "group": "fast",
+      "seconds": 0.006836716958787292
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_review_cannot_borrow_contract_binding_from_execution",
+      "group": "fast",
+      "seconds": 0.002133561996743083
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_stale_artifacts_and_each_bound_input_rejected",
+      "group": "fast",
+      "seconds": 0.04883899202104658
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_symlink_alias_does_not_hide_authoring_substitution",
+      "group": "fast",
+      "seconds": 0.0026078730006702244
+    },
+    {
+      "test": "test_technical_acceptance.TechnicalAcceptanceTests.test_unrelated_change_does_not_invalidate_acceptance",
+      "group": "fast",
+      "seconds": 0.00307995401090011
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_corruption_and_deletion_fail_for_new_and_existing_metadata",
+      "group": "integration",
+      "seconds": 38.53444628295256
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_invalid_revision_records_rejected",
+      "group": "integration",
+      "seconds": 0.6975475130020641
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_revision_matches_current_files_and_preserves_prior_revisions",
+      "group": "integration",
+      "seconds": 4.541364478995092
+    },
+    {
+      "test": "test_ui_metadata_inventory.MetadataInventoryTests.test_unrelated_preservation_still_enforced",
+      "group": "integration",
+      "seconds": 8.42672806000337
+    }
+  ]
+}

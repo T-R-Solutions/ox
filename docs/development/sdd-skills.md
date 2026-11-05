@@ -31,7 +31,7 @@ continuar as partes independentes. Nenhum desses estados é aceitação ou grant
 Forneça à skill os IDs REQ/AC, decisão/risco, tarefa, inputs e limites autorizados
 pertinentes. Integre o resultado ao artefato que o possui: comportamento na spec,
 alternativa no plan, trabalho nas tasks, observação na evidence/converge. Evite
-repetir constituição ou workflow dentro de cada SKILL.md. As 29 pontes atuais já
+repetir constituição ou workflow dentro de cada SKILL.md. As 31 pontes atuais já
 mapeiam essas contribuições; não exigem que toda competência use SDD isoladamente.
 
 Exemplo local: corrigir um link com destino conhecido requer inspeção do destino,
@@ -57,3 +57,13 @@ As nove especializações usam apenas name e description no frontmatter por pref
 do projeto. Para registrar caminho/versão no plan, use caminho e SHA-256 do conteúdo
 consultado (incluindo recursos utilizados), não metadata.version. As versões anteriores
 continuam nas baselines e revisões históricas; bridge_version identifica a ponte.
+
+## README lifecycle versus technical documentation
+
+Use `readme-lifecycle-engineering` for a root/package README entry path, onboarding,
+documentation splitting/navigation or drift with current behavior. Use
+`technical-documentation` for standalone tutorials, manuals, references and
+conceptual explanations. Select one primary skill according to the reader's task;
+consult another only for a distinct unresolved question. The new bridge is
+[configured here](../../sdd/chain/readme-lifecycle-engineering.md). Its imported
+research record is provenance, not Ox product authority or a new effectiveness test.

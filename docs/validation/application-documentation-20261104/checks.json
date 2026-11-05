@@ -1,0 +1,21 @@
+{
+  "structure": {
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--structure-only"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/application-documentation-20261104/structure.log"
+  },
+  "governance": {
+    "command": [
+      "python3",
+      "tools/governance/scripts/check-ox.py"
+    ],
+    "exit_code": 1,
+    "log": "docs/validation/application-documentation-20261104/governance.log"
+  }
+}

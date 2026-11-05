@@ -1,0 +1,35 @@
+[
+  {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/governance/tests",
+      "-p",
+      "test_readme_skill_integration.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/documentation-visuals-20261104/test-1.log"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/governance/scripts/run-tests.py",
+      "--group",
+      "fast"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/documentation-visuals-20261104/test-2.log"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/governance/scripts/verify-maintenance.py"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/documentation-visuals-20261104/test-3.log"
+  }
+]

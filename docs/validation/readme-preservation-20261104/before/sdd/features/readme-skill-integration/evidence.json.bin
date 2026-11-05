@@ -1,0 +1,409 @@
+{
+  "schema_version": 2,
+  "environment": "Local Ox workspace; Python stdlib governance; supplied ZIP; no external research or application execution in this integration.",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Complete portable import and bridge",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-README-INTEGRATION",
+        "E-DOCUMENTATION-VISUALS-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Profile and consumer agreement",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-README-INTEGRATION",
+        "E-DOCUMENTATION-VISUALS-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Exact preservation and denied mutations",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-README-INTEGRATION",
+        "E-DOCUMENTATION-VISUALS-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Current navigation and bounded checks",
+      "status": "UNVERIFIED",
+      "evidence_ids": [
+        "E-README-INTEGRATION",
+        "E-DOCUMENTATION-VISUALS-REVIEW"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-README-INTEGRATION",
+      "kind": "inspection",
+      "command_or_method": "Exact ZIP member/installation mapping, source adaptation/selection review, skill validation, focused denied-mutation tests, independent export and full governance suite; current reader/status review and inherited-input comparison.",
+      "observed_result": "AC-01..04 supported in bounded integration: 52 complete-suite tests, no failures/errors/skips; current profile/bridge/resource/preservation behavior checked. External effectiveness/runtime behavior not inferred.",
+      "artifact": "docs/validation/readme-skill-integration-20261104/report.md",
+      "sha256": "156cba6b156734d4d8757c6d011dc162ccac6dcfe114b88eee25b0da93412857",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "6161cee65caa6a19ae61cba0c56cc5751d90c6fe54c42a07c0c72a2ee11f05b7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/SKILL.md",
+          "sha256": "4a68d48bfa52160ab3cacbe7f04da1d7faadd6c76cde126617cbd945969473c9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/agents/openai.yaml",
+          "sha256": "a284c53da7d7f26fea4670c2d5725eeb9f1f9b790fe949093705812fa6951e38",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/references/consumer-boundaries.md",
+          "sha256": "ca0a78337e56c457769f424c59dae9cc986295a8fb6f8bf6b0184cfa551c555b",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/references/documentation-topology-and-diataxis.md",
+          "sha256": "5960ad633484f605aded2ba3dce4143eb7175d26cf25991c63dc010e5649c343",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/references/implementation-details.md",
+          "sha256": "924ebb7dd8825f59b6b84a655747e7806780cf761bc16b127ab5178ce7d2a7b6",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/references/maintenance-and-change-triggers.md",
+          "sha256": "f9f36ff8a4bbac9aee4dd6a37d35ecaea961c19bc3a1e87d5101b6e3963d900e",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/references/readme-scope-and-content.md",
+          "sha256": "808c804407c11765788b79b973eb026fa7998be3f68a3634bf4d2b6e86fa43c2",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/references/routing-and-oracles.md",
+          "sha256": "6e54865abff9da80fdb199c9489a3c0ef8dabcf0e2835d79a985d2f4be8c55d4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/references/scientific-evidence-and-limits.md",
+          "sha256": "acda6e935b20818343f78025777b1c9c43a1cf3e9a11e27f9129e22c3206a72d",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/references/sources-and-decisions.md",
+          "sha256": "e6e741f4ef013ffd000cb813b418a40f1563c3dd62ad1584a1fd6a3f72e668ef",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/readme-lifecycle-engineering/references/verification-and-acceptance.md",
+          "sha256": "a6d67cb3bd6d2915a3b8ae142bd7c59e5f974f06ba525ab9557b9fbd2b980336",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/application-documentation-20261104/before/README.md.bin",
+          "sha256": "1ef06fa5c02a643a6069c354d84dfa50c61d10ac44926fc4d89619a934f31879",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/readme-skill-integration.md",
+          "sha256": "f8f53eba58ebf0e9e0b7892ab41dbe880806b31bccfe85d3090d31389c613e1d",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "6122b56781fd05c7779e7473022c79103aeaad5518b1f237a81e1b64b6ade425",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/profile-revisions.json",
+          "sha256": "30f821a9adf357116a8d3b53114a0074da099be735446a79757899d56df972dc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before.json",
+          "sha256": "635d91d9c7503e62928a6331649d05cfa441ee23807e7190786cbb58c006aaa4",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/check-first.log",
+          "sha256": "e8bd502cfdabfb0c09c14acc87213b152dbf9493a00f32015a9dfcbfbae4f9ac",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/consulted-skills.json",
+          "sha256": "10c7a166db51b2b467d9dfc56653db8392449979fb688bdaca6b3f1e8529579f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/finalize.py",
+          "sha256": "98331c0967bfd3732fd9ceb2723467464ea14382ab02b40cd51d1e3bb71df907",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/impact.json",
+          "sha256": "fe43c5c7357e99168bf3350d7c51db98a66fb1c878bf2226e325b590e310f6bc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/import-map.json",
+          "sha256": "9e74e0e93898ffa8a83420ba0aab193337cc693dbf9f340718b1b2f90afc293e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/import-tests-after.log",
+          "sha256": "01e3c04e67f1802ea6419a3fcf4321f84361b0421191748df0a8362c56e9e3f0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/import-tests-first.log",
+          "sha256": "a2a0a759e16e6728cbd2a4f45cb94153aad1db9ab8fb3d2bdcdeab8337b7375e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/inventory-review.json",
+          "sha256": "22623de17f084ce48c745954d0b724db60ecea93b6042842aaa5ec19f505208f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/maintenance.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/package-notes.md.bin",
+          "sha256": "d61c568969bbfe88601e35224b2859b83622d7127acaeaa6b271e562c3422f7b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/package.json",
+          "sha256": "fd2b2e34304a66807b745f95faff5da62c8044abdb43db4d4b90cf82b75e57e3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/product-input-review.json",
+          "sha256": "6e4a501630afd0b48a13f14bb3a339f33169bb5ca1923835923f447cd122e478",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/reconcile.py",
+          "sha256": "6fa97e7aec86f33391673af0b422e8ebae5c5124de7a5e2e5b62b5474cdd2759",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/report.md",
+          "sha256": "156cba6b156734d4d8757c6d011dc162ccac6dcfe114b88eee25b0da93412857",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/shared-input-review.md",
+          "sha256": "317f66f9089cdad0ec12524cfaf5d1fd1a9a3aa310e94562dddea655a9c784da",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/skill-validation.log",
+          "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/tests.json",
+          "sha256": "fe81c3029bf40d00b91dcb0059c45d76b2f8e680e2e3ceca66f48805f76808fe",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/tests.log",
+          "sha256": "ce4d92e290dae1d2eeadb196086de1390432137d14be14afd08fd0d5c6636796",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "c573f472c39f89270a1c405919be1079c165aba77b7223a03fd13d2248544ab9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/readme-lifecycle-engineering.md",
+          "sha256": "c6ab5f75b420fa2107d091289b781a6ad85ffe3a68684a6d8f263f563f51d9a3",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/plan.md",
+          "sha256": "c512d185925d246de8899c707bd9fb78b1281bb01381d96b7243a8e7854744d3",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/spec.md",
+          "sha256": "e3cd6401ebd41dea30cda641a791e5e48560d23dff765989ab0cd8ded6f0ca70",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/tasks.md",
+          "sha256": "09c30e654fdf5da21fdb798947a180781258e41db8dd06587a730624b696f8f3",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/traceability.json",
+          "sha256": "1ac65ea1076a8dc7ab1a110daa1a26b09a9676466b45f1d5cdab271dff82f221",
+          "role": "other"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "3e9453a7b55b1896e77a9d2cc951cbe7bc9b4a8aec9f943dfe2f1de219d83435",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "5a6a68c5cb41a268d7bedafaa81c4583b60cd87f25603a79d2f4a80f46db72cc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "15b4ad904e3d1c950446ded93c7bb85bea5731198c18a56153f1667f8c88bda3",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/skill_revision.py",
+          "sha256": "692cb74cb6a25dde4eca0309616fa3acaf27acc17af0732328108eefd3af1f8a",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_readme_skill_integration.py",
+          "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/inputs.json",
+          "sha256": "b7afc15fc1a57e88e3c50b92a9fbe81ec96f2bf7922e5b3e88b9b61cbff6582b",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTATION-VISUALS-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Source/contract delta inspection and five new exact-preservation/negative-control tests; old runtime observations are not rerun.",
+      "observed_result": "The source-grounded documentation contract is extended with renderer-aware visual gates. Exact scoped successor recovery passes independent-copy and denial tests. Product/runtime inputs and old acceptance budgets are unchanged; inherited README guard failure remains explicit.",
+      "artifact": "docs/validation/technical-documentation-visuals-20261104/feature-reviews/readme-skill-integration.md",
+      "sha256": "47cf23ca169a54b70c4f5b77862be61f1aadd7c8bba1aa7869bed3af0a285bd7",
+      "inputs": [
+        {
+          "path": ".codex/skills/technical-documentation/SKILL.md",
+          "sha256": "f128a9f1c328151c05f6f4364b2de4553dd1eefd24f7028a1057daa17c408483",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/evaluation-cases.md",
+          "sha256": "5180d7ef33afb21a29a939f4101b4372eac0d6e5e0cfda1af334de2004376fc9",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/media-and-data.md",
+          "sha256": "a33f448a7e21931c538d1fd71bbc125d5e21c5d1846d7274d503f2d69eaf52a1",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/mermaid.md",
+          "sha256": "99436772b89bfb4678b0f2a7671d43cfba1ec1ed39eda0bfb4e0a6ef8e1b4d34",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/visual-quality.md",
+          "sha256": "e08f066fd27749df837ee10dbf18d6048a63216bd7e39bf5e1cd4dde97724da1",
+          "role": "contract"
+        },
+        {
+          "path": "docs/decisions/technical-documentation-visuals.md",
+          "sha256": "2ec19281059c07cc5e89a7cc0cce8fba51441892a4012ccf9ac3387901673c71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/sdd/features/readme-skill-integration/evidence.json.bin",
+          "sha256": "5b26eb48ffc74febdf17729645112c217d313dcb6c59ca5d7820edbeaf65faa6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/preservation-tests.log",
+          "sha256": "0ae42948e4a3b3a1cb46f98c429d553974feea4fb4615de6684edd9b70ae73c2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/revision.json",
+          "sha256": "4b8722c80f7e057f1c424682c612b0e8a41d137214569f969837140f25905e00",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/technical-documentation.md",
+          "sha256": "3ebc0979693730d8e4ae88e75e171427c71f3b9deb02a8b23d5f8e9053f8f5b5",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/plan.md",
+          "sha256": "c512d185925d246de8899c707bd9fb78b1281bb01381d96b7243a8e7854744d3",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/spec.md",
+          "sha256": "e3cd6401ebd41dea30cda641a791e5e48560d23dff765989ab0cd8ded6f0ca70",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/tasks.md",
+          "sha256": "09c30e654fdf5da21fdb798947a180781258e41db8dd06587a730624b696f8f3",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/traceability.json",
+          "sha256": "1ac65ea1076a8dc7ab1a110daa1a26b09a9676466b45f1d5cdab271dff82f221",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "d3a7726cc92eba7f258ca57969bd09cb423aec0efb1d28258cd7a0bb3bd7b1e2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/documentation_revision.py",
+          "sha256": "feeb53469f58dd40343cb3d693baf2a0db9afc1ce2a48c32f6f0336d9f28a27b",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "b0a84a13c773e295149cc47263f3589f549114527f23f54b8f39d4e9dbda118e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_documentation_revision.py",
+          "sha256": "68fa6794a27a6a662dd52342453a7d371f4f7f6f9959880dd4f8f524a6c19cb9",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Structural and integration tests do not establish improved reader usability or product runtime behavior.",
+    "2026-11-04 application-documentation successor: the old README input is preserved by exact bytes at docs/validation/application-documentation-20261104/before/README.md.bin. AC-04 is UNVERIFIED for the new root README; the bounded skill-integration current-byte guard still requires its registered revision. No historical result or digest was renewed. See application-documentation-20261104/report.md for the independent current documentary review.",
+    "2026-11-04 visual-documentation method successor: exact historical inputs are preserved without digest renewal; a new bounded method/consumer inspection is separate from prior execution observations. Inherited README current-byte guard failure is not waived. See docs/validation/technical-documentation-visuals-20261104/."
+  ]
+}

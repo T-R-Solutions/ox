@@ -1,0 +1,27 @@
+--- tools/governance/scripts/check-ox.py (before)
++++ tools/governance/scripts/check-ox.py (current)
+@@ -15,6 +15,7 @@
+                                 preservation_digest, succession_records, succession_errors)
+ from technical_acceptance import technical_errors
+ from skill_revision import records as integration_records
++from documentation_revision import records as visual_records, errors as visual_errors
+ 
+ 
+ def validator(root):
+@@ -161,6 +162,7 @@
+     read = V.strict_json
+     errors.extend(phase_errors(root))
+     errors.extend(succession_errors(root))
++    errors.extend(visual_errors(root))
+     metadata = metadata_revision(root, read)
+     for relative, row in metadata.items():
+         target = root/relative
+@@ -204,7 +206,7 @@
+             errors.append('Invalid copy provenance: '+rel)
+     for name in list(profile['general'])+list(profile['conditional']):
+         for path in (root/'.codex/skills'/name).rglob('*'):
+-            if path.is_file() and path.relative_to(root).as_posix() not in copied_paths | metadata.keys() | succession_records(root).keys() | integration_records(root).keys():
++            if path.is_file() and path.relative_to(root).as_posix() not in copied_paths | metadata.keys() | succession_records(root).keys() | integration_records(root).keys() | visual_records(root).keys():
+                 errors.append('Unexpected copied resource: '+str(path.relative_to(root)))
+     with tarfile.open(root/'docs/validation/adoption-baseline/copied-before-adaptation.tar.gz') as archive:
+         for row in copies:

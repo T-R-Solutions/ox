@@ -1,0 +1,21 @@
+{
+  "server_command": [
+    "Xwayland",
+    "-displayfd",
+    "4",
+    "-fullscreen",
+    "-geometry",
+    "1800x1200",
+    "-nolisten",
+    "tcp",
+    "-shm"
+  ],
+  "display": ":2",
+  "test_command": [
+    "/tmp/ox-consumer-gui-tests",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "exit": 0,
+  "server_exit": 0
+}

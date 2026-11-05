@@ -1,0 +1,11 @@
+# Criterion review: tool-output-engineering AC-03
+
+Truncation is indicated with the location of complete raw output; oracle: output exceeding the limit.
+
+APPROVED in the following evaluated scope: Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.
+
+Observed: output_ac03_truncation: over-limit output produces a bounded display, TRUNCATED marker and actual complete raw path; existing raw file cannot be overwritten.
+
+Method: inspect the independent assertions and concrete implementation, execute commands captured in replay/receipt.json or environment.json/gui-02/result.json, and inspect their full logs. Expected values are independently specified fixture values; exit zero alone is insufficient. The original criterion and skill contracts are unchanged.
+
+Consumer: tools/governance/consumers/models.rs; oracle: tools/governance/consumers/model_tests.rs. Broader contracts/exclusions: tools/governance/consumers/README.md. All prior envelopes are byte-preserved in previous/. This does not accept a production Ox subsystem or infer new agent effectiveness.

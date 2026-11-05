@@ -1,0 +1,24 @@
+# Plan: product-bootstrap
+
+Authorities read: AGENTS, constitution, workflow/evidence, context and transition/layout/open-questions ADRs.
+Full route. No operational Git; existing files preserved through byte comparison.
+
+D-01 / R-01: all REQ-01 through REQ-13 use an explicit workspace, small contracts and proportionate validation. Risk: skeleton mistaken for operation. Cargo oracles, contract inspection and separate graphical execution. Revisit when implementing capabilities.
+D-02: Iced 0.14.0, edition 2024, stable toolchain by explicit maintainer instruction (observed 1.99.1); conservative MSRV 1.99 (deliberate floor for this first delivery, not a claim of technical minimum). Tiny-skia + X11 + Wayland + fira-sans + thread-pool (required to compile Iced), without Tokio or an additional runtime. Confirm resolution/build. The wgpu alternative is deferred because this window needs no GPU.
+D-03: no persistent entities in F0; do not introduce UUID or serde without a consumer. Plugins use name and version; IPC transport remains unselected.
+D-04: expandable foundation details are actual UI interaction; they do not simulate agent execution. Exit returns an iced::exit task; native closing uses default behavior.
+R-02: the maintainer initially confirmed Linux x86_64. Windows/macOS are unsupported in this slice. Graphical execution still requires independent observation.
+
+## Skills consulted and used
+
+Primary .codex/skills/rust/SKILL.md: ownership, manifests, public APIs and test discovery. Supporting .codex/skills/iced-engineering/SKILL.md: Message/update/view and exit effect. Bridges sdd/chain/rust.md and sdd/chain/iced-engineering.md, bridge_version 1. SHA-256 identities in this feature's skills.json file (entries without semantic versions). Contribution: pure state, external modules, effects outside view and distinction between state and window tests. No delegation.
+
+## Execution
+
+T001 specify; T002 workspace/contracts; T003 GUI; T004 validate; T005 evidence. Test repeated toggles, policy without a grant, incompatible plugin, raw bytes and failures. Do not create fake processes, databases, IPC or executors. Logs in docs/validation/product-bootstrap. No public distribution changes.
+
+## Decision outcomes
+
+Linux x86_64, stable and configuration described in the product-bootstrap ADR. X11/XWayland exercised; native Wayland only compiled. The graphical test uses x11rb 0.13.2 with xtest only as a dev-dependency; this is not product IPC. The harness restores pointer position after clicks and terminates its own children during cleanup. It captures only its own window.
+Dependencies: Iced declares MIT and rust-version 1.88; the first-party 1.99 floor is conservative, not an inferred technical minimum. Linux inventory in dependency-review.json; winit/softbuffer and platform libraries contain unsafe/FFI. Review limited to manifests and scanning, without claiming a full audit or distribution authorization.
+Authority changes invalidate historical E-HOLDER-REVIEW observations. Previous bytes and approvals are preserved in docs/validation/bootstrap-governance/previous; invalidation.json records the exact pending criteria. Current tests do not automatically promote those criteria.

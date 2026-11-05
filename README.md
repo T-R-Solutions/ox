@@ -1,119 +1,164 @@
-# Ox — fundação sob SDD
+# Ox
 
-**Estado do projeto:** fase `implementation-foundation`, aplicativo `bootstrap-implemented`.
-O workspace Rust/Iced em `application/` contém 16 crates e um shell desktop mínimo.
-A baseline histórica era `not-yet-implemented`. Evidências atuais e lacunas estão
-em `sdd/features/product-bootstrap/converge.md`; F0 inteira não está concluída.
+**Uma fundação desktop para coordenar tarefas e agentes em projetos locais.**
 
-Autoridades: [constituição](docs/constitution.md), [AGENTS](AGENTS.md),
-[contexto](sdd/project.md), [workflow](sdd/workflow.md) e
-[ADR de transição](docs/decisions/implementation-transition.md).
-Os três estudos externos continuam fora da distribuição e das dependências de validação.
+![Ox: workspace local, execução supervisionada e verificação explícita](docs/assets/ox-overview.svg)
 
-## Navegação
+[Primeiro uso](#primeiro-uso) · [Aplicação em imagens](#aplicação-em-imagens) ·
+[O que está disponível](#o-que-está-disponível) · [Documentação](#documentação) ·
+[Desenvolvimento](#desenvolvimento)
 
-- [Catálogo](.codex/skills/README.md): 29 skills (17 gerais, 3 condicionais, 9 especializações), com [perfil versionado](config/governance/profile.json) e [29 pontes](sdd/chain/README.md).
-- [Workflow 1.3.0](sdd/workflow.md), [evidências schema 2](sdd/evidence.md) e [features](sdd/features/README.md).
-- [Arquitetura prevista](docs/architecture/context.md), [pendências](docs/decisions/open-questions.md) e [fronteiras de confiança](docs/security/trust-boundaries.md).
-- [Decisão e mapeamento da migração](docs/decisions/governance-externalization.md), [cobertura local](docs/validation/normative-coverage.md) e [relatório histórico](docs/validation/report.md) e [transição atual](docs/validation/implementation-transition/summary.md).
-- [Proveniência](docs/structure/files.json) e baseline `docs/validation/adoption-baseline/copied-before-adaptation.tar.gz`: conservam cópias da biblioteca/SDD. Origens são rótulos históricos, sem acesso externo.
+## Conheça o projeto
 
-## Consulta explícita
+O Ox é **agent-first, local-first e extensível**. A direção do produto conecta
+agentes, contexto de código, plugins e evidências sob controle do usuário.
+Hoje, a entrega executável é uma **tarefa local controlada**, com interface Iced,
+supervisão de processo e verificação independente do artefato.
 
-Peça ao agente: “Leia .codex/skills/plugin-protocol-engineering/SKILL.md para revisar este contrato”. Para retomar: “Leia sdd/project.md e sdd/workflow.md e retome sdd/features/<nome>”. São instruções de conversa. Disponibilidade não ativa nem instala skills. Escolha uma primária pertinente e auxiliares somente para perguntas distintas. Não carregar a biblioteca inteira.
+> **Estado da entrega:** versão interna **0.1.0**, fase `implementation-foundation`,
+> aplicativo `bootstrap-implemented`. F0 foi aceito no corpus local Linux x86_64
+> adotado, com X11 e Wayland avaliados separadamente. A aprovação tem os
+> [limites registrados](docs/validation/f0-resumption-20261103/report.md).
 
-distributed-systems é condicional a garantias entre falhas independentes; engineering-productivity à avaliação de fluxos/ferramentas; prompt à autoria de prompts. gleam, kotlin e postgresql não estão no perfil.
+### Aplicação em imagens
 
-## Organização do repositório
+[![Janela real do Ox com workspace validado, ações de execução e resultado APPROVED](docs/assets/ox-approved.png)](docs/assets/ox-approved.png)
 
-- `application/`: workspace Cargo virtual, 16 crates, lockfile único e binário `ox`.
-  Fontes em `application/crates/<crate>/src/`; testes externos em
-  `application/crates/<crate>/tests/`. Não há `application/src/` ou `application/tests/`.
-- `tools/governance/scripts/`: validadores, runner e empacotador Python locais.
-- `tools/governance/tests/`: testes dessas ferramentas; dados de avaliação em `fixtures/`.
-- `config/governance/`: perfil vigente da biblioteca e cobertura normativa.
-- `docs/`, `sdd/` e `.codex/skills/`: documentação, processo e biblioteca.
+*Captura real da fundação: tarefa correta após verificação. Registro Wayland do
+corpus F0 de 03/11/2026, reutilizado sem edição; não é mockup nem nova execução.*
+[Origem e licença dos visuais](docs/assets/README.md).
 
-A [ADR de organização](docs/decisions/governance-layout.md) registra os caminhos
-atuais e a compatibilidade histórica. O validador original continua em `sdd/tools/`.
+### O que está disponível
 
-## Verificação da governança e skills
+| Área | Entrega atual | Limite |
+| --- | --- | --- |
+| Desktop | Janela Iced, teclado, workspace e estados | Uma operação por vez |
+| Tarefa local | Correta, incorreta, falha, timeout e cancelamento | Fixture determinística, sem agente de IA |
+| Supervisão | Processo filho direto e eventos por tentativa | Sem sandbox ou captura de stdout/stderr |
+| Verificação | Oráculo, snapshots, histórico e invalidação | Histórico em memória; atualização manual |
+| Plugins | Host Unix com protocolo textual 1.0 e grant de echo | API independente da interface |
+| Fundação | Workspace com 16 crates e contratos de domínio | Contratos não são motores completos |
 
-Na raiz do Ox, Python 3.11+ e stdlib:
+Agentes reais, persistência durável, indexação, motores de grafo, compactação de
+output, LSP por plugins e distribuição pública continuam planejados. Consulte a
+[arquitetura](docs/architecture/application.md) para distinguir implementação e direção.
 
-```bash
-PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .
-PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only
-PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -v
-PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/run-checks.py
-PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh
-PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/package-ox.py
-```
+## Primeiro uso
 
-O runner conserva rodadas, logs, ambiente e hashes em `docs/validation/runs/`. O empacotador cria `ox-governance.zip` e relatório novos em `dist/`, inspeciona archives, extrai fora da árvore e executa os cinco comandos principais; não publica nada. O manifesto usa a allowlist da governança e exclui scratch, caches e arquivos da raiz fora desse contrato, incluindo todo o workspace `application/`. Os testes usam cópia explícita e processos com auditoria de leitura da raiz de origem.
+### 1. Compile e abra
 
-O modo padrão aceita pendências documentadas; `--structure-only` não aceita a mudança. `--require-fresh` confere vínculos de conteúdo, não adequação do oráculo. Não exigir aprovação global enquanto os 36 cenários técnicos das skills estiverem NÃO VERIFICADO.
+Requer **Linux x86_64**, sessão **X11 ou Wayland**, Rust/Cargo **1.99.1** e as
+bibliotecas de sistema necessárias a Iced/winit. O
+[toolchain](application/rust-toolchain.toml) fixa rustfmt e clippy. Tenha as
+dependências do lockfile em cache ou acesso autorizado para obtê-las.
 
-## Histórico e limites
-
-Scripts de autoria inicial e verify-boundary foram retirados da distribuição; não são comandos suportados. O backup anterior completo está fora do projeto; nomes/checksums da retirada estão na migração. Não há dependência desse backup. Observações antigas conservadas em archives/relatórios históricos não demonstram a configuração atual. As evidências correntes são as das features e do registro de transição; o relatório anterior conserva seu escopo histórico.
-
-Skills copiadas, recursos, workflow, evidence, templates e validador SDD permanecem byte a byte. Estrutura, inspeção semântica, resposta observada de agente e integração de produto são níveis distintos. Termos de terceiros, distribuição comercial, plataforma e sandbox aguardam decisões antes de produto público; não são resolvidos por esta migração.
-
-## Integração das skills com SDD
-
-O [guia de uso](docs/development/sdd-skills.md) distingue indicação, seleção,
-consulta e uso, com exemplos de rota local e completa. As pontes transportam IDs,
-perguntas e resultados; as skills oferecem métodos, sem substituir autoridades.
-
-## Verificação do aplicativo
-
-Os comandos Python verificam governança, SDD e contratos das skills. Não comprovam
-compilação Rust, integração Iced, eficácia de sandbox ou aceitação do aplicativo.
-Em Linux x86_64, com Rust stable e bibliotecas gráficas X11/Wayland disponíveis:
+Na raiz do repositório:
 
 ```bash
 cd application
-cargo run -p ox-app --bin ox
-cargo check --workspace
-cargo fmt --all -- --check
-cargo test --workspace
-cargo test --workspace -- --list
-cargo clippy --workspace --all-targets -- -D warnings
-# Requer sessão X11 e move o ponteiro para testar a janela do Ox:
-cargo test -p ox-app --test desktop -- --ignored --nocapture --test-threads=1
+cargo build --workspace --locked
+cargo run --locked -p ox-app --bin ox
 ```
 
-A janela permite mostrar/ocultar detalhes e sair. Agentes, host de plugins,
-persistência e indexadores não estão disponíveis. Fontes próprias proíbem unsafe;
-as dependências gráficas possuem código nativo/unsafe. Toolchain stable é móvel:
-logs registram a versão observada, o lockfile fixa dependências. Piso declarado 1.99.
-Os registros de produto e seus inputs não integram o pacote de governança.
+O build prepara `ox`, `local-task` e `task-oracle` em `target/debug/`.
+**Mantenha os três juntos.** Não há instalador público nem uma lista universal de
+pacotes Linux. O [guia de execução](application/README.md) trata cache e problemas.
 
-## Pacote de governança
+### 2. Execute e verifique
 
-`tools/governance/scripts/package-ox.py` produz exclusivamente `ox-governance.zip`, com
-`package_kind=governance` e `product_included=false` no ZIP e no recibo externo.
-A allowlist inclui `tools/governance/` e `config/governance/`; não inclui `src/`,
-`application/` (manifesto, lockfile, crates, testes e target), `Cargo.toml`,
-`Cargo.lock` ou `crates/` soltos na raiz, outras ferramentas/configurações, binários ou instaladores.
-O pipeline do aplicativo exigirá manifestos, build, testes e distribuição próprios.
-O comando não publica o pacote.
+1. Escolha um diretório de demonstração existente e gravável; clique em
+   **Validate workspace**.
+2. Clique em **Run correct**. O artefato produzido ainda fica `UNVERIFIED`.
+3. Clique em **Verify result**. Identidade, resultado 42 e observação aplicável
+   podem sustentar `APPROVED`.
+4. Compare com **Run incorrect** e depois **Verify result**: o produtor pode sair
+   com sucesso, mas o artefato incorreto é `REJECTED`.
 
-## Compartilhamento limpo e licenciamento
+[![Cinco passos: workspace, execução, candidato, verificação explícita e resultado com evidências](docs/assets/task-cycle.svg)](docs/assets/task-cycle.svg)
 
-Consulte [organização e recuperação](docs/development/sharing.md) e
-[análise de licenciamento](docs/licensing/review.md). A revisão de preservação das
-nove especializações está na [ADR maintenance-001](docs/decisions/maintenance-001.md).
-Para copiar somente o conteúdo governado, sem compactar, use um destino novo:
+*O ciclo separa execução de aceitação.* [Abrir a figura](docs/assets/task-cycle.svg).
+O [fluxograma detalhado](application/README.md#usar-a-demonstração) mostra recusas,
+resultados incorretos e evidência insuficiente.
+
+<details>
+<summary>Diagrama Mermaid — fonte editável</summary>
+
+```mermaid
+flowchart LR
+    accTitle: Cinco passos do primeiro uso
+    accDescr: Validar workspace, executar uma tarefa controlada, observar um candidato ainda não verificado, verificar explicitamente e avaliar o resultado com evidência.
+    W["Validar<br/>workspace"] --> R["Executar<br/>tarefa"]
+    R --> C["Artefato<br/>UNVERIFIED"]
+    C --> V["Verify<br/>result"]
+    V --> E["Verdict e<br/>evidências"]
+```
+
+</details>
+
+Cada tentativa cria `.ox-task-<sessão>-<tentativa>/` com pedido e eventual resultado.
+Os arquivos permanecem após sair. O histórico e as aprovações em memória se perdem
+ao reiniciar. Após editar inputs, use **Refresh inputs**; não há watcher automático.
+
+## Como a fundação se conecta
+
+[![Arquitetura com Desktop Iced, Controller, Runtime, produtor, Engine, oráculo e arquivos da tentativa](docs/assets/architecture.svg)](docs/assets/architecture.svg)
+
+*Componentes executados no fluxo local. O Plugin Host continua separado da UI.* [Abrir em tamanho integral](docs/assets/architecture.svg).
+
+[Fonte Mermaid com ícones Lucide](docs/assets/diagrams/architecture.mmd).
+
+O Desktop recebe ações; o Controller coordena a tentativa. O Runtime supervisiona
+o produtor e o Engine observa o oráculo. Os arquivos ligam produção e verificação.
+A [visão de arquitetura](docs/architecture/application.md) explica fronteiras,
+workers, contratos e os 16 crates.
+
+## Desenvolvimento
+
+Em `application/`, após compilar os auxiliares:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/export-clean.py /tmp/ox-share-review
-PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/verify-maintenance.py
+cargo test --workspace --locked
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets --locked -- -D warnings
 ```
 
-O comando de exportação cria uma pasta, não publica nada e não gera ZIP. GPL-3.0-only foi escolhida para material próprio, com texto em [LICENSE](LICENSE)
-e escopo em [NOTICE](NOTICE). Titular do material próprio: Rodrigo Batista. Os direitos dos materiais copiados continuam pendentes; não há prontidão para
-distribuição pública. O relatório de composição usa bytes da árvore, não os 73 MB
-do arquivo externo enviado anteriormente pelo mantenedor.
+Testes comuns cobrem contratos e processos locais. Os seis testes desktop ignorados
+exigem sessão X11 dedicada; as [instruções](application/README.md#testes-e-referência-rust)
+detalham interação e limites. Os checks Python verificam
+[governança](docs/development/governance.md), com escopo próprio.
+
+Antes de contribuir, leia [AGENTS.md](AGENTS.md), a [constituição](docs/constitution.md),
+o [contexto autorizado](sdd/project.md) e o [workflow SDD](sdd/workflow.md).
+
+## Documentação
+
+| Quero… | Comece aqui |
+| --- | --- |
+| Executar e experimentar a UI | [Guia da aplicação](application/README.md) |
+| Encontrar os guias e suas figuras | [Mapa da documentação](docs/README.md) |
+| Entender componentes e implementações | [Arquitetura](docs/architecture/application.md) |
+| Consultar estados, inputs e protocolo | [Contratos](docs/architecture/contracts.md) |
+| Verificar governança e preservar histórico | [Desenvolvimento](docs/development/governance.md) |
+| Copiar ou recuperar governança | [Compartilhamento](docs/development/sharing.md) |
+| Retomar uma entrega | [Features SDD](sdd/features/README.md) |
+| Selecionar um método de desenvolvimento | [31 skills](.codex/skills/README.md) e [pontes](sdd/chain/README.md) |
+
+A biblioteca de skills apoia o desenvolvimento do Ox. O desktop atual não carrega
+skills dos projetos do usuário. Disponibilidade, seleção, consulta e uso são estados
+distintos, descritos na [integração SDD/skills](docs/development/sdd-skills.md).
+
+## Compartilhamento e licença
+
+`application/Cargo.toml` define o produto. O pacote `ox-governance.zip` declara
+`product_included=false`: inclui governança, sem `application/`, binários ou
+instaladores. O pipeline do aplicativo exige build, testes e distribuição próprios.
+
+Material próprio: **GPL-3.0-only**, Rodrigo Batista. Veja [LICENSE](LICENSE),
+[NOTICE](NOTICE) e a [revisão local de licenciamento](docs/licensing/review.md).
+Direitos de materiais copiados e condições de distribuição pública permanecem pendentes.
+A expressão histórica `not-yet-implemented` descreve o início do projeto.
+
+---
+
+[Visuais, fontes Mermaid e reprodução](docs/assets/README.md) ·
+[Revisão visual e verificações](docs/validation/documentation-visuals-20261104/report.md)

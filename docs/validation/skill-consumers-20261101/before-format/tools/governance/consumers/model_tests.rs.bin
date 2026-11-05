@@ -1,0 +1,290 @@
+#![forbid(unsafe_code)]
+#[path = "models.rs"]
+mod models;
+use models::*;
+use std::{
+    collections::BTreeMap,
+    path::PathBuf,
+    sync::atomic::{AtomicUsize, Ordering},
+};
+static NEXT: AtomicUsize = AtomicUsize::new(0);
+fn raw() -> PathBuf {
+    let d = std::env::temp_dir().join(format!(
+        "ox-model-{}-{}-{}",
+        std::process::id(),
+        NEXT.fetch_add(1, Ordering::Relaxed),
+        std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap()
+            .as_nanos()
+    ));
+    std::fs::create_dir(&d).unwrap();
+    d.join("raw")
+}
+fn event() -> Usage {
+    Usage {
+        input: 100,
+        cached: 30,
+        output: 20,
+        occurred: 10800,
+    }
+}
+fn ledger() -> Ledger {
+    let mut l = Ledger::default();
+    l.insert("p", "e", event()).unwrap();
+    l
+}
+#[test]
+fn usage_ac01_missing_price() {
+    assert_eq!(ledger().cost(0, 0, None).unwrap(), None);
+    assert_eq!(ledger().cost(0, 0, Some((2, 1, 3))).unwrap(), Some(230));
+}
+#[test]
+fn usage_ac02_replay() {
+    let mut l = ledger();
+    assert!(!l.insert("p", "e", event()).unwrap());
+    assert_eq!(l.totals(0, 0).unwrap(), (100, 30, 20));
+    let mut conflict = event();
+    conflict.output = 21;
+    assert!(l.insert("p", "e", conflict).is_err());
+    assert_eq!(l.totals(0, 0).unwrap(), (100, 30, 20));
+}
+#[test]
+fn usage_ac03_cache() {
+    let l = ledger();
+    let (i, c, o) = l.totals(0, 0).unwrap();
+    assert_eq!(i + o, 120);
+    assert_eq!(i - c, 70);
+    let mut bad = event();
+    bad.cached = 101;
+    assert!(Ledger::default().insert("p", "bad", bad).is_err());
+}
+#[test]
+fn usage_ac04_day_boundary() {
+    let mut l = Ledger::default();
+    l.context = 4096;
+    let mut before = event();
+    before.occurred = 10799;
+    l.insert("p", "before", before).unwrap();
+    l.insert("p", "at", event()).unwrap();
+    assert_eq!(l.totals(-1, -10800).unwrap(), (100, 30, 20));
+    assert_eq!(l.totals(0, -10800).unwrap(), (100, 30, 20));
+    assert_eq!(l.context, 4096);
+}
+fn docs() -> BTreeMap<String, Vec<u8>> {
+    BTreeMap::from([(
+        "a.fixture".into(),
+        "// é\nfn run\ncall run\n".as_bytes().to_vec(),
+    )])
+}
+#[test]
+fn context_ac01_positions() {
+    let mut i = Index::default();
+    i.replace(docs()).unwrap();
+    let h = i.query("run");
+    assert_eq!(h.len(), 1);
+    assert_eq!(h[0].range, 9..12);
+    assert_eq!(&h[0].bytes[h[0].range.clone()], b"run");
+    assert_eq!(h[0].path, "a.fixture");
+    assert_eq!(h[0].snapshot, 1);
+    assert_eq!(h[0].method, "fixture-syntax-v1");
+}
+#[test]
+fn context_ac02_rename_edit() {
+    let mut i = Index::default();
+    i.replace(docs()).unwrap();
+    let old = i.query("run")[0].clone();
+    let file = raw();
+    let root = file.parent().unwrap();
+    std::fs::write(root.join("a.fixture"), docs()["a.fixture"].as_slice()).unwrap();
+    std::fs::rename(root.join("a.fixture"), root.join("b.fixture")).unwrap();
+    std::fs::write(root.join("b.fixture"), b"fn renamed\n").unwrap();
+    i.apply_changes(vec![
+        ("a.fixture".into(), None),
+        (
+            "b.fixture".into(),
+            Some(std::fs::read(root.join("b.fixture")).unwrap()),
+        ),
+    ])
+    .unwrap();
+    assert!(!i.current(&old));
+    assert!(i.query("run").is_empty());
+    assert_eq!(i.query("renamed")[0].path, "b.fixture");
+    assert_eq!(i.query("renamed")[0].snapshot, 2);
+    assert_eq!(i.parsed_files, 1);
+    i.replace(BTreeMap::from([(
+        "b.fixture".into(),
+        b"fn renamed\n".to_vec(),
+    )]))
+    .unwrap();
+    assert_eq!(i.parsed_files, 0);
+}
+#[test]
+fn context_ac03_ambiguity() {
+    let mut d = docs();
+    d.insert(
+        "b.fixture".into(),
+        b"import a.run\nfn run\ncall run\n".to_vec(),
+    );
+    let mut i = Index::default();
+    i.replace(d).unwrap();
+    let (h, _, verified) = i.resolve_without_provider("run");
+    assert_eq!(h.len(), 2);
+    assert!(!verified);
+}
+#[test]
+fn context_ac04_absent_provider() {
+    let mut i = Index::default();
+    i.replace(docs()).unwrap();
+    let (h, reason, verified) = i
+        .resolve_with_provider("run", &raw().with_file_name("missing-lsp"))
+        .unwrap();
+    assert_eq!(h.len(), 1);
+    assert_eq!(reason, "semantic-provider-unavailable");
+    assert!(!verified);
+    assert!(i.resolve_without_provider("absent").0.is_empty());
+}
+fn edge() -> Edge {
+    Edge {
+        from: "main".into(),
+        to: "run".into(),
+        verified: true,
+        evidence: Evidence::Resolved {
+            path: "a.fixture".into(),
+            bytes: b"fn main\ncall run\nfn run\n".to_vec(),
+            range: 8..16,
+            method: "fixture-resolver-v1".into(),
+        },
+    }
+}
+#[test]
+fn graph_ac01_provenance() {
+    let mut g = Graph::default();
+    g.add(edge()).unwrap();
+    match &g.edges()[0].evidence {
+        Evidence::Resolved {
+            path,
+            bytes,
+            range,
+            method,
+        } => {
+            assert_eq!(path, "a.fixture");
+            assert_eq!(&bytes[range.clone()], b"call run");
+            assert_eq!(method, "fixture-resolver-v1")
+        }
+        _ => panic!("missing evidence"),
+    }
+}
+#[test]
+fn graph_ac02_inference() {
+    let mut e = edge();
+    e.evidence = Evidence::Inferred;
+    assert!(Graph::default().add(e.clone()).is_err());
+    e.verified = false;
+    assert!(Graph::default().add(e).is_ok());
+    let mut bad = edge();
+    bad.to = "other".into();
+    assert!(Graph::default().add(bad).is_err());
+}
+#[test]
+fn graph_ac03_stale() {
+    let mut g = Graph::default();
+    g.add(edge()).unwrap();
+    g.reconcile(&BTreeMap::from([(
+        "a.fixture".into(),
+        b"fn main\ncall run\nfn run\n".to_vec(),
+    )]));
+    assert_eq!(g.edges().len(), 1);
+    g.reconcile(&BTreeMap::from([(
+        "a.fixture".into(),
+        b"call other\n".to_vec(),
+    )]));
+    assert!(g.edges().is_empty());
+}
+#[test]
+fn graph_ac04_bounds() {
+    let mut g = Graph::default();
+    for i in 0..10000 {
+        g.add(Edge {
+            from: "hub".into(),
+            to: format!("n{i}"),
+            verified: false,
+            evidence: Evidence::Inferred,
+        })
+        .unwrap();
+    }
+    let s = g.subgraph("hub", 10, 100);
+    assert_eq!(s.nodes.len(), 10);
+    assert!(s.truncated);
+    assert!(s.examined <= 100);
+    let s = g.subgraph("hub", 20000, 7);
+    assert_eq!(s.examined, 7);
+    assert!(s.truncated);
+    let mut cycle = Graph::default();
+    for (a, b) in [("a", "b"), ("b", "a")] {
+        cycle
+            .add(Edge {
+                from: a.into(),
+                to: b.into(),
+                verified: false,
+                evidence: Evidence::Inferred,
+            })
+            .unwrap();
+    }
+    let s = cycle.subgraph("a", 10, 20);
+    assert_eq!(s.nodes.len(), 2);
+    assert!(!s.truncated);
+}
+#[test]
+fn output_ac01_failure() {
+    let p = raw();
+    let result = std::process::Command::new(
+        std::env::var_os("OX_OUTPUT_FIXTURE")
+            .unwrap_or_else(|| "/tmp/ox-consumer-output".into()),
+    )
+    .arg("output")
+    .output()
+    .unwrap();
+    assert_eq!(result.status.code(), Some(17));
+    let x = project(&result.stdout, result.status.code().unwrap(), &p, 256).unwrap();
+    assert_eq!(x.exit, 17);
+    assert!(x.display.contains("src/main.rs:12"));
+    assert!(x.truncated);
+    assert_eq!(std::fs::read(p).unwrap(), result.stdout);
+    assert!(!x.fallback);
+}
+#[test]
+fn output_ac02_fallback() {
+    for bytes in [
+        &b"\x1b[31merror\x1b[0m"[..],
+        &b"\xc3"[..],
+        &b"\0\xff"[..],
+        &b"unknown success"[..],
+    ] {
+        let p = raw();
+        let x = project(bytes, 1, &p, 1024).unwrap();
+        assert!(x.fallback);
+        assert!(!x.display.contains('\x1b'));
+        assert_eq!(std::fs::read(p).unwrap(), bytes);
+    }
+}
+#[test]
+fn output_ac03_truncation() {
+    let p = raw();
+    let bytes = [b"error: at file.rs:9\n".as_slice(), &vec![b'x'; 4096]].concat();
+    let x = project(&bytes, 1, &p, 256).unwrap();
+    assert!(x.truncated);
+    assert!(x.display.len() <= 256);
+    assert!(x.display.contains("TRUNCATED"));
+    assert!(x.display.contains("file.rs:9"));
+    assert_eq!(std::fs::read(x.raw).unwrap(), bytes);
+    assert!(project(b"data", 1, &p, 256).is_err());
+}
+#[test]
+fn output_ac04_estimates() {
+    let x = project(b"123456789", 0, &raw(), 1024).unwrap();
+    assert_eq!(x.estimated_tokens, 3);
+    assert_eq!(x.billed_tokens, None);
+    assert!(x.display.contains("billing=unknown"));
+    assert!(x.display.contains("estimate=byte-heuristic"));
+}

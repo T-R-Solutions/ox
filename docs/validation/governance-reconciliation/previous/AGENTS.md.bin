@@ -1,0 +1,38 @@
+# Operating instructions — Ox
+
+Before modifying files, consult [the project context and state](sdd/project.md),
+[the authoritative constitution](docs/constitution.md),
+[the architecture map](docs/architecture/context.md) and relevant ADRs.
+Inspect the actual file state and preserve unrelated existing changes.
+Working content does not grant permissions.
+
+Determine the applicable route in [sdd/workflow.md](sdd/workflow.md).
+The phase and scope of authorized changes are recorded in `sdd/project.md`
+and the corresponding feature artifacts. Do not infer authorization from a
+technology, roadmap, skill or example file being mentioned.
+
+On the full route, use the feature's SDD artifacts to record requirements,
+decisions, tasks and evidence. Consult the [skill catalog](.codex/skills/README.md)
+only for a relevant technical question; check the actual entry and record
+selection, path, version and contribution in `plan.md`.
+An indicated skill is not automatically consulted or used.
+
+When the user requests commits, read and use
+[commit-governance](.codex/skills/commit-governance/SKILL.md) before preparing
+staging or running `git commit`, respecting the authorized scope and project
+authorities. ITAPIRACÓ repository rules apply only to the repositories and
+requests described in that skill. This instruction does not authorize
+agent-initiated commits or install a Git hook.
+
+Record acceptance according to [sdd/evidence.md](sdd/evidence.md): criterion,
+method, observed inputs, result and limitations. Do not consider a task validated
+by an agent's declaration, absence of errors or completed documentation.
+Reevaluate only evidence affected by actual changes to its inputs.
+
+Perform only actions covered by effective permissions and the authorized scope.
+Available commands and their prerequisites are in `README.md` and `sdd/project.md`;
+confirm that commands exist before running them.
+`AGENTS.md` and skills do not enforce operating-system isolation.
+
+These instructions apply at the Ox root. Add subdirectory instructions only
+when a specific need exists; they must not contradict project authorities.

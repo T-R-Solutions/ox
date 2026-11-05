@@ -1,0 +1,13 @@
+--- tools/governance/scripts/governance_support.py (before)
++++ tools/governance/scripts/governance_support.py (current)
+@@ -116,7 +116,9 @@
+     """
+     path = root / relative
+     from skill_revision import predecessor
+-    data = predecessor(root, relative, path.read_bytes())
++    from documentation_revision import predecessor as visual_predecessor
++    data = visual_predecessor(root, relative, path.read_bytes())
++    data = predecessor(root, relative, data)
+     data = documentary_predecessor(root, relative, data)
+     row = succession_records(root).get(relative)
+     if row and hashlib.sha256(data).hexdigest() == row['sha256']:

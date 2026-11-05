@@ -1,0 +1,11 @@
+# Criterion review: code-knowledge-graph-engineering AC-01
+
+A valid call edge can be traced to its location and method; oracle: known synthetic corpus.
+
+APPROVED in the following evaluated scope: Known synthetic language with unique file-local function resolution, exact source ranges/bytes and fixture-resolver-v1. Deterministic 10,000-edge graph plus cycle; no general language semantic resolution or UI performance claim.
+
+Observed: graph_ac01_provenance: a call from main to the uniquely declared run is checked against exact bytes/range and fixture-resolver-v1; test asserts location and method.
+
+Method: inspect the independent assertions and concrete implementation, execute commands captured in replay/receipt.json or environment.json/gui-02/result.json, and inspect their full logs. Expected values are independently specified fixture values; exit zero alone is insufficient. The original criterion and skill contracts are unchanged.
+
+Consumer: tools/governance/consumers/models.rs; oracle: tools/governance/consumers/model_tests.rs. Broader contracts/exclusions: tools/governance/consumers/README.md. All prior envelopes are byte-preserved in previous/. This does not accept a production Ox subsystem or infer new agent effectiveness.

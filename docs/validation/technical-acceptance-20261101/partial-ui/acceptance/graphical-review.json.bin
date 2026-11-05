@@ -1,0 +1,20 @@
+{
+  "native_run": "docs/validation/product-local-task-ui/manual-flow-retry-20261030T032628Z",
+  "native_changed_inputs": [
+    "application/crates/ox-app/tests/desktop.rs"
+  ],
+  "reuse_reason": "Only the X11 test harness changed. cargo build --workspace restores exactly the native-observed production binary hash; production sources, manifests and lockfile match. Cargo test builds a separate dev-dependency variant. No new native execution claimed.",
+  "x11_run": "docs/validation/product-local-task-ui/x11-07",
+  "x11_observations": {
+    "workspace-valid.png": "Valid canonical workspace and coherent button availability.",
+    "correct-verdict.png": "APPROVED run:1, criterion and four inputs including recorded request/result=42.",
+    "stale-verdict.png": "UNVERIFIED/stale after changed result; prior run and original bytes preserved.",
+    "incorrect-verdict.png": "REJECTED run:2 after independent oracle rerun.",
+    "responsive-during-task.png": "Details expanded while task is Running; changes of workspace and duplicate starts disabled; Cancel enabled. Native closing subsequently returned zero."
+  },
+  "limitations": [
+    "Temporary fullscreen Xwayland only; no main-session XTEST repair claimed.",
+    "Native observations use explicit maintainer replies and protocol/exit receipts; child sampling may miss very short processes.",
+    "No numerical responsiveness SLO, OS sandbox or persistent history."
+  ]
+}
