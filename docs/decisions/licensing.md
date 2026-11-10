@@ -28,3 +28,13 @@ por pasta ou futuro pacote; manter exclusão de dist e fontes futuras do aplicat
 Testes devem exigir esses avisos no conteúdo exportável. Nenhum pacote da solução
 é produzido nesta tarefa. Revisar esta ADR se mudar escopo, versão, modelo de plugins,
 identificação de titular ou permissões dos componentes copiados.
+
+## Revisão de dependências — 2026-11-09
+
+O pedido explícito do mantenedor autoriza rever as licenças e corrigir a política
+de dependências. A allowlist vazia é sucedida pela seleção delimitada em
+docs/licensing/dependency-policy-20261109.md, com inventário de origem e obrigações.
+GPL-3.0-only permanece a licença própria. Essa decisão permite as licenças
+revistas no build; não concede direitos inexistentes, dispensa avisos ou autoriza
+publicação. Pendências de avisos dos subcrates Iced e de outros materiais copiados
+permanecem explícitas. Não há permissão genérica para licenças futuras.

@@ -14,5 +14,5 @@ workspace = true
 
 [dependencies]
 iced.workspace = true
-ox-agent = { path = "../ox-agent" }
-ox-verification = { path = "../ox-verification" }
+ox-agent = { path = "../ox-agent", version = "=0.1.0" }
+ox-verification = { path = "../ox-verification", version = "=0.1.0" }
