@@ -1,0 +1,485 @@
+{
+  "method": "Independent traversal of retained Linux-filtered metadata normal/build edges, propagating build role; no dev traversal; compare all 272 records and archives with Cargo.lock checksums",
+  "inputs": [
+    {
+      "path": "docs/validation/persistence-freeze-20261105/linux-metadata.json",
+      "sha256": "d23c9029080712a45085cafb8c8f3a8bea19ebb8f09caaf28044bfbabf0c40f1"
+    },
+    {
+      "path": "docs/validation/persistence-freeze-20261105/linux-licenses.json",
+      "sha256": "72aaa74d1fc3e00af9a5080fe6dc9c245e9dd2abb4bb1fb09551e30a998bb645"
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/Cargo.lock",
+      "sha256": "21c161d8dc4e38ae617c2df9a0d300ab91f5ac0d3299f7c9d132604e04da5207"
+    }
+  ],
+  "applicable": 159,
+  "excluded": 113,
+  "build_components": [
+    "registry+https://github.com/rust-lang/crates.io-index#autocfg@1.5.1",
+    "registry+https://github.com/rust-lang/crates.io-index#cc@1.11.0",
+    "registry+https://github.com/rust-lang/crates.io-index#cfg_aliases@0.2.2",
+    "registry+https://github.com/rust-lang/crates.io-index#find-msvc-tools@0.1.15",
+    "registry+https://github.com/rust-lang/crates.io-index#jobserver@0.1.35",
+    "registry+https://github.com/rust-lang/crates.io-index#libc@0.2.191",
+    "registry+https://github.com/rust-lang/crates.io-index#pkg-config@0.3.34",
+    "registry+https://github.com/rust-lang/crates.io-index#shlex@2.0.1",
+    "registry+https://github.com/rust-lang/crates.io-index#vcpkg@0.2.15",
+    "registry+https://github.com/rust-lang/crates.io-index#version_check@0.9.5"
+  ],
+  "exclusions": [
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#android-activity@0.6.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#android-properties@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#atomic-waker@1.1.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#bitflags@1.3.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#block2@0.5.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#bumpalo@3.20.3",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#clipboard-win@5.4.3",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#clipboard_macos@0.1.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#combine@4.6.9",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#concurrent-queue@2.5.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#core-foundation@0.9.4",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#core-foundation-sys@0.8.7",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#core-graphics@0.23.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#core-graphics-types@0.1.3",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#crossbeam-utils@0.8.23",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#crunchy@0.2.4",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#dispatch@0.2.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#dispatch2@0.3.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#equivalent@1.0.3",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#error-code@3.4.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#foreign-types@0.5.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#foreign-types-macros@0.2.4",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#foreign-types-shared@0.3.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#getrandom@0.4.3",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#hermit-abi@0.5.3",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#jni@0.22.4",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#jni-macros@0.22.4",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#jni-sys@0.3.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#jni-sys@0.4.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#jni-sys-macros@0.4.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#js-sys@0.3.107",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#libredox@0.1.25",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#lock_api@0.4.14",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#ndk@0.9.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#ndk-context@0.1.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#ndk-sys@0.6.0+11769913",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#num_enum@0.7.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#num_enum_derive@0.7.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc-sys@0.3.5",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2@0.5.3",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2@0.6.5",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-app-kit@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-cloud-kit@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-contacts@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-core-data@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-core-foundation@0.3.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-core-graphics@0.3.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-core-image@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-core-location@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-encode@4.1.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-foundation@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-foundation@0.3.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-io-surface@0.3.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-link-presentation@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-metal@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-quartz-core@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-quartz-core@0.3.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-symbols@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-ui-kit@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-uniform-type-identifiers@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#objc2-user-notifications@0.2.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#orbclient@0.3.55",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#parking_lot@0.12.5",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#parking_lot_core@0.9.12",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#pin-project@1.1.13",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#pin-project-internal@1.1.13",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#pin-utils@0.1.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#plain@0.2.3",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#proc-macro-crate@3.5.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#r-efi@5.3.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#r-efi@6.0.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#redox_syscall@0.4.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#redox_syscall@0.5.18",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#redox_syscall@0.9.5",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#rustc_version@0.4.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#rustversion@1.0.23",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#same-file@1.0.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#scopeguard@1.2.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#semver@1.0.28",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#serde_derive@1.0.229",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#simd_cesu8@1.2.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#simdutf8@0.1.5",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#tokio@1.54.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#toml_datetime@1.1.2+spec-1.1.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#toml_edit@0.25.18+spec-1.1.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#toml_parser@1.1.5+spec-1.1.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#walkdir@2.5.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#wasip2@1.0.4+wasi-0.2.12",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#wasm-bindgen@0.2.130",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#wasm-bindgen-futures@0.4.80",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#wasm-bindgen-macro@0.2.130",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#wasm-bindgen-macro-support@0.2.130",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#wasm-bindgen-shared@0.2.130",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#wasmtimer@0.4.3",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#web-sys@0.3.107",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#winapi-util@0.1.11",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows-link@0.2.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows-sys@0.52.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows-sys@0.59.0",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows-sys@0.61.2",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows-targets@0.52.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows_aarch64_gnullvm@0.52.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows_aarch64_msvc@0.52.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows_i686_gnu@0.52.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows_i686_gnullvm@0.52.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows_i686_msvc@0.52.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows_x86_64_gnu@0.52.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows_x86_64_gnullvm@0.52.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#windows_x86_64_msvc@0.52.6",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#winnow@1.0.5",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    },
+    {
+      "id": "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.57.1",
+      "reason": "Unreachable from Linux root via normal/build edges"
+    }
+  ]
+}

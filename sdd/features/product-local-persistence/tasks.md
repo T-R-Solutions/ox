@@ -1,7 +1,7 @@
 # Tarefas — persistência local proposta
 
 - [x] T001 [REQ-01..07, D-01, R-01..03]: preparar ADR comparativa e critérios verificáveis, sem implementação; docs/decisions/local-persistence-proposal.md e spec.md.
-- [ ] T002 [REQ-01..07, D-01, R-03]: mantenedor decide D1..D4, registra escopo/autorização e limites; depende T001. Sem autorização, parar antes de código/dependências.
+- [x] T002 [REQ-01..07, D-01, R-03]: registrar D1 já adotada, adoção D2/D4 e autorização condicional D3/D4-deps; decisão explícita em 2026-11-05. D5/D6 separados.
 - [ ] T003 [REQ-01..07, D-01..03, R-01..03]: somente se autorizado, fixar ambas as alternativas/configurações, driver SQLite e manifestos independentes; executar E01..E08 em comparação descartável com o mesmo corpus e limites; depende T002 e ambiente permitido.
 - [ ] T004 [REQ-01..07, D-01..03, R-01..03]: após escolha e autorização explícitas, implementar fatia em ox-storage/Engine/controller/Iced; depende T003, resultados comparativos, decisão D5, autorização D6 e encerramento de F0 conforme proposta; sem atalho de escolha direta.
 - [ ] T005 [REQ-01..07, D-02..03, R-01..02]: executar oráculos reais de reinício, falha, migração, backup/restauração, concorrência e UI; conservar falhas e limitações; depende T004.
@@ -14,4 +14,29 @@ registrado; escolha tecnológica aguarda resultados, e integração exige D6 sep
 
 
 - [x] T008 [REQ-01..07, D-05, R-01..03]: reconciliar marco já adotado e preparar protocolo concreto, corpus, barreiras, parâmetros propostos e dossiê D2/D3/D4/D4-deps; sem executar candidatos.
-- [ ] T009 [REQ-01..07, D-05, R-03]: após decisões do mantenedor, preparar manifesto completo e lock/source ID isolados para revisão pré-execução; não modificar dependências do produto.
+- [ ] T009 [REQ-01..07, D-05, R-03]: preparar manifestos completos e lock/source ID isolados para revisão pré-execução; pacote em docs/validation/persistence-preflight-20261105/review.md. Não marcar concluída antes de resolver pendências materiais da revisão; não executar encoders/ensaios nem modificar dependências do produto.
+
+- [x] T010 [REQ-01..07, D-07, R-01..03]: revisar corpus sem alterá-lo, ampliar controles de preparação, inventariar features/licenças/fontes e reconciliar vínculos documentais com preimagens exatas e observação sucessora. Evidência em persistence-preflight-20261105/successor; não aceita T009.
+- [ ] T011 [REQ-01..07, D-07, R-03]: resolver mecanismo de sucessão exata do registro README/project em escopo autorizado, dispor lacunas de textos/licenças do alvo e concluir revisão pré-execução por conteúdo. Depende T010; valores efetivos exigem implementação/observação posterior autorizada. T009 permanece aberta.
+
+T011 progress: mecanismo e controles implementados; revisão Linux e congelamento em docs/validation/persistence-freeze-20261105/review.md. T011/T009 continuam abertas: dez textos principais Iced, compatibilidade/atribuição e evidências globais obsoletas pendentes. Nenhum candidato/ensaio autorizado nesta execução.
+
+Revisão sucessora r2: dez textos MIT principais Iced vinculados às revisões dos
+archives; matriz de 159 crates e 113 exclusões conferida pelo grafo, incluindo build.
+T011/T009 continuam abertas: atribuições/licenças completas de fontes incorporadas
+ainda não demonstradas (Iced-Icons, FiraSans e Cantarell). Pacote sucessor em
+docs/validation/persistence-freeze-20261105-r2/review.md. Aprovação do mantenedor
+PENDING; implementação e ensaios não autorizados. Não encerrar por saída estrutural.
+
+Bloqueios adicionais: aviso MPL-2.0 em sctk-adwaita e atribuição dos protocolos XML de wayland-protocols-plasma; matriz refinada e contraprovas preservadas no sucessor r2. T011/T009 permanecem abertas.
+
+Revisão local r3: fontes identificadas por bytes e versões (Iced-Icons 1.0,
+Fira Sans 4.203, Cantarell 0.05); concessões/avisos integrais correspondentes
+continuam pendentes. Trecho sctk delimitado, mas origem MPL e cadeia de direitos
+não demonstradas. Os 30 XMLs foram mapeados aos módulos; 29 têm termos e textos
+integrais correspondentes; fullscreen-shell.xml não traz aviso/licença individual.
+Atribuição dos bindings exige disposição explícita; inspeção do scanner não
+demonstra reprodução automática. T009/T011 permanecem abertas. Pacote bloqueado:
+docs/validation/persistence-freeze-20261105-r3/review.md; retomada e aquisições
+específicas propostas no pacote, sem acesso externo nesta revisão. Aprovação do
+mantenedor PENDING; nenhuma autorização de implementação ou ensaio.

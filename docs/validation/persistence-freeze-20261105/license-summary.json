@@ -1,0 +1,17 @@
+{
+  "applicable": 159,
+  "excluded": 113,
+  "missing_texts": [
+    "iced_core@0.14.0",
+    "iced_debug@0.14.0",
+    "iced_futures@0.14.0",
+    "iced_graphics@0.14.0",
+    "iced_program@0.14.0",
+    "iced_renderer@0.14.0",
+    "iced_runtime@0.14.0",
+    "iced_tiny_skia@0.14.1",
+    "iced_widget@0.14.2",
+    "iced_winit@0.14.1"
+  ],
+  "method": "cargo metadata --locked --offline --filter-platform x86_64-unknown-linux-gnu; normal/build graph from isolated root; dev edges excluded; build role propagates; archive checksums checked against lock inventory"
+}

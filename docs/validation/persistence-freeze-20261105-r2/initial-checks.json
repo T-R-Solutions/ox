@@ -1,0 +1,45 @@
+[
+  {
+    "name": "structure",
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--structure-only"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/persistence-freeze-20261105-r2/structure.log"
+  },
+  {
+    "name": "global",
+    "command": [
+      "python3",
+      "tools/governance/scripts/check-ox.py"
+    ],
+    "exit_code": 1,
+    "log": "docs/validation/persistence-freeze-20261105-r2/global.log"
+  },
+  {
+    "name": "freshness",
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--require-fresh"
+    ],
+    "exit_code": 1,
+    "log": "docs/validation/persistence-freeze-20261105-r2/freshness.log"
+  },
+  {
+    "name": "whitespace",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/persistence-freeze-20261105-r2/whitespace.log"
+  }
+]

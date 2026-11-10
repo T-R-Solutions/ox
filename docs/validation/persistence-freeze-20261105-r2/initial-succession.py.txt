@@ -1,0 +1,43 @@
+from pathlib import Path
+import hashlib,json,subprocess,os
+R=Path.cwd();B=R/'docs/validation/persistence-freeze-20261105-r2'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def write(p,d):p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+# Exact preimages only: never assign a new hash to an old observation.
+missing=set()
+for p in (R/'sdd/features').glob('*/evidence.json'):
+ for e in json.loads(p.read_text())['evidence']:
+  for x in e.get('inputs',[])+[{'path':e['artifact'],'sha256':e['sha256']}]:
+   q=R/x['path']
+   if not q.is_file() or sha(q)!=x['sha256']:missing.add(x['sha256'])
+archive={}
+for p in (R/'docs/validation').rglob('*'):
+ if p.is_file() and not p.is_symlink() and p.suffix in ['.bin','.md','.json','.txt','.py']:
+  h=sha(p)
+  if h in missing:archive[h]=p
+assert not missing-set(archive),missing-set(archive)
+impact=[]
+for p in sorted((R/'sdd/features').glob('*/evidence.json')):
+ doc=json.loads(p.read_text());changes=[];affected=set()
+ for e in doc['evidence']:
+  for x in e.get('inputs',[]):
+   q=R/x['path']
+   if q.is_file() and sha(q)==x['sha256']:continue
+   before=x['path'];saved=archive[x['sha256']];x['path']=str(saved.relative_to(R));changes.append({'evidence':e['id'],'kind':'input','original_path':before,'preserved_path':x['path'],'sha256':x['sha256']});affected.add(e['id'])
+  q=R/e['artifact']
+  if not q.is_file() or sha(q)!=e['sha256']:
+   before=e['artifact'];saved=archive[e['sha256']];e['artifact']=str(saved.relative_to(R));changes.append({'evidence':e['id'],'kind':'artifact','original_path':before,'preserved_path':e['artifact'],'sha256':e['sha256']});affected.add(e['id'])
+ if not changes and p.parent.name!='product-local-persistence':continue
+ needed={p.parent/n for n in ['spec.md','plan.md','tasks.md','traceability.json']}
+ for row in json.loads((p.parent/'traceability.json').read_text()):needed.update([R/row['implementation'],R/row['oracle']])
+ needed.update(R/n for n in ['sdd/project.md','docs/architecture/context.md','docs/decisions/local-persistence-experiment-20261105.md','docs/decisions/licensing.md','tools/governance/scripts/skill_revision.py','tools/governance/scripts/project_revision.py','tools/governance/tests/test_readme_skill_integration.py','tools/governance/tests/test_project_revision.py'])
+ needed.update(B/n for n in ['review.md','freshness-review.md','license-matrix.json','iced-applicability.json','asset-matrix.json','graph-review.json','checks-pre-succession.json'])
+ record={'id':'E-T011-R2-SELECTIVE-REVIEW','kind':'inspection','command_or_method':'Compare exact stale bindings and preserved preimages with actual current documentary and governance inputs; retain old hashes/results as historical; review authority/criteria delta and current focused regressions. Ledger: docs/validation/persistence-freeze-20261105-r2/freshness-impact.json.','observed_result':'Current bounded preparation authority and registered governance succession preserve historical criteria and operational scope. Current fast governance regression and manifest checks observed in checks-pre-succession.json; per-criterion impact reviewed in freshness-review.md. Historical results not reused for changed inputs. License assets remain blocker; T009/T011 OPEN, product AC-01..07 UNVERIFIED, F0 operational envelope preserved.','artifact':str((B/'freshness-review.md').relative_to(R)),'sha256':sha(B/'freshness-review.md'),'inputs':[{'path':str(q.relative_to(R)),'sha256':sha(q),'role':'other'} for q in sorted(needed)]}
+ doc['evidence'].append(record)
+ for c in doc['requirements']:
+  if affected.intersection(c.get('evidence_ids',[])):c['evidence_ids'].append(record['id'])
+ if p.parent.name=='product-local-persistence':
+  for c in doc['requirements']:
+   if c['id'].startswith(('PREP','T009','T011')):c['evidence_ids'].append(record['id'])
+ write(p,doc);impact.append({'feature':p.parent.name,'affected_criteria':[{'id':c['id'],'status':c['status'],'affected_evidence':sorted(affected.intersection(c.get('evidence_ids',[])))} for c in doc['requirements'] if affected.intersection(c.get('evidence_ids',[]))],'historical_redirects':changes,'current_observation':record['id']})
+write(B/'freshness-impact.json',impact);print(len(impact),'features;',sum(len(r['historical_redirects']) for r in impact),'historical redirects with unchanged hashes')

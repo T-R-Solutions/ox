@@ -1,0 +1,31 @@
+# Plan — proposed local persistence
+
+Full route; design only. D-01: compare snapshots, journal and embedded transactions against the same seven criteria; no adoption before explicit maintainer decision. D-02: durable intent and observation/reference transaction do not make external effects atomic; reconcile stable operation identities. D-03: versioned backup/restore and bounded UI error handling are part of the slice, not optional afterthoughts. R-01: false current approval or lost acknowledged history after crash. R-02: corrupt migration/backup, competing writers or duplicate effects. R-03: dependency/FFI and unmeasured maintenance costs.
+
+Primary selected, consulted and used: database-engineering; sdd/chain/database-engineering.md bridge_version 1; .codex/skills/database-engineering/SKILL.md has no declared version. Reference consulted: references/model-and-transactions.md. Contribution to REQ/AC-01..07: common invariants, transaction/effect boundary, writer schedules, migration and recovery alternatives. No recursive skill activation or delegation. Source versions are recorded by content in docs/validation/f0-reconciliation-20261101/inputs-final.json.
+
+Implementation alternatives, technical source ledger, consequences and pending decision D1..D4: docs/decisions/local-persistence-proposal.md. The evaluation compares SQLite and snapshots equally; no candidate preference is retained before results. Any future chosen dependency needs pinned version/build/license review; unversioned reference pages do not establish version-specific correctness.
+
+Sequence: prepare proposal → maintainer decision → resolve exact storage envelope/version → explicitly authorized isolated paired comparison → engine adoption and implementation authorization → implement bounded persistence → operational corpus/GUI/restore evidence → convergence. Do not execute a later step merely because this plan lists it.
+
+D-04: the current request supersedes the earlier direct-selection option. D1..D4 in
+the ADR prepare milestone, corpus, experiment grant and bounds; D5 chooses only after
+results, D6 authorizes integration separately. E01..E08 cover REQ/AC-01..07; correctness
+failures disqualify a candidate before performance/maintenance trade-offs. Product
+acceptance still requires integrated tests. Retain database-engineering as the
+primary selected/consulted/used skill (bridge 1, no declared skill version); contribution
+in this follow-up: acknowledgement semantics, uncertain outcomes and matched schedules.
+Current source identities and documentary review are in decision-preparation; no
+storage experiment or new agent evaluation was run.
+
+
+## D-05 preparation successor — 2026-11-05
+
+Full route, existing feature reused. Read actual database-engineering entry and
+references/model-and-transactions.md; primary bridge version 1, no semantic skill
+version. Contribution: durable intent/effect/ack boundary, complete transactions,
+unknown result/idempotency, common expected manifest and fault schedules. Rust is
+selected separately for the bounded Engine repair, not a storage implementation.
+The decision-ready experiment-protocol.md fixes proposed corpus/order/metrics and
+D2/D3/D4/D4-deps; D1 placement is already adopted. Dependency freeze remains a
+specific pre-run decision, not technology adoption. No candidate code was written.

@@ -1,0 +1,49 @@
+[
+  {
+    "name": "structure",
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--structure-only"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/persistence-freeze-20261105-r3/structure.log",
+    "scope": "Documentary structure/governance/content only; no storage or license acceptance"
+  },
+  {
+    "name": "governance",
+    "command": [
+      "python3",
+      "tools/governance/scripts/check-ox.py"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/persistence-freeze-20261105-r3/governance.log",
+    "scope": "Documentary structure/governance/content only; no storage or license acceptance"
+  },
+  {
+    "name": "freshness",
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--require-fresh"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/persistence-freeze-20261105-r3/freshness.log",
+    "scope": "Documentary structure/governance/content only; no storage or license acceptance"
+  },
+  {
+    "name": "whitespace",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0,
+    "log": "docs/validation/persistence-freeze-20261105-r3/whitespace.log",
+    "scope": "Documentary structure/governance/content only; no storage or license acceptance"
+  }
+]

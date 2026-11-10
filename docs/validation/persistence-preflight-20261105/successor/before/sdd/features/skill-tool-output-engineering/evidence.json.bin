@@ -1,0 +1,3033 @@
+{
+  "schema_version": 2,
+  "environment": "Linux-7.3.0-1-default-x86_64-with-glibc2.44; 2026-11-01 criterion review; historical agent observations dated 2026-10-26",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Output with a relevant error is summarized while preserving failure and location; oracle: command fixtures.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-CONSUMER-REVIEW-AC-01",
+        "E-CONSUMER-RUN-AC-01",
+        "E-DOCUMENTARY-DELTA-AC-01",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-RESUMPTION-DOCUMENTARY",
+        "E-F0-RASTER-DOCUMENTARY",
+        "E-README-SKILL-INTEGRATION-REVIEW",
+        "E-DOCUMENTATION-VISUALS-REVIEW",
+        "E-README-PRESERVATION-REPAIR",
+        "E-DOCUMENTATION-VISUAL-DELIVERY"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.",
+        "review": "E-DOCUMENTARY-DELTA-AC-01",
+        "execution": [
+          "E-CONSUMER-RUN-AC-01"
+        ],
+        "consumer": "tools/governance/consumers/models.rs",
+        "oracle": "tools/governance/consumers/model_tests.rs"
+      }
+    },
+    {
+      "id": "AC-02",
+      "criterion": "ANSI, partial UTF-8, binary output and unexpected formats receive explicit fallback; oracle: adversarial corpus.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-CONSUMER-REVIEW-AC-02",
+        "E-CONSUMER-RUN-AC-02",
+        "E-DOCUMENTARY-DELTA-AC-02",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-RESUMPTION-DOCUMENTARY",
+        "E-F0-RASTER-DOCUMENTARY",
+        "E-README-SKILL-INTEGRATION-REVIEW",
+        "E-DOCUMENTATION-VISUALS-REVIEW",
+        "E-README-PRESERVATION-REPAIR",
+        "E-DOCUMENTATION-VISUAL-DELIVERY"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.",
+        "review": "E-DOCUMENTARY-DELTA-AC-02",
+        "execution": [
+          "E-CONSUMER-RUN-AC-02"
+        ],
+        "consumer": "tools/governance/consumers/models.rs",
+        "oracle": "tools/governance/consumers/model_tests.rs"
+      }
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Truncation is indicated with the location of complete raw output; oracle: output exceeding the limit.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-CONSUMER-REVIEW-AC-03",
+        "E-CONSUMER-RUN-AC-03",
+        "E-DOCUMENTARY-DELTA-AC-03",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-RESUMPTION-DOCUMENTARY",
+        "E-F0-RASTER-DOCUMENTARY",
+        "E-README-SKILL-INTEGRATION-REVIEW",
+        "E-DOCUMENTATION-VISUALS-REVIEW",
+        "E-README-PRESERVATION-REPAIR",
+        "E-DOCUMENTATION-VISUAL-DELIVERY"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.",
+        "review": "E-DOCUMENTARY-DELTA-AC-03",
+        "execution": [
+          "E-CONSUMER-RUN-AC-03"
+        ],
+        "consumer": "tools/governance/consumers/models.rs",
+        "oracle": "tools/governance/consumers/model_tests.rs"
+      }
+    },
+    {
+      "id": "AC-04",
+      "criterion": "An estimated count is not shown as billed tokens; oracle: case without provider information.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-CONSUMER-REVIEW-AC-04",
+        "E-CONSUMER-RUN-AC-04",
+        "E-DOCUMENTARY-DELTA-AC-04",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-RESUMPTION-DOCUMENTARY",
+        "E-F0-RASTER-DOCUMENTARY",
+        "E-README-SKILL-INTEGRATION-REVIEW",
+        "E-DOCUMENTATION-VISUALS-REVIEW",
+        "E-README-PRESERVATION-REPAIR",
+        "E-DOCUMENTATION-VISUAL-DELIVERY"
+      ],
+      "technical_review": {
+        "version": 1,
+        "scope": "Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim.",
+        "review": "E-DOCUMENTARY-DELTA-AC-04",
+        "execution": [
+          "E-CONSUMER-RUN-AC-04"
+        ],
+        "consumer": "tools/governance/consumers/models.rs",
+        "oracle": "tools/governance/consumers/model_tests.rs"
+      }
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED",
+        "E-DOCUMENTARY-DELTA-AC-05",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-RESUMPTION-DOCUMENTARY",
+        "E-F0-RASTER-DOCUMENTARY",
+        "E-README-SKILL-INTEGRATION-REVIEW",
+        "E-DOCUMENTATION-VISUALS-REVIEW",
+        "E-README-PRESERVATION-REPAIR",
+        "E-DOCUMENTATION-VISUAL-DELIVERY"
+      ]
+    },
+    {
+      "id": "AC-06",
+      "criterion": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-AUTHORING-REEXAMINED",
+        "E-DOCUMENTARY-DELTA-AC-06",
+        "E-F0-EXPORT-BOUNDARY-REVIEW",
+        "E-F0-RESUMPTION-DOCUMENTARY",
+        "E-F0-RASTER-DOCUMENTARY",
+        "E-README-SKILL-INTEGRATION-REVIEW",
+        "E-DOCUMENTATION-VISUALS-REVIEW",
+        "E-README-PRESERVATION-REPAIR",
+        "E-DOCUMENTATION-VISUAL-DELIVERY"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-AUTHORING-REEXAMINED",
+      "kind": "inspection",
+      "command_or_method": "New semantic comparison of preserved authoring observations against unchanged skill/contracts and evolved checker; historical agent replies reexamined, not rerun.",
+      "observed_result": "Authoring content and historical response conclusions remain supported; see authoring-reexamination.md.",
+      "artifact": "docs/validation/technical-acceptance-20261101/authoring-reexamination.md",
+      "sha256": "4542f83abe975221f6d7852061aeaa52b8b4ac4e018ab3971eb4c52302a73509",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/loss-aware-transformations.md",
+          "sha256": "fb4b14a18194d6d6f9a7a592f095bc22e8f3c03cbb080c5605fa73b01d282647",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/tool-parsers-and-fallbacks.md",
+          "sha256": "fff670b43ed083b684d4835e54be59d08472aaf1233602e23529f4ef1317aa95",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/token-measurement.md",
+          "sha256": "05f7fb7d405b84e2680518031486b8a843b0891f47fd11464105b8f410ee3303",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/tool-output-engineering.md",
+          "sha256": "6cd949046aa022320beef01d338b2553ef439411cd46efefc2055a8ffdea0b5c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/config/governance/profile.json.bin",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+          "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/group-3.md",
+          "sha256": "692cacfa1f1b62d3e6e1b540caadfae480ec9b55f7ca8e7ac583406e7fc8c2d6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/review.md",
+          "sha256": "5d37a57db655b1a9bdecc5f3fdc8cf7edd1fcd79c114cc2ec8ade315f3ee77d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.json",
+          "sha256": "f34cdf9bc5cc097efe8659f63c611af2a4c7fb555f1dd56cf523d32b56d91021",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.tar.gz",
+          "sha256": "688a84de1f008b784df1ea699cdfb9c1889390bc8dcf26bab9a99c0ad5c5a820",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "9935c6d4c2370147c683ecdd0213f22e56a1a67ebb9940ec543201b9e022aade",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/before.json",
+          "sha256": "b558b16d52000c7e3299d1c41e3f80a8f555aa24e5831ce16f7246db4cebdac7",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-CONSUMER-REVIEW-AC-01",
+      "kind": "inspection",
+      "artifact": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-01.md",
+      "sha256": "ad44d32cc40fc5773c496be8e7fe124af4080194449048f62abe7df95fcf56ed",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "implementation"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "Criterion-specific source and independent-oracle inspection; full log review; graphical pixel review where applicable. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "output_ac01_failure: actual child exits 17 after a 4096-byte successful prefix and error at src/main.rs:12; 256-byte projection preserves exit and location, and original bytes remain exact."
+    },
+    {
+      "id": "E-CONSUMER-RUN-AC-01",
+      "kind": "test",
+      "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+      "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+      "inputs": [
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "output_ac01_failure: actual child exits 17 after a 4096-byte successful prefix and error at src/main.rs:12; 256-byte projection preserves exit and location, and original bytes remain exact."
+    },
+    {
+      "id": "E-CONSUMER-REVIEW-AC-02",
+      "kind": "inspection",
+      "artifact": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-02.md",
+      "sha256": "d2cc34401997e322089bc3e9f106cac9cb4cee06e6415159d96fb11af67052cf",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "implementation"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "Criterion-specific source and independent-oracle inspection; full log review; graphical pixel review where applicable. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "output_ac02_fallback: ANSI, incomplete UTF-8, binary NUL/FF and unknown format all explicitly fall back; no raw terminal escape remains in display; raw bytes match."
+    },
+    {
+      "id": "E-CONSUMER-RUN-AC-02",
+      "kind": "test",
+      "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+      "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+      "inputs": [
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "output_ac02_fallback: ANSI, incomplete UTF-8, binary NUL/FF and unknown format all explicitly fall back; no raw terminal escape remains in display; raw bytes match."
+    },
+    {
+      "id": "E-CONSUMER-REVIEW-AC-03",
+      "kind": "inspection",
+      "artifact": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-03.md",
+      "sha256": "cda9bb0d5cf44a8b6451be2f0554a4c51729577dd90842948b4b9cb5103a9a1f",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "implementation"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "Criterion-specific source and independent-oracle inspection; full log review; graphical pixel review where applicable. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "output_ac03_truncation: over-limit output produces a bounded display, TRUNCATED marker and actual complete raw path; existing raw file cannot be overwritten."
+    },
+    {
+      "id": "E-CONSUMER-RUN-AC-03",
+      "kind": "test",
+      "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+      "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+      "inputs": [
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "output_ac03_truncation: over-limit output produces a bounded display, TRUNCATED marker and actual complete raw path; existing raw file cannot be overwritten."
+    },
+    {
+      "id": "E-CONSUMER-REVIEW-AC-04",
+      "kind": "inspection",
+      "artifact": "docs/validation/skill-consumers-20261101/tool-output-engineering-AC-04.md",
+      "sha256": "ca51e419e1a0f3f5ba53a2d76255168ee2aa195ae3caf4ab5353c1cea17e99a6",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "implementation"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "Criterion-specific source and independent-oracle inspection; full log review; graphical pixel review where applicable. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "output_ac04_estimates: nine bytes produce the labeled heuristic estimate 3, while billed_tokens remains None and billing=unknown."
+    },
+    {
+      "id": "E-CONSUMER-RUN-AC-04",
+      "kind": "test",
+      "artifact": "docs/validation/skill-consumers-20261101/replay-final/models.log",
+      "sha256": "8e14effce0ff015cf0142bcf5b78ec9af9db379e883ffc07f7ee85e059d92fe2",
+      "inputs": [
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "implementation"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "oracle"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        }
+      ],
+      "command_or_method": "python3 tools/governance/consumers/run_base.py docs/validation/skill-consumers-20261101/replay-final --isolation; for Iced, exact rustc commands in environment.json then gui_test.py .../gui-final. Test mapping in the criterion review. Final source stabilization and full replay explicitly reviewed in the criterion artifact; predecessors preserved in before-format/.",
+      "observed_result": "output_ac04_estimates: nine bytes produce the labeled heuristic estimate 3, while billed_tokens remains None and billing=unknown."
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-01",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "T004 checkbox/closure note now agrees with the already recorded four bounded consumer observations; scenario/spec, skill source, concrete consumer and oracle are unchanged. Recorded scope: Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim. Recovery integration: the updated governance helper resolves authenticated documentary predecessors; the final governance suite and 439/439 recovery observation support that bounded change. These checks do not reaccept the 25 historical criteria or rerun product/skill consumers.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-tool-output-engineering.md",
+      "sha256": "fa738a50641e8775a2159700312376eb18340cc73c682d138a94a35681da33e7",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/execution-authority-before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "c873fa5055265691f0a3d42db120af2f30ee9d1f52ec96051415432763dccc72",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_document_succession.py",
+          "sha256": "a8872b93749727cde018717afb85ec00625bb47736ca497e878d82056893890a",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/document-succession.json",
+          "sha256": "ea37d5e2dc68a1bbe59d84fd9d3cba9ab08bf30557ff931d96554037cc284436",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/governance-tests.log",
+          "sha256": "56d4897c4aa5211cc55ce220592832fc52138c1224c6b266c519d005276fc96b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/maintenance-final.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-02",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "T004 checkbox/closure note now agrees with the already recorded four bounded consumer observations; scenario/spec, skill source, concrete consumer and oracle are unchanged. Recorded scope: Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim. Recovery integration: the updated governance helper resolves authenticated documentary predecessors; the final governance suite and 439/439 recovery observation support that bounded change. These checks do not reaccept the 25 historical criteria or rerun product/skill consumers.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-tool-output-engineering.md",
+      "sha256": "fa738a50641e8775a2159700312376eb18340cc73c682d138a94a35681da33e7",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/execution-authority-before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "c873fa5055265691f0a3d42db120af2f30ee9d1f52ec96051415432763dccc72",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_document_succession.py",
+          "sha256": "a8872b93749727cde018717afb85ec00625bb47736ca497e878d82056893890a",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/document-succession.json",
+          "sha256": "ea37d5e2dc68a1bbe59d84fd9d3cba9ab08bf30557ff931d96554037cc284436",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/governance-tests.log",
+          "sha256": "56d4897c4aa5211cc55ce220592832fc52138c1224c6b266c519d005276fc96b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/maintenance-final.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-03",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "T004 checkbox/closure note now agrees with the already recorded four bounded consumer observations; scenario/spec, skill source, concrete consumer and oracle are unchanged. Recorded scope: Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim. Recovery integration: the updated governance helper resolves authenticated documentary predecessors; the final governance suite and 439/439 recovery observation support that bounded change. These checks do not reaccept the 25 historical criteria or rerun product/skill consumers.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-tool-output-engineering.md",
+      "sha256": "fa738a50641e8775a2159700312376eb18340cc73c682d138a94a35681da33e7",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/execution-authority-before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "c873fa5055265691f0a3d42db120af2f30ee9d1f52ec96051415432763dccc72",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_document_succession.py",
+          "sha256": "a8872b93749727cde018717afb85ec00625bb47736ca497e878d82056893890a",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/document-succession.json",
+          "sha256": "ea37d5e2dc68a1bbe59d84fd9d3cba9ab08bf30557ff931d96554037cc284436",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/governance-tests.log",
+          "sha256": "56d4897c4aa5211cc55ce220592832fc52138c1224c6b266c519d005276fc96b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/maintenance-final.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-04",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "T004 checkbox/closure note now agrees with the already recorded four bounded consumer observations; scenario/spec, skill source, concrete consumer and oracle are unchanged. Recorded scope: Known ok:/error: command fixture plus adversarial raw bytes; exit status and complete raw files; byte-count heuristic only. No general CLI/streaming parser or billing measurement claim. Recovery integration: the updated governance helper resolves authenticated documentary predecessors; the final governance suite and 439/439 recovery observation support that bounded change. These checks do not reaccept the 25 historical criteria or rerun product/skill consumers.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-tool-output-engineering.md",
+      "sha256": "fa738a50641e8775a2159700312376eb18340cc73c682d138a94a35681da33e7",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/models.rs",
+          "sha256": "da9c3a00c5d928ee08e32f4b3ecc0c584926cfc038f709b81155862aeb37b367",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/model_tests.rs",
+          "sha256": "a27ff00d2ec58c58920cf7d7534ce449ce81a871e38fcfc734ce51c57734b9c7",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/consumers/operations.rs",
+          "sha256": "0980a091fb9d763d0fc47507f27376db61ddbef42e1352f51a7164144c1ebd34",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/fixture.rs",
+          "sha256": "4cdb33a8f0ba96915d0c2aa952e2788966af5a9712d5a38dcfa827221b5dcaf2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/operation_tests.rs",
+          "sha256": "350a1b74132372900d140da76b094d7245cfdc1eac6ea24db5810b0e509da02c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_host.rs",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/plugin_fixture.rs",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "3375f1d51b57080dfd524270594f25204d9a8b77c1fd0d59e54069e9c96c4e7e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui.rs",
+          "sha256": "184666fd63db0bbbd86fc9cd271335f0271a6383e2ae54f6e1c8d0a5a6bed35e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_tests.rs",
+          "sha256": "8ce558dc4f3ed1721ef4773fcfdcd512e00b934558b01eabf96ceadb18dd4c72",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "99f5fb78a60e108d5bd3cee3c45f8d4e9ed8660d6c20ca2b3057af999a43efe7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/output_fixture.rs",
+          "sha256": "26a990e90a5fd14feddd54a05eb4128f32f8897e2f8820fbdf683f2462f19d17",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "69bd6606d298869119e5cbcc3baba386b020fb9dbda44d86f8deac646b7c086d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/README.md",
+          "sha256": "3d044632ad6bf42464afe0bb2d38bacdbb8490be7e819b471e651929dcfae21b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/environment.json",
+          "sha256": "b695cd1c1281560236baa8d80ac904d6f55fcecf914b456f4f7364f84a92bfd5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/receipt.json",
+          "sha256": "ba54dca5bcb6e0a6f1e3b43e4c0ab14cd2d8f07523a3a6f6a520b2ff77a59e1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/replay-final/compiler.log",
+          "sha256": "f22d5e4e9ced367e774ce5bc140d9e6b1235c1882fec80d011044851f3ae6369",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-consumers-20261101/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/execution-authority-before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "c873fa5055265691f0a3d42db120af2f30ee9d1f52ec96051415432763dccc72",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_document_succession.py",
+          "sha256": "a8872b93749727cde018717afb85ec00625bb47736ca497e878d82056893890a",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/document-succession.json",
+          "sha256": "ea37d5e2dc68a1bbe59d84fd9d3cba9ab08bf30557ff931d96554037cc284436",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/governance-tests.log",
+          "sha256": "56d4897c4aa5211cc55ce220592832fc52138c1224c6b266c519d005276fc96b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/maintenance-final.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-05",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "Authoring/selection and historical agent replies are unchanged; task note no longer claims pending technical execution. No new agent trial. Recovery integration: the updated governance helper resolves authenticated documentary predecessors; the final governance suite and 439/439 recovery observation support that bounded change. These checks do not reaccept the 25 historical criteria or rerun product/skill consumers.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-tool-output-engineering.md",
+      "sha256": "fa738a50641e8775a2159700312376eb18340cc73c682d138a94a35681da33e7",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/loss-aware-transformations.md",
+          "sha256": "fb4b14a18194d6d6f9a7a592f095bc22e8f3c03cbb080c5605fa73b01d282647",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/tool-parsers-and-fallbacks.md",
+          "sha256": "fff670b43ed083b684d4835e54be59d08472aaf1233602e23529f4ef1317aa95",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/token-measurement.md",
+          "sha256": "05f7fb7d405b84e2680518031486b8a843b0891f47fd11464105b8f410ee3303",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/chain/tool-output-engineering.md",
+          "sha256": "6cd949046aa022320beef01d338b2553ef439411cd46efefc2055a8ffdea0b5c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/config/governance/profile.json.bin",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+          "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/group-3.md",
+          "sha256": "692cacfa1f1b62d3e6e1b540caadfae480ec9b55f7ca8e7ac583406e7fc8c2d6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/review.md",
+          "sha256": "5d37a57db655b1a9bdecc5f3fdc8cf7edd1fcd79c114cc2ec8ade315f3ee77d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.json",
+          "sha256": "f34cdf9bc5cc097efe8659f63c611af2a4c7fb555f1dd56cf523d32b56d91021",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.tar.gz",
+          "sha256": "688a84de1f008b784df1ea699cdfb9c1889390bc8dcf26bab9a99c0ad5c5a820",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "9935c6d4c2370147c683ecdd0213f22e56a1a67ebb9940ec543201b9e022aade",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/before.json",
+          "sha256": "b558b16d52000c7e3299d1c41e3f80a8f555aa24e5831ce16f7246db4cebdac7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/execution-authority-before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "c873fa5055265691f0a3d42db120af2f30ee9d1f52ec96051415432763dccc72",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_document_succession.py",
+          "sha256": "a8872b93749727cde018717afb85ec00625bb47736ca497e878d82056893890a",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/document-succession.json",
+          "sha256": "ea37d5e2dc68a1bbe59d84fd9d3cba9ab08bf30557ff931d96554037cc284436",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/governance-tests.log",
+          "sha256": "56d4897c4aa5211cc55ce220592832fc52138c1224c6b266c519d005276fc96b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/maintenance-final.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTARY-DELTA-AC-06",
+      "kind": "inspection",
+      "command_or_method": "New documentary dependency comparison against exact preserved pre-edit inputs and unchanged scenario/consumer/oracle scope; historical executions not rerun.",
+      "observed_result": "Authoring/selection and historical agent replies are unchanged; task note no longer claims pending technical execution. No new agent trial. Recovery integration: the updated governance helper resolves authenticated documentary predecessors; the final governance suite and 439/439 recovery observation support that bounded change. These checks do not reaccept the 25 historical criteria or rerun product/skill consumers.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/feature-reviews/skill-tool-output-engineering.md",
+      "sha256": "fa738a50641e8775a2159700312376eb18340cc73c682d138a94a35681da33e7",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-tool-output-engineering/tasks.md.bin",
+          "sha256": "816a89ad2ceaa9760f8875b76b445b678c120b4f62644f0bd137ddeedf413f29",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/loss-aware-transformations.md",
+          "sha256": "fb4b14a18194d6d6f9a7a592f095bc22e8f3c03cbb080c5605fa73b01d282647",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/tool-parsers-and-fallbacks.md",
+          "sha256": "fff670b43ed083b684d4835e54be59d08472aaf1233602e23529f4ef1317aa95",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/token-measurement.md",
+          "sha256": "05f7fb7d405b84e2680518031486b8a843b0891f47fd11464105b8f410ee3303",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/chain/tool-output-engineering.md",
+          "sha256": "6cd949046aa022320beef01d338b2553ef439411cd46efefc2055a8ffdea0b5c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "259f11606f16d63a923a096ef90b4155001e79d62b78a78bcb96c602a0721696",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/config/governance/profile.json.bin",
+          "sha256": "7642dd40bd690d55dd260e75c172523f6d035f8f06653a399d447d1c08de26fa",
+          "role": "other"
+        },
+        {
+          "path": "sdd/evidence.md",
+          "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/skill-criteria-review-20261101/matrix.json",
+          "sha256": "6a12afa573b66b0da698b8c5c138049b6df8c4a835bd9234766d6690133d034c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/group-3.md",
+          "sha256": "692cacfa1f1b62d3e6e1b540caadfae480ec9b55f7ca8e7ac583406e7fc8c2d6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/review.md",
+          "sha256": "5d37a57db655b1a9bdecc5f3fdc8cf7edd1fcd79c114cc2ec8ade315f3ee77d5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.json",
+          "sha256": "f34cdf9bc5cc097efe8659f63c611af2a4c7fb555f1dd56cf523d32b56d91021",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/agent-evals/observed-inputs.tar.gz",
+          "sha256": "688a84de1f008b784df1ea699cdfb9c1889390bc8dcf26bab9a99c0ad5c5a820",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "9935c6d4c2370147c683ecdd0213f22e56a1a67ebb9940ec543201b9e022aade",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/before.json",
+          "sha256": "b558b16d52000c7e3299d1c41e3f80a8f555aa24e5831ce16f7246db4cebdac7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/execution-authority-before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "c873fa5055265691f0a3d42db120af2f30ee9d1f52ec96051415432763dccc72",
+          "role": "contract"
+        },
+        {
+          "path": "tools/governance/tests/test_document_succession.py",
+          "sha256": "a8872b93749727cde018717afb85ec00625bb47736ca497e878d82056893890a",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/document-succession.json",
+          "sha256": "ea37d5e2dc68a1bbe59d84fd9d3cba9ab08bf30557ff931d96554037cc284436",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/governance-tests.log",
+          "sha256": "56d4897c4aa5211cc55ce220592832fc52138c1224c6b266c519d005276fc96b",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/maintenance-final.log",
+          "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-EXPORT-BOUNDARY-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Inspect two-prefix product-record exclusion and regression assertion delta; authenticate old bytes; reexamine scope of unchanged preservation/acceptance algorithms and unchanged technical consumers. See execution-authority-review.md.",
+      "observed_result": "Operational F0 evidence excluded from governance-only export; prior scoped feature verdicts retained, pending current independent-copy results. No skill or product approval transferred.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/execution-authority-review.md",
+      "sha256": "ed47b44829f55104a01fe26acf09190f588fd016f2de1ab20be13b3b5a5d0b9e",
+      "inputs": [
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "96f45b7e2eafb02e92e701705501cac0ccf7d62a0605b0fe91293a78dd175b33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "19ad9f877ea6b3eec612a79646a606ce2d1985f720c5c80c4527c234293d9fb2",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-RESUMPTION-DOCUMENTARY",
+      "kind": "inspection",
+      "command_or_method": "Review exact shared documentary/export delta against unchanged criterion consumers; retain old hashes and identical predecessors. Regression assertion fails before and passes after the bounded export exclusion.",
+      "observed_result": "Existing scoped verdicts retained; no new consumer execution or product approval inferred. Current contracts and actual implementation/oracle identities reexamined; obsolete observations remain historical.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/review.md",
+      "sha256": "a73aaaa1dd74131f1e7bb792235e2fdfb637a64a7bec19849170518b0281f79f",
+      "inputs": [
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/docs/architecture/context.md.bin",
+          "sha256": "4de3bdbe6fe7fb89c51bfb80087c27425ff3eedcf75b08225366e53e5c76c6e6",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/f0-boundary-20261102.md",
+          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-after.log",
+          "sha256": "8270162f72b25037bb5ce5a9dbc2742241e25cf4009d87afa4e1bffe0f45d892",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-before.log",
+          "sha256": "04eefac525b865179f55c5d74d75506057d3d22cad27e8c9dcc3149fd8d7a571",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/sdd/project.md.bin",
+          "sha256": "e06b294ec7bcfbd2bfcc6924e03dbe4c6ebfa5378432c8b79e138cdd6cd17913",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-RASTER-DOCUMENTARY",
+      "kind": "inspection",
+      "command_or_method": "Bounded semantic review of current F0 authority text and unchanged criterion consumers; exact old bytes preserved.",
+      "observed_result": "Existing governance verdict and authorization scope retained; no product acceptance inferred from documentary checks.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/closure-review.md",
+      "sha256": "3ff01c75d3fe989c29649689b8d70f3d6168f4dcb61b468f728002536edddaf5",
+      "inputs": [
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "e7884629c01481f69aeab1cf6d7237e76791f75f19a10ccef918425076e5d971",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/f0-boundary-20261102.md",
+          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/sdd/project.md.bin",
+          "sha256": "b802650f0b869ccfe0a7ad90d2fcc56c31290732060067ab495a0860ca9c3515",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-README-SKILL-INTEGRATION-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Compare actual enumerated profile/import/preservation/doc delta against each affected criterion consumer. Retain old observations and identical input/artifact bytes; current profile receives independent import acceptance.",
+      "observed_result": "Existing scoped criterion states retained; no product execution or scientific/reader-effectiveness claim inferred. New conditional resource identity and negative preservation cases examined separately.",
+      "artifact": "docs/validation/readme-skill-integration-20261104/shared-input-review.md",
+      "sha256": "317f66f9089cdad0ec12524cfaf5d1fd1a9a3aa310e94562dddea655a9c784da",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "6161cee65caa6a19ae61cba0c56cc5751d90c6fe54c42a07c0c72a2ee11f05b7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/readme-skill-integration.md",
+          "sha256": "f8f53eba58ebf0e9e0b7892ab41dbe880806b31bccfe85d3090d31389c613e1d",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/profile-revisions.json",
+          "sha256": "30f821a9adf357116a8d3b53114a0074da099be735446a79757899d56df972dc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "c573f472c39f89270a1c405919be1079c165aba77b7223a03fd13d2248544ab9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "other"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "5a6a68c5cb41a268d7bedafaa81c4583b60cd87f25603a79d2f4a80f46db72cc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "15b4ad904e3d1c950446ded93c7bb85bea5731198c18a56153f1667f8c88bda3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/skill_revision.py.bin",
+          "sha256": "692cb74cb6a25dde4eca0309616fa3acaf27acc17af0732328108eefd3af1f8a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
+          "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTATION-VISUALS-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Source/contract delta inspection and five new exact-preservation/negative-control tests; old runtime observations are not rerun.",
+      "observed_result": "The source-grounded documentation contract is extended with renderer-aware visual gates. Exact scoped successor recovery passes independent-copy and denial tests. Product/runtime inputs and old acceptance budgets are unchanged; inherited README guard failure remains explicit.",
+      "artifact": "docs/validation/technical-documentation-visuals-20261104/feature-reviews/skill-tool-output-engineering.md",
+      "sha256": "767a19e39be2d911b52bd5b4dccee2c3d6a1fac6f14a9e4647e493a1c3638e69",
+      "inputs": [
+        {
+          "path": ".codex/skills/technical-documentation/SKILL.md",
+          "sha256": "f128a9f1c328151c05f6f4364b2de4553dd1eefd24f7028a1057daa17c408483",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/evaluation-cases.md",
+          "sha256": "5180d7ef33afb21a29a939f4101b4372eac0d6e5e0cfda1af334de2004376fc9",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/media-and-data.md",
+          "sha256": "a33f448a7e21931c538d1fd71bbc125d5e21c5d1846d7274d503f2d69eaf52a1",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/mermaid.md",
+          "sha256": "99436772b89bfb4678b0f2a7671d43cfba1ec1ed39eda0bfb4e0a6ef8e1b4d34",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/technical-documentation/references/visual-quality.md",
+          "sha256": "e08f066fd27749df837ee10dbf18d6048a63216bd7e39bf5e1cd4dde97724da1",
+          "role": "contract"
+        },
+        {
+          "path": "docs/decisions/technical-documentation-visuals.md",
+          "sha256": "2ec19281059c07cc5e89a7cc0cce8fba51441892a4012ccf9ac3387901673c71",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/sdd/features/skill-tool-output-engineering/evidence.json.bin",
+          "sha256": "7e0586d947f29cb886da206150e74dc5f5f5b038dbd56274848ca895d2b980bd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/preservation-tests.log",
+          "sha256": "0ae42948e4a3b3a1cb46f98c429d553974feea4fb4615de6684edd9b70ae73c2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/revision.json",
+          "sha256": "4b8722c80f7e057f1c424682c612b0e8a41d137214569f969837140f25905e00",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/technical-documentation.md",
+          "sha256": "3ebc0979693730d8e4ae88e75e171427c71f3b9deb02a8b23d5f8e9053f8f5b5",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "d3a7726cc92eba7f258ca57969bd09cb423aec0efb1d28258cd7a0bb3bd7b1e2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/documentation_revision.py",
+          "sha256": "feeb53469f58dd40343cb3d693baf2a0db9afc1ce2a48c32f6f0336d9f28a27b",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "b0a84a13c773e295149cc47263f3589f549114527f23f54b8f39d4e9dbda118e",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_documentation_revision.py",
+          "sha256": "68fa6794a27a6a662dd52342453a7d371f4f7f6f9959880dd4f8f524a6c19cb9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-README-PRESERVATION-REPAIR",
+      "kind": "inspection",
+      "command_or_method": "Inspect exact README successor and unchanged original registration, source/partial-governance reference boundary and preserved preimages; run focused mutation/distribution tests and current governance checks. See report and checks.json.",
+      "observed_result": "Changed documentary/tool inputs have an explicit successor inspection; prior input hashes are preserved at exact-byte preimages. README navigation matches current authorities; unknown current bytes and malformed/missing/escaping resources remain rejected. Product code and prior operational observations are unchanged; no skill effectiveness or runtime reacceptance inferred.",
+      "artifact": "docs/validation/readme-preservation-20261104/report.md",
+      "sha256": "d7a270dfae483e50b96ae4ab1738f3ee086c145edc19b11186d82d67f6b8cbf9",
+      "inputs": [
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/README.md.bin",
+          "sha256": "449e8292a94b6ff8353cc57baa7315b1fe437a9f6bbf972e3c415ae98c46003c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/docs/README.md.bin",
+          "sha256": "3c591581fac522735196f7f46fa960a766a8180df06506e12d85a16556cb1243",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/readme-preservation.md",
+          "sha256": "186d139116e3e0346075be896d6b2cb95b476abdbb83581cdb3a29ba1e08fac2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/docs/development/governance.md.bin",
+          "sha256": "618cd167d7f10757f30d376094b71efd8bac755f2ea4628af258a8faec562eaf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/product-references.json",
+          "sha256": "67f918594ee4a5b042004c072bb24cbaec0757bb4bc73c6efe343b95bee3ccaa",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/revision.json",
+          "sha256": "2e8df96df7c08afa51d8c887d79547c00115e8176c5ee771e7d1b39001167c7c",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/README.md",
+          "sha256": "4281dc9443ced4c704bfa72131cac53fa625ab37a4fac8db9029ff5b289132cf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/converge.md.bin",
+          "sha256": "f5610e4d3f8a5ac0595836f53f9c3c3dd4e8ad0ca58bda7038cbb24c87718821",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/plan.md.bin",
+          "sha256": "841fd470795938ac574790e95e788c98d5fbc19be247c681cba7455005aef322",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/spec.md.bin",
+          "sha256": "a0cd0854a542b1514923e5d294172206c1f2eb18526c4b7ede1a707d063030e5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/tasks.md.bin",
+          "sha256": "e43548a188d09c5ab259b05da1860eb49042510d17407343cac88cac8211c8de",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/sdd/features/readme-skill-integration/traceability.json.bin",
+          "sha256": "41042dcda65fdac4ff835d65d22333ac75346407124e33291983d453d958e505",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "277d83e2663aeaf35981a010bec806c57a955ed5bdbe062d54b9dd59a5725748",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/tools/governance/scripts/readme_revision.py.bin",
+          "sha256": "c04db67e4ce38e4700d1c4f43e447e4cbcaed5161eba09b9d9f95b771287ee41",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/skill_revision.py",
+          "sha256": "1a7c29e200ac37853276ce8f07e03bf10294a2310cca00427989334de411fbab",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "98015daeb455c19a8c1b83ced13d72a6c6d915ef364615ebb2b38117ebeda1e7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
+          "sha256": "f5ed9b3809043d0487fff17c9737321bebd6149ddfed8ac11cd839decf2bbbf6",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTATION-VISUAL-DELIVERY",
+      "kind": "inspection",
+      "command_or_method": "Source-grounded redesign and diagram/source comparison; local Mermaid parse/export, licensed offline icons, real screenshot byte comparison, document/image/anchor and rendered layout review. See report, render-results.json, visual-review.json and final-checks.json.",
+      "observed_result": "README and linked reader guides now include purpose-specific images, flows, component, sequence and state models with sources/captions/text equivalents. Exact preimages preserve all changed documentary/tool inputs. Current visual gates and host limits are explicitly recorded; no product runtime acceptance, actual VS Code-webview inspection or usability study is inferred.",
+      "artifact": "docs/validation/documentation-visuals-20261104/report.md",
+      "sha256": "053e74993ede11f51f05ebd8743effde7de3d49827a311786a8765b3b222b780",
+      "inputs": [
+        {
+          "path": ".codex/skills/tool-output-engineering/SKILL.md",
+          "sha256": "fd130ef1657f87d540dc3e2577869926d5b41f4b2990dc6d1b6c92330f829529",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/tool-output-engineering/references/evaluation-cases.md",
+          "sha256": "d3bee6289434dd9d3c8fabc3429fa8ad7b5f2fe792a6f99585363724ce3acf9f",
+          "role": "other"
+        },
+        {
+          "path": "README.md",
+          "sha256": "0b143d64f24c0e46f4963ffd2a0dd654f63227478333a9ca2e7cdf89a346cbcc",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "be06191c52c21ef5b93e040c8411081c8e850e276876dd6e055f764813749e5e",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/application.md",
+          "sha256": "da1268c1322105f0f2acc935439153b56d755a37636483be1819f56446031b91",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/contracts.md",
+          "sha256": "02fa510bf9267c370dad050a23f14d4875fdb6dc53e0fb57743e42c1140cff70",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/README.md",
+          "sha256": "e03d56dd59b249f585910ae35777f50f5582d978d3d0c14b794b4b8a82d3df49",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/architecture-layout.mjs",
+          "sha256": "03353433139dd055f7e817581f4fbc0fb0ae1170170e1409774a39f45d5e6f16",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/architecture-mermaid.svg",
+          "sha256": "0bbcc5610df1783078a3f59694d0f5bdc0a20d58c81e6fc05da30cde7a22d780",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/architecture.svg",
+          "sha256": "10b4b5d8a10155ac7de3f035214cbac10f170def5ba6adc8b266afc581e59fe8",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/check.py",
+          "sha256": "22729caee1df17e6994e246c8d7655d072494a28f4fac3da71df3101b974798c",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/diagrams/architecture.mmd",
+          "sha256": "84a3d10c7e91d27068581f57929e1d2ca8e0cefae9519a905d5fece8e28f8049",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/diagrams/documentation.mmd",
+          "sha256": "b10ef027040e3d693c31e105cb55ba3e8ee10d88ece31495875524faa3b93cc8",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/diagrams/execution.mmd",
+          "sha256": "ecaa0934513d35cdd989317026a78331b746f39b2c4973556bb3af542635c2ce",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/diagrams/first-run.mmd",
+          "sha256": "1fbc52d7ce96ec0a7b1c8a6eb91ab1a49f3f5bbf7d57036f17595c3f09216f21",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/diagrams/governance.mmd",
+          "sha256": "f42c676f6b3e92f0f94a4f9d966329f87ddbf8fbf5bff5126e0a9798ecb69e53",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/diagrams/plugin-protocol.mmd",
+          "sha256": "d02df06d0caf092725710d208d03b4f61ae94c28f009c5afb6f45900973ea13c",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/diagrams/runtime-states.mmd",
+          "sha256": "53b73a081dfcac7b8843a0da895ebb8ae404f9f92af0e939d11eaa4683920df9",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/diagrams/sharing.mmd",
+          "sha256": "95c7ffef473c6fa24a6a9b7201427a1ffbafe2de789c7bc81412fede7d83b846",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/diagrams/task-cycle.mmd",
+          "sha256": "ff4540259285c2a8cadec0b04ebdc7ef2c840e95722466992b3b091056e8fe79",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/documentation.svg",
+          "sha256": "c0a1d11fe3390d2ac1113fbd19dffa771e97b48d7b077172f15dbda44d719093",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/execution.svg",
+          "sha256": "16810cc8ef8cbd28ee22398d1a56374dc5dc3f05b734c5da4ccbb213c3752297",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/first-run.svg",
+          "sha256": "c126170ac2202aeda4da1d751f0fd261aa50b006179a18af311b5b4dd372465d",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/governance.svg",
+          "sha256": "7fe0417f36fac438689d5002dad04636050aa705c8a38072b05b6486fc17313e",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/images/reference_001.jpeg",
+          "sha256": "7a4c5fe7892fd91e0f05865e5477ff4852f16853b38ad7d2229cd5deb748b786",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/images/reference_002.jpeg",
+          "sha256": "cdfdef5e55a4f12cdd3c6ed89346c02aacb04ebd453b3259966e8ccd975eeb30",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/mermaid.json",
+          "sha256": "92d668657c60445321c0ad111e9b6a57155a77c9e809768c64c6871fe3d97d4f",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/ox-approved.png",
+          "sha256": "5b3c14acdf0bf4e1a174920bdd28c78f17eb26658109658d342ea75149253762",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/ox-overview.svg",
+          "sha256": "89e25de7e3e752747957722348263d0da98c626d66c17337166f255d4158669b",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/ox-rejected.png",
+          "sha256": "633848ef2e724fb362919c09c25d1978035532f0cd23491cf0d573caf26c532f",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/plugin-protocol.svg",
+          "sha256": "0a4026e8d61b249eba74238788c4e79c5090e42b350a5578dbab6d47a01b995a",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/render.mjs",
+          "sha256": "8cf6fd7c61ba0bd91de59e4bfe9e16d3c9c01dc44121a03f72a57770b0eda490",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/runtime-states.svg",
+          "sha256": "1c606790cdc160c45a9d0d31366e0a7a13ab61a3827116f10a4b35e438dfffb2",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/sharing.svg",
+          "sha256": "f7fab77dbc4576444a363f22806f496776fbcc68999908abfe53798bff2a0862",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/task-cycle.svg",
+          "sha256": "1213903962ca39a09211286f6d42256d116cc2402e9c48380a9825bbeae9879c",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/tooling.json",
+          "sha256": "8cdb50e078d2632163a91a9946cca3d57a3f88abd07dcd5075ac72d8b6d1480c",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/vendor/lucide/LICENSE",
+          "sha256": "3c57143f22dac950efebf84002e360bba5458c7b90fe583b0667aaaef1a7256e",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/vendor/lucide/icons.json",
+          "sha256": "fe3598f28c7ecfa6f3de288266a88c9c7ad7f616f10eaa994adb074e896aed19",
+          "role": "other"
+        },
+        {
+          "path": "docs/assets/vendor/lucide/info.json",
+          "sha256": "0c7a972d32a2d0a665fdc15bd564bb28c01434aff2d3242027e0985eb2c02ea6",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/documentation-visuals.md",
+          "sha256": "536a9e74466ab55a07d701f52ae83428f8b5f9d46abf0e4fd2eee5da28c3fd0d",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/governance.md",
+          "sha256": "8d6fd5542a4d37ef885360c8e447d98e9ba7852a680d277673d823f77537fb57",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sharing.md",
+          "sha256": "9a2d09fc06aa3bb2a8fd0d3aeebbfbc280c7443eea63beaa79ffcca1913c3e31",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/observed/application/README.md.bin",
+          "sha256": "7dcc55fb0f6db678e66d3de821b3b5ad9ac55c4af402472f41468b59fb005865",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/product-references.json",
+          "sha256": "b0ab3d70090e149996df19b773ec0225c0eb840069d81b12c0f0b2e97747ab68",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/documentation-visuals-20261104/revision.json",
+          "sha256": "43dc261b2e556107b59a0e04a3781f6916617831c4609a2bf07eb95cbb53aa8b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/converge.md",
+          "sha256": "972cd0b88e69a4c7100ca77e3d82cfdf27293df353009de031fda06233a7af7f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/plan.md",
+          "sha256": "9530c9c0423b86173706e799da23a0132050c0aa32351c4f1656c362b76b5351",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/spec.md",
+          "sha256": "7bbea9cd601871decab32273d0d033addf2dff64da92a5bab7d0e22ab0c0742b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/tasks.md",
+          "sha256": "53409ce30dc70452a96d518b40b462fc13a112346fd345b9d1e9e16e07c5f986",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/readme-skill-integration/traceability.json",
+          "sha256": "699662640bfa906f0e8040a956b4bb31b75c44610e5ee1d1214287c195915b8a",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/plan.md",
+          "sha256": "70cfe004c5785133d71a5bbd4cffef01efd558b210265b777772b163a6878f71",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/spec.md",
+          "sha256": "c021229dbd0cfd5d4a104281e40fbce51276ed11cdc7f98c743acf45a9dea2e4",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/tasks.md",
+          "sha256": "8c474de6b76d7feee37ce2c9a6dab0757532a6800c008931e0d753a3776aa0fc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-tool-output-engineering/traceability.json",
+          "sha256": "339602cb8429deaedc24d037acfbf2e6bd73e106e1e6fd1eb1501c5eea551fa4",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/readme_revision.py",
+          "sha256": "c27c60ff0752cf1915b4d0d6bd1b93224b3e00608a4409645d30b5356083d025",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_readme_skill_integration.py",
+          "sha256": "a3ed2f23aa06eb3bbccf84785ca814e2cbf6a001ddb6cb7cbefc88076e3337e8",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Acceptance restricted to governance/authoring; no Rust compilation, Iced integration or product effectiveness.",
+    "Executor review is not independent human review; historical trials were not rerun.",
+    "Previous envelopes are in docs/validation/governance-layout/before.tar.gz; collection outputs are checked separately through freshness and final extraction.",
+    "Initial package qualification has its own inputs preceding consolidation; the final delivery receipt is in dist/.",
+    "The skills' 36 technical scenarios remain UNVERIFIED.",
+    "maintenance-001: affected observations are preserved in docs/validation/maintenance-001/previous/sdd/features/skill-tool-output-engineering/evidence.json.bin; awaiting review or new execution without renewing old hashes.",
+    "maintenance-001 observations are new; previous results are preserved. Actual-package criteria, a new agent trial and unresolved ownership/permissions remain UNVERIFIED.",
+    "Inputs changed by bootstrap; previous observations and historical approvals are preserved in docs/validation/bootstrap-governance/previous. Dependent criteria await their own reacceptance; old hashes were not renewed.",
+    "2026-11-01: new criterion review at docs/validation/skill-criteria-review-20261101/matrix.json. Technical observations do not automatically promote formal AC-01..04 under the existing guard; no product expansion. AC-06 reexamines historical replies, not new agents.",
+    "2026-11-01 technical-acceptance supersedes the former unconditional guard. Decided technical criteria concern frozen evaluated consumers only; semantic review and original limits remain mandatory.",
+    "2026-11-01 pending-criterion execution: only bounded evaluated consumers are accepted. Full scopes, failures and positive/negative controls in skill-consumers-20261101; product adoption remains independent. Existing AC-05/06 retain historical-response review, not new agent trials.",
+    "2026-11-01 documentary reconciliation: old input digests preserved under explicit snapshot paths; new task/successor inspections do not represent operational reruns. See docs/validation/f0-reconciliation-20261101/dependency-impact.json.",
+    "2026-11-04 visual-documentation method successor: exact historical inputs are preserved without digest renewal; a new bounded method/consumer inspection is separate from prior execution observations. Inherited README current-byte guard failure is not waived. See docs/validation/technical-documentation-visuals-20261104/."
+  ]
+}

@@ -1,0 +1,376 @@
+{
+  "cases": [
+    {
+      "case": "E01",
+      "variant": "roundtrip",
+      "expected": "exact entities/payload bytes/ordered arguments/references and revalidation table",
+      "corpora": [
+        "M0",
+        "M1",
+        "M32",
+        "ML"
+      ]
+    },
+    {
+      "case": "E01",
+      "variant": "dangling_reference",
+      "expected": "reject entire transaction; prior cut unchanged"
+    },
+    {
+      "case": "E01",
+      "variant": "duplicate_id_conflict",
+      "expected": "reject entire transaction; prior cut unchanged"
+    },
+    {
+      "case": "E01",
+      "variant": "missing_required_provenance",
+      "expected": "reject entire transaction; prior cut unchanged"
+    },
+    {
+      "case": "E01",
+      "variant": "invalid_state",
+      "expected": "reject entire transaction; prior cut unchanged"
+    },
+    {
+      "case": "E01",
+      "variant": "empty_inapplicability_reason",
+      "expected": "reject entire transaction; prior cut unchanged"
+    },
+    {
+      "case": "E02",
+      "variant": "B0",
+      "expected": "prior acknowledged cut retained; pending operation query by ID; no effect on reopen",
+      "allowed_new_intent_counts": [
+        0
+      ],
+      "allowed_complete_observation_counts": [
+        0
+      ],
+      "external_effect_count": [
+        0
+      ],
+      "external_observation_ack_count": 0
+    },
+    {
+      "case": "E02",
+      "variant": "B1",
+      "expected": "prior acknowledged cut retained; pending operation query by ID; no effect on reopen",
+      "allowed_new_intent_counts": [
+        1
+      ],
+      "allowed_complete_observation_counts": [
+        0
+      ],
+      "external_effect_count": [
+        0
+      ],
+      "external_observation_ack_count": 0
+    },
+    {
+      "case": "E02",
+      "variant": "B2",
+      "expected": "prior acknowledged cut retained; pending operation query by ID; no effect on reopen",
+      "allowed_new_intent_counts": [
+        1
+      ],
+      "allowed_complete_observation_counts": [
+        0
+      ],
+      "external_effect_count": [
+        1
+      ],
+      "external_observation_ack_count": 0
+    },
+    {
+      "case": "E02",
+      "variant": "B3",
+      "expected": "prior acknowledged cut retained; pending operation query by ID; no effect on reopen",
+      "allowed_new_intent_counts": [
+        1
+      ],
+      "allowed_complete_observation_counts": [
+        0,
+        1
+      ],
+      "external_effect_count": [
+        1
+      ],
+      "external_observation_ack_count": 0
+    },
+    {
+      "case": "E02",
+      "variant": "B4",
+      "expected": "prior acknowledged cut retained; pending operation query by ID; no effect on reopen",
+      "allowed_new_intent_counts": [
+        1
+      ],
+      "allowed_complete_observation_counts": [
+        1
+      ],
+      "external_effect_count": [
+        1
+      ],
+      "external_observation_ack_count": 0
+    },
+    {
+      "case": "E02",
+      "variant": "B5",
+      "expected": "prior acknowledged cut retained; pending operation query by ID; no effect on reopen",
+      "allowed_new_intent_counts": [
+        1
+      ],
+      "allowed_complete_observation_counts": [
+        1
+      ],
+      "external_effect_count": [
+        1
+      ],
+      "external_observation_ack_count": 1
+    },
+    {
+      "case": "E03",
+      "variant": "truncate_header",
+      "expected": "preserve damaged original hash/bytes; validated complete cut including acknowledged history OR explicit recovery-required; never partial approval"
+    },
+    {
+      "case": "E03",
+      "variant": "truncate_manifest",
+      "expected": "preserve damaged original hash/bytes; validated complete cut including acknowledged history OR explicit recovery-required; never partial approval"
+    },
+    {
+      "case": "E03",
+      "variant": "truncate_payload",
+      "expected": "preserve damaged original hash/bytes; validated complete cut including acknowledged history OR explicit recovery-required; never partial approval"
+    },
+    {
+      "case": "E03",
+      "variant": "flip_evidence_byte",
+      "expected": "preserve damaged original hash/bytes; validated complete cut including acknowledged history OR explicit recovery-required; never partial approval"
+    },
+    {
+      "case": "E03",
+      "variant": "physical_write_cut",
+      "expected": "preserve damaged original hash/bytes; validated complete cut including acknowledged history OR explicit recovery-required; never partial approval"
+    },
+    {
+      "case": "E03",
+      "variant": "selector_publication_cut",
+      "expected": "preserve damaged original hash/bytes; validated complete cut including acknowledged history OR explicit recovery-required; never partial approval"
+    },
+    {
+      "case": "E04",
+      "variant": "selective_mutations",
+      "expected": "exact table in revalidation.json; historical records unchanged"
+    },
+    {
+      "case": "E05",
+      "variant": "old_v0",
+      "expected": "v0→v1 exact logical equivalence with validated pre-backup; v1 no-op; v2/downgrade refuse without writes; interrupted migration original or whole target only"
+    },
+    {
+      "case": "E05",
+      "variant": "current_v1",
+      "expected": "v0→v1 exact logical equivalence with validated pre-backup; v1 no-op; v2/downgrade refuse without writes; interrupted migration original or whole target only"
+    },
+    {
+      "case": "E05",
+      "variant": "future_v2",
+      "expected": "v0→v1 exact logical equivalence with validated pre-backup; v1 no-op; v2/downgrade refuse without writes; interrupted migration original or whole target only"
+    },
+    {
+      "case": "E05",
+      "variant": "downgrade",
+      "expected": "v0→v1 exact logical equivalence with validated pre-backup; v1 no-op; v2/downgrade refuse without writes; interrupted migration original or whole target only"
+    },
+    {
+      "case": "E05",
+      "variant": "before_backup",
+      "expected": "v0→v1 exact logical equivalence with validated pre-backup; v1 no-op; v2/downgrade refuse without writes; interrupted migration original or whole target only"
+    },
+    {
+      "case": "E05",
+      "variant": "target_write_cut",
+      "expected": "v0→v1 exact logical equivalence with validated pre-backup; v1 no-op; v2/downgrade refuse without writes; interrupted migration original or whole target only"
+    },
+    {
+      "case": "E05",
+      "variant": "before_publication",
+      "expected": "v0→v1 exact logical equivalence with validated pre-backup; v1 no-op; v2/downgrade refuse without writes; interrupted migration original or whole target only"
+    },
+    {
+      "case": "E05",
+      "variant": "after_publication_before_reply",
+      "expected": "v0→v1 exact logical equivalence with validated pre-backup; v1 no-op; v2/downgrade refuse without writes; interrupted migration original or whole target only"
+    },
+    {
+      "case": "E06",
+      "variant": "writer_advances_after_pin",
+      "expected": "valid backup equals pinned cut in fresh restore; corrupt/incomplete backup refused preserving originals; unavailable/changed external dependencies revalidate UNVERIFIED"
+    },
+    {
+      "case": "E06",
+      "variant": "copy_first_chunk_pause",
+      "expected": "valid backup equals pinned cut in fresh restore; corrupt/incomplete backup refused preserving originals; unavailable/changed external dependencies revalidate UNVERIFIED"
+    },
+    {
+      "case": "E06",
+      "variant": "missing_manifest",
+      "expected": "valid backup equals pinned cut in fresh restore; corrupt/incomplete backup refused preserving originals; unavailable/changed external dependencies revalidate UNVERIFIED"
+    },
+    {
+      "case": "E06",
+      "variant": "tampered_manifest",
+      "expected": "valid backup equals pinned cut in fresh restore; corrupt/incomplete backup refused preserving originals; unavailable/changed external dependencies revalidate UNVERIFIED"
+    },
+    {
+      "case": "E06",
+      "variant": "missing_evidence",
+      "expected": "valid backup equals pinned cut in fresh restore; corrupt/incomplete backup refused preserving originals; unavailable/changed external dependencies revalidate UNVERIFIED"
+    },
+    {
+      "case": "E06",
+      "variant": "tampered_evidence",
+      "expected": "valid backup equals pinned cut in fresh restore; corrupt/incomplete backup refused preserving originals; unavailable/changed external dependencies revalidate UNVERIFIED"
+    },
+    {
+      "case": "E06",
+      "variant": "changed_workspace",
+      "expected": "valid backup equals pinned cut in fresh restore; corrupt/incomplete backup refused preserving originals; unavailable/changed external dependencies revalidate UNVERIFIED"
+    },
+    {
+      "case": "E06",
+      "variant": "missing_oracle",
+      "expected": "valid backup equals pinned cut in fresh restore; corrupt/incomplete backup refused preserving originals; unavailable/changed external dependencies revalidate UNVERIFIED"
+    },
+    {
+      "case": "E07",
+      "variant": "permission_denied_real",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "enospc_simulated",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "enospc_real_NOT_AUTHORIZED",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "unavailable",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "corrupt",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "writer_busy",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "restore_timeout",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "logical_equal_128MiB",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "logical_plus_one",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "quota_1GiB",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "cap_4GiB",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "rss_512MiB",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "ui_x11",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E07",
+      "variant": "ui_native_wayland",
+      "expected": "visible bounded error/no volatile approval/no effect after refusal; heartbeat plus rendered response <=120ms hypothesis; 5s watchdog; no eviction; real ENOSPC UNVERIFIED without separate authorization"
+    },
+    {
+      "case": "E08",
+      "variant": "race_two_writers",
+      "expected": "one store lease owner before effect; loser effect=0; identical payload one result; conflict rejects without writes; query uncertain ID without relaunch; dead owner lock reacquired"
+    },
+    {
+      "case": "E08",
+      "variant": "same_id_same_payload",
+      "expected": "one store lease owner before effect; loser effect=0; identical payload one result; conflict rejects without writes; query uncertain ID without relaunch; dead owner lock reacquired"
+    },
+    {
+      "case": "E08",
+      "variant": "same_id_conflict",
+      "expected": "one store lease owner before effect; loser effect=0; identical payload one result; conflict rejects without writes; query uncertain ID without relaunch; dead owner lock reacquired"
+    },
+    {
+      "case": "E08",
+      "variant": "lost_ack_query",
+      "expected": "one store lease owner before effect; loser effect=0; identical payload one result; conflict rejects without writes; query uncertain ID without relaunch; dead owner lock reacquired"
+    },
+    {
+      "case": "E08",
+      "variant": "lease_after_kill",
+      "expected": "one store lease owner before effect; loser effect=0; identical payload one result; conflict rejects without writes; query uncertain ID without relaunch; dead owner lock reacquired"
+    }
+  ],
+  "schedule": {
+    "corpora": [
+      "M0",
+      "M1",
+      "M32",
+      "ML"
+    ],
+    "case_order": [
+      "E01",
+      "E02",
+      "E03",
+      "E04",
+      "E05",
+      "E06",
+      "E07",
+      "E08"
+    ],
+    "warmups": 3,
+    "measured": 20,
+    "fault_repetitions": 10,
+    "candidate_order_even": [
+      "sqlite",
+      "snapshots"
+    ],
+    "candidate_order_odd": [
+      "snapshots",
+      "sqlite"
+    ],
+    "unmeasured_warmups_retained": true
+  },
+  "counter_contract": {
+    "effects": "external supervisor append-only operation_id + monotonic sequence before exposing effect barrier; persist/reopen counter independently",
+    "acks": "external supervisor append-only transaction ID + full logical cut hash + monotonic sequence; candidate reply alone is not an observed acknowledgement",
+    "restart": "never increment effect counter; resolve operation_id before any explicit new action"
+  }
+}

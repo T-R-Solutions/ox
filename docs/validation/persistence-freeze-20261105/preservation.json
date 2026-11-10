@@ -1,0 +1,13 @@
+{
+  "method": "Compare entry dirty tracked files by bytes; allow only explicitly edited SDD paths; preflight verify also compares original source and product/isolated lock inputs",
+  "entry_changed_paths": [
+    "sdd/features/product-local-persistence/converge.md",
+    "sdd/features/product-local-persistence/evidence.json",
+    "sdd/features/product-local-persistence/plan.md",
+    "sdd/features/product-local-persistence/spec.md",
+    "sdd/features/product-local-persistence/tasks.md",
+    "sdd/project.md"
+  ],
+  "unrelated_entry_changes_preserved": true,
+  "product_cargo_diff": "git diff -- application/Cargo.toml application/Cargo.lock is empty"
+}

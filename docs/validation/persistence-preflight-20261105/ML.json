@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "store_id": "S1",
+  "corpus": "ML",
+  "tasks": [
+    {
+      "id": "T1",
+      "store_id": "S1"
+    },
+    {
+      "id": "T2",
+      "store_id": "S1"
+    }
+  ],
+  "attempts": [
+    {
+      "id": "A1",
+      "task_id": "T1",
+      "sequence": 1
+    },
+    {
+      "id": "A2",
+      "task_id": "T1",
+      "sequence": 2
+    },
+    {
+      "id": "A3",
+      "task_id": "T2",
+      "sequence": 1,
+      "recovered": "interrupted/unknown"
+    }
+  ],
+  "checks": [
+    {
+      "id": "C1",
+      "description": "criterion 1",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P1-1",
+        "/fixture/P1-2"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P1-1",
+        "/fixture/P1-2"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C2",
+      "description": "criterion 2",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P2-1",
+        "/fixture/P2-2"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P2-1",
+        "/fixture/P2-2"
+      ],
+      "expected_exit": 0
+    }
+  ],
+  "operations": [
+    {
+      "id": "I1",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A1",
+        "check_id": "C1",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P1-1",
+            "/fixture/P1-2"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "dce03e39dc38460ca00971c987e12597975167358f5179e0ba05918ef0da6fb8"
+      },
+      "payload_sha256": "3c8a868389e0e7d1e804cb476717e8fec83f49f85ee3ce16c318d78e4089d7eb"
+    },
+    {
+      "id": "O1",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I1",
+        "record_id": "V1",
+        "check_id": "C1",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "ff1c676eb8e4f399367560e366b7a921ce719602ffc1aa78b66d85371eb54263",
+        "check_sha256": "dce03e39dc38460ca00971c987e12597975167358f5179e0ba05918ef0da6fb8"
+      },
+      "payload_sha256": "c969302856f861261be761c90681bc10dad5a1e9ea958b93d2a78088bc1ebad5"
+    },
+    {
+      "id": "I2",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A2",
+        "check_id": "C2",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P2-1",
+            "/fixture/P2-2"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "2749f52e0a91e907591ce3c3460349deee5a5b85010db90b7798361bea0a6417"
+      },
+      "payload_sha256": "8c43e61ff473e72f896d6af79539dbad7de316073079be1330aada8092ddcc8f"
+    },
+    {
+      "id": "O2",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I2",
+        "record_id": "V2",
+        "check_id": "C2",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "baf5d70451edac10b3c52c989b220fac0d3146c9f88b3732560a894310da695e",
+        "check_sha256": "2749f52e0a91e907591ce3c3460349deee5a5b85010db90b7798361bea0a6417"
+      },
+      "payload_sha256": "9105993f9bcb3633c9c1cf4bd3702cef2d003a97bd51a5df7005b5bbeac3585c"
+    },
+    {
+      "id": "I3",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T2",
+        "attempt_id": "A3",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [],
+          "directory": "/fixture"
+        }
+      },
+      "effect": {
+        "tag": "unknown"
+      },
+      "observation": {
+        "tag": "absent"
+      },
+      "payload_sha256": "01725b28fde18cd5c8e695ebdfe243700d5769fa18b7f1f8ed486d2cfc38f75a"
+    }
+  ],
+  "observations": [
+    {
+      "id": "V1",
+      "run": 1,
+      "attempt_id": "A1",
+      "intent_id": "I1",
+      "check_id": "C1",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P1-1",
+          "payload_id": "ML-V1-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P1-1",
+          "payload_id": "ML-V1-P1-after.bin"
+        },
+        {
+          "phase": "before",
+          "path": "/fixture/P1-2",
+          "payload_id": "ML-V1-P2-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P1-2",
+          "payload_id": "ML-V1-P2-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "APPROVED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V2",
+      "run": 2,
+      "attempt_id": "A2",
+      "intent_id": "I2",
+      "check_id": "C2",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P2-1",
+          "payload_id": "ML-V2-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P2-1",
+          "payload_id": "ML-V2-P1-after.bin"
+        },
+        {
+          "phase": "before",
+          "path": "/fixture/P2-2",
+          "payload_id": "ML-V2-P2-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P2-2",
+          "payload_id": "ML-V2-P2-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "APPROVED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    }
+  ],
+  "dispositions": [],
+  "payloads": [
+    {
+      "id": "oracle.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/oracle.bin",
+      "length": 39184,
+      "sha256": "08f38829911197c3d3c42b8339276b986eea4b7f9d95a13496ba09ee8e26b71b",
+      "availability": "present"
+    },
+    {
+      "id": "ML-V1-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V1-P1-before.bin",
+      "length": 15728640,
+      "sha256": "eeaa3d2c60f2340e64cda8381422c3818709a8e0cb2ccd0654030ce55ed3ed55",
+      "availability": "present"
+    },
+    {
+      "id": "ML-V1-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V1-P1-after.bin",
+      "length": 15728640,
+      "sha256": "eeaa3d2c60f2340e64cda8381422c3818709a8e0cb2ccd0654030ce55ed3ed55",
+      "availability": "present"
+    },
+    {
+      "id": "ML-V1-P2-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V1-P2-before.bin",
+      "length": 15728640,
+      "sha256": "f8635aecb16caf3bf48144b4dc1955479eb98c8744a8abec06a14f8702d5dd74",
+      "availability": "present"
+    },
+    {
+      "id": "ML-V1-P2-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V1-P2-after.bin",
+      "length": 15728640,
+      "sha256": "f8635aecb16caf3bf48144b4dc1955479eb98c8744a8abec06a14f8702d5dd74",
+      "availability": "present"
+    },
+    {
+      "id": "ML-V2-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V2-P1-before.bin",
+      "length": 15728640,
+      "sha256": "f8635aecb16caf3bf48144b4dc1955479eb98c8744a8abec06a14f8702d5dd74",
+      "availability": "present"
+    },
+    {
+      "id": "ML-V2-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V2-P1-after.bin",
+      "length": 15728640,
+      "sha256": "f8635aecb16caf3bf48144b4dc1955479eb98c8744a8abec06a14f8702d5dd74",
+      "availability": "present"
+    },
+    {
+      "id": "ML-V2-P2-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V2-P2-before.bin",
+      "length": 15728640,
+      "sha256": "d28b066f14ce63558a5ed63106d870ff81f937dc428ce803f489660aa48ea58a",
+      "availability": "present"
+    },
+    {
+      "id": "ML-V2-P2-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V2-P2-after.bin",
+      "length": 15728640,
+      "sha256": "d28b066f14ce63558a5ed63106d870ff81f937dc428ce803f489660aa48ea58a",
+      "availability": "present"
+    }
+  ],
+  "expected_current": {
+    "C1": {
+      "state": "APPROVED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C2": {
+      "state": "APPROVED",
+      "current_inputs": "same",
+      "reason": null
+    }
+  },
+  "ack_sequence": [
+    {
+      "sequence": 1,
+      "operation_id": "I1",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 2,
+      "operation_id": "O1",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 3,
+      "operation_id": "I2",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 4,
+      "operation_id": "O2",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 5,
+      "operation_id": "I3",
+      "observer": "external-supervisor"
+    }
+  ],
+  "clock": {
+    "kind": "fixture",
+    "value": "2026-11-05T00:00:00Z"
+  },
+  "provenance": {
+    "source": "neutral-fixture-v1",
+    "method": "arithmetic bytes, explicit logical tables",
+    "build": "fixture-not-product-executable",
+    "completeness": "complete"
+  },
+  "path_binding": "/fixture is a logical root; bind to fresh absolute owned run root and record binding before execution",
+  "raw_input_content_bytes": 125829120
+}

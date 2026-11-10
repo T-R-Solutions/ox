@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "environment": "2026-11-01 documentary preparation only; no storage execution",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Across two separate processes, task/attempt/check/observation/history round-trip with identical identities, arguments, expected result and before/after content identities; unknown remains distinct from zero/missing. Oracle: independent expected manifest, not serializer output.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Run clean restart and kills before/after intent, after effect, before/after commit acknowledgement; truncate/corrupt owned copies. Oracle: expected acknowledged histories, no invented approval/relaunch, preserved damaged bytes and explicit interrupted state within adopted durability envelope.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "After restart change one input, oracle, arguments or criterion independently; only dependent acceptance becomes stale. Missing evidence never approves. Exercise all five states, including justified inapplicability. Oracle: independent verdict/dependency table with negative controls.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Old/current/future schemas, interrupted upgrade and rejected downgrade preserve recoverable original bytes; no partial migrated visibility. Oracle: independent version/entity manifest and before/after original-byte comparison.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "While a writer is active, produce a consistent store+evidence manifest; restore into a fresh directory/process and compare expected entities/provenance, marking missing/changed external inputs stale. Incomplete/tampered backup fails visibly without overwriting originals. Oracle: independent manifest and restored-state query.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Permission denied, disk full, corrupt/unavailable store and bounded busy/restore failures remain visible; UI interaction/heartbeat continues within adopted bound; no silent volatile approval. Oracle: injected real storage errors plus independent graphical/heartbeat observation.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-07",
+      "criterion": "Two actual processes race to write the same store; second writer obeys adopted exclusion/deadline. Same operation+payload is one result, conflicting payload is rejected; lost acknowledgement resolves durable ID without executing effect twice. Oracle: independent operation/effect counter and recorded interleaving.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "All requirements are proposals; storage implementation and engine adoption await explicit maintainer authorization.",
+    "Traceability implementation points to an exact source-inspection snapshot of the empty storage boundary; oracle points to the proposed expected-result contract, not an executable test. Replace with authorized real implementation/oracles before acceptance."
+  ]
+}

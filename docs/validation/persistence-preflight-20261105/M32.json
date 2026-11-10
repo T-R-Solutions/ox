@@ -1,0 +1,3648 @@
+{
+  "schema_version": 1,
+  "store_id": "S1",
+  "corpus": "M32",
+  "tasks": [
+    {
+      "id": "T1",
+      "store_id": "S1"
+    },
+    {
+      "id": "T2",
+      "store_id": "S1"
+    }
+  ],
+  "attempts": [
+    {
+      "id": "A1",
+      "task_id": "T1",
+      "sequence": 1
+    },
+    {
+      "id": "A2",
+      "task_id": "T1",
+      "sequence": 2
+    },
+    {
+      "id": "A3",
+      "task_id": "T1",
+      "sequence": 3
+    },
+    {
+      "id": "A4",
+      "task_id": "T1",
+      "sequence": 4
+    },
+    {
+      "id": "A5",
+      "task_id": "T1",
+      "sequence": 5
+    },
+    {
+      "id": "A6",
+      "task_id": "T1",
+      "sequence": 6
+    },
+    {
+      "id": "A7",
+      "task_id": "T1",
+      "sequence": 7
+    },
+    {
+      "id": "A8",
+      "task_id": "T1",
+      "sequence": 8
+    },
+    {
+      "id": "A9",
+      "task_id": "T1",
+      "sequence": 9
+    },
+    {
+      "id": "A10",
+      "task_id": "T1",
+      "sequence": 10
+    },
+    {
+      "id": "A11",
+      "task_id": "T1",
+      "sequence": 11
+    },
+    {
+      "id": "A12",
+      "task_id": "T1",
+      "sequence": 12
+    },
+    {
+      "id": "A13",
+      "task_id": "T1",
+      "sequence": 13
+    },
+    {
+      "id": "A14",
+      "task_id": "T1",
+      "sequence": 14
+    },
+    {
+      "id": "A15",
+      "task_id": "T1",
+      "sequence": 15
+    },
+    {
+      "id": "A16",
+      "task_id": "T1",
+      "sequence": 16
+    },
+    {
+      "id": "A17",
+      "task_id": "T1",
+      "sequence": 17
+    },
+    {
+      "id": "A18",
+      "task_id": "T1",
+      "sequence": 18
+    },
+    {
+      "id": "A19",
+      "task_id": "T1",
+      "sequence": 19
+    },
+    {
+      "id": "A20",
+      "task_id": "T1",
+      "sequence": 20
+    },
+    {
+      "id": "A21",
+      "task_id": "T1",
+      "sequence": 21
+    },
+    {
+      "id": "A22",
+      "task_id": "T1",
+      "sequence": 22
+    },
+    {
+      "id": "A23",
+      "task_id": "T1",
+      "sequence": 23
+    },
+    {
+      "id": "A24",
+      "task_id": "T1",
+      "sequence": 24
+    },
+    {
+      "id": "A25",
+      "task_id": "T1",
+      "sequence": 25
+    },
+    {
+      "id": "A26",
+      "task_id": "T1",
+      "sequence": 26
+    },
+    {
+      "id": "A27",
+      "task_id": "T1",
+      "sequence": 27
+    },
+    {
+      "id": "A28",
+      "task_id": "T1",
+      "sequence": 28
+    },
+    {
+      "id": "A29",
+      "task_id": "T1",
+      "sequence": 29
+    },
+    {
+      "id": "A30",
+      "task_id": "T1",
+      "sequence": 30
+    },
+    {
+      "id": "A31",
+      "task_id": "T1",
+      "sequence": 31
+    },
+    {
+      "id": "A32",
+      "task_id": "T1",
+      "sequence": 32
+    },
+    {
+      "id": "A33",
+      "task_id": "T2",
+      "sequence": 1,
+      "recovered": "interrupted/unknown"
+    }
+  ],
+  "checks": [
+    {
+      "id": "C1",
+      "description": "criterion 1",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P1-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P1-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C2",
+      "description": "criterion 2",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P2-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P2-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C3",
+      "description": "criterion 3",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P3-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P3-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C4",
+      "description": "criterion 4",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P4-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P4-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C5",
+      "description": "criterion 5",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P5-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P5-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C6",
+      "description": "criterion 6",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P6-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P6-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C7",
+      "description": "criterion 7",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P7-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P7-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C8",
+      "description": "criterion 8",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P8-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P8-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C9",
+      "description": "criterion 9",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P9-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P9-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C10",
+      "description": "criterion 10",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P10-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P10-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C11",
+      "description": "criterion 11",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P11-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P11-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C12",
+      "description": "criterion 12",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P12-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P12-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C13",
+      "description": "criterion 13",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P13-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P13-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C14",
+      "description": "criterion 14",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P14-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P14-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C15",
+      "description": "criterion 15",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P15-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P15-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C16",
+      "description": "criterion 16",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P16-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P16-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C17",
+      "description": "criterion 17",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P17-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P17-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C18",
+      "description": "criterion 18",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P18-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P18-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C19",
+      "description": "criterion 19",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P19-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P19-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C20",
+      "description": "criterion 20",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P20-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P20-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C21",
+      "description": "criterion 21",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P21-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P21-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C22",
+      "description": "criterion 22",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P22-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P22-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C23",
+      "description": "criterion 23",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P23-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P23-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C24",
+      "description": "criterion 24",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P24-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P24-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C25",
+      "description": "criterion 25",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P25-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P25-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C26",
+      "description": "criterion 26",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P26-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P26-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C27",
+      "description": "criterion 27",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P27-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P27-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C28",
+      "description": "criterion 28",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P28-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P28-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C29",
+      "description": "criterion 29",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P29-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P29-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C30",
+      "description": "criterion 30",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P30-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P30-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C31",
+      "description": "criterion 31",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P31-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P31-1"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "C32",
+      "description": "criterion 32",
+      "criterion_version": 1,
+      "executable": "/fixture/oracle",
+      "executable_payload_id": "oracle.bin",
+      "arguments": [
+        "/fixture/P32-1"
+      ],
+      "directory": "/fixture",
+      "inputs": [
+        "/fixture/P32-1"
+      ],
+      "expected_exit": 0
+    }
+  ],
+  "operations": [
+    {
+      "id": "I1",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A1",
+        "check_id": "C1",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P1-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "5f3b16af5ac17b9e83cf4fcd7623405fc46ea299db0477c783db22e16e8b9d8c"
+      },
+      "payload_sha256": "0822ddb8668db62815fb442494b96143fe6c85e50b53c0a87f37c758005dcd07"
+    },
+    {
+      "id": "O1",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I1",
+        "record_id": "V1",
+        "check_id": "C1",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "62b37f94671d7c99f689b56be663a88906b2c61674a7dc7d66f50aa98d1377c6",
+        "check_sha256": "5f3b16af5ac17b9e83cf4fcd7623405fc46ea299db0477c783db22e16e8b9d8c"
+      },
+      "payload_sha256": "02e67cc4fbcfb28ec5ac2fb16ff7a424df35dad86dbfb64ef3f2d22325cac099"
+    },
+    {
+      "id": "I2",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A2",
+        "check_id": "C2",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P2-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "cbf061ae5578314dda5f0e5c2416cb9d0c646807b621297d2039909c3891b48e"
+      },
+      "payload_sha256": "fa4999f4a3f4c9908b2be98401ab4bdc36a7ec963d4c51a081cb7a1634fd6bfc"
+    },
+    {
+      "id": "O2",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I2",
+        "record_id": "V2",
+        "check_id": "C2",
+        "result": {
+          "tag": "exited",
+          "code": 17
+        },
+        "record_sha256": "ee0434d685ecd2d0fc1af0da1dff7ad08cffa235745a99e4e13282ab8283a190",
+        "check_sha256": "cbf061ae5578314dda5f0e5c2416cb9d0c646807b621297d2039909c3891b48e"
+      },
+      "payload_sha256": "ea571f9c19c5cb0520aafae89a1a6248b2f986113ff79d7c13dfb48e5ab2d181"
+    },
+    {
+      "id": "I3",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A3",
+        "check_id": "C3",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P3-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "3ff818b50dde312cf85cbd88bc9a62f971d4f69e3494a1b9fd674f4b549fbb75"
+      },
+      "payload_sha256": "ddf9147109644a86f2ca1e1dc100748702e659d58c3cba99d0782bcbefe1f859"
+    },
+    {
+      "id": "O3",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I3",
+        "record_id": "V3",
+        "check_id": "C3",
+        "result": {
+          "tag": "timed_out",
+          "code": {
+            "tag": "unknown"
+          }
+        },
+        "record_sha256": "c8456bcf0004b713fadfdfe07882eb4996d9f1669e1132bce1ae850ea30e0aa3",
+        "check_sha256": "3ff818b50dde312cf85cbd88bc9a62f971d4f69e3494a1b9fd674f4b549fbb75"
+      },
+      "payload_sha256": "c25bf1ca839d785b8601fb118145e31beecd724733fdfe381a1ded675919692e"
+    },
+    {
+      "id": "I4",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A4",
+        "check_id": "C4",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P4-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "05b236c48f955220682f1790fa434df59556d3b1043f7a0d92bb1b143ad39dea"
+      },
+      "payload_sha256": "81008a1fdd6d94b60e86fdd46331de10e0c7f52b09f517df96f8f6c1efdcd518"
+    },
+    {
+      "id": "O4",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I4",
+        "record_id": "V4",
+        "check_id": "C4",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "51f45bcc8f8093381cac159bae22ba8c2c7aed6e3e8fd9ed99ec070c55042ad9",
+        "check_sha256": "05b236c48f955220682f1790fa434df59556d3b1043f7a0d92bb1b143ad39dea"
+      },
+      "payload_sha256": "d1c84dabb8fc5c8971acf6e077d9593b97c71e72ebd7d443cebacabf18dd4dbb"
+    },
+    {
+      "id": "I5",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A5",
+        "check_id": "C5",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P5-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "007de879a1499c152c8d5a1ca99175a051e2f4d0829fa78dfe25aa4993d73e31"
+      },
+      "payload_sha256": "62fed02918cb5b567d6462d7506de9b30e4848e94d3aa11a395f5284fee925f2"
+    },
+    {
+      "id": "O5",
+      "payload_version": 1,
+      "kind": "disposition",
+      "payload": {
+        "intent_id": "I5",
+        "record_id": "V5",
+        "check_id": "C5",
+        "result": {
+          "tag": "absent"
+        },
+        "record_sha256": "7edb24f01db2c1eb3285bd360bc66ced760ace8890bbaac715a66b3cee4e77c4",
+        "check_sha256": "007de879a1499c152c8d5a1ca99175a051e2f4d0829fa78dfe25aa4993d73e31"
+      },
+      "payload_sha256": "640b8bcb0cf01c413ccc5fb70b3d1d89b4f7f6e02f34bbbdfb5372ea25901eea"
+    },
+    {
+      "id": "I6",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A6",
+        "check_id": "C6",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P6-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "824a30e03a28590bca14dff46a5e38f01678c382ab702cff4ed3a32ff124f97a"
+      },
+      "payload_sha256": "215553fe72b93861e679369ad9f2232d25ed5257e9f1d1e73e3f4313cca3e40e"
+    },
+    {
+      "id": "O6",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I6",
+        "record_id": "V6",
+        "check_id": "C6",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "2a3b1fd269210ebcf9b15ff00ad2b71772b4046749a66d730e46acb77153f54f",
+        "check_sha256": "824a30e03a28590bca14dff46a5e38f01678c382ab702cff4ed3a32ff124f97a"
+      },
+      "payload_sha256": "e90689093ac6b8627de056096095c3efdd8168ec1de1ec18a0fb89ba3f5c60e1"
+    },
+    {
+      "id": "I7",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A7",
+        "check_id": "C7",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P7-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "007bf12d945bc461989ce72f06af15de032ce1c89a30ab3173af120664009b03"
+      },
+      "payload_sha256": "789b18b98d1520ddf744eb74a35b56564f38bfe54a6f1eba6734752db2c54cd3"
+    },
+    {
+      "id": "O7",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I7",
+        "record_id": "V7",
+        "check_id": "C7",
+        "result": {
+          "tag": "exited",
+          "code": 17
+        },
+        "record_sha256": "88a9d424a2bba2f59447567127e1a9af142d1c54ce8f3b9d67d5b88edd77431c",
+        "check_sha256": "007bf12d945bc461989ce72f06af15de032ce1c89a30ab3173af120664009b03"
+      },
+      "payload_sha256": "5940a3dd718b3f6368fea043d285ca478df09aa3b1ec52c2bbea289b5b050442"
+    },
+    {
+      "id": "I8",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A8",
+        "check_id": "C8",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P8-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "399a34b1bc190d48e7e15825aa6b81601533171e5594624bdb3bb38e88288aed"
+      },
+      "payload_sha256": "aa042fcd4e557ae7501c164194271caff586692304b62540587b40f0fe2b55dc"
+    },
+    {
+      "id": "O8",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I8",
+        "record_id": "V8",
+        "check_id": "C8",
+        "result": {
+          "tag": "timed_out",
+          "code": {
+            "tag": "unknown"
+          }
+        },
+        "record_sha256": "bdaae569b3cb5c4e05a6a86c2c9586841a969e70da69c69bbfd31570e6f70b62",
+        "check_sha256": "399a34b1bc190d48e7e15825aa6b81601533171e5594624bdb3bb38e88288aed"
+      },
+      "payload_sha256": "097bd1e2da828878201d006dec61986d3f4d551c74d317ec51d4d42411cf1b59"
+    },
+    {
+      "id": "I9",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A9",
+        "check_id": "C9",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P9-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "0c3b462361a3ffdff9c5068839f1bbfcdb4aa54d92cee102082121ff528267ce"
+      },
+      "payload_sha256": "b4bbadad29622bf54c356d377705de6146a1517011422ad356ad8886ad3fe5b0"
+    },
+    {
+      "id": "O9",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I9",
+        "record_id": "V9",
+        "check_id": "C9",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "75988b31aef0c5c466350f6e67b0807cd849f86b9b8927d6a55243ea1cca486b",
+        "check_sha256": "0c3b462361a3ffdff9c5068839f1bbfcdb4aa54d92cee102082121ff528267ce"
+      },
+      "payload_sha256": "48c220f6715e66c23cd0b8d9fac4ce6ed9855018bcca4cb307ddffe62147c41e"
+    },
+    {
+      "id": "I10",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A10",
+        "check_id": "C10",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P10-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "812b036340f6a1b6073d3eb9e280b24720d7fdacdc987d5405e0184c8cc3c46b"
+      },
+      "payload_sha256": "ebf36be48cfeb6abd2fe4f5cca96c192d3fd89bafa7d2cdc3fefeba84df83a32"
+    },
+    {
+      "id": "O10",
+      "payload_version": 1,
+      "kind": "disposition",
+      "payload": {
+        "intent_id": "I10",
+        "record_id": "V10",
+        "check_id": "C10",
+        "result": {
+          "tag": "absent"
+        },
+        "record_sha256": "3eae2b2335934fa604f1ab81281881d01bf776bd167adab3bb9d3435a1a1dd8a",
+        "check_sha256": "812b036340f6a1b6073d3eb9e280b24720d7fdacdc987d5405e0184c8cc3c46b"
+      },
+      "payload_sha256": "febdfeb25cc659085d087d7695e464c42ed0d6bf82decdd3f9ae98b08147b378"
+    },
+    {
+      "id": "I11",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A11",
+        "check_id": "C11",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P11-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "4fa7c82aa11df8bb1a22cdc6bbc01b604d78f60d9401bcfae63efa9288f4b0a7"
+      },
+      "payload_sha256": "8038ff51400c85da6468b74eb65a79c1aaf7704b870ed0c62ee33be0ec3c5ed9"
+    },
+    {
+      "id": "O11",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I11",
+        "record_id": "V11",
+        "check_id": "C11",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "d22cf4a829ea987886d5c0cb38fcfce9f28a8161ac097eb4300f4e9d043e29e6",
+        "check_sha256": "4fa7c82aa11df8bb1a22cdc6bbc01b604d78f60d9401bcfae63efa9288f4b0a7"
+      },
+      "payload_sha256": "f1223eda964ff94975f707ec3595c3d6ab467dc192e4a536938e83e0297c6a95"
+    },
+    {
+      "id": "I12",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A12",
+        "check_id": "C12",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P12-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "224903dcca0f4b33f2bf1b09e540898dd0d3759555b74907ed64e35b3579c268"
+      },
+      "payload_sha256": "d84ef84d07a1a0806c1a0cea795dff6195f4592c5bf70099078fad2650abb807"
+    },
+    {
+      "id": "O12",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I12",
+        "record_id": "V12",
+        "check_id": "C12",
+        "result": {
+          "tag": "exited",
+          "code": 17
+        },
+        "record_sha256": "0ab4ede8e17a05b256f06e4a6b52b153d5a2156afe4282a30191feea6f70b306",
+        "check_sha256": "224903dcca0f4b33f2bf1b09e540898dd0d3759555b74907ed64e35b3579c268"
+      },
+      "payload_sha256": "d5942bcccf77af26dd7dd2ae83f6fe5df46a54fe379178646123eab4cb5f732f"
+    },
+    {
+      "id": "I13",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A13",
+        "check_id": "C13",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P13-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "849bc8cb298902ea8bca5919585b9a69b785528e9bdfcba442d34f03cfc76e0b"
+      },
+      "payload_sha256": "5980c5175d559fee17befcf485b2585195c2976176fea0f00653899b1daa9612"
+    },
+    {
+      "id": "O13",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I13",
+        "record_id": "V13",
+        "check_id": "C13",
+        "result": {
+          "tag": "timed_out",
+          "code": {
+            "tag": "unknown"
+          }
+        },
+        "record_sha256": "3a16ad39b4de8c3b13dcfffc1465bb2139de6fec3e28605b1339ca0588041d64",
+        "check_sha256": "849bc8cb298902ea8bca5919585b9a69b785528e9bdfcba442d34f03cfc76e0b"
+      },
+      "payload_sha256": "d4c157fee87e63fbb3cd54fcd8673db12e1cc2280874124593346f0560e40175"
+    },
+    {
+      "id": "I14",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A14",
+        "check_id": "C14",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P14-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "d5e896f32532a040ad3fb4d4bd092d45aa1de85e11f89334023cb321893d610b"
+      },
+      "payload_sha256": "999c7fa6cca122a8ee9e4fb7809444f6f8d2c969b7bb5aa6f31e20cc315ff70b"
+    },
+    {
+      "id": "O14",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I14",
+        "record_id": "V14",
+        "check_id": "C14",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "8dd5511101e267b1df9ec5716ce1d66e6ae11fbae256d493ec43cf5ea1ced8fd",
+        "check_sha256": "d5e896f32532a040ad3fb4d4bd092d45aa1de85e11f89334023cb321893d610b"
+      },
+      "payload_sha256": "db26775d9bafa3b54fea8238547bb9d1c6efff69e6d2145a76cd0b04685b232f"
+    },
+    {
+      "id": "I15",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A15",
+        "check_id": "C15",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P15-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "e2af319aeb6914a8489ec977ea2fd397ae1e8e08eb0a7ada9a22ebe86b49ff3a"
+      },
+      "payload_sha256": "10acc3a8ae4a8d408b2f4110011e3b74d935bc44231fcd9bea88104c96aa828a"
+    },
+    {
+      "id": "O15",
+      "payload_version": 1,
+      "kind": "disposition",
+      "payload": {
+        "intent_id": "I15",
+        "record_id": "V15",
+        "check_id": "C15",
+        "result": {
+          "tag": "absent"
+        },
+        "record_sha256": "e31d4bafcb53903c4654d7cb3b0861c4990635b2d929e892ada7c357e5270681",
+        "check_sha256": "e2af319aeb6914a8489ec977ea2fd397ae1e8e08eb0a7ada9a22ebe86b49ff3a"
+      },
+      "payload_sha256": "f3d80e526cf82dc3838fb47b3e881a4bb9958a90686ecd2371799283587d4f32"
+    },
+    {
+      "id": "I16",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A16",
+        "check_id": "C16",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P16-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "91621effc7bcb4a2989dc66fa85c8c4eb7fe0a58a5c0482f17e1d2f4e56505f6"
+      },
+      "payload_sha256": "f84de6088d9d1f6fc8c08d84547d6ec620a3c7bce61be12cd7179262691ce3a6"
+    },
+    {
+      "id": "O16",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I16",
+        "record_id": "V16",
+        "check_id": "C16",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "3c7f0f2b9774e3b81eae9c0b18456e4b5a5f4399b7861fd3322e0eefebbf7136",
+        "check_sha256": "91621effc7bcb4a2989dc66fa85c8c4eb7fe0a58a5c0482f17e1d2f4e56505f6"
+      },
+      "payload_sha256": "9b84a9b3de91a8cb9b47386233848e5b1e55beee3e384a526211666910aed320"
+    },
+    {
+      "id": "I17",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A17",
+        "check_id": "C17",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P17-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "997a4f7fb3fbe48b0233bec980d015610cd4ba7a34d83b8d1f280448613c820a"
+      },
+      "payload_sha256": "1ad4c2fd69702422558c48fb381fba3e00bd46f5dede6e4f82374553554ccafd"
+    },
+    {
+      "id": "O17",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I17",
+        "record_id": "V17",
+        "check_id": "C17",
+        "result": {
+          "tag": "exited",
+          "code": 17
+        },
+        "record_sha256": "fec73a278ffe66f931fef7cf3ed2aca5d7cc9f98cabb59e4d0c199b158ebfa0e",
+        "check_sha256": "997a4f7fb3fbe48b0233bec980d015610cd4ba7a34d83b8d1f280448613c820a"
+      },
+      "payload_sha256": "a26e711baaabbde02b83ec767e07361464da044d2ce8a85f6b84bd1780c9d667"
+    },
+    {
+      "id": "I18",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A18",
+        "check_id": "C18",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P18-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "37610c2750c7cbc428b80ca9945c7772ff6564e94198b5ca1fe9f05666e60ef3"
+      },
+      "payload_sha256": "2c48004b6efa1fde9354af90cabbdd67c1955fb24de07caddc739077047b1b89"
+    },
+    {
+      "id": "O18",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I18",
+        "record_id": "V18",
+        "check_id": "C18",
+        "result": {
+          "tag": "timed_out",
+          "code": {
+            "tag": "unknown"
+          }
+        },
+        "record_sha256": "45b4ed66ca7e65f2bfefdfbd78c3ba8618aa086a540a5a2ac9b102a75b9f31b0",
+        "check_sha256": "37610c2750c7cbc428b80ca9945c7772ff6564e94198b5ca1fe9f05666e60ef3"
+      },
+      "payload_sha256": "12a856388128758c7f631873bd9b8dcb8f93c117b633c5fed1c063a99f5ea473"
+    },
+    {
+      "id": "I19",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A19",
+        "check_id": "C19",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P19-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "0548a92ac0bec287a45667a3fe006c862fc58f18a65244e6b13e07cb4a90c427"
+      },
+      "payload_sha256": "1a569ccbdad28b3ae236fa4be30b5a35dd395a3758293922d1cd525f6b4c48cd"
+    },
+    {
+      "id": "O19",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I19",
+        "record_id": "V19",
+        "check_id": "C19",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "7766419034949db2ba0700086e1bce0e56d8213a2f38c1c965079fda103b271f",
+        "check_sha256": "0548a92ac0bec287a45667a3fe006c862fc58f18a65244e6b13e07cb4a90c427"
+      },
+      "payload_sha256": "cde96f5fc8d9d0b2a77fbc4219fd74cdde1e1abf52d0745c2f0d0cc2631a4b28"
+    },
+    {
+      "id": "I20",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A20",
+        "check_id": "C20",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P20-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "d38a87f1310e7cbfc3848c0efc3909ba20763603529e772bae547a24e14733b2"
+      },
+      "payload_sha256": "de48b23fd8a2b7e941ea9ce7b1dc9a712a37b1153d23cbf2d158678e434dd786"
+    },
+    {
+      "id": "O20",
+      "payload_version": 1,
+      "kind": "disposition",
+      "payload": {
+        "intent_id": "I20",
+        "record_id": "V20",
+        "check_id": "C20",
+        "result": {
+          "tag": "absent"
+        },
+        "record_sha256": "9d9ee004329057fdb32b97295e10b920f602df3ff1bcbe67ef5dcc2da23ea4b1",
+        "check_sha256": "d38a87f1310e7cbfc3848c0efc3909ba20763603529e772bae547a24e14733b2"
+      },
+      "payload_sha256": "b046cd10c0aa52c51d1c6842aba86e4b9548829226cdba3f35ea226bb8e1388d"
+    },
+    {
+      "id": "I21",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A21",
+        "check_id": "C21",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P21-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "fc7e2ba276efd7dbb11c49931a5d9cec126a3f4f5a97d7899aeb4132467b90c4"
+      },
+      "payload_sha256": "c184b0d10354264b316bd2c65f2ff507f1ebdbe87084a7ccd6ad3b6251136803"
+    },
+    {
+      "id": "O21",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I21",
+        "record_id": "V21",
+        "check_id": "C21",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "44579186269ad8dba26bdbca3522eb17e54badc674e53d5ec7f792160a12287b",
+        "check_sha256": "fc7e2ba276efd7dbb11c49931a5d9cec126a3f4f5a97d7899aeb4132467b90c4"
+      },
+      "payload_sha256": "c84d444c9ad474510fe89ac62f8c82deb64fb3b26b2c5cd513a52dc596bc5f37"
+    },
+    {
+      "id": "I22",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A22",
+        "check_id": "C22",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P22-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "539ca8170289c1b3d91611f5467d9695c50e593a2c15d8ba160909598f429166"
+      },
+      "payload_sha256": "03f8810ed8e9de935e0250df04140e27b5a6b64cffe30f27c7b49bc5d7a97162"
+    },
+    {
+      "id": "O22",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I22",
+        "record_id": "V22",
+        "check_id": "C22",
+        "result": {
+          "tag": "exited",
+          "code": 17
+        },
+        "record_sha256": "506fc626fd4a0b12f7dab5b6e8072a3139602b53fb1d04c816d428c0eb22e913",
+        "check_sha256": "539ca8170289c1b3d91611f5467d9695c50e593a2c15d8ba160909598f429166"
+      },
+      "payload_sha256": "9d9dccc5cf0b48d8ce8259b81fc933acbc7deb1a80d6572630800800a2d2760f"
+    },
+    {
+      "id": "I23",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A23",
+        "check_id": "C23",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P23-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "c375379cff326eb5ab36a8e0f1d8f5c1af149130d281aed553bedb6cad8adaed"
+      },
+      "payload_sha256": "f39958bea7fbcd702b137da4332f7dbbe31c3e18f395f34f78bb525a5915e5fd"
+    },
+    {
+      "id": "O23",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I23",
+        "record_id": "V23",
+        "check_id": "C23",
+        "result": {
+          "tag": "timed_out",
+          "code": {
+            "tag": "unknown"
+          }
+        },
+        "record_sha256": "2de8af6a8750799e6045a24b85baf42d4bb8151cadef6769593a7a7fc68e2eb7",
+        "check_sha256": "c375379cff326eb5ab36a8e0f1d8f5c1af149130d281aed553bedb6cad8adaed"
+      },
+      "payload_sha256": "2b1b8655926560c7851e0ead12b0f832822cb791f13859a8ca53338bee6d6941"
+    },
+    {
+      "id": "I24",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A24",
+        "check_id": "C24",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P24-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "4c4b062d70dc5bb6e71a167f12b17de87abe7730446466484a01321c9393f03f"
+      },
+      "payload_sha256": "ddd83e1fc9039db42b5b2de430d42e8bb757848aba6a9e3835dfe619bb2fd39f"
+    },
+    {
+      "id": "O24",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I24",
+        "record_id": "V24",
+        "check_id": "C24",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "9e8a9588ecd56f0a7f2264f7bf13cb1375826fba1b488f6b2842901c3ace0f68",
+        "check_sha256": "4c4b062d70dc5bb6e71a167f12b17de87abe7730446466484a01321c9393f03f"
+      },
+      "payload_sha256": "977c584676f984ffb75198bc18f4013d498315ac6282de590363b9bd94b15c86"
+    },
+    {
+      "id": "I25",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A25",
+        "check_id": "C25",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P25-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "7aa2c1a26f8368df2d112ffbe30136d8ac602792d6c6d10f90862853bd6a53a5"
+      },
+      "payload_sha256": "f507a7c48652c716bb0d0746a4223cbbd73f9b025ed9a839809cdad03e9c4848"
+    },
+    {
+      "id": "O25",
+      "payload_version": 1,
+      "kind": "disposition",
+      "payload": {
+        "intent_id": "I25",
+        "record_id": "V25",
+        "check_id": "C25",
+        "result": {
+          "tag": "absent"
+        },
+        "record_sha256": "da779d8b5bd70084aa8494ed59dee46830615c0dd270e6999a5215f141d47be3",
+        "check_sha256": "7aa2c1a26f8368df2d112ffbe30136d8ac602792d6c6d10f90862853bd6a53a5"
+      },
+      "payload_sha256": "7a18c8e7ed96f6b18e418ca414896fe874726b4becc00ec588889ccd7ee6242c"
+    },
+    {
+      "id": "I26",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A26",
+        "check_id": "C26",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P26-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "d2ba948e1b330a3be932328e42c398bc26f3b8879a9e932b769a72d003f52ce2"
+      },
+      "payload_sha256": "c41b20a1af67efe2f1fb1cdb3c2de3246e2fd7db4aa4da8f29926b0e2f86ee4c"
+    },
+    {
+      "id": "O26",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I26",
+        "record_id": "V26",
+        "check_id": "C26",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "0ee28617b57d6d36da0efd9d2dea8827b2ef0f4dc2db81c22e2609a21c62c3aa",
+        "check_sha256": "d2ba948e1b330a3be932328e42c398bc26f3b8879a9e932b769a72d003f52ce2"
+      },
+      "payload_sha256": "cccbb2863f06e5c9f10f30bb812ebce05c8ea41eff8947ef707495d54139e870"
+    },
+    {
+      "id": "I27",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A27",
+        "check_id": "C27",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P27-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "30a7fff4f3d09a172f40e65327d0d58e64a70439f4eea419f25ce8f1dd253f11"
+      },
+      "payload_sha256": "0d2cce873f9d68ce681871c92b4521f37665b7aa2b14f839e4ad1638f3b712ef"
+    },
+    {
+      "id": "O27",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I27",
+        "record_id": "V27",
+        "check_id": "C27",
+        "result": {
+          "tag": "exited",
+          "code": 17
+        },
+        "record_sha256": "bad94ad5e7b5162421dff469e88b7dca55979e9db3901bada746bc191a5d62dc",
+        "check_sha256": "30a7fff4f3d09a172f40e65327d0d58e64a70439f4eea419f25ce8f1dd253f11"
+      },
+      "payload_sha256": "aef95097ee44a94e019e89342ff3188bd880def7a430a5dcab10615839f1dbb4"
+    },
+    {
+      "id": "I28",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A28",
+        "check_id": "C28",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P28-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "c7b97164a8d5293d5a65042f6a2aff4dbee0a634dcec317de9a34d5b5bc06243"
+      },
+      "payload_sha256": "98febdc3f4beee4594e4fc5da09be2e70cab3ed8db9b09db016067ebc3b09c1a"
+    },
+    {
+      "id": "O28",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I28",
+        "record_id": "V28",
+        "check_id": "C28",
+        "result": {
+          "tag": "timed_out",
+          "code": {
+            "tag": "unknown"
+          }
+        },
+        "record_sha256": "8d2ac7ac6b220704e2ed44f0f6fd4aa75ce2ca0c7dfed676d8817511be978e08",
+        "check_sha256": "c7b97164a8d5293d5a65042f6a2aff4dbee0a634dcec317de9a34d5b5bc06243"
+      },
+      "payload_sha256": "69ffdd5f9638340a5c27a470b0b1dfb0f65a07df3829cca47bcce8f2a8a8ccaa"
+    },
+    {
+      "id": "I29",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A29",
+        "check_id": "C29",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P29-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "36a962939b387cdaf34299d79c393bd4081a503a8d252014f021de286ea040ea"
+      },
+      "payload_sha256": "503e70845aeeb25a255de5037f132bc4e1f48f9f6b959ea2d127addbed33ba96"
+    },
+    {
+      "id": "O29",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I29",
+        "record_id": "V29",
+        "check_id": "C29",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "5c53a16a5087d747d047a37d078d807ce38a7244399e751b025eb690bc4c58fe",
+        "check_sha256": "36a962939b387cdaf34299d79c393bd4081a503a8d252014f021de286ea040ea"
+      },
+      "payload_sha256": "e1bac5331d987f29ec2ee26f5be5e79974d20c47c09f38b058cc38d750043f44"
+    },
+    {
+      "id": "I30",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A30",
+        "check_id": "C30",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P30-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "6409e56edace38e88a6c5d53ca7fb36a3cb00740a24085e683b76f1b4fbfe7bc"
+      },
+      "payload_sha256": "6a259f41be903c98837889fdff53f7d8963957b36782a79d49715a6cb429227e"
+    },
+    {
+      "id": "O30",
+      "payload_version": 1,
+      "kind": "disposition",
+      "payload": {
+        "intent_id": "I30",
+        "record_id": "V30",
+        "check_id": "C30",
+        "result": {
+          "tag": "absent"
+        },
+        "record_sha256": "c3d9e9c029ab6739eef3111ac9f22611badef82d6564fa4d824f4843e82474ef",
+        "check_sha256": "6409e56edace38e88a6c5d53ca7fb36a3cb00740a24085e683b76f1b4fbfe7bc"
+      },
+      "payload_sha256": "bda0481526bb78ae0c1dd4d55c7551511952d1687b3c1fb65cab37359e37ad83"
+    },
+    {
+      "id": "I31",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A31",
+        "check_id": "C31",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P31-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "5f6db3d5deba00cca1ef395f172803b699c76bcc3da6313c2bcbb4ef86e6df32"
+      },
+      "payload_sha256": "1bf4bcdcfdc332ed5afa37fd565d8a079b64fdd823981f1fbd9a8b4606238ff3"
+    },
+    {
+      "id": "O31",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I31",
+        "record_id": "V31",
+        "check_id": "C31",
+        "result": {
+          "tag": "exited",
+          "code": 0
+        },
+        "record_sha256": "b1cfb99b7d6b6708b16a6e53df896d0f2a144bf880ddbfa6b3a2cc50c61ec05e",
+        "check_sha256": "5f6db3d5deba00cca1ef395f172803b699c76bcc3da6313c2bcbb4ef86e6df32"
+      },
+      "payload_sha256": "51d8962eb9cf8a0abfc69b9e0078290388e6e4beb5e63fbfaff42bf99a4453a9"
+    },
+    {
+      "id": "I32",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T1",
+        "attempt_id": "A32",
+        "check_id": "C32",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [
+            "/fixture/P32-1"
+          ],
+          "directory": "/fixture"
+        },
+        "check_sha256": "5eaec08b9da19c9790d306466c6e8a2545ac9db2ada143d11da7431d37e19ce7"
+      },
+      "payload_sha256": "4d467a9ed5f2b2da200dff1716db7de80c821a36dc32d09838f9dffd79da071d"
+    },
+    {
+      "id": "O32",
+      "payload_version": 1,
+      "kind": "observation",
+      "payload": {
+        "intent_id": "I32",
+        "record_id": "V32",
+        "check_id": "C32",
+        "result": {
+          "tag": "exited",
+          "code": 17
+        },
+        "record_sha256": "390ff84c124b7abe0162f2d4af7f0980c73ee5caf2478ed48d54fd41abfd7667",
+        "check_sha256": "5eaec08b9da19c9790d306466c6e8a2545ac9db2ada143d11da7431d37e19ce7"
+      },
+      "payload_sha256": "bcf752706c6e52f1cf5162b00815b76f571e60003d9d9837698c4136854a42b5"
+    },
+    {
+      "id": "I33",
+      "payload_version": 1,
+      "kind": "intent",
+      "payload": {
+        "task_id": "T2",
+        "attempt_id": "A33",
+        "command": {
+          "executable": "/fixture/oracle",
+          "arguments": [],
+          "directory": "/fixture"
+        }
+      },
+      "effect": {
+        "tag": "unknown"
+      },
+      "observation": {
+        "tag": "absent"
+      },
+      "payload_sha256": "57c6689d9a3b38ad10ff46179e86a8163c278b63f62eeb0c3b7765e60a32d121"
+    }
+  ],
+  "observations": [
+    {
+      "id": "V1",
+      "run": 1,
+      "attempt_id": "A1",
+      "intent_id": "I1",
+      "check_id": "C1",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P1-1",
+          "payload_id": "M32-V1-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P1-1",
+          "payload_id": "M32-V1-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "APPROVED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V2",
+      "run": 2,
+      "attempt_id": "A2",
+      "intent_id": "I2",
+      "check_id": "C2",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P2-1",
+          "payload_id": "M32-V2-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P2-1",
+          "payload_id": "M32-V2-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 17
+      },
+      "historical_state": "REJECTED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V3",
+      "run": 3,
+      "attempt_id": "A3",
+      "intent_id": "I3",
+      "check_id": "C3",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P3-1",
+          "payload_id": "M32-V3-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P3-1",
+          "payload_id": "M32-V3-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "timed_out",
+        "code": {
+          "tag": "unknown"
+        }
+      },
+      "historical_state": "INCONCLUSIVE",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V4",
+      "run": 4,
+      "attempt_id": "A4",
+      "intent_id": "I4",
+      "check_id": "C4",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P4-1",
+          "payload_id": "M32-V4-P1-before.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": {
+          "tag": "absent"
+        }
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "UNVERIFIED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V6",
+      "run": 6,
+      "attempt_id": "A6",
+      "intent_id": "I6",
+      "check_id": "C6",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P6-1",
+          "payload_id": "M32-V6-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P6-1",
+          "payload_id": "M32-V6-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "APPROVED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V7",
+      "run": 7,
+      "attempt_id": "A7",
+      "intent_id": "I7",
+      "check_id": "C7",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P7-1",
+          "payload_id": "M32-V7-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P7-1",
+          "payload_id": "M32-V7-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 17
+      },
+      "historical_state": "REJECTED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V8",
+      "run": 8,
+      "attempt_id": "A8",
+      "intent_id": "I8",
+      "check_id": "C8",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P8-1",
+          "payload_id": "M32-V8-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P8-1",
+          "payload_id": "M32-V8-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "timed_out",
+        "code": {
+          "tag": "unknown"
+        }
+      },
+      "historical_state": "INCONCLUSIVE",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V9",
+      "run": 9,
+      "attempt_id": "A9",
+      "intent_id": "I9",
+      "check_id": "C9",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P9-1",
+          "payload_id": "M32-V9-P1-before.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": {
+          "tag": "absent"
+        }
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "UNVERIFIED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V11",
+      "run": 11,
+      "attempt_id": "A11",
+      "intent_id": "I11",
+      "check_id": "C11",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P11-1",
+          "payload_id": "M32-V11-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P11-1",
+          "payload_id": "M32-V11-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "APPROVED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V12",
+      "run": 12,
+      "attempt_id": "A12",
+      "intent_id": "I12",
+      "check_id": "C12",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P12-1",
+          "payload_id": "M32-V12-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P12-1",
+          "payload_id": "M32-V12-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 17
+      },
+      "historical_state": "REJECTED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V13",
+      "run": 13,
+      "attempt_id": "A13",
+      "intent_id": "I13",
+      "check_id": "C13",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P13-1",
+          "payload_id": "M32-V13-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P13-1",
+          "payload_id": "M32-V13-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "timed_out",
+        "code": {
+          "tag": "unknown"
+        }
+      },
+      "historical_state": "INCONCLUSIVE",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V14",
+      "run": 14,
+      "attempt_id": "A14",
+      "intent_id": "I14",
+      "check_id": "C14",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P14-1",
+          "payload_id": "M32-V14-P1-before.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": {
+          "tag": "absent"
+        }
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "UNVERIFIED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V16",
+      "run": 16,
+      "attempt_id": "A16",
+      "intent_id": "I16",
+      "check_id": "C16",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P16-1",
+          "payload_id": "M32-V16-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P16-1",
+          "payload_id": "M32-V16-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "APPROVED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V17",
+      "run": 17,
+      "attempt_id": "A17",
+      "intent_id": "I17",
+      "check_id": "C17",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P17-1",
+          "payload_id": "M32-V17-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P17-1",
+          "payload_id": "M32-V17-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 17
+      },
+      "historical_state": "REJECTED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V18",
+      "run": 18,
+      "attempt_id": "A18",
+      "intent_id": "I18",
+      "check_id": "C18",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P18-1",
+          "payload_id": "M32-V18-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P18-1",
+          "payload_id": "M32-V18-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "timed_out",
+        "code": {
+          "tag": "unknown"
+        }
+      },
+      "historical_state": "INCONCLUSIVE",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V19",
+      "run": 19,
+      "attempt_id": "A19",
+      "intent_id": "I19",
+      "check_id": "C19",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P19-1",
+          "payload_id": "M32-V19-P1-before.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": {
+          "tag": "absent"
+        }
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "UNVERIFIED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V21",
+      "run": 21,
+      "attempt_id": "A21",
+      "intent_id": "I21",
+      "check_id": "C21",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P21-1",
+          "payload_id": "M32-V21-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P21-1",
+          "payload_id": "M32-V21-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "APPROVED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V22",
+      "run": 22,
+      "attempt_id": "A22",
+      "intent_id": "I22",
+      "check_id": "C22",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P22-1",
+          "payload_id": "M32-V22-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P22-1",
+          "payload_id": "M32-V22-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 17
+      },
+      "historical_state": "REJECTED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V23",
+      "run": 23,
+      "attempt_id": "A23",
+      "intent_id": "I23",
+      "check_id": "C23",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P23-1",
+          "payload_id": "M32-V23-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P23-1",
+          "payload_id": "M32-V23-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "timed_out",
+        "code": {
+          "tag": "unknown"
+        }
+      },
+      "historical_state": "INCONCLUSIVE",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V24",
+      "run": 24,
+      "attempt_id": "A24",
+      "intent_id": "I24",
+      "check_id": "C24",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P24-1",
+          "payload_id": "M32-V24-P1-before.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": {
+          "tag": "absent"
+        }
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "UNVERIFIED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V26",
+      "run": 26,
+      "attempt_id": "A26",
+      "intent_id": "I26",
+      "check_id": "C26",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P26-1",
+          "payload_id": "M32-V26-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P26-1",
+          "payload_id": "M32-V26-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "APPROVED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V27",
+      "run": 27,
+      "attempt_id": "A27",
+      "intent_id": "I27",
+      "check_id": "C27",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P27-1",
+          "payload_id": "M32-V27-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P27-1",
+          "payload_id": "M32-V27-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 17
+      },
+      "historical_state": "REJECTED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V28",
+      "run": 28,
+      "attempt_id": "A28",
+      "intent_id": "I28",
+      "check_id": "C28",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P28-1",
+          "payload_id": "M32-V28-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P28-1",
+          "payload_id": "M32-V28-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "timed_out",
+        "code": {
+          "tag": "unknown"
+        }
+      },
+      "historical_state": "INCONCLUSIVE",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V29",
+      "run": 29,
+      "attempt_id": "A29",
+      "intent_id": "I29",
+      "check_id": "C29",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P29-1",
+          "payload_id": "M32-V29-P1-before.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": {
+          "tag": "absent"
+        }
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "UNVERIFIED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V31",
+      "run": 31,
+      "attempt_id": "A31",
+      "intent_id": "I31",
+      "check_id": "C31",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P31-1",
+          "payload_id": "M32-V31-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P31-1",
+          "payload_id": "M32-V31-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 0
+      },
+      "historical_state": "APPROVED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    },
+    {
+      "id": "V32",
+      "run": 32,
+      "attempt_id": "A32",
+      "intent_id": "I32",
+      "check_id": "C32",
+      "evidence": [
+        {
+          "phase": "before",
+          "path": "/fixture/P32-1",
+          "payload_id": "M32-V32-P1-before.bin"
+        },
+        {
+          "phase": "after",
+          "path": "/fixture/P32-1",
+          "payload_id": "M32-V32-P1-after.bin"
+        }
+      ],
+      "oracle_captures": {
+        "before": "oracle.bin",
+        "after": "oracle.bin"
+      },
+      "result": {
+        "tag": "exited",
+        "code": 17
+      },
+      "historical_state": "REJECTED",
+      "immutability": "append-only",
+      "provenance_ref": "store.provenance"
+    }
+  ],
+  "dispositions": [
+    {
+      "id": "V5",
+      "check_id": "C5",
+      "attempt_id": "A5",
+      "kind": "applicability",
+      "state": "NOT APPLICABLE",
+      "reason": "fixture platform excluded",
+      "execution": {
+        "tag": "absent"
+      }
+    },
+    {
+      "id": "V10",
+      "check_id": "C10",
+      "attempt_id": "A10",
+      "kind": "applicability",
+      "state": "NOT APPLICABLE",
+      "reason": "fixture platform excluded",
+      "execution": {
+        "tag": "absent"
+      }
+    },
+    {
+      "id": "V15",
+      "check_id": "C15",
+      "attempt_id": "A15",
+      "kind": "applicability",
+      "state": "NOT APPLICABLE",
+      "reason": "fixture platform excluded",
+      "execution": {
+        "tag": "absent"
+      }
+    },
+    {
+      "id": "V20",
+      "check_id": "C20",
+      "attempt_id": "A20",
+      "kind": "applicability",
+      "state": "NOT APPLICABLE",
+      "reason": "fixture platform excluded",
+      "execution": {
+        "tag": "absent"
+      }
+    },
+    {
+      "id": "V25",
+      "check_id": "C25",
+      "attempt_id": "A25",
+      "kind": "applicability",
+      "state": "NOT APPLICABLE",
+      "reason": "fixture platform excluded",
+      "execution": {
+        "tag": "absent"
+      }
+    },
+    {
+      "id": "V30",
+      "check_id": "C30",
+      "attempt_id": "A30",
+      "kind": "applicability",
+      "state": "NOT APPLICABLE",
+      "reason": "fixture platform excluded",
+      "execution": {
+        "tag": "absent"
+      }
+    }
+  ],
+  "payloads": [
+    {
+      "id": "oracle.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/oracle.bin",
+      "length": 39184,
+      "sha256": "08f38829911197c3d3c42b8339276b986eea4b7f9d95a13496ba09ee8e26b71b",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V1-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V1-P1-before.bin",
+      "length": 4096,
+      "sha256": "29fa02d3381a0b093ff2d6d783c1c78176fd1aafce643c8d205631dc85df5e95",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V1-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V1-P1-after.bin",
+      "length": 4096,
+      "sha256": "29fa02d3381a0b093ff2d6d783c1c78176fd1aafce643c8d205631dc85df5e95",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V2-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V2-P1-before.bin",
+      "length": 4096,
+      "sha256": "4c4fbab41365c5f194aa1f3eadd71d943b8f3739a7ec285c301ef7b142bec829",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V2-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V2-P1-after.bin",
+      "length": 4096,
+      "sha256": "4c4fbab41365c5f194aa1f3eadd71d943b8f3739a7ec285c301ef7b142bec829",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V3-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V3-P1-before.bin",
+      "length": 4096,
+      "sha256": "3223035161d56c48368c0efa3dd2492422e5e7dd64f4cd7dfb0ba880a4f5612e",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V3-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V3-P1-after.bin",
+      "length": 4096,
+      "sha256": "3223035161d56c48368c0efa3dd2492422e5e7dd64f4cd7dfb0ba880a4f5612e",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V4-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V4-P1-before.bin",
+      "length": 4096,
+      "sha256": "ddc91755d83f4f6221937fa8823c0d897c4acd38aebcee1e31b8ee3bf5caccf9",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V4-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V4-P1-after.bin",
+      "length": 4096,
+      "sha256": "ddc91755d83f4f6221937fa8823c0d897c4acd38aebcee1e31b8ee3bf5caccf9",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V5-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V5-P1-before.bin",
+      "length": 4096,
+      "sha256": "e79a3ee0bd7fa0ef89b62d1f1f88d516d1bf2ec02b059190115b37200b978022",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V5-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V5-P1-after.bin",
+      "length": 4096,
+      "sha256": "e79a3ee0bd7fa0ef89b62d1f1f88d516d1bf2ec02b059190115b37200b978022",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V6-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V6-P1-before.bin",
+      "length": 4096,
+      "sha256": "e684d42b4bcb6132a7a676cdbb3f21d17e29e0d6c05f03dddcaf0d8e84af1106",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V6-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V6-P1-after.bin",
+      "length": 4096,
+      "sha256": "e684d42b4bcb6132a7a676cdbb3f21d17e29e0d6c05f03dddcaf0d8e84af1106",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V7-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V7-P1-before.bin",
+      "length": 4096,
+      "sha256": "d8bcdf0ad07a52a3d4c8796c80c2598709b07f9d3cd85e0d360889188246bbce",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V7-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V7-P1-after.bin",
+      "length": 4096,
+      "sha256": "d8bcdf0ad07a52a3d4c8796c80c2598709b07f9d3cd85e0d360889188246bbce",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V8-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V8-P1-before.bin",
+      "length": 4096,
+      "sha256": "ee34186263a818ff40ab6a3ddfb2836adae577910f763a0fd687718596763a5b",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V8-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V8-P1-after.bin",
+      "length": 4096,
+      "sha256": "ee34186263a818ff40ab6a3ddfb2836adae577910f763a0fd687718596763a5b",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V9-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V9-P1-before.bin",
+      "length": 4096,
+      "sha256": "3f5fc13c0b3d6bc1af525f9a8eb59527ef636a25f4d5b2cdee4cb7565ef91036",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V9-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V9-P1-after.bin",
+      "length": 4096,
+      "sha256": "3f5fc13c0b3d6bc1af525f9a8eb59527ef636a25f4d5b2cdee4cb7565ef91036",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V10-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V10-P1-before.bin",
+      "length": 4096,
+      "sha256": "f9653e4397a89cc70991494ef84c03632f48846ad99e31f27fa0e17bc0b9930e",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V10-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V10-P1-after.bin",
+      "length": 4096,
+      "sha256": "f9653e4397a89cc70991494ef84c03632f48846ad99e31f27fa0e17bc0b9930e",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V11-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V11-P1-before.bin",
+      "length": 4096,
+      "sha256": "cf1e3b43822d7dfd0a2b632c1af3c1cc8cd16c01ecab414b4201faa99de42733",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V11-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V11-P1-after.bin",
+      "length": 4096,
+      "sha256": "cf1e3b43822d7dfd0a2b632c1af3c1cc8cd16c01ecab414b4201faa99de42733",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V12-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V12-P1-before.bin",
+      "length": 4096,
+      "sha256": "0826f09db80e8befe608deffe64edd48c3a4f7c6612ae3d7af5b031c7b9287d8",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V12-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V12-P1-after.bin",
+      "length": 4096,
+      "sha256": "0826f09db80e8befe608deffe64edd48c3a4f7c6612ae3d7af5b031c7b9287d8",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V13-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V13-P1-before.bin",
+      "length": 4096,
+      "sha256": "ac3a588283912f14598542c26255f35774ca056802db29109a093e4dec989edd",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V13-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V13-P1-after.bin",
+      "length": 4096,
+      "sha256": "ac3a588283912f14598542c26255f35774ca056802db29109a093e4dec989edd",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V14-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V14-P1-before.bin",
+      "length": 4096,
+      "sha256": "b266eeef5dca8e915367a96cd0787b519da59446912b83c6a682f9badfe747ac",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V14-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V14-P1-after.bin",
+      "length": 4096,
+      "sha256": "b266eeef5dca8e915367a96cd0787b519da59446912b83c6a682f9badfe747ac",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V15-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V15-P1-before.bin",
+      "length": 4096,
+      "sha256": "0e89ca9a3fde8a4142fcd64b0b5b0a057569b375ebf7e9055c388e4a6f4dda74",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V15-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V15-P1-after.bin",
+      "length": 4096,
+      "sha256": "0e89ca9a3fde8a4142fcd64b0b5b0a057569b375ebf7e9055c388e4a6f4dda74",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V16-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V16-P1-before.bin",
+      "length": 4096,
+      "sha256": "0bc2ee0d50902690bacffc70cf4b7f88589da81b77e619c844dd2cd31890ce09",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V16-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V16-P1-after.bin",
+      "length": 4096,
+      "sha256": "0bc2ee0d50902690bacffc70cf4b7f88589da81b77e619c844dd2cd31890ce09",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V17-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V17-P1-before.bin",
+      "length": 4096,
+      "sha256": "7d5900b2656c66cef08e90f45faec33b6b7962c5f8ff7cd4f1df74900bfccf0a",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V17-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V17-P1-after.bin",
+      "length": 4096,
+      "sha256": "7d5900b2656c66cef08e90f45faec33b6b7962c5f8ff7cd4f1df74900bfccf0a",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V18-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V18-P1-before.bin",
+      "length": 4096,
+      "sha256": "fcfeaf8504d27059408d3ebab2c75c296772e48f8dfba54d916e9951c643aade",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V18-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V18-P1-after.bin",
+      "length": 4096,
+      "sha256": "fcfeaf8504d27059408d3ebab2c75c296772e48f8dfba54d916e9951c643aade",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V19-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V19-P1-before.bin",
+      "length": 4096,
+      "sha256": "39eefe70021a93a79b5f853c1e5d664e874493df5e951234a00b146965936687",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V19-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V19-P1-after.bin",
+      "length": 4096,
+      "sha256": "39eefe70021a93a79b5f853c1e5d664e874493df5e951234a00b146965936687",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V20-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V20-P1-before.bin",
+      "length": 4096,
+      "sha256": "3bcf0c8fa986c2ad8d8780cd696c382baa3a29bcc62cc738a52ce1741c843fd6",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V20-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V20-P1-after.bin",
+      "length": 4096,
+      "sha256": "3bcf0c8fa986c2ad8d8780cd696c382baa3a29bcc62cc738a52ce1741c843fd6",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V21-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V21-P1-before.bin",
+      "length": 4096,
+      "sha256": "bb70b24283f5576674bf42cc21460a8cf42779cc8ac2a1e151deac0c3bdbb03a",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V21-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V21-P1-after.bin",
+      "length": 4096,
+      "sha256": "bb70b24283f5576674bf42cc21460a8cf42779cc8ac2a1e151deac0c3bdbb03a",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V22-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V22-P1-before.bin",
+      "length": 4096,
+      "sha256": "634707bb18168ab0de1e582f95a9093f9b6d3b5b1729e147ec6a3e86acb2044b",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V22-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V22-P1-after.bin",
+      "length": 4096,
+      "sha256": "634707bb18168ab0de1e582f95a9093f9b6d3b5b1729e147ec6a3e86acb2044b",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V23-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V23-P1-before.bin",
+      "length": 4096,
+      "sha256": "7adbd0962778653efe75d2c05e77dc23e7dce874bc6ff211cda5938db87d9311",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V23-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V23-P1-after.bin",
+      "length": 4096,
+      "sha256": "7adbd0962778653efe75d2c05e77dc23e7dce874bc6ff211cda5938db87d9311",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V24-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V24-P1-before.bin",
+      "length": 4096,
+      "sha256": "312eff49d5555c0f747dfa60b8b75d70cfed24d733b4f45f61d4ff790f52b4c9",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V24-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V24-P1-after.bin",
+      "length": 4096,
+      "sha256": "312eff49d5555c0f747dfa60b8b75d70cfed24d733b4f45f61d4ff790f52b4c9",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V25-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V25-P1-before.bin",
+      "length": 4096,
+      "sha256": "2a1d0bc68d717f42f5d2085722769cc38044bcb7789aac50499cb4b913edf77a",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V25-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V25-P1-after.bin",
+      "length": 4096,
+      "sha256": "2a1d0bc68d717f42f5d2085722769cc38044bcb7789aac50499cb4b913edf77a",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V26-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V26-P1-before.bin",
+      "length": 4096,
+      "sha256": "89e1e3f97cb8c86f6981e514218e8cf928a5ab83d22d3aa719651b7b8189f4c1",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V26-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V26-P1-after.bin",
+      "length": 4096,
+      "sha256": "89e1e3f97cb8c86f6981e514218e8cf928a5ab83d22d3aa719651b7b8189f4c1",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V27-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V27-P1-before.bin",
+      "length": 4096,
+      "sha256": "fb687dba0b2316b9e323f4cf7df9460fbdb3d664e648f8727ae46449c8425854",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V27-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V27-P1-after.bin",
+      "length": 4096,
+      "sha256": "fb687dba0b2316b9e323f4cf7df9460fbdb3d664e648f8727ae46449c8425854",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V28-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V28-P1-before.bin",
+      "length": 4096,
+      "sha256": "75c70fe0d6c5a86dc883d254ea2fc2264f1c659f873e84652fa75a3926431fa5",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V28-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V28-P1-after.bin",
+      "length": 4096,
+      "sha256": "75c70fe0d6c5a86dc883d254ea2fc2264f1c659f873e84652fa75a3926431fa5",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V29-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V29-P1-before.bin",
+      "length": 4096,
+      "sha256": "f975dae1d717fa703a0d6496a526c86a4a44b9d658df70f9d71e70857bf7cecf",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V29-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V29-P1-after.bin",
+      "length": 4096,
+      "sha256": "f975dae1d717fa703a0d6496a526c86a4a44b9d658df70f9d71e70857bf7cecf",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V30-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V30-P1-before.bin",
+      "length": 4096,
+      "sha256": "c2194c4f2ae2a643872bc60e0703b52416f4e62556f9c13ba798ce7928138d47",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V30-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V30-P1-after.bin",
+      "length": 4096,
+      "sha256": "c2194c4f2ae2a643872bc60e0703b52416f4e62556f9c13ba798ce7928138d47",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V31-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V31-P1-before.bin",
+      "length": 4096,
+      "sha256": "1315269461d47d9c6cebbd33ba7969cb66d440b5c74ebfe70daf454acac91e25",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V31-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V31-P1-after.bin",
+      "length": 4096,
+      "sha256": "1315269461d47d9c6cebbd33ba7969cb66d440b5c74ebfe70daf454acac91e25",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V32-P1-before.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V32-P1-before.bin",
+      "length": 4096,
+      "sha256": "6063821c33a4d5a2cde67261666d05b0c42ac21e04db7cadcf877ee714a8c43b",
+      "availability": "present"
+    },
+    {
+      "id": "M32-V32-P1-after.bin",
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V32-P1-after.bin",
+      "length": 4096,
+      "sha256": "6063821c33a4d5a2cde67261666d05b0c42ac21e04db7cadcf877ee714a8c43b",
+      "availability": "present"
+    }
+  ],
+  "expected_current": {
+    "C1": {
+      "state": "APPROVED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C2": {
+      "state": "REJECTED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C3": {
+      "state": "INCONCLUSIVE",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C4": {
+      "state": "UNVERIFIED",
+      "current_inputs": "absent",
+      "reason": null
+    },
+    "C5": {
+      "state": "NOT APPLICABLE",
+      "current_inputs": "same",
+      "reason": "fixture platform excluded"
+    },
+    "C6": {
+      "state": "APPROVED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C7": {
+      "state": "REJECTED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C8": {
+      "state": "INCONCLUSIVE",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C9": {
+      "state": "UNVERIFIED",
+      "current_inputs": "absent",
+      "reason": null
+    },
+    "C10": {
+      "state": "NOT APPLICABLE",
+      "current_inputs": "same",
+      "reason": "fixture platform excluded"
+    },
+    "C11": {
+      "state": "APPROVED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C12": {
+      "state": "REJECTED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C13": {
+      "state": "INCONCLUSIVE",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C14": {
+      "state": "UNVERIFIED",
+      "current_inputs": "absent",
+      "reason": null
+    },
+    "C15": {
+      "state": "NOT APPLICABLE",
+      "current_inputs": "same",
+      "reason": "fixture platform excluded"
+    },
+    "C16": {
+      "state": "APPROVED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C17": {
+      "state": "REJECTED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C18": {
+      "state": "INCONCLUSIVE",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C19": {
+      "state": "UNVERIFIED",
+      "current_inputs": "absent",
+      "reason": null
+    },
+    "C20": {
+      "state": "NOT APPLICABLE",
+      "current_inputs": "same",
+      "reason": "fixture platform excluded"
+    },
+    "C21": {
+      "state": "APPROVED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C22": {
+      "state": "REJECTED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C23": {
+      "state": "INCONCLUSIVE",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C24": {
+      "state": "UNVERIFIED",
+      "current_inputs": "absent",
+      "reason": null
+    },
+    "C25": {
+      "state": "NOT APPLICABLE",
+      "current_inputs": "same",
+      "reason": "fixture platform excluded"
+    },
+    "C26": {
+      "state": "APPROVED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C27": {
+      "state": "REJECTED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C28": {
+      "state": "INCONCLUSIVE",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C29": {
+      "state": "UNVERIFIED",
+      "current_inputs": "absent",
+      "reason": null
+    },
+    "C30": {
+      "state": "NOT APPLICABLE",
+      "current_inputs": "same",
+      "reason": "fixture platform excluded"
+    },
+    "C31": {
+      "state": "APPROVED",
+      "current_inputs": "same",
+      "reason": null
+    },
+    "C32": {
+      "state": "REJECTED",
+      "current_inputs": "same",
+      "reason": null
+    }
+  },
+  "ack_sequence": [
+    {
+      "sequence": 1,
+      "operation_id": "I1",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 2,
+      "operation_id": "O1",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 3,
+      "operation_id": "I2",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 4,
+      "operation_id": "O2",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 5,
+      "operation_id": "I3",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 6,
+      "operation_id": "O3",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 7,
+      "operation_id": "I4",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 8,
+      "operation_id": "O4",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 9,
+      "operation_id": "I5",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 10,
+      "operation_id": "O5",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 11,
+      "operation_id": "I6",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 12,
+      "operation_id": "O6",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 13,
+      "operation_id": "I7",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 14,
+      "operation_id": "O7",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 15,
+      "operation_id": "I8",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 16,
+      "operation_id": "O8",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 17,
+      "operation_id": "I9",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 18,
+      "operation_id": "O9",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 19,
+      "operation_id": "I10",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 20,
+      "operation_id": "O10",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 21,
+      "operation_id": "I11",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 22,
+      "operation_id": "O11",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 23,
+      "operation_id": "I12",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 24,
+      "operation_id": "O12",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 25,
+      "operation_id": "I13",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 26,
+      "operation_id": "O13",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 27,
+      "operation_id": "I14",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 28,
+      "operation_id": "O14",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 29,
+      "operation_id": "I15",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 30,
+      "operation_id": "O15",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 31,
+      "operation_id": "I16",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 32,
+      "operation_id": "O16",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 33,
+      "operation_id": "I17",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 34,
+      "operation_id": "O17",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 35,
+      "operation_id": "I18",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 36,
+      "operation_id": "O18",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 37,
+      "operation_id": "I19",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 38,
+      "operation_id": "O19",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 39,
+      "operation_id": "I20",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 40,
+      "operation_id": "O20",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 41,
+      "operation_id": "I21",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 42,
+      "operation_id": "O21",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 43,
+      "operation_id": "I22",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 44,
+      "operation_id": "O22",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 45,
+      "operation_id": "I23",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 46,
+      "operation_id": "O23",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 47,
+      "operation_id": "I24",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 48,
+      "operation_id": "O24",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 49,
+      "operation_id": "I25",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 50,
+      "operation_id": "O25",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 51,
+      "operation_id": "I26",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 52,
+      "operation_id": "O26",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 53,
+      "operation_id": "I27",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 54,
+      "operation_id": "O27",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 55,
+      "operation_id": "I28",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 56,
+      "operation_id": "O28",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 57,
+      "operation_id": "I29",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 58,
+      "operation_id": "O29",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 59,
+      "operation_id": "I30",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 60,
+      "operation_id": "O30",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 61,
+      "operation_id": "I31",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 62,
+      "operation_id": "O31",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 63,
+      "operation_id": "I32",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 64,
+      "operation_id": "O32",
+      "observer": "external-supervisor"
+    },
+    {
+      "sequence": 65,
+      "operation_id": "I33",
+      "observer": "external-supervisor"
+    }
+  ],
+  "clock": {
+    "kind": "fixture",
+    "value": "2026-11-05T00:00:00Z"
+  },
+  "provenance": {
+    "source": "neutral-fixture-v1",
+    "method": "arithmetic bytes, explicit logical tables",
+    "build": "fixture-not-product-executable",
+    "completeness": "complete"
+  },
+  "path_binding": "/fixture is a logical root; bind to fresh absolute owned run root and record binding before execution",
+  "raw_input_content_bytes": 262144
+}

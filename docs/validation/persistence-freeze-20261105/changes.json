@@ -1,0 +1,59 @@
+{
+  "existing_files_modified_here": [
+    {
+      "path": "sdd/project.md",
+      "before_sha256": "853f04e0dd88f9488b18ff47852740e0c4ad23539499ce5a5bafc72383acba33",
+      "after_sha256": "c632a8a644ad8ce17c2260035d3cc50cc547beb435054a08e35a6cff48057b6b",
+      "preimage": "docs/validation/persistence-freeze-20261105/before/sdd/project.md.bin"
+    },
+    {
+      "path": "tools/governance/scripts/skill_revision.py",
+      "before_sha256": "1a7c29e200ac37853276ce8f07e03bf10294a2310cca00427989334de411fbab",
+      "after_sha256": "473be4953d10e4645db2c2fd6d917b2a663e2f251494fd2184550b93e71a0150",
+      "preimage": "docs/validation/persistence-freeze-20261105/before/tools/governance/scripts/skill_revision.py.bin"
+    },
+    {
+      "path": "tools/governance/tests/test_readme_skill_integration.py",
+      "before_sha256": "a3ed2f23aa06eb3bbccf84785ca814e2cbf6a001ddb6cb7cbefc88076e3337e8",
+      "after_sha256": "b3cd5f3a7331b769b095ed5e698b8817651f9c06011056fd2703a010e4ad43a8",
+      "preimage": "docs/validation/persistence-freeze-20261105/before/tools/governance/tests/test_readme_skill_integration.py.bin"
+    },
+    {
+      "path": "sdd/features/product-local-persistence/spec.md",
+      "before_sha256": "d23598f67d1d98fc5055aba4e2f2f929dc774da4c96e075d166e2e3fa5a09ecc",
+      "after_sha256": "d25c2a28df6f5d60499e04d416d9b57714d881ecc5945a27737708028ecc5105",
+      "preimage": "docs/validation/persistence-freeze-20261105/before/sdd/features/product-local-persistence/spec.md.bin"
+    },
+    {
+      "path": "sdd/features/product-local-persistence/plan.md",
+      "before_sha256": "a92e9f1826050116822ad8426ba97989028e3bf1cce6cea11212efeda47f2ccd",
+      "after_sha256": "8807da94ccaff1f5f3b0ccca34f87ab6a180cf057846d94c5c89fa96e485bd3d",
+      "preimage": "docs/validation/persistence-freeze-20261105/before/sdd/features/product-local-persistence/plan.md.bin"
+    },
+    {
+      "path": "sdd/features/product-local-persistence/tasks.md",
+      "before_sha256": "a6189a95c76bbf9438be002a93ddf49cc803d2acba9d2903e1b5e64fadd0ae5e",
+      "after_sha256": "e1df421d8b4be0352ddbc4e358068200670dc73b561f4889bdd7d4fe350e684b",
+      "preimage": "docs/validation/persistence-freeze-20261105/before/sdd/features/product-local-persistence/tasks.md.bin"
+    },
+    {
+      "path": "sdd/features/product-local-persistence/converge.md",
+      "before_sha256": "5bd0de1146b824570f865b7173f2ed22b606270c8a53bcc51b5b3355d5812d28",
+      "after_sha256": "c1c389c8b0361087f071681c5fe4e8813a25e0be92dc200f63fd466ce4421218",
+      "preimage": "docs/validation/persistence-freeze-20261105/before/sdd/features/product-local-persistence/converge.md.bin"
+    },
+    {
+      "path": "sdd/features/product-local-persistence/evidence.json",
+      "before_sha256": "9580f9b5ec08a7b53298b607d7a824ea08c792b82f60e7b86dd5838fcca4c04c",
+      "after_sha256": "3c8792b63e5a83e25b036f8e25a24d0e629be5909679b0601238463fe05279fc",
+      "preimage": "docs/validation/persistence-freeze-20261105/before/sdd/features/product-local-persistence/evidence.json.bin"
+    }
+  ],
+  "new_code": [
+    "tools/governance/scripts/project_revision.py",
+    "tools/governance/tests/test_project_revision.py"
+  ],
+  "new_review_directory": "docs/validation/persistence-freeze-20261105",
+  "new_local_resources": ".local/build/persistence-experiment-preflight-20261105/reviewed-crates/",
+  "preexisting_protocol_traceability_and_application_changes": "preserved; see entry-state.json and preservation.json"
+}

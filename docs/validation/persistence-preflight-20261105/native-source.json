@@ -1,0 +1,84 @@
+{
+  "driver": "0.41.1",
+  "libsqlite3-sys": "0.39.1",
+  "sqlite_version": "3.54.1",
+  "source_id": "2026-10-16 14:45:20 555e07ef33f69a0957d24d8e555b702464a131d6f1607f4c3c1e4551e8e6ca76",
+  "source_files": [
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/Cargo.toml",
+      "sha256": "3fb7e11b7b71251e7e360511000befe692e5aee8d31415d477774f060577bb15"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/build.rs",
+      "sha256": "769b31370a41aa722e1d5a530012432c985bb142eab34d095481ffd1a3436e1b"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/LICENSE",
+      "sha256": "c10c1f27337546471e5f7e4e97fdd398b35b9d4e126115dcd22de8d8e65abf6f"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/sqlite3/sqlite3.c",
+      "sha256": "0c657666d819f261cc4007526ad57e1669de9949df7a8ea847aa284a2bf0ee52"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/sqlite3/sqlite3.h",
+      "sha256": "d6c84557261893439b341d2e6c35187ae3ea24fbfd843ad94616f72d89242b8c"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/Cargo.toml",
+      "sha256": "8a18d2cfc64f75140c5d23633bbd2bbbc77d719a0c3d844f8929cd6bc319f9ed"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/LICENSE",
+      "sha256": "c10c1f27337546471e5f7e4e97fdd398b35b9d4e126115dcd22de8d8e65abf6f"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/src/lib.rs",
+      "sha256": "9eaedb45cb295a96c31c5dfeb82542fba472d3438ed69fb8b88d1f7c18bd0001"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/src/backup.rs",
+      "sha256": "5f43b7679fc278f8ef80bc32855f4a4bea0dabe79eb8158d08a3ffbdc1289948"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/src/busy.rs",
+      "sha256": "d97ce210358eec98f242f0077143d157e958ec2e8ef9fbeaff2273b4f913ee29"
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/src/transaction.rs",
+      "sha256": "090ba0b99f970ac5845a6bb7f41758ec7775720ac5ff1c9b71dfeb1a70ee278a"
+    }
+  ],
+  "base_flags_from_build_rs": [
+    "-DSQLITE_CORE",
+    "-DSQLITE_DEFAULT_FOREIGN_KEYS=1",
+    "-DSQLITE_ENABLE_API_ARMOR",
+    "-DSQLITE_ENABLE_COLUMN_METADATA",
+    "-DSQLITE_ENABLE_DBSTAT_VTAB",
+    "-DSQLITE_ENABLE_FTS3",
+    "-DSQLITE_ENABLE_FTS3_PARENTHESIS",
+    "-DSQLITE_ENABLE_FTS5",
+    "-DSQLITE_ENABLE_JSON1",
+    "-DSQLITE_ENABLE_LOAD_EXTENSION=1",
+    "-DSQLITE_ENABLE_RTREE",
+    "-DSQLITE_ENABLE_STAT4",
+    "-DSQLITE_SOUNDEX",
+    "-DSQLITE_THREADSAFE=1",
+    "-DSQLITE_USE_URI",
+    "-DHAVE_USLEEP=1",
+    "-DHAVE_ISNAN",
+    "-D_POSIX_THREAD_SAFE_FUNCTIONS"
+  ],
+  "effective_flags": "UNVERIFIED: no native compilation executed; before runs capture compiler/version/command, environment overrides, compile_options and source_id readback",
+  "licenses": {
+    "rusqlite": "MIT",
+    "libsqlite3-sys": "MIT",
+    "SQLite": "public-domain dedication in amalgamation header; retain header, not a relicensing claim"
+  },
+  "review_findings": [
+    "Native default build enables extension-loading capability; driver load_extension feature is absent. Do not enable runtime loading; verify actual connection policy before trials.",
+    "Default driver busy timeout must be explicitly reset to zero; no implicit retry allowed.",
+    "Use incremental Backup::step with watchdog, not unbounded convenience retry; pin backup read cut and include external payload manifest.",
+    "Fresh isolated Iced resolution differs potentially from application lock transitives. Paired shell uses one frozen lock; no equivalence to F0 is claimed."
+  ]
+}

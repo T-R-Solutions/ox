@@ -1,6 +1,6 @@
 # ADR proposal — OPEN-05 durable local task history
 
-Status: **PROPOSED, not adopted**. Decision owner: maintainer. Preparation authorized on 2026-11-01; storage implementation, dependency selection and F0 inclusion require explicit authorization. This revision replaces the earlier proposal, preserved byte-for-byte under docs/validation/f0-reconciliation-20261101/before/. No storage engine or version is adopted.
+Status: **PARTIALLY ADOPTED: D2/D4; D3/D4-deps conditional**. Decision owner: maintainer. Preparation authorized on 2026-11-01; storage implementation, dependency selection and F0 inclusion require explicit authorization. This revision replaces the earlier proposal, preserved byte-for-byte under docs/validation/f0-reconciliation-20261101/before/. No storage engine or version is adopted.
 
 ## Observed need and authority
 
@@ -176,3 +176,7 @@ provides concrete D2/D3/D4/D4-deps proposals, common logical manifest, corpus,
 repetitions/order, XFS target, barriers, metrics and elimination rules. No candidate
 was implemented/executed. D5 and D6 remain separate later decisions. Earlier
 unversioned sources are design references, not evidence of an evaluated build.
+
+## Effective successor
+
+The explicit dispositions in [the authorization ADR](local-persistence-experiment-20261105.md) supersede pending-decision language above. Historical proposal reasoning remains; D5/D6 and operational acceptance remain pending. T009 package: docs/validation/persistence-preflight-20261105/review.md.

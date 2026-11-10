@@ -1,0 +1,17 @@
+# Tarefas — persistência local proposta
+
+- [x] T001 [REQ-01..07, D-01, R-01..03]: preparar ADR comparativa e critérios verificáveis, sem implementação; docs/decisions/local-persistence-proposal.md e spec.md.
+- [ ] T002 [REQ-01..07, D-01, R-03]: mantenedor decide D1..D4, registra escopo/autorização e limites; depende T001. Sem autorização, parar antes de código/dependências.
+- [ ] T003 [REQ-01..07, D-01..03, R-01..03]: somente se autorizado, fixar ambas as alternativas/configurações, driver SQLite e manifestos independentes; executar E01..E08 em comparação descartável com o mesmo corpus e limites; depende T002 e ambiente permitido.
+- [ ] T004 [REQ-01..07, D-01..03, R-01..03]: após escolha e autorização explícitas, implementar fatia em ox-storage/Engine/controller/Iced; depende T003, resultados comparativos, decisão D5, autorização D6 e encerramento de F0 conforme proposta; sem atalho de escolha direta.
+- [ ] T005 [REQ-01..07, D-02..03, R-01..02]: executar oráculos reais de reinício, falha, migração, backup/restauração, concorrência e UI; conservar falhas e limitações; depende T004.
+- [ ] T006 [REQ-01..07, D-01..03, R-01..03]: convergir por critério com inputs atuais e preservar predecessor; depende T005. Não concluir F0 por concluir esta documentação.
+
+- [x] T007 [REQ-01..07, D-04, R-01..03]: preparar protocolo E01..E08, manifesto lógico, cortes de falha, controle de comparabilidade e regra de decisão; manter resultados UNVERIFIED.
+
+A conclusão de T007 não executa T003. T002 concede, se aprovado, somente o escopo
+registrado; escolha tecnológica aguarda resultados, e integração exige D6 separado.
+
+
+- [x] T008 [REQ-01..07, D-05, R-01..03]: reconciliar marco já adotado e preparar protocolo concreto, corpus, barreiras, parâmetros propostos e dossiê D2/D3/D4/D4-deps; sem executar candidatos.
+- [ ] T009 [REQ-01..07, D-05, R-03]: após decisões do mantenedor, preparar manifesto completo e lock/source ID isolados para revisão pré-execução; não modificar dependências do produto.

@@ -1,0 +1,87 @@
+"""Authenticate the bounded README skill import without rewriting older revisions."""
+from pathlib import Path
+import hashlib
+import json
+import re
+from readme_revision import predecessor as readme_predecessor, errors as readme_errors
+
+REVISION = 'readme-skill-integration-001'
+DECISION = 'docs/decisions/readme-skill-integration.md'
+SKILL = '.codex/skills/readme-lifecycle-engineering/'
+EXISTING = frozenset({
+    '.codex/skills/README.md', 'sdd/chain/README.md',
+    'config/governance/profile.json', 'docs/structure/profile-revisions.json',
+    'sdd/project.md', 'docs/development/sdd-skills.md', 'README.md',
+})
+ADDED = frozenset({SKILL + name for name in (
+    'SKILL.md', 'agents/openai.yaml',
+    'references/documentation-topology-and-diataxis.md',
+    'references/consumer-boundaries.md', 'references/implementation-details.md',
+    'references/maintenance-and-change-triggers.md', 'references/readme-scope-and-content.md',
+    'references/routing-and-oracles.md', 'references/scientific-evidence-and-limits.md',
+    'references/sources-and-decisions.md', 'references/verification-and-acceptance.md',
+)} | {'sdd/chain/readme-lifecycle-engineering.md'})
+
+
+def records(root):
+    manifest = root / 'docs/structure/files.json'
+    if not manifest.is_file():
+        return {}
+    revisions = json.loads(manifest.read_text())['revisions']
+    matches = [row for row in revisions if row['id'] == REVISION]
+    if not matches:
+        profile = root / 'config/governance/profile.json'
+        if profile.is_file() and json.loads(profile.read_text()).get('revision') == REVISION:
+            raise ValueError('Missing README integration revision')
+        return {}
+    if len(matches) != 1:
+        raise ValueError('Duplicate README integration revision')
+    revision = matches[0]
+    decision = root / DECISION
+    if revision.get('decision') != DECISION or not decision.is_file() or decision.is_symlink():
+        raise ValueError('README integration decision required')
+    rows = revision['records']
+    names = [row['destination'] for row in rows]
+    if len(names) != len(set(names)) or set(names) != EXISTING | ADDED:
+        raise ValueError('README integration scope differs from reviewed paths')
+    for row in rows:
+        if not isinstance(row.get('sha256'), str) or not re.fullmatch('[a-f0-9]{64}', row['sha256']):
+            raise ValueError('Invalid README integration digest')
+        if row['destination'] in ADDED:
+            if row.get('previous') is not None or row.get('previous_sha256') is not None:
+                raise ValueError('Unexpected predecessor for new README resource')
+        else:
+            expected = row.get('previous_sha256')
+            if not isinstance(expected, str) or not re.fullmatch('[a-f0-9]{64}', expected):
+                raise ValueError('Invalid README predecessor digest')
+            previous = row.get('previous')
+            if not isinstance(previous, str):
+                raise ValueError('Missing README predecessor path')
+            source = root / previous
+            resolved = source.resolve()
+            if (not resolved.is_relative_to(root.resolve()) or not source.is_file()
+                    or source.is_symlink()):
+                raise ValueError('Missing or escaping README predecessor')
+            if hashlib.sha256(source.read_bytes()).hexdigest() != expected:
+                raise ValueError('README predecessor changed')
+    return {row['destination']: row for row in rows}
+
+
+def predecessor(root, relative, data):
+    row = records(root).get(relative)
+    if row:
+        data = readme_predecessor(root, relative, data, row['sha256'])
+    if row and row['previous'] is not None and hashlib.sha256(data).hexdigest() == row['sha256']:
+        return (root / row['previous']).read_bytes()
+    return data
+
+
+def errors(root):
+    registered = records(root)
+    result = readme_errors(root, registered['README.md']['sha256']) if 'README.md' in registered else []
+    for name, row in registered.items():
+        target = root / name
+        if (not target.is_file() or target.is_symlink()
+                or hashlib.sha256(readme_predecessor(root, name, target.read_bytes(), row['sha256'])).hexdigest() != row['sha256']):
+            result.append('README integration current changed/missing: ' + name)
+    return result

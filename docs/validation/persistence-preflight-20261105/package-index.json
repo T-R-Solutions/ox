@@ -1,0 +1,810 @@
+{
+  "purpose": "T009 immutable review input snapshot; not trial acceptance",
+  "files": [
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependencies/Cargo.lock",
+      "sha256": "21c161d8dc4e38ae617c2df9a0d300ab91f5ac0d3299f7c9d132604e04da5207",
+      "bytes": 68717
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependencies/Cargo.toml",
+      "sha256": "7df18a3e328e0078cb3a58ca913ebd135602a63119f53a58a578b6e9b504ea45",
+      "bytes": 481
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependencies/metadata.json",
+      "sha256": "7ddc2ec0746136da47855e77d22c67e98eeb177be783238d4dca25d897afbfdc",
+      "bytes": 1467644
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependencies/src/lib.rs",
+      "sha256": "f02a6759764603bab7376b0d5e5f719fb7442a42d122912f8d5f34930073fec2",
+      "bytes": 104
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/Cargo.toml",
+      "sha256": "3fb7e11b7b71251e7e360511000befe692e5aee8d31415d477774f060577bb15",
+      "bytes": 2641
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/LICENSE",
+      "sha256": "c10c1f27337546471e5f7e4e97fdd398b35b9d4e126115dcd22de8d8e65abf6f",
+      "bytes": 1067
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/build.rs",
+      "sha256": "769b31370a41aa722e1d5a530012432c985bb142eab34d095481ffd1a3436e1b",
+      "bytes": 35413
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/sqlite3/sqlite3.c",
+      "sha256": "0c657666d819f261cc4007526ad57e1669de9949df7a8ea847aa284a2bf0ee52",
+      "bytes": 9582521
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/libsqlite3-sys-0.39.1/sqlite3/sqlite3.h",
+      "sha256": "d6c84557261893439b341d2e6c35187ae3ea24fbfd843ad94616f72d89242b8c",
+      "bytes": 695729
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/Cargo.toml",
+      "sha256": "8a18d2cfc64f75140c5d23633bbd2bbbc77d719a0c3d844f8929cd6bc319f9ed",
+      "bytes": 7544
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/LICENSE",
+      "sha256": "c10c1f27337546471e5f7e4e97fdd398b35b9d4e126115dcd22de8d8e65abf6f",
+      "bytes": 1067
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/src/backup.rs",
+      "sha256": "5f43b7679fc278f8ef80bc32855f4a4bea0dabe79eb8158d08a3ffbdc1289948",
+      "bytes": 15135
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/src/busy.rs",
+      "sha256": "d97ce210358eec98f242f0077143d157e958ec2e8ef9fbeaff2273b4f913ee29",
+      "bytes": 6095
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/src/lib.rs",
+      "sha256": "9eaedb45cb295a96c31c5dfeb82542fba472d3438ed69fb8b88d1f7c18bd0001",
+      "bytes": 88111
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/dependency-source/rusqlite-0.41.1/src/transaction.rs",
+      "sha256": "090ba0b99f970ac5845a6bb7f41758ec7775720ac5ff1c9b71dfeb1a70ee278a",
+      "bytes": 27024
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V1-P1-after.bin",
+      "sha256": "5dfbabeedf318bf33c0927c43d7630f51b82f351740301354fa3d7fc51f0132e",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V1-P1-before.bin",
+      "sha256": "5dfbabeedf318bf33c0927c43d7630f51b82f351740301354fa3d7fc51f0132e",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V2-P1-after.bin",
+      "sha256": "c86af8bd34a63b5f96146c67e4210cbae82f06a88c29a56ad2b7d41d26671e3c",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V2-P1-before.bin",
+      "sha256": "c86af8bd34a63b5f96146c67e4210cbae82f06a88c29a56ad2b7d41d26671e3c",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V3-P1-after.bin",
+      "sha256": "b77d084fab3050b9672de0756fa7cb579f6beec5e34c6b99f81bb602e1c9e398",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V3-P1-before.bin",
+      "sha256": "b77d084fab3050b9672de0756fa7cb579f6beec5e34c6b99f81bb602e1c9e398",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V4-P1-after.bin",
+      "sha256": "570456796ff036c6f2c6198041a80be940436318e8143c286724f9bcb3b5ea3c",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V4-P1-before.bin",
+      "sha256": "570456796ff036c6f2c6198041a80be940436318e8143c286724f9bcb3b5ea3c",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V5-P1-after.bin",
+      "sha256": "6b8ae95c425c099f870cf17caf8b04f8fba29225d7dba0d784e0a1061408c44f",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M1-V5-P1-before.bin",
+      "sha256": "6b8ae95c425c099f870cf17caf8b04f8fba29225d7dba0d784e0a1061408c44f",
+      "bytes": 16
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V1-P1-after.bin",
+      "sha256": "29fa02d3381a0b093ff2d6d783c1c78176fd1aafce643c8d205631dc85df5e95",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V1-P1-before.bin",
+      "sha256": "29fa02d3381a0b093ff2d6d783c1c78176fd1aafce643c8d205631dc85df5e95",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V10-P1-after.bin",
+      "sha256": "f9653e4397a89cc70991494ef84c03632f48846ad99e31f27fa0e17bc0b9930e",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V10-P1-before.bin",
+      "sha256": "f9653e4397a89cc70991494ef84c03632f48846ad99e31f27fa0e17bc0b9930e",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V11-P1-after.bin",
+      "sha256": "cf1e3b43822d7dfd0a2b632c1af3c1cc8cd16c01ecab414b4201faa99de42733",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V11-P1-before.bin",
+      "sha256": "cf1e3b43822d7dfd0a2b632c1af3c1cc8cd16c01ecab414b4201faa99de42733",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V12-P1-after.bin",
+      "sha256": "0826f09db80e8befe608deffe64edd48c3a4f7c6612ae3d7af5b031c7b9287d8",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V12-P1-before.bin",
+      "sha256": "0826f09db80e8befe608deffe64edd48c3a4f7c6612ae3d7af5b031c7b9287d8",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V13-P1-after.bin",
+      "sha256": "ac3a588283912f14598542c26255f35774ca056802db29109a093e4dec989edd",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V13-P1-before.bin",
+      "sha256": "ac3a588283912f14598542c26255f35774ca056802db29109a093e4dec989edd",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V14-P1-after.bin",
+      "sha256": "b266eeef5dca8e915367a96cd0787b519da59446912b83c6a682f9badfe747ac",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V14-P1-before.bin",
+      "sha256": "b266eeef5dca8e915367a96cd0787b519da59446912b83c6a682f9badfe747ac",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V15-P1-after.bin",
+      "sha256": "0e89ca9a3fde8a4142fcd64b0b5b0a057569b375ebf7e9055c388e4a6f4dda74",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V15-P1-before.bin",
+      "sha256": "0e89ca9a3fde8a4142fcd64b0b5b0a057569b375ebf7e9055c388e4a6f4dda74",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V16-P1-after.bin",
+      "sha256": "0bc2ee0d50902690bacffc70cf4b7f88589da81b77e619c844dd2cd31890ce09",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V16-P1-before.bin",
+      "sha256": "0bc2ee0d50902690bacffc70cf4b7f88589da81b77e619c844dd2cd31890ce09",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V17-P1-after.bin",
+      "sha256": "7d5900b2656c66cef08e90f45faec33b6b7962c5f8ff7cd4f1df74900bfccf0a",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V17-P1-before.bin",
+      "sha256": "7d5900b2656c66cef08e90f45faec33b6b7962c5f8ff7cd4f1df74900bfccf0a",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V18-P1-after.bin",
+      "sha256": "fcfeaf8504d27059408d3ebab2c75c296772e48f8dfba54d916e9951c643aade",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V18-P1-before.bin",
+      "sha256": "fcfeaf8504d27059408d3ebab2c75c296772e48f8dfba54d916e9951c643aade",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V19-P1-after.bin",
+      "sha256": "39eefe70021a93a79b5f853c1e5d664e874493df5e951234a00b146965936687",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V19-P1-before.bin",
+      "sha256": "39eefe70021a93a79b5f853c1e5d664e874493df5e951234a00b146965936687",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V2-P1-after.bin",
+      "sha256": "4c4fbab41365c5f194aa1f3eadd71d943b8f3739a7ec285c301ef7b142bec829",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V2-P1-before.bin",
+      "sha256": "4c4fbab41365c5f194aa1f3eadd71d943b8f3739a7ec285c301ef7b142bec829",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V20-P1-after.bin",
+      "sha256": "3bcf0c8fa986c2ad8d8780cd696c382baa3a29bcc62cc738a52ce1741c843fd6",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V20-P1-before.bin",
+      "sha256": "3bcf0c8fa986c2ad8d8780cd696c382baa3a29bcc62cc738a52ce1741c843fd6",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V21-P1-after.bin",
+      "sha256": "bb70b24283f5576674bf42cc21460a8cf42779cc8ac2a1e151deac0c3bdbb03a",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V21-P1-before.bin",
+      "sha256": "bb70b24283f5576674bf42cc21460a8cf42779cc8ac2a1e151deac0c3bdbb03a",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V22-P1-after.bin",
+      "sha256": "634707bb18168ab0de1e582f95a9093f9b6d3b5b1729e147ec6a3e86acb2044b",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V22-P1-before.bin",
+      "sha256": "634707bb18168ab0de1e582f95a9093f9b6d3b5b1729e147ec6a3e86acb2044b",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V23-P1-after.bin",
+      "sha256": "7adbd0962778653efe75d2c05e77dc23e7dce874bc6ff211cda5938db87d9311",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V23-P1-before.bin",
+      "sha256": "7adbd0962778653efe75d2c05e77dc23e7dce874bc6ff211cda5938db87d9311",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V24-P1-after.bin",
+      "sha256": "312eff49d5555c0f747dfa60b8b75d70cfed24d733b4f45f61d4ff790f52b4c9",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V24-P1-before.bin",
+      "sha256": "312eff49d5555c0f747dfa60b8b75d70cfed24d733b4f45f61d4ff790f52b4c9",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V25-P1-after.bin",
+      "sha256": "2a1d0bc68d717f42f5d2085722769cc38044bcb7789aac50499cb4b913edf77a",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V25-P1-before.bin",
+      "sha256": "2a1d0bc68d717f42f5d2085722769cc38044bcb7789aac50499cb4b913edf77a",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V26-P1-after.bin",
+      "sha256": "89e1e3f97cb8c86f6981e514218e8cf928a5ab83d22d3aa719651b7b8189f4c1",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V26-P1-before.bin",
+      "sha256": "89e1e3f97cb8c86f6981e514218e8cf928a5ab83d22d3aa719651b7b8189f4c1",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V27-P1-after.bin",
+      "sha256": "fb687dba0b2316b9e323f4cf7df9460fbdb3d664e648f8727ae46449c8425854",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V27-P1-before.bin",
+      "sha256": "fb687dba0b2316b9e323f4cf7df9460fbdb3d664e648f8727ae46449c8425854",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V28-P1-after.bin",
+      "sha256": "75c70fe0d6c5a86dc883d254ea2fc2264f1c659f873e84652fa75a3926431fa5",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V28-P1-before.bin",
+      "sha256": "75c70fe0d6c5a86dc883d254ea2fc2264f1c659f873e84652fa75a3926431fa5",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V29-P1-after.bin",
+      "sha256": "f975dae1d717fa703a0d6496a526c86a4a44b9d658df70f9d71e70857bf7cecf",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V29-P1-before.bin",
+      "sha256": "f975dae1d717fa703a0d6496a526c86a4a44b9d658df70f9d71e70857bf7cecf",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V3-P1-after.bin",
+      "sha256": "3223035161d56c48368c0efa3dd2492422e5e7dd64f4cd7dfb0ba880a4f5612e",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V3-P1-before.bin",
+      "sha256": "3223035161d56c48368c0efa3dd2492422e5e7dd64f4cd7dfb0ba880a4f5612e",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V30-P1-after.bin",
+      "sha256": "c2194c4f2ae2a643872bc60e0703b52416f4e62556f9c13ba798ce7928138d47",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V30-P1-before.bin",
+      "sha256": "c2194c4f2ae2a643872bc60e0703b52416f4e62556f9c13ba798ce7928138d47",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V31-P1-after.bin",
+      "sha256": "1315269461d47d9c6cebbd33ba7969cb66d440b5c74ebfe70daf454acac91e25",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V31-P1-before.bin",
+      "sha256": "1315269461d47d9c6cebbd33ba7969cb66d440b5c74ebfe70daf454acac91e25",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V32-P1-after.bin",
+      "sha256": "6063821c33a4d5a2cde67261666d05b0c42ac21e04db7cadcf877ee714a8c43b",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V32-P1-before.bin",
+      "sha256": "6063821c33a4d5a2cde67261666d05b0c42ac21e04db7cadcf877ee714a8c43b",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V4-P1-after.bin",
+      "sha256": "ddc91755d83f4f6221937fa8823c0d897c4acd38aebcee1e31b8ee3bf5caccf9",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V4-P1-before.bin",
+      "sha256": "ddc91755d83f4f6221937fa8823c0d897c4acd38aebcee1e31b8ee3bf5caccf9",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V5-P1-after.bin",
+      "sha256": "e79a3ee0bd7fa0ef89b62d1f1f88d516d1bf2ec02b059190115b37200b978022",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V5-P1-before.bin",
+      "sha256": "e79a3ee0bd7fa0ef89b62d1f1f88d516d1bf2ec02b059190115b37200b978022",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V6-P1-after.bin",
+      "sha256": "e684d42b4bcb6132a7a676cdbb3f21d17e29e0d6c05f03dddcaf0d8e84af1106",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V6-P1-before.bin",
+      "sha256": "e684d42b4bcb6132a7a676cdbb3f21d17e29e0d6c05f03dddcaf0d8e84af1106",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V7-P1-after.bin",
+      "sha256": "d8bcdf0ad07a52a3d4c8796c80c2598709b07f9d3cd85e0d360889188246bbce",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V7-P1-before.bin",
+      "sha256": "d8bcdf0ad07a52a3d4c8796c80c2598709b07f9d3cd85e0d360889188246bbce",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V8-P1-after.bin",
+      "sha256": "ee34186263a818ff40ab6a3ddfb2836adae577910f763a0fd687718596763a5b",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V8-P1-before.bin",
+      "sha256": "ee34186263a818ff40ab6a3ddfb2836adae577910f763a0fd687718596763a5b",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V9-P1-after.bin",
+      "sha256": "3f5fc13c0b3d6bc1af525f9a8eb59527ef636a25f4d5b2cdee4cb7565ef91036",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/M32-V9-P1-before.bin",
+      "sha256": "3f5fc13c0b3d6bc1af525f9a8eb59527ef636a25f4d5b2cdee4cb7565ef91036",
+      "bytes": 4096
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V1-P1-after.bin",
+      "sha256": "eeaa3d2c60f2340e64cda8381422c3818709a8e0cb2ccd0654030ce55ed3ed55",
+      "bytes": 15728640
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V1-P1-before.bin",
+      "sha256": "eeaa3d2c60f2340e64cda8381422c3818709a8e0cb2ccd0654030ce55ed3ed55",
+      "bytes": 15728640
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V1-P2-after.bin",
+      "sha256": "f8635aecb16caf3bf48144b4dc1955479eb98c8744a8abec06a14f8702d5dd74",
+      "bytes": 15728640
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V1-P2-before.bin",
+      "sha256": "f8635aecb16caf3bf48144b4dc1955479eb98c8744a8abec06a14f8702d5dd74",
+      "bytes": 15728640
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V2-P1-after.bin",
+      "sha256": "f8635aecb16caf3bf48144b4dc1955479eb98c8744a8abec06a14f8702d5dd74",
+      "bytes": 15728640
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V2-P1-before.bin",
+      "sha256": "f8635aecb16caf3bf48144b4dc1955479eb98c8744a8abec06a14f8702d5dd74",
+      "bytes": 15728640
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V2-P2-after.bin",
+      "sha256": "d28b066f14ce63558a5ed63106d870ff81f937dc428ce803f489660aa48ea58a",
+      "bytes": 15728640
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/ML-V2-P2-before.bin",
+      "sha256": "d28b066f14ce63558a5ed63106d870ff81f937dc428ce803f489660aa48ea58a",
+      "bytes": 15728640
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/oracle.bin",
+      "sha256": "08f38829911197c3d3c42b8339276b986eea4b7f9d95a13496ba09ee8e26b71b",
+      "bytes": 39184
+    },
+    {
+      "path": ".local/build/persistence-experiment-preflight-20261105/raw/oracle.txt",
+      "sha256": "e8d68dd7389f82c24f808afa16eec6ccc87493bb77b6eff02ae1cc8aadb60e84",
+      "bytes": 18
+    },
+    {
+      "path": "docs/architecture/context.md",
+      "sha256": "be256899934dada6f979639015764aae9801e732abdeb935629fd3b17c2eeaab",
+      "bytes": 5409
+    },
+    {
+      "path": "docs/decisions/local-persistence-experiment-20261105.md",
+      "sha256": "058e1801df33718a31214b7dedb4065eeb13ceee6a7f0a07eb0cbbb1793fdd1e",
+      "bytes": 4390
+    },
+    {
+      "path": "docs/decisions/local-persistence-proposal.md",
+      "sha256": "86453713fd66a0a026f2f968c7692ba3d9e1a088277fa271cd14890ddaaa4609",
+      "bytes": 19020
+    },
+    {
+      "path": "docs/decisions/open-questions.md",
+      "sha256": "2b389951eb3d9b3a154253707e03ae64aa93e0077c73a78d0714dec4c9ebc94d",
+      "bytes": 6544
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/Cargo.lock",
+      "sha256": "21c161d8dc4e38ae617c2df9a0d300ab91f5ac0d3299f7c9d132604e04da5207",
+      "bytes": 68717
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/Cargo.toml",
+      "sha256": "7df18a3e328e0078cb3a58ca913ebd135602a63119f53a58a578b6e9b504ea45",
+      "bytes": 481
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/M0.json",
+      "sha256": "a5f20e23b0f5072592d2cb9a4406f6b3842f87c11a8b530582a10f2a08a13d9c",
+      "bytes": 938
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/M1.json",
+      "sha256": "0ade4e2c3a798e1d8513d3085cd15ebda4fc2a909601f842f565eb0dd3d051ae",
+      "bytes": 16678
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/M32.json",
+      "sha256": "f93fb4ee7ecf842d38d9dfb17fddd4eaf31b7cd82cdaaf5913a2662aec8f9a29",
+      "bytes": 98314
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/ML.json",
+      "sha256": "1e4bb919755716c7b94d10ee995b8eb8ed73f669ce3e2f97ff95523dc4307bee",
+      "bytes": 9764
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/admission.json",
+      "sha256": "68f6f6cfc8d3441c086b995911380d5a2e3da6c2ae96c689ee82f9a790f50295",
+      "bytes": 767
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/docs/architecture/context.md.bin",
+      "sha256": "e7884629c01481f69aeab1cf6d7237e76791f75f19a10ccef918425076e5d971",
+      "bytes": 4750
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/docs/decisions/local-persistence-proposal.md.bin",
+      "sha256": "e14f0cda62d7ff32a9d4e9550ecb2618aea26014ebaa9128edbd0c35092167f7",
+      "bytes": 18670
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/docs/decisions/open-questions.md.bin",
+      "sha256": "4aa6a858a23359c09fa22144dc7eb3c79cac1cbe5f94691508af32e3654b91d2",
+      "bytes": 5885
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/fixture-hashes-first.json.bin",
+      "sha256": "d7ad58fdf2d862a064ff8c69b3df5f02d272c35109d52453911be39f08d7ab28",
+      "bytes": 18593
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/revalidation-first.json.bin",
+      "sha256": "f83e3d469c55e7d50a2e19bce2bc2908b81499d99c7838e76af606459ce15fde",
+      "bytes": 169486
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/sdd/features/product-local-persistence/converge.md.bin",
+      "sha256": "e8b45fc8dda74686066ee6cff984d4c7833e2d539621bbee2fd017190938710b",
+      "bytes": 1659
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/sdd/features/product-local-persistence/evidence.json.bin",
+      "sha256": "a955908c777275dc006f24ed660a4baef27f2b0ad8b64a7dce3b60a90702f443",
+      "bytes": 3340
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/sdd/features/product-local-persistence/experiment-protocol.md.bin",
+      "sha256": "3d5cdeffaf926cb26533449d67397368479a67451e620f6c1cdb63592296dd79",
+      "bytes": 16677
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/sdd/features/product-local-persistence/plan.md.bin",
+      "sha256": "ec1ddf47efacd6330627b0f20bf73e6a5d069eee2863a7282d2cdc8e05fd71ac",
+      "bytes": 3362
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/sdd/features/product-local-persistence/spec.md.bin",
+      "sha256": "ae5603aaac65fe5b18e673fd5f56ffbfcaf3bf73c1d174f337a3088cb7dafb04",
+      "bytes": 5129
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/sdd/features/product-local-persistence/tasks.md.bin",
+      "sha256": "4bc39fca1898d4ecf383b78e0c49132015b3d160d09d2da231020e95caef7738",
+      "bytes": 2059
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/sdd/features/product-local-persistence/traceability.json.bin",
+      "sha256": "46007306383ba15ee807c2dbc4fafbc1d283b7a5d9311b95b7debdd541c559da",
+      "bytes": 2866
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/before/sdd/project.md.bin",
+      "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
+      "bytes": 13419
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/check-ox-first.log",
+      "sha256": "807836fabfc718752113bd7876af01871acd61f5374831ebf4272679b9ee24c0",
+      "bytes": 11366
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/check-ox.log",
+      "sha256": "019a4e22bc810d46c74a78783868a1bc921bf6538f060c54d1171fbf3dc43aec",
+      "bytes": 10647
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/checks.json",
+      "sha256": "acb3585498960ea3dc0667ad38c164f6aaac3d6cb484b2fcdd0d5b0629983edb",
+      "bytes": 1102
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/configuration.md",
+      "sha256": "16d418fa9b191f6c1f9c2abbcb7aff7c89de450990da6afc7adf59887d24a99b",
+      "bytes": 6685
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/environment.json",
+      "sha256": "2d6dcdeeec7a331b2b9fa6cc3876879b65391b4eb86adc0e53f11be809a3a6ed",
+      "bytes": 1129
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/expected-cases.json",
+      "sha256": "a88a701b437ef38e595acc7111c5debcf1015643dbea1c9d6fb3be396530442a",
+      "bytes": 15270
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/fixture-authoring.py.txt",
+      "sha256": "15ad43c8af46bbd6ad246efd7fb11e6d863afb3d1e95d473027a2beafaa05643",
+      "bytes": 12228
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/fixture-hashes.json",
+      "sha256": "d03f262eed8760aa0993f5b8ff10447773199828ab075e9de4fd798e6945be94",
+      "bytes": 18593
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/initial-status.txt",
+      "sha256": "35a552dcb7f3f06fb2f6dba46c1af0194e82bdaac449f418db2fb90ef5d0f08a",
+      "bytes": 1008
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/manifest-checks.json",
+      "sha256": "d499590851abf9dfe24b22a74568bfc00279cd729388a5d5aac7af0444cbce6b",
+      "bytes": 958
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/manifest-final.log",
+      "sha256": "d499590851abf9dfe24b22a74568bfc00279cd729388a5d5aac7af0444cbce6b",
+      "bytes": 958
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/manifest.log",
+      "sha256": "d499590851abf9dfe24b22a74568bfc00279cd729388a5d5aac7af0444cbce6b",
+      "bytes": 958
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/migration-expected.json",
+      "sha256": "4ab057068e6af4f23ac13d3fea365e54bd6d1fec01ff950271508d07f36894a9",
+      "bytes": 508
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/migration-v0.json",
+      "sha256": "d393fae30ab2d081867d4d466551245b942a01960dc8aab83e0464968320874c",
+      "bytes": 16678
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/migration-v1.json",
+      "sha256": "0ade4e2c3a798e1d8513d3085cd15ebda4fc2a909601f842f565eb0dd3d051ae",
+      "bytes": 16678
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/migration-v2.json",
+      "sha256": "05277f209302a9e359fbfe314e0d4ff1e136d968582922014376d6300ead0820",
+      "bytes": 16678
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/native-source.json",
+      "sha256": "677c493e5bcbd261b29fa2544797b25b70b2b985ce0a2cb60ca3d67664131366",
+      "bytes": 4152
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/observed-inputs.json",
+      "sha256": "15e829941b0597513dbe162ecbb4f57b20e32ed294c24c48c25d77b0220f5448",
+      "bytes": 2558
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/preconditions.json",
+      "sha256": "0cb9ff664a88cb9b536e79b9496e141511085575c8b73d994e4bda8f91b52745",
+      "bytes": 1293
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/preservation.json",
+      "sha256": "f7f82c08a7ba3ad5e193e77722e1659595d5b7bd0e15fed21ef0aa6fa34708da",
+      "bytes": 1920
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/resolved-dependencies.json",
+      "sha256": "060115260b7907254bcf522d7a8e2ec81442c75aaec05edb95cb3f177404e86f",
+      "bytes": 174954
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/revalidation.json",
+      "sha256": "055ec4bbc1dda032c2ee70700cc948e2e3478127834958acccae5a35ae203376",
+      "bytes": 190615
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/review.md",
+      "sha256": "b9b17612a57fb9d0d00313f83e99635b8b44d638151347679dca602047fbed88",
+      "bytes": 8401
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/source-observation/application/crates/ox-ui/src/desktop.rs",
+      "sha256": "35bbfc74fbf3eb7e1d860363e0c2304fc7ecdbc0adf3919d0cc94748fb606e69",
+      "bytes": 15554
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/source-observation/application/crates/ox-ui/src/local_task.rs",
+      "sha256": "093a03c0f2e76866b12c7c72429027b7b4c4bba9991ebcbe331ce4537d6b3dec",
+      "bytes": 6892
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/source-observation/application/crates/ox-verification/src/engine.rs",
+      "sha256": "42f0bd8a33593dc13f245a28b5f4a1477bdc79b5feab18f1d303c164402448ab",
+      "bytes": 16225
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/source-observation/application/crates/ox-verification/src/verdict.rs",
+      "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+      "bytes": 461
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/source-observation/application/crates/ox-verification/tests/engine.rs",
+      "sha256": "dc7b6ea02bd4fbb4a047ee7260f1d2016eabcb4a7719c6002d50af9629af6ece",
+      "bytes": 16358
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/structure.log",
+      "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d",
+      "bytes": 149
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/verify.py",
+      "sha256": "2d5099ad5f686acd9cfb97a60df386a9b96b9962b896ea900d55de20c2cbff5d",
+      "bytes": 4635
+    },
+    {
+      "path": "docs/validation/persistence-preflight-20261105/whitespace.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "sdd/features/product-local-persistence/converge.md",
+      "sha256": "6855c125baba0763081b5772ae16ec3106f12709637d40d480cc93cf11db98a7",
+      "bytes": 2213
+    },
+    {
+      "path": "sdd/features/product-local-persistence/experiment-protocol.md",
+      "sha256": "08c12b332232a2ddeb176514b51eb145565482483092b76e23edb45702145260",
+      "bytes": 18437
+    },
+    {
+      "path": "sdd/features/product-local-persistence/plan.md",
+      "sha256": "0dd05c1ecd9d1dd9ff4ccb97be48fa9b4d28b7557aabc73b5400139e5db79286",
+      "bytes": 4784
+    },
+    {
+      "path": "sdd/features/product-local-persistence/spec.md",
+      "sha256": "d23598f67d1d98fc5055aba4e2f2f929dc774da4c96e075d166e2e3fa5a09ecc",
+      "bytes": 5605
+    },
+    {
+      "path": "sdd/features/product-local-persistence/tasks.md",
+      "sha256": "d1d4bfc8152f0fcd2c4754cb33b888b86c8f442cdb3b24ae9924c6b81b4f69d9",
+      "bytes": 2199
+    },
+    {
+      "path": "sdd/features/product-local-persistence/traceability.json",
+      "sha256": "9821d34f08bd0d6f8032f603a3b9d9f90481ba92a5152ab587b1bb7188a58fb6",
+      "bytes": 3062
+    },
+    {
+      "path": "sdd/project.md",
+      "sha256": "853f04e0dd88f9488b18ff47852740e0c4ad23539499ce5a5bafc72383acba33",
+      "bytes": 14078
+    }
+  ]
+}

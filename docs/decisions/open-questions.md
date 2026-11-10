@@ -69,3 +69,13 @@ and a fresh 12-cell corpus now satisfy the unchanged contract. Proposal content
 remains preserved; actual adoption is in f0-boundary-20261102.md. No remaining F0
 GUI limit/matrix decision is pending; broader platform and storage questions retain
 their distinct scope.
+
+## Local persistence preparation successor — 2026-11-05
+
+Maintainer adopted D2 common contract and D4 parameters and conditionally authorized
+D3 paired disposable comparison and D4-deps isolated resolution/review. Authority:
+`docs/decisions/local-persistence-experiment-20261105.md`. Current authorized work is T009 review preparation only; no candidate
+encoders/trials now. D1 remains post-F0/pre-F3/MVP; F0 guarantees are unchanged.
+D5 technology and D6 product integration remain open; product AC-01..07 UNVERIFIED.
+No product Cargo changes, commit or publication. Network acquisition was separately
+authorized only for the isolated dependency package.

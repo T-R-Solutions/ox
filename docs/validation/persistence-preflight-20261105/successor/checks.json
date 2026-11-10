@@ -1,0 +1,42 @@
+{
+  "criterion": "T009 corrective preparation only",
+  "checks": [
+    {
+      "command": "python3 docs/validation/persistence-preflight-20261105/verify.py",
+      "exit_code": 0,
+      "log": "docs/validation/persistence-preflight-20261105/successor/manifest.log"
+    },
+    {
+      "command": "python3 docs/validation/persistence-preflight-20261105/successor/audit.py",
+      "exit_code": 0,
+      "log": "docs/validation/persistence-preflight-20261105/successor/audit.log"
+    },
+    {
+      "command": "cargo +1.99.1 metadata --locked --offline --format-version 1 --manifest-path .local/build/persistence-experiment-preflight-20261105/dependencies/Cargo.toml",
+      "exit_code": 0,
+      "log": "docs/validation/persistence-preflight-20261105/successor/metadata.log"
+    },
+    {
+      "command": "python3 sdd/tools/validate.py --root . --structure-only",
+      "exit_code": 0,
+      "log": "docs/validation/persistence-preflight-20261105/successor/structure.log"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "log": "docs/validation/persistence-preflight-20261105/successor/whitespace.log"
+    },
+    {
+      "command": "python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 1,
+      "log": "docs/validation/persistence-preflight-20261105/successor/global-first.log"
+    }
+  ],
+  "remaining_failures": [
+    "README integration current changed/missing: sdd/project.md"
+  ],
+  "limitations": [
+    "No native compilation, storage execution, product execution, network or real ENOSPC.",
+    "Checks do not close T009 or product AC-01..07."
+  ]
+}

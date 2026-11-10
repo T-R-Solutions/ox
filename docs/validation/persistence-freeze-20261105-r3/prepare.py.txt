@@ -1,0 +1,76 @@
+from pathlib import Path
+import json,hashlib,tarfile,struct,subprocess,datetime,shutil
+R=Path.cwd(); B=R/'docs/validation/persistence-freeze-20261105-r3'; P=R/'docs/validation/persistence-freeze-20261105-r2'
+B.mkdir(exist_ok=False)
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def rel(p):return str(p.relative_to(R))
+def write(p,d):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+def save(p):
+ q=B/'before'/ (rel(p)+'.bin');q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(p.read_bytes());return q
+entry={rel(p):sha(p) for p in R.rglob('*') if p.is_file() and (p.is_relative_to(R/'application') or p.is_relative_to(P) or p.is_relative_to(R/'sdd/features')) and '.git' not in p.parts and 'target' not in p.parts}
+write(B/'entry.json',{'time_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'git_status':subprocess.check_output(['git','status','--short'],text=True),'files':entry,'packages_found':[rel(x) for x in (R/'docs/validation').glob('persistence-freeze-*/freeze.json')]})
+for p in (R/'sdd/features').glob('*/evidence.json'):save(p)
+F=R/'sdd/features/product-local-persistence'
+for p in list(F.glob('*.md'))+[F/'traceability.json']:save(p)
+for n in ['AGENTS.md','sdd/project.md','sdd/workflow.md','sdd/evidence.md','docs/constitution.md','docs/architecture/context.md','docs/decisions/licensing.md','docs/decisions/local-persistence-proposal.md','docs/decisions/local-persistence-experiment-20261105.md']:save(R/n)
+# Retain every local-only inherited input, not just Git-tracked documents.
+old=json.loads((P/'freeze.json').read_text());local=[]
+for row in old['files']:
+ if row['path'].startswith('.local/'):
+  p=R/row['path'];q=B/'resources'/row['path'];q.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,q);assert sha(q)==row['sha256'];local.append({'original_path':row['path'],'retained_path':rel(q),'sha256':sha(q)})
+write(B/'local-resources.json',local)
+archives=R/'.local/build/persistence-experiment-preflight-20261105/reviewed-crates'
+components=['iced_graphics-0.14.0','sctk-adwaita-0.10.1','wayland-protocols-plasma-0.3.12','wayland-scanner-0.31.11']
+primary=[];content={}
+for c in components:
+ p=archives/(c+'.crate');content[c]={}
+ with tarfile.open(p) as t:
+  for m in t.getmembers():
+   if not m.isfile():continue
+   path=Path(m.name);assert not path.is_absolute() and '..' not in path.parts
+   raw=t.extractfile(m).read();q=B/'primary'/(m.name+'.bin');q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(raw);content[c][str(path.relative_to(c))]=raw
+   primary.append({'archive':rel(p),'archive_sha256':sha(p),'member':m.name,'path':rel(q),'sha256':sha(q),'method':'local tar member read; original bytes unchanged'})
+write(B/'primary-index.json',primary)
+meta=R/'docs/validation/persistence-freeze-20261105/linux-metadata.json';d=json.loads(meta.read_text());ids={p['id']:p['name'] for p in d['packages']};features={ids[n['id']]:n['features'] for n in d['resolve']['nodes']}
+write(B/'resolved-features.json',{'input':rel(meta),'sha256':sha(meta),'features':{k:features[k] for k in ['iced_graphics','sctk-adwaita','wayland-protocols-plasma']},'limit':'retained resolution, no new build or binary inspection'})
+assets=json.loads((P/'asset-matrix.json').read_text())
+for a in assets:
+ if not any(x in a['archive_member'] for x in ['Iced-Icons','FiraSans','Cantarell']):continue
+ c=a['component'];raw=content[c][a['archive_member'][len(c)+1:]]; assert hashlib.sha256(raw).hexdigest()==a['asset']['sha256']
+ # Complete name table, including revision strings; do not infer family applicability.
+ nt=struct.unpack_from('>H',raw,4)[0];off=next(struct.unpack_from('>I',raw,12+i*16+8)[0] for i in range(nt) if raw[12+i*16:16+i*16]==b'name');_,count,so=struct.unpack_from('>HHH',raw,off);names=[]
+ for i in range(count):
+  pl,en,la,ni,ln,st=struct.unpack_from('>HHHHHH',raw,off+6+12*i);v=raw[off+so+st:off+so+st+ln];names.append({'platform':pl,'encoding':en,'language':la,'name_id':ni,'text':v.decode('utf-16-be' if pl in (0,3) else 'mac_roman',errors='replace')})
+ a['complete_name_table']=names;a['archive']={'path':rel(archives/(c+'.crate')),'sha256':sha(archives/(c+'.crate'))};a['vcs']=json.loads(content[c]['.cargo_vcs_info.json']);a['origin']=next(p['source'] for p in d['packages'] if p['name']+'-'+p['version']==c)
+ a['inclusion_review']=('Unconditional include_bytes in font_system; intended source incorporation, no observed binary' if 'Iced-Icons' in a['archive_member'] else 'fira-sans cfg; feature enabled in retained Linux graph; intended source incorporation, no observed binary' if 'FiraSans' in a['archive_member'] else 'ab_glyph renderer selected when crossfont absent; both conditions in retained graph; embedded fallback even if system font is selected at runtime; no observed binary')
+ a['conclusion']='BLOCKED: exact asset identified; no retained complete asset-specific grant/notice chain demonstrated. Other-family OFL text and Rust MIT cannot resolve this gap.'
+ a['obligations']='Pending effective grant. Retain observed holders/metadata verbatim; if OFL applies preserve copyright/full OFL, font license, reserved names and standalone-sale restrictions. Iced-Icons has no demonstrated grant; do not assign OFL by analogy.'
+write(B/'asset-matrix.json',assets)
+# Parse all XMLs and map nested Rust modules without running the generator.
+c='wayland-protocols-plasma-0.3.12';src=content[c]['src/lib.rs'].decode();stack=[];mapping={}
+for line in src.splitlines():
+ import re
+ m=re.search(r'pub mod (\w+) \{',line)
+ if m:stack.append(m.group(1))
+ if '"./plasma-wayland-protocols/' in line:mapping[line.split('"')[1][2:]]='::'.join(stack)
+ if line.strip()=='}' and stack:stack.pop()
+import xml.etree.ElementTree as ET
+protocols=[]
+for name,raw in content[c].items():
+ if not name.endswith('.xml'):continue
+ root=ET.fromstring(raw);notice='\n'.join(''.join(x.itertext()) for x in root.findall('copyright'));spdx=re.findall(r'SPDX-License-Identifier:\s*([^\n]+)',notice)
+ terms=[]
+ for tag in spdx:
+  key='plasma-wayland-protocols/LICENSES/'+tag.strip()+'.txt'
+  if key in content[c]:terms.append(next(x for x in primary if x['member']==c+'/'+key))
+ protocols.append({'member':c+'/'+name,'path':rel(B/'primary'/(c+'/'+name+'.bin')),'sha256':hashlib.sha256(raw).hexdigest(),'protocol':root.attrib['name'],'module':mapping.get(name),'notice_verbatim':notice,'spdx':spdx,'full_texts':terms,'holders':re.findall(r'SPDX-FileCopyrightText:\s*([^\n]+)',notice),'features':'client enabled; server absent in retained Linux graph','mechanism':'wayland_protocol! -> generated::client::{generate_interfaces!,generate_client_code!}; all module invocations statically present','result':'File terms/text mapped; generated output not executed or inspected' if notice else 'BLOCKED: no file copyright/license notice; COPYING.LIB presence alone does not prove applicability','obligations':'Preserve file notice and applicable full text; MIT/MIT-CMU reproduction notices; BSD-3-Clause source/binary notices and no endorsement; LGPL source/changes/terms and combination obligations require explicit disposition; no crate-wide MIT substitution'})
+write(B/'protocol-notices.json',protocols)
+write(B/'source-notice-review.json',{'predecessor_index':rel(P/'source-notice-review.json'),'sctk':{'archive_sha256':sha(archives/'sctk-adwaita-0.10.1.crate'),'vcs':json.loads(content['sctk-adwaita-0.10.1']['.cargo_vcs_info.json']),'scope':'src/lib.rs:712-771 rounded_headerbar_shape; warning 719-722; arithmetic reference 713; call sites retained in full file','claimed_origin':'https://gitlab.com/snakedye/snui/','manifest':'MIT; root LICENSE MIT retained, not dispositive for borrowed portion','fact':'Author warns heavily inspired code should be MPL-2.0; no source revision/path, upstream grant, holder or secondary-license terms established','interpretation':'Cannot conclude whole crate MIT or MPL; cannot conclude incompatibility with GPL-3.0-only solely from comment. File-level MPL and secondary-license eligibility/exclusions require actual original grant and full text. No relicensing inferred.','result':'BLOCKED','resume':'Identify exact snui revision and original function; obtain complete MPL text, file notices/holders and any Exhibit B or secondary-license exception, compare adapted lines, resolve conflicting MIT declaration.'},'scanner':{'archive_sha256':sha(archives/'wayland-scanner-0.31.11.crate'),'inspection':'src/parse.rs reads protocol copyright into protocol.copyright; field defined in src/protocol.rs. Search of every retained .rs member found no generator use of copyright field. lib.rs opens XML under CARGO_MANIFEST_DIR and invokes generation.','result':'Static indication that XML copyright is not propagated by generator. No generated-output or binary claim; explicit separate attribution inventory needed.'}})
+for name in ['license-matrix.json','iced-applicability.json']:
+ data=json.loads((P/name).read_text())
+ if name=='license-matrix.json':
+  for row in data:
+   if row['component'] in ['iced_graphics-0.14.0','sctk-adwaita-0.10.1','wayland-protocols-plasma-0.3.12']:row['r3_disposition']='BLOCKED; see r3 asset-matrix, source-notice-review and protocol-notices. Wrapper/main MIT does not close asset or file scope.'
+ write(B/name,data)
+write(B/'obligations.json',{'scope':'Review inventory; no distribution clearance','assets':[a for a in assets if 'complete_name_table' in a],'protocols':protocols,'sctk':'Preserve MIT root text and source warning; effective borrowed-code terms, holders, full MPL and GPL secondary-license eligibility unresolved. Do not remove component.','GPL_own':'GPL-3.0-only applies to own material only; root LICENSE does not relicense any third-party asset.'})
+print('created',B,'primary files',len(primary),'protocols',len(protocols),'local resources',len(local))

@@ -1,0 +1,32 @@
+from pathlib import Path
+import json,hashlib
+R=Path.cwd();B=R/'docs/validation/persistence-freeze-20261105-r3'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def rel(p):return str(p.relative_to(R))
+def write(p,d):p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+archive={sha(p):p for p in (B/'before').rglob('*') if p.is_file()};impact=[]
+for p in sorted((R/'sdd/features').glob('*/evidence.json')):
+ doc=json.loads(p.read_text());changes=[];affected=set()
+ for e in doc['evidence']:
+  for x in e.get('inputs',[])+[{'path':e['artifact'],'sha256':e['sha256'],'artifact':True}]:
+   q=R/x['path']
+   if q.is_file() and sha(q)==x['sha256']:continue
+   old=x['path'];saved=archive[x['sha256']]
+   if x.get('artifact'):e['artifact']=rel(saved)
+   else:x['path']=rel(saved)
+   changes.append({'evidence_id':e['id'],'original_path':old,'retained_path':rel(saved),'sha256':x['sha256']});affected.add(e['id'])
+ if not changes and p.parent.name!='product-local-persistence':continue
+ needed={p.parent/n for n in ['spec.md','plan.md','tasks.md','traceability.json']}
+ for row in json.loads((p.parent/'traceability.json').read_text()):needed.update([R/row['implementation'],R/row['oracle']])
+ needed.update(B/n for n in ['review.md','asset-matrix.json','source-notice-review.json','protocol-notices.json','primary-index.json','resolved-features.json','obligations.json','license-matrix.json','acquisition-request.md'])
+ # Include actual changed documentary bytes; operational source identities remain unchanged.
+ needed.update(R/'sdd/features/product-local-persistence'/n for n in ['plan.md','tasks.md','converge.md'])
+ record={'id':'E-T011-R3-LOCAL-SOURCE-REVIEW','kind':'inspection','command_or_method':'Read exact retained archives, full source members/font name tables/XML file notices and Linux resolution; compare documentary appendix delta with preserved before bytes; preserve stale historical bindings by exact SHA preimage. No external acquisition or execution.','observed_result':'Bounded documentary delta adds retained-source findings and keeps all gates unchanged. Three font grant/full-notice chains and sctk MPL provenance remain unresolved. 30 XML/module mappings, 29 file notices/full texts; fullscreen-shell has no file notice. Static scanner search found no copyright propagation. T009/T011 OPEN, product AC-01..07 UNVERIFIED; unchanged F0 operational inputs do not require GUI rerun. This observation supports documentary succession only, not prior runtime results or legal readiness.','artifact':rel(B/'review.md'),'sha256':sha(B/'review.md'),'inputs':[{'path':rel(q),'sha256':sha(q),'role':'other'} for q in sorted(needed)]}
+ doc['evidence'].append(record)
+ criteria=[]
+ for c in doc['requirements']:
+  if affected.intersection(c.get('evidence_ids',[])) or (p.parent.name=='product-local-persistence' and c['id']=='T009-PREFLIGHT'):
+   c['evidence_ids'].append(record['id']);criteria.append({'id':c['id'],'status':c['status'],'scope':'Current documentary delta only; historical observations preserved'})
+ write(p,doc);impact.append({'feature':p.parent.name,'criteria':criteria,'historical_redirects':changes,'new_observation':record['id']})
+write(B/'freshness-impact.json',impact)
+print(len(impact),'affected consumers',sum(len(x['historical_redirects']) for x in impact),'preserved bindings')

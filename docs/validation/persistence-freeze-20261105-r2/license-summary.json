@@ -1,0 +1,16 @@
+{
+  "applicable": 159,
+  "excluded": 113,
+  "iced_main_texts": "10 upstream-linked applicability chains retained",
+  "asset_blockers": [
+    "iced_graphics-0.14.0/fonts/FiraSans-Regular.ttf",
+    "iced_graphics-0.14.0/fonts/Iced-Icons.ttf",
+    "sctk-adwaita-0.10.1/src/title/Cantarell-Regular.ttf"
+  ],
+  "status": "INCONCLUSIVE: asset applicability/full notices remain material; preparation blocked",
+  "limits": "No source component excluded to bypass gaps; all build dependencies included; no distribution or unrestricted legal approval.",
+  "source_blockers": [
+    "sctk-adwaita src/lib.rs:721 borrowed code MPL-2.0 warning",
+    "wayland-protocols-plasma XML and packaged LGPL file-scope/generation attribution disposition"
+  ]
+}

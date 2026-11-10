@@ -1,6 +1,6 @@
 # Proposed local persistence for the existing controlled task flow
 
-Status: specification/design only, authorized by the 2026-11-01 request. Implementation and engine selection are NOT authorized. Actor: local user; owner: maintainer. Full route due to persisted state, recovery, concurrency and unresolved contract decisions. Requirements below are proposals, not adopted acceptance of storage.
+Status: D2 contract and D4 experiment parameters adopted on 2026-11-05; T009 preparation authorized. D3 comparison and D4-deps review are conditional on pre-run freeze/review. Product implementation and engine selection are NOT authorized. Actor: local user; owner: maintainer. Full route due to persisted state, recovery, concurrency and unresolved contract decisions. Requirements below express the adopted common contract; operational acceptance remains UNVERIFIED.
 
 Scope: durable task/attempt/check/verification history for product-local-task-ui; integration through ox-storage, ox-verification and the existing controller/Iced flow after authorization. Preserve local policy, provenance and all five states. Do not scan/reconstruct arbitrary .ox-task directories as trusted history.
 
@@ -31,5 +31,15 @@ Adopted milestone assignment (F0 boundary ADR): independent delivery after F0 an
 before F3/MVP. This placement does not authorize implementation. The common E01..E08 protocol and selection rule
 in the ADR apply equally to SQLite and snapshots. Contract/corpus/operational bounds
 precede experiments; comparative results precede technology selection. Journal is a
-documented alternative only. This request grants neither experiments nor integration.
+documented alternative only. D3 conditionally grants the disposable experiment after freeze/review; this step grants preparation only and no integration.
 Prototype evidence cannot alone approve these seven product criteria.
+
+Effective authority: docs/decisions/local-persistence-experiment-20261105.md. Adopted D4 experimental quotas are distinct from the Engine logical 128 MiB limit; no retained-byte deduplication changes admission. No OS/power-loss/hostile-writer/remote-sync guarantee.
+
+## T011 succession contract
+
+Governance must authenticate the original README integration and each reviewed
+project-state transition by exact content; unknown current bytes, ambiguous records,
+missing/corrupt preimages and escaping/symlinked paths must fail closed. No path
+allowlist or mere preimage existence grants acceptance. Freeze preparation inputs
+including local-only resources; material license gaps block technical readiness.

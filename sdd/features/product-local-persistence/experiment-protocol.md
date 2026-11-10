@@ -1,9 +1,9 @@
 # Paired persistence experiment — decision-ready proposal, 2026-11-05
 
-Status: PREPARED, NOT AUTHORIZED OR EXECUTED. This supplements the ADR's E01..E08;
+Status: D2/D4 ADOPTED; D3/D4-deps CONDITIONALLY AUTHORIZED; NOT EXECUTED. This supplements the ADR's E01..E08;
 no additional acceptance criteria, candidate implementation or winner is introduced.
 The adopted F0-D1..D5 already place persistence after F0 and before F3/MVP. D1's
-milestone question is resolved; D2/D3/D4 below remain open. AC-01..07 remain UNVERIFIED.
+milestone question is resolved; D2/D4 are adopted; D3/D4-deps require freeze and pre-run review. AC-01..07 remain UNVERIFIED.
 
 ## Common logical contract (D2)
 
@@ -221,3 +221,40 @@ Integrity PRAGMA alone is not complete application provenance/corruption detecti
 Lower maintenance cost, adequate snapshot rewrite performance and durability on this
 XFS are hypotheses. Only the observed findmnt/toolchain and robustness tests are
 local observations. Process-kill survival is not OS-crash or power-loss tolerance.
+
+## Effective T009 freeze-review successor — 2026-11-05
+
+The authorization ADR docs/decisions/local-persistence-experiment-20261105.md
+supersedes proposal/pending language above. Adopted parameters are not operational
+acceptance. Current step prepares docs/validation/persistence-preflight-20261105/;
+no candidate encoders or trials. Isolated network acquisition separately authorized.
+
+Corpus clarification from actual Engine inspection: NOT APPLICABLE is an explicit
+disposition, never an executed Observation. M1/M32 contain 5/32 historical records
+(observations plus dispositions); M32 has 26 executed-observation records and six
+applicability dispositions. ML has two observations. The Engine 32-observation
+capacity remains unchanged; this corpus does not prove full capacity through a
+serializer. Missing post-capture with readable current inputs evaluates INCONCLUSIVE
+in the current Engine; V4 UNVERIFIED fixture explicitly removes current evidence.
+Oracle bytes are an observed /usr/bin/true fixture copied to raw/oracle.bin, not an
+assertion that recorded timeout/exit17/dispositions were executed by that binary.
+These are historical data fixtures. Future actual-effect harness executables must
+be built and frozen separately before trials; any semantic change requires review.
+
+ML arithmetic counts exactly 120 MiB before/after input content; oracle captures
+add logical bytes. Exact-boundary admission tests use retained + before + 32 MiB
+reserved-after, including oracle bytes, not just 128 MiB final file size. Raw files
+are materialized under the owned experiment preflight directory; JSON/hash ledger
+are reviewer inputs independent of both candidates. No cold-cache claims.
+
+## Corrective clarification (corpus bytes unchanged)
+
+The concrete adopted preflight corpus has M1 four executed-observation fixtures plus
+one applicability disposition, and M32 26 plus six; O* denotes record publication
+for both kinds. Earlier observation shorthand does not imply fabricated execution.
+All checks share oracle.bin and all depend on its freshness. ML is 120 MiB raw input
+occurrences plus repeated executable captures; logical Engine admission remains
+128 MiB with maximum post-capture reservation independently of D4 physical quotas.
+Boundary vectors remain arithmetic pending concrete execution fixtures. Review gaps,
+negative controls, license dispositions and pre-run conditions are recorded in
+docs/validation/persistence-preflight-20261105/successor/review.md.

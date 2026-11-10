@@ -1,0 +1,51 @@
+from pathlib import Path
+import json,hashlib
+R=Path.cwd(); B=R/'docs/validation/persistence-preflight-20261105';S=B/'successor'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def write(p,d):p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+archives={}
+for p in (R/'docs/validation').rglob('*'):
+ if p.is_file() and p.suffix=='.bin':archives[sha(p)]=p
+# Existing saved versioned JSON/markdown source records may also be exact preimages.
+missing=set()
+for p in (R/'sdd/features').glob('*/evidence.json'):
+ d=json.loads(p.read_text())
+ for e in d['evidence']:
+  for x in e.get('inputs',[])+[{'path':e['artifact'],'sha256':e['sha256']}]:
+   q=R/x['path']
+   if not q.is_file() or sha(q)!=x['sha256']: missing.add(x['sha256'])
+for p in (R/'docs/validation').rglob('*'):
+ if not missing:break
+ if p.is_file() and p.suffix in ['.json','.md']:
+  h=sha(p)
+  if h in missing:archives[h]=p;missing.remove(h)
+impact=[]
+for p in (R/'sdd/features').glob('*/evidence.json'):
+ d=json.loads(p.read_text());changes=[];affected=set()
+ for e in d['evidence']:
+  for x in e.get('inputs',[])+[{'path':e['artifact'],'sha256':e['sha256'],'artifact':True}]:
+   q=R/x['path']
+   # All changed envelope references are historical even if the target is not written yet.
+   envelope=S/'before'/Path(x['path']+'.bin')
+   if q.is_file() and sha(q)==x['sha256'] and not (q.name=='evidence.json' and envelope.is_file()):continue
+   if x['sha256'] not in archives:
+    raise RuntimeError((p,e['id'],x))
+   old=x['path'];saved=archives[x['sha256']];assert sha(saved)==x['sha256']
+   if old==str(saved.relative_to(R)):continue
+   if x.get('artifact'):e['artifact']=str(saved.relative_to(R))
+   else:x['path']=str(saved.relative_to(R))
+   changes.append({'evidence':e['id'],'original_path':old,'preserved_path':str(saved.relative_to(R)),'sha256':x['sha256']});affected.add(e['id'])
+ if not changes:continue
+ needed={p.parent/n for n in ['spec.md','plan.md','tasks.md','traceability.json']}
+ trace=json.loads((p.parent/'traceability.json').read_text())
+ for row in trace:needed.update([R/row['implementation'],R/row['oracle']])
+ needed.update(R/n for n in ['sdd/project.md','docs/architecture/context.md','docs/decisions/open-questions.md','docs/decisions/local-persistence-proposal.md','docs/decisions/local-persistence-experiment-20261105.md','sdd/features/product-local-persistence/experiment-protocol.md'])
+ # No current cross-envelope inputs: they are observational snapshots, not a recursive authority.
+ assert all(q.name!='evidence.json' for q in needed),p
+ record={'id':'E-T009-DOCUMENTARY-SUCCESSOR','kind':'inspection','command_or_method':'Inspect adopted D2/D4 and conditional D3/D4-deps against predecessor documentary inputs and existing criteria. Preserve original digest preimages and all other input identities; no operational replay. Exact replacement ledger in successor/impact.json.','observed_result':'Documentary additions authorize only T009 preparation and isolated acquisition, preserve D1/F0 boundary and prior product criteria; no technology/integration/operational acceptance. Historical observations retain original scope/bytes. T009 remains INCONCLUSIVE; global identity validator condition remains unresolved.','artifact':str((S/'review.md').relative_to(R)),'sha256':sha(S/'review.md'),'inputs':[{'path':str(q.relative_to(R)),'sha256':sha(q),'role':'other'} for q in sorted(needed)]}
+ d['evidence'].append(record)
+ for c in d['requirements']:
+  if affected.intersection(c.get('evidence_ids',[])):c['evidence_ids'].append(record['id'])
+ write(p,d);impact.append({'feature':p.parent.name,'replacements':changes})
+write(S/'impact.json',impact)
+print('reconciled',len(impact),'features;',sum(len(i['replacements']) for i in impact),'exact historical redirects')
