@@ -1,0 +1,60 @@
+{
+  "command": [
+    "/home/rodrigo/Projetos/ox/scripts/toolbox.sh",
+    "exec",
+    "--tool",
+    "opengrep",
+    "--project-root",
+    "/home/rodrigo/Projetos/ox/.local/build/toolbox-completion/cancel-fixture",
+    "--results",
+    "/home/rodrigo/Projetos/ox/docs/validation/toolbox-operational-completion/lifecycle",
+    "--timeout",
+    "120",
+    "--diagnostic-file",
+    "/home/rodrigo/Projetos/ox/docs/validation/toolbox-operational-completion/lifecycle/cancel.json",
+    "--",
+    "scan",
+    "--json",
+    "--disable-version-check",
+    "--config",
+    "rules.yml",
+    "large.py"
+  ],
+  "exit": 143,
+  "diagnostic": {
+    "cleanup": "removed",
+    "finished_at": "2026-11-08T20:04:45.411961+00:00",
+    "image": "sha256:7eb87fed71d00ced341d2100ee9bdfcacb3b4f725d7b4b195d51e0f534c66ccc",
+    "native_exit_code": 137,
+    "oom_killed": false,
+    "outcome": "cancelled",
+    "phase": "execute_native",
+    "repo_digests": [
+      "shared-toolbox/opengrep@sha256:7eb87fed71d00ced341d2100ee9bdfcacb3b4f725d7b4b195d51e0f534c66ccc"
+    ],
+    "run": "ceaa2e142ade42faa702e1a6096db8b0",
+    "runtime_exit_code": 137,
+    "started_at": "2026-11-08T20:04:41.938254+00:00",
+    "tool": "opengrep",
+    "version": "1.33.1"
+  },
+  "observed_running": [
+    "toolbox-native-ceaa2e142ade42faa702e1a6096db8b0"
+  ],
+  "cleanup": [
+    {
+      "container": "toolbox-native-ceaa2e142ade42faa702e1a6096db8b0",
+      "exit": 1,
+      "stderr": "error: no such object: toolbox-native-ceaa2e142ade42faa702e1a6096db8b0\n"
+    }
+  ],
+  "sources_before": {
+    "rules.yml": "c3c8b3e8714b0a1f9d7cc77ba218610494f0bf43afc5577fe8e11c742f036012",
+    "large.py": "47828929d6a77182f215a95dd0c28c370c94d0f76430f7f44904d8e3acd041dd"
+  },
+  "sources_after": {
+    "rules.yml": "c3c8b3e8714b0a1f9d7cc77ba218610494f0bf43afc5577fe8e11c742f036012",
+    "large.py": "47828929d6a77182f215a95dd0c28c370c94d0f76430f7f44904d8e3acd041dd"
+  },
+  "passed": true
+}

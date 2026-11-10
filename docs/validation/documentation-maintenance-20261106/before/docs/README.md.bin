@@ -1,0 +1,100 @@
+# Documentação do Ox
+
+Comece pelo [README principal](../README.md) para conhecer o estado do produto,
+ou pelo [guia da aplicação](../application/README.md) para executar a tarefa local.
+Este índice organiza a documentação mantida; registros históricos conservam a
+situação observada na data de cada execução.
+
+
+[![Mapa de navegação entre README, guia da aplicação, arquitetura, contratos, governança e SDD](assets/documentation.svg)](assets/documentation.svg)
+
+*Cada entrada responde a uma pergunta; políticas e observações históricas mantêm sua autoridade.* [Abrir em tamanho integral](assets/documentation.svg).
+
+<details>
+<summary>Diagrama Mermaid — fonte editável</summary>
+
+```mermaid
+flowchart TD
+    accTitle: Encontre a entrada certa para cada tarefa
+    accDescr: O README apresenta o produto. O guia de aplicação ensina primeiro uso e testes. Arquitetura explica componentes, contratos descrevem estados e protocolos e governança orienta o trabalho. SDD e decisões contêm escopo e aceitação.
+    R["README · conhecer o Ox"] --> USE["Aplicação · executar e testar"]
+    R --> D["docs/ · navegar pelos guias"]
+    D --> A["Arquitetura · componentes"]
+    D --> C["Contratos · estados e protocolo"]
+    D --> G["Desenvolvimento · governança e cópia"]
+    G --> S["SDD e decisões · escopo e evidências"]
+```
+
+</details>
+
+## Galeria de explicações
+
+| Quero enxergar… | Figura e explicação |
+| --- | --- |
+| A interface em funcionamento | [Primeiro uso](../application/README.md#a-demonstração-em-duas-observações) |
+| Os componentes e as fronteiras | [Arquitetura local](architecture/application.md#visão-dos-componentes) |
+| A ordem entre produção e verificação | [Sequência de execução](architecture/application.md#sequência-de-uma-tentativa) |
+| Os estados do supervisor | [Máquina de estados](architecture/contracts.md#estados-do-supervisor) |
+| A negociação com um plugin | [Sequência do protocolo](architecture/contracts.md#sequência-do-protocolo) |
+| A mudança virando evidência | [Fluxo de governança](development/governance.md#fluxo-de-uma-mudança) |
+| O limite da exportação | [Fronteira do pacote](development/sharing.md#fronteira-de-compartilhamento) |
+| As fontes, licenças e reprodução | [Acervo visual](assets/README.md) |
+
+## Entender a aplicação
+
+| Documento | Pergunta que responde |
+| --- | --- |
+| [Aplicação e implementações](architecture/application.md) | Como o fluxo funciona e o que cada crate implementa? |
+| [Contratos](architecture/contracts.md) | Quais são os inputs, estados, efeitos, limites e erros? |
+| [Contexto arquitetural](architecture/context.md) | Qual é a direção do produto e a sequência dos marcos? |
+| [Fronteiras de confiança](security/trust-boundaries.md) | Onde estão os limites de confiança e as garantias ainda ausentes? |
+
+## Desenvolver e verificar
+
+| Documento | Uso |
+| --- | --- |
+| [Guia da aplicação](../application/README.md) | Build, primeiro uso, problemas e testes Rust/Iced |
+| [Contexto e escopo vigente](../sdd/project.md) | Fase, permissões e entregas autorizadas |
+| [Workflow](../sdd/workflow.md) | Escolher rota local ou completa e retomar trabalho |
+| [Evidências](../sdd/evidence.md) | Registrar critérios, métodos, inputs, resultados e limites |
+| [Índice de features](../sdd/features/README.md) | Encontrar especificações e aceitação por entrega |
+| [Integração SDD/skills](development/sdd-skills.md) | Selecionar e registrar métodos sem ativação automática |
+| [Governança](development/governance.md) | Checks Python, preservação, exportação e empacotamento |
+| [Compartilhamento e recuperação](development/sharing.md) | Fronteiras da cópia e recuperação histórica |
+
+## Consultar decisões
+
+A [constituição](constitution.md) contém as políticas permanentes;
+[AGENTS.md](../AGENTS.md) aponta as instruções operacionais. ADRs detalham decisões
+e propostas, respeitando seus estados e sucessores:
+
+- [Bootstrap](decisions/product-bootstrap.md) e
+  [reconciliação](decisions/governance-reconciliation.md): fundação e toolchain.
+- [Fronteira F0](decisions/f0-boundary-20261102.md): corpus adotado e limites.
+- [Atualização de versões](decisions/version-update-policy.md): avaliação e promoção.
+- [Persistência local](decisions/local-persistence-proposal.md): proposta ainda sem implementação autorizada.
+- [Decisões abertas](decisions/open-questions.md): escolhas pendentes.
+- [Licenciamento](licensing/review.md): material próprio e direitos pendentes.
+
+## Interpretar as evidências
+
+A aceitação pertence aos critérios de cada feature e aos inputs efetivamente
+observados. Aprovação de uma skill não demonstra funcionamento do módulo de
+mesmo nome. Relatórios anteriores permanecem como histórico; um sucessor explicita
+o que foi reavaliado.
+
+- [Revisão visual](validation/documentation-visuals-20261104/report.md):
+  figuras, renderização, temas, fontes, preservação e limites desta entrega.
+- [F0 vigente](validation/f0-resumption-20261103/report.md): aceitação da fundação
+  no corpus local adotado, sem expansão automática de fase ou plataforma.
+- [Análise da aplicação](validation/application-documentation-20261104/report.md):
+  fontes e contratos inspecionados na revisão anterior.
+- [Correção da preservação do README](validation/readme-preservation-20261104/report.md):
+  sucessão de versões, recuperação e verificações da governança.
+- [Reestruturação documental](validation/documentation-refresh-20261104/report.md):
+  arquivos, checks e limitações desta revisão.
+
+Mantenha este índice ao criar ou mover uma entrada de documentação. Atualize a
+explicação canônica quando o código mudar, preservando relatórios de execução e
+seus hashes. O pacote de governança exclui o aplicativo; links de produto nesta
+árvore não significam que ele esteja incluído na exportação.

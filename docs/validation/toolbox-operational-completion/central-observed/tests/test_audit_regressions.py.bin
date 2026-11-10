@@ -1,0 +1,144 @@
+"""Platform regressions; none of these cases claims real scanner acceptance."""
+import json
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+from toolbox.adapters import adapter, classify
+from toolbox.config import ConfigError, REPO, load
+from toolbox.docker import execute
+from toolbox.runner import image_lock
+from toolbox.storage import Store, atomic_json
+
+
+class AuditRegressions(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        self.source = self.root / 'source'
+        self.source.mkdir()
+        self.config = self.source / 'toolbox.json'
+        self.store = Store(self.root / 'state', self.root / 'tools')
+        self.store.tools_root.mkdir()
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def write_config(self, name, spec):
+        atomic_json(self.config, {'schema': 1, 'project': 'test', 'tools': {name: spec}})
+        return load(self.config)
+
+    def test_every_adapter_handles_wrong_json_shapes_and_preserves_exit(self):
+        for manifest in (REPO / 'tools').rglob('tool.json'):
+            if 'volume' in manifest.parts:
+                continue
+            meta = json.loads(manifest.read_text())
+            module = adapter(meta['name'], meta['version'])
+            if not module:
+                continue
+            for report in [None, False, 12, 'text', [None], {'results': [None]}]:
+                with self.subTest(tool=meta['name'], version=meta['version'], report=report):
+                    for name in ('stdout.log', 'native.json'):
+                        atomic_json(self.root / name, report)
+                    execution = {'tool_exit_code': 0}
+                    self.assertEqual(classify(module, execution, self.root)[0], 'operational_failure')
+                    self.assertEqual(execution['tool_exit_code'], 0)
+            self.assertEqual(classify(module, {'tool_exit_code': 97}, self.root)[0], 'operational_failure')
+
+    def test_playwright_rejects_negative_statistics(self):
+        atomic_json(self.root / 'native.json', {'stats': {'expected': 2, 'unexpected': 0, 'skipped': -1, 'flaky': 0}})
+        self.assertEqual(classify(adapter('playwright'), {'tool_exit_code': 0}, self.root)[0], 'operational_failure')
+
+    def test_unused_options_are_rejected(self):
+        for options in [{'database': 'a' * 64}, {'max_database_age_hours': 24}, {'env': {'BASE_URL': 'http://localhost'}}]:
+            with self.subTest(options=options), self.assertRaises(ConfigError):
+                self.write_config('ruff', {'version': '0.11.13', **options})
+
+    def test_inputs_must_exist_and_symlinks_must_stay_inside(self):
+        (self.source / 'escape').symlink_to(self.root)
+        for path in ['missing.py', 'escape', '../outside']:
+            with self.subTest(path=path), self.assertRaises(ConfigError):
+                self.write_config('ruff', {'version': '0.11.13', 'paths': [path]})
+
+    def test_adapter_requirements_apply_before_prepare(self):
+        with self.assertRaises(ConfigError):
+            self.write_config('bandit', {'version': '1.8.3'})
+        (self.source / 'bandit.yaml').write_text('{}')
+        self.write_config('bandit', {'version': '1.8.3', 'config': 'bandit.yaml'})
+        args, _ = adapter('bandit').invocation({'config': 'bandit.yaml'})
+        self.assertIn('/src/.', args)
+        self.assertNotIn('--ignore-nosec', args)
+        args, _ = adapter('opengrep', '1.33.1').invocation({'config': 'rules.yml'})
+        for flag in ['--disable-nosem', '--no-git-ignore', '--x-ignore-semgrepignore-files']:
+            self.assertNotIn(flag, args)
+
+    def test_malformed_image_lock_is_diagnostic(self):
+        data = self.write_config('ruff', {'version': '0.11.13'})
+        for value in [None, [], {'schema': True, 'tools': {}}, {'schema': 1, 'tools': {'ruff': None}}]:
+            atomic_json(self.config.with_name('toolbox.images.lock.json'), value)
+            with self.assertRaisesRegex(ValueError, 'invalid image lock'):
+                image_lock(data)
+
+    def test_prune_rejects_index_symlink_without_deletion(self):
+        outside = self.root / 'preserved'
+        (outside / 'runs' / 'old').mkdir(parents=True)
+        atomic_json(outside / 'runs/old/summary.json', {})
+        (self.store.root / 'projects').mkdir()
+        (self.store.root / 'projects/test').symlink_to(outside, target_is_directory=True)
+        with self.assertRaisesRegex(ValueError, 'symlink'):
+            self.store.prune('test', 0, apply=True)
+        self.assertTrue((outside / 'runs/old/summary.json').exists())
+
+    def test_prune_preflights_all_targets(self):
+        run = self.store.run_dir('test')
+        atomic_json(run / 'summary.json', {})
+        safe = self.store.tool_run('aaa', 'test', run.name)
+        volume = self.store.volume('zzz')
+        (volume / 'projects').symlink_to(self.root / 'outside')
+        with self.assertRaisesRegex(ValueError, 'symlink'):
+            self.store.prune('test', 0, apply=True)
+        self.assertTrue(safe.exists())
+        self.assertTrue(run.exists())
+
+    def test_timeout_preserves_container_exit_and_logs(self):
+        with patch('toolbox.docker.subprocess.Popen') as popen, patch('toolbox.docker.capture') as capture:
+            popen.return_value.wait.side_effect = [subprocess.TimeoutExpired('docker', 1), 143]
+            capture.side_effect = ['', json.dumps({'ExitCode': 137, 'OOMKilled': False}), '']
+            result = execute(['docker', 'run'], 'fixture', self.root, 1)
+        self.assertTrue(result['timed_out'])
+        self.assertEqual(result['tool_exit_code'], 137)
+        self.assertEqual(result['runtime_exit_code'], 143)
+        self.assertTrue((self.root / 'stderr.log').exists())
+        self.assertEqual(classify(adapter('ruff'), result, self.root)[0], 'operational_failure')
+
+    def test_preparation_preserves_failure_and_timeout(self):
+        from toolbox.prepare import preparation_process
+        for outcome in [subprocess.CompletedProcess(['docker'], 17), subprocess.TimeoutExpired('docker', 1)]:
+            with patch('toolbox.prepare.subprocess.run') as run:
+                if isinstance(outcome, Exception):
+                    run.side_effect = outcome
+                else:
+                    run.return_value = outcome
+                with self.assertRaisesRegex(ValueError, 'preparation failed'):
+                    preparation_process(['docker'], self.root, 'database', 1)
+            record = json.loads((self.root / 'database.execution.json').read_text())
+            self.assertEqual(record['status'], 'operational_failure')
+            self.assertEqual(record['process_exit_code'], None if isinstance(outcome, Exception) else 17)
+            self.assertTrue((self.root / 'database.stderr.log').exists())
+
+    def test_success_and_findings_for_remaining_adapters(self):
+        cases = [
+            ('bandit', '1.8.3', {'errors': [], 'metrics': {'_totals': {'loc': 1}}, 'results': []}, 0, 'success'),
+            ('bandit', '1.8.3', {'errors': [], 'metrics': {'_totals': {'loc': 1}}, 'results': [{'test_id': 'B602', 'filename': 'bad.py', 'line_number': 2, 'issue_severity': 'LOW', 'issue_confidence': 'HIGH'}]}, 1, 'findings'),
+            ('shellcheck', '0.10.0', {'comments': []}, 0, 'success'),
+            ('shellcheck', '0.11.0', {'comments': [{'code': 2086}]}, 1, 'findings'),
+            ('grype', '0.119.0', {'matches': [], 'descriptor': {}}, 0, 'success'),
+            ('grype', '0.119.0', {'matches': [{'vulnerability': {'id': 'fixture'}}], 'descriptor': {}}, 0, 'findings'),
+            ('trivy', '0.76.2', {'SchemaVersion': 2, 'ArtifactName': 'fixture', 'Results': [{'Vulnerabilities': [{'VulnerabilityID': 'fixture'}]}]}, 0, 'findings'),
+        ]
+        for name, version, report, code, expected in cases:
+            with self.subTest(tool=name, version=version, expected=expected):
+                atomic_json(self.root / 'stdout.log', report)
+                self.assertEqual(classify(adapter(name, version), {'tool_exit_code': code}, self.root)[0], expected)

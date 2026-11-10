@@ -1,0 +1,54 @@
+{
+  "scope": "governance",
+  "results": [
+    {
+      "argv": [
+        "python3",
+        "sdd/tools/validate.py",
+        "--root",
+        ".",
+        "--structure-only"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "state": "passed",
+      "check": "sdd-structure"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/governance/scripts/check-ox.py"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "state": "passed",
+      "check": "ox"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/governance/scripts/run-tests.py",
+        "--group",
+        "fast"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "state": "passed",
+      "check": "governance-tests"
+    }
+  ],
+  "product_acceptance": false,
+  "entry_sha256": "3fabd803c8f630f27b3f2522b29ae1bc11b50c4f8101b583a965c3cb2870c50a",
+  "omitted": [],
+  "not_selected": [
+    "Surfaces outside the chosen scope need explicit applicability review"
+  ],
+  "not_applicable": [],
+  "manual_evidence": [
+    "Graphical X11/Wayland acceptance: separate applicable protocol required"
+  ],
+  "limits": [
+    "Successful checks do not approve the product.",
+    "Offline flags are not OS isolation."
+  ]
+}

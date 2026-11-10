@@ -1,0 +1,298 @@
+--- before/scripts/toolbox.sh
++++ after/scripts/toolbox.sh
+@@ -1,11 +1,8 @@
+ #!/usr/bin/env bash
+ set -euo pipefail
+ ((BASH_VERSINFO[0]>4 || (BASH_VERSINFO[0]==4 && BASH_VERSINFO[1]>=4))) || { echo "Bash 4.4+ required" >&2; exit 125; }
+-# Shared labels permit concurrent readers of tool-owned databases and caches.
+-# Explicit empty/private overrides remain available to callers.
+-if [[ ${1-} == exec && ! ${TOOLBOX_SELINUX_LABEL+x} ]]; then
+-    export TOOLBOX_SELINUX_LABEL=shared
+-fi
++# Discovery/dispatch only. SELinux relabel is an explicit operator selection;
++# preserve TOOLBOX_SELINUX_LABEL as supplied, including unset/empty.
+ if [[ ${TOOLBOX_BIN+x} ]]; then
+     [[ -x "$TOOLBOX_BIN" && ! -d "$TOOLBOX_BIN" ]] || { echo 'TOOLBOX_BIN must name an executable' >&2; exit 125; }
+     exec "$TOOLBOX_BIN" "$@"
+--- before/scripts/README.md
++++ after/scripts/README.md
+@@ -2,6 +2,49 @@
+ 
+ Bash 4.4+, jq 1.6+ e utilitários GNU executam a automação modular. A CLI
+ Shared Toolbox usa Python 3.11+ e Docker; o Ox não instala scanners durante gates.
++
++## Configurar o ambiente consumidor
++
++A documentação da instalação fica em `shared-toolbox/README.md`, dentro do
++workspace `dev_audit/`. O procedimento canônico é
++`shared-toolbox/docs/consumer-integration.md`; operação e preparo pertencem a
++`shared-toolbox/docs/application.md`. Os antigos guias temáticos encaminham para
++esses dois documentos. Esta integração foi conferida contra seus bytes em
++09/11/2026; o [registro da adaptação](../docs/validation/toolbox-consumer-alignment-20261109/report.md)
++separa inspeção de execução.
++
++Configure no ambiente local ou no CI, substituindo o caminho da instalação:
++
++```bash
++export TOOLBOX_ROOT="/caminho/da/shared-toolbox"
++export TOOLBOX_BIN="$TOOLBOX_ROOT/bin/toolbox"
++# Alternativa: disponibilizar toolbox no PATH, sem definir TOOLBOX_BIN.
++```
++
++`TOOLBOX_ROOT` é apenas uma conveniência para montar o caminho acima; o wrapper
++do Ox descobre exclusivamente `TOOLBOX_BIN` ou PATH. Nenhum caminho pessoal,
++scanner de `tools/` ou volume é selecionado diretamente pelo consumidor.
++`tools/<ferramenta>/` contém receitas/documentação e `volume/` operacional da
++plataforma; a entrada pública é `bin/toolbox exec`. `TOOLBOX_STATE`/`--state`
++mudam índices/locks gerais e não deslocam esses volumes nem criam uma instalação
++isolada. Quando usado, `--state` precede o subcomando da CLI.
++
++O operador fornece Linux/amd64 no mesmo host dos bind mounts, Python 3.11+,
++Docker acessível e imagens/bases preparadas, qualificadas e ativas. Para inspecionar
++essa instalação, quando a tarefa autorizar comandos operacionais:
++
++```bash
++bash scripts/toolbox.sh doctor
++bash scripts/toolbox.sh central list
++bash scripts/toolbox.sh central status --tool ruff
++```
++
++`doctor` consulta Docker; list/status não homologam scans, e status não inspeciona
++o daemon. Versões centrais ativas podem mudar: não copie o inventário datado da
++plataforma para um pin no Ox. Rust/Cargo, dependências e testes do produto continuam
++no consumidor. Não há instalação, atualização, ativação ou manutenção implícita.
++
++## Executar as operações escolhidas pelo Ox
+ 
+ O [inventário e a limpeza de 09/11/2026](../docs/validation/repository-cleanup-20261109/report.md)
+ mapeiam todos os arquivos desta árvore e seus consumidores, incluindo `source`,
+@@ -11,13 +54,12 @@
+ inspeção não executou verificações nem renovou a aceitação dos scanners.
+ 
+ ```bash
+-export TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox
+ bash scripts/automate.sh --scope security --plan
+ bash scripts/automate.sh --scope security
+ bash scripts/automate.sh --scope quality
+ bash scripts/automate.sh --scope quality --check shellcheck
+ bash scripts/checks/run.sh --check history
+-bash scripts/toolbox.sh exec --tool ruff --project-root "$PWD" -- check --no-fix scripts/
++bash scripts/toolbox.sh exec --tool ruff --project-root "$PWD" --timeout 120 -- check --config scripts/config/ruff.toml --no-fix --no-cache scripts/
+ python3 -m unittest discover -s scripts/tests -v
+ OX_REAL_SECURITY=1 python3 -m unittest discover -s scripts/tests -p test_real_security_backends.py -v
+ ```
+@@ -25,6 +67,9 @@
+ `TOOLBOX_BIN`, quando definido (inclusive vazio), precisa ser executável. Caso
+ ausente, o wrapper procura `toolbox` no PATH. Um override inválido falha sem
+ fallback. O wrapper deriva do template `templates/consumer/toolbox-native.sh`.
++Mantém dois guards locais já existentes: Bash 4.4+ e recusa de override vazio.
++O template aceita vazio como ausência; no Ox, remova a variável com
++`unset TOOLBOX_BIN` para usar PATH. Não há fallback para um override inválido.
+ `OX_TOOLBOX_BIN` e `OX_SCANNER_BACKEND` foram removidos: os checks rejeitam essas
+ variáveis para evitar uma segunda autoridade. Remova-as dos ambientes anteriores.
+ 
+@@ -71,6 +116,14 @@
+ credenciais de host implícitos. Correção é operação separada e requer autorização
+ explícita de escrita restrita. Não há eval nem reescrita heurística de paths.
+ 
++O diretório de `--project-root` é montado em `/project`; caminhos nativos relativos
++partem dali, ou do `--workdir` explícito. Paths absolutos do host após `--` não são
++convertidos. `--results` monta `/out`; `--stdout-file`/`--stderr-file` redirecionam
++streams para arquivos novos no host, sem tee. Os gates Ox já capturam os streams
++separados em diretórios exclusivos, portanto não precisam desses redirecionamentos.
++O diagnóstico JSON permanece separado do relatório nativo. Rede default é none;
++OSV recebe também --offline e os outros scanners conservam seus controles offline.
++
+ stdout/stderr são bytes da ferramenta, preservados em tool/*.log. A saída não é
+ JSON da plataforma. backend_record.json separado valida outcome native, código
+ nativo, versão, imagem sha256 e cleanup removed. Timeout/cancelamento/infra ou
+@@ -108,9 +161,11 @@
+ revisada até 11/11 dentro do máximo vigente de cinco dias a partir dos dados. Alterar datas/hashes não renova evidência.
+ Nenhum download, fetch ou instalação ocorre em gates; cache não comprova cobertura.
+ 
+-Na observação histórica anterior à qualificação, central list retornou {}; Docker é acessível fora do sandbox.
+-Sem revisões ativas não há operação de scanner homologada nesta entrega. Testes
+-simulados validam somente o contrato. A qualificação ainda precisa incluir
++Na observação histórica anterior à qualificação, central list retornou {}.
++O README da plataforma registra 12 ferramentas centrais ativas na inspeção de
++09/11/2026. Esse relato datado não foi reexecutado pelo Ox nesta adaptação e não
++aprova a integração deste consumidor. Testes simulados validam somente o contrato.
++A qualificação do Ox ainda precisa demonstrar, nos inputs atuais,
+ operações reais limpas/com achados/config inválida, supressões, segredos sintéticos,
+ concorrência, cancelamento, bases vencidas e integridade por Docker.
+ 
+@@ -123,13 +178,19 @@
+ 
+ ### SELinux em hosts enforcing
+ 
+-O wrapper do Ox seleciona TOOLBOX_SELINUX_LABEL=shared para exec quando a variável
+-não foi definida: fontes e bases ro,z; resultados/cache rw,z. A Toolbox precisa
++O wrapper do Ox não seleciona rótulo automaticamente. Ausente/vazia, a variável
++`TOOLBOX_SELINUX_LABEL` deixa os mounts sem relabel; os contextos já precisam
++permitir acesso. Após revisar os caminhos dedicados com o operador, selecione
++explicitamente `export TOOLBOX_SELINUX_LABEL=shared` no ambiente que executará
++os gates: fontes e bases ro,z; resultados/cache rw,z. A Toolbox precisa
+ suportar esse modo. Rótulos compartilhados permitem leitores concorrentes sem
+ relabel privado conflitante; permissões Unix e mounts somente leitura continuam
+ válidos. Definição explícita vazia preserva --mount sem relabel; private usa Z e
+ é adequado somente a diretórios exclusivos. Relabel altera xattrs dos caminhos
+ montados no host: use snapshots/resultados limitados e volumes da ferramenta,
+ nunca /home ou /usr inteiros. Nenhuma política SELinux global é desativada.
+-Testes observados: docs/validation/toolbox-selinux-correction/report.md. A correção
+-de leitura não renova bases nem ativa imagens de produção.
++Os testes de 08/11 em docs/validation/toolbox-selinux-correction/report.md
++observaram o padrão automático anterior, agora substituído pela escolha explícita.
++Se exec retornar Permission denied, examine modos Unix, travessia, contextos e
++AVCs autorizados; errno 13 isolado não identifica a causa. Não renove bases nem
++ative imagens para contornar uma falha de acesso.
+--- before/scripts/tests/test_selinux_transport.py
++++ after/scripts/tests/test_selinux_transport.py
+@@ -1,4 +1,4 @@
+-"""Ox chooses shared SELinux mounts for exec and preserves explicit overrides."""
++"""Ox leaves SELinux relabel selection to the caller, as the consumer guide requires."""
+ import os
+ from pathlib import Path
+ import subprocess
+@@ -20,8 +20,8 @@
+                 env['TOOLBOX_SELINUX_LABEL'] = override
+             return subprocess.run(['bash', str(ROOT/'scripts/toolbox.sh'), command], env=env, capture_output=True)
+ 
+-    def test_exec_defaults_to_shared(self):
+-        self.assertEqual(self.invoke().stdout, b'shared')
++    def test_exec_does_not_select_label(self):
++        self.assertEqual(self.invoke().stdout, b'unset')
+ 
+     def test_explicit_policy_is_preserved(self):
+         for policy in ('', 'private', 'shared'):
+--- before/scripts/security/SOURCES.md
++++ after/scripts/security/SOURCES.md
+@@ -1,4 +1,13 @@
+ # Official interface references
++
++Current consumer documentation successor (2026-11-09): the installation README
++is shared-toolbox/README.md under the dev_audit workspace. Consult
++shared-toolbox/docs/consumer-integration.md for exec/discovery/mounts/results and
++shared-toolbox/docs/application.md for operator preparation, volumes and SELinux.
++Module documentation is in shared-toolbox/tools/<tool>/README.md; it is not a
++consumer executable path. native-execution.md is now a compatibility pointer.
++Ox setup and explicit SELinux selection are documented in scripts/README.md.
++The dated observations below retain their historical version/activation scope.
+ 
+ These are upstream sources consulted for the adapter interfaces, not claims of
+ local scanner execution. The versioned references below preserve the interface
+--- before/sdd/features/scripts-toolbox-native/plan.md
++++ after/sdd/features/scripts-toolbox-native/plan.md
+@@ -59,3 +59,28 @@
+ version), consulted with references/build-inputs-and-trust.md and
+ references/release-and-state.md for immutable preparation/promotion/recovery.
+ No supporting skills or delegation used in this successor.
++
++## Consumer documentation alignment — 2026-11-09
++
++User authorization: read dev_audit documentation and align only Ox scripts/guides.
++The requested workspace-root README is absent; shared-toolbox/README.md and its
++consumer-integration/application guides are the observed primary sources.
++D-25 / REQ-01/02 / T025: keep native exec and discovery; remove implicit shared
++SELinux selection to match the operator's explicit mount choice. Preserve native
++argv/exits and Ox guards for Bash 4.4+ and empty explicit TOOLBOX_BIN. Document
++tools/ as platform-owned modules/volumes and consumer configs/results as Ox-owned.
++Rejected: copying legacy JSON/locks, direct scanner/volume execution, or expanding
++the Iced product with Playwright/CodeQL solely because those tools are available.
++R-25: enforcing hosts need an explicit reviewed shared/private selection or valid
++existing contexts; old deployments relying on the automatic default must configure
++their environment before scans. No automatic chmod/relabel, downloads, central
++maintenance or real scanner execution in this adaptation.
++Primary skill selected/read/applied: software-evolution,
++.codex/skills/software-evolution/SKILL.md; bridge sdd/chain/software-evolution.md
++version 1; no declared skill version; SHA256
++b6649a9db5f2653cccca8b9e53c0489face98a398f2cca8ca7473087ff8b124c.
++Reference read: references/transition-decisions.md. Contribution: characterize
++the old/new environment behavior, choose a bounded transition, retain stronger
++existing discovery guards and define recovery/qualification limits. No delegation.
++Preimages, primary-source hashes, affected observations and manual results are in
++docs/validation/toolbox-consumer-alignment-20261109/.
+--- before/sdd/features/scripts-toolbox-native/tasks.md
++++ after/sdd/features/scripts-toolbox-native/tasks.md
+@@ -11,3 +11,5 @@
+ - T022: Atualizar RustSec oficialmente, verificar commit/data/integridade e consumidores offline.
+ - T023: Executar matriz isolada real de scanners/relatórios/bases/concorrência/cancelamento, conferir hashes e limpeza; qualificar e ativar revisões.
+ - T024: Executar comandos públicos e checks afetados, registrar evidências sucessoras por critério. Depende de T021..T023.
++
++- T025 concluída por implementação/inspeção: confrontar README e guias consolidados da Toolbox com os consumidores Ox; remover seleção SELinux implícita, adaptar teste de contrato, orientar ambiente/CI, paths, volumes e resultados; preservar preimagens. Não executou verificadores, testes, scanners ou manutenção central. Aceite executado e T024 permanecem pendentes.
+--- before/sdd/features/scripts-toolbox-native/converge.md
++++ after/sdd/features/scripts-toolbox-native/converge.md
+@@ -35,3 +35,15 @@
+ The manual control-flow argument, input identities, preservation observations,
+ recovery and remaining gaps are in
+ [the cleanup report](../../../docs/validation/repository-cleanup-20261109/report.md).
++
++## Consumer guide alignment — 2026-11-09
++
++REQ-01/02 -> D-25/R-25 -> T025: wrapper now leaves SELinux label unset unless
++the caller selects it; updated test source expects unset. Native exec, argv,
++exit forwarding and discovery remain. Scripts documentation follows the observed
++consumer-integration/application guides, including explicit host relabel effects.
++AC-01/02 remain INCONCLUSIVE: manual review is not a current contract test result;
++AC-03 remains UNVERIFIED. Earlier evidence.json records and logs are unchanged,
++not rehashed into a fresh approval. Execution restrictions from the prior request
++were retained; no verifier, test, Docker probe or scanner was invoked.
++See [inputs, review and recovery](../../../docs/validation/toolbox-consumer-alignment-20261109/report.md).
+--- before/docs/decisions/scripts-toolbox-native.md
++++ after/docs/decisions/scripts-toolbox-native.md
+@@ -19,3 +19,17 @@
+ Recovery, exact mappings, operational prerequisites and limitations are in
+ scripts/README.md and docs/validation/scripts-toolbox-native/report.md. No runtime
+ fallback or deletion of security tools/data/generations is authorized by recovery.
++
++## Consumer guide successor — 2026-11-09
++
++The maintainer requests Ox alignment with the current dev_audit consumer guide.
++The actual README is shared-toolbox/README.md; consumer-integration.md and
++application.md consolidate the former native-execution/operations guides.
++Only the implicit shared-label choice from the 08/11 SELinux correction is
++superseded: scripts/toolbox.sh now preserves the caller's unset/empty/shared/private
++selection. Relabel must be explicit because it affects host xattrs even for ro
++mounts. Existing Bash/empty-override guards and native exec controls remain.
++No legacy locks, platform maintenance, scanner expansion, downloads or host
++changes are part of this adaptation. Record: scripts-toolbox-native D-25/T025
++and docs/validation/toolbox-consumer-alignment-20261109/report.md. Revisit when
++the public discovery/mount contract changes; previous test evidence stays historical.
+--- before/sdd/features/scripts-toolbox-native/spec.md
++++ after/sdd/features/scripts-toolbox-native/spec.md
+@@ -17,3 +17,14 @@
+ select/update/recover; concurrent runs, real cancellation/resource cleanup and source
+ hash preservation. Define fixture oracles before execution. Internal simulated tests
+ cannot substitute for public Ox/Docker execution. All existing gates remain.
++
++## Consumer documentation alignment — 2026-11-09
++
++REQ-01/02 successor: discovery remains TOOLBOX_BIN/PATH, native tokens and exit
++codes are forwarded unchanged. SELinux relabel selection must be explicit in
++the caller environment; unset/empty must not become shared implicitly. Keep the
++existing Ox empty-TOOLBOX_BIN rejection and Bash floor documented as local guards.
++No schema-1 lock, STIC dispatcher, private import or direct tools/volume access
++is introduced. AC-01/02 include this caller-controlled environment contract;
++the former automatic shared default is superseded. AC-03 still requires real
++consumer qualification, independent of platform documentation/active inventory.
+--- before/sdd/features/scripts-toolbox-native/traceability.json
++++ after/sdd/features/scripts-toolbox-native/traceability.json
+@@ -5,7 +5,8 @@
+     "decision": "D-01",
+     "risk": "R-01",
+     "tasks": [
+-      "T001"
++      "T001",
++      "T025"
+     ],
+     "implementation": "scripts/lib/backends.sh",
+     "oracle": "scripts/tests/test_backends.py"
+@@ -16,7 +17,8 @@
+     "decision": "D-02",
+     "risk": "R-01",
+     "tasks": [
+-      "T002"
++      "T002",
++      "T025"
+     ],
+     "implementation": "scripts/lib/backends.sh",
+     "oracle": "scripts/tests/test_backends.py"

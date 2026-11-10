@@ -1,0 +1,32 @@
+[00.05][WARNING]: !!! You're using one or more options starting with '--x-'. These options are not part of the opengrep API. They will change or will be removed without notice !!! 
+
+┌──────────────┐
+│ Opengrep CLI │
+└──────────────┘
+
+[32m✔[39m [1mOpengrep OSS[0m
+  [32m✔[39m Basic security coverage for first-party code vulnerabilities.
+
+[1m  Loading rules from local config...[0m
+
+
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 701 files with 9 Code rules:
+
+  Language   Rules   Files          Origin   Rules
+ ──────────────────────────        ────────────────
+  rust           5      67          Custom       9
+  python         4      45
+
+
+
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+Some files were skipped or only partially analyzed.
+  Scan skipped: 4 files larger than 1 MB.
+  For a full list of skipped files, run opengrep with the --verbose flag.
+
+Ran 9 rules on 112 files: 23 findings.

@@ -1,0 +1,38 @@
+# Convergence
+
+The maintainer clarified that compatible Rust/Python/security checks must remain.
+This successor supersedes the predecessor blanket deletion rationale. Original
+inventories, logs and preimages remain historical; affected predecessor AC-01..03
+are INCONCLUSIVE with exact old observations retained, not renewed approvals.
+
+| Criterion | Requirement / decision / task | State | Method and observed result | Limit |
+| --- | --- | --- | --- | --- |
+| AC-01 | REQ-01 / D-01 / T001 | APPROVED | Inventory review and SHA256 comparison of all 92 originals; 38 maintained files mapped to concrete closure consumers | Recovery must be retained locally; not scanner effectiveness |
+| AC-02 | REQ-02 / D-02 / T002 | APPROVED | 16 behavioral tests with controlled tools, parser errors, blocked prerequisites, snapshot/exit preservation and actual 16-member workspace enumeration | Controlled executables are not real scanner coverage |
+| AC-03 | REQ-03 / D-03 / T003 | APPROVED | 79 fast cases; 19 integration cases completed before daemon restart, final case rerun passed; current detached copy validator/check-ox and wrapper plan passed | Broad-suite scan-neutral refinements separately reexamined with focused tests and final-copy hashes; no package publication |
+| AC-04 | REQ-04 / D-04 / T004 | UNVERIFIED | 16 real CLI attempts explicitly blocked, exit 3, required binary missing | Prepare tools/datasets/policy separately using erase.md, then execute selected checks; no clean security audit claimed |
+
+Observed methods, current input identities, raw logs and caveats are in
+`docs/validation/scripts-security-quality/report.md` and evidence.json. The native
+76-input comparison reports no change from the earlier identified supplementary
+Rust observation; no product source changed or new product acceptance was inferred.
+X11/Wayland acceptance is NOT APPLICABLE to this governance slice and remains
+separate for future graphical changes. No installs, hooks, commits or publication.
+
+## Shell successor — 2026-11-06
+
+Operational Python and repeated wrappers are superseded by scripts-shell-refactor.
+The observations above are historical. Current inputs and adapter acceptance are
+recorded in that feature; previous affected observations are retained verbatim
+in evidence.json and are not renewed by changing hashes. Missing real scanners
+remain UNVERIFIED. Active entry: bash scripts/automate.sh.
+
+## Operational documentation cleanup — 2026-11-09
+
+Obsolete migration/preparation narratives were removed from scripts documentation,
+with exact preimages preserved outside the operational tree. SOURCES.md remains
+at its public/oracle path and links to the original research bytes; license
+notices, rules, fixtures and runtime interfaces remain. Inspection does not renew
+prior acceptance or evidence hashes. Changed-input observations remain historical;
+current operational acceptance is not established by this cleanup. See
+[the cleanup record](../../../docs/validation/scripts-document-cleanup-20261109/report.md).

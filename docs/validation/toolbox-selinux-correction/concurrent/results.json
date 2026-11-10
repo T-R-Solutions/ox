@@ -1,0 +1,49 @@
+{
+  "operations": [
+    {
+      "tool": "ruff",
+      "exit": 1,
+      "passed": true,
+      "diagnostic": {
+        "cleanup": "removed",
+        "finished_at": "2026-11-08T19:04:34.967672+00:00",
+        "image": "sha256:d2805f4120030ba62383ec263067893114f86acc229a15dbd1b0aea2db10f5b6",
+        "native_exit_code": 1,
+        "oom_killed": false,
+        "outcome": "native",
+        "phase": "execute_native",
+        "repo_digests": [
+          "shared-toolbox/ruff@sha256:d2805f4120030ba62383ec263067893114f86acc229a15dbd1b0aea2db10f5b6"
+        ],
+        "run": "b896c35a32fd4bf9bf8ddc1b4756cf61",
+        "runtime_exit_code": 1,
+        "started_at": "2026-11-08T19:04:34.664747+00:00",
+        "tool": "ruff",
+        "version": "0.11.13"
+      }
+    },
+    {
+      "tool": "bandit",
+      "exit": 1,
+      "passed": true,
+      "diagnostic": {
+        "cleanup": "removed",
+        "finished_at": "2026-11-08T19:04:35.068972+00:00",
+        "image": "sha256:2c02ac66451c3557243e80e07b35a9e3fe5c9dfbd91d9cefa39e7900f1bd3919",
+        "native_exit_code": 1,
+        "oom_killed": false,
+        "outcome": "native",
+        "phase": "execute_native",
+        "repo_digests": [
+          "shared-toolbox/bandit@sha256:2c02ac66451c3557243e80e07b35a9e3fe5c9dfbd91d9cefa39e7900f1bd3919"
+        ],
+        "run": "b188b827348b40af8a9d958d9c635255",
+        "runtime_exit_code": 1,
+        "started_at": "2026-11-08T19:04:34.665669+00:00",
+        "tool": "bandit",
+        "version": "1.8.3"
+      }
+    }
+  ],
+  "source_unchanged": true
+}

@@ -1,0 +1,10 @@
+{
+  "cases": 96,
+  "oracle": "Python stdlib JSON object_pairs_hook rejects repeated decoded keys and nonfinite constants",
+  "result": "all candidate verdicts agree",
+  "report_sha256": "5b5a64746411c54b6d735780e4329fda6acb3c3657f1552c970eec4377fd8a17",
+  "candidate_sha256": "2b36c356f8d9f7bb2f9a98c33711de2249a55fb620f106d3ecb1e2796b5ac088",
+  "candidate_seconds": 45.46721768200223,
+  "baseline": "docs/validation/scanner-remediation-20261107/resumption/parser-timing.json",
+  "limit": "Single real-report timing; no general latency or security guarantee"
+}

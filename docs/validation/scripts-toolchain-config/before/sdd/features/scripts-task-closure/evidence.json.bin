@@ -1,0 +1,608 @@
+{
+  "schema_version": 2,
+  "environment": "Linux-7.3.1-1-default-x86_64-with-glibc2.44; Python 3.13.16",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "REQ-01",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "REQ-02",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "REQ-03",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Governance-only acceptance; not product approval.",
+    "Local recovery and supplementary product smoke limitations in report.md.",
+    "Prior documentary criteria selectively remain INCONCLUSIVE; historical records preserved."
+  ],
+  "historical_evidence": [
+    {
+      "observation": {
+        "id": "E-RECOVERY",
+        "kind": "inspection",
+        "command_or_method": "Compare SHA256 of recovered files with pre-edit manifest and retired active paths",
+        "observed_result": "92 recovered hashes match; 90 retired paths absent; two rewritten paths remain",
+        "artifact": "docs/validation/scripts-task-closure/recovery-verification.json",
+        "sha256": "1b57ec3c059ac30bb6dbb651586e7c539f375c841555a952ef4c3dc4476c78a0",
+        "inputs": [
+          {
+            "path": "sdd/features/scripts-task-closure/spec.md",
+            "sha256": "86f31435c1676270a3c6f68c245c3db1a8ba6d13b2706a47fe097c2f5ee7a9d6",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/plan.md",
+            "sha256": "fd33c325b56a698c8d23bae5bccae34223e24b714fd31150acc983618aca82f5",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/tasks.md",
+            "sha256": "ab3a7a123e15a037f5ead395c08453251be275daa805abce4f962fc57a86cf02",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/traceability.json",
+            "sha256": "3efca0b618754b9b06fbb99d3921d5e371e05979415b78e11fcde5ffe347701f",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/inventory.json",
+            "sha256": "e2b9214e6a5f50ffea0d31ee3c8740848c95665ebbb266d4a6b283fdbf58f9d3",
+            "role": "contract"
+          },
+          {
+            "path": "scripts/automate.py",
+            "sha256": "cf18ae7a0b4d82fdd0fc428b25e7dbd2d633dacd5a7f163acde910f77d5d5ac3",
+            "role": "implementation"
+          },
+          {
+            "path": "scripts/README.md",
+            "sha256": "ff64f35787118b78fbea029b3976efda43673580bd50c708f0778fc06ce8b3c7",
+            "role": "contract"
+          },
+          {
+            "path": "AGENTS.md",
+            "sha256": "d4e8d4d8f9ac0e2bb8b814791d326f6ff00a77a6ca96f4c8dcf93368325a4fee",
+            "role": "contract"
+          },
+          {
+            "path": "README.md",
+            "sha256": "f43f4b8b4ae8d35bde43d96fe6158aa728da6d3022d4750ecb9b6c97bbdf3976",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/project.md",
+            "sha256": "fb442f04b4e4af08034435434b78766ea1c819227fd6f64819bb7f165b5e69d2",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/workflow.md",
+            "sha256": "7231b481b180bc1bb5212abb4489e18c6bec1a32b800627668ae71ed79eef48a",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/evidence.md",
+            "sha256": "b8214452976f5261a44c5c7c8f69acc39c699fce8aeef12085fafc91ff571e6c",
+            "role": "contract"
+          },
+          {
+            "path": "docs/development/sdd-skills.md",
+            "sha256": "4410bded6f6c678e073b11205e1872167ec5a8e48c37843de46b1fbf55f4856f",
+            "role": "contract"
+          },
+          {
+            "path": "docs/decisions/scripts-task-closure.md",
+            "sha256": "8f006f30b2282b0055d94e1b591be3b9c525efde89ab59c84ec2e8711f2b63dc",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/tools/validate.py",
+            "sha256": "3e9453a7b55b1896e77a9d2cc951cbe7bc9b4a8aec9f943dfe2f1de219d83435",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/tests/test_task_closure.py",
+            "sha256": "3dd7f59654f19d9d7b1eac872a6b31c90c52c1a9ca87968bd27b183f38b1ba09",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/tests/test_readme_skill_integration.py",
+            "sha256": "53d9830741200022435213ae814a0057f094a47607fa5a129d01224f220204a5",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/tests/test_governance.py",
+            "sha256": "8a0341b88be1c4986db151cea04d2b1c1b2dfbceabb63fe8cf23326075134d61",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/tests/test_reconciliation.py",
+            "sha256": "79539e2049eaae4345fdc666ee69c9d97039e5eff9c15760eb660a14a4961af5",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/scripts/closure_revision.py",
+            "sha256": "b7f504d63e4ebb4bc48c423344581237f643fb1e07cc41a8adf96f0d319ded0d",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/governance_support.py",
+            "sha256": "0835ca119c0c3104d13efdfa36159922aee4f8f2f21c820b222b31ed03c58fd3",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/skill_revision.py",
+            "sha256": "5aa2c06e21cb081c48362346cf28c35a29bb4b66818a8c51330cd46f74d8193f",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/project_revision.py",
+            "sha256": "39fabd28f8d19e4931124239edbd16f15f60511e60c922e5455548ff3760ba58",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/readme_revision.py",
+            "sha256": "7f0cc0814cb2800f7ac6ec7f79edc9004b0431d88be5f7b5466e7941477e30ae",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/check-ox.py",
+            "sha256": "277d83e2663aeaf35981a010bec806c57a955ed5bdbe062d54b9dd59a5725748",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/run-tests.py",
+            "sha256": "8f4ff9b602d2b1ebbf3de9c2f8d2606d72abd24b4f2a29f279712f50f3523ceb",
+            "role": "implementation"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/revision.json",
+            "sha256": "252155ba4dbe8defb06e55fae98367c457a646965d2a033b538dbb71114be54b",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/governance-accepted.txt",
+            "sha256": "7ede78139b18389fd2198f539dd891affabe28ef695be7caa12dd3678cf211ca",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/integration-accepted.txt",
+            "sha256": "0a29b94e38ba9e682fcd8968bbf469e30d9d56f8185cc507454946d91d7fecc0",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/maintenance-final.txt",
+            "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/recovery-verification.json",
+            "sha256": "1b57ec3c059ac30bb6dbb651586e7c539f375c841555a952ef4c3dc4476c78a0",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/affected-evidence.json",
+            "sha256": "186bc4cf511336af78d50dbb1efd794896680df1a95e4686ed13d2bffb8089a0",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/affected-fixture-evidence.json",
+            "sha256": "a7241781e6cc59cb4566da3fb4d94fc9f67ecaea933b478d152257ba80c3a018",
+            "role": "contract"
+          }
+        ]
+      },
+      "invalidated_by": [
+        "scripts/automate.py",
+        "scripts/README.md",
+        "AGENTS.md",
+        "README.md",
+        "sdd/project.md",
+        "sdd/workflow.md",
+        "sdd/evidence.md",
+        "docs/development/sdd-skills.md",
+        "tools/governance/tests/test_task_closure.py",
+        "tools/governance/tests/test_readme_skill_integration.py",
+        "tools/governance/scripts/closure_revision.py",
+        "tools/governance/scripts/governance_support.py"
+      ],
+      "reason": "Security/quality reintegration supersedes the blanket deletion contract; prior observation retained, no hashes renewed."
+    },
+    {
+      "observation": {
+        "id": "E-CONTRACTS",
+        "kind": "test",
+        "command_or_method": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -p test_task_closure.py -v",
+        "observed_result": "7 tests passed",
+        "artifact": "docs/validation/scripts-task-closure/contracts-final.txt",
+        "sha256": "713e5d2184e5a510b0c6d4b14bc0b142204819a41ab7ed04d4f117e9a7f67c06",
+        "inputs": [
+          {
+            "path": "sdd/features/scripts-task-closure/spec.md",
+            "sha256": "86f31435c1676270a3c6f68c245c3db1a8ba6d13b2706a47fe097c2f5ee7a9d6",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/plan.md",
+            "sha256": "fd33c325b56a698c8d23bae5bccae34223e24b714fd31150acc983618aca82f5",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/tasks.md",
+            "sha256": "ab3a7a123e15a037f5ead395c08453251be275daa805abce4f962fc57a86cf02",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/traceability.json",
+            "sha256": "3efca0b618754b9b06fbb99d3921d5e371e05979415b78e11fcde5ffe347701f",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/inventory.json",
+            "sha256": "e2b9214e6a5f50ffea0d31ee3c8740848c95665ebbb266d4a6b283fdbf58f9d3",
+            "role": "contract"
+          },
+          {
+            "path": "scripts/automate.py",
+            "sha256": "cf18ae7a0b4d82fdd0fc428b25e7dbd2d633dacd5a7f163acde910f77d5d5ac3",
+            "role": "implementation"
+          },
+          {
+            "path": "scripts/README.md",
+            "sha256": "ff64f35787118b78fbea029b3976efda43673580bd50c708f0778fc06ce8b3c7",
+            "role": "contract"
+          },
+          {
+            "path": "AGENTS.md",
+            "sha256": "d4e8d4d8f9ac0e2bb8b814791d326f6ff00a77a6ca96f4c8dcf93368325a4fee",
+            "role": "contract"
+          },
+          {
+            "path": "README.md",
+            "sha256": "f43f4b8b4ae8d35bde43d96fe6158aa728da6d3022d4750ecb9b6c97bbdf3976",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/project.md",
+            "sha256": "fb442f04b4e4af08034435434b78766ea1c819227fd6f64819bb7f165b5e69d2",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/workflow.md",
+            "sha256": "7231b481b180bc1bb5212abb4489e18c6bec1a32b800627668ae71ed79eef48a",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/evidence.md",
+            "sha256": "b8214452976f5261a44c5c7c8f69acc39c699fce8aeef12085fafc91ff571e6c",
+            "role": "contract"
+          },
+          {
+            "path": "docs/development/sdd-skills.md",
+            "sha256": "4410bded6f6c678e073b11205e1872167ec5a8e48c37843de46b1fbf55f4856f",
+            "role": "contract"
+          },
+          {
+            "path": "docs/decisions/scripts-task-closure.md",
+            "sha256": "8f006f30b2282b0055d94e1b591be3b9c525efde89ab59c84ec2e8711f2b63dc",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/tools/validate.py",
+            "sha256": "3e9453a7b55b1896e77a9d2cc951cbe7bc9b4a8aec9f943dfe2f1de219d83435",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/tests/test_task_closure.py",
+            "sha256": "3dd7f59654f19d9d7b1eac872a6b31c90c52c1a9ca87968bd27b183f38b1ba09",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/tests/test_readme_skill_integration.py",
+            "sha256": "53d9830741200022435213ae814a0057f094a47607fa5a129d01224f220204a5",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/tests/test_governance.py",
+            "sha256": "8a0341b88be1c4986db151cea04d2b1c1b2dfbceabb63fe8cf23326075134d61",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/tests/test_reconciliation.py",
+            "sha256": "79539e2049eaae4345fdc666ee69c9d97039e5eff9c15760eb660a14a4961af5",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/scripts/closure_revision.py",
+            "sha256": "b7f504d63e4ebb4bc48c423344581237f643fb1e07cc41a8adf96f0d319ded0d",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/governance_support.py",
+            "sha256": "0835ca119c0c3104d13efdfa36159922aee4f8f2f21c820b222b31ed03c58fd3",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/skill_revision.py",
+            "sha256": "5aa2c06e21cb081c48362346cf28c35a29bb4b66818a8c51330cd46f74d8193f",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/project_revision.py",
+            "sha256": "39fabd28f8d19e4931124239edbd16f15f60511e60c922e5455548ff3760ba58",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/readme_revision.py",
+            "sha256": "7f0cc0814cb2800f7ac6ec7f79edc9004b0431d88be5f7b5466e7941477e30ae",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/check-ox.py",
+            "sha256": "277d83e2663aeaf35981a010bec806c57a955ed5bdbe062d54b9dd59a5725748",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/run-tests.py",
+            "sha256": "8f4ff9b602d2b1ebbf3de9c2f8d2606d72abd24b4f2a29f279712f50f3523ceb",
+            "role": "implementation"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/revision.json",
+            "sha256": "252155ba4dbe8defb06e55fae98367c457a646965d2a033b538dbb71114be54b",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/governance-accepted.txt",
+            "sha256": "7ede78139b18389fd2198f539dd891affabe28ef695be7caa12dd3678cf211ca",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/integration-accepted.txt",
+            "sha256": "0a29b94e38ba9e682fcd8968bbf469e30d9d56f8185cc507454946d91d7fecc0",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/maintenance-final.txt",
+            "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/recovery-verification.json",
+            "sha256": "1b57ec3c059ac30bb6dbb651586e7c539f375c841555a952ef4c3dc4476c78a0",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/affected-evidence.json",
+            "sha256": "186bc4cf511336af78d50dbb1efd794896680df1a95e4686ed13d2bffb8089a0",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/affected-fixture-evidence.json",
+            "sha256": "a7241781e6cc59cb4566da3fb4d94fc9f67ecaea933b478d152257ba80c3a018",
+            "role": "contract"
+          }
+        ]
+      },
+      "invalidated_by": [
+        "scripts/automate.py",
+        "scripts/README.md",
+        "AGENTS.md",
+        "README.md",
+        "sdd/project.md",
+        "sdd/workflow.md",
+        "sdd/evidence.md",
+        "docs/development/sdd-skills.md",
+        "tools/governance/tests/test_task_closure.py",
+        "tools/governance/tests/test_readme_skill_integration.py",
+        "tools/governance/scripts/closure_revision.py",
+        "tools/governance/scripts/governance_support.py"
+      ],
+      "reason": "Security/quality reintegration supersedes the blanket deletion contract; prior observation retained, no hashes renewed."
+    },
+    {
+      "observation": {
+        "id": "E-CLOSURE",
+        "kind": "inspection",
+        "command_or_method": "Semantic review plus final governance, integration, maintenance and diff checks; exact commands and logs in artifact",
+        "observed_result": "Current closure contract supported; prior affected features remain INCONCLUSIVE",
+        "artifact": "docs/validation/scripts-task-closure/report.md",
+        "sha256": "6acde209b668ca26773daea1730661b4e49458a8acb4d90bfc2573e28f1c3032",
+        "inputs": [
+          {
+            "path": "sdd/features/scripts-task-closure/spec.md",
+            "sha256": "86f31435c1676270a3c6f68c245c3db1a8ba6d13b2706a47fe097c2f5ee7a9d6",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/plan.md",
+            "sha256": "fd33c325b56a698c8d23bae5bccae34223e24b714fd31150acc983618aca82f5",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/tasks.md",
+            "sha256": "ab3a7a123e15a037f5ead395c08453251be275daa805abce4f962fc57a86cf02",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/traceability.json",
+            "sha256": "3efca0b618754b9b06fbb99d3921d5e371e05979415b78e11fcde5ffe347701f",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/features/scripts-task-closure/inventory.json",
+            "sha256": "e2b9214e6a5f50ffea0d31ee3c8740848c95665ebbb266d4a6b283fdbf58f9d3",
+            "role": "contract"
+          },
+          {
+            "path": "scripts/automate.py",
+            "sha256": "cf18ae7a0b4d82fdd0fc428b25e7dbd2d633dacd5a7f163acde910f77d5d5ac3",
+            "role": "implementation"
+          },
+          {
+            "path": "scripts/README.md",
+            "sha256": "ff64f35787118b78fbea029b3976efda43673580bd50c708f0778fc06ce8b3c7",
+            "role": "contract"
+          },
+          {
+            "path": "AGENTS.md",
+            "sha256": "d4e8d4d8f9ac0e2bb8b814791d326f6ff00a77a6ca96f4c8dcf93368325a4fee",
+            "role": "contract"
+          },
+          {
+            "path": "README.md",
+            "sha256": "f43f4b8b4ae8d35bde43d96fe6158aa728da6d3022d4750ecb9b6c97bbdf3976",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/project.md",
+            "sha256": "fb442f04b4e4af08034435434b78766ea1c819227fd6f64819bb7f165b5e69d2",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/workflow.md",
+            "sha256": "7231b481b180bc1bb5212abb4489e18c6bec1a32b800627668ae71ed79eef48a",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/evidence.md",
+            "sha256": "b8214452976f5261a44c5c7c8f69acc39c699fce8aeef12085fafc91ff571e6c",
+            "role": "contract"
+          },
+          {
+            "path": "docs/development/sdd-skills.md",
+            "sha256": "4410bded6f6c678e073b11205e1872167ec5a8e48c37843de46b1fbf55f4856f",
+            "role": "contract"
+          },
+          {
+            "path": "docs/decisions/scripts-task-closure.md",
+            "sha256": "8f006f30b2282b0055d94e1b591be3b9c525efde89ab59c84ec2e8711f2b63dc",
+            "role": "contract"
+          },
+          {
+            "path": "sdd/tools/validate.py",
+            "sha256": "3e9453a7b55b1896e77a9d2cc951cbe7bc9b4a8aec9f943dfe2f1de219d83435",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/tests/test_task_closure.py",
+            "sha256": "3dd7f59654f19d9d7b1eac872a6b31c90c52c1a9ca87968bd27b183f38b1ba09",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/tests/test_readme_skill_integration.py",
+            "sha256": "53d9830741200022435213ae814a0057f094a47607fa5a129d01224f220204a5",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/tests/test_governance.py",
+            "sha256": "8a0341b88be1c4986db151cea04d2b1c1b2dfbceabb63fe8cf23326075134d61",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/tests/test_reconciliation.py",
+            "sha256": "79539e2049eaae4345fdc666ee69c9d97039e5eff9c15760eb660a14a4961af5",
+            "role": "oracle"
+          },
+          {
+            "path": "tools/governance/scripts/closure_revision.py",
+            "sha256": "b7f504d63e4ebb4bc48c423344581237f643fb1e07cc41a8adf96f0d319ded0d",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/governance_support.py",
+            "sha256": "0835ca119c0c3104d13efdfa36159922aee4f8f2f21c820b222b31ed03c58fd3",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/skill_revision.py",
+            "sha256": "5aa2c06e21cb081c48362346cf28c35a29bb4b66818a8c51330cd46f74d8193f",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/project_revision.py",
+            "sha256": "39fabd28f8d19e4931124239edbd16f15f60511e60c922e5455548ff3760ba58",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/readme_revision.py",
+            "sha256": "7f0cc0814cb2800f7ac6ec7f79edc9004b0431d88be5f7b5466e7941477e30ae",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/check-ox.py",
+            "sha256": "277d83e2663aeaf35981a010bec806c57a955ed5bdbe062d54b9dd59a5725748",
+            "role": "implementation"
+          },
+          {
+            "path": "tools/governance/scripts/run-tests.py",
+            "sha256": "8f4ff9b602d2b1ebbf3de9c2f8d2606d72abd24b4f2a29f279712f50f3523ceb",
+            "role": "implementation"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/revision.json",
+            "sha256": "252155ba4dbe8defb06e55fae98367c457a646965d2a033b538dbb71114be54b",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/governance-accepted.txt",
+            "sha256": "7ede78139b18389fd2198f539dd891affabe28ef695be7caa12dd3678cf211ca",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/integration-accepted.txt",
+            "sha256": "0a29b94e38ba9e682fcd8968bbf469e30d9d56f8185cc507454946d91d7fecc0",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/maintenance-final.txt",
+            "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/recovery-verification.json",
+            "sha256": "1b57ec3c059ac30bb6dbb651586e7c539f375c841555a952ef4c3dc4476c78a0",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/affected-evidence.json",
+            "sha256": "186bc4cf511336af78d50dbb1efd794896680df1a95e4686ed13d2bffb8089a0",
+            "role": "contract"
+          },
+          {
+            "path": "docs/validation/scripts-task-closure/affected-fixture-evidence.json",
+            "sha256": "a7241781e6cc59cb4566da3fb4d94fc9f67ecaea933b478d152257ba80c3a018",
+            "role": "contract"
+          }
+        ]
+      },
+      "invalidated_by": [
+        "scripts/automate.py",
+        "scripts/README.md",
+        "AGENTS.md",
+        "README.md",
+        "sdd/project.md",
+        "sdd/workflow.md",
+        "sdd/evidence.md",
+        "docs/development/sdd-skills.md",
+        "tools/governance/tests/test_task_closure.py",
+        "tools/governance/tests/test_readme_skill_integration.py",
+        "tools/governance/scripts/closure_revision.py",
+        "tools/governance/scripts/governance_support.py"
+      ],
+      "reason": "Security/quality reintegration supersedes the blanket deletion contract; prior observation retained, no hashes renewed."
+    }
+  ]
+}

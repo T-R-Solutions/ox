@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "project": "ox",
+  "root": "../..",
+  "tools": {
+    "ruff": {
+      "version": "0.11.13",
+      "paths": [
+        "scripts",
+        "tools/governance",
+        "sdd/tools"
+      ],
+      "config": "scripts/config/ruff.toml",
+      "network": "none",
+      "timeout": 600
+    },
+    "gitleaks": {
+      "version": "8.24.3",
+      "mode": "files",
+      "paths": [
+        "."
+      ],
+      "config": "scripts/security/rules/gitleaks.toml",
+      "network": "none",
+      "timeout": 600
+    },
+    "shellcheck": {
+      "version": "0.11.0",
+      "paths": [
+        "scripts/automate.sh",
+        "scripts/checks/run.sh",
+        "scripts/lib/common.sh",
+        "scripts/lib/files.sh",
+        "scripts/lib/process.sh",
+        "scripts/lib/registry.sh",
+        "scripts/lib/reports.sh",
+        "scripts/reports/summarize.sh",
+        "scripts/security/analyzers/check-report.sh",
+        "scripts/security/analyzers/validate-exceptions.sh",
+        "scripts/lib/backends.sh"
+      ],
+      "config": "scripts/config/shellcheckrc",
+      "network": "none",
+      "timeout": 600
+    },
+    "grype": {
+      "version": "0.119.0",
+      "enabled": false,
+      "reason": "Requires real reviewed database snapshot from explicit toolbox update-db; no snapshot available.",
+      "paths": [
+        "."
+      ],
+      "config": "scripts/config/grype.yaml",
+      "max_database_age_hours": 120,
+      "network": "none",
+      "timeout": 600
+    },
+    "opengrep": {
+      "version": "1.33.1",
+      "paths": [
+        "."
+      ],
+      "config": "scripts/security/rules/ox.yml",
+      "network": "none",
+      "timeout": 600
+    },
+    "osv-scanner": {
+      "version": "2.7.0",
+      "paths": [
+        "application/Cargo.lock"
+      ],
+      "config": "scripts/config/osv-scanner.toml",
+      "database": "278f1a92df9e920ee1ca5b0d49830a68bceea7b2a20026dd76137c46663a4323",
+      "max_database_age_hours": 24,
+      "network": "none",
+      "timeout": 600
+    },
+    "bandit": {
+      "version": "1.8.3",
+      "paths": [
+        "scripts",
+        "tools/governance",
+        "sdd/tools"
+      ],
+      "config": "scripts/config/bandit.yaml",
+      "network": "none",
+      "timeout": 600
+    }
+  }
+}

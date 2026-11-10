@@ -1,0 +1,92 @@
+[
+  {
+    "tool": "ruff",
+    "revision": "35ed9fea0261c334faf2dd0fa91f998f21c803e8532a4507f37c4473a6dc18a2",
+    "image": "sha256:d2805f4120030ba62383ec263067893114f86acc229a15dbd1b0aea2db10f5b6",
+    "version": "0.11.13",
+    "activated_at": "2026-11-08T22:21:14.200515+00:00",
+    "qualified_candidate_revision": "37660c05ff652fcd778267559bed8eccbf903e96ff578a718de129e263c644aa",
+    "qualified_image_record_sha256": "50a6a7aee18154006a652763f3c7b79a9cff2ea1be7c31aa4dc1f8cba7cd2692"
+  },
+  {
+    "tool": "bandit",
+    "revision": "01fec255bb58f0fdcb58469134639049b7631fbe5f2d75a591055bf00edd1489",
+    "image": "sha256:2c02ac66451c3557243e80e07b35a9e3fe5c9dfbd91d9cefa39e7900f1bd3919",
+    "version": "1.8.3",
+    "activated_at": "2026-11-08T22:21:14.950690+00:00",
+    "qualified_candidate_revision": "a410ccb3b35656d7e5d52813ca8131e63e2d0df1e6a8bf1f407683875d07b5cd",
+    "qualified_image_record_sha256": "6e377f98463e85cc8cab0dcba777b347a9f101d691007db0264b15cf1bb6d771"
+  },
+  {
+    "tool": "gitleaks",
+    "revision": "bb3be60c16da910b59887c805145e11de8f744eaf34709dba62bd60ade3ead1d",
+    "image": "sha256:ddfb34a8382a85b20e58c88ac0a2cc8c0fd83f53fe380808ca48453d7fe5200f",
+    "version": "8.24.3",
+    "activated_at": "2026-11-08T22:21:15.818840+00:00",
+    "qualified_candidate_revision": "3860ee81d0f89ec4ab91566d8ffe1c8c4e7e9471a1b1415ef74512f91095a3ca",
+    "qualified_image_record_sha256": "3009bdbc8e186720c613da4631f967ef05cc76f2e6701b724a477444e8e4ecc0"
+  },
+  {
+    "tool": "shellcheck",
+    "revision": "dc774a75c77f9a0a5294cae1ac3b28a3dbae8e5dafdcbd254ed09e2e88819b40",
+    "image": "sha256:3124bba122bff75dce2623e63636d099fce0a4ea33c1c840929b6e6f13c54221",
+    "version": "0.11.0",
+    "activated_at": "2026-11-08T22:21:16.310025+00:00",
+    "qualified_candidate_revision": "39f7a680ac2c0ba591c055aa6fcdd8de057589427a865839342f23f049c63097",
+    "qualified_image_record_sha256": "85832dd29ee441a9d23266ad7d09afc60207690bfaea46acc20fd775c532df71"
+  },
+  {
+    "tool": "opengrep",
+    "revision": "f14bc829999e71151743ff738108450407baebc1002ab2998a7c48c83a1823bb",
+    "image": "sha256:7eb87fed71d00ced341d2100ee9bdfcacb3b4f725d7b4b195d51e0f534c66ccc",
+    "version": "1.33.1",
+    "activated_at": "2026-11-08T22:21:18.606743+00:00",
+    "qualified_candidate_revision": "0a8399d966c125969ae3dc7ea7f3aa7106992ea548029312495ec1f3f1fd58fa",
+    "qualified_image_record_sha256": "3ab8f9b09fc859a252b4d8f67287b74a40ac82c538fe96563aff2ca5e21e9adb"
+  },
+  {
+    "tool": "syft",
+    "revision": "3ad0b8080d425e0745fb8f0bdd3196c4d3d37d77fcd08b67491a1298251ecddf",
+    "image": "sha256:f85fd08a21bbd25fefac206e79761fa4b7f6dc09677968e588c064b1dd5d0cb7",
+    "version": "1.23.1",
+    "activated_at": "2026-11-08T22:21:19.121534+00:00",
+    "qualified_candidate_revision": "65951faf501ba284d8dbec9955d5661e3e0cc5178b03593c28e10fa0c8c918e2",
+    "qualified_image_record_sha256": "86716553bb949048fdf6c0885bea67166eb6131d849322d12deecaaaeb3da004"
+  },
+  {
+    "tool": "trivy",
+    "revision": "a6d971b412504c2e7faa783cba1573e0a9a707726476b5696329fdc62297d4f6",
+    "image": "sha256:216aeb3c2b69bc83a066f639678d36a62f2e0e22110e3371b24e7bf230b7f518",
+    "version": "0.76.2",
+    "activated_at": "2026-11-08T22:21:19.700854+00:00",
+    "qualified_candidate_revision": "1cee54b0afeb95933bc1ae1d14e959a6b667584249ba16f968db0dea9aed7153",
+    "qualified_image_record_sha256": "0c3dadc594f42b984216af96eaa8a0a2783f35d0ac36810b4e0be664ca68a6df"
+  },
+  {
+    "tool": "grype",
+    "revision": "0d966a3ee1e93780a074e7f356c4acd973be6e4f11c6a095a0f7fe8f89da9013",
+    "image": "sha256:56d089431bdb869e1b6e2357fd09a8670b68a07a7ab42274d8fe6dadddc7688e",
+    "version": "0.119.0",
+    "activated_at": "2026-11-08T22:21:20.205271+00:00",
+    "qualified_candidate_revision": "2932bc3720e6e6febd5330efc29b50bfb31d0a5048b6133286370806fc667c6d",
+    "qualified_image_record_sha256": "c9682bfdab0432dc3934d734976506b16d8720b54d24dad0d3d525edf7d4f153"
+  },
+  {
+    "tool": "osv-scanner",
+    "revision": "69964620c15ed727882b53c6f93894557890b3d9f892374a55fdd7fdd1cd035d",
+    "image": "sha256:a6f08d5112ff5d427b83ba941b889765f1423d55354d66c0d982bac123a99f89",
+    "version": "2.7.0",
+    "activated_at": "2026-11-08T22:21:20.760720+00:00",
+    "qualified_candidate_revision": "434c881c9d616faf05f1f82cb91a8aaa2d11cb72123f933444342c14ce699a4b",
+    "qualified_image_record_sha256": "3b560337abd84bb7e729718e8d4dd2dcd1096c150efe411837d966936bb215f5"
+  },
+  {
+    "tool": "yara-x",
+    "revision": "cd428737383aeaf70221b9f27f13d2c7f6a3f567015220a04f61d3c266a2e3e1",
+    "image": "sha256:6299a77fe1fff724977738b37237f94e552460bdb4da50e773da6ceb50ba7bcb",
+    "version": "1.0.0",
+    "activated_at": "2026-11-08T22:21:21.221465+00:00",
+    "qualified_candidate_revision": "ea4fbd9732b2a15cce8cc8beaf6a9b6963f15a4948c558a3be117b90a3ef8fde",
+    "qualified_image_record_sha256": "6fcfde5e6e3dfdf7ebd65481730638f54628452ab0efd558987847a528aae399"
+  }
+]

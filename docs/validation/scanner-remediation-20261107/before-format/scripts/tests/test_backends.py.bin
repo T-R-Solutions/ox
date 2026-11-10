@@ -1,0 +1,161 @@
+"""Exercise the public backend contract; fixture tools do not establish scan coverage."""
+from pathlib import Path
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+import tomllib
+import unittest
+import support as S
+
+ROOT = S.ROOT
+
+
+class BackendTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix='Ox backend spaces ')
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name) / 'consumer'
+        shutil.copytree(ROOT / 'scripts', self.root / 'scripts')
+        self.shared = Path(self.tmp.name) / 'shared'
+        (self.shared / 'bin').mkdir(parents=True)
+        (self.shared / 'toolbox').mkdir()
+        (self.shared / 'toolbox/__init__.py').touch()
+        (self.shared / 'toolbox/cli.py').write_text('# installation contract fixture')
+        self.cli = self.shared / 'bin/toolbox'
+        self.cli.write_text('#!' + sys.executable + '\n' + '''import json,os,sys
+from pathlib import Path
+assert sys.argv[1]=='run' and 'prepare' not in sys.argv
+config=json.loads(Path(sys.argv[sys.argv.index('--config')+1]).read_text())
+name=sys.argv[-1]; spec=config['tools'][name]
+assert spec['network']=='none' and spec['timeout']<=600
+source=Path(config['root']); assert source.is_dir()
+assert (source/spec['config']).is_file()
+base=Path(__file__).resolve().parents[1]
+out=base/'tools'/name/'volume/projects/ox/runs/fixture'
+out.mkdir(parents=True)
+mode=os.environ.get('FIXTURE_MODE','success')
+findings=mode in ('findings','contradiction')
+raw=42 if name=='gitleaks' and findings else int(findings)
+native=[{'RuleID':'fixture','code':'FIXTURE'}] if findings else []
+report=native if name in ('gitleaks','ruff') else {'comments':native}
+(out/'stdout.log').write_text(json.dumps(report))
+(out/'stderr.log').write_text('fixture stderr')
+(out/'native.json').write_text(json.dumps(native))
+if mode=='mutation':
+ (source/'scripts/lib/registry.sh').write_text('modified during run')
+if mode=='symlink':
+ (out/'stdout.log').unlink();(out/'stdout.log').symlink_to('/etc/passwd')
+row={'tool':name,'status':'findings' if mode=='findings' else 'success','output':str(out),
+     'timed_out':False,'cancelled':False,'runtime_error':None,'tool_exit_code':raw}
+summary={'schema':1,'project':'ox','sources_unchanged':True,'tools':[row]}
+if mode=='omitted':row['status']='omitted'
+if mode=='error':row['runtime_error']='container runtime failed'
+if mode=='timeout':row['timed_out']=True
+if mode=='empty':summary['tools']=[]
+if mode=='duplicate':print('{"schema":1,"schema":1}');sys.exit(0)
+print(json.dumps(summary));sys.exit(1 if mode=='findings' else 0)
+''')
+        self.cli.chmod(0o755)
+        (self.shared/'toolbox').mkdir(exist_ok=True)
+        (self.shared/'toolbox/runner.py').write_text('# fixture toolkit library\n')
+        lock={'schema':1,'tools':{name:{'version':version,'id':'sha256:'+'1'*64,'adapter_sha256':'2'*64}
+               for name,version in [('gitleaks','8.24.3'),('ruff','0.11.13'),('shellcheck','0.11.0')]}}
+        self.lock=self.root/'scripts/config/toolbox.images.lock.json'
+        self.lock.write_text(json.dumps(lock))
+        self.env=dict(os.environ,OX_TOOLBOX_BIN=str(self.cli),OX_SCANNER_BACKEND='toolbox',HOME=str(self.root))
+
+    def call(self, mode='success', name='gitleaks'):
+        run=subprocess.run(['/bin/bash',str(self.root/'scripts/checks/run.sh'),'--check',name],
+                           cwd='/tmp',env=dict(self.env,FIXTURE_MODE=mode),capture_output=True)
+        row=json.loads(max((self.root/'.local/checks').glob('security-*/assessment.json'),key=lambda p:p.stat().st_mtime_ns).read_text())
+        return run,row
+
+    def test_toolbox_success_findings_and_native_raw_code(self):
+        for name in ('gitleaks','shellcheck','ruff'):
+            for mode in ('success','findings'):
+                with self.subTest(name=name,mode=mode):
+                    # Candidate Ruff does not support ignoring inline suppressions.
+                    if name=='ruff':
+                        for p in (self.root/'scripts/tests').glob('*.py'):
+                            p.unlink()
+                        (self.root/'scripts/tests/fixture.py').write_text('x=1\n')
+                    run,row=self.call(mode,name)
+                    self.assertEqual(run.returncode,int(mode=='findings'),run.stderr)
+                    self.assertEqual(row['backend'],'toolbox')
+                    self.assertEqual(row['state'],'findings' if mode=='findings' else 'passed')
+                    self.assertIn('scripts/config/toolbox.images.lock.json',row['inputs'])
+                    self.assertEqual(row['tool_exit_code'],42 if name=='gitleaks' and mode=='findings' else int(mode=='findings'))
+                    shutil.rmtree(self.shared/'tools')
+
+    def test_denied_toolbox_results_never_pass(self):
+        for mode in ('contradiction','omitted','error','timeout','empty','duplicate','symlink','mutation'):
+            with self.subTest(mode=mode):
+                run,row=self.call(mode)
+                self.assertNotEqual(run.returncode,0)
+                self.assertNotIn(row['state'],('passed','recorded'))
+                if (self.shared/'tools').exists():shutil.rmtree(self.shared/'tools')
+
+    def test_missing_and_altered_lock_block_before_execution(self):
+        self.lock.unlink()
+        run,row=self.call()
+        self.assertEqual(run.returncode,3)
+        self.assertIn('image lock',row['reason'])
+        self.assertFalse((self.shared/'tools').exists())
+        self.lock.write_text('{"schema":1,"tools":{"gitleaks":{"version":"wrong"}}}')
+        run,row=self.call()
+        self.assertEqual(run.returncode,3)
+        self.assertFalse((self.shared/'tools').exists())
+
+    def test_toolbox_disabled_entry_is_blocked(self):
+        p=self.root/'scripts/config/toolbox.json';config=json.loads(p.read_text())
+        config['tools']['gitleaks']['enabled']=False;p.write_text(json.dumps(config))
+        run,row=self.call()
+        self.assertEqual(run.returncode,3)
+        self.assertIn('omitted',row['reason'])
+        self.assertFalse((self.shared/'tools').exists())
+
+    def test_versioned_toml_and_explicit_native_configuration(self):
+        for name in ('ruff.toml','audit.toml','deny.toml','osv-scanner.toml'):
+            with self.subTest(name=name):tomllib.loads((ROOT/'scripts/config'/name).read_text())
+        for name in ('ruff','bandit','osv','deny','shellcheck','trivy','grype','sbom'):
+            cmd=S.command(name,ROOT,'output')
+            self.assertTrue(any('scripts/config/' in a for a in cmd),(name,cmd))
+        self.assertNotIn('--isolated',S.command('ruff',ROOT,'output'))
+        self.assertIn('--ignore-noqa',S.command('ruff',ROOT,'output'))
+        self.assertIn('--ignore-nosec',S.command('bandit',ROOT,'output'))
+        self.assertIn('--ignore-gitleaks-allow',S.command('gitleaks',ROOT,'output'))
+        self.assertEqual(tomllib.loads((ROOT/'scripts/config/deny.toml').read_text())['licenses']['allow'],[])
+
+    def test_portable_discovery(self):
+        code = 'source "$1/lib/common.sh"; source "$1/lib/backends.sh"; TOOL=absent-scanner; name=ruff; select_backend; printf "%s" "$TOOL_BIN"'
+        base = dict(self.env, OX_SCANNER_BACKEND='auto', PATH=str(self.cli.parent)+':/usr/bin:/bin')
+        for explicit in (True, False):
+            env = base.copy()
+            if not explicit:
+                env.pop('OX_TOOLBOX_BIN')
+            run = subprocess.run(['/bin/bash', '-c', code, '_', str(self.root/'scripts')],
+                                 cwd='/tmp', env=env, capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0, run.stderr)
+            self.assertEqual(run.stdout, str(self.cli.resolve()))
+        for path in ('', '/missing/toolbox'):
+            run = subprocess.run(['/bin/bash', '-c', code, '_', str(self.root/'scripts')],
+                                 env=dict(base, OX_TOOLBOX_BIN=path), capture_output=True, text=True)
+            self.assertNotEqual(run.returncode, 0)
+            self.assertIn('Invalid explicit', run.stderr)
+        base.pop('OX_TOOLBOX_BIN')
+        base['PATH']='/usr/bin:/bin'
+        run = subprocess.run(['/bin/bash', '-c', code, '_', str(self.root/'scripts')],
+                             env=base, capture_output=True)
+        self.assertNotEqual(run.returncode, 0)
+
+    def test_unavailable_native_never_uses_toolbox_for_cargo(self):
+        env=dict(self.env,OX_SCANNER_BACKEND='auto',PATH='/usr/bin:/bin',CARGO_HOME=str(self.root/'no-cargo'))
+        run=subprocess.run(['/bin/bash',str(self.root/'scripts/checks/run.sh'),'--check','deny'],env=env,capture_output=True)
+        self.assertEqual(run.returncode,3)
+        self.assertFalse((self.shared/'tools').exists())
+
+
+if __name__=='__main__':unittest.main()

@@ -1,0 +1,110 @@
+[
+  {
+    "tool": "ruff",
+    "register_exit": 0,
+    "image_record_sha256": "c6c61bb9d177ea4dc6bb7c8fb589882d1619fbd64d2f768db7af0284fe4cd245",
+    "registration": {
+      "tool": "ruff",
+      "revision": "37660c05ff652fcd778267559bed8eccbf903e96ff578a718de129e263c644aa",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    },
+    "isolated_activation_exit": 0
+  },
+  {
+    "tool": "bandit",
+    "register_exit": 0,
+    "image_record_sha256": "d1e010eed62540501c315a64dc8b176f6b12d4f2a4fb4725c3065eeb79e4e105",
+    "registration": {
+      "tool": "bandit",
+      "revision": "a410ccb3b35656d7e5d52813ca8131e63e2d0df1e6a8bf1f407683875d07b5cd",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    },
+    "isolated_activation_exit": 0
+  },
+  {
+    "tool": "gitleaks",
+    "register_exit": 0,
+    "image_record_sha256": "ff3fc022d773803ed4c9188d3e63625d58beadfe3424fba10c38ee6b0b4f1fd2",
+    "registration": {
+      "tool": "gitleaks",
+      "revision": "3860ee81d0f89ec4ab91566d8ffe1c8c4e7e9471a1b1415ef74512f91095a3ca",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    },
+    "isolated_activation_exit": 0
+  },
+  {
+    "tool": "shellcheck",
+    "register_exit": 0,
+    "image_record_sha256": "621e619bd06b7190a76653d4ec5098e36c77365f4426e6a3fc1a0b476dd089ec",
+    "registration": {
+      "tool": "shellcheck",
+      "revision": "39f7a680ac2c0ba591c055aa6fcdd8de057589427a865839342f23f049c63097",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    },
+    "isolated_activation_exit": 0
+  },
+  {
+    "tool": "opengrep",
+    "register_exit": 0,
+    "image_record_sha256": "d80f18cc9799c962245c50699ae651247c729ee3787a193b02b30cc3ba890679",
+    "registration": {
+      "tool": "opengrep",
+      "revision": "0a8399d966c125969ae3dc7ea7f3aa7106992ea548029312495ec1f3f1fd58fa",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    },
+    "isolated_activation_exit": 0
+  },
+  {
+    "tool": "syft",
+    "register_exit": 0,
+    "image_record_sha256": "df3e2640942f39a664edaa1b10ecf5c6e9b2d558ba5e865534e481726a6462ce",
+    "registration": {
+      "tool": "syft",
+      "revision": "65951faf501ba284d8dbec9955d5661e3e0cc5178b03593c28e10fa0c8c918e2",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    },
+    "isolated_activation_exit": 0
+  },
+  {
+    "tool": "trivy",
+    "register_exit": 0,
+    "image_record_sha256": "670e7ebc6080cc6f02f018ecef7e771ffd4aeb9259d41f3e7d76f23d42592a58",
+    "registration": {
+      "tool": "trivy",
+      "revision": "1cee54b0afeb95933bc1ae1d14e959a6b667584249ba16f968db0dea9aed7153",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    },
+    "isolated_activation_exit": 0
+  },
+  {
+    "tool": "grype",
+    "register_exit": 0,
+    "image_record_sha256": "082c0ec71a736843dedccd4f139a87a1c2b96b3f67fe426b9738f961e725ccaa",
+    "registration": {
+      "tool": "grype",
+      "revision": "2932bc3720e6e6febd5330efc29b50bfb31d0a5048b6133286370806fc667c6d",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    },
+    "isolated_activation_exit": 0
+  },
+  {
+    "tool": "osv-scanner",
+    "register_exit": 0,
+    "image_record_sha256": "129aa46cd5066b7889bdbe0ebd56a7ffced88236ef4769181d7fed6078290758",
+    "registration": {
+      "tool": "osv-scanner",
+      "revision": "434c881c9d616faf05f1f82cb91a8aaa2d11cb72123f933444342c14ce699a4b",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    },
+    "isolated_activation_exit": 0
+  }
+]

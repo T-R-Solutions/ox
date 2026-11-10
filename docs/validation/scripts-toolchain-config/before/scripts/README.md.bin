@@ -1,0 +1,188 @@
+# Verificações locais do Ox
+
+Na raiz, Bash 4.4+, jq 1.6+, GNU coreutils, find, grep, sed e awk executam a
+automação. Python 3.11+ permanece nos testes e nas autoridades de governança
+existentes fora de scripts/. Não há Python operacional nem Python embutido em shell
+em scripts/. Os checks externos exigem binários locais adicionais.
+
+```bash
+bash scripts/automate.sh --scope governance
+bash scripts/automate.sh --scope rust
+bash scripts/automate.sh --scope security --plan
+bash scripts/automate.sh --scope security
+bash scripts/automate.sh --scope quality
+bash scripts/automate.sh --scope full
+bash scripts/automate.sh --scope security --check gitleaks --check opengrep
+bash scripts/automate.sh --scope quality --check coverage
+bash scripts/checks/run.sh --check osv --plan
+```
+
+De outro diretório, use o caminho absoluto da entrada. A raiz padrão
+vem do arquivo; `--root "/cópia com espaços/Ox"` escolhe outro checkout. O plano da
+entrada e o plano de checks/run.sh mostram a CLI nativa,
+com placeholders para o snapshot e o diretório exclusivo de saída. Planos não executam scanners nem criam logs. Rust/full consultam somente
+o Cargo já instalado com metadata --no-deps --locked --offline para validar TOML. Não há comandos arbitrários de configuração.
+
+| Seleção | Quando usar / cobertura |
+| --- | --- |
+| governance | SDD, guias, skills e governança: validador estrutural, check-ox e testes rápidos |
+| rust | Aplicação: fmt --check, check, build dos auxiliares, testes e clippy no workspace application/ |
+| security | Segredos, código e dependências: Gitleaks atual, OSV do lockfile, Opengrep Rust/Python, RustSec, Bandit |
+| quality | Manutenção de código/dependências: Machete, Ruff e cargo-deny (licenças, bans e fontes) |
+| full | Contratos compartilhados: governança com todos os testes, Rust, security e quality |
+
+`--check` seleciona nomes e registra omissões; não aprova o conjunto inteiro.
+Não usar a seleção reduzida para omitir uma evidência obrigatória à tarefa.
+Mudanças Rust precisam de rust e dos checks de segurança/qualidade afetados;
+Python precisa de governance e Ruff/Bandit/Opengrep pertinentes. Alterações de
+segredos/configuração precisam de Gitleaks; mudanças de dependências precisam de
+OSV/RustSec/cargo-deny/Machete. Scripts Bash precisam de ShellCheck. Um texto
+sem efeitos nesses controles pode justificar NOT APPLICABLE. `full` não executa
+automaticamente os checks complementares abaixo; selecione-os por método/risco.
+
+| Nome complementar | Papel e limite |
+| --- | --- |
+| history | Gitleaks --all no Git local completo; repositório raso bloqueia; não faz fetch |
+| coverage | cargo-llvm-cov, LCOV em target novo; requer llvm-tools-preview já instalado; sem threshold inventado |
+| geiger | Inventário unsafe das dependências em cópia; não substitui forbid(unsafe_code) nem prova segurança |
+| trivy | Vulnerabilidades do filesystem com base local; sem refresh ou image pull |
+| sbom | Syft: inventário de componentes; não é parecer de segurança/licença |
+| grype | Vulnerabilidades por filesystem com base local; não consulta registro de imagens |
+| malware | YARA-X: dois indicadores locais para investigação; não é detecção universal |
+| shellcheck | Scripts Bash mantidos; resultados não alteram os arquivos |
+
+Há uma única entrada, sem wrappers por comando. A divisão por responsabilidade é:
+
+| Pasta | Responsabilidade |
+| --- | --- |
+| lib/ | Registro de comandos, subprocessos, caminhos, snapshots e parsers compartilhados |
+| checks/ | Preparação offline, execução e avaliação dos scanners |
+| security/rules/ | Regras locais e atribuição preservada em security/ |
+| security/analyzers/ | Validação de relatórios existentes e metadados de exceção |
+| reports/ | Resumo de resultados existentes |
+| tests/ | Testes Python que executam os scripts shell como subprocessos |
+
+Exemplos:
+
+```bash
+bash scripts/automate.sh --scope security --check gitleaks --plan
+bash scripts/automate.sh --scope security --check audit --plan
+bash scripts/automate.sh --scope quality --check geiger --plan
+bash scripts/automate.sh --scope quality --check shellcheck --plan
+bash scripts/security/analyzers/check-report.sh --parser sarif relatório.sarif
+bash scripts/security/analyzers/validate-exceptions.sh exceções.json
+bash scripts/reports/summarize.sh .local/checks/run-ID/results.json
+```
+
+O resumo retorna falha quando o resultado contém falha; não cria aprovação fixa.
+Exceções exigem owner, motivo, componente, revisão, expiração e controle; esse
+validador confere metadados, não suprime nenhum achado. Os validadores SDD/skills
+existentes continuam autoridades; o check de governança chama check-ox.
+
+## Pré-requisitos e preparação separada
+
+Ferramentas dos checks selecionados devem existir no PATH: gitleaks, osv-scanner,
+opengrep, cargo-audit, bandit; cargo-machete, ruff e cargo-deny para quality.
+Complementos: cargo-llvm-cov, cargo-geiger, trivy, syft, grype, yr e shellcheck.
+Nenhuma delas foi instalada por esta integração. Versões/origens/instruções
+consultadas estão no documento temporário erase.md na raiz, para preparação pelo
+mantenedor e remoção posterior. Ele não é lido como configuração nem distribuído.
+
+Cargo usa o toolchain real de application/rust-toolchain.toml, já instalado;
+checks nativos mantêm --workspace --locked --offline onde suportados. RustSec
+usa --no-fetch --no-yanked: analisa advisories locais, não o estado de yank do
+registry. Machete não usa --with-metadata/--fix, que podem alterar Cargo.lock.
+Geiger usa --locked --offline e cada manifesto dos 16 membros, pois não aceita
+o manifesto virtual diretamente; cobertura usa alvo novo e --no-clean, sem limpar
+resultados anteriores. Dados de cobertura e SBOM são `recorded`, sem aprovação
+por percentual ou quantidade. Nenhum comando corrige fontes ou instala componentes.
+
+OSV, RustSec, Trivy e Grype exigem dados previamente preparados e revisados em
+`.local/security/datasets.json`. Estrutura de cada entrada (sem valores fictícios):
+
+```json
+{
+  "osv": {
+    "path": ".local/security/osv",
+    "sha256": "SHA256 realmente observado",
+    "valid_until": "data ISO adotada na revisão",
+    "source": "origem oficial dos dados",
+    "license": "termos revisados da base"
+  }
+}
+```
+
+Nomes: osv, rustsec, trivy, grype. `path` é relativo ao checkout, sem symlinks ou
+travessia. Para OSV, a raiz indicada contém `osv-scanner/crates.io/all.zip`.
+RustSec aponta ao repositório local de advisories; Trivy ao cache que contém db/;
+Grype ao diretório de sua base. Cada base deve ser adquirida em ação separadamente
+autorizada. O check não baixa nem atualiza dados e não tolera prazo expirado.
+O prazo é uma decisão explícita da revisão, não um threshold importado.
+
+```bash
+bash scripts/checks/run.sh --inspect-data .local/security/osv
+```
+
+Esse comando somente calcula identidade. Para diretório, o digest é SHA256 do JSON
+UTF-8 compacto, com chaves ordenadas e separadores `,`/`:`, mapeando caminho relativo
+para SHA256 de cada arquivo regular; inclui arquivos ocultos e rejeita links.
+Isso vincula bytes, não autentica origem nem prova que a base é completa/atual.
+
+cargo-deny requer `.local/security/deny.toml`, TOML revisado conforme a decisão de
+licenciamento/fontes do Ox. Não foi importada uma allowlist de outro produto nem
+concedidas exceções aos achados conhecidos. Sem política explícita, o check bloqueia.
+
+## Efeitos, resultados e limites
+
+Execuções criam `.local/checks/run-*/` privados. stdout/stderr permanecem brutos e
+separados, com exit original. Cada adapter grava assessment.json, identidade da
+ferramenta/versão, inputs e dados; o coordenador conserva o código do adapter e o
+exit bruto da ferramenta. Logs são reproduzidos após cada subprocesso; não há
+promessa de ordenação entre streams. Arquivo parcial/interrupção não é sucesso.
+
+Estados: passed (contrato do check), recorded (medição), findings (achados), failed
+(comando falhou), error (relatório/inputs incompletos ou alterados), blocked
+(pré-requisito ausente/inválido). O agregado falha com qualquer impedimento;
+findings preservam o exit da ferramenta quando não zero, ou retornam 1 se ela saiu
+zero. Relatório inválido retorna 2 e ausência de pré-requisito retorna 3; o campo
+tool_exit_code preserva a falha original. Omissões e inaplicabilidade ficam explícitas
+no registro da tarefa. Nenhum scanner concede aprovação automática do produto.
+
+Scans de fontes usam cópia identificada por hashes. Excluem `.git`, `.local`,
+`target`, `dist`, ambientes Python, pycache e docs/validation (registros históricos).
+Arquivos raiz selecionados e application/tools/scripts/sdd/config/docs/.github/
+.codex entram no snapshot; Opengrep/Ruff/Bandit recebem fontes .rs/.py; ShellCheck recebe .sh. O conteúdo
+não rastreado dessas superfícies é incluído; arquivos de ignore que poderiam
+suprimir resultados exigem revisão. Links de fonte não inspecionados bloqueiam.
+Arquivos arbitrários fora dessas superfícies, archives e diretórios gerados não
+recebem certificação; histórico e análise de artefatos requerem método próprio.
+Scanners não executam as fontes como aplicação, mas ferramentas/build scripts e
+testes são código local. Flags offline e ausência de URLs de registry não são
+isolamento de rede pelo SO. Bases e binários devem ser de origem confiável.
+
+Os testes comuns continuam sem interação gráfica: X11 e Wayland nativo exigem
+métodos separados no guia da aplicação (checkout completo). Python não valida Iced.
+
+## Inventário e histórico
+
+A reintegração corrige a exclusão anterior das capacidades da stack. O inventário
+sucessor está em `sdd/features/scripts-security-quality/inventory.json`, na raiz.
+O inventário anterior permanece histórico. Originais recuperáveis:
+`/tmp/ox-scripts-integration/recovery`; estado anterior a esta correção:
+`/tmp/ox-security-reintegration/before`. Não resta dependência Node/Bun/JVM/Tauri.
+As imagens Qodana não oficiais do projeto de origem não são reativadas: a lista
+oficial de linters não oferece Rust. Os recursos Python são cobertos por Bandit,
+Ruff e Opengrep, sem impor Docker/licenças comerciais; SARIF externo continua
+validável. Atribuições do componente importado ficam em security/LICENSE/NOTICE.
+
+## Testes da automação shell
+
+```bash
+python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
+bash scripts/automate.sh --scope quality --check shellcheck
+```
+
+Os testes anteriores de fechamento/scanners em tools/governance/tests também
+executam os .sh por subprocesso, sem importar implementação Python operacional.
+Preimagens, inventário de remoções e evidências desta migração ficam em
+docs/validation/scripts-shell-refactor/ e sdd/features/scripts-shell-refactor/.

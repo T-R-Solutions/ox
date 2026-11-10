@@ -1,0 +1,33 @@
+[
+  {
+    "feature": "scripts-toolbox-native",
+    "evidence": "E-SELINUX-LOCAL",
+    "changed_inputs": [
+      "scripts/README.md",
+      "scripts/checks/run.sh",
+      "scripts/lib/reports.sh"
+    ],
+    "previous_observation": "preservada sem renovar hashes; sem execução atual",
+    "current_limit": "binding de entrada alterado; observação anterior não prova esses bytes"
+  },
+  {
+    "feature": "scripts-toolbox-native",
+    "evidence": "E-SELINUX-REAL",
+    "changed_inputs": [
+      "scripts/README.md",
+      "scripts/checks/run.sh",
+      "scripts/lib/reports.sh"
+    ],
+    "previous_observation": "preservada sem renovar hashes; sem execução atual",
+    "current_limit": "binding de entrada alterado; observação anterior não prova esses bytes"
+  },
+  {
+    "feature": "scripts-toolchain-config",
+    "evidence": "E-NATIVE-RECONCILIATION",
+    "changed_inputs": [
+      "scripts/checks/run.sh"
+    ],
+    "previous_observation": "preservada sem renovar hashes; sem execução atual",
+    "current_limit": "binding de entrada alterado; observação anterior não prova esses bytes"
+  }
+]

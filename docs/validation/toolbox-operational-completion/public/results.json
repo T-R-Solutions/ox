@@ -1,0 +1,123 @@
+[
+  {
+    "check": "ruff",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "ruff"
+    ],
+    "exit": 1,
+    "state": "findings"
+  },
+  {
+    "check": "bandit",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "bandit"
+    ],
+    "exit": 1,
+    "state": "findings"
+  },
+  {
+    "check": "shellcheck",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "shellcheck"
+    ],
+    "exit": 1,
+    "state": "findings"
+  },
+  {
+    "check": "gitleaks",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "gitleaks"
+    ],
+    "exit": 0,
+    "state": "passed"
+  },
+  {
+    "check": "opengrep",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "opengrep"
+    ],
+    "exit": 1,
+    "state": "findings"
+  },
+  {
+    "check": "osv",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "osv"
+    ],
+    "exit": 1,
+    "state": "findings"
+  },
+  {
+    "check": "trivy",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "trivy"
+    ],
+    "exit": 0,
+    "state": "passed"
+  },
+  {
+    "check": "grype",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "grype"
+    ],
+    "exit": 0,
+    "state": "passed"
+  },
+  {
+    "check": "sbom",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "sbom"
+    ],
+    "exit": 0,
+    "state": "recorded"
+  },
+  {
+    "check": "malware",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "malware"
+    ],
+    "exit": 1,
+    "state": "findings"
+  },
+  {
+    "check": "history",
+    "command": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--check",
+      "history"
+    ],
+    "exit": 1,
+    "state": "findings"
+  }
+]

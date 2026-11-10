@@ -174,3 +174,13 @@ Atualize este guia quando mudarem build, auxiliares, ações da UI, testes ou
 ambiente suportado. Responsabilidade: contribuinte da mudança e mantenedor.
 A [revisão visual](../docs/validation/documentation-visuals-20261104/report.md)
 distingue os comandos executados dos apenas conferidos no código.
+
+## Encerramento de alterações
+
+Quando a tarefa autorizar verificações, a entrada vigente na raiz é
+`bash scripts/automate.sh --scope rust`: fmt, check, build dos auxiliares, testes
+e clippy, com dependências offline e lockfile preservado. O escopo `full` também
+inclui governança, segurança e qualidade; sua seleção depende dos critérios da
+tarefa. Veja os [limites e diagnóstico](../scripts/README.md). Aceitação gráfica
+permanece separada. A limpeza de 09/11/2026 usou somente inspeção e não executou
+esses comandos.

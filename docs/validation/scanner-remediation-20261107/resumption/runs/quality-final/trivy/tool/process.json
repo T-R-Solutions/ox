@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "/home/rodrigo/Projetos/ox/.local/scanner-remediation-20261107-resume/complementary-g4787jxu/trivy",
+    "--config",
+    "/home/rodrigo/Projetos/ox/scripts/config/trivy.yaml",
+    "fs",
+    "--scanners",
+    "vuln",
+    "--ignorefile",
+    "/home/rodrigo/Projetos/ox/scripts/config/trivyignore",
+    "--offline-scan",
+    "--skip-db-update",
+    "--skip-java-db-update",
+    "--format",
+    "json",
+    "--exit-code",
+    "1",
+    "--cache-dir",
+    "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/trivy/dataset",
+    "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/trivy/source"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "exit_code": 0,
+  "state": "passed"
+}

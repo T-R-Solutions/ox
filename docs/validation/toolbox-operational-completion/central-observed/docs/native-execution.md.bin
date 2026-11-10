@@ -1,0 +1,118 @@
+# Execução nativa e manutenção central
+
+Contrato implementado em 08/11/2026. O operador prepara/ativa ferramentas; cada consumidor escolhe argumentos e critérios. `exec` não lê toolbox.json, integração STIC, lock do consumidor, schema 2, staging ou adapter. Não instala imagens, pacotes ou bases. Docker local Linux/amd64 é o executor; `--state` muda índices legados, nunca volumes nem a versão ativa central.
+
+```bash
+export TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox
+"$TOOLBOX_BIN" exec --tool trivy --project-root "$PWD" -- \
+  filesystem --config scripts/config/trivy.yaml application/
+```
+
+O wrapper mínimo está em `templates/consumer/toolbox-native.sh`; copie como `scripts/toolbox.sh`. Descobre TOOLBOX_BIN ou PATH, usa `exec` e encaminha `"$@"`. Não exige estrutura de diretórios ou metadados do produto. Exemplos completos e independentes em `examples/native/scripts/` usam o mesmo wrapper para filesystem/config do Trivy, Ruff com correção e Playwright.
+
+Guias complementares: [integração de projetos](consumer-integration.md), [operação central](operations.md) e [acesso ao socket Docker](docker-access.md). O diagnóstico do socket deve ser executado no processo que chamará a Toolbox, além do terminal normal do host; permissões de grupo no cadastro não comprovam acesso de uma sessão isolada.
+
+## CLI e caminhos
+
+`toolbox exec --help` lista a interface. `--` é obrigatório, inclusive para `--help`/`--version` nativos. Todo token posterior é transmitido como argumento independente, sem shell, expansão de globs ou alteração de paths. Caminhos nativos são caminhos do container.
+
+| Opção | Contrato |
+|---|---|
+| `--tool NAME` | Ferramenta central ativa; consumidor não informa versão/imagem |
+| `--project-root HOST` | Diretório existente em `/project`, leitura por padrão |
+| `--project-write` | Autoriza escrita nesse diretório; UID/GID do chamador; sem snapshot |
+| `--workdir /project/subdir` | Caminho absoluto no container, default `/project` |
+| `--mount HOST:/dest:ro` ou `:rw` | Arquivo, diretório, credencial, toolchain ou socket explicitamente selecionado; repetível |
+| `--results HOST` | Cria/monta `/out` com escrita; relatórios são escolhidos pelo consumidor |
+| `--network NAME` | Default `none`; aceita bridge/host ou rede Docker do projeto |
+| `--add-host NAME:ADDRESS` | Resolução explícita; por exemplo `host.docker.internal:host-gateway` |
+| `--publish 127.0.0.1:9323:9323` | Publica porta de comando UI/web; repetível |
+| `--env KEY` / `--env KEY=VALUE` | Seleciona variável do host ou valor; repetível |
+| `--env-file HOST` | Linhas literais KEY=VALUE, sem expansão; comentários começam com #; `--env` prevalece |
+| `--stdin` / `--tty` | stdin herdado; TTY requer terminal real e combina streams por contrato Docker |
+| `--device HOST[:DEST[:MODE]]` | Dispositivo explicitamente autorizado |
+| `--timeout SECONDS` | Prazo de espera de locks/criação/execução; sem prazo por padrão; encerramento pode somar grace e diagnóstico Docker |
+| `--maintenance` | Escritor exclusivo de dados; comando nativo explícito, não adiciona flags de update |
+| `--stdout-file HOST` / `--stderr-file HOST` | Redirecionamento adicional explícito, arquivo novo, bytes originais; substitui o stream correspondente como redirecionamento shell |
+| `--diagnostic-file HOST` | Cópia opcional do diagnóstico JSON; nunca contém argv ou valores de ambiente |
+
+`/data` guarda dados centrais da ferramenta, leitura por padrão. `/cache` é cache persistente por ferramenta/projeto, com escrita serializada por projeto. Projetos distintos podem executar em paralelo. `/db` é snapshot central compatível selecionado por versão, verificado por SHA256 e montado somente leitura; no Trivy seus subdiretórios também aparecem em `/cache/db` e `/cache/java-db`. Falta de base não bloqueia help/comandos que não a utilizem; o comando nativo que a exige deve falhar. `/tmp` é temporário; root filesystem é somente leitura. Destinos reservados não podem ser substituídos por `--mount`. Paths de montagem não aceitam vírgula, colon ou quebra de linha; argumentos nativos continuam livres. Symlinks no host são resolvidos ao montar; links internos precisam apontar para destinos disponibilizados no container.
+
+Não há socket Docker, dispositivo, host network, diretório pessoal ou acesso gráfico implícito. Um socket pode ser fornecido por montagem explícita, com os privilégios que ele concede. A execução usa usuário do host e remove capabilities. Recursos que precisem de privilégios superiores a esse contrato continuam pendentes; não há promessa de que todo comando administrativo funcione sem preparo adequado.
+
+## Versões, preparo, ativação e recuperação
+
+Somente o operador usa `central`. A interface não é um mecanismo de isolamento entre usuários com acesso à instalação; proteja o filesystem e as permissões Docker no host.
+
+```bash
+bin/toolbox central list
+bin/toolbox central status --tool ruff
+bin/toolbox central prepare --tool ruff --version 0.11.13
+bin/toolbox central prepare --tool trivy --version 0.76.2
+bin/toolbox central prepare --tool playwright --version 1.56.1 --browsers chromium
+bin/toolbox central prepare --tool codeql --version 2.27.3
+bin/toolbox central prepare --tool yara-x --version 1.0.0
+# A preparação devolve REVISION; executar operações representativas antes do uso em produção.
+bin/toolbox central activate --tool ruff --revision REVISION
+bin/toolbox central rollback --tool ruff --revision PREVIOUS_REVISION
+```
+
+Versões precisam existir no catálogo auditado. `prepare` reutiliza o builder da plataforma, verifica artefatos oficiais por SHA256, imagem por ID e versão observada. Pode baixar somente por pedido explícito. Não ativa automaticamente. A verificação automática de versão é um requisito mínimo, não homologação funcional. Para qualificar uma candidata use uma instalação de validação isolada antes de ativá-la em produção; não há seleção de versões por consumidor. `central register --tool NAME --record /path/image.json` verifica novamente uma imagem preparada existente e publica uma revisão, sem apagar instalações anteriores. O registro verifica versão nativa, não garante compatibilidade de browsers ou de todas as operações.
+
+Revisões ficam em `tools/NAME/volume/central/revisions/<hash>.json`; o hash cobre todo o registro. A troca de `active.json` usa rename atômico sob lock. Histórico anterior fica em `central/history/`. `exec` lê uma vez, valida ID imutável e cria container por ID, nunca por tag. Execuções iniciadas continuam na identidade selecionada, inclusive se estiverem aguardando cache. Não há prune central de imagens/dados: rollback e execuções antigas preservam seus recursos. Preserve volumes e imagens (`docker image save/load` explícito) para recuperação fora da máquina. Registro JSON sozinho não restaura uma imagem removida externamente.
+
+## Bases e manutenção
+
+Snapshots antigos permanecem intactos. `current.json` é seleção operacional central por ferramenta/versão. Antes de uso, a plataforma recalcula o manifesto (conteúdo, modos, links) e confere identidade/versão. Isso comprova integridade local; idade e compatibilidade semântica também dependem dos metadados e validadores nativos. Não aumentamos idade máxima para obter sucesso. Consulte `evidence/native-execution-20261108/inventory.json` para a inspeção atual; bases expiradas exigem manutenção explícita.
+
+```bash
+# O operador solicita o comando nativo e permite o update explicitamente.
+bin/toolbox exec --tool trivy --project-root "$PWD" --maintenance --network bridge \
+  --env TRIVY_SKIP_DB_UPDATE=false -- \
+  filesystem --download-db-only
+bin/toolbox exec --tool grype --project-root "$PWD" --maintenance --network bridge -- db update
+```
+
+`--maintenance` adquire lock exclusivo da ferramenta; análises adquirem lock compartilhado. Para scanners com snapshots, copia o snapshot atual para staging privado, monta `/db` gravável e publica novo manifesto/pointer somente após término nativo 0. Falha preserva staging para diagnóstico e mantém seleção anterior. Para dados genéricos, `/data` fica gravável exclusivamente; comandos arbitrários podem alterar esses dados sem transação, portanto backup operacional continua necessário. Caches por projeto ficam separados de snapshots. Builders/atualizadores legados publicam novos snapshots imutáveis, sem modificar snapshots em leitura.
+
+Defaults ambientais, sem alteração de argv: HOME=/tmp; XDG_CACHE_HOME=/cache; RUFF_CACHE_DIR=/cache/ruff; TRIVY_CACHE_DIR=/cache (manutenção: /db); TRIVY_SKIP_DB_UPDATE=true; TRIVY_SKIP_JAVA_DB_UPDATE=true; TRIVY_SKIP_CHECK_UPDATE=true; TRIVY_SKIP_VERSION_CHECK=true; GRYPE_DB_CACHE_DIR=/db; GRYPE_DB_AUTO_UPDATE=false; GRYPE_CHECK_FOR_APP_UPDATE=false; SYFT_CHECK_FOR_APP_UPDATE=false; PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1; OSV_SCANNER_LOCAL_DB_CACHE_DIRECTORY=/db; OSV_SCALIBR_LOCAL_DB_CACHE_DIRECTORY=/db; NODE_PATH=/opt/pw/node_modules. Opengrep preserva o runtime preparado em XDG_CACHE_HOME=/opt/opengrep-cache. `--env`/env-file e opções nativas podem sobrescrever defaults. O executor não interpreta flags arbitrárias: ao sobrescrever defaults ou usar rede, o consumidor deve conhecer os efeitos nativos. OSV exige `--offline` explícito para análise offline; não acrescentamos esse argumento escondido.
+
+## Playwright, aplicações e dependências
+
+O novo fluxo chama diretamente `/opt/pw/node_modules/@playwright/test/cli.js` com Node da imagem, contornando o entrypoint legado. Não copia fontes nem proíbe node_modules/configurações próprias. A imagem central prepara browser e bibliotecas Debian usando `install --with-deps` durante build. `central prepare` exige uma variante de browser e usa chromium por padrão; imagens históricas `api` não demonstram browser disponível.
+
+CJS pode resolver o pacote central com NODE_PATH. ESM não usa NODE_PATH: importe explicitamente `/opt/pw/node_modules/@playwright/test/index.mjs`. O exemplo CJS usa caminho absoluto central para evitar carregar uma segunda cópia do runner. Dependências próprias dos testes podem estar em node_modules do consumidor, montadas com o projeto, preparadas por ele para Linux/amd64 e ABI compatível com Node 22.20.0. Dependências que importem outra cópia de @playwright/test precisam ser ajustadas pelo consumidor para usar o runner central; não instalamos nem reconciliamos dependências de produto silenciosamente.
+
+O projeto fornece aplicação e serviços. Pode criar sua rede Docker e passar `--network`, ou usar host.docker.internal via `--add-host`. `localhost` normalmente é o próprio container da ferramenta. Passe URL e credenciais de conexão somente ao processo que as usa: credenciais de banco da aplicação pertencem ao serviço da aplicação. Não precisam ir ao browser. `examples/native/server.py` é servidor de fixture executado pelo consumidor; APP_BASE_URL e PROJECT_NETWORK são selecionados pelo wrapper Playwright.
+
+UI web: `--publish 127.0.0.1:9323:9323 -- test --ui --ui-host=0.0.0.0 --ui-port=9323`. Trace/report viewer também é comando nativo, com porta explícita e artefatos montados. Execução sem timeout permanece ativa até término/cancelamento. UI, TTY, debug headed, display/socket gráfico, sandbox Chromium e bibliotecas Debian ainda exigem validação real neste ambiente. Não há suporte gráfico homologado. Comandos que baixem browsers na execução não substituem o build central. Não há sessão/daemon permanente; resultados compartilhados entre chamadas usam diretórios explícitos do projeto.
+
+## Streams, sinais, códigos e segredos
+
+Stdout/stderr nativos são herdados separadamente; pipes e redirecionamentos shell funcionam. Não há JSON da plataforma em stdout nem em stderr no término normal. Diagnóstico sempre fica em `tools/NAME/volume/central/executions/<run>.json` com modo 0600, e opcionalmente em `--diagnostic-file`. Falha de infraestrutura também emite mensagem genérica em stderr. O campo phase identifica resolução de versão, inspeção de imagem/base, criação ou execução sem registrar argumentos. Arquivos de streams opcionais são redirecionamentos, sem decodificar bytes; não são permitidos em TTY, cujo stream é combinado pelo Docker.
+
+O JSON distingue `native`, `infrastructure`, `timeout`, `cancelled`, código nativo e código do cliente Docker. Retorno normal é exatamente o exit da ferramenta, mesmo 124/125/130. Infra retorna 125; timeout retorna 124; cancelamento retorna 128+sinal. Não deduza origem só pelo número. SIGINT/SIGTERM/SIGHUP são encaminhados; após grace, stop/rm encerram somente o container de nome UUID desta execução. O init encaminha sinais/recolhe filhos. Encerramento abrupto do host/SIGKILL do executor não permite garantia de cleanup Python; nome/diagnóstico permitem recuperação operacional. Falha no rm fica registrada como cleanup=failed; não altera o código nativo.
+
+Metadados não guardam argv, valores de ambiente, conteúdo de credenciais nem comandos Docker. Valores de `--env` são entregues por ambiente ao cliente Docker, sem serem incorporados à linha de comando Docker. Prefira arquivo montado ro e flag nativa com caminho; `--env KEY` evita valor no argv da Toolbox. Docker inspect pode revelar ambiente a quem tem acesso ao daemon. A ferramenta pode imprimir ou escrever qualquer segredo que recebeu; captura explícita de streams exige cuidado do consumidor. Não há promessa de redação de relatórios nativos. Plataforma não interpreta findings/SBOM como aprovação.
+
+## Migração e validação
+
+Interfaces antigas `run/prepare/update-db/consumer` e seus locks permanecem disponíveis para compatibilidade. No fluxo `exec`, locks do consumidor deixam de ser necessários; adapters são opcionais; políticas, scripts, regras e critérios continuam nos projetos. STIC/schema 2, staging, export e layout especial não são pré-requisitos. Versões declaradas por projetos legados continuam valendo somente nesse fluxo antigo. Ec/Ox não foram alterados. O texto restante de docs/doc.md é histórico e suas exigências conflitantes foram substituídas por este contrato.
+
+Executar `python3 -m unittest discover -s tests -v` para testes de plataforma, inclusive fronteira Docker simulada. Executar `python3 tests/native_acceptance.py --evidence /absolute/new-directory` para operações reais com as imagens centrais já ativas. A suíte real nunca prepara/puxa imagens e falha se Docker/imagem/base faltarem. A suíte cobre operações dos scanners e browser; testes reais de TTY, sinais, redes de projeto, concorrência e troca de versão também permanecem necessários. Estado atual e lacunas: `evidence/native-execution-20261108/` e `docs/native-validation.md`. Não declarar suporte completo por help/version ou testes simulados.
+
+## Public data provenance successor — 2026-11-08
+
+Native diagnostics for OSV/Trivy add database_metadata schema 1, snapshot (equal
+to database), data_timestamp (oldest required source), timestamp_semantics and
+sources. OSV sources identify official GCS object URLs, generation, SHA256 and
+upstream object generation creation timestamp. Explicit preparation fetches object
+metadata, downloads that exact generation, checks upstream MD5 and local SHA256,
+and includes receipts inside the immutable snapshot manifest. This is archive
+publication time, not download/copy/run time or the newest individual advisory.
+Trivy sources derive UpdatedAt from native db/metadata.json and java-db/metadata.json,
+including their hashes and upstream project origin. DownloadedAt is never age.
+Every exec rechecks the snapshot and derives this diagnostic from the mounted bytes.
+Missing, future or inconsistent metadata fails execution; expiry is consumer policy.
+Old OSV snapshots without generation receipts require explicit update, never timestamp
+backfill. Consumers must reject absent metadata and apply their own maximum ages.

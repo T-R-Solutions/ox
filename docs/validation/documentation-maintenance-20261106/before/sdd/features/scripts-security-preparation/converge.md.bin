@@ -1,0 +1,11 @@
+# Convergence
+
+| Criterion | State | Observation and limits |
+| --- | --- | --- |
+| AC-01 | APPROVED | OSV 2.7.0 and cargo-audit 0.22.2 execute inside a network namespace; real OSV import and missing/corrupt/expired denial tests pass; failed imports preserve published bytes. |
+| AC-02 | APPROVED | Opengrep 1.33.1 passes nine rule tests; complete project path coverage and triage recorded. Fixtures are findings, not suppressed. |
+| AC-03 | APPROVED | Seven backend test methods include relocation/spaces, PATH/explicit/absent tools, image locks and failed-result denial without fallback. Native preference retained. |
+| AC-04 | UNVERIFIED | Optional paths implemented from official contracts; no installed native Trivy/Grype or acquired optional databases. Do not claim real compatibility acceptance. |
+
+T001..T003 implemented; T004 records the bounded results and optional-tool gap.
+No product changes, dependency updates, vulnerability exception, commit or publication.

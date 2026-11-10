@@ -1,0 +1,485 @@
+# Configurar outras aplicações para usar a Toolbox
+
+[README](../README.md) · [Documentação da aplicação](application.md) · **Guia de integração** · [Validação](native-validation.md)
+
+Este guia reúne a configuração de um projeto consumidor: descoberta da Toolbox, scripts, arquivos nativos, mounts, resultados, rede, Playwright, CI e compatibilidade legada. O operador mantém imagens, versões e bases; a aplicação define seus testes, regras e aprovação.
+
+## Navegação
+
+- [Escolher a interface](#interfaces)
+- [Primeira integração](#primeira-integracao)
+- [Contrato completo de exec](#contrato-exec)
+- [Paths, configuração e escrita](#paths)
+- [Resultados, códigos e CI](#resultados)
+- [Rede, serviços e credenciais](#rede)
+- [Playwright e Inspector](#playwright)
+- [Seleção por tipo de projeto](#stacks)
+- [Configuração legada schema 1](#compatibilidade-legada)
+- [Migração e validação do projeto](#migracao)
+
+<a id="interfaces"></a>
+## Escolher a interface
+
+| Aspecto | `exec` — fluxo principal | `run` / `consumer` — compatibilidade |
+| --- | --- | --- |
+| Versão/imagem | Revisão ativa central | Versão declarada no JSON e lock do consumidor |
+| Argumentos | Tokens nativos depois de `--` | Adapter gera argv a partir de schema 1 |
+| Wrapper | `templates/consumer/toolbox-native.sh` | `templates/consumer/scripts/toolbox.sh` |
+| Arquivos obrigatórios | Configs nativas que a ferramenta precisar | `toolbox.json`, lock; wrapper STIC também usa `integration.json` |
+| Fontes no container | `/project`, ro por padrão; escrita explícita | `/src` ro; Playwright usa cópia `/out/work` |
+| Relatórios | Escolhidos pelo consumidor; stdout/stderr nativos | Saídas e classificação padronizadas pelo adapter |
+| Aprovação | Política do projeto | Estados do adapter e política do projeto |
+
+Uma configuração legada não muda o comportamento de `exec`. `capabilities` descreve STIC 1.0 parcial, schema/layout/resultados 1; não anuncia todos os recursos nativos. Schema 2, políticas tipadas de supressão, staging-manifest, export e layout 2 não estão implementados e não são exigências do fluxo principal.
+
+<a id="primeira-integracao"></a>
+## Primeira integração
+
+### 1. Conferir a instalação fornecida pelo operador
+
+Use Linux/amd64 no mesmo host dos bind mounts, Python 3.11+, Bash e acesso autorizado ao Docker e aos volumes operacionais. O operador precisa preparar, qualificar e ativar as ferramentas necessárias. Serviços e dependências da sua aplicação permanecem no seu projeto.
+
+```sh
+export TOOLBOX_ROOT=/caminho/da/shared-toolbox
+export TOOLBOX_BIN="$TOOLBOX_ROOT/bin/toolbox"
+"$TOOLBOX_BIN" doctor
+"$TOOLBOX_BIN" central list
+"$TOOLBOX_BIN" central status --tool ruff
+```
+
+Essas consultas não homologam seu projeto. `doctor` testa Docker; `list`/`status` consultam registros. Em host SELinux enforcing, combine com o operador a seleção de contextos das árvores dedicadas; para snapshots compartilhados o procedimento comprovado usa `TOOLBOX_SELINUX_LABEL=shared`. [Procedimento e efeitos no host](application.md#selinux).
+
+### 2. Adotar o wrapper comum
+
+Na raiz de um projeto que ainda não possua `scripts/toolbox.sh`:
+
+```sh
+mkdir -p scripts/config
+cp "$TOOLBOX_ROOT/templates/consumer/toolbox-native.sh" scripts/toolbox.sh
+chmod +x scripts/toolbox.sh
+```
+
+Em projeto existente, confira os chamadores e preserve o wrapper anterior durante a migração. `TOOLBOX_BIN` deve apontar para um executável; alternativamente disponibilize `toolbox` no PATH. O wrapper encaminha os argumentos com `"$@"`, conserva códigos e falha se uma seleção explícita não for executável. Nenhum caminho pessoal precisa ser versionado no projeto.
+
+```text
+seu-projeto/
+├── application/              # fontes; use a estrutura nativa do projeto
+├── tests/                    # testes e fixtures do produto
+├── scripts/
+│   ├── toolbox.sh            # wrapper comum
+│   ├── check-python.sh       # operação escolhida pelo projeto
+│   └── config/ruff.toml      # configuração interpretada pelo Ruff
+└── results/                  # resultados escolhidos pelo projeto; ignore quando apropriado
+```
+
+A árvore é um exemplo; não crie pastas vazias ou mova testes só para imitá-la. `toolbox.json`, locks e `integration.json` não são necessários para `exec`.
+
+### 3. Criar uma configuração nativa e uma operação
+
+Exemplo `scripts/config/ruff.toml` para Ruff 0.11.13:
+
+```toml
+[lint]
+select = ["E4", "E7", "E9", "F"]
+```
+
+Exemplo `scripts/check-python.sh`, independente do diretório de onde for chamado:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+scripts_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+project_root=$(cd -- "$scripts_dir/.." && pwd)
+exec "$scripts_dir/toolbox.sh" exec --tool ruff \
+  --project-root "$project_root" --timeout 120 -- \
+  check --config scripts/config/ruff.toml application/
+```
+
+Crie os arquivos/fontes citados no seu projeto e execute `bash scripts/check-python.sh`. Antes de `--` ficam opções da Toolbox; depois ficam tokens nativos preservados. Não use `eval` nem uma string única como substituto de um array de argumentos. A regra do projeto define se os achados bloqueiam o CI.
+
+```mermaid
+flowchart LR
+    A["Projeto configura TOOLBOX_BIN ou PATH"] --> B["Wrapper comum"]
+    B --> C["Script escolhe ferramenta e comando"]
+    C --> D["Toolbox usa versão central ativa"]
+    D --> E["Ferramenta lê configuração do projeto"]
+    E --> F["Projeto confere relatório e cobertura"]
+    F --> G["Política do projeto decide aprovação"]
+```
+
+<a id="contrato-exec"></a>
+## Referência completa de `exec`
+
+```sh
+"$TOOLBOX_BIN" exec --tool NOME --project-root RAIZ [OPCOES] -- COMANDO_NATIVO
+```
+
+| Opção da Toolbox | Efeito/default |
+| --- | --- |
+| `--tool NOME` | Obrigatória; seleciona ferramenta da revisão central ativa |
+| `--project-root CAMINHO` | Obrigatória; diretório local montado em `/project` |
+| `--workdir /project/subpasta` | Base dos paths nativos; default `/project` |
+| `--project-write` | Monta toda a raiz do projeto rw; default ro |
+| `--mount HOST:DESTINO:ro\|rw` | Arquivo/diretório adicional; repetível |
+| `--results DIRETORIO` | Cria/monta o diretório de resultados em `/out` rw |
+| `--network NOME` | Rede Docker; default `none` |
+| `--add-host HOST:IP` | Mapeamento solicitado ao Docker; repetível |
+| `--publish HOST:PORTA:PORTA` | Publicação explícita; repetível |
+| `--device ESPECIFICACAO` | Dispositivo explícito; mecanismo existe, cenários de produto não homologados |
+| `--env CHAVE` / `--env CHAVE=VALOR` | Seleciona variável do host ou valor explícito; repetível |
+| `--env-file ARQUIVO` | Lê linhas CHAVE=VALOR, CHAVE herdada quando presente, e comentários `#`; repetível |
+| `--stdin` | Encaminha entrada interativa; default stdin fechado para o processo nativo |
+| `--tty` | Requer terminal em stdin/stdout; combina streams |
+| `--timeout SEGUNDOS` | Prazo positivo finito do executor, incluindo espera de recursos; default sem prazo |
+| `--stdout-file ARQUIVO` | Redireciona bytes de stdout para arquivo novo, sem tee |
+| `--stderr-file ARQUIVO` | Redireciona bytes de stderr para arquivo novo, sem tee |
+| `--diagnostic-file ARQUIVO` | Copia diagnóstico JSON da plataforma; modo 0600 |
+| `--maintenance` | Escritor exclusivo de dados; destinado a manutenção do operador |
+
+A opção global `--state CAMINHO` vem **antes** do subcomando: `toolbox --state CAMINHO exec ...`. Também pode ser definida por `TOOLBOX_STATE`; não muda os volumes. Não há `--version` de seleção da ferramenta no executor: versão é central, e `-- --version` consulta a versão nativa.
+
+<a id="paths"></a>
+## Paths, arquivos externos e escrita
+
+| Dentro do container | Origem e permissão |
+| --- | --- |
+| `/project` | Raiz do projeto, ro; rw somente com `--project-write` |
+| `/out` | Diretório de `--results`, rw quando solicitado |
+| `/cache` | Cache persistente por ferramenta/raiz de projeto, rw |
+| `/data` | Dado genérico central, ro; rw em manutenção |
+| `/db` | Snapshot central quando selecionado, ro; staging rw em manutenção |
+| `/cache/db`, `/cache/java-db` | Trivy: subdiretórios do snapshot central, ro na análise |
+| `/cache/policy` | Trivy: Checks Bundle externo preparado, ro |
+| `/tmp` | Temporário do container |
+
+O caminho absoluto do host passado depois de `--` não é convertido automaticamente. Monte o recurso e use seu destino no container. Paths com espaços são preservados; vírgulas/quebras de linha são rejeitadas nos mounts. Mount adicional exige destino absoluto sem `..`, origem existente e modo ro/rw; os destinos raiz `/`, `/project`, `/out`, `/data`, `/cache`, `/db`, `/tmp` são reservados. O Trivy também protege o caminho do bundle contra overrides conflitantes.
+
+```sh
+# Configuração externa como arquivo individual ro.
+bash scripts/toolbox.sh exec --tool ruff --project-root "$PWD" \
+  --mount "$PWD/scripts/config/ruff.toml:/config/ruff.toml:ro" -- \
+  check --config /config/ruff.toml application/
+
+# Correção explícita: a raiz inteira passa a permitir escrita.
+bash scripts/toolbox.sh exec --tool ruff --project-root "$PWD" --project-write -- \
+  check --config scripts/config/ruff.toml --fix application/
+
+# Alternativa: autorizar escrita apenas em um diretório adicional.
+bash scripts/toolbox.sh exec --tool ruff --project-root "$PWD" \
+  --mount "$PWD/application:/editable:rw" -- check --fix /editable
+```
+
+```mermaid
+flowchart TB
+    A["Checkout do projeto"] -->|"ro por padrão"| P["/project"]
+    C["Config externa selecionada"] -->|"ro"| K["/config/arquivo"]
+    E["Diretório explicitamente editável"] -->|"rw"| W["/editable"]
+    O["Resultados escolhidos pelo projeto"] <-->|"rw"| R["/out"]
+    S["Snapshot central verificado"] -->|"ro"| D["/db"]
+```
+
+<a id="resultados"></a>
+## Streams, relatórios e integração com CI
+
+`exec` preserva stdout/stderr do processo nativo. Diagnóstico da plataforma não substitui relatório da ferramenta. A cópia central fica em `tools/NOME/volume/central/executions/RUN.json`; `--diagnostic-file` permite uma cópia no projeto. Resultados `/out` e redirecionamentos são escolhidos pelo consumidor, sem exportação ou layout adicional obrigatório.
+
+Exemplo de script CI para Ruff, com retorno preservado e conferência de limpeza. A configuração e os fontes do passo anterior devem existir:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+mkdir -p results
+run_dir=$(mktemp -d "$PWD/results/ruff.XXXXXX")
+# Em scripts com set -e, capturar a saída para preservar achados e diagnóstico.
+set +e
+bash scripts/toolbox.sh exec --tool ruff --project-root "$PWD" --timeout 120 \
+  --stdout-file "$run_dir/ruff.json" \
+  --stderr-file "$run_dir/stderr.log" \
+  --diagnostic-file "$run_dir/execution.json" -- \
+  check --config scripts/config/ruff.toml --output-format json application/
+toolbox_exit=$?
+set -e
+printf 'Código observado: %s; resultados: %s\n' "$toolbox_exit" "$run_dir"
+if (( toolbox_exit != 0 )); then
+  exit "$toolbox_exit"
+fi
+python3 - "$run_dir/execution.json" <<'CHECK'
+import json
+import sys
+from pathlib import Path
+metadata = json.loads(Path(sys.argv[1]).read_text())
+if (metadata.get('outcome') != 'native'
+        or metadata.get('native_exit_code') != 0
+        or metadata.get('cleanup') != 'removed'):
+    raise SystemExit(125)
+CHECK
+```
+
+Os arquivos de stdout/stderr precisam ser novos; os diretórios pais precisam existir. `--results` monta `/out`; `--stdout-file`/`--stderr-file` são redirecionamentos separados no host, não cópias simultâneas da saída. Um relatório nativo produzido via `--output /out/...` exige `--results`.
+
+| `outcome` do diagnóstico | Retorno de `exec` | Interpretação |
+| --- | --- | --- |
+| `native` | Exit original do processo no container | Interpretar segundo ferramenta e relatório; pode ser achado, medição ou falha |
+| `infrastructure` | Normalmente 125; código nativo permanece null se indisponível | Não houve execução nativa qualificada |
+| `timeout` | 124 | O prazo do executor expirou; preservar eventual código nativo observado |
+| `cancelled` | 128 + sinal | Sinal recebido pelo executor; consultar `executor_signal` |
+
+Uma ferramenta pode sair nativamente com 124, 125 ou 130. O número sozinho não revela a causa. `runtime_exit_code` pertence ao cliente Docker; `native_exit_code` é o código observado no estado do container e não garante que o scanner iniciou corretamente. `cleanup=failed` não sobrescreve esse código; o CI deve tratar a limpeza pendente conforme sua política e reconciliar o recurso.
+
+```mermaid
+flowchart TD
+    A["Receber código, diagnóstico e relatório"] --> B{"Execução e cleanup comprovados?"}
+    B -->|Não| F["Registrar falha ou execução incompleta"]
+    B -->|Sim| C{"Cobertura esperada presente?"}
+    C -->|Não| F
+    C -->|Sim| D["Interpretar achados ou medição"]
+    D --> P["Aplicar a política explícita do projeto"]
+```
+
+Para Ruff, native/1 pode representar F401 esperado de uma fixture; Syft pode produzir SBOM e retornar zero sem avaliar vulnerabilidades. Confirme arquivos analisados, fontes incluídas/ignoradas, achados esperados nos controles e integridade do relatório. O guia não impõe limiares de severidade, supressões ou critérios de release.
+
+### Terminal e cancelamento
+
+`--stdin --tty` exige um terminal real e conserva os streams combinados do Docker; não aceita arquivos de streams separados. Ctrl+C pode atingir diretamente o processo no terminal do container: neste caso native/130 não é cancelamento recebido pelo executor. SIGINT/SIGTERM/SIGHUP recebidos pelo executor são encaminhados e registrados.
+
+A sequência de detach pode encerrar o attach mantendo o container ativo. `exec` diagnostica `attachment_ended_while_running`, retorna infraestrutura e remove somente o próprio container; não oferece sessão persistente desconectada. Os ensaios PTY verificaram sinais no principal/filho, termios, locks e uma nova sessão de recuperação. SIGKILL do executor, queda do host e perda abrupta de daemon têm limites próprios. [Evidência PTY](../evidence/20261109-pty-revalidation-154212Z/REPORT.md).
+
+<a id="rede"></a>
+## Rede e serviços da aplicação
+
+Rede default é `none`. O projeto inicia seus serviços e fornece um endpoint acessível ao container da ferramenta. Com Compose, use o nome real da rede criada, inclusive prefixo do projeto quando aplicável. A Toolbox encerra seu container; o projeto administra seus serviços.
+
+```mermaid
+flowchart LR
+    C["CI ou script do projeto"] -->|"inicia e verifica prontidão"| A["Serviço da aplicação"]
+    C -->|"exec com rede existente"| P["Container Playwright"]
+    P -->|"http://app:8000 na rede do projeto"| A
+    A --> B["Banco do projeto"]
+    C -->|"recolhe relatórios e encerra serviços"| O["Artefatos do pipeline"]
+```
+
+```sh
+export PROJECT_NETWORK=nome_real_da_rede
+export APP_BASE_URL=http://app:8000
+bash scripts/toolbox.sh exec --tool playwright --project-root "$PWD" \
+  --network "$PROJECT_NETWORK" --env APP_BASE_URL --results "$PWD/results" -- \
+  test --config playwright.config.cjs --output /out/test-results
+```
+
+`app` deve ser serviço/alias da rede. Para um serviço no host, selecione rede apropriada, `--add-host host.docker.internal:host-gateway` e URL `http://host.docker.internal:8000`, com bind/firewall compatíveis. `localhost` dentro do container normalmente é o próprio container.
+
+No nativo, selecionar rede não acrescenta automaticamente flags offline. OSV exige `--offline` explícito. Trivy/Grype/Syft também dependem de seus defaults e argumentos. O fluxo legado tem regras mais restritas de rede descritas adiante.
+
+### Credenciais
+
+Prefira arquivo montado ro e flag nativa com seu caminho, ou `--env NOME`/`--env-file /caminho/credentials.env`. Não encaminhe todo o ambiente do host. Credenciais de banco pertencem à aplicação quando só ela as utiliza; o browser pode precisar apenas de URL e credenciais de teste.
+
+Os metadados de `exec` não persistem argv nem valores de ambiente. O ambiente é entregue ao cliente Docker sem colocar os valores na linha de comando Docker. Quem acessa o daemon pode obter ambiente via inspect, e a ferramenta pode imprimir/gravar segredos recebidos. A plataforma não promete redação universal de streams/relatórios. A interface legada persiste inputs e comandos: mantenha segredos fora de suas configurações versionadas.
+
+<a id="playwright"></a>
+## Playwright: configuração, imports e relatórios
+
+Node 22.20.0, runner Playwright 1.56.1 e browsers necessários são preparados na imagem central. Chromium é a variante comprovada pelos ensaios atuais. Dependências próprias dos testes são preparadas pelo consumidor para Linux/amd64 e ABI compatível; `exec` não instala pacotes ou browsers.
+
+Configuração mínima `playwright.config.cjs` do consumidor:
+
+```javascript
+const { defineConfig } = require('/opt/pw/node_modules/@playwright/test');
+module.exports = defineConfig({
+  testDir: './tests/browser',
+  use: { baseURL: process.env.APP_BASE_URL, browserName: 'chromium' },
+  reporter: [['list'], ['html', { outputFolder: '/out/html', open: 'never' }]],
+});
+```
+
+Teste `tests/browser/home.spec.cjs`:
+
+```javascript
+const { test, expect } = require('/opt/pw/node_modules/@playwright/test');
+test('página inicial', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('body')).toBeVisible();
+});
+```
+
+Use a chamada com `--results`, rede e `APP_BASE_URL` da seção anterior. O teste é ilustrativo: adapte asserções, serviços e critérios ao seu produto. CJS pode usar o pacote central; ESM deve importar explicitamente `/opt/pw/node_modules/@playwright/test/index.mjs`. `NODE_PATH` não resolve imports ESM, conforme [Node 22.20.0](https://nodejs.org/download/release/v22.20.0/docs/api/esm.html#no-node_path). Uma segunda cópia de `@playwright/test` nas dependências pode criar conflito; mantenha os imports vinculados ao runner central.
+
+O modo HTTP usa `request` em vez de `page`, sem abrir browser. As receitas legadas possuem variante `api`, que não contém browsers. No nativo, a CLI é chamada diretamente em `/opt/pw/node_modules/@playwright/test/cli.js`; fontes não são copiadas para `/out/work`.
+
+### UI web
+
+```sh
+bash scripts/toolbox.sh exec --tool playwright --project-root "$PWD" \
+  --network "$PROJECT_NETWORK" --env APP_BASE_URL --results "$PWD/results" \
+  --publish 127.0.0.1:9323:9323 -- \
+  test --config playwright.config.cjs --ui --ui-host=0.0.0.0 --ui-port=9323
+```
+
+A publicação fica no loopback do host. A UI permanece até terminar/cancelar; um prazo de `exec` limita a sessão quando escolhido. Report/trace viewers usam seus comandos nativos e artefatos montados. Porta HTTP acessível não comprova interação gráfica do Inspector.
+
+<a id="inspector"></a>
+### Inspector interativo e display
+
+O ensaio 4A comprovou abertura do Inspector, pausa em `page.pause()`, seleção de locator/realce, avanço individual de ações, retomada até asserção e cancelamento com limpeza, em Chromium da imagem ativa.
+
+![Inspector pausado com o botão Confirm realçado pela seleção de locator](../evidence/20261109-playwright-inspector/session-02/04-locator-highlight.png)
+
+*Captura real de 09/11/2026; [passos, identidades, resultado e limites](../evidence/20261109-playwright-inspector/REPORT.md). A captura isolada não é o critério de homologação.*
+
+O harness usa Xvfb temporário dentro do container e cookie X11 por sessão, montado ro. Apenas uma porta dinâmica no loopback conecta o host ao display autenticado; a página é local. Não usa o display pessoal ou `xhost +`. Host precisa de Python/libX11/libXtst já preparados; imagem precisa do runtime, Chromium e Xvfb existentes. O ensaio não instala componentes.
+
+```sh
+# Na raiz da instalação; o diretório de evidência deve ser novo.
+python3 tests/playwright_debug_acceptance.py start --evidence evidence/NOVO-INSPECTOR
+# Em outro terminal, observar a sessão antes de escolher coordenadas:
+python3 tests/playwright_debug_acceptance.py act --session evidence/NOVO-INSPECTOR --arrange --capture inspector.png
+python3 tests/playwright_debug_acceptance.py act --session evidence/NOVO-INSPECTOR --click X,Y --capture passo.png
+python3 tests/playwright_debug_acceptance.py cancel --session evidence/NOVO-INSPECTOR
+```
+
+`X,Y` deve vir da imagem observada; não é uma coordenada fixa. O harness controla fixture e cookie temporários e registra o estado do container/portas/processos. O `test --debug` nativo e o timeout da Toolbox são mecanismos independentes. O Chromium observado usa o padrão `--no-sandbox` do runner; a fixture controlada não qualifica código hostil, outros browsers ou displays de produto.
+
+<a id="codeql"></a>
+## CodeQL, YARA-X e ferramentas sem adapter
+
+`exec` não exige adapter. CodeQL Bundle fornece CLI, extratores, JRE e packs; o consumidor fornece fontes, queries escolhidas e toolchains/dependências de build quando necessárias. Grave bancos CodeQL em `/out` ou mount rw explícito, não no snapshot central de vulnerabilidades. A evidência da plataforma cobre extração/análise JS; outras linguagens e licenciamento devem ser avaliados para o uso pretendido.
+
+YARA-X usa o executável `yr` da imagem; regras, dados analisados e interpretação dos matches são do consumidor. A existência de CLI nativa não cria parser ou política de aprovação universal. Consulte `-- --help`, o módulo e as [fontes por versão](references.md) antes de escolher comandos específicos.
+
+<a id="stacks"></a>
+## Selecionar ferramentas por tipo de projeto
+
+As sugestões abaixo são pontos de partida, não uma política mínima de aprovação. Use as versões ativas acordadas com o operador; não instale outras stacks apenas por usar a Toolbox.
+
+| Projeto | Seleção possível | Continua no consumidor |
+| --- | --- | --- |
+| Python | Ruff; Bandit quando escolhido; Gitleaks | Interpretador/dependências/testes, TOML/YAML e política de achados |
+| Shell | ShellCheck; Gitleaks | Lista de scripts, rcfile, testes e exceções |
+| JS/TS | OSV com package-lock; Playwright; Opengrep/CodeQL quando escolhidos | npm/build, aplicação, imports e configs dos testes |
+| Rust | OSV com Cargo.lock; Gitleaks; regras locais quando aplicáveis | Cargo/toolchain/build/testes e critérios |
+| JVM/Kotlin | Gitleaks e ferramentas escolhidas conforme operação suportada | JDK/Gradle, dependências e testes; adapter OSV legado não aceita lockfile Gradle |
+| Infraestrutura | Trivy config e Gitleaks; Syft/Grype conforme alvo | Arquivos IaC, políticas, limiares e validação de cobertura |
+
+Esta tabela não amplia os formatos do adapter legado nem homologa todos os modos nativos. Um projeto multistack seleciona explicitamente as ferramentas e entradas necessárias. `profiles.json` agrupa nomes no fluxo legado, sem detectar código ou instalar implicitamente dependências de aplicação.
+
+<a id="compatibilidade-legada"></a>
+## Compatibilidade: JSON schema 1, adapters e wrapper STIC
+
+Use esta seção para consumidores que já dependem de `run` e de resultados agregados. Os arquivos são lidos somente nesse caminho; não são pré-requisitos para `exec`.
+
+### Configuração e paths
+
+`toolbox.json` é JSON estrito: campos duplicados, números não finitos e campos desconhecidos são rejeitados. O [schema de editor](consumer.schema.json) auxilia, mas `validate` é a validação normativa de caminhos e requisitos dos adapters.
+
+Exemplo em `scripts/config/toolbox.json` para o projeto Python do início deste guia:
+
+```json
+{
+  "schema": 1,
+  "project": "example-python",
+  "root": "../..",
+  "tools": {
+    "ruff": {
+      "version": "0.11.13",
+      "config": "scripts/config/ruff.toml",
+      "paths": ["application"],
+      "timeout": 120,
+      "network": "none"
+    }
+  }
+}
+```
+
+`root` é relativo ao arquivo JSON, ou absoluto. Paths/configs das ferramentas são relativos à raiz, devem existir quando habilitados e permanecer nela. Globs não são expandidos pelo loader. `project` usa de 1 a 64 letras minúsculas, dígitos, `_` ou `-`, começando por letra/dígito. `toolbox.images.lock.json` fica ao lado do JSON e é produzido pelo preparo explícito, com ID local, versão/variante, hashes e snapshot quando necessário.
+
+| Campo | Contrato schema 1 |
+| --- | --- |
+| Raiz | `schema`, `project`, `root`, `profiles`, `tools` |
+| `tools.NOME` | `version`, `variant`, `enabled`, `applicable`, `reason`, `config`, `paths`, `mode`, `network`, `timeout`, `database`, `max_database_age_hours`, `env` |
+| `version` | Exata, disponível na receita principal ou em `versions/VERSAO/` |
+| `profiles` | Nomes existentes em profiles.json; cada ferramenta precisa de entrada explícita |
+| `enabled` / `applicable` | Booleanos; false exige `reason` |
+| `timeout` | Número positivo finito; default 600 s |
+| `network` | Default none; Trivy/OSV/Grype/Syft exigem none nesse contrato |
+| `database` | Hash SHA256 de snapshot, somente Trivy/OSV/Grype; tem precedência sobre o lock |
+| `max_database_age_hours` | Política positiva explícita requerida pelos adapters de DB |
+| `env` | Somente Playwright e chave `BASE_URL` |
+| `variant` | Somente Playwright: api, chromium, firefox ou webkit |
+| `mode` | Gitleaks: files/history; Opengrep: scan/test |
+
+ShellCheck exige lista de arquivos explícita. Playwright exige config e rejeita `paths`: a seleção de testes é nativa. Bandit/Opengrep exigem configuração/regras próprias. OSV 2.7.0 integra somente Cargo.lock e package-lock.json explícitos, com config e sem call analysis Rust; outros ecossistemas dependem de integração própria. Grype/Syft recebem um diretório por execução. Gitleaks history exige histórico Git disponível; clone raso não comprova cobertura integral.
+
+### Comandos legados
+
+```sh
+"$TOOLBOX_BIN" validate --config scripts/config/toolbox.json
+"$TOOLBOX_BIN" plan --config scripts/config/toolbox.json
+"$TOOLBOX_BIN" versions --config scripts/config/toolbox.json
+# Manutenção explícita, depois de revisar a seleção:
+"$TOOLBOX_BIN" prepare --config scripts/config/toolbox.json --only ruff
+"$TOOLBOX_BIN" run --config scripts/config/toolbox.json --only ruff
+"$TOOLBOX_BIN" results --project example-python
+```
+
+`validate` não executa scanner nem valida semanticamente todas as regras nativas. `plan` pode retornar zero com `prerequisite_missing`; examine cada item. `versions` consulta o lock e inspeciona imagens; isso não comprova a análise. Regras e critérios continuam no projeto.
+
+Para usar o dispatcher STIC, adote o outro wrapper `templates/consumer/scripts/toolbox.sh` e mantenha `scripts/config/integration.json`:
+
+```json
+{
+  "contract": "stic",
+  "version": "1.0",
+  "stacks": ["python"],
+  "required_capabilities": ["consumer-cli-v1", "run", "results"],
+  "toolbox_config": "toolbox.json"
+}
+```
+
+O JSON de integração exige `toolbox.json` regular adjacente e capacidades disponíveis. `stacks` são metadados e não habilitam ferramentas. `bash scripts/toolbox.sh prepare` exige `--only NOME` ou `--all`; `update-db` exige `--only`. O dispatcher não expõe `exec` nem todas as opções da CLI: os dois templates têm APIs distintas.
+
+<a id="bases-legadas"></a>
+### Bases e execução offline no legado
+
+`prepare` fixa/reutiliza o snapshot inicial no lock. Repetições não trocam silenciosamente uma seleção existente; base ausente/corrompida fixada falha. O runner usa uma cópia privada da base por execução e confere sua integridade depois. Trivy/OSV verificam idade de preparação no contrato legado; Grype usa idade nativa da construção da DB. Isso difere da proveniência pública do diagnóstico nativo e não torna `prepared_at` equivalente à data do advisory.
+
+```sh
+# Imagem/versão devem estar preparadas na configuração escolhida.
+"$TOOLBOX_BIN" update-db --config scripts/config/toolbox.json --only osv-scanner
+```
+
+O comando só é válido se OSV estiver configurado com seus arquivos/requisitos. Revise o `database` devolvido, adote-o explicitamente no JSON e execute `prepare` para atualizar a seleção do lock quando aplicável. O ponteiro central não muda um lock já fixado. Não aumente a idade máxima para aprovar uma base vencida. O adapter Trivy legado executa filesystem/vuln e não usa o fluxo externo de checks do `exec`.
+
+### Saídas e códigos agregados
+
+No legado, índices/resumos ficam no estado geral e saídas por ferramenta em `tools/NOME/volume/projects/PROJETO/runs/RUN/`: `stdout.log`, `stderr.log`, `started.json`, `result.json`, relatório nativo e arquivos específicos. Config/lock e manifesto das fontes ficam em `inputs.json`; o runner verifica fontes após o run. Playwright usa cópia de trabalho própria em `/out/work`, sem node_modules do consumidor.
+
+| Código agregado de `run` | Regra |
+| --- | --- |
+| 0 | Todas as ferramentas selecionadas em success e fontes preservadas |
+| 1 | Findings, sem falha operacional/pré-requisito ausente; examinar outros estados coexistentes |
+| 2 | operational_failure, prerequisite_missing ou alteração de fontes |
+| 3 | Sem falhas/achados, mas há measurement/omitted/inapplicable, ou seleção vazia |
+| 130 | Interrupção capturada antes de resumo; cancelamento durante execução pode terminar como falha agregada |
+
+O adapter Syft classifica inventário como `measurement`. `tool_exit_code` é diferente do exit do Docker e do agregado. JSON inválido, resultado incompleto, código ausente ou falha de execução não viram aprovação. Retenção e backup pertencem ao [operador](application.md#armazenamento).
+
+<a id="migracao"></a>
+## Migrar e validar a integração
+
+1. Inventarie chamadores, configurações, regras, relatórios e políticas do seu projeto; preserve o caminho anterior durante a adaptação.
+2. Adote o template correspondente à interface escolhida e mantenha a descoberta por TOOLBOX_BIN/PATH no ambiente local e CI.
+3. No nativo, transforme paths `/src`/`/out/work` em `/project` ou mounts explícitos; configure resultados, rede e permissões necessárias.
+4. Confirme com o operador versões/browsers/bases preparados. Preserve locks e metadados ainda necessários a chamadores legados.
+5. Execute controles de sucesso, achados esperados, config inválida, pré-requisito ausente e cobertura; compare códigos/arquivos/política com o caminho anterior.
+6. Verifique limpeza, concorrência, serviços e browser no ambiente real antes de aposentar a integração anterior.
+
+[examples/native](../examples/native/README.md) reúne scripts executáveis e uma aplicação HTTP de fixture. Os exemplos `consumer-a`, `consumer-b`, `static-analysis`, `offline-security`, `playwright-api` e `playwright-ui` exercitam a interface legada. A evidência da plataforma não aprova automaticamente seu produto nem comprova que um projeto existente já foi migrado. [Alcance e lacunas atuais](native-validation.md).
+
+## Renovação automática OSV
+
+Antes de cada análise OSV via exec/run, a base ausente ou com aquisição de mais de
+12 horas é baixada e validada pelo gerenciador central. A seleção central renovada
+prevalece sobre o snapshot OSV fixado em configuração/lock legado, sem reescrevê-los.
+A análise só prossegue se a aquisição necessária tiver sucesso. Outros scanners
+continuam com manutenção explícita. Essa idade não substitui a data dos advisories
+nem a política de aprovação do projeto. [Operação e limites](application.md#bases).

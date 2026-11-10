@@ -1,0 +1,15 @@
+test_native_scans (test_real_security_backends.RealSecurity.test_native_scans) ... FAIL
+
+======================================================================
+FAIL: test_native_scans (test_real_security_backends.RealSecurity.test_native_scans)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rodrigo/Projetos/ox/scripts/tests/test_real_security_backends.py", line 14, in test_native_scans
+    self.assertTrue(json.loads(registry.stdout), 'No central active revisions; zero scanner operations available')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {} is not true : No central active revisions; zero scanner operations available
+
+----------------------------------------------------------------------
+Ran 1 test in 0.057s
+
+FAILED (failures=1)

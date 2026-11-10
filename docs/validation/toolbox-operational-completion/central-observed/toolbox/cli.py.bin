@@ -1,0 +1,120 @@
+"""Small central CLI; JSON stdout is suitable for CI consumers."""
+import argparse
+import json
+import os
+import re
+import signal
+import sys
+import subprocess
+from pathlib import Path
+from . import consumer, docker, prepare, native
+from .config import ConfigError, ID, REPO, catalog, load, read_json, selection
+from .runner import exit_status, image_lock, plan, run
+from .storage import Store
+
+
+def main(argv=None):
+    def cancelled(_signum, _frame):
+        raise KeyboardInterrupt
+    signal.signal(signal.SIGTERM, cancelled)
+    parser = argparse.ArgumentParser(prog='toolbox', description='Shared, on-demand Docker tools; no implicit installations during run.')
+    parser.add_argument('--state', default=os.environ.get('TOOLBOX_STATE', str(REPO / '.local/state')), help='run indexes and locks only; mounted data stays in tools/<tool>/volume')
+    sub = parser.add_subparsers(dest='command', required=True)
+    native.parser(sub)
+    sub.add_parser('doctor')
+    sub.add_parser('catalog')
+    sub.add_parser('capabilities')
+    p = sub.add_parser('consumer', help='public entry used by the common shell wrapper')
+    p.add_argument('--integration', required=True, type=Path)
+    p.add_argument('arguments', nargs=argparse.REMAINDER)
+    sub.add_parser('lock-base')
+    for command in ['validate', 'versions', 'plan', 'prepare', 'run', 'update-db']:
+        p = sub.add_parser(command)
+        p.add_argument('--config', required=True, type=Path)
+        if command != 'validate':
+            p.add_argument('--only', help='configured tool or selectable profile')
+    p = sub.add_parser('results')
+    p.add_argument('--project', required=True)
+    p.add_argument('--run', help='explicit run ID; omit to list summaries')
+    p = sub.add_parser('prune')
+    p.add_argument('--project', required=True)
+    p.add_argument('--keep', type=int, required=True)
+    p.add_argument('--apply', action='store_true', help='default is dry-run')
+    args = parser.parse_args(argv)
+    status = 0
+    try:
+        if args.command == 'exec':
+            return native.execute(args, Store(args.state))
+        if args.command == 'central':
+            print(json.dumps(native.central(args, Store(args.state)), indent=2))
+            return 0
+        if args.command == 'consumer':
+            forwarded = consumer.consumer_arguments(args.integration, args.arguments)
+            return main(['--state', args.state, *forwarded])
+        if args.command == 'capabilities':
+            value = consumer.capabilities()
+        elif args.command == 'doctor':
+            value = docker.doctor()
+            status = 0 if value['ready'] else 2
+        elif args.command == 'catalog':
+            value = {'tools': catalog(), 'profiles': read_json(REPO / 'profiles.json')}
+        elif args.command == 'lock-base':
+            value = prepare.lock_base()
+        elif args.command in ['results', 'prune']:
+            if not ID.fullmatch(args.project) or (getattr(args, 'run', None) and not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*', args.run)):
+                raise ConfigError('invalid project/run identifier')
+            store = Store(args.state)
+            if args.command == 'prune':
+                if args.keep < 0:
+                    raise ConfigError('--keep must be >= 0')
+                value = {'deleted' if args.apply else 'would_delete': store.prune(args.project, args.keep, args.apply)}
+            else:
+                parent = store.root / 'projects' / args.project / 'runs'
+                if args.run:
+                    value = read_json(parent / args.run / 'summary.json')
+                else:
+                    value = [read_json(p) for p in sorted(parent.glob('*/summary.json'))]
+        else:
+            data = load(args.config)
+            if args.command == 'validate':
+                value = {'valid': True, 'schema': 1, 'project': data['project'], 'root': str(data['_root'])}
+            else:
+                selected = selection(data, args.only)
+                if args.command == 'versions':
+                    locks = image_lock(data)['tools']
+                    value = []
+                    for name, spec in selected.items():
+                        record = locks.get(name)
+                        item = {'tool': name, 'selected_version': spec['version'], 'prepared': bool(record), 'record': record}
+                        if record:
+                            try:
+                                item['local_image'] = docker.inspect(record['id'])['Id']
+                            except docker.DockerError as e:
+                                item['error'] = str(e)
+                                status = 2
+                        else:
+                            status = 2
+                        value.append(item)
+                elif args.command == 'plan':
+                    value = plan(data, selected)
+                else:
+                    store = Store(args.state)
+                    if args.command == 'prepare':
+                        value = prepare.prepare(store, data, selected)
+                        status = 2 if any(t['status'] == 'prerequisite_missing' for t in value['tools']) else 0
+                    elif args.command == 'update-db':
+                        if len(selected) != 1:
+                            raise ConfigError('update-db requires exactly one tool (--only grype)')
+                        name = next(iter(selected))
+                        value = prepare.update_database(store, name, selected[name], image_lock(data))
+                    else:
+                        value = run(store, data, selected)
+                        status = exit_status(value)
+        print(json.dumps(value, indent=2, default=str))
+    except (ConfigError, ValueError, OSError, docker.DockerError, KeyError, subprocess.TimeoutExpired) as e:
+        print(json.dumps({'error': str(e), 'status': 'operational_failure'}), file=sys.stderr)
+        status = 2
+    except KeyboardInterrupt:
+        print(json.dumps({'error': 'cancelled', 'status': 'operational_failure'}), file=sys.stderr)
+        status = 130
+    return status

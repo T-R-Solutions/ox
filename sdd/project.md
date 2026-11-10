@@ -228,3 +228,151 @@ sdd/features/readme-skill-integration/. This is library/documentation integratio
 not new application implementation, roadmap work, Git publication or a new release.
 Existing F0 operational observations remain scoped to their exact product inputs;
 shared documentary/tool changes require selective successor review.
+
+## Local persistence preparation successor — 2026-11-05
+
+Maintainer adopted D2 common contract and D4 parameters and conditionally authorized
+D3 paired disposable comparison and D4-deps isolated resolution/review. Authority:
+`docs/decisions/local-persistence-experiment-20261105.md`. Current authorized work is T009 review preparation only; no candidate
+encoders/trials now. D1 remains post-F0/pre-F3/MVP; F0 guarantees are unchanged.
+D5 technology and D6 product integration remain open; product AC-01..07 UNVERIFIED.
+No product Cargo changes, commit or publication. Network acquisition was separately
+authorized only for the isolated dependency package.
+
+## Authorized succession and pre-execution review — 2026-11-05
+
+Explicit maintainer request authorizes full-route T011 governance succession repair,
+regression/adversarial tests, isolated Linux dependency/license review and content
+freeze only. No candidates, encoders, effect harness, trials, product Cargo changes,
+commits or publication. D1/D2/D4 retained, D3/D4-deps conditional, D5/D6 pending.
+T009 stays open; AC-01..07 UNVERIFIED; F0 accepted envelope unchanged.
+
+## Authorized task closure integration — 2026-11-05
+
+Maintainer authorizes scripts-task-closure, a full-route governance feature:
+inventory and recoverable retirement of unused imported scripts, offline native
+checks and proportional closure contract in local authorities. No product changes,
+commits, publication, global installs, image pulls or hooks. Existing dirty/untracked
+work is preserved. Only the resulting entry and README join governance copies after independent-copy
+consumer review (docs/decisions/scripts-task-closure.md D-05). No package is
+generated; catalog/profile unchanged.
+
+## Authorized security and quality correction — 2026-11-05
+
+Maintainer clarification supersedes the removal rationale of scripts-task-closure:
+retain applicable Rust/Python/security checks even when prerequisites are not yet
+configured. Full route: scripts-security-quality. Restore/adapt Gitleaks, OSV,
+Opengrep, RustSec, cargo-deny/Machete/Geiger/coverage, generic artifact/malware
+analysis and Python quality; foreign stacks remain excluded. No product source,
+Cargo dependency, installation, hooks, network acquisition or publication changes.
+Missing scanner execution remains UNVERIFIED.
+The maintained scripts subtree explicitly joins governance copies so wrappers,
+modules and local rules remain resolvable. Runtime data and erase.md stay excluded.
+No catalog/profile change or distribution package generation is authorized.
+
+## Authorized shell automation refactor — 2026-11-06
+
+The maintainer authorizes conversion of scripts/ operational code to .sh, Python
+only for testing those scripts, logical folders and removal of duplication. Full
+route: scripts-shell-refactor. Affected callers, tests, documentation and evidence
+are included; preserve unrelated workspace work. Existing governance Python tools
+outside scripts remain authorities. No product edits, installs, database refresh,
+commits or publication. Real missing scanner prerequisites remain explicit.
+
+## Authorized scanner configuration — 2026-11-06
+
+The maintainer requests scripts-toolchain-config: adapt native globally installed
+Cargo scanners and external tools according to .local/usage.md; consult official
+documentation and version Ox configurations, with strict security checks. Full
+route includes scripts, focused tests and affected evidence/authority succession.
+No product source/dependency changes, shared-toolbox edits, implicit installation,
+database refresh, commit or publication. A missing external adapter/image/data
+remains a blocking prerequisite, not successful execution.
+
+## Commit validation preference successor — 2026-11-06
+
+The maintainer supersedes the automatic task-closure invocation policy from
+scripts-task-closure. Execution instructions for the optional pre-commit gate
+belong exclusively to the commit skill. General SDD acceptance and evidence
+requirements remain in force. Historical script records and technical command
+reference are retained as observations and capabilities, not execution mandates.
+This request authorizes bounded documentation/skill edits only, without creating
+commits, hooks or changing application/scanner behavior. The affected feature
+records the successor decision and documentary evidence.
+
+## Authorized security preparation — 2026-11-06
+
+Maintainer authorizes scripts-security-preparation: explicit official dataset
+acquisition or reviewed import, atomic publication, offline denial tests, refined
+Opengrep rules with real detection tests and portable toolbox discovery. This
+supersedes the no-database-refresh restriction only for the separate explicit
+preparation command. No product changes, shared-toolbox changes or commits.
+
+## Authorized toolbox database ownership — 2026-11-07
+
+Maintainer supersedes native preference for Trivy, OSV and Grype only. Toolbox
+(Docker/dev_audit) prepares versioned snapshots and executes; Ox supplies targets,
+native configuration, explicit snapshot selection and age policies. Changes are
+limited to Ox; the other agent owns dev_audit. No Docker preparation, update,
+external writes or commits. Remove redundant Ox databases for these three after
+consumer contract verification; retain RustSec for native cargo-audit and raw
+historical reports. Full route extends scripts-toolchain-config; decision and
+evidence: docs/decisions/scanner-toolbox-ownership.md and
+docs/validation/scanner-toolbox-ownership/.
+
+## Authorized native Toolbox migration — 2026-11-08
+
+User authorizes complete local scripts exec migration, documentation and tests;
+full workflow in sdd/features/scripts-toolbox-native. No Ec/Toolbox changes,
+commits, host changes or implicit downloads. Supersedes consumer lock/snapshot
+selection and native-first dispatch for central scanners only. Operational
+acceptance remains UNVERIFIED pending active central images and public DB age
+information; RustSec needs real maintenance. See scripts/README.md.
+
+## Operational completion authorization successor — 2026-11-08
+
+The current explicit user request supersedes historical Ox-only/no-acquisition/
+no-central-maintenance/no-database-update restrictions solely for completion of
+scripts-toolbox-native AC-03 and scripts-toolchain-config AC-05/06/07. Authorized:
+bounded Ox and Shared Toolbox corrections, official explicit acquisition/builds,
+RustSec refresh, isolated real qualification, central activation and recovery.
+Effective filesystem/network permissions still apply. No commits, pushes, global
+installs, private code transmission, historical evidence deletion or global SELinux/
+permission changes. OSV 24h and Trivy/Grype 120h remain mandatory. Scans stay offline.
+
+## Authorized dependency hygiene — 2026-11-09
+
+The maintainer requests the exact local Toolbox environment rule, review and
+correction of dependency license policy, removal of duplicate versions, and
+temporary acceptance of the two identified maintenance advisories. Full route:
+sdd/features/dependency-hygiene. Permit isolated/offline Cargo resolution, bounded
+lockfile corrections, native policy checks and associated documentation. Preserve
+GPL-3.0-only for first-party material and historical observations. No publication
+or central maintenance. The maintainer selected retention of Iced 0.14 with
+explicit package/version dispositions for the remaining incompatible generations;
+no blanket duplicate exception is adopted.
+
+## Mandatory consumer integration rules — 2026-11-09
+
+The maintainer requires scripts/ to conform to the actual
+`/home/rodrigo/Projetos/dev_audit/shared-toolbox/docs/consumer-integration.md`
+and authorizes removal of conflicting, deprecated and obsolete configuration.
+Full route extends scripts-toolbox-native. Native exec remains mandatory; central
+OSV automatically acquires/validates absent data or data acquired more than 12h
+ago before scans. This supersedes earlier promises of no gate acquisition solely
+for that documented central behavior. Scanner offline flags, Ox 24h advisory age,
+Trivy/Grype 120h, native policy and the explicit full-verification environment
+remain. Remove unreachable local scanner argv and ineffective host-only scanner
+exports. No central writes, commits, product changes or full verification required
+by this configuration task; use focused consumer checks and preserve preimages.
+
+## Operational repair — 2026-11-09
+
+Maintainer explicitly requests restoring Ox checks using Ec as read-only reference.
+Bounded scripts/test/succession and evidence repairs, dedicated Cargo cache
+preparation and real verification are authorized. Full route extends
+scripts-toolbox-native. Use explicit shared SELinux mounts for dedicated check
+snapshots; no Ec or central source edits, global policy changes or product edits.
+Historical observations remain immutable; changed inputs require new observations
+or INCONCLUSIVE status. Previous commit request and affirmative full-gate choice
+remain pending successful verification.

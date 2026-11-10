@@ -1,4 +1,5 @@
 """Local distribution boundary and recursive archive inspection (stdlib only)."""
+
 from pathlib import PurePosixPath
 from io import BytesIO
 import gzip
@@ -9,31 +10,52 @@ import stat
 import tarfile
 import zipfile
 
-EXTERNAL_DOCUMENTS = frozenset({
-    'Ox_Roadmap_Arquitetura_v0.2.md',
-    'Ox_Comparativo_Skills_e_SDD_v1.0.md',
-    'Ox_Regras_SDD_Skills_AGENTS_v1.0.md',
-})
-ROOT_FILES = ('AGENTS.md', 'README.md', 'LICENSE', 'NOTICE')
-ROOT_DIRS = ('.codex/skills', 'sdd', 'tools/governance', 'config/governance', 'docs')
-PACKAGE_NAME = 'ox-governance.zip'
+EXTERNAL_DOCUMENTS = frozenset(
+    {
+        "Ox_Roadmap_Arquitetura_v0.2.md",
+        "Ox_Comparativo_Skills_e_SDD_v1.0.md",
+        "Ox_Regras_SDD_Skills_AGENTS_v1.0.md",
+    }
+)
+ROOT_FILES = (
+    "AGENTS.md",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "scripts/automate.sh",
+    "scripts/README.md",
+)
+ROOT_DIRS = (
+    "scripts",
+    ".codex/skills",
+    "sdd",
+    "tools/governance",
+    "config/governance",
+    "docs",
+)
+PACKAGE_NAME = "ox-governance.zip"
 MAX_EXPANDED = 128 * 1024 * 1024
 
 # Historical paths are translated only for preservation comparisons. No aliases
 # are installed in src/, and old observations retain their original identities.
 RELOCATIONS = (
-    ('src/fixtures/profile.json', 'config/governance/profile.json'),
-    ('src/fixtures/normative-coverage.json', 'config/governance/normative-coverage.json'),
-    ('src/fixtures/', 'tools/governance/tests/fixtures/'),
-    ('src/scripts/', 'tools/governance/scripts/'),
-    ('src/tests/', 'tools/governance/tests/'),
+    ("src/fixtures/profile.json", "config/governance/profile.json"),
+    (
+        "src/fixtures/normative-coverage.json",
+        "config/governance/normative-coverage.json",
+    ),
+    ("src/fixtures/", "tools/governance/tests/fixtures/"),
+    ("src/scripts/", "tools/governance/scripts/"),
+    ("src/tests/", "tools/governance/tests/"),
 )
 
 
 def relocated_path(relative):
     for previous, current in RELOCATIONS:
-        if relative == previous or (previous.endswith('/') and relative.startswith(previous)):
-            return current + relative[len(previous):]
+        if relative == previous or (
+            previous.endswith("/") and relative.startswith(previous)
+        ):
+            return current + relative[len(previous) :]
     return relative
 
 
@@ -41,69 +63,94 @@ def relocated_traceability(data):
     """Change only the two file-reference fields, preserving the JSON formatting."""
     rows = json.loads(data)
     for row in rows:
-        for key in ('implementation', 'oracle'):
+        for key in ("implementation", "oracle"):
             previous = row[key]
             current = relocated_path(previous)
             if current != previous:
-                data = data.replace(json.dumps(previous).encode(), json.dumps(current).encode())
+                data = data.replace(
+                    json.dumps(previous).encode(), json.dumps(current).encode()
+                )
     return data
 
 
 def succession_records(root):
     """Read the explicitly reviewed succession; never infer permission from drift."""
-    manifest = json.loads((root / 'docs/structure/files.json').read_text())
-    revisions = [r for r in manifest['revisions'] if r['id'] == 'governance-reconciliation-001']
+    manifest = json.loads((root / "docs/structure/files.json").read_text())
+    revisions = [
+        r for r in manifest["revisions"] if r["id"] == "governance-reconciliation-001"
+    ]
     if len(revisions) != 1:
-        raise ValueError('Exactly one governance reconciliation revision required')
+        raise ValueError("Exactly one governance reconciliation revision required")
     revision = revisions[0]
-    if revision['decision'] != 'docs/decisions/governance-reconciliation.md':
-        raise ValueError('Unexpected succession decision')
-    if not (root / revision['decision']).is_file():
-        raise ValueError('Missing succession decision')
-    rows = revision['records']
-    paths = [row['destination'] for row in rows]
-    expected = {'AGENTS.md', '.codex/skills/README.md', 'sdd/chain/README.md',
-                'config/governance/profile.json', '.codex/skills/commit-governance/SKILL.md',
-                'sdd/chain/commit-governance.md', 'tools/governance/scripts/run-checks.py',
-                'docs/development/sdd-skills.md'}
+    if revision["decision"] != "docs/decisions/governance-reconciliation.md":
+        raise ValueError("Unexpected succession decision")
+    if not (root / revision["decision"]).is_file():
+        raise ValueError("Missing succession decision")
+    rows = revision["records"]
+    paths = [row["destination"] for row in rows]
+    expected = {
+        "AGENTS.md",
+        ".codex/skills/README.md",
+        "sdd/chain/README.md",
+        "config/governance/profile.json",
+        ".codex/skills/commit-governance/SKILL.md",
+        "sdd/chain/commit-governance.md",
+        "tools/governance/scripts/run-checks.py",
+        "docs/development/sdd-skills.md",
+    }
     if len(paths) != len(set(paths)) or set(paths) != expected:
-        raise ValueError('Succession inventory differs from reviewed scope')
+        raise ValueError("Succession inventory differs from reviewed scope")
     for row in rows:
-        for field in ('sha256', 'previous_sha256'):
+        for field in ("sha256", "previous_sha256"):
             value = row.get(field)
-            if field == 'previous_sha256' and value is None:
+            if field == "previous_sha256" and value is None:
                 continue
-            if not isinstance(value, str) or len(value) != 64 or any(c not in '0123456789abcdef' for c in value):
-                raise ValueError('Invalid succession digest: ' + row['destination'])
-    return {row['destination']: row for row in rows}
+            if (
+                not isinstance(value, str)
+                or len(value) != 64
+                or any(c not in "0123456789abcdef" for c in value)
+            ):
+                raise ValueError("Invalid succession digest: " + row["destination"])
+    return {row["destination"]: row for row in rows}
 
 
 def succession_predecessor(root, row):
-    relative = row['destination']
-    expected = row['previous_sha256']
+    relative = row["destination"]
+    expected = row["previous_sha256"]
     if expected is None:
-        if row.get('previous') is not None:
-            raise ValueError('Unexpected succession predecessor: ' + relative)
+        if row.get("previous") is not None:
+            raise ValueError("Unexpected succession predecessor: " + relative)
         return None
-    source = root / row['previous']
+    source = root / row["previous"]
     path = source.resolve()
-    if not path.is_relative_to(root.resolve()) or not path.is_file() or source.is_symlink():
-        raise ValueError('Missing or escaping succession predecessor: ' + relative)
+    if (
+        not path.is_relative_to(root.resolve())
+        or not path.is_file()
+        or source.is_symlink()
+    ):
+        raise ValueError("Missing or escaping succession predecessor: " + relative)
     data = path.read_bytes()
     if hashlib.sha256(data).hexdigest() != expected:
-        raise ValueError('Succession predecessor changed: ' + relative)
+        raise ValueError("Succession predecessor changed: " + relative)
     return data
 
 
 def succession_errors(root):
     from skill_revision import errors as integration_errors, predecessor
+
     errors = integration_errors(root)
     for relative, row in succession_records(root).items():
         succession_predecessor(root, row)
         path = root / relative
-        if (not path.is_file() or path.is_symlink()
-                or hashlib.sha256(predecessor(root, relative, path.read_bytes())).hexdigest() != row['sha256']):
-            errors.append('Succession current changed/missing: ' + relative)
+        if (
+            not path.is_file()
+            or path.is_symlink()
+            or hashlib.sha256(
+                predecessor(root, relative, path.read_bytes())
+            ).hexdigest()
+            != row["sha256"]
+        ):
+            errors.append("Succession current changed/missing: " + relative)
     return errors
 
 
@@ -117,26 +164,30 @@ def preservation_bytes(root, relative):
     path = root / relative
     from skill_revision import predecessor
     from documentation_revision import predecessor as visual_predecessor
-    data = visual_predecessor(root, relative, path.read_bytes())
+    from closure_revision import predecessor as closure_predecessor
+
+    data = visual_predecessor(
+        root, relative, closure_predecessor(root, relative, path.read_bytes())
+    )
     data = predecessor(root, relative, data)
     data = documentary_predecessor(root, relative, data)
     row = succession_records(root).get(relative)
-    if row and hashlib.sha256(data).hexdigest() == row['sha256']:
+    if row and hashlib.sha256(data).hexdigest() == row["sha256"]:
         previous = succession_predecessor(root, row)
         if previous is not None:
             data = previous
-    registry = root / 'docs/validation/english-documentation/translations.json'
+    registry = root / "docs/validation/english-documentation/translations.json"
     if not registry.is_file():
         return data
     record = json.loads(registry.read_text()).get(relative)
-    if not record or hashlib.sha256(data).hexdigest() != record['translated_sha256']:
+    if not record or hashlib.sha256(data).hexdigest() != record["translated_sha256"]:
         return data
-    previous = (root / record['previous']).resolve()
+    previous = (root / record["previous"]).resolve()
     if not previous.is_relative_to(root.resolve()) or not previous.is_file():
-        raise ValueError('Missing or escaping translation predecessor: ' + relative)
+        raise ValueError("Missing or escaping translation predecessor: " + relative)
     original = previous.read_bytes()
-    if hashlib.sha256(original).hexdigest() != record['before_sha256']:
-        raise ValueError('Translation predecessor changed: ' + relative)
+    if hashlib.sha256(original).hexdigest() != record["before_sha256"]:
+        raise ValueError("Translation predecessor changed: " + relative)
     return original
 
 
@@ -146,37 +197,53 @@ def documentary_predecessor(root, relative, data):
     The registry is a content identity record, not permission. Unknown current
     bytes pass through and fail the original preservation comparison.
     """
-    registry = root / 'docs/validation/f0-reconciliation-20261101/document-succession.json'
+    registry = (
+        root / "docs/validation/f0-reconciliation-20261101/document-succession.json"
+    )
     if not registry.is_file():
         return data
     document = json.loads(registry.read_text())
-    if document.get('revision') != 'f0-document-reconciliation-001':
-        raise ValueError('Unexpected documentary succession revision')
+    if document.get("revision") != "f0-document-reconciliation-001":
+        raise ValueError("Unexpected documentary succession revision")
     expected = {
-        'sdd/features/skill-' + name + '/tasks.md' for name in (
-            'plugin-protocol-engineering', 'agent-runtime-engineering',
-            'autonomous-verification-engineering', 'workspace-integrity-engineering',
-            'iced-engineering', 'code-context-engineering',
-            'code-knowledge-graph-engineering', 'tool-output-engineering',
-            'agent-usage-accounting')
+        "sdd/features/skill-" + name + "/tasks.md"
+        for name in (
+            "plugin-protocol-engineering",
+            "agent-runtime-engineering",
+            "autonomous-verification-engineering",
+            "workspace-integrity-engineering",
+            "iced-engineering",
+            "code-context-engineering",
+            "code-knowledge-graph-engineering",
+            "tool-output-engineering",
+            "agent-usage-accounting",
+        )
     }
-    expected.update('sdd/features/' + feature + '/' + name for feature, names in (
-        ('governance-externalization', ('spec.md', 'tasks.md')),
-        ('product-foundation', ('spec.md', 'plan.md', 'tasks.md')),
-        ('governance-layout', ('spec.md', 'plan.md', 'tasks.md')),
-    ) for name in names)
-    records = document.get('records', [])
-    paths = [r['destination'] for r in records]
+    expected.update(
+        "sdd/features/" + feature + "/" + name
+        for feature, names in (
+            ("governance-externalization", ("spec.md", "tasks.md")),
+            ("product-foundation", ("spec.md", "plan.md", "tasks.md")),
+            ("governance-layout", ("spec.md", "plan.md", "tasks.md")),
+        )
+        for name in names
+    )
+    records = document.get("records", [])
+    paths = [r["destination"] for r in records]
     if len(paths) != len(set(paths)) or set(paths) != expected:
-        raise ValueError('Documentary succession scope differs from reviewed files')
+        raise ValueError("Documentary succession scope differs from reviewed files")
     for row in records:
-        for field in ('sha256', 'previous_sha256'):
+        for field in ("sha256", "previous_sha256"):
             value = row.get(field)
-            if not isinstance(value, str) or len(value) != 64 or any(c not in '0123456789abcdef' for c in value):
-                raise ValueError('Invalid documentary succession digest')
-        if row['destination'] == relative:
+            if (
+                not isinstance(value, str)
+                or len(value) != 64
+                or any(c not in "0123456789abcdef" for c in value)
+            ):
+                raise ValueError("Invalid documentary succession digest")
+        if row["destination"] == relative:
             previous = succession_predecessor(root, row)
-            if hashlib.sha256(data).hexdigest() == row['sha256']:
+            if hashlib.sha256(data).hexdigest() == row["sha256"]:
                 return previous
     return data
 
@@ -188,11 +255,11 @@ def preservation_digest(root, relative):
 def governance_scope():
     """A fresh receipt shared by the ZIP and runner; never product acceptance."""
     return {
-        'package_kind': 'governance',
-        'product_included': False,
-        'limitations': [
-            'Validation covers governance/skills/SDD, not the Ox Rust application.',
-            'Cargo workspace, binaries, installers and product integration tests are out of this package.',
+        "package_kind": "governance",
+        "product_included": False,
+        "limitations": [
+            "Validation covers governance/skills/SDD, not the Ox Rust application.",
+            "Cargo workspace, binaries, installers and product integration tests are out of this package.",
         ],
     }
 
@@ -200,12 +267,12 @@ def governance_scope():
 def scope_errors(receipt):
     """Fail closed when a governance receipt claims product coverage."""
     errors = []
-    if receipt.get('package_kind') != 'governance':
-        errors.append('Package kind must be governance')
-    if receipt.get('product_included') is not False:
-        errors.append('Governance package must exclude product')
-    if not isinstance(receipt.get('limitations'), list) or not receipt['limitations']:
-        errors.append('Governance scope limitations required')
+    if receipt.get("package_kind") != "governance":
+        errors.append("Package kind must be governance")
+    if receipt.get("product_included") is not False:
+        errors.append("Governance package must exclude product")
+    if not isinstance(receipt.get("limitations"), list) or not receipt["limitations"]:
+        errors.append("Governance scope limitations required")
     return errors
 
 
@@ -214,36 +281,54 @@ def sha(path):
 
 
 def transient(path):
-    return '.git' in path.parts or '__pycache__' in path.parts or path.as_posix().startswith('docs/validation/scratch/')
+    return (
+        ".git" in path.parts
+        or "__pycache__" in path.parts
+        or bool(path.parts and path.parts[0] == ".local")
+        or path.as_posix().startswith("docs/validation/scratch/")
+    )
 
 
 def product_record(path):
     """Product evidence depends on sources deliberately absent from governance exports."""
-    return path.as_posix().startswith((
-        'sdd/features/product-bootstrap/', 'docs/validation/product-bootstrap/',
-        'sdd/features/product-plugin-host/', 'docs/validation/product-plugin-host/',
-        'sdd/features/product-agent-runtime/', 'docs/validation/product-agent-runtime/',
-        'sdd/features/product-verification-engine/', 'docs/validation/product-verification-engine/',
-        'sdd/features/product-local-task-ui/', 'docs/validation/product-local-task-ui/',
-        'sdd/features/product-f0-gate/', 'docs/validation/f0-execution-20261102/',
-        'docs/validation/f0-resumption-20261103/',
-    ))
+    return path.as_posix().startswith(
+        (
+            "sdd/features/dependency-hygiene/",
+            "sdd/features/product-bootstrap/",
+            "docs/validation/product-bootstrap/",
+            "sdd/features/product-plugin-host/",
+            "docs/validation/product-plugin-host/",
+            "sdd/features/product-agent-runtime/",
+            "docs/validation/product-agent-runtime/",
+            "sdd/features/product-verification-engine/",
+            "docs/validation/product-verification-engine/",
+            "sdd/features/product-local-task-ui/",
+            "docs/validation/product-local-task-ui/",
+            "sdd/features/product-f0-gate/",
+            "docs/validation/f0-execution-20261102/",
+            "docs/validation/f0-resumption-20261103/",
+        )
+    )
 
 
 def distribution_files(root):
     """Governance only: documents, skills, SDD, tooling and evidence, not Cargo/product."""
     paths = [root / name for name in ROOT_FILES]
     for name in ROOT_DIRS:
-        paths.extend(p for p in (root / name).rglob('*')
-                     if (p.is_file() or p.is_symlink()) and not transient(p.relative_to(root))
-                     and not product_record(p.relative_to(root)))
+        paths.extend(
+            p
+            for p in (root / name).rglob("*")
+            if (p.is_file() or p.is_symlink())
+            and not transient(p.relative_to(root))
+            and not product_record(p.relative_to(root))
+        )
     return sorted(set(paths))
 
 
 def copy_distribution(root, destination):
     for source in distribution_files(root):
         if source.is_symlink() or not source.resolve().is_relative_to(root.resolve()):
-            raise ValueError(f'Nonportable distribution path: {source}')
+            raise ValueError(f"Nonportable distribution path: {source}")
         target = destination / source.relative_to(root)
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
@@ -258,32 +343,49 @@ def inspect_bytes(name, data, fingerprints, *, budget=None, depth=0):
     budget = [MAX_EXPANDED] if budget is None else budget
     budget[0] -= len(data)
     if budget[0] < 0 or depth > 8:
-        return [f'Archive inspection limit exceeded: {name}']
+        return [f"Archive inspection limit exceeded: {name}"]
     errors = []
-    if PurePosixPath(name.rsplit('::', 1)[-1].replace('\\', '/')).name in EXTERNAL_DOCUMENTS:
-        errors.append(f'External document name: {name}')
+    if (
+        PurePosixPath(name.rsplit("::", 1)[-1].replace("\\", "/")).name
+        in EXTERNAL_DOCUMENTS
+    ):
+        errors.append(f"External document name: {name}")
     digest = hashlib.sha256(data).hexdigest()
-    lines = [hashlib.sha256(line.strip()).hexdigest() for line in data.splitlines() if line.strip()]
+    lines = [
+        hashlib.sha256(line.strip()).hexdigest()
+        for line in data.splitlines()
+        if line.strip()
+    ]
     for original, record in fingerprints.items():
-        expected = record['line_hashes']
+        expected = record["line_hashes"]
         # Interior lines catch a wrapper attached to the first/last line as well.
         needle = expected[1:-1] if len(expected) > 4 else expected
-        found = bool(needle) and any(lines[i:i+len(needle)] == needle
-                                     for i, line in enumerate(lines) if line == needle[0])
-        if digest == record['sha256'] or found:
-            errors.append(f'External document content: {name}: {original}')
+        found = bool(needle) and any(
+            lines[i : i + len(needle)] == needle
+            for i, line in enumerate(lines)
+            if line == needle[0]
+        )
+        if digest == record["sha256"] or found:
+            errors.append(f"External document content: {name}: {original}")
 
     def member_path(member):
-        path = PurePosixPath(member.replace('\\', '/'))
-        if '.git' in path.parts:
-            errors.append(f'Git metadata in archive: {name}::{member}')
-        if path.is_absolute() or '..' in path.parts:
-            errors.append(f'Unsafe archive path: {name}::{member}')
-        return f'{name}::{member}'
+        path = PurePosixPath(member.replace("\\", "/"))
+        if ".git" in path.parts:
+            errors.append(f"Git metadata in archive: {name}::{member}")
+        if path.is_absolute() or ".." in path.parts:
+            errors.append(f"Unsafe archive path: {name}::{member}")
+        return f"{name}::{member}"
 
     def visit(member, content):
-        errors.extend(inspect_bytes(member_path(member), content, fingerprints,
-                                    budget=budget, depth=depth+1))
+        errors.extend(
+            inspect_bytes(
+                member_path(member),
+                content,
+                fingerprints,
+                budget=budget,
+                depth=depth + 1,
+            )
+        )
 
     try:
         stream = BytesIO(data)
@@ -292,48 +394,66 @@ def inspect_bytes(name, data, fingerprints, *, budget=None, depth=0):
                 for item in archive.infolist():
                     member_path(item.filename)
                     if stat.S_ISLNK(item.external_attr >> 16):
-                        errors.append(f'Archive symlink: {name}::{item.filename}')
+                        errors.append(f"Archive symlink: {name}::{item.filename}")
                     if item.is_dir():
                         continue
                     if item.file_size > budget[0]:
-                        errors.append(f'Archive inspection limit exceeded: {name}')
+                        errors.append(f"Archive inspection limit exceeded: {name}")
                         break
                     visit(item.filename, archive.read(item))
-        elif data.startswith(b'\x1f\x8b'):
+        elif data.startswith(b"\x1f\x8b"):
             stream.seek(0)
             with gzip.GzipFile(fileobj=stream) as compressed:
                 expanded = compressed.read(min(MAX_EXPANDED, max(0, budget[0])) + 1)
-            visit('<gzip>', expanded)
-        elif len(data) > 262 and data[257:262] == b'ustar':
+            visit("<gzip>", expanded)
+        elif len(data) > 262 and data[257:262] == b"ustar":
             stream.seek(0)
-            with tarfile.open(fileobj=stream, mode='r:') as archive:
+            with tarfile.open(fileobj=stream, mode="r:") as archive:
                 for member in archive:
                     member_path(member.name)
                     if member.isdir():
                         continue
                     if not member.isfile():
-                        errors.append(f'Archive nonregular member: {name}::{member.name}')
+                        errors.append(
+                            f"Archive nonregular member: {name}::{member.name}"
+                        )
                         continue
                     if member.size > budget[0]:
-                        errors.append(f'Archive inspection limit exceeded: {name}')
+                        errors.append(f"Archive inspection limit exceeded: {name}")
                         break
                     visit(member.name, archive.extractfile(member).read())
-        elif name.lower().endswith(('.zip','.tar','.gz','.tgz','.bz2','.xz','.7z','.rar')):
-            errors.append(f'Unrecognized or unsupported archive: {name}')
-    except (OSError,ValueError,EOFError,RuntimeError,tarfile.TarError,zipfile.BadZipFile) as exc:
-        errors.append(f'Cannot inspect archive: {name}: {exc}')
+        elif name.lower().endswith(
+            (".zip", ".tar", ".gz", ".tgz", ".bz2", ".xz", ".7z", ".rar")
+        ):
+            errors.append(f"Unrecognized or unsupported archive: {name}")
+    except (
+        OSError,
+        ValueError,
+        EOFError,
+        RuntimeError,
+        tarfile.TarError,
+        zipfile.BadZipFile,
+    ) as exc:
+        errors.append(f"Cannot inspect archive: {name}: {exc}")
     return errors
 
 
 def inspect_tree(root):
-    fingerprints = json.loads((root/'docs/validation/governance-externalization/external-fingerprints.json').read_text())
+    fingerprints = json.loads(
+        (
+            root
+            / "docs/validation/governance-externalization/external-fingerprints.json"
+        ).read_text()
+    )
     errors = []
     for path in distribution_files(root):
         rel = path.relative_to(root)
-        if transient(rel) or rel.parts[0] == 'dist':
+        if transient(rel) or rel.parts[0] == "dist":
             continue  # Package outputs are inspected directly; scratch is disposable.
         if path.is_symlink():
-            errors.append(f'Symlink not portable: {rel}')
+            errors.append(f"Symlink not portable: {rel}")
         elif path.is_file():
-            errors.extend(inspect_bytes(rel.as_posix(), path.read_bytes(), fingerprints))
+            errors.extend(
+                inspect_bytes(rel.as_posix(), path.read_bytes(), fingerprints)
+            )
     return errors

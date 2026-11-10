@@ -36,3 +36,19 @@ confirm that commands exist before running them.
 
 These instructions apply at the Ox root. Add subdirectory instructions only
 when a specific need exists; they must not contradict project authorities.
+
+## Local full-verification environment
+
+For every authorized full verification in this checkout, use the maintainer's
+explicit Toolbox selection from the Ox root:
+
+```bash
+TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox \
+TOOLBOX_SELINUX_LABEL=shared \
+CARGO_HOME="$PWD/.local/cargo-home" \
+  bash scripts/automate.sh --scope full
+```
+
+Do not omit TOOLBOX_BIN or assume toolbox is already in PATH. This records the
+local installation; it does not authorize automatic execution, downloads or
+central maintenance. Keep the public wrapper's portable override/PATH contract.

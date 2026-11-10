@@ -1,0 +1,17 @@
+{
+  "criterion": "FULL-01: all 16 mandatory full-scope checks succeed without findings/errors/blocked checks",
+  "method": "TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox TOOLBOX_SELINUX_LABEL=shared CARGO_HOME=\"$PWD/.local/cargo-home\" bash scripts/automate.sh --scope full",
+  "observed_at_utc": "2026-11-10T02:20:26.340486+00:00",
+  "status": "APPROVED",
+  "exit_code": 0,
+  "results": "docs/validation/ox-operational-repair-20261109/run-1QqSPPDE/results.json",
+  "results_sha256": "e89add9daa712094ec7c653177fc69a9e5038b552694f208b7ef73a36de763f8",
+  "inputs": "docs/validation/ox-operational-repair-20261109/observed-inputs.json",
+  "inputs_sha256": "7e54ddc21370e60e5f8cc3bddbc0b0f636576c069f061826f5c83238c4518843",
+  "limits": [
+    "Verification workflow acceptance only; no global product/graphical/storage acceptance.",
+    "One real-Docker unit opt-in skipped; mandatory native scanners actually executed separately in full scope.",
+    "Six graphical Rust tests remain dedicated-protocol opt-outs.",
+    "Native Bandit/Ruff reviewed false positives are source/policy-bound; no global severity/rule reduction."
+  ]
+}

@@ -1,0 +1,113 @@
+[
+  {
+    "feature": "scripts-task-closure",
+    "evidence_id": "E-COMMIT-CHOICE",
+    "changed_inputs": [
+      "README.md",
+      "sdd/project.md"
+    ]
+  },
+  {
+    "feature": "scripts-toolchain-config",
+    "evidence_id": "E-FAST",
+    "changed_inputs": [
+      "AGENTS.md",
+      "scripts/README.md",
+      "scripts/checks/run.sh",
+      "scripts/lib/backends.sh",
+      "scripts/lib/registry.sh",
+      "scripts/security/SOURCES.md",
+      "scripts/security/rules/ox.yml",
+      "scripts/tests/test_backends.py",
+      "sdd/evidence.md",
+      "sdd/project.md",
+      "sdd/workflow.md"
+    ]
+  },
+  {
+    "feature": "scripts-toolchain-config",
+    "evidence_id": "E-CONFIG",
+    "changed_inputs": [
+      "AGENTS.md",
+      "scripts/README.md",
+      "scripts/checks/run.sh",
+      "scripts/lib/backends.sh",
+      "scripts/lib/registry.sh",
+      "scripts/security/SOURCES.md",
+      "scripts/security/rules/ox.yml",
+      "scripts/tests/test_backends.py",
+      "sdd/evidence.md",
+      "sdd/project.md",
+      "sdd/workflow.md"
+    ]
+  },
+  {
+    "feature": "scripts-toolchain-config",
+    "evidence_id": "E-NEGATIVE",
+    "changed_inputs": [
+      "AGENTS.md",
+      "scripts/README.md",
+      "scripts/checks/run.sh",
+      "scripts/lib/backends.sh",
+      "scripts/lib/registry.sh",
+      "scripts/security/SOURCES.md",
+      "scripts/security/rules/ox.yml",
+      "scripts/tests/test_backends.py",
+      "sdd/evidence.md",
+      "sdd/project.md",
+      "sdd/workflow.md"
+    ]
+  },
+  {
+    "feature": "scripts-toolchain-config",
+    "evidence_id": "E-DETACHED",
+    "changed_inputs": [
+      "AGENTS.md",
+      "scripts/README.md",
+      "scripts/checks/run.sh",
+      "scripts/lib/backends.sh",
+      "scripts/lib/registry.sh",
+      "scripts/security/SOURCES.md",
+      "scripts/security/rules/ox.yml",
+      "scripts/tests/test_backends.py",
+      "sdd/evidence.md",
+      "sdd/project.md",
+      "sdd/workflow.md"
+    ]
+  },
+  {
+    "feature": "scripts-security-preparation",
+    "evidence_id": "E-DATA",
+    "changed_inputs": [
+      ".gitignore"
+    ]
+  },
+  {
+    "feature": "scripts-security-preparation",
+    "evidence_id": "E-RULES",
+    "changed_inputs": [
+      ".gitignore"
+    ]
+  },
+  {
+    "feature": "scripts-security-preparation",
+    "evidence_id": "E-SCAN",
+    "changed_inputs": [
+      ".gitignore"
+    ]
+  },
+  {
+    "feature": "scripts-security-preparation",
+    "evidence_id": "E-BACKENDS",
+    "changed_inputs": [
+      ".gitignore"
+    ]
+  },
+  {
+    "feature": "scripts-security-preparation",
+    "evidence_id": "E-AUDIT",
+    "changed_inputs": [
+      ".gitignore"
+    ]
+  }
+]

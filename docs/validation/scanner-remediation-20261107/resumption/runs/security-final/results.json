@@ -1,0 +1,104 @@
+{
+  "scope": "security",
+  "results": [
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "gitleaks",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-xBMtLH8r/gitleaks"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "state": "passed",
+      "tool_exit_code": 0,
+      "check": "gitleaks"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "osv",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-xBMtLH8r/osv"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 1,
+      "state": "findings",
+      "tool_exit_code": 1,
+      "check": "osv"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "opengrep",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-xBMtLH8r/opengrep"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 1,
+      "state": "findings",
+      "tool_exit_code": 1,
+      "check": "opengrep"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "audit",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-xBMtLH8r/audit"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 1,
+      "state": "findings",
+      "tool_exit_code": 1,
+      "check": "audit"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "bandit",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-xBMtLH8r/bandit"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 1,
+      "state": "findings",
+      "tool_exit_code": 1,
+      "check": "bandit"
+    }
+  ],
+  "product_acceptance": false,
+  "entry_sha256": "3fabd803c8f630f27b3f2522b29ae1bc11b50c4f8101b583a965c3cb2870c50a",
+  "omitted": [],
+  "not_selected": [
+    "Surfaces outside the chosen scope need explicit applicability review"
+  ],
+  "not_applicable": [],
+  "manual_evidence": [
+    "Graphical X11/Wayland acceptance: separate applicable protocol required"
+  ],
+  "limits": [
+    "Successful checks do not approve the product.",
+    "Offline flags are not OS isolation."
+  ]
+}

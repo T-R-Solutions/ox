@@ -1,0 +1,46 @@
+--- previous/sdd/project.md
++++ sdd/project.md
+@@ -253,8 +253,7 @@
+ inventory and recoverable retirement of unused imported scripts, offline native
+ checks and proportional closure contract in local authorities. No product changes,
+ commits, publication, global installs, image pulls or hooks. Existing dirty/untracked
+-work is preserved. Commands: `bash scripts/automate.sh --scope governance`,
+-`--scope rust`, `--scope full`; `--plan` is read-only. Only the resulting entry and README join governance copies after independent-copy
++work is preserved. Only the resulting entry and README join governance copies after independent-copy
+ consumer review (docs/decisions/scripts-task-closure.md D-05). No package is
+ generated; catalog/profile unchanged.
+ 
+@@ -266,9 +265,7 @@
+ Opengrep, RustSec, cargo-deny/Machete/Geiger/coverage, generic artifact/malware
+ analysis and Python quality; foreign stacks remain excluded. No product source,
+ Cargo dependency, installation, hooks, network acquisition or publication changes.
+-Commands: scripts/automate.py --scope security|quality|full, --check NAME; inspect
+-with --plan. Official-source preparation belongs in temporary erase.md, permanent
+-prerequisites in scripts/README.md. Missing scanner execution remains UNVERIFIED.
++Missing scanner execution remains UNVERIFIED.
+ The maintained scripts subtree explicitly joins governance copies so wrappers,
+ modules and local rules remain resolvable. Runtime data and erase.md stay excluded.
+ No catalog/profile change or distribution package generation is authorized.
+@@ -291,3 +288,22 @@
+ No product source/dependency changes, shared-toolbox edits, implicit installation,
+ database refresh, commit or publication. A missing external adapter/image/data
+ remains a blocking prerequisite, not successful execution.
++
++## Commit validation preference successor — 2026-11-06
++
++The maintainer supersedes the automatic task-closure invocation policy from
++scripts-task-closure. Execution instructions for the optional pre-commit gate
++belong exclusively to the commit skill. General SDD acceptance and evidence
++requirements remain in force. Historical script records and technical command
++reference are retained as observations and capabilities, not execution mandates.
++This request authorizes bounded documentation/skill edits only, without creating
++commits, hooks or changing application/scanner behavior. The affected feature
++records the successor decision and documentary evidence.
++
++## Authorized security preparation — 2026-11-06
++
++Maintainer authorizes scripts-security-preparation: explicit official dataset
++acquisition or reviewed import, atomic publication, offline denial tests, refined
++Opengrep rules with real detection tests and portable toolbox discovery. This
++supersedes the no-database-refresh restriction only for the separate explicit
++preparation command. No product changes, shared-toolbox changes or commits.

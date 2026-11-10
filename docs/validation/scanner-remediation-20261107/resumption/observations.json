@@ -1,0 +1,509 @@
+{
+  "environment": "Linux-7.3.1-1-default-x86_64-with-glibc2.44",
+  "observed_at": "2026-11-07T19:06:52.545249+00:00",
+  "results": [
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "sdd-structure",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": null,
+      "finding_count": null,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "ox",
+      "state": "failed",
+      "exit_code": 1,
+      "tool_exit_code": null,
+      "finding_count": null,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "governance-tests",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": null,
+      "finding_count": null,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "rust-fmt",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": null,
+      "finding_count": null,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "rust-check",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": null,
+      "finding_count": null,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "rust-build",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": null,
+      "finding_count": null,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "rust-test",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": null,
+      "finding_count": null,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "rust-clippy",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": null,
+      "finding_count": null,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "gitleaks",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "osv",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 2,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "opengrep",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 23,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "audit",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 2,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "bandit",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 90,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "machete",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "ruff",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 95,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "full-observed",
+      "source": ".local/checks/run-1rq9nSXj",
+      "check": "deny",
+      "state": "findings",
+      "exit_code": 6,
+      "tool_exit_code": 6,
+      "finding_count": 177,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "security-final",
+      "source": ".local/checks/run-xBMtLH8r",
+      "check": "gitleaks",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "security-final",
+      "source": ".local/checks/run-xBMtLH8r",
+      "check": "osv",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 2,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "security-final",
+      "source": ".local/checks/run-xBMtLH8r",
+      "check": "opengrep",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 23,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "security-final",
+      "source": ".local/checks/run-xBMtLH8r",
+      "check": "audit",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 2,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "security-final",
+      "source": ".local/checks/run-xBMtLH8r",
+      "check": "bandit",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 94,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "quality-final",
+      "source": ".local/checks/run-Idb5XFkF",
+      "check": "machete",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "quality-final",
+      "source": ".local/checks/run-Idb5XFkF",
+      "check": "ruff",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 1,
+      "finding_count": 98,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "quality-final",
+      "source": ".local/checks/run-Idb5XFkF",
+      "check": "deny",
+      "state": "findings",
+      "exit_code": 6,
+      "tool_exit_code": 6,
+      "finding_count": 177,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "quality-final",
+      "source": ".local/checks/run-Idb5XFkF",
+      "check": "geiger",
+      "state": "error",
+      "exit_code": 2,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "Incomplete Geiger member reports; all workspace members attempted",
+      "members": [
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-app/Cargo.toml",
+          "state": "error",
+          "exit_code": 2,
+          "tool_exit_code": 0,
+          "reason": "Incomplete Geiger report; raw omissions and diagnostics retained"
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-ui/Cargo.toml",
+          "state": "error",
+          "exit_code": 2,
+          "tool_exit_code": 0,
+          "reason": "Incomplete Geiger report; raw omissions and diagnostics retained"
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-agent/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-verification/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-core/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-plugin/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-policy/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-task/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-workspace/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-storage/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-context/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-graph/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-output/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-observability/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-sdd/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        },
+        {
+          "manifest": "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger/source/application/crates/ox-skills/Cargo.toml",
+          "state": "recorded",
+          "exit_code": 0,
+          "tool_exit_code": 0,
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "run": "quality-final",
+      "source": ".local/checks/run-Idb5XFkF",
+      "check": "trivy",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "quality-final",
+      "source": ".local/checks/run-Idb5XFkF",
+      "check": "sbom",
+      "state": "recorded",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "quality-final",
+      "source": ".local/checks/run-Idb5XFkF",
+      "check": "grype",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "quality-final",
+      "source": ".local/checks/run-Idb5XFkF",
+      "check": "malware",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 0,
+      "finding_count": 1,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "quality-final",
+      "source": ".local/checks/run-Idb5XFkF",
+      "check": "shellcheck",
+      "state": "passed",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "coverage-observed",
+      "source": ".local/checks/run-2BKC0rlG",
+      "check": "coverage",
+      "state": "recorded",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": null,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "coverage-observed",
+      "source": ".local/checks/run-2BKC0rlG",
+      "check": "geiger",
+      "state": "error",
+      "exit_code": 2,
+      "tool_exit_code": 101,
+      "finding_count": null,
+      "reason": "Incomplete Geiger report",
+      "members": []
+    },
+    {
+      "run": "coverage-observed",
+      "source": ".local/checks/run-2BKC0rlG",
+      "check": "sbom",
+      "state": "recorded",
+      "exit_code": 0,
+      "tool_exit_code": 0,
+      "finding_count": 0,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "coverage-observed",
+      "source": ".local/checks/run-2BKC0rlG",
+      "check": "malware",
+      "state": "findings",
+      "exit_code": 1,
+      "tool_exit_code": 0,
+      "finding_count": 1,
+      "reason": "",
+      "members": null
+    },
+    {
+      "run": "history-observed",
+      "source": ".local/checks/run-ZxSmQMl8",
+      "check": "history",
+      "state": "findings",
+      "exit_code": 10,
+      "tool_exit_code": 10,
+      "finding_count": 824,
+      "reason": "",
+      "members": null
+    }
+  ],
+  "limitations": [
+    "Raw reports retain exact source snapshot and tool identities; source/build/dataset directories remain in their original private runs, not copied here.",
+    "Full observed run preceded the final shell-only refinements; current scripts tests and final affected scanner runs are selective successors.",
+    "No blanket license/duplicate exception or product/GUI acceptance."
+  ]
+}

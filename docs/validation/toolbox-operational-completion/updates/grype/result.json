@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/home/rodrigo/Projetos/ox/scripts/toolbox.sh",
+    "exec",
+    "--tool",
+    "grype",
+    "--project-root",
+    "/home/rodrigo/Projetos/ox/.local/build/toolbox-completion/fixtures",
+    "--results",
+    "/home/rodrigo/Projetos/ox/docs/validation/toolbox-operational-completion/updates/grype",
+    "--maintenance",
+    "--network",
+    "bridge",
+    "--timeout",
+    "600",
+    "--diagnostic-file",
+    "/home/rodrigo/Projetos/ox/docs/validation/toolbox-operational-completion/updates/grype/execution.json",
+    "--env",
+    "GRYPE_DB_AUTO_UPDATE=true",
+    "--",
+    "db",
+    "update"
+  ],
+  "exit": 0,
+  "selection_changed": true
+}

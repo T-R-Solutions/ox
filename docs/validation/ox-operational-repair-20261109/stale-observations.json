@@ -1,0 +1,117 @@
+[
+  {
+    "feature": "scripts-toolbox-native",
+    "id": "E-SELINUX-LOCAL",
+    "changed_inputs": [
+      "scripts/README.md",
+      "scripts/automate.sh",
+      "scripts/checks/run.sh",
+      "scripts/lib/backends.sh",
+      "scripts/lib/registry.sh",
+      "scripts/lib/reports.sh",
+      "scripts/tests/test_backends.py",
+      "scripts/tests/test_process_lifecycle.py",
+      "scripts/tests/test_real_security_backends.py",
+      "scripts/tests/test_selinux_transport.py",
+      "scripts/toolbox.sh",
+      "sdd/features/scripts-toolbox-native/plan.md",
+      "sdd/features/scripts-toolbox-native/spec.md",
+      "sdd/features/scripts-toolbox-native/tasks.md",
+      "sdd/features/scripts-toolbox-native/traceability.json"
+    ]
+  },
+  {
+    "feature": "scripts-toolbox-native",
+    "id": "E-SELINUX-REAL",
+    "changed_inputs": [
+      "scripts/README.md",
+      "scripts/automate.sh",
+      "scripts/checks/run.sh",
+      "scripts/lib/backends.sh",
+      "scripts/lib/registry.sh",
+      "scripts/lib/reports.sh",
+      "scripts/tests/test_backends.py",
+      "scripts/tests/test_process_lifecycle.py",
+      "scripts/tests/test_real_security_backends.py",
+      "scripts/tests/test_selinux_transport.py",
+      "scripts/toolbox.sh",
+      "sdd/features/scripts-toolbox-native/plan.md",
+      "sdd/features/scripts-toolbox-native/spec.md",
+      "sdd/features/scripts-toolbox-native/tasks.md",
+      "sdd/features/scripts-toolbox-native/traceability.json"
+    ]
+  },
+  {
+    "feature": "scripts-toolchain-config",
+    "id": "E-NATIVE-RECONCILIATION",
+    "changed_inputs": [
+      "scripts/lib/backends.sh",
+      "scripts/checks/run.sh",
+      "scripts/tests/test_backends.py",
+      "tools/governance/tests/test_security_quality.py",
+      "tools/governance/scripts/closure_revision.py",
+      "tools/governance/tests/test_native_exec_succession.py",
+      "sdd/project.md",
+      "docs/decisions/scripts-toolbox-native.md",
+      "sdd/features/scripts-toolchain-config/spec.md",
+      "sdd/features/scripts-toolchain-config/plan.md",
+      "sdd/features/scripts-toolchain-config/tasks.md"
+    ]
+  },
+  {
+    "feature": "product-plugin-host",
+    "id": "E-UI-RECONCILIATION",
+    "changed_inputs": [
+      "application/Cargo.lock"
+    ]
+  },
+  {
+    "feature": "product-plugin-host",
+    "id": "E-UI-TEST",
+    "changed_inputs": [
+      "application/Cargo.lock"
+    ]
+  },
+  {
+    "feature": "product-agent-runtime",
+    "id": "E-UI-RECONCILIATION",
+    "changed_inputs": [
+      "application/Cargo.lock"
+    ]
+  },
+  {
+    "feature": "product-agent-runtime",
+    "id": "E-UI-TEST",
+    "changed_inputs": [
+      "application/Cargo.lock"
+    ]
+  },
+  {
+    "feature": "product-verification-engine",
+    "id": "E-UI-RECONCILIATION",
+    "changed_inputs": [
+      "application/Cargo.lock"
+    ]
+  },
+  {
+    "feature": "product-verification-engine",
+    "id": "E-UI-TEST",
+    "changed_inputs": [
+      "application/Cargo.lock"
+    ]
+  },
+  {
+    "feature": "dependency-hygiene",
+    "id": "E-REVIEW",
+    "changed_inputs": [
+      "AGENTS.md"
+    ]
+  },
+  {
+    "feature": "readme-skill-integration",
+    "id": "E-VISUAL-RENDER-OBSERVATION",
+    "changed_inputs": [
+      "docs/assets/check.py"
+    ]
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001"
+    ],
+    "implementation": "scripts/security/prepare-datasets.sh",
+    "oracle": "scripts/tests/test_preparation.py"
+  },
+  {
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T002"
+    ],
+    "implementation": "scripts/security/rules/ox.yml",
+    "oracle": "scripts/tests/rules/ox.py.txt"
+  },
+  {
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T003"
+    ],
+    "implementation": "scripts/lib/backends.sh",
+    "oracle": "scripts/tests/test_backends.py"
+  },
+  {
+    "acceptance": "AC-04",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001"
+    ],
+    "implementation": "scripts/security/prepare-datasets.sh",
+    "oracle": "scripts/tests/test_preparation.py"
+  }
+]

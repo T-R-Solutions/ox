@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "run": "20261107T172450.869232Z-403791a42b44",
+  "project": "ox",
+  "started_at": "2026-11-07T17:24:50.932236+00:00",
+  "configuration_sha256": "820eca033ec76e6e7a29769435690d39c2aa45f4f7d002931f251ee196c538e1",
+  "inputs_sha256": "2dfb2e62dec502f9d7d12b94184e7a92e11502332fcb84b405d549a927674cd5",
+  "tools": [
+    {
+      "tool": "osv-scanner",
+      "version": "2.7.0",
+      "variant": "api",
+      "status": "findings",
+      "reason": "2 vulnerabilities",
+      "network": "none",
+      "timeout": 600,
+      "image": "sha256:28cc2f84819da6ea032c594a50aaae14bba7e328290a5d44094d112a9c667c1e",
+      "argv": [
+        "scan",
+        "source",
+        "--offline",
+        "--all-packages",
+        "--all-vulns",
+        "--no-call-analysis=rust",
+        "--config",
+        "/src/scripts/config/osv-scanner.toml",
+        "--format",
+        "json",
+        "--lockfile",
+        "/src/application/Cargo.lock"
+      ],
+      "environment": {
+        "OSV_SCANNER_LOCAL_DB_CACHE_DIRECTORY": "/out/database",
+        "OSV_SCALIBR_LOCAL_DB_CACHE_DIRECTORY": "/out/database"
+      },
+      "started_at": "2026-11-07T17:24:50.960047+00:00",
+      "output": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/osv-scanner/volume/projects/ox/runs/20261107T172450.869232Z-403791a42b44",
+      "tool_exit_code": 1,
+      "database": {
+        "files": {
+          "osv-scalibr/crates.io/all.zip": {
+            "mode": 384,
+            "sha256": "b876ea4aa37d11a7f212e49e3837726d0bf73e8e26680c577a55348ddd91b644"
+          },
+          "osv-scalibr/npm/all.zip": {
+            "mode": 384,
+            "sha256": "cc2efc57b8ca818e3a57a502d03991030a43b6aea0bf0a1035d973ae887028e6"
+          },
+          "osv-scanner/crates.io/all.zip": {
+            "mode": 384,
+            "sha256": "b876ea4aa37d11a7f212e49e3837726d0bf73e8e26680c577a55348ddd91b644"
+          },
+          "osv-scanner/npm/all.zip": {
+            "mode": 384,
+            "sha256": "cc2efc57b8ca818e3a57a502d03991030a43b6aea0bf0a1035d973ae887028e6"
+          }
+        },
+        "id": "278f1a92df9e920ee1ca5b0d49830a68bceea7b2a20026dd76137c46663a4323",
+        "image": "sha256:28cc2f84819da6ea032c594a50aaae14bba7e328290a5d44094d112a9c667c1e",
+        "note": "Downloaded via HTTPS from official OSV storage; local hashes bind snapshot bytes, not signatures.",
+        "prepared_at": "2026-11-06T23:51:41.276750+00:00",
+        "schema": 1,
+        "sources": [
+          {
+            "sha256": "b876ea4aa37d11a7f212e49e3837726d0bf73e8e26680c577a55348ddd91b644",
+            "url": "https://osv-vulnerabilities.storage.googleapis.com/crates.io/all.zip"
+          },
+          {
+            "sha256": "cc2efc57b8ca818e3a57a502d03991030a43b6aea0bf0a1035d973ae887028e6",
+            "url": "https://osv-vulnerabilities.storage.googleapis.com/npm/all.zip"
+          }
+        ],
+        "tool": "osv-scanner",
+        "version": "2.7.0"
+      },
+      "command": [
+        "docker",
+        "run",
+        "--pull=never",
+        "--name",
+        "toolbox-5f56d2a6957c4b45a89e6ab6663f3339",
+        "--init",
+        "--read-only",
+        "--user",
+        "1000:1000",
+        "--cap-drop=ALL",
+        "--security-opt=no-new-privileges:true",
+        "--network",
+        "none",
+        "--tmpfs",
+        "/tmp:rw,nosuid,nodev,mode=1777",
+        "--shm-size=256m",
+        "--volume",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-xBMtLH8r/osv/source:/src:ro,Z",
+        "--volume",
+        "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/osv-scanner/volume/projects/ox/runs/20261107T172450.869232Z-403791a42b44:/out:rw,Z",
+        "--workdir",
+        "/src",
+        "--env",
+        "HOME=/tmp/home",
+        "--env",
+        "XDG_CACHE_HOME=/tmp/cache",
+        "--volume",
+        "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/osv-scanner/volume/projects/ox/runs/20261107T172450.869232Z-403791a42b44/database:/db:ro,Z",
+        "--env",
+        "OSV_SCALIBR_LOCAL_DB_CACHE_DIRECTORY=/out/database",
+        "--env",
+        "OSV_SCANNER_LOCAL_DB_CACHE_DIRECTORY=/out/database",
+        "sha256:28cc2f84819da6ea032c594a50aaae14bba7e328290a5d44094d112a9c667c1e",
+        "scan",
+        "source",
+        "--offline",
+        "--all-packages",
+        "--all-vulns",
+        "--no-call-analysis=rust",
+        "--config",
+        "/src/scripts/config/osv-scanner.toml",
+        "--format",
+        "json",
+        "--lockfile",
+        "/src/application/Cargo.lock"
+      ],
+      "runtime_exit_code": 1,
+      "container_state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 1,
+        "Error": "",
+        "StartedAt": "2026-11-07T17:24:51.333159922Z",
+        "FinishedAt": "2026-11-07T17:24:51.587083768Z"
+      },
+      "timed_out": false,
+      "cancelled": false,
+      "runtime_error": null,
+      "duration_seconds": 0.402,
+      "finished_at": "2026-11-07T17:24:51.883927+00:00"
+    }
+  ],
+  "finished_at": "2026-11-07T17:24:51.988720+00:00",
+  "sources_unchanged": true,
+  "directory": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/.local/state/projects/ox/runs/20261107T172450.869232Z-403791a42b44"
+}

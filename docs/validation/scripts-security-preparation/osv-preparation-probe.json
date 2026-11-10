@@ -1,0 +1,180 @@
+{
+  "results": [
+    {
+      "source": {
+        "path": "/home/rodrigo/Projetos/ox/application/Cargo.lock",
+        "type": "lockfile"
+      },
+      "packages": [
+        {
+          "package": {
+            "name": "pin-utils",
+            "version": "0.1.1",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/pin-utils@0.1.1"
+          },
+          "groups": [
+            {
+              "ids": [
+                "RUSTSEC-2026-0441"
+              ],
+              "aliases": [
+                "RUSTSEC-2026-0441"
+              ],
+              "max_severity": ""
+            }
+          ],
+          "vulnerabilities": [
+            {
+              "affected": [
+                {
+                  "database_specific": {
+                    "categories": [],
+                    "cvss": null,
+                    "informational": "unmaintained",
+                    "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0441.json"
+                  },
+                  "ecosystem_specific": {
+                    "affected_functions": null,
+                    "affects": {
+                      "arch": [],
+                      "functions": [],
+                      "os": []
+                    }
+                  },
+                  "package": {
+                    "ecosystem": "crates.io",
+                    "name": "pin-utils",
+                    "purl": "pkg:cargo/pin-utils"
+                  },
+                  "ranges": [
+                    {
+                      "events": [
+                        {
+                          "introduced": "0.0.0-0"
+                        }
+                      ],
+                      "type": "SEMVER"
+                    }
+                  ]
+                }
+              ],
+              "database_specific": {
+                "license": "CC0-1.0"
+              },
+              "details": "The [upstream repository] was archived on October 1, 2026, after the\nrelease of version 0.1.1.\n\nFor local pinning, replace `pin_mut!` with [`core::pin::pin!`], available\nsince Rust 1.68. For pin projection, replace `unsafe_pinned!` and\n`unsafe_unpinned!` with [`pin-project`] or [`pin-project-lite`].\n\n[upstream repository]: https://github.com/rust-lang/pin-utils\n[`core::pin::pin!`]: https://doc.rust-lang.org/core/pin/macro.pin.html\n[`pin-project`]: https://crates.io/crates/pin-project\n[`pin-project-lite`]: https://crates.io/crates/pin-project-lite",
+              "id": "RUSTSEC-2026-0441",
+              "modified": "2026-11-05T09:00:02.627533155Z",
+              "published": "2026-10-01T12:00:00Z",
+              "references": [
+                {
+                  "type": "PACKAGE",
+                  "url": "https://crates.io/crates/pin-utils"
+                },
+                {
+                  "type": "ADVISORY",
+                  "url": "https://rustsec.org/advisories/RUSTSEC-2026-0441.html"
+                },
+                {
+                  "type": "WEB",
+                  "url": "https://github.com/rust-lang/team/pull/2787"
+                },
+                {
+                  "type": "REPORT",
+                  "url": "https://github.com/rustsec/advisory-db/issues/3314"
+                }
+              ],
+              "schema_version": "1.9.2",
+              "summary": "`pin-utils` is unmaintained"
+            }
+          ]
+        },
+        {
+          "package": {
+            "name": "ttf-parser",
+            "version": "0.25.1",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/ttf-parser@0.25.1"
+          },
+          "groups": [
+            {
+              "ids": [
+                "RUSTSEC-2026-0192"
+              ],
+              "aliases": [
+                "RUSTSEC-2026-0192"
+              ],
+              "max_severity": ""
+            }
+          ],
+          "vulnerabilities": [
+            {
+              "affected": [
+                {
+                  "database_specific": {
+                    "categories": [],
+                    "cvss": null,
+                    "informational": "unmaintained",
+                    "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0192.json"
+                  },
+                  "ecosystem_specific": {
+                    "affected_functions": null,
+                    "affects": {
+                      "arch": [],
+                      "functions": [],
+                      "os": []
+                    }
+                  },
+                  "package": {
+                    "ecosystem": "crates.io",
+                    "name": "ttf-parser",
+                    "purl": "pkg:cargo/ttf-parser"
+                  },
+                  "ranges": [
+                    {
+                      "events": [
+                        {
+                          "introduced": "0.0.0-0"
+                        }
+                      ],
+                      "type": "SEMVER"
+                    }
+                  ]
+                }
+              ],
+              "database_specific": {
+                "license": "CC0-1.0"
+              },
+              "details": "The author of `ttf-parser` has stated that the crate is unmaintained and will not receive further fixes (see the referenced issue).\n\n## Alternative(s)\n\n- [`skrifa`](https://crates.io/crates/skrifa), an actively maintained TrueType and OpenType font parsing crate, part of the Google Fonts \"oxidize\" (`fontations`) project.",
+              "id": "RUSTSEC-2026-0192",
+              "modified": "2026-06-29T21:15:04.384453633Z",
+              "published": "2026-06-28T12:00:00Z",
+              "references": [
+                {
+                  "type": "PACKAGE",
+                  "url": "https://crates.io/crates/ttf-parser"
+                },
+                {
+                  "type": "ADVISORY",
+                  "url": "https://rustsec.org/advisories/RUSTSEC-2026-0192.html"
+                },
+                {
+                  "type": "REPORT",
+                  "url": "https://github.com/harfbuzz/ttf-parser/issues/217"
+                }
+              ],
+              "schema_version": "1.7.5",
+              "summary": "`ttf-parser` is unmaintained"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "experimental_config": {
+    "licenses": {
+      "summary": false,
+      "allowlist": null
+    }
+  }
+}

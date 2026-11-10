@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/home/rodrigo/Projetos/ox/scripts/toolbox.sh",
+    "exec",
+    "--tool",
+    "trivy",
+    "--project-root",
+    "/home/rodrigo/Projetos/ox/.local/build/toolbox-completion/fixtures",
+    "--results",
+    "/home/rodrigo/Projetos/ox/docs/validation/toolbox-operational-completion/updates/trivy",
+    "--maintenance",
+    "--network",
+    "bridge",
+    "--timeout",
+    "600",
+    "--diagnostic-file",
+    "/home/rodrigo/Projetos/ox/docs/validation/toolbox-operational-completion/updates/trivy/execution.json",
+    "--env",
+    "TRIVY_SKIP_DB_UPDATE=false",
+    "--",
+    "fs",
+    "--download-db-only",
+    "--no-progress"
+  ],
+  "exit": 0,
+  "selection_changed": true
+}

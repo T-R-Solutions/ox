@@ -1,0 +1,70 @@
+[
+  {
+    "argv": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--root",
+      "/home/rodrigo/Projetos/ox",
+      "--check",
+      "coverage",
+      "--output",
+      "/home/rodrigo/Projetos/ox/.local/checks/run-2BKC0rlG/coverage"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "recorded",
+    "tool_exit_code": 0,
+    "check": "coverage"
+  },
+  {
+    "argv": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--root",
+      "/home/rodrigo/Projetos/ox",
+      "--check",
+      "geiger",
+      "--output",
+      "/home/rodrigo/Projetos/ox/.local/checks/run-2BKC0rlG/geiger"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 2,
+    "state": "error",
+    "tool_exit_code": 101,
+    "check": "geiger"
+  },
+  {
+    "argv": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--root",
+      "/home/rodrigo/Projetos/ox",
+      "--check",
+      "sbom",
+      "--output",
+      "/home/rodrigo/Projetos/ox/.local/checks/run-2BKC0rlG/sbom"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "recorded",
+    "tool_exit_code": 0,
+    "check": "sbom"
+  },
+  {
+    "argv": [
+      "bash",
+      "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+      "--root",
+      "/home/rodrigo/Projetos/ox",
+      "--check",
+      "malware",
+      "--output",
+      "/home/rodrigo/Projetos/ox/.local/checks/run-2BKC0rlG/malware"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 1,
+    "state": "findings",
+    "tool_exit_code": 0,
+    "check": "malware"
+  }
+]

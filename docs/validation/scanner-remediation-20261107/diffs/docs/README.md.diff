@@ -1,0 +1,31 @@
+--- previous/docs/README.md
++++ docs/README.md
+@@ -60,6 +60,7 @@
+ | [Índice de features](../sdd/features/README.md) | Encontrar especificações e aceitação por entrega |
+ | [Integração SDD/skills](development/sdd-skills.md) | Selecionar e registrar métodos sem ativação automática |
+ | [Governança](development/governance.md) | Checks Python, preservação, exportação e empacotamento |
++| [Automação local](../scripts/README.md) | Escopos Bash, scanners, configurações, preparo explícito de bases e limites offline |
+ | [Compartilhamento e recuperação](development/sharing.md) | Fronteiras da cópia e recuperação histórica |
+ 
+ ## Consultar decisões
+@@ -74,6 +75,9 @@
+ - [Atualização de versões](decisions/version-update-policy.md): avaliação e promoção.
+ - [Persistência local](decisions/local-persistence-proposal.md): proposta ainda sem implementação autorizada.
+ - [Decisões abertas](decisions/open-questions.md): escolhas pendentes.
++- [Automação Bash](decisions/scripts-shell-refactor.md) e
++  [segurança e qualidade](decisions/scripts-security-quality.md): organização,
++  capacidades mantidas e limites dos checks.
+ - [Licenciamento](licensing/review.md): material próprio e direitos pendentes.
+ 
+ ## Interpretar as evidências
+@@ -93,6 +97,10 @@
+   sucessão de versões, recuperação e verificações da governança.
+ - [Reestruturação documental](validation/documentation-refresh-20261104/report.md):
+   arquivos, checks e limitações desta revisão.
++- [Preparo de segurança](validation/scripts-security-preparation/report.md):
++  bases, scanners reais, testes offline e ferramentas opcionais não verificadas.
++- [Manutenção documental](validation/documentation-maintenance-20261106/report.md):
++  índices, ignore local, sucessão de evidências e pendências anteriores.
+ 
+ Mantenha este índice ao criar ou mover uma entrada de documentação. Atualize a
+ explicação canônica quando o código mudar, preservando relatórios de execução e

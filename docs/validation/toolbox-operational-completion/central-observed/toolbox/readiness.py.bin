@@ -1,0 +1,73 @@
+"""Real network-disabled inventory checks for prepared security tool environments."""
+import hashlib
+from pathlib import Path
+import shutil
+import uuid
+from . import docker
+from .adapters import adapter, classify
+from .config import REPO, read_json
+from .storage import atomic_json, digest, now, tree_manifest
+
+
+def verify_prepared(store, name, spec, record, home):
+    snapshot = record.get('database')
+    fixture = REPO / 'examples' / 'offline-security'
+    identity = digest({'image': record['id'], 'database': snapshot,
+                       'adapter': record['adapter_sha256'],
+                       'check': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                       'fixture': {name: tree_manifest(fixture)[name] for name in ('package-lock.json', 'osv-scanner.toml')}})
+    parent = home / 'readiness' / identity
+    stamp = parent / 'verified.json'
+    if stamp.exists():
+        saved = read_json(stamp)
+        if saved.get('status') != 'verified' or saved.get('identity') != identity:
+            raise ValueError(f'invalid readiness record: {stamp}')
+        return saved
+    attempt = parent / uuid.uuid4().hex
+    source, output = attempt / 'source', attempt / 'output'
+    source.mkdir(parents=True)
+    output.mkdir()
+    for filename in ('package-lock.json', 'osv-scanner.toml'):
+        shutil.copyfile(fixture / filename, source / filename)
+    before = tree_manifest(source)
+    check_spec = {'version': spec['version'], 'paths': ['.'], 'max_database_age_hours': 168}
+    if name == 'osv-scanner':
+        check_spec.update(paths=['package-lock.json'], config='osv-scanner.toml')
+    if snapshot:
+        check_spec['database'] = snapshot
+        shutil.copytree(store.database(name, spec['version'], snapshot), output / 'database')
+    module = adapter(name, spec['version'])
+    argv, env = module.invocation(check_spec)
+    container, cmd = docker.command(record['id'], argv, source, output, 'none', env,
+                                    output / 'database' if snapshot else None, mount_label='private')
+    atomic_json(attempt / 'started.json', {'image': record['id'], 'database': snapshot, 'command': cmd})
+    execution = docker.execute(cmd, container, output, 600)
+    status, reason = classify(module, execution, output)
+    unchanged = tree_manifest(source) == before
+    db_unchanged = not snapshot or digest(tree_manifest(output / 'database')) == snapshot
+    result = {'identity': identity, 'image': record['id'], 'database': snapshot,
+              'checked_at': now(), 'status': status, 'reason': reason,
+              'sources_unchanged': unchanged, 'database_unchanged': db_unchanged,
+              'execution': execution, 'output': str(output)}
+    # The fixture must yield an inventory, not just a zero-exit empty scan.
+    inventory = False
+    if status in ('success', 'findings', 'measurement'):
+        report = read_json(output / 'stdout.log')
+        if name == 'syft':
+            inventory = any(row.get('name') == 'lodash' for row in report['artifacts'])
+        elif name == 'trivy':
+            inventory = any(row.get('Name') == 'lodash' for item in report['Results'] for row in item.get('Packages', []))
+        elif name == 'osv-scanner':
+            inventory = any(row.get('package', {}).get('name') == 'lodash' for item in report['results'] for row in item['packages'])
+        elif name == 'grype':
+            # Grype's native JSON includes the package in matches for this vulnerable fixture.
+            inventory = any(row.get('artifact', {}).get('name') == 'lodash' for row in report['matches'])
+    if name != 'syft' and status != 'findings':
+        inventory = False
+    result['fixture_inventoried'] = inventory
+    atomic_json(attempt / 'result.json', result)
+    if status not in ('success', 'findings', 'measurement') or not unchanged or not db_unchanged or not inventory:
+        raise ValueError(f'{name}: offline readiness check failed: {attempt}')
+    verified = dict(result, status='verified', tool_status=status)
+    atomic_json(stamp, verified)
+    return verified

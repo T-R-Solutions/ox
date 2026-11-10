@@ -1,0 +1,170 @@
+#!/usr/bin/env bash
+# Standalone scanner adapter, also called by automate.sh.
+# shellcheck source=../lib/common.sh
+source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
+# shellcheck source=../lib/process.sh
+source "$LIB_DIR/process.sh"
+# shellcheck source=../lib/registry.sh
+source "$LIB_DIR/registry.sh"
+# shellcheck source=../lib/files.sh
+source "$LIB_DIR/files.sh"
+# shellcheck source=../lib/reports.sh
+source "$LIB_DIR/reports.sh"
+name='' output='' inspect='' plan=false
+while (($#)); do
+    case $1 in
+        --root|--check|--output|--inspect-data)
+            (($#>=2)) || die "Missing value: $1"
+            case $1 in --root) ROOT=$2;; --check) name=$2;; --output) output=$2;; --inspect-data) inspect=$2;; esac
+            shift 2;;
+        --plan) plan=true; shift;;
+        --help|-h) printf 'Usage: checks/run.sh [--root PATH] --check NAME [--plan] [--output DIR]\n       checks/run.sh --inspect-data RELATIVE_PATH\n'; exit 0;;
+        *) die "Unknown argument: $1";;
+    esac
+done
+ROOT=$(cd -- "$ROOT" && pwd -P) || die 'Repository root missing'
+if [[ -n $inspect ]]; then
+    [[ -z $name && -z $output ]] || die 'inspect-data is exclusive'
+    data_path=$(contained "$inspect") || die 'Dataset must stay relative to repository without symlinks'
+    identity=$(tree_identity "$data_path") || die 'Invalid dataset tree'
+    jq -n --arg path "$inspect" --arg sha "$identity" '{path:$path,sha256:$sha,freshness:"not reviewed"}'
+    exit 0
+fi
+check_properties "$name" || die "Unknown check: $name"
+if $plan; then
+    check_command "$name" '{output}'
+    jq -n --arg check "$name" --arg tool "$TOOL" --arg data "$DATA" --argjson argv "$(json_args "${CMD[@]}")" \
+      '{check:$check,tool:$tool,dataset:(if $data=="" then null else $data end),argv:$argv,per_workspace_member:($check=="geiger")}'
+    exit 0
+fi
+if [[ -z $output ]]; then output=$(new_run security)
+else
+    [[ $output == "$ROOT/.local/checks/"* ]] || die 'Output must be inside .local/checks'
+    output=$(contained "${output#"$ROOT"/}") || die 'Symlinked/escaping output'
+    [[ -d $output ]] || die 'Explicit output directory must already exist'
+fi
+[[ ! -e $output/assessment.json && ! -e $output/tool ]] || die 'Output already used'
+chmod 700 -- "$output"
+STATE=blocked CODE=3 RAW=null COUNT=null REASON='' PREPARED='' tool='' tool_sha=''
+# shellcheck disable=SC2329 # Invoked by the EXIT trap, including error exits.
+finish() {
+    local rc=$?
+    trap - EXIT
+    if ((rc)) && [[ -z $REASON ]]; then REASON='Invalid or incomplete check inputs/report'; fi
+    if [[ -n $REASON ]]; then
+        if [[ $RAW == null ]]; then STATE=blocked CODE=3; else STATE=error CODE=2; fi
+    fi
+    jq -n --arg name "$name" --arg state "$STATE" --arg reason "$REASON" --argjson code "$CODE" --argjson raw "$RAW" --argjson count "$COUNT" \
+      --arg tool "$tool" --arg sha "$tool_sha" --arg output "$output" \
+      '{check:$name,state:$state,exit_code:$code,tool_exit_code:$raw,finding_count:$count,reason:$reason,product_acceptance:false,
+        tool:{path:$tool,sha256:$sha},limits:["No automatic product acceptance.","Generated directories and historical validation excluded; history is separate.","Offline flags are not OS isolation."]}' >"$output/assessment.tmp"
+    local field
+    for field in inputs dataset member_results; do
+        if [[ -f $output/$field.json ]]; then
+            jq --arg field "$field" --slurpfile value "$output/$field.json" '.+{($field):$value[0]}' "$output/assessment.tmp" >"$output/assessment.next"
+            mv -- "$output/assessment.next" "$output/assessment.tmp"
+        fi
+    done
+    if [[ -f $output/command.json ]]; then
+        jq --slurpfile command "$output/command.json" '.+$command[0]' "$output/assessment.tmp" >"$output/assessment.next"
+        mv -- "$output/assessment.next" "$output/assessment.tmp"
+    fi
+    if [[ -f $output/version/stdout.log ]]; then
+        jq --arg sha "$(hash_file "$output/version/stdout.log")" '.tool.version_stdout_sha256=$sha' "$output/assessment.tmp" >"$output/assessment.next"
+        mv -- "$output/assessment.next" "$output/assessment.tmp"
+    fi
+    mv -n -- "$output/assessment.tmp" "$output/assessment.json"
+    printf 'Assessment: %s/assessment.json\n' "$output"
+    exit "$CODE"
+}
+trap 'finish' EXIT
+fail_check() { REASON=$*; exit 1; }
+# Remove inherited scanner controls which could suppress results or enable updates.
+while IFS= read -r key; do
+    case $key in GITLEAKS_*|SEMGREP_*|OPENGREP_*|GRYPE_*|SYFT_*|TRIVY_*|OSV_SCANNER_*) unset "$key";; esac
+done < <(compgen -e)
+export SEMGREP_SEND_METRICS=off SEMGREP_ENABLE_VERSION_CHECK=0 OPENGREP_ENABLE_VERSION_CHECK=0
+export SYFT_CHECK_FOR_APP_UPDATE=false GRYPE_DB_AUTO_UPDATE=false GRYPE_CHECK_FOR_APP_UPDATE=false
+tool=$(command -v "$TOOL") || fail_check "required tool missing: $TOOL"
+tool=$(realpath -e -- "$tool"); tool_sha=$(hash_file "$tool")
+if [[ $TOOL == cargo-* ]]; then
+    installed_cargo || fail_check 'Required installed Rust toolchain unavailable'
+fi
+if [[ $name == coverage ]]; then
+    [[ -n $(find "${CARGO%/bin/cargo}/lib/rustlib" -name llvm-cov -type f -print -quit) && -n $(find "${CARGO%/bin/cargo}/lib/rustlib" -name llvm-profdata -type f -print -quit) ]] || fail_check 'Installed llvm-tools-preview required'
+fi
+version=("$tool" --version)
+if [[ $TOOL == cargo-* ]]; then version=("$tool" "${TOOL#cargo-}" --version); fi
+if [[ $name == sbom || $name == grype ]]; then version=("$tool" version); fi
+execute "$output/version" "$ROOT" "${version[@]}"
+((PROCESS_CODE==0)) || fail_check 'Cannot identify required tool version'
+db='{reviewed-dataset}' source='{source}'
+if [[ -n $DATA ]]; then
+    reviewed_dataset "$DATA" "$output" || fail_check "Missing/invalid reviewed dataset: $DATA"
+    db=$output/dataset
+    [[ $name != osv ]] || export OSV_SCANNER_LOCAL_DB_CACHE_DIRECTORY=$db
+    [[ $name != grype ]] || export GRYPE_DB_CACHE_DIR=$db
+fi
+if [[ $name == audit && ( -e $ROOT/.cargo/audit.toml || -e $ROOT/application/.cargo/audit.toml ) ]]; then fail_check 'Inherited RustSec configuration requires review'; fi
+if [[ $name == deny ]]; then
+    policy=$(contained .local/security/deny.toml) && [[ -f $policy ]] || fail_check 'Missing reviewed .local/security/deny.toml'
+fi
+if [[ $name == history ]]; then
+    execute "$output/git" "$ROOT" git rev-parse --is-shallow-repository
+    [[ $PROCESS_CODE == 0 && $(cat "$output/git/stdout.log") == false ]] || fail_check 'Full local Git history required'
+fi
+printf '{}\n' >"$output/inputs.json"
+if [[ $SNAPSHOT != none ]]; then
+    source_snapshot "$output" "$SNAPSHOT" || fail_check 'Cannot create complete source snapshot'
+    source=$output/source
+fi
+for rel in application/Cargo.toml application/Cargo.lock application/rust-toolchain.toml; do
+    [[ ! -e $ROOT/$rel ]] || input_add "$output" "$rel"
+done
+[[ -z $RULE ]] || input_add "$output" "scripts/security/rules/$RULE"
+[[ -z $DATA ]] || input_add "$output" .local/security/datasets.json
+[[ $name != deny ]] || input_add "$output" .local/security/deny.toml
+if [[ $name == coverage || $name == geiger ]]; then export CARGO_TARGET_DIR=$output/target; fi
+if [[ $name == coverage ]]; then export CARGO_LLVM_COV_TARGET_DIR=$output/target CARGO_LLVM_COV_SETUP=no; fi
+printf '{}\n' >"$output/scanner.yaml"
+check_command "$name" "$output" "$source" "$db"
+CMD[0]=$tool
+jq -n --argjson argv "$(json_args "${CMD[@]}")" --arg cwd "$CWD" '{argv:$argv,cwd:$cwd}' >"$output/command.json"
+if [[ $name == geiger ]]; then
+    mkdir -- "$output/tool"
+    metadata=$(workspace_metadata) || fail_check 'Cannot enumerate workspace members'
+    mapfile -t manifests < <(jq -r '.workspace_members as $members | .packages[] | select(.id as $id|$members|index($id)) | .manifest_path' <<<"$metadata")
+    ((${#manifests[@]})) || fail_check 'Empty workspace'
+    printf '[]\n' >"$output/member_results.json"
+    final_code=0 final_raw=0 i=0
+    for manifest in "${manifests[@]}"; do
+        # Cargo paths are parsed, not inferred from globbed directory names.
+        [[ $manifest == "$ROOT/application/"* ]] || fail_check 'Workspace member escaped root'
+        manifest=$source/application/${manifest#"$ROOT/application/"}
+        execute "$output/tool/$i" "$CWD" "${CMD[@]}" --manifest-path "$manifest"
+        RAW=$PROCESS_CODE
+        assess "$name" "$RAW" "$output/tool/$i/stdout.log" || fail_check 'Incomplete Geiger report'
+        jq --arg manifest "$manifest" --arg state "$STATE" --argjson code "$CODE" --argjson raw "$RAW" '.+[{manifest:$manifest,state:$state,exit_code:$code,tool_exit_code:$raw}]' "$output/member_results.json" >"$output/members.next"
+        mv -- "$output/members.next" "$output/member_results.json"
+        ((final_code)) || final_code=$CODE
+        ((final_raw)) || final_raw=$RAW
+        i=$((i+1))
+    done
+    RAW=$final_raw CODE=$final_code STATE=recorded
+    ((CODE==0)) || STATE=failed
+else
+    execute "$output/tool" "$CWD" "${CMD[@]}"
+    RAW=$PROCESS_CODE
+    report=$output/tool/stdout.log
+    [[ $name != gitleaks && $name != history ]] || report=$output/report.json
+    [[ $name != coverage ]] || report=$output/coverage.lcov
+    assess "$name" "$RAW" "$report" || fail_check 'Invalid/incomplete scanner report'
+    if [[ $name == opengrep && ( $STATE == passed || $STATE == findings ) ]]; then
+        jq -e --arg source "$source/" --slurpfile inputs "$output/inputs.json" \
+          '.paths.scanned as $scanned | all($inputs[0]|keys[]|select(test("\\.(rs|py)$")); . as $p | ($scanned|index($source+$p))!=null)' "$report" >/dev/null || fail_check 'SAST omitted selected source inputs'
+    fi
+fi
+verify_inputs "$output" || fail_check 'Input/snapshot changed during check'
+[[ $(hash_file "$tool") == "$tool_sha" ]] || fail_check 'Tool binary changed during check'
+[[ -z $DATA || $(tree_identity "$PREPARED") == "$(jq -r .sha256 "$output/dataset.json")" ]] || fail_check 'Dataset changed during check'
+exit 0

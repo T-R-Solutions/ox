@@ -1,0 +1,33 @@
+test_all_checks_plan_offline_and_no_writes (test_automation.ShellAutomationTests.test_all_checks_plan_offline_and_no_writes) ... ok
+test_all_report_schemas_clean_findings_and_malformed (test_automation.ShellAutomationTests.test_all_report_schemas_clean_findings_and_malformed) ... ok
+test_every_adapter_executes_controlled_tool_and_records_identity (test_automation.ShellAutomationTests.test_every_adapter_executes_controlled_tool_and_records_identity) ... ok
+test_generated_scanner_snapshots_are_transient_not_source_documents (test_automation.ShellAutomationTests.test_generated_scanner_snapshots_are_transient_not_source_documents) ... ok
+test_json_duplicate_container_and_nonfinite_rejected (test_automation.ShellAutomationTests.test_json_duplicate_container_and_nonfinite_rejected) ... ok
+test_root_ignore_files_require_review_even_for_code_scans (test_automation.ShellAutomationTests.test_root_ignore_files_require_review_even_for_code_scans) ... ok
+test_shell_layout_and_syntax (test_automation.ShellAutomationTests.test_shell_layout_and_syntax) ... ok
+test_snapshot_change_and_root_symlink_rejected (test_automation.ShellAutomationTests.test_snapshot_change_and_root_symlink_rejected) ... ok
+test_summarizer_preserves_failure_and_rejects_invalid_state (test_automation.ShellAutomationTests.test_summarizer_preserves_failure_and_rejects_invalid_state) ... ok
+test_tree_digest_matches_historical_format_hidden_unicode_and_spaces (test_automation.ShellAutomationTests.test_tree_digest_matches_historical_format_hidden_unicode_and_spaces) ... ok
+test_all_aliases_native_exits_and_measurements (test_backends.Backends.test_all_aliases_native_exits_and_measurements) ... ok
+test_fail_closed_diagnostic_report_integrity (test_backends.Backends.test_fail_closed_diagnostic_report_integrity) ... ok
+test_history_requires_full_self_contained_git (test_backends.Backends.test_history_requires_full_self_contained_git) ... ok
+test_inventory_and_age_gaps (test_backends.Backends.test_inventory_and_age_gaps) ... ok
+test_new_source_during_scan_rejected (test_backends.Backends.test_new_source_during_scan_rejected) ... ok
+test_secret_values_absent_from_process_metadata (test_backends.Backends.test_secret_values_absent_from_process_metadata) ... ok
+test_wrapper_argv_path_empty_override_and_no_fallback (test_backends.Backends.test_wrapper_argv_path_empty_override_and_no_fallback) ... ok
+test_decoded_duplicates_unicode_and_nonfinite_against_independent_oracle (test_json_guard.JsonGuard.test_decoded_duplicates_unicode_and_nonfinite_against_independent_oracle) ... ok
+test_deny_summary_and_exit_must_agree (test_native_reports.NativeReports.test_deny_summary_and_exit_must_agree) ... ok
+test_machete_real_clean_findings_and_invalid_manifest (test_native_reports.NativeReports.test_machete_real_clean_findings_and_invalid_manifest) ... ok
+test_local_preparation_denied_before_writes (test_optional_datasets.ToolboxDatasetOwnership.test_local_preparation_denied_before_writes) ... ok
+test_reviewed_import_and_corruption_preserve_registry (test_preparation.RustSecPreparation.test_reviewed_import_and_corruption_preserve_registry) ... ok
+test_cancellation_waits_for_cleanup_without_affecting_parallel_run (test_process_lifecycle.ProcessLifecycle.test_cancellation_waits_for_cleanup_without_affecting_parallel_run) ... ok
+test_native_scans (test_real_security_backends.RealSecurity.test_native_scans) ... skipped 'requires explicitly enabled central images and Docker'
+test_exec_defaults_to_shared (test_selinux_transport.SelinuxTransport.test_exec_defaults_to_shared) ... ok
+test_explicit_policy_is_preserved (test_selinux_transport.SelinuxTransport.test_explicit_policy_is_preserved) ... ok
+test_non_exec_does_not_select_label (test_selinux_transport.SelinuxTransport.test_non_exec_does_not_select_label) ... ok
+test_public_wrapper_preserves_failure (test_selinux_transport.SelinuxTransport.test_public_wrapper_preserves_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 65.518s
+
+OK (skipped=1)

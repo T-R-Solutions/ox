@@ -1,0 +1,11 @@
+scan:
+  offline: true
+  skip-version-check: true
+exit-code: 0
+severity: [UNKNOWN, LOW, MEDIUM, HIGH, CRITICAL]
+vulnerability:
+  ignore-unfixed: false
+db:
+  skip-update: true
+  java-skip-update: true
+ignorefile: scripts/config/trivyignore

@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2034 # Registry arrays/properties are consumed by entries.
+# The only check/scope registry and argv definitions.
+SECURITY=(gitleaks osv opengrep audit bandit)
+QUALITY=(machete ruff deny)
+OPTIONAL=(history coverage geiger trivy sbom grype malware shellcheck)
+GOVERNANCE=(sdd-structure ox governance-tests)
+RUST=(rust-fmt rust-check rust-build rust-test rust-clippy)
+scope_checks() {
+    case $1 in
+        governance) BASE=("${GOVERNANCE[@]}");;
+        rust) BASE=("${RUST[@]}");;
+        security) BASE=("${SECURITY[@]}");;
+        quality) BASE=("${QUALITY[@]}");;
+        full) BASE=("${GOVERNANCE[@]}" "${RUST[@]}" "${SECURITY[@]}" "${QUALITY[@]}");;
+        *) die "Unknown scope: $1";;
+    esac
+}
+check_properties() {
+    TOOL='' DATA='' RULE='' SNAPSHOT=all
+    case $1 in
+        gitleaks|history) TOOL=gitleaks; RULE=gitleaks.toml;;
+        osv) TOOL=osv-scanner; DATA=osv; SNAPSHOT=none;;
+        opengrep) TOOL=opengrep; RULE=ox.yml; SNAPSHOT=code;;
+        audit) TOOL=cargo-audit; DATA=rustsec; SNAPSHOT=none;;
+        deny) TOOL=cargo-deny; SNAPSHOT=none;;
+        machete) TOOL=cargo-machete;;
+        coverage) TOOL=cargo-llvm-cov;;
+        geiger) TOOL=cargo-geiger;;
+        trivy) TOOL=trivy; DATA=trivy;;
+        sbom) TOOL=syft;;
+        grype) TOOL=grype; DATA=grype;;
+        malware) TOOL=yr; RULE=suspicious.yar;;
+        ruff) TOOL=ruff; SNAPSHOT=code;;
+        bandit) TOOL=bandit; SNAPSHOT=code;;
+        shellcheck) TOOL=shellcheck;;
+        *) return 1;;
+    esac
+    [[ $1 != history ]] || SNAPSHOT=none
+}
+check_command() {
+    local name=$1 output=$2 source=${3:-\{source\}} db=${4:-\{reviewed-dataset\}}
+    local rules=$ROOT/scripts/security/rules
+    CWD=$ROOT
+    local -a py=(scripts tools/governance sdd/tools)
+    case $name in
+        sdd-structure) CMD=(python3 sdd/tools/validate.py --root . --structure-only);;
+        ox) CMD=(python3 tools/governance/scripts/check-ox.py);;
+        governance-tests) CMD=(python3 tools/governance/scripts/run-tests.py --group "${GROUP:-fast}");;
+        rust-fmt) CMD=("${CARGO:-cargo}" fmt --all -- --check); CWD=$ROOT/application;;
+        rust-check|rust-build|rust-test) CMD=("${CARGO:-cargo}" "${name#rust-}" --workspace --locked --offline); CWD=$ROOT/application;;
+        rust-clippy) CMD=("${CARGO:-cargo}" clippy --workspace --all-targets --locked --offline -- -D warnings); CWD=$ROOT/application;;
+        gitleaks|history)
+            CMD=(gitleaks dir --config "$rules/gitleaks.toml" --redact=100 --exit-code 10 --report-format json --report-path "$output/report.json")
+            if [[ $name == history ]]; then CMD[1]=git; CMD+=(--log-opts=--all "$ROOT"); else CMD+=("$source"); fi;;
+        osv) CMD=(osv-scanner scan source --offline --format json --all-packages --lockfile "$ROOT/application/Cargo.lock");;
+        opengrep) CMD=(opengrep scan --config "$rules/ox.yml" --disable-version-check --metrics=off --strict --no-git-ignore --disable-nosem --error --json "$source");;
+        audit) CMD=(cargo-audit audit --no-fetch --no-yanked --db "$db" --file Cargo.lock --json); CWD=$ROOT/application;;
+        deny) CMD=(cargo-deny deny --locked --offline check --config "$ROOT/.local/security/deny.toml" licenses bans sources); CWD=$ROOT/application;;
+        machete) CMD=(cargo-machete machete --json); CWD=$source/application;;
+        coverage) CMD=(cargo-llvm-cov llvm-cov --workspace --locked --offline --no-clean --lcov --output-path "$output/coverage.lcov"); CWD=$source/application;;
+        geiger) CMD=(cargo-geiger geiger --locked --offline --all-dependencies --output-format Json); CWD=$source/application;;
+        trivy) CMD=(trivy --config "$output/scanner.yaml" fs --scanners vuln --offline-scan --skip-db-update --skip-java-db-update --format json --exit-code 1 --cache-dir "$db" "$source");;
+        sbom) CMD=(syft --config "$output/scanner.yaml" scan "dir:$source" -o syft-json);;
+        grype) CMD=(grype --config "$output/scanner.yaml" "dir:$source" -o json);;
+        malware) CMD=(yr scan --output-format json --recursive "$rules/suspicious.yar" "$source");;
+        ruff) CMD=(ruff check --isolated --no-cache --output-format json "${py[@]}"); CWD=$source;;
+        bandit) CMD=(bandit --ignore-nosec -r -f json "${py[@]}"); CWD=$source;;
+        shellcheck)
+            CMD=(shellcheck --format=json --external-sources --source-path=SCRIPTDIR)
+            if [[ -d $source/scripts ]]; then
+                local -a files
+                mapfile -d '' -t files < <(find "$source/scripts" -name '*.sh' -type f -print0 | sort -z)
+                CMD+=("${files[@]}")
+            else CMD+=("$source/scripts/{shell-files}"); fi;;
+        *) die "Unknown check: $name";;
+    esac
+}

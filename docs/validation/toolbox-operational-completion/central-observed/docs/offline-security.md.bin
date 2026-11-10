@@ -1,0 +1,65 @@
+# Execução com dados preparados e sem downloads
+
+O exemplo `examples/offline-security/toolbox.json` seleciona explicitamente Trivy
+0.76.2, OSV-Scanner 2.7.0, Grype 0.119.0 e Syft 1.23.1. O lockfile contém uma
+versão vulnerável de lodash como fixture de inventário; não instale seus pacotes.
+As versões históricas bloqueadas continuam preservadas no catálogo.
+
+```sh
+bin/toolbox prepare --config examples/offline-security/toolbox.json
+bin/toolbox run --config examples/offline-security/toolbox.json
+```
+
+`prepare` também executa uma verificação real de prontidão com rede `none`,
+um inventário conhecido de lodash e relatórios nativos. Nos scanners, exige
+achados para essa fixture vulnerável; no Syft, exige o pacote no SBOM. O resultado
+é reutilizado por identidade da imagem, adapter, snapshot e fixture. Uma falha
+impede declarar o ambiente preparado. Isso não é aprovação da aplicação consumidora.
+
+`prepare` baixa os executáveis e dependências na construção das imagens. Para
+Trivy, Grype e OSV também prepara as bases na primeira utilização. Os dados ficam
+em `tools/<ferramenta>/volume/databases/<versão>/<sha256>/`, fora das camadas da
+imagem, e o snapshot escolhido fica em `toolbox.images.lock.json`, no registro da
+ferramenta. O campo `database` explícito do consumidor tem precedência sobre o
+lock. Cada consumidor fixa sua escolha; preparar outro consumidor pode reutilizar
+o snapshot já disponível da mesma versão. Repetir `prepare` verifica e reutiliza
+a imagem e a base, sem baixá-las outra vez. Base ausente ou corrompida quando já
+fixada causa falha; não é substituída silenciosamente.
+
+`run` usa imagens locais (`--pull=never`), fontes somente leitura, uma cópia
+privada da base e rede `none`. As quatro integrações rejeitam outra configuração
+de rede. Não há downloads, instalação ou atualização automática na análise.
+Não é necessário deixar containers rodando. Iniciar a imagem manualmente sem os
+mounts/flags do toolbox não equivale a executar pelo contrato desta plataforma.
+
+| Ferramenta | Dados preparados | Limites desta integração |
+|---|---|---|
+| Trivy 0.76.2 | DB de vulnerabilidades e índice Java, com metadados nativos | Análise `filesystem`, scanner `vuln`; sem Maven remoto, VEX remoto ou download de checks. Não promete todos os modos do Trivy. |
+| OSV-Scanner 2.7.0 | Archives oficiais `crates.io/all.zip` e `npm/all.zip`, no layout nativo | Apenas `Cargo.lock` e `package-lock.json` explícitos; offline, sem análise de chamadas Rust. Outros ecossistemas exigem extensão e validação. |
+| Grype 0.119.0 | DB nativa, preparada com `grype db update` | Um diretório por execução; validação nativa da idade da base preservada. |
+| Syft 1.23.1 | Executável e dependências na imagem; sem DB de vulnerabilidades | SBOM de diretório; consultas remotas de Java e licenças e verificação de atualização desabilitadas. Resultado `measurement`, não aprovação de segurança. |
+
+`max_database_age_hours` deve ser explícito para os três scanners com base. No
+Trivy/OSV a plataforma verifica a idade do preparo; Grype verifica a idade nativa
+da construção da base. Base vencida falha e exige atualização explícita:
+
+```sh
+bin/toolbox update-db --config examples/offline-security/toolbox.json --only trivy
+bin/toolbox update-db --config examples/offline-security/toolbox.json --only osv-scanner
+bin/toolbox update-db --config examples/offline-security/toolbox.json --only grype
+```
+
+Cada comando retorna `database`. Para adotar o novo snapshot, coloque esse valor
+no campo `database` da ferramenta na configuração e execute `prepare` novamente.
+Atualizar não altera a seleção dos consumidores existentes. O ponteiro local
+`current.json` serve apenas para o primeiro preparo de novos consumidores.
+O Syft não tem `update-db` porque não usa essa base.
+
+Para transportar o ambiente, salve/carregue as imagens com Docker e copie também
+os volumes das ferramentas, a configuração e seu lock. `docker image save` sozinho
+não inclui bases em bind mounts. Um clone Git também não contém esses dados.
+
+A documentação oficial consultada e as limitações ficam na matriz de referências;
+resultados observados de build/execução ficam em `evidence/offline-security/`.
+
+Em hosts SELinux, selecione `TOOLBOX_SELINUX_LABEL=private` para `run`, conforme o contrato de mounts da plataforma. Os mounts de preparação e prontidão usam relabel privado nos diretórios pertencentes às ferramentas.

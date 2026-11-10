@@ -1,0 +1,23 @@
+test_all_checks_plan_offline_and_no_writes (test_automation.ShellAutomationTests.test_all_checks_plan_offline_and_no_writes) ... ok
+test_all_report_schemas_clean_findings_and_malformed (test_automation.ShellAutomationTests.test_all_report_schemas_clean_findings_and_malformed) ... ok
+test_every_adapter_executes_controlled_tool_and_records_identity (test_automation.ShellAutomationTests.test_every_adapter_executes_controlled_tool_and_records_identity) ... ok
+test_generated_scanner_snapshots_are_transient_not_source_documents (test_automation.ShellAutomationTests.test_generated_scanner_snapshots_are_transient_not_source_documents) ... ok
+test_json_duplicate_container_and_nonfinite_rejected (test_automation.ShellAutomationTests.test_json_duplicate_container_and_nonfinite_rejected) ... ok
+test_root_ignore_files_require_review_even_for_code_scans (test_automation.ShellAutomationTests.test_root_ignore_files_require_review_even_for_code_scans) ... ok
+test_shell_layout_and_syntax (test_automation.ShellAutomationTests.test_shell_layout_and_syntax) ... ok
+test_snapshot_change_and_root_symlink_rejected (test_automation.ShellAutomationTests.test_snapshot_change_and_root_symlink_rejected) ... ok
+test_summarizer_preserves_failure_and_rejects_invalid_state (test_automation.ShellAutomationTests.test_summarizer_preserves_failure_and_rejects_invalid_state) ... ok
+test_tree_digest_matches_historical_format_hidden_unicode_and_spaces (test_automation.ShellAutomationTests.test_tree_digest_matches_historical_format_hidden_unicode_and_spaces) ... ok
+test_denied_toolbox_results_never_pass (test_backends.BackendTests.test_denied_toolbox_results_never_pass) ... ok
+test_missing_and_altered_lock_block_before_execution (test_backends.BackendTests.test_missing_and_altered_lock_block_before_execution) ... ok
+test_portable_discovery (test_backends.BackendTests.test_portable_discovery) ... ok
+test_toolbox_disabled_entry_is_blocked (test_backends.BackendTests.test_toolbox_disabled_entry_is_blocked) ... ok
+test_toolbox_success_findings_and_native_raw_code (test_backends.BackendTests.test_toolbox_success_findings_and_native_raw_code) ... ok
+test_unavailable_native_never_uses_toolbox_for_cargo (test_backends.BackendTests.test_unavailable_native_never_uses_toolbox_for_cargo) ... ok
+test_versioned_toml_and_explicit_native_configuration (test_backends.BackendTests.test_versioned_toml_and_explicit_native_configuration) ... ok
+test_offline_and_denials (test_preparation.RealDatasetTests.test_offline_and_denials) ... skipped 'real OSV acceptance opt-in'
+
+----------------------------------------------------------------------
+Ran 18 tests in 19.110s
+
+OK (skipped=1)

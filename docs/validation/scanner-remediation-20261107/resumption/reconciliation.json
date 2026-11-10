@@ -1,0 +1,90 @@
+[
+  {
+    "feature": "product-agent-runtime",
+    "previous": "docs/validation/scanner-remediation-20261107/resumption/before/sdd/features/product-agent-runtime/evidence.json",
+    "sha256": "510f6e8eb6da761d3b511dd9a681754cabeeb2845c7619b9a70e03b0eedb25da",
+    "archived": [
+      {
+        "id": "E-F0-RASTER-CLOSURE",
+        "changed_inputs": [
+          "application/Cargo.toml",
+          "application/crates/ox-ui/Cargo.toml"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-f0-gate",
+    "previous": "docs/validation/scanner-remediation-20261107/resumption/before/sdd/features/product-f0-gate/evidence.json",
+    "sha256": "9674622d1738ecafac9860c00fc04a0edcab5c79d31585a28f090ad5c35f2229",
+    "archived": [
+      {
+        "id": "E-F0-RASTER-CLOSURE",
+        "changed_inputs": [
+          "application/Cargo.toml",
+          "application/crates/ox-ui/Cargo.toml"
+        ]
+      },
+      {
+        "id": "E-ROBUSTNESS-20261105",
+        "changed_inputs": [
+          "application/Cargo.toml"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-local-task-ui",
+    "previous": "docs/validation/scanner-remediation-20261107/resumption/before/sdd/features/product-local-task-ui/evidence.json",
+    "sha256": "1eb009b0b719ef09f3b949d1b98023762a92669fabbd1c2830f807ad3141d981",
+    "archived": [
+      {
+        "id": "E-F0-RASTER-CLOSURE",
+        "changed_inputs": [
+          "application/Cargo.toml",
+          "application/crates/ox-ui/Cargo.toml"
+        ]
+      },
+      {
+        "id": "E-ROBUSTNESS-20261105",
+        "changed_inputs": [
+          "application/Cargo.toml"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-plugin-host",
+    "previous": "docs/validation/scanner-remediation-20261107/resumption/before/sdd/features/product-plugin-host/evidence.json",
+    "sha256": "663d0d10dd3c59e5a998472c490a62a2616380e836b997d39f0f1d03fa8bb32e",
+    "archived": [
+      {
+        "id": "E-F0-RASTER-CLOSURE",
+        "changed_inputs": [
+          "application/Cargo.toml",
+          "application/crates/ox-ui/Cargo.toml"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-verification-engine",
+    "previous": "docs/validation/scanner-remediation-20261107/resumption/before/sdd/features/product-verification-engine/evidence.json",
+    "sha256": "0cc2fe5ae97d4bd827dbf387e696d7fb65a000884c80e12fb49b8dd326c81744",
+    "archived": [
+      {
+        "id": "E-F0-RASTER-CLOSURE",
+        "changed_inputs": [
+          "application/Cargo.toml",
+          "application/crates/ox-ui/Cargo.toml"
+        ]
+      },
+      {
+        "id": "E-ROBUSTNESS-20261105",
+        "changed_inputs": [
+          "application/Cargo.toml"
+        ]
+      }
+    ]
+  }
+]

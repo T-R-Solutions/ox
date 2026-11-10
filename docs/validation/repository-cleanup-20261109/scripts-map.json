@@ -1,0 +1,278 @@
+{
+  "files": [
+    {
+      "path": "scripts/README.md",
+      "sha256": "9cd64f170db69a485d79d3a8ec60ad451b14c76f830a27d385ae4589e987931b",
+      "role": "Documentação/licença/proveniência; papéis preservados.",
+      "decision": "preservar arquivo; edições delimitadas constam em inventory.json"
+    },
+    {
+      "path": "scripts/automate.sh",
+      "sha256": "85ae1aa4a589689fe27420767b4884e49720e649f780ca46dbef49298f8ccb3c",
+      "role": "Entrada pública; automate -> checks -> backends -> toolbox. CLI standalone preservada.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/toolbox.sh",
+      "sha256": "b87dcbbe719cf8e508c3455abcd8208323de5c7b0b8b28a2d9b9bc50f15192f9",
+      "role": "Entrada pública; automate -> checks -> backends -> toolbox. CLI standalone preservada.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/security/LICENSE",
+      "sha256": "b2fa7b84692d6b7d79bc3538f670cb7110ec089ac04b7d5f9aa917713661ecd0",
+      "role": "Documentação/licença/proveniência; papéis preservados.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/security/NOTICE",
+      "sha256": "5271e72438d787703c1afb4704dab703893354427a76adb3916e54a4f3c19807",
+      "role": "Documentação/licença/proveniência; papéis preservados.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/security/SOURCES.md",
+      "sha256": "91dc9eec652c05b4c085b6870efb43a2bec62baa558197600bbcee4e2eb2566f",
+      "role": "Documentação/licença/proveniência; papéis preservados.",
+      "decision": "preservar arquivo; edições delimitadas constam em inventory.json"
+    },
+    {
+      "path": "scripts/security/prepare-datasets.sh",
+      "sha256": "0b9d0a1254e5a7796eaf134965d5b820d9f3cbc80295f932810f972760a9a22a",
+      "role": "Entrada explícita RustSec; source de common/files; Cargo audit e datasets.json consumidores. Não chamada pelos gates.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/security/analyzers/check-report.sh",
+      "sha256": "0fc4dc157f9c40ff91eb80dd722495086ec04e3daac8927c28095b17b6505680",
+      "role": "CLI pública de parser/exceções, usada por support/test_automation; usa bibliotecas comuns por source.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/security/analyzers/validate-exceptions.sh",
+      "sha256": "929e7aa37577086e140c91bf46967498fd56291e0b13dfe819d1d968343fa798",
+      "role": "CLI pública de parser/exceções, usada por support/test_automation; usa bibliotecas comuns por source.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/security/rules/suspicious.yar",
+      "sha256": "49951250b1e904ea63bf88f3547fcc9404a4425de0ad6ddb778d9fa6335f241d",
+      "role": "Regras selecionadas por RULE e native_command; README documenta limites/fixtures.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/security/rules/gitleaks.toml",
+      "sha256": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777",
+      "role": "Regras selecionadas por RULE e native_command; README documenta limites/fixtures.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/security/rules/ox.yml",
+      "sha256": "8f69f2c9e549ae5ed2c8485586f5ad1d287399b7ddd9b1d01249a40060550a68",
+      "role": "Regras selecionadas por RULE e native_command; README documenta limites/fixtures.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/security/rules/README.md",
+      "sha256": "68211d729d9ec847456abd7c1853d6205236a899187041cdf24c6582025f80c0",
+      "role": "Regras selecionadas por RULE e native_command; README documenta limites/fixtures.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/reports/summarize.sh",
+      "sha256": "c78154c0d03f8c7588556aec594594e7f69e7b9c425bd2a41e02cb23d179db5e",
+      "role": "CLI pública results.json -> Markdown/exit, consumida por test_automation; preservada mesmo com evolução do formato.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/lib/common.sh",
+      "sha256": "354f5b3e7424e926f7dbdda324348d2803fd6f0f24fa532d63994cd5c1149adc",
+      "role": "Biblioteca por source; entradas, módulos irmãos, support.shell e testes usam funções/arrays; registro mantém comandos/escopos.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/lib/process.sh",
+      "sha256": "6e8881ede9e30c6c5644affcca6426e7e6c159072e2b449bd7be9d52f53081db",
+      "role": "Biblioteca por source; entradas, módulos irmãos, support.shell e testes usam funções/arrays; registro mantém comandos/escopos.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/lib/registry.sh",
+      "sha256": "96e75ed6031521a05ff22bb94d04a46430a5d08dd805173c5f611cf1a5c3002a",
+      "role": "Biblioteca por source; entradas, módulos irmãos, support.shell e testes usam funções/arrays; registro mantém comandos/escopos.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/lib/files.sh",
+      "sha256": "d1cf086c63fbd73ec2215a420ccb79947edfbc1881abeaf77b1a9af61f6a52ca",
+      "role": "Biblioteca por source; entradas, módulos irmãos, support.shell e testes usam funções/arrays; registro mantém comandos/escopos.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/lib/reports.sh",
+      "sha256": "7d70e276e99a5c5f368f8120b5e49fccfb61d09ab45095de6d64c822dd500e31",
+      "role": "Biblioteca por source; entradas, módulos irmãos, support.shell e testes usam funções/arrays; registro mantém comandos/escopos.",
+      "decision": "preservar arquivo; edições delimitadas constam em inventory.json"
+    },
+    {
+      "path": "scripts/lib/backends.sh",
+      "sha256": "6fc659a77560e719285a54085670a5863d82e9d059c75ad8c858cb5a412ad956",
+      "role": "Biblioteca por source; entradas, módulos irmãos, support.shell e testes usam funções/arrays; registro mantém comandos/escopos.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/checks/run.sh",
+      "sha256": "f7441bcb3ad175ef758aceb2cccd2492199d0735ef36ed3415a85a1ec39fc732",
+      "role": "Entrada pública; automate -> checks -> backends -> toolbox. CLI standalone preservada.",
+      "decision": "preservar arquivo; edições delimitadas constam em inventory.json"
+    },
+    {
+      "path": "scripts/tests/support.py",
+      "sha256": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_automation.py",
+      "sha256": "c59f8e6d0ee0444bfdb167cb75b6a6c65fd3161133fd14c1a8c49f59470006a8",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_backends.py",
+      "sha256": "2d500263cfb69a9e160a429c3dfaa251f494a97e55a11d99e2651d6af28defd2",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_preparation.py",
+      "sha256": "92013499faa6e20cbb323f38faa5ba18b063904a186dd088d84cf6c85246ac08",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_native_reports.py",
+      "sha256": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_real_security_backends.py",
+      "sha256": "c01bf56474a4717f70dd6c573829a25cfcc63ff8ee9bef3a096884050e766172",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_optional_datasets.py",
+      "sha256": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_json_guard.py",
+      "sha256": "d82350c25348b611492867fddc98df717ac33b97984c4b89a2e7e0e8ae05f953",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_process_lifecycle.py",
+      "sha256": "cdfc21760304ad0cded06be52fac17deaa4fffc6ff5d563a01e9bbcc371bcf2a",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_selinux_transport.py",
+      "sha256": "d9b94ce2c944596beb065e7a32c182a56a82454a7dfdcee24a13ffd0d09b4e4d",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/test_database_age.py",
+      "sha256": "54cb669f35455680affdc974d0e48b611abf33abc26c980feabbbb4c26ba3a6e",
+      "role": "unittest discover de test*.py; support importado; cenários subprocesso/idade/preparo/SELinux e opt-in real.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/rules/ox.py",
+      "sha256": "2afebe512861cabf82d7ff533bc34f0520001bdf08329dbf90c73370ba9c62d6",
+      "role": "Fixture positiva/negativa Opengrep; acompanha regras, não é código produtivo descartável.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/tests/rules/ox.rs",
+      "sha256": "0cf063cab044efb2f70f8c58edc131067d784283c0da64e3ac0d01bfb7191a4e",
+      "role": "Fixture positiva/negativa Opengrep; acompanha regras, não é código produtivo descartável.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/ruff.toml",
+      "sha256": "d6fda112abf48c2be8a9a88410d27001ad615cad64eaac8ba53e5e015b901b87",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/bandit.yaml",
+      "sha256": "4470c96513b6b9edbafd6b78c4cc76ee6acb60ee33da364e142ab1d4a1500dda",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/deny.toml",
+      "sha256": "340147c43af6345559f5717a84609a16cd57abaabad9fb161a2e8ea1d24fd9c8",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/audit.toml",
+      "sha256": "3c3e7daa975ee80023e698bfa4d88e6879e9fa6358e82fbefd1742c29ca2e2ed",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/osv-scanner.toml",
+      "sha256": "5737d37bb2cd3e33e8b4e8687193efe1cbe924e6ecc871f20a64cff6882265a9",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/shellcheckrc",
+      "sha256": "618fe69fa4c96d19c826bad2faed550585ed966d265ea73e88e416d81aa02df6",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/grype.yaml",
+      "sha256": "257a35b02bb36482fb661d72e086b424cbd00ab751508babb5ae04012123289c",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/syft.yaml",
+      "sha256": "9aee3e875e9cafcb974a70517a522059598073e0f809dcd2dd9fab9bbb5eb5a5",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/trivy.yaml",
+      "sha256": "2ad6b8c4ecd5bc7b13166d571d0a8c078b07ec22c15c65d24adb708461cbd4de",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/bandit.ini",
+      "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    },
+    {
+      "path": "scripts/config/trivyignore",
+      "sha256": "534119fe5ef9d0667b9a0fdc34ec5cf49c3a2b8634abfd4a6a2b9b7afdd27a34",
+      "role": "Configuração nativa selecionada por check_properties/check_command/native_command; bandit.ini adicional e trivyignore explícito. Não remover arquivos vazios.",
+      "decision": "preservar"
+    }
+  ],
+  "limits": [
+    "Mapa estático revisado; não executa ou certifica consumidores externos",
+    "Registros .local/checks, docs/validation e baselines não são fontes funcionais para exclusão"
+  ]
+}

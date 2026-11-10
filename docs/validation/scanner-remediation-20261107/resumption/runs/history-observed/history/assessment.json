@@ -1,0 +1,44 @@
+{
+  "check": "history",
+  "backend": "native",
+  "state": "findings",
+  "exit_code": 10,
+  "tool_exit_code": 10,
+  "runner_exit_code": null,
+  "finding_count": 824,
+  "reason": "",
+  "product_acceptance": false,
+  "tool": {
+    "path": "/home/rodrigo/Projetos/ox/.local/scanner-remediation-20261107-resume/native-OWnFw9Pz/gitleaks",
+    "sha256": "e18325d568268b6efb6cd0cc721f8bea5667f4cd1c8d03618ab61987f41269ad",
+    "version_stdout_sha256": "97a1d800f3707dd8967aa85061125ec2389e10e2e494c496452439d697b0fa9c"
+  },
+  "limits": [
+    "No automatic product acceptance.",
+    "Generated directories and historical validation excluded; history is separate.",
+    "Offline flags are not OS isolation."
+  ],
+  "inputs": {
+    "application/Cargo.toml": "d5a0c6919cd516238ebfa4413d8a21416b3ef45f3b31e9d70929021226c73950",
+    "application/Cargo.lock": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+    "application/rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+    "scripts/security/rules/gitleaks.toml": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777"
+  },
+  "argv": [
+    "/home/rodrigo/Projetos/ox/.local/scanner-remediation-20261107-resume/native-OWnFw9Pz/gitleaks",
+    "git",
+    "--config",
+    "/home/rodrigo/Projetos/ox/scripts/security/rules/gitleaks.toml",
+    "--redact=100",
+    "--ignore-gitleaks-allow",
+    "--exit-code",
+    "10",
+    "--report-format",
+    "json",
+    "--report-path",
+    "/home/rodrigo/Projetos/ox/.local/checks/run-ZxSmQMl8/history/report.json",
+    "--log-opts=--all",
+    "/home/rodrigo/Projetos/ox"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox"
+}

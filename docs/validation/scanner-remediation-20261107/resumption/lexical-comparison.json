@@ -1,0 +1,14 @@
+{
+  "cases": 128,
+  "oracle": "Python stdlib object_pairs_hook rejects repeated decoded keys; parse_constant rejects nonfinite literals",
+  "result": "all candidate verdicts agree",
+  "report_sha256": "5b5a64746411c54b6d735780e4329fda6acb3c3657f1552c970eec4377fd8a17",
+  "candidate_sha256": "3b5abe593c2f639a7b4edbe7b48f0bc6976217f66d160ecb0dda55f8c7c36c8d",
+  "candidate_seconds": [
+    45.561778834991856,
+    45.56802387400239,
+    45.25775623699883
+  ],
+  "baseline": "parser-timing.json",
+  "limit": "Local real-report benchmark, not a universal timing budget"
+}

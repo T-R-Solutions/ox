@@ -1,0 +1,334 @@
+# Verificações locais do Ox
+
+Na raiz, Bash 4.4+, jq 1.6+, GNU coreutils, find, grep, sed e awk executam a
+automação. Python 3.11+ permanece nos testes e nas autoridades de governança
+existentes fora de scripts/. Não há Python operacional nem Python embutido em shell
+em scripts/. Os checks externos usam binários globais ou a CLI compartilhada, conforme o backend descrito abaixo.
+
+```bash
+bash scripts/automate.sh --scope governance
+bash scripts/automate.sh --scope rust
+bash scripts/automate.sh --scope security --plan
+bash scripts/automate.sh --scope security
+bash scripts/automate.sh --scope quality
+bash scripts/automate.sh --scope full
+bash scripts/automate.sh --scope security --check gitleaks --check opengrep
+bash scripts/automate.sh --scope quality --check coverage
+bash scripts/checks/run.sh --check osv --plan
+```
+
+De outro diretório, use o caminho absoluto da entrada. A raiz padrão
+vem do arquivo; `--root "/cópia com espaços/Ox"` escolhe outro checkout. O plano da
+entrada e o plano de checks/run.sh mostram a CLI nativa,
+com placeholders para o snapshot e o diretório exclusivo de saída. Planos não executam scanners nem criam logs. Rust/full consultam somente
+o Cargo já instalado com metadata --no-deps --locked --offline para validar TOML. Não há comandos arbitrários de configuração.
+
+| Seleção | Quando usar / cobertura |
+| --- | --- |
+| governance | SDD, guias, skills e governança: validador estrutural, check-ox e testes rápidos |
+| rust | Aplicação: fmt --check, check, build dos auxiliares, testes e clippy no workspace application/ |
+| security | Segredos, código e dependências: Gitleaks atual, OSV do lockfile, Opengrep Rust/Python, RustSec, Bandit |
+| quality | Manutenção de código/dependências: Machete, Ruff e cargo-deny (licenças, bans e fontes) |
+| full | Contratos compartilhados: governança com todos os testes, Rust, security e quality |
+
+`--check` seleciona nomes e registra omissões; não aprova o conjunto inteiro.
+Não usar a seleção reduzida para omitir uma evidência obrigatória à tarefa.
+Mudanças Rust precisam de rust e dos checks de segurança/qualidade afetados;
+Python precisa de governance e Ruff/Bandit/Opengrep pertinentes. Alterações de
+segredos/configuração precisam de Gitleaks; mudanças de dependências precisam de
+OSV/RustSec/cargo-deny/Machete. Scripts Bash precisam de ShellCheck. Um texto
+sem efeitos nesses controles pode justificar NOT APPLICABLE. `full` não executa
+automaticamente os checks complementares abaixo; selecione-os por método/risco.
+
+| Nome complementar | Papel e limite |
+| --- | --- |
+| history | Gitleaks --all no Git local completo; repositório raso bloqueia; não faz fetch |
+| coverage | cargo-llvm-cov, LCOV em target novo; requer llvm-tools-preview já instalado; sem threshold inventado |
+| geiger | Inventário unsafe das dependências em cópia; não substitui forbid(unsafe_code) nem prova segurança |
+| trivy | Vulnerabilidades do filesystem com base local; sem refresh ou image pull |
+| sbom | Syft: inventário de componentes; não é parecer de segurança/licença |
+| grype | Vulnerabilidades por filesystem com base local; não consulta registro de imagens |
+| malware | YARA-X: dois indicadores locais para investigação; não é detecção universal |
+| shellcheck | Scripts Bash mantidos; resultados não alteram os arquivos |
+
+Há uma única entrada, sem wrappers por comando. A divisão por responsabilidade é:
+
+| Pasta | Responsabilidade |
+| --- | --- |
+| lib/ | Registro de comandos, subprocessos, caminhos, snapshots e parsers compartilhados |
+| checks/ | Preparação offline, execução e avaliação dos scanners |
+| security/rules/ | Regras locais e atribuição preservada em security/ |
+| security/analyzers/ | Validação de relatórios existentes e metadados de exceção |
+| reports/ | Resumo de resultados existentes |
+| tests/ | Testes Python que executam os scripts shell como subprocessos |
+
+Exemplos:
+
+```bash
+bash scripts/automate.sh --scope security --check gitleaks --plan
+bash scripts/automate.sh --scope security --check audit --plan
+bash scripts/automate.sh --scope quality --check geiger --plan
+bash scripts/automate.sh --scope quality --check shellcheck --plan
+bash scripts/security/analyzers/check-report.sh --parser sarif relatório.sarif
+bash scripts/security/analyzers/validate-exceptions.sh exceções.json
+bash scripts/reports/summarize.sh .local/checks/run-ID/results.json
+```
+
+O resumo retorna falha quando o resultado contém falha; não cria aprovação fixa.
+Exceções exigem owner, motivo, componente, revisão, expiração e controle; esse
+validador confere metadados, não suprime nenhum achado. Os validadores SDD/skills
+existentes continuam autoridades; o check de governança chama check-ox.
+
+## Pré-requisitos e preparação separada
+
+O backend seleciona executáveis globais ou adapters compartilhados disponíveis.
+A matriz, configurações e comandos de preparo estão na seção de backends abaixo;
+`security/SOURCES.md` mantém as referências oficiais consultadas. Não há instalação
+ou atualização durante uma verificação. O antigo erase.md é uma nota de preparação,
+não configuração executável nem autoridade sobre disponibilidade atual.
+
+Cargo usa o toolchain real de application/rust-toolchain.toml, já instalado;
+checks nativos mantêm --workspace --locked --offline onde suportados. RustSec
+usa --no-fetch --no-yanked: analisa advisories locais, não o estado de yank do
+registry. Machete não usa --with-metadata/--fix, que podem alterar Cargo.lock.
+Geiger usa --locked --offline e cada manifesto dos 16 membros, pois não aceita
+o manifesto virtual diretamente; cobertura usa alvo novo e --no-clean, sem limpar
+resultados anteriores. Dados de cobertura e SBOM são `recorded`, sem aprovação
+por percentual ou quantidade. Nenhum comando corrige fontes ou instala componentes.
+
+OSV, RustSec, Trivy e Grype exigem dados previamente preparados e revisados em
+`.local/security/datasets.json`. Estrutura de cada entrada (sem valores fictícios):
+
+```json
+{
+  "osv": {
+    "path": ".local/security/osv",
+    "sha256": "SHA256 realmente observado",
+    "valid_until": "data ISO adotada na revisão",
+    "source": "origem oficial dos dados",
+    "license": "termos revisados da base"
+  }
+}
+```
+
+Nomes: osv, rustsec, trivy, grype. `path` é relativo ao checkout, sem symlinks ou
+travessia. Para OSV, a raiz indicada contém `osv-scanner/crates.io/all.zip`.
+RustSec aponta ao repositório local de advisories; Trivy ao cache que contém db/;
+Grype ao diretório de sua base. Cada base deve ser adquirida em ação separadamente
+autorizada. O check não baixa nem atualiza dados e não tolera prazo expirado.
+O prazo é uma decisão explícita da revisão, não um threshold importado.
+
+```bash
+bash scripts/checks/run.sh --inspect-data .local/security/osv
+```
+
+Esse comando somente calcula identidade. Para diretório, o digest é SHA256 do JSON
+UTF-8 compacto, com chaves ordenadas e separadores `,`/`:`, mapeando caminho relativo
+para SHA256 de cada arquivo regular; inclui arquivos ocultos e rejeita links.
+Isso vincula bytes, não autentica origem nem prova que a base é completa/atual.
+
+cargo-deny usa a política versionada `scripts/config/deny.toml`, descrita abaixo.
+A lista vazia de licenças permitidas exige revisão explícita dos componentes;
+não é uma autorização implícita para distribuir suas licenças.
+
+## Efeitos, resultados e limites
+
+Execuções criam `.local/checks/run-*/` privados. stdout/stderr permanecem brutos e
+separados, com exit original. Cada adapter grava assessment.json, identidade da
+ferramenta/versão, inputs e dados; o coordenador conserva o código do adapter e o
+exit bruto da ferramenta. Logs são reproduzidos após cada subprocesso; não há
+promessa de ordenação entre streams. Arquivo parcial/interrupção não é sucesso.
+
+Estados: passed (contrato do check), recorded (medição), findings (achados), failed
+(comando falhou), error (relatório/inputs incompletos ou alterados), blocked
+(pré-requisito ausente/inválido). O agregado falha com qualquer impedimento;
+findings preservam o exit da ferramenta quando não zero, ou retornam 1 se ela saiu
+zero. Relatório inválido retorna 2 e ausência de pré-requisito retorna 3; o campo
+tool_exit_code preserva a falha original. Omissões e inaplicabilidade ficam explícitas
+no registro da tarefa. Nenhum scanner concede aprovação automática do produto.
+
+Scans de fontes usam cópia identificada por hashes. Excluem `.git`, `.local`,
+`target`, `dist`, ambientes Python, pycache e docs/validation (registros históricos).
+Arquivos raiz selecionados e application/tools/scripts/sdd/config/docs/.github/
+.codex entram no snapshot; Opengrep/Ruff/Bandit recebem fontes .rs/.py; ShellCheck recebe .sh. O conteúdo
+não rastreado dessas superfícies é incluído; arquivos de ignore que poderiam
+suprimir resultados exigem revisão. Links de fonte não inspecionados bloqueiam.
+Arquivos arbitrários fora dessas superfícies, archives e diretórios gerados não
+recebem certificação; histórico e análise de artefatos requerem método próprio.
+Scanners não executam as fontes como aplicação, mas ferramentas/build scripts e
+testes são código local. Flags offline e ausência de URLs de registry não são
+isolamento de rede pelo SO. Bases e binários devem ser de origem confiável.
+
+Os testes comuns continuam sem interação gráfica: X11 e Wayland nativo exigem
+métodos separados no guia da aplicação (checkout completo). Python não valida Iced.
+
+## Inventário e histórico
+
+A reintegração corrige a exclusão anterior das capacidades da stack. O inventário
+sucessor está em `sdd/features/scripts-security-quality/inventory.json`, na raiz.
+O inventário anterior permanece histórico. Originais recuperáveis:
+`/tmp/ox-scripts-integration/recovery`; estado anterior a esta correção:
+`/tmp/ox-security-reintegration/before`. Não resta dependência Node/Bun/JVM/Tauri.
+As imagens Qodana não oficiais do projeto de origem não são reativadas: a lista
+oficial de linters não oferece Rust. Os recursos Python são cobertos por Bandit,
+Ruff e Opengrep, sem impor Docker/licenças comerciais; SARIF externo continua
+validável. Atribuições do componente importado ficam em security/LICENSE/NOTICE.
+
+## Testes da automação shell
+
+```bash
+python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v
+bash scripts/automate.sh --scope quality --check shellcheck
+```
+
+Os testes anteriores de fechamento/scanners em tools/governance/tests também
+executam os .sh por subprocesso, sem importar implementação Python operacional.
+Preimagens, inventário de remoções e evidências desta migração ficam em
+docs/validation/scripts-shell-refactor/ e sdd/features/scripts-shell-refactor/.
+
+## Backends e configurações explícitas — 2026-11-06
+
+As configurações pertencem a
+`scripts/config/`; as referências oficiais e limites estão em
+[security/SOURCES.md](security/SOURCES.md#configuration-review--2026-11-06).
+
+O modo padrão `auto` procura o binário nativo no PATH e, para cargo-*, também em
+`${CARGO_HOME:-$HOME/.cargo}/bin`. Se um scanner externo não existir, somente
+Ruff, Gitleaks, ShellCheck e Grype podem usar a CLI compartilhada documentada em
+`.local/usage.md`. Falha em análise já iniciada nunca provoca fallback.
+`OX_SCANNER_BACKEND=native` ou `toolbox` força uma seleção; `OX_TOOLBOX_BIN`
+define a CLI explicitamente; na ausência da variável, procura `toolbox` no PATH. Cargo permanece nativo.
+Os planos mostram o backend disponível; não constroem nem baixam ferramentas.
+
+| Configuração | Contrato aplicado |
+| --- | --- |
+| ruff.toml | Python 3.11; E4/E7/E9/F/S/B; sem correção, cache ou ignores; native ignora noqa |
+| bandit.yaml / bandit.ini | Todos os plugins, severidades e confidências; sem nosec, baseline ou descoberta INI externa |
+| audit.toml | Copiado com Cargo.lock para cwd privado; sem configuração do usuário, fetch, filtros de severidade ou IDs ignorados; avisos falham |
+| deny.toml | Linux x86_64; fontes desconhecidas/Git, wildcards e duplicatas falham; allowlist de licenças vazia, sem aprovações implícitas |
+| osv-scanner.toml | Sem exclusão de pacotes ou advisories; override explícito de configurações descobertas |
+| shellcheckrc | Resolução de módulos locais; sem desativação global de regras |
+| trivy.yaml / trivyignore | Base offline, todas as severidades e vulnerabilidades sem correção; sem exclusões |
+| syft.yaml / grype.yaml | Sem busca de atualização; Grype sem exclusões e com idade nativa da base limitada a 120h |
+| toolbox.json | Versões exatas do catálogo candidato; rede none; prazo 600s; configs mantidas pelo Ox |
+
+Gitleaks, Opengrep e YARA-X continuam com regras em `security/rules/`. Machete,
+Geiger e llvm-cov usam seus argumentos nativos do registro; não exigem arquivos
+fictícios de configuração. Licenças de terceiros precisam de revisão antes de
+acrescentar concessões a deny.toml. A allowlist vazia gera impedimentos reais.
+
+Para preparar as imagens **separadamente das verificações**, após resolver a
+base compartilhada e revisar a confiança nas receitas:
+
+```bash
+"${OX_TOOLBOX_BIN:-toolbox}" validate --config scripts/config/toolbox.json
+"${OX_TOOLBOX_BIN:-toolbox}" plan --config scripts/config/toolbox.json
+"${OX_TOOLBOX_BIN:-toolbox}" prepare --config scripts/config/toolbox.json --only ruff
+"${OX_TOOLBOX_BIN:-toolbox}" prepare --config scripts/config/toolbox.json --only gitleaks
+"${OX_TOOLBOX_BIN:-toolbox}" prepare --config scripts/config/toolbox.json --only shellcheck
+```
+
+Esses comandos de preparo usam rede, Docker e escrita no repositório externo;
+exigem permissões efetivas próprias. O adapter de análise só chama `run`. O lock
+real `scripts/config/toolbox.images.lock.json`, gerado pelo preparo, deve ser
+revisado e versionado; nenhum digest foi inventado nesta integração. A raiz da
+configuração gerada passa a ser o snapshot exclusivo; o lock preparado é copiado.
+O executor verifica a seleção, imagem imutável, hashes, rede, prazo, integridade
+das fontes, resultado nativo e concordância dos exits. A biblioteca compartilhada
+também tem identidade registrada. Relatórios nativos continuam brutos; a conversão
+ShellCheck json1 para lista fica em arquivo separado.
+
+Grype compartilhado está explicitamente sem seleção de base: a entrada fica
+bloqueada até obter um snapshot real por `update-db`, revisar sua origem e idade,
+registrar `database` e remover `enabled: false` com seu motivo. Não usar esse
+impedimento como justificativa para omitir uma análise necessária. Bases dos
+backends nativos continuam em `.local/security/datasets.json`.
+
+O adapter candidato Ruff não oferece `--ignore-noqa`, e Gitleaks não oferece
+`--ignore-gitleaks-allow`. O Ox bloqueia esses backends ao detectar marcadores
+correspondentes; não permite que uma supressão torne o scan silenciosamente verde.
+Essa checagem conservadora pode incluir marcadores em strings/comentários e exige
+revisão. Os adapters nativos fornecem as flags explícitas.
+
+OSV/Opengrep/Bandit/Trivy/Syft/YARA-X continuam exigindo binários nativos ou evolução
+real da toolbox: seus Dockerfiles não fornecem adapters funcionais no estado
+observado. Não foram removidos dos checks aplicáveis. Playwright não substitui
+aceitação X11/Wayland de Iced e não recebe uma configuração web fictícia.
+
+Resultado enterprise exige execução real das camadas aplicáveis, triagem dos
+achados e revisão dos dados/licenças. Configuração estrita e testes de adapters
+não certificam segurança nem substituem scanners ausentes.
+
+O check complementar `history` permanece nativo: seu contrato exige Git local
+completo e todas as refs (`--all`), que o adapter candidato compartilhado não expõe.
+
+### Preparo explícito das bases
+
+O preparo separado nunca é chamado pela verificação:
+
+```bash
+bash scripts/security/prepare-datasets.sh --review /caminho/review.json --download
+bash scripts/security/prepare-datasets.sh --review /caminho/review.json --import /caminho/bases
+bash scripts/security/prepare-datasets.sh --review /caminho/review.json --download --only trivy,grype
+```
+
+O padrão prepara `osv,rustsec`. Importação recebe diretórios com esses nomes e
+layout de cache nativo; OSV recebe `osv-scanner/crates.io/all.zip`, gerando também
+`osv-scalibr/crates.io/all.zip` para 2.7.0. Cada scanner nativo deve estar no PATH.
+
+O JSON de revisão tem uma entrada por base selecionada, com `source`, `license`,
+`revision`, `dataset_date`, `valid_until`, `reviewer` e `provenance` não vazios.
+Datas usam YYYY-MM-DD UTC, sem data futura, com validade máxima de cinco dias
+desde a data da base. Importações exigem também `sha256`, calculado por
+`checks/run.sh --inspect-data` depois de revisar independentemente a origem.
+A revisão deve explicar como a fonte foi obtida/autenticada: hash não faz isso.
+Registre licenças dos dados, preservando atribuições individuais; a licença do
+scanner não substitui as licenças das bases agregadas.
+
+Fontes aceitas: OSV `https://storage.googleapis.com/osv-vulnerabilities/crates.io/all.zip`,
+RustSec `https://github.com/RustSec/advisory-db.git`, Trivy
+`ghcr.io/aquasecurity/trivy-db:2`, Grype `https://grype.anchore.io/databases`.
+RustSec exige commit completo e data correspondente; downloads OSV conferem
+Last-Modified; Trivy/Grype conferem metadados. Em importações OSV, a data do archive
+é atestada pelo revisor: datas dos avisos individuais não comprovam sua publicação.
+
+O scanner testa compatibilidade antes da publicação. Downloads usam fontes
+oficiais, sem alegar verificação de assinatura. Revisão, logs, versão/hash do
+scanner e procedência ficam na geração, separados do manifesto de integridade.
+Importações verificam o hash revisado antes/depois da cópia. Um lock impede
+preparos simultâneos; uma troca atômica publica o conjunto somente após os probes.
+Gerações anteriores e tentativas falhas permanecem preservadas. Isso não promete
+durabilidade contra perda de energia ou isolamento contra outros escritores.
+Para reproduzir bytes exatos, importe a geração conservada com seu hash revisado;
+as fontes móveis de download podem mudar e geram uma nova identidade.
+
+A verificação bloqueia bases ausentes, alteradas ou vencidas, sem baixá-las.
+Flags offline não são sandbox; a aceitação registrada usa namespace sem rede.
+Trivy/Grype nativos usam este preparo; o backend externo Grype conserva seu próprio
+contrato de volume/imagem/base, sem receber silenciosamente a base nativa.
+
+A descoberta da toolbox prefere scanners nativos; quando necessária, usa
+`OX_TOOLBOX_BIN` ou `toolbox` no PATH. Resolve o caminho canônico e exige
+`bin/toolbox`, `toolbox/cli.py` e `toolbox/__init__.py`. Configuração explícita
+inválida gera erro sem tentar outra toolbox. Caminhos com espaços são suportados.
+Falhas de análise não provocam troca de backend.
+
+## Sucessor de contratos reais — 2026-11-07
+
+Machete 0.9.2 usa texto (`--skip-target-dir --no-ignore .`), sem `--json`,
+`--with-metadata` ou `--fix`. O adapter confere stdout, stderr, encerramento e exit;
+o parser JSON legado exige `crates` explícito. Deny 0.20.2 usa opções globais antes
+de `check`; stderr JSON Lines é preservado e transformado em array separado,
+com resumo final obrigatório e contagens consistentes. Diagnósticos internos
+mantêm o resultado em erro, independentemente dos achados de política.
+
+O backend toolbox do Ox define `TOOLBOX_SELINUX_LABEL=private` apenas para suas
+cópias exclusivas de fontes e diretórios de resultados, com fontes somente leitura,
+rede none, UID/GID do host, cap-drop e no-new-privileges. Não execute scanners
+sobre o checkout original com relabel privado. Preparo e atualização continuam
+comandos explícitos. ShellCheck foi selecionado em 0.11.0, cujo artefato possui
+SHA256 oficial; 0.10.0 e seus registros não foram alterados na toolbox.
+
+Resultados e limites desta correção estão em
+`docs/validation/scanner-remediation-20261107/`; os brutos ficam nos diretórios
+exclusivos `.local/checks/` e nos volumes identificados em `backend_record`.

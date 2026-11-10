@@ -1,0 +1,15 @@
+--- previous/sdd/project.md
++++ sdd/project.md
+@@ -319,3 +319,12 @@
+ historical reports. Full route extends scripts-toolchain-config; decision and
+ evidence: docs/decisions/scanner-toolbox-ownership.md and
+ docs/validation/scanner-toolbox-ownership/.
++
++## Authorized native Toolbox migration — 2026-11-08
++
++User authorizes complete local scripts exec migration, documentation and tests;
++full workflow in sdd/features/scripts-toolbox-native. No Ec/Toolbox changes,
++commits, host changes or implicit downloads. Supersedes consumer lock/snapshot
++selection and native-first dispatch for central scanners only. Operational
++acceptance remains UNVERIFIED pending active central images and public DB age
++information; RustSec needs real maintenance. See scripts/README.md.

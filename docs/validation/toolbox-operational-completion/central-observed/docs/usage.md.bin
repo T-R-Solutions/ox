@@ -1,0 +1,455 @@
+# Uso da Toolbox
+
+Para novas integrações use `toolbox exec`: cada projeto decide comandos/argumentos nativos; o operador mantém versões e imagens centrais. O fluxo cria um container por chamada e não exige config ou lock da Toolbox no projeto.
+
+```bash
+export TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox
+"$TOOLBOX_BIN" exec --tool trivy --project-root "$PWD" -- filesystem application/
+"$TOOLBOX_BIN" exec --tool ruff --project-root "$PWD" --project-write -- check --fix application/
+```
+
+Leia [como conectar um projeto](consumer-integration.md) para instalar o wrapper comum, criar scripts independentes do cwd, configurar paths, rede, credenciais, resultados e Playwright. Consulte [contrato da CLI](native-execution.md) para todas as flags, defaults, streams e códigos. [Exemplos executáveis](../examples/native/README.md).
+
+`--` separa opções do executor dos argumentos nativos, encaminhados sem reescrita. Não há allowlist de subcomandos. Configs, regras e critérios de aprovação são do consumidor. Atualização/ativação é tarefa explícita do operador; não se resolve falta de imagem instalando ferramenta no script de análise.
+
+O [guia do operador](operations.md) explica preparo/rollback. Em permission denied, use [diagnóstico do Docker](docker-access.md). [Estado observado](native-validation.md): implementação disponível, validação real bloqueada no socket nesta sessão. O material recolhido abaixo é compatibilidade legada.
+
+<details>
+<summary>Histórico: interface com adapters e locks por consumidor</summary>
+
+> Atualização 08/11/2026: o fluxo nativo vigente usa versões centrais e `exec`, sem config/lock do consumidor ou adapter obrigatório. Consulte [contrato e comandos atuais](native-execution.md) e [validação observada](native-validation.md). O conteúdo abaixo descreve o fluxo legado, preservado para compatibilidade.
+
+# Como configurar e executar cada ferramenta
+
+Este guia explica como usar o Shared Toolbox em uma aplicação consumidora. A aplicação mantém seus arquivos, regras e testes; o Shared Toolbox prepara imagens e executa ferramentas em containers temporários.
+
+Você não precisa subir containers manualmente nem manter serviços dos scanners ativos. A CLI cria um container para cada análise, coleta os resultados e remove o container ao terminar. Não há Docker Compose neste fluxo. Bancos, servidores e demais serviços da aplicação continuam sob responsabilidade do consumidor.
+
+## Estado atual
+
+| Ferramenta | Versão do catálogo | Situação neste repositório |
+|---|---|---|
+| Ruff | 0.11.13 | Receita e adapter candidatos |
+| Gitleaks | 8.24.3 | Receita e adapter candidatos |
+| ShellCheck | 0.10.0 | Receita e adapter candidatos |
+| Grype | 0.119.0 | Receita, adapter e atualização de base candidatos |
+| Playwright | 1.56.1 | Receita, adapter e variantes candidatos |
+| OSV-Scanner | 2.0.2 | Integração bloqueada, sem adapter |
+| Opengrep | 1.31.0 | Integração bloqueada, sem adapter |
+| Bandit | 1.8.3 | Receita e adapter candidatos, wheels fixados |
+| Trivy | 0.61.1 | Integração bloqueada, sem adapter |
+| Syft | 1.23.1 | Adapter de SBOM e evidência offline histórica |
+| YARA-X | 1.0.0 | Integração bloqueada, sem adapter |
+
+Também existem módulos isolados ShellCheck 0.11.0, Opengrep 1.33.1, OSV 2.7.0 e Trivy 0.76.2. `platform.json` contém digest resolvido. Evidências históricas de execução offline estão em `evidence/offline-security/`; não comprovam nova execução após alterações. A [auditoria atual](audit-20261108.md) registra validações e bloqueios por versão.
+
+## Preparação do ambiente compartilhado
+
+O host precisa de Python 3.11+ e Docker Engine local acessível ao usuário. O alvo atual é Linux AMD64. Não é necessário instalar os scanners na aplicação ou no host.
+
+A partir do repositório:
+
+```bash
+cd /home/rodrigo/Projetos/dev_audit/shared-toolbox
+bin/toolbox doctor
+bin/toolbox lock-base
+```
+
+Se `doctor` retornar `ready: false`, resolva o diagnóstico do Docker antes do preparo. `lock-base` baixa explicitamente a base e grava seu digest real em `platform.json`; revise e versione esse arquivo. Não substitua o digest por um valor fictício. O preparo ainda pode falhar por downloads, hashes, dependências ou receitas não validadas.
+
+Os demais comandos deste guia pressupõem esse mesmo diretório de trabalho. Os caminhos `/caminho/minha-app` são exemplos que você deve substituir.
+
+## Configuração de uma aplicação
+
+Crie `toolbox.json` na raiz da aplicação. Um arquivo pode selecionar várias ferramentas:
+
+```json
+{
+  "schema": 1,
+  "project": "minha-app",
+  "root": ".",
+  "tools": {
+    "ruff": {
+      "version": "0.11.13",
+      "paths": ["."]
+    },
+    "gitleaks": {
+      "version": "8.24.3",
+      "mode": "files",
+      "paths": ["."]
+    }
+  }
+}
+```
+
+- `project`: identificador estável e único da aplicação, em minúsculas, com números, `_` ou `-`.
+- `root`: diretório dos fontes, relativo ao `toolbox.json`, ou caminho absoluto.
+- `tools`: ferramentas selecionadas, cada uma com versão exata disponível no catálogo.
+- `paths`: caminhos relativos ao `root`. Não use caminhos absolutos, `..` ou globs como `scripts/*.sh`; a CLI não expande padrões.
+- `config`: arquivo nativo da ferramenta, relativo ao `root`, quando utilizado.
+- `timeout`: tempo máximo em segundos; o padrão é 600.
+- `network`: rede Docker; o padrão é `none`.
+
+Os caminhos indicados precisam existir na execução. `validate` verifica a configuração e invoca as validações dos adapters, mas não comprova a existência da imagem nem a validade de todo arquivo nativo.
+
+Os blocos individuais nas próximas seções são entradas para o objeto `tools`, não arquivos `toolbox.json` completos. Adicione somente as ferramentas necessárias à aplicação.
+
+## Comandos usados no dia a dia
+
+```bash
+# Validar a configuração de todas as ferramentas declaradas
+bin/toolbox validate --config /caminho/minha-app/toolbox.json
+
+# Consultar o plano sem executar os scanners
+bin/toolbox plan --config /caminho/minha-app/toolbox.json
+
+# Preparar somente uma ferramenta, com downloads e build explícitos
+bin/toolbox prepare --config /caminho/minha-app/toolbox.json --only ruff
+
+# Executar somente essa ferramenta
+bin/toolbox run --config /caminho/minha-app/toolbox.json --only ruff
+
+# Consultar versões selecionadas e imagens locais
+bin/toolbox versions --config /caminho/minha-app/toolbox.json
+
+# Consultar os resultados da aplicação
+bin/toolbox results --project minha-app
+```
+
+O preparo gera `toolbox.images.lock.json` ao lado de `toolbox.json`. Versione ambos. Outra aplicação pode reutilizar a imagem se selecionar a mesma ferramenta, versão, variante e identidade de receita. Ela precisa executar seu próprio `prepare` para obter seu lock.
+
+Depois do preparo, as análises usam `run`. Ele não faz build, pull, instalação de pacotes ou atualização de bases. Se a imagem não existir localmente, a execução falha com pré-requisito ausente.
+
+Sem `--only`, `prepare` e `run` selecionam todas as entradas de `tools`. O comando `validate` não aceita `--only`.
+
+## Ruff
+
+Analisa problemas de qualidade em código Python. O adapter executa `check`, com correções e cache desativados.
+
+Entrada em `tools`:
+
+```json
+"ruff": {
+  "version": "0.11.13",
+  "paths": ["src", "tests"],
+  "config": "ruff.toml",
+  "network": "none",
+  "timeout": 120
+}
+```
+
+Crie `ruff.toml` na aplicação com as regras que ela deve seguir. Se não for passar um arquivo explicitamente, remova `config`; a descoberta nativa de configuração depende dos arquivos do consumidor. Ajuste `paths` à estrutura real da aplicação.
+
+```bash
+bin/toolbox validate --config /caminho/minha-app/toolbox.json
+bin/toolbox prepare --config /caminho/minha-app/toolbox.json --only ruff
+bin/toolbox run --config /caminho/minha-app/toolbox.json --only ruff
+```
+
+O relatório JSON nativo fica em `stdout.log` do resultado. Ruff não executa os testes Python e não mede cobertura.
+
+## Gitleaks
+
+Procura segredos nos arquivos atuais ou no histórico Git.
+
+Entrada em `tools` para arquivos atuais:
+
+```json
+"gitleaks": {
+  "version": "8.24.3",
+  "mode": "files",
+  "paths": ["."],
+  "network": "none"
+}
+```
+
+Se a aplicação tiver regras próprias, acrescente `"config": ".gitleaks.toml"` e mantenha esse arquivo no consumidor. O adapter aceita exatamente um caminho por execução.
+
+```bash
+bin/toolbox prepare --config /caminho/minha-app/toolbox.json --only gitleaks
+bin/toolbox run --config /caminho/minha-app/toolbox.json --only gitleaks
+```
+
+Para analisar o histórico, altere `mode` para `history` e execute novamente. O diretório analisado precisa conter o repositório Git e seu histórico; um clone raso não cobre commits ausentes. `run` não busca histórico remoto.
+
+O relatório fica em `native.json`. O adapter solicita redação dos segredos no relatório e distingue o código reservado a achados dos erros operacionais. Baseline e flags arbitrárias não têm campo dedicado na configuração atual da plataforma.
+
+## ShellCheck
+
+Analisa estaticamente scripts shell, sem executar os scripts da aplicação.
+
+Entrada em `tools`:
+
+```json
+"shellcheck": {
+  "version": "0.10.0",
+  "paths": ["scripts/build.sh", "scripts/deploy.sh"],
+  "network": "none"
+}
+```
+
+Liste os arquivos explicitamente. Se houver configuração própria, acrescente `"config": ".shellcheckrc"` e crie o arquivo na aplicação.
+
+```bash
+bin/toolbox prepare --config /caminho/minha-app/toolbox.json --only shellcheck
+bin/toolbox run --config /caminho/minha-app/toolbox.json --only shellcheck
+```
+
+O relatório JSON fica em `stdout.log`. Não use `paths: ["scripts/*.sh"]` esperando expansão automática.
+
+## Grype
+
+Analisa vulnerabilidades dos pacotes identificados em um diretório. O adapter atual aceita exatamente um caminho de filesystem; alvos SBOM e imagens arquivadas ainda não estão integrados.
+
+Grype precisa de dois preparos separados: imagem e base de vulnerabilidades.
+
+### Preparar a imagem e obter a base
+
+Comece com esta entrada em `tools`:
+
+```json
+"grype": {
+  "version": "0.119.0",
+  "paths": ["."],
+  "network": "none"
+}
+```
+
+Neste estágio, `validate` ainda falha pela ausência de `database` e `max_database_age_hours`. Os comandos de preparo abaixo não exigem a invocação de análise e permitem obter a base inicial:
+
+```bash
+bin/toolbox prepare --config /caminho/minha-app/toolbox.json --only grype
+bin/toolbox update-db --config /caminho/minha-app/toolbox.json --only grype
+```
+
+`update-db` usa rede e retorna um campo `database` com o SHA256 real do snapshot. Copie esse valor para a configuração. A rede `none` da análise não impede a rede usada pelo atualizador explícito.
+
+### Selecionar a base e analisar
+
+Atualize a entrada:
+
+```json
+"grype": {
+  "version": "0.119.0",
+  "paths": ["."],
+  "database": "SUBSTITUA_PELO_SHA256_REAL_RETORNADO",
+  "max_database_age_hours": 120,
+  "network": "none"
+}
+```
+
+O marcador de `database` não é válido: substitua-o pelos 64 caracteres hexadecimais retornados. O valor 120 é apenas um exemplo; a aplicação deve escolher sua idade máxima aceitável. Essa idade se refere à base nativa, não à data em que ela foi copiada.
+
+```bash
+bin/toolbox validate --config /caminho/minha-app/toolbox.json
+bin/toolbox run --config /caminho/minha-app/toolbox.json --only grype
+```
+
+O relatório JSON fica em `stdout.log`. A base selecionada é verificada e copiada para o diretório privado da execução. Atualização automática fica desativada.
+
+Para adotar uma base nova, execute `update-db` explicitamente, substitua `database` pelo novo identificador e versione a configuração. Atualizar a base não altera a seleção da aplicação automaticamente. Base ausente, inválida ou antiga não significa análise aprovada.
+
+## Playwright
+
+Executa testes escritos pela aplicação. A imagem contém Node e o pacote central `@playwright/test`; o fluxo inicial aceita esse pacote e módulos builtin do Node. Dependências adicionais de testes ainda não têm bundle implementado.
+
+A aplicação mantém seus testes e sua configuração. Não precisa instalar Playwright localmente para esse fluxo. A CLI copia os fontes para `/out/work` e disponibiliza o pacote central por um link `node_modules` nessa cópia.
+
+### Testes de API sem navegador
+
+Entrada em `tools`:
+
+```json
+"playwright": {
+  "version": "1.56.1",
+  "variant": "api",
+  "config": "playwright.config.mjs",
+  "network": "bridge",
+  "env": {
+    "BASE_URL": "http://host.docker.internal:3000"
+  }
+}
+```
+
+Crie `playwright.config.mjs` na aplicação:
+
+```javascript
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests/api',
+  outputDir: '/out/test-results',
+  reporter: [['list'], ['json']],
+  use: {
+    baseURL: process.env.BASE_URL,
+  },
+});
+```
+
+Crie um teste, por exemplo `tests/api/health.spec.mjs`:
+
+```javascript
+import { test, expect } from '@playwright/test';
+
+test('aplicação responde ao health check', async ({ request }) => {
+  const response = await request.get('/health');
+  expect(response.ok()).toBeTruthy();
+});
+```
+
+Ajuste URL, porta, rota e expectativa ao contrato real da aplicação. Suba a aplicação por seu procedimento habitual antes de executar o teste. Para acesso pela bridge, ela precisa escutar em endereço acessível pelo container; apenas `127.0.0.1` no host pode não ser suficiente.
+
+```bash
+bin/toolbox validate --config /caminho/minha-app/toolbox.json
+bin/toolbox prepare --config /caminho/minha-app/toolbox.json --only playwright
+bin/toolbox run --config /caminho/minha-app/toolbox.json --only playwright
+```
+
+A variante `api` não instala navegador. Use `request`, sem solicitar fixtures `page` ou `browser`.
+
+### Testes de interface com navegador
+
+Altere `variant` para `chromium`, `firefox` ou `webkit`. Execute `prepare` novamente após trocar a variante, para atualizar a imagem selecionada no lock.
+
+Exemplo de configuração nativa para Chromium:
+
+```javascript
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests/ui',
+  outputDir: '/out/test-results',
+  reporter: [['list'], ['json'], ['html', { open: 'never' }]],
+  use: {
+    browserName: 'chromium',
+    baseURL: process.env.BASE_URL,
+    headless: true,
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+  },
+});
+```
+
+Exemplo em `tests/ui/home.spec.mjs`:
+
+```javascript
+import { test, expect } from '@playwright/test';
+
+test('página inicial abre', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('body')).toBeVisible();
+});
+```
+
+Esse teste verifica apenas a abertura básica da página; acrescente as verificações funcionais da aplicação. Para Firefox ou WebKit, alinhe `browserName` à variante preparada. O campo `variant` seleciona o navegador instalado na imagem; não reescreve a configuração nativa do consumidor.
+
+### Rede e resultados
+
+| Aplicação alvo | Configuração de rede |
+|---|---|
+| Serviço no host | `network: bridge`, URL `http://host.docker.internal:PORTA` |
+| Serviço em outro container | `network` com o nome da rede Docker existente e URL com o nome do serviço |
+| Serviço externo | `network: bridge` e URL externa |
+| Testes autocontidos com servidor dentro do container | `network: none`, se não exigirem acesso externo |
+
+`localhost` dentro do scanner aponta para o próprio container. A CLI não sobe a aplicação, seu banco ou seus serviços. `BASE_URL` só tem efeito se a configuração ou os testes a utilizarem.
+
+O reporter JSON é obrigatório para a classificação atual. O resultado inclui `native.json`, HTML quando habilitado, `test-results` e a cópia de trabalho. Zero testes executados, erro global ou relatório ausente não aprovam a análise. Interface visual `--ui` e execução headed não estão implementadas neste fluxo.
+
+Exemplos completos do repositório: [API](../examples/playwright-api/) e [UI](../examples/playwright-ui/). Detalhes em [Contrato Playwright](playwright.md).
+
+## OSV-Scanner
+
+OSV-Scanner 2.0.2 permanece bloqueado. A versão isolada 2.7.0 possui adapter offline para `Cargo.lock` e `package-lock.json`, bases npm/crates.io preparadas explicitamente e configuração nativa obrigatória. Consulte [operação offline](offline-security.md).
+
+
+## Opengrep
+
+Opengrep 1.31.0 permanece bloqueado. A versão isolada 1.33.1 possui adapter para regras locais (`config`), alvos (`paths`) e modos `scan`/`test`. Regras, supressões e exclusões pertencem ao consumidor. `examples/static-analysis` fornece uma regra de teste independente. JSON inválido, erros de análise ou ausência de arquivos analisados falham. O modo test exige oráculo positivo. A cobertura de arquivos excluídos deve ser avaliada pelo consumidor.
+
+
+## Bandit
+
+Finalidade: análise de segurança de Python. Bandit 1.8.3 possui adapter e ambiente Python 3.13 com sete wheels fixados por hash. Forneça YAML em `config` e alvos em `paths`; regras, exclusões e `nosec` pertencem ao consumidor. Veja `examples/static-analysis/toolbox.json`. Prepare explicitamente antes de executar. JSON com erros ou sem linhas analisadas falha; 0/1 devem concordar com os achados. A execução desta revisão está bloqueada pelo acesso ao Docker.
+
+
+## Trivy
+
+Trivy 0.61.1 permanece bloqueado. A versão isolada 0.76.2 implementa filesystem/vuln, preparo explícito das bases principal e Java e execução offline. O consumidor seleciona versão, alvo, configuração e idade máxima. Veja [operação offline](offline-security.md); `update-db --only trivy` está implementado para a versão integrada.
+
+
+## Syft
+
+Syft 1.23.1 possui adapter para inventário de um diretório, sem bases de vulnerabilidades. `prepare` verifica um pacote conhecido com rede desabilitada. `run` produz JSON nativo em `stdout.log` e estado `measurement` (CLI 3). Configuração e alvo são do consumidor. Consulte [operação offline](offline-security.md).
+
+
+## YARA-X
+
+Finalidade: identificar conteúdo conforme regras fornecidas pelo consumidor. A versão 1.0.0 não tem adapter; seu Dockerfile falha deliberadamente. Faltam contrato de saída, códigos e dependências verificados.
+
+Não há execução integrada disponível. Regras e significado de cada correspondência pertencem à aplicação; não existe base central preparada pela plataforma. Veja [pendências YARA-X](../tools/yara-x/README.md).
+
+## Declarar uma ferramenta bloqueada
+
+Você pode registrar explicitamente que ela ainda não será executada. Exemplo de entrada em `tools`:
+
+```json
+"yara-x": {
+  "version": "1.0.0",
+  "enabled": false,
+  "reason": "Integração ainda não disponível na plataforma"
+}
+```
+
+Isso é uma omissão, não uma execução bem-sucedida. Se uma ferramenta bloqueada estiver habilitada, `plan`/`run` registrarão pré-requisito ausente e `prepare` não a disponibilizará. Antes disso, `prepare` ainda exige base resolvida e Docker acessível.
+
+## Onde consultar resultados e diagnosticar falhas
+
+O caminho absoluto da pasta que reúne as soluções é:
+
+```text
+/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools
+```
+
+A partir dela, acesse a pasta da ferramenta desejada. Por exemplo, para consultar os arquivos e resultados do Grype:
+
+```bash
+cd /home/rodrigo/Projetos/dev_audit/shared-toolbox/tools
+cd grype
+```
+
+Cada solução contém seu `README.md`, `tool.json`, `Dockerfile` e a pasta `volume/`; as integrações implementadas também possuem adapter. Para outra solução, substitua `grype` por seu nome, como `ruff`, `gitleaks`, `shellcheck` ou `playwright`. Os comandos com `bin/toolbox` mostrados neste guia continuam sendo executados a partir da raiz `shared-toolbox/`.
+
+Cada ferramenta guarda seus próprios dados:
+
+```text
+shared-toolbox/tools/<ferramenta>/volume/
+├── images/<versão>/<receita>/
+├── databases/<versão>/<snapshot>/
+├── preparation/<id>/
+├── projects/<projeto>/runs/<id>/
+└── locks/
+```
+
+Essas subpastas surgem conforme o uso. `images` contém contexto e registros de preparo; as camadas das imagens permanecem no armazenamento do Docker. Índices agregados ficam em `.local/state/`. `--state` e `TOOLBOX_STATE` mudam os índices e locks gerais, sem deslocar os volumes.
+
+Consulte `result.json`, `stdout.log`, `stderr.log` e os relatórios nativos na pasta da execução. O nome do container de análise é `toolbox-<UUID>` e ele é removido ao terminar. Os arquivos de resultado permanecem.
+
+| Exit de `run` | Interpretação |
+|---|---|
+| 0 | Todas as ferramentas selecionadas executaram com sucesso e sem achados |
+| 1 | Houve achados, sem falha operacional ou pré-requisito ausente |
+| 2 | Falha operacional ou pré-requisito ausente |
+| 3 | Omissão, inaplicabilidade, medição ou seleção vazia |
+
+Interrupção antes de iniciar o runner também pode retornar 130. Os códigos originais do container são registrados separadamente.
+
+Se faltar imagem, execute `prepare` explicitamente e examine seu resultado. Se faltar base Grype, prepare-a e selecione o snapshot. Se houver erro de configuração ou relatório, corrija-o antes de interpretar os resultados como análise concluída. Não use apenas a existência de uma pasta de volume, um Dockerfile ou um lock para concluir que o scanner funcionou.
+
+Para operação, backup e migração, consulte [Operações](operations.md). Para o contrato completo, consulte [Configuração](configuration.md). A [matriz de referências](references.md) registra as fontes e lacunas das versões selecionadas.
+
+## Bases persistentes e verificação offline
+
+O fluxo de Trivy 0.76.2, OSV 2.7.0, Grype 0.119.0 e Syft 1.23.1 foi complementado: consulte [operação offline](offline-security.md). O primeiro `prepare` prepara os dados e verifica a operação real; repetições reutilizam imagens, bases e verificações.
+
+</details>

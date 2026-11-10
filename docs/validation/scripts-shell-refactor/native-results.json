@@ -1,0 +1,75 @@
+{
+  "results": [
+    {
+      "argv": [
+        "/home/rodrigo/.rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin/cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit_code": 0,
+      "state": "passed",
+      "check": "rust-fmt"
+    },
+    {
+      "argv": [
+        "/home/rodrigo/.rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin/cargo",
+        "check",
+        "--workspace",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit_code": 0,
+      "state": "passed",
+      "check": "rust-check"
+    },
+    {
+      "argv": [
+        "/home/rodrigo/.rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin/cargo",
+        "build",
+        "--workspace",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit_code": 0,
+      "state": "passed",
+      "check": "rust-build"
+    },
+    {
+      "argv": [
+        "/home/rodrigo/.rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin/cargo",
+        "test",
+        "--workspace",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit_code": 0,
+      "state": "passed",
+      "check": "rust-test"
+    },
+    {
+      "argv": [
+        "/home/rodrigo/.rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin/cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox/application",
+      "exit_code": 0,
+      "state": "passed",
+      "check": "rust-clippy"
+    }
+  ],
+  "product_acceptance": false,
+  "source_run": ".local/checks/run-dGLxs2Q1/results.json"
+}

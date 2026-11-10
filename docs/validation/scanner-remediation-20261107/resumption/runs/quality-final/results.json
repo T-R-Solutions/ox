@@ -1,0 +1,172 @@
+{
+  "scope": "quality",
+  "results": [
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "machete",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/machete"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "state": "passed",
+      "tool_exit_code": 0,
+      "check": "machete"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "ruff",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/ruff"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 1,
+      "state": "findings",
+      "tool_exit_code": 1,
+      "check": "ruff"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "deny",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/deny"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 6,
+      "state": "findings",
+      "tool_exit_code": 6,
+      "check": "deny"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "geiger",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/geiger"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 2,
+      "state": "error",
+      "tool_exit_code": 0,
+      "check": "geiger"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "trivy",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/trivy"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "state": "passed",
+      "tool_exit_code": 0,
+      "check": "trivy"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "sbom",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/sbom"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "state": "recorded",
+      "tool_exit_code": 0,
+      "check": "sbom"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "grype",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/grype"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "state": "passed",
+      "tool_exit_code": 0,
+      "check": "grype"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "malware",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/malware"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 1,
+      "state": "findings",
+      "tool_exit_code": 0,
+      "check": "malware"
+    },
+    {
+      "argv": [
+        "bash",
+        "/home/rodrigo/Projetos/ox/scripts/checks/run.sh",
+        "--root",
+        "/home/rodrigo/Projetos/ox",
+        "--check",
+        "shellcheck",
+        "--output",
+        "/home/rodrigo/Projetos/ox/.local/checks/run-Idb5XFkF/shellcheck"
+      ],
+      "cwd": "/home/rodrigo/Projetos/ox",
+      "exit_code": 0,
+      "state": "passed",
+      "tool_exit_code": 0,
+      "check": "shellcheck"
+    }
+  ],
+  "product_acceptance": false,
+  "entry_sha256": "3fabd803c8f630f27b3f2522b29ae1bc11b50c4f8101b583a965c3cb2870c50a",
+  "omitted": [],
+  "not_selected": [
+    "Surfaces outside the chosen scope need explicit applicability review"
+  ],
+  "not_applicable": [],
+  "manual_evidence": [
+    "Graphical X11/Wayland acceptance: separate applicable protocol required"
+  ],
+  "limits": [
+    "Successful checks do not approve the product.",
+    "Offline flags are not OS isolation."
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "copy": "/tmp/ox-security-final-copy-jt5yhfx8",
+  "observed_inputs": {
+    "scripts/README.md": "4ca0d5a4f490b9ea92c35064ed89ff6518dde028be6b5f5a6f96976c0f7dd98f",
+    "scripts/automate.py": "7d279e552e2f7048d72d26d22baf4c1aa8b7ae4e9cdabb194bea8c501a0baa96",
+    "scripts/security/LICENSE": "b2fa7b84692d6b7d79bc3538f670cb7110ec089ac04b7d5f9aa917713661ecd0",
+    "scripts/security/NOTICE": "5271e72438d787703c1afb4704dab703893354427a76adb3916e54a4f3c19807",
+    "scripts/security/reporting.py": "8a61f643a0d477ce421d31c284ed826fb4dbe5d6e80fa69b9265c885dbc4dee0",
+    "scripts/security/run.py": "f5ea74306e1721bb466de4c38d4e3d0dad3d1a5d10a3c43e98493282e8427bc3",
+    "scripts/security/verify.sh": "e9dae76fed7a3f85e45737cacf34650881f37d528a59b774f112ce1d1f3802ac",
+    "scripts/security/SOURCES.md": "27708ca88b7e39d772bcd3692f2dc79462bef46b13e2b8c7c2ef3607c22782a7",
+    "scripts/rust/verify.sh": "98e76f4c558980e43b77ce6f91902e07fe47ed774a1a92e7d196fbffb36bcc52",
+    "scripts/verify/full.sh": "e98ec398b6fadaebf5e6fb799e5fa66d7bdf76e90023332c0d8d53b8c06c529e",
+    "scripts/reports/summarize.py": "2fa8ac308f799a1c16d6c71341c6592ac53396792d022cb53d5a02417a9146aa",
+    "scripts/governance/commands/agents.sh": "3f32f7ab108b055c87949472271684259423c8e84616d9ec2657d49dd9a7f6ba",
+    "scripts/governance/commands/skill-contract.sh": "3f32f7ab108b055c87949472271684259423c8e84616d9ec2657d49dd9a7f6ba",
+    "scripts/python/commands/lint.sh": "89dd0aafcd4d1cd324a9f1160c962b367ba6c12e901f4ca1b8e57a9af2544b44",
+    "scripts/python/commands/security.sh": "72892ffe9e9da0761118228b2f3b202e2795b2314c0473d505a9f61816267778",
+    "scripts/python/commands/shellcheck.sh": "a315c6eca6f7060d651dea0a66c349d6292c71745d19ba5fb7348c26ab9e90d4",
+    "scripts/rust/commands/audit.sh": "35979b189470b38865e81bd51eb12259614e1ea6da9da78acc9299eaeec244d0",
+    "scripts/rust/commands/deny.sh": "cc3d018f1146763a9205e0da7f36f4cc61b73d2c0f03ed41cba4cbf89de7c1fa",
+    "scripts/rust/commands/coverage.sh": "d6d729a2e622a218b6fd75b4e851bea1f611b81b9eb1f5062b40afda9ced6478",
+    "scripts/rust/commands/geiger.sh": "bdd3b571828bc6bb1f22cc82425fa25c3b0ea3974fca20dab24f8aa77c64beb3",
+    "scripts/rust/commands/machete.sh": "e31e7630d7832794a25da5723341836cb5de0f58e4f346c92398bfdb7ba5cc27",
+    "scripts/rust/commands/fmt.sh": "ee861712fc65a3d1c496cdbe0615bd418dec0cda78b089983b3ff25b51084342",
+    "scripts/rust/commands/clippy.sh": "750e65cf25ecb88a07240efc921aaa3c348ca0bb7eef067620c46ac974ffdfb6",
+    "scripts/rust/commands/test.sh": "84aa883ca37c238d61c0a89e04c7935365e0468677542e2bb21b00504da353ea",
+    "scripts/security/analyzers/check-report.py": "167d5a44543879905cd3342681930c070a67102081ea62edb7680a2b5413650e",
+    "scripts/security/analyzers/validate-exceptions.py": "34a58fd88036ddbabf2fe0cbe4e34ba47c5636ba94c96f456d195f6f025ec90e",
+    "scripts/security/rules/suspicious.yar": "49951250b1e904ea63bf88f3547fcc9404a4425de0ad6ddb778d9fa6335f241d",
+    "scripts/security/rules/gitleaks.toml": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777",
+    "scripts/security/rules/ox.yml": "a972d0b7da41d7f9d79acadf3ca0f95b038d78eda9ed2c4cc069ff9bbf9e51d7",
+    "scripts/security/commands/gitleaks.sh": "22815de1a3b8d7dc78b4e0f6d7d794ebfe04f0dc1af80040804f1a80cae66122",
+    "scripts/security/commands/osv-scanner.sh": "e30dbb0aacd8c0e9f5df82f8790c58bca82c2a01ec2e290371772139363371b6",
+    "scripts/security/commands/opengrep.sh": "7aa6baa57f264c001a8428a4dffc0bfcca590c54501373b4b2acf3003badb15f",
+    "scripts/security/commands/trivy.sh": "8e69f96359bc9f54351afc4ebf801d08736429d2549f6935a7d3bed42ea4c95c",
+    "scripts/security/commands/advisory-policy.sh": "35979b189470b38865e81bd51eb12259614e1ea6da9da78acc9299eaeec244d0",
+    "scripts/security/commands/history.sh": "0aa11ff940f55510aef8cd6b474b931cf857a77ba855eb36752902cd04289c71",
+    "scripts/security/commands/sbom.sh": "ec6a93e10298bec8f55dbca11391dbb34d84084996a839be7f366ea9e66cafd3",
+    "scripts/security/commands/grype.sh": "00d9a44386aa26417bd42db7684e1ec052f324addf87500a010fb46ca9398ef0",
+    "scripts/security/commands/malware.sh": "4dedf1c16d8b6ba1476ca34a9e252068d578fa4e7c8bbc67c2d1e211edac10d6",
+    "tools/governance/scripts/closure_revision.py": "bcdb68e8999f60ce196fd9360b85c7819b56fcede486831416cd5b4a578b9e04",
+    "tools/governance/scripts/governance_support.py": "283bd9eea5b6e034c58ac28e09ebf16426de62eda4d15f977219daf8fdc679c7",
+    "AGENTS.md": "012d776293ab227d9751b359f78237be6fbab4e7182d72fd45e7c0d591ec2f1c",
+    "sdd/project.md": "7798c064e49f9260d950a24bf6192f0cd6d4a40e44a813afd8f7396bfcf8d6f5"
+  },
+  "results": [
+    {
+      "argv": [
+        "tools/governance/scripts/check-ox.py"
+      ],
+      "exit_code": 0,
+      "log": "docs/validation/scripts-security-quality/detached-0.txt",
+      "sha256": "f097e6e472cd04ce62cc6f5e92c8c3c74514de18edabe84a3bf7396625bff348"
+    },
+    {
+      "argv": [
+        "sdd/tools/validate.py",
+        "--root",
+        "."
+      ],
+      "exit_code": 0,
+      "log": "docs/validation/scripts-security-quality/detached-1.txt",
+      "sha256": "fd27e58589d0d3f36b085e9a41e067d3feb530d6f184c9d5d05554bd24bb09bd"
+    },
+    {
+      "argv": [
+        "scripts/automate.py",
+        "--scope",
+        "security",
+        "--check",
+        "gitleaks",
+        "--plan"
+      ],
+      "exit_code": 0,
+      "log": "docs/validation/scripts-security-quality/detached-2.txt",
+      "sha256": "59798295cffb5d7e13fa0b393e3439b64d856cd494618f2fb0d0d154b4c44233"
+    }
+  ],
+  "limits": "Local detached-copy checks; not package publication or product acceptance."
+}

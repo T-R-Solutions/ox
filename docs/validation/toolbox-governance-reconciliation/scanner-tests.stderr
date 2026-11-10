@@ -1,0 +1,31 @@
+F..F
+======================================================================
+FAIL: test_exact_successor_unknown_and_active_downgrade (test_scanner_succession.OwnershipSuccession.test_exact_successor_unknown_and_active_downgrade)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rodrigo/Projetos/ox/tools/governance/tests/test_scanner_succession.py", line 80, in test_exact_successor_unknown_and_active_downgrade
+    self.assertEqual(self.observe(), previous)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: b"# O[18695 chars]ts.\n\n## Authorized toolbox database ownershi[1223 chars]d.\n" != b"# O[18695 chars]ts.\n"
+
+======================================================================
+FAIL: test_current_unknown_downgrade_and_recovery_corruption (test_scanner_succession.ScannerSuccession.test_current_unknown_downgrade_and_recovery_corruption)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rodrigo/Projetos/ox/tools/governance/tests/test_scanner_succession.py", line 31, in test_current_unknown_downgrade_and_recovery_corruption
+    self.assertEqual(
+    ~~~~~~~~~~~~~~~~^
+        C.remediation_predecessor(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+            root, name, C.ownership_predecessor(root, name, current)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        ), previous
+        ^^^^^^^^^^^
+    )
+    ^
+AssertionError: b'# O[9319 chars])\n\nO preparo expl\xc3\xadcito de bases e a d[262 chars]`.\n' != b'# O[9319 chars])\n\n## Verifica\xc3\xa7\xc3\xb5es ao encerrar[916 chars]a.\n'
+
+----------------------------------------------------------------------
+Ran 4 tests in 5.039s
+
+FAILED (failures=2)

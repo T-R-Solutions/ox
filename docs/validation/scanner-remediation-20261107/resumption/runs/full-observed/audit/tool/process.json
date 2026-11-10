@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/home/rodrigo/.cargo/bin/cargo-audit",
+    "audit",
+    "--no-fetch",
+    "--no-yanked",
+    "--db",
+    "/home/rodrigo/Projetos/ox/.local/checks/run-1rq9nSXj/audit/dataset",
+    "--file",
+    "Cargo.lock",
+    "--json",
+    "--deny",
+    "warnings"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox/.local/checks/run-1rq9nSXj/audit/audit-input",
+  "exit_code": 1,
+  "state": "failed"
+}

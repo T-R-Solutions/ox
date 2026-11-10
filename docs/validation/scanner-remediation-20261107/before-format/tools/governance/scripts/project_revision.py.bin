@@ -1,0 +1,74 @@
+"""One reviewed, content-bound project-state succession; no general path exemption."""
+import hashlib
+import json
+import re
+from pathlib import Path
+from readme_revision import file, unique
+
+BASE = 'docs/validation/persistence-freeze-20261105'
+REGISTRY = BASE + '/project-succession.json'
+REVIEW = BASE + '/succession-review.md'
+# These are the reviewed contents, not a path-based permission to register new bytes.
+REVIEWED_CONTENT = ('853f04e0dd88f9488b18ff47852740e0c4ad23539499ce5a5bafc72383acba33', 'c632a8a644ad8ce17c2260035d3cc50cc547beb435054a08e35a6cff48057b6b')
+REVIEWED_REVIEW = '6bd26f7ac58998de44fdebdc2c734dc7d7137d08181cafa5aa50992dd2bd8383'
+PREIMAGES = ('docs/validation/persistence-preflight-20261105/before/sdd/project.md.bin',
+             BASE + '/before/sdd/project.md.bin')
+
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def record(root, expected):
+    registry = root / REGISTRY
+    if not registry.exists() and not registry.is_symlink():
+        if (root / REVIEW).exists():
+            raise ValueError('Missing project succession registry')
+        return None
+    doc = json.loads(file(root, REGISTRY).read_text(), object_pairs_hook=unique)
+    if (not isinstance(doc, dict) or set(doc) != {'schema_version', 'revision', 'reason', 'review', 'review_sha256', 'records'}
+            or doc['schema_version'] != 1 or doc['revision'] != 'persistence-project-succession-001'
+            or not isinstance(doc['reason'], str) or not doc['reason'].strip()
+            or doc['review'] != REVIEW):
+        raise ValueError('Invalid project succession record')
+    if (doc['review_sha256'] != REVIEWED_REVIEW
+            or digest(file(root, REVIEW).read_bytes()) != doc['review_sha256']):
+        raise ValueError('Project succession review digest mismatch')
+    rows = doc['records']
+    if not isinstance(rows, list) or len(rows) != len(PREIMAGES):
+        raise ValueError('Invalid project succession transition count')
+    for row, previous, reviewed in zip(rows, PREIMAGES, REVIEWED_CONTENT):
+        if (not isinstance(row, dict) or set(row) != {'destination', 'previous', 'previous_sha256', 'sha256'}
+                or row['destination'] != 'sdd/project.md' or row['previous'] != previous):
+            raise ValueError('Invalid project succession scope')
+        if (row['sha256'] != reviewed or row['previous_sha256'] != expected
+                or not re.fullmatch('[a-f0-9]{64}', str(row['sha256']))):
+            raise ValueError('Project succession digest binding mismatch')
+        if digest(file(root, previous).read_bytes()) != expected:
+            raise ValueError('Project succession preimage digest mismatch')
+        expected = row['sha256']
+    return rows
+
+
+def predecessor(root, relative, data, expected):
+    if relative != 'sdd/project.md':
+        return data
+    rows = record(root, expected)
+    if rows:
+        # Only terminal reviewed bytes can resolve; a downgrade is not a successor.
+        if digest(data) == rows[-1]['sha256']:
+            return file(root, rows[0]['previous']).read_bytes()
+    return data
+
+
+def errors(root, expected):
+    rows = record(root, expected)
+    if rows:
+        try:
+            current = file(root, 'sdd/project.md').read_bytes()
+        except ValueError as error:
+            return [str(error)]
+        from closure_revision import predecessor as closure_predecessor
+        if digest(closure_predecessor(root, 'sdd/project.md', current)) != rows[-1]['sha256']:
+            return ['Project succession current digest mismatch']
+    return []

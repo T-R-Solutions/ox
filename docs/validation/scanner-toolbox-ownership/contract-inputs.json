@@ -1,0 +1,250 @@
+{
+  "external_root": "/home/rodrigo/Projetos/dev_audit/shared-toolbox",
+  "access": "read only; no Docker commands or external writes",
+  "observed_files": {
+    "docs/configuration.md": "840d33f1b43b029765201d96361453314a34c67b33bdd53a869885ea0446b01e",
+    "toolbox/config.py": "81733a53db11a7e1265a7967c0224bc9805d68e3d6fd7481a8280d649f0810d8",
+    "toolbox/databases.py": "d9e548b2f4e6a095638ae74c4d27b8f8b1d18540ff701968fbc9d074f877564b",
+    "toolbox/runner.py": "553582e1ea7f63ba26ca3d3f2e0105ec7b1dcab34e8e8d3f8aeb6d674d1d8158",
+    "tools/trivy/versions/0.76.2/adapter.py": "0fab303e48d252298fffef2eecef601308aa1e5880a09a429c5402a6d0fa5363",
+    "tools/osv-scanner/versions/2.7.0/adapter.py": "f39f10c4507717d887f4e3a9d72190f06d55ee665c7065e8a4c32528a8e1d0e8",
+    "tools/grype/adapter.py": "15403ffa4f47d0c590a75fc37289ef96a709ca3fb650703689671ef664409b87",
+    "examples/offline-security/toolbox.images.lock.json": "24abf71f92ca554fecdf754dda8c4290073c1edb2fc4d149a4b2eb7788d30665"
+  },
+  "selected": {
+    "trivy": {
+      "policy": {
+        "version": "0.76.2",
+        "paths": [
+          "."
+        ],
+        "config": "scripts/config/trivy.yaml",
+        "max_database_age_hours": 120,
+        "network": "none",
+        "timeout": 600,
+        "database": "26b4fc983fb83c15aaa4cd9b971bebd71729b46c5375ad8929e483730cc387c9"
+      },
+      "image_record": {
+        "adapter_sha256": "0fab303e48d252298fffef2eecef601308aa1e5880a09a429c5402a6d0fa5363",
+        "architecture": "amd64",
+        "base": "debian@sha256:a72b4433de1cf7d6bae0c4cee74d0547f58601a643b3375f070c51600d63b6b2",
+        "created_at": "2026-11-07T19:22:42.362406+00:00",
+        "database": "26b4fc983fb83c15aaa4cd9b971bebd71729b46c5375ad8929e483730cc387c9",
+        "id": "sha256:216aeb3c2b69bc83a066f639678d36a62f2e0e22110e3371b24e7bf230b7f518",
+        "integration_validated": false,
+        "local_uncompressed_bytes": 85573688,
+        "observed_version": "Version: 0.76.2",
+        "offline_readiness": {
+          "checked_at": "2026-11-07T19:27:12.074580+00:00",
+          "database": "26b4fc983fb83c15aaa4cd9b971bebd71729b46c5375ad8929e483730cc387c9",
+          "database_unchanged": true,
+          "execution": {
+            "cancelled": false,
+            "container_state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "FinishedAt": "2026-11-07T19:27:10.419334366Z",
+              "OOMKilled": false,
+              "Paused": false,
+              "Pid": 0,
+              "Restarting": false,
+              "Running": false,
+              "StartedAt": "2026-11-07T19:27:10.292844479Z",
+              "Status": "exited"
+            },
+            "duration_seconds": 0.309,
+            "runtime_error": null,
+            "runtime_exit_code": 0,
+            "timed_out": false,
+            "tool_exit_code": 0
+          },
+          "fixture_inventoried": true,
+          "identity": "819379f0fa722aa62ee72a4b7b0e759e5afb4d0e69bc74a3f1da22eac19a91d5",
+          "image": "sha256:216aeb3c2b69bc83a066f639678d36a62f2e0e22110e3371b24e7bf230b7f518",
+          "output": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/trivy/volume/images/0.76.2/993e881bbf1762d1d5ee1a75d8c860bfb7f200bcb904d9a3f8520672ed769854/readiness/819379f0fa722aa62ee72a4b7b0e759e5afb4d0e69bc74a3f1da22eac19a91d5/c470cf36cb2746998d2a54226501b0b7/output",
+          "reason": "6 vulnerabilities",
+          "sources_unchanged": true,
+          "status": "verified",
+          "tool_status": "findings"
+        },
+        "os": "linux",
+        "recipe": "993e881bbf1762d1d5ee1a75d8c860bfb7f200bcb904d9a3f8520672ed769854",
+        "registry_transfer_bytes": null,
+        "snapshot": "20261106T000000Z",
+        "sources": [
+          {
+            "bytes": 52714130,
+            "checksum_source": "https://api.github.com/repos/aquasecurity/trivy/releases/tags/v0.76.2",
+            "release_url": "https://github.com/aquasecurity/trivy/releases/tag/v0.76.2",
+            "sha256": "bc0fc726e017b8927a62b2d3531d7a84ee01769daf5c99ed866dced54089fdbf",
+            "signature_verified": false,
+            "upstream_tag": "v0.76.2",
+            "url": "https://github.com/aquasecurity/trivy/releases/download/v0.76.2/trivy_0.76.2_Linux-64bit.tar.gz"
+          }
+        ],
+        "tag": "shared-toolbox/trivy:0.76.2-993e881bbf1762d1",
+        "tool": "trivy",
+        "variant": "api",
+        "version": "0.76.2"
+      },
+      "source_record_matches": true
+    },
+    "osv-scanner": {
+      "policy": {
+        "version": "2.7.0",
+        "paths": [
+          "application/Cargo.lock"
+        ],
+        "config": "scripts/config/osv-scanner.toml",
+        "database": "846b1089110ea854626e5bfe3efc1cee3fc4e39530ba710b971656d949f9b0b3",
+        "max_database_age_hours": 24,
+        "network": "none",
+        "timeout": 600
+      },
+      "image_record": {
+        "adapter_sha256": "f39f10c4507717d887f4e3a9d72190f06d55ee665c7065e8a4c32528a8e1d0e8",
+        "architecture": "amd64",
+        "base": "debian@sha256:a72b4433de1cf7d6bae0c4cee74d0547f58601a643b3375f070c51600d63b6b2",
+        "created_at": "2026-11-07T19:23:47.169274+00:00",
+        "database": "846b1089110ea854626e5bfe3efc1cee3fc4e39530ba710b971656d949f9b0b3",
+        "id": "sha256:a6f08d5112ff5d427b83ba941b889765f1423d55354d66c0d982bac123a99f89",
+        "integration_validated": false,
+        "local_uncompressed_bytes": 52967696,
+        "observed_version": "osv-scanner version: 2.7.0\nosv-scalibr version: 0.5.3\ncommit: bfe2f84abd2f09fe0b83ba7f6dad40d296762f40\nbuilt at: 2026-10-12T00:39:39Z",
+        "offline_readiness": {
+          "checked_at": "2026-11-07T19:27:18.790106+00:00",
+          "database": "846b1089110ea854626e5bfe3efc1cee3fc4e39530ba710b971656d949f9b0b3",
+          "database_unchanged": true,
+          "execution": {
+            "cancelled": false,
+            "container_state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 1,
+              "FinishedAt": "2026-11-07T19:27:18.441890463Z",
+              "OOMKilled": false,
+              "Paused": false,
+              "Pid": 0,
+              "Restarting": false,
+              "Running": false,
+              "StartedAt": "2026-11-07T19:27:12.408379987Z",
+              "Status": "exited"
+            },
+            "duration_seconds": 6.212,
+            "runtime_error": null,
+            "runtime_exit_code": 1,
+            "timed_out": false,
+            "tool_exit_code": 1
+          },
+          "fixture_inventoried": true,
+          "identity": "acee39146dcdcf844d521a272365156b19442c7a50ed62b7c2ae1e61af575253",
+          "image": "sha256:a6f08d5112ff5d427b83ba941b889765f1423d55354d66c0d982bac123a99f89",
+          "output": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/osv-scanner/volume/images/2.7.0/854bd9aa62a168c937a26742a117daff82ed9549b1d79ba8a1a33478a8386647/readiness/acee39146dcdcf844d521a272365156b19442c7a50ed62b7c2ae1e61af575253/aea94f63b07647978d2a417f5e991661/output",
+          "reason": "5 vulnerabilities",
+          "sources_unchanged": true,
+          "status": "verified",
+          "tool_status": "findings"
+        },
+        "os": "linux",
+        "recipe": "854bd9aa62a168c937a26742a117daff82ed9549b1d79ba8a1a33478a8386647",
+        "registry_transfer_bytes": null,
+        "snapshot": "20261106T000000Z",
+        "sources": [
+          {
+            "bytes": 57725088,
+            "checksum_source": "https://api.github.com/repos/google/osv-scanner/releases/tags/v2.7.0",
+            "release_url": "https://github.com/google/osv-scanner/releases/tag/v2.7.0",
+            "sha256": "160c6253e2922e9e0a6a9771c5c4c40a4b3c6090b34a3cdd5e80c96cc2e4218b",
+            "signature_verified": false,
+            "upstream_tag": "v2.7.0",
+            "url": "https://github.com/google/osv-scanner/releases/download/v2.7.0/osv-scanner_linux_amd64"
+          }
+        ],
+        "tag": "shared-toolbox/osv-scanner:2.7.0-854bd9aa62a168c9",
+        "tool": "osv-scanner",
+        "variant": "api",
+        "version": "2.7.0"
+      },
+      "source_record_matches": true
+    },
+    "grype": {
+      "policy": {
+        "version": "0.119.0",
+        "paths": [
+          "."
+        ],
+        "config": "scripts/config/grype.yaml",
+        "max_database_age_hours": 120,
+        "network": "none",
+        "timeout": 600,
+        "database": "1c05044fd8a016ee841c67e3c54a9bb320fdeae8c7810dc7378b0e639f8e8f85"
+      },
+      "image_record": {
+        "adapter_sha256": "15403ffa4f47d0c590a75fc37289ef96a709ca3fb650703689671ef664409b87",
+        "architecture": "amd64",
+        "base": "debian@sha256:a72b4433de1cf7d6bae0c4cee74d0547f58601a643b3375f070c51600d63b6b2",
+        "created_at": "2026-11-07T19:25:21.453295+00:00",
+        "database": "1c05044fd8a016ee841c67e3c54a9bb320fdeae8c7810dc7378b0e639f8e8f85",
+        "id": "sha256:56d089431bdb869e1b6e2357fd09a8670b68a07a7ab42274d8fe6dadddc7688e",
+        "integration_validated": false,
+        "local_uncompressed_bytes": 62446908,
+        "observed_version": "Application:         grype\nVersion:             0.119.0\nBuildDate:           2026-09-17T16:17:07Z\nGitCommit:           b6f5194537747ee7f705f4113069ac9eb269919f\nGitDescription:      v0.119.0\nPlatform:            linux/amd64\nGoVersion:           go1.26.3\nCompiler:            gc\nSyft Version:        v1.52.0\nSupported DB Schema: 6",
+        "offline_readiness": {
+          "checked_at": "2026-11-07T19:27:24.007930+00:00",
+          "database": "1c05044fd8a016ee841c67e3c54a9bb320fdeae8c7810dc7378b0e639f8e8f85",
+          "database_unchanged": true,
+          "execution": {
+            "cancelled": false,
+            "container_state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "FinishedAt": "2026-11-07T19:27:22.39768563Z",
+              "OOMKilled": false,
+              "Paused": false,
+              "Pid": 0,
+              "Restarting": false,
+              "Running": false,
+              "StartedAt": "2026-11-07T19:27:21.251489077Z",
+              "Status": "exited"
+            },
+            "duration_seconds": 1.305,
+            "runtime_error": null,
+            "runtime_exit_code": 0,
+            "timed_out": false,
+            "tool_exit_code": 0
+          },
+          "fixture_inventoried": true,
+          "identity": "bd9541f3900f5d0fcabf630af75224149dd60a6dc1056f626a06160aaa89ed81",
+          "image": "sha256:56d089431bdb869e1b6e2357fd09a8670b68a07a7ab42274d8fe6dadddc7688e",
+          "output": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/grype/volume/images/0.119.0/859f4c45f78032a4cbd8a5831106f33cc3dd73e49b04d627f704cf4d927bbffd/readiness/bd9541f3900f5d0fcabf630af75224149dd60a6dc1056f626a06160aaa89ed81/b44264572ae947d6af3922fd6114261c/output",
+          "reason": "5 vulnerability matches",
+          "sources_unchanged": true,
+          "status": "verified",
+          "tool_status": "findings"
+        },
+        "os": "linux",
+        "recipe": "859f4c45f78032a4cbd8a5831106f33cc3dd73e49b04d627f704cf4d927bbffd",
+        "registry_transfer_bytes": null,
+        "snapshot": "20261106T000000Z",
+        "sources": [
+          {
+            "bytes": 30482169,
+            "checksum_source": "https://api.github.com/repos/anchore/grype/releases/tags/v0.119.0",
+            "release_url": "https://github.com/anchore/grype/releases/tag/v0.119.0",
+            "sha256": "3fa2dc4b924621ab65404cf08d0b8438d896d80ab949c9d5a4ca283c36004c9b",
+            "signature_verified": false,
+            "upstream_tag": "v0.119.0",
+            "url": "https://github.com/anchore/grype/releases/download/v0.119.0/grype_0.119.0_linux_amd64.tar.gz"
+          }
+        ],
+        "tag": "shared-toolbox/grype:0.119.0-859f4c45f78032a4",
+        "tool": "grype",
+        "variant": "api",
+        "version": "0.119.0"
+      },
+      "source_record_matches": true
+    }
+  }
+}

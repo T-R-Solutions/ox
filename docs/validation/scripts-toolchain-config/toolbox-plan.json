@@ -1,0 +1,42 @@
+[
+  {
+    "tool": "ruff",
+    "version": "0.11.13",
+    "variant": "api",
+    "status": "prerequisite_missing",
+    "reason": "image lock absent; explicit prepare required",
+    "network": "none",
+    "timeout": 600,
+    "image": null
+  },
+  {
+    "tool": "gitleaks",
+    "version": "8.24.3",
+    "variant": "api",
+    "status": "prerequisite_missing",
+    "reason": "image lock absent; explicit prepare required",
+    "network": "none",
+    "timeout": 600,
+    "image": null
+  },
+  {
+    "tool": "shellcheck",
+    "version": "0.10.0",
+    "variant": "api",
+    "status": "prerequisite_missing",
+    "reason": "image lock absent; explicit prepare required",
+    "network": "none",
+    "timeout": 600,
+    "image": null
+  },
+  {
+    "tool": "grype",
+    "version": "0.119.0",
+    "variant": "api",
+    "status": "omitted",
+    "reason": "Requires real reviewed database snapshot from explicit toolbox update-db; no snapshot available.",
+    "network": "none",
+    "timeout": 600,
+    "image": null
+  }
+]

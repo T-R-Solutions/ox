@@ -1,0 +1,21 @@
+# Convergence
+
+| Criterion | State | Evidence / limit |
+| --- | --- | --- |
+| AC-01 | APPROVED | Final controlled backend/fast tests and real toolbox validation; no real prepared images |
+| AC-02 | APPROVED | Explicit configurations, primary references and native audit parser probe; unavailable scanner parsing/effectiveness not claimed |
+| AC-03 | APPROVED | Negative adapter, suppression, mutation, path and succession tests |
+| AC-04 | INCONCLUSIVE | 95 final fast cases, 20 initial integration cases and 39 native Rust cases pass; original failures retained; actual audits blocked by missing prerequisites |
+
+T001..T003 are implemented and verified within these bounds. T004 retains the open
+real-scanner audit requirement. Full raw results, selective successor checks, exact
+inputs and limits: docs/validation/scripts-toolchain-config/report.md. No global
+product, security or graphical acceptance, installation, commit or publication.
+
+## Security preparation successor — 2026-11-06
+
+The current backend discovery, OSV cache and Opengrep rule/CLI observations are
+superseded by scripts-security-preparation. Earlier evidence remains bound to its
+original bytes; do not renew its hashes. The successor records current path
+coverage, real offline default vulnerability scans, negative data tests and
+portable discovery. Optional native Trivy/Grype execution remains unverified.

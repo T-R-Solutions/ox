@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "/home/rodrigo/Projetos/ox/.local/scanner-remediation-20261107-resume/native-OWnFw9Pz/gitleaks",
+    "git",
+    "--config",
+    "/home/rodrigo/Projetos/ox/scripts/security/rules/gitleaks.toml",
+    "--redact=100",
+    "--ignore-gitleaks-allow",
+    "--exit-code",
+    "10",
+    "--report-format",
+    "json",
+    "--report-path",
+    "/home/rodrigo/Projetos/ox/.local/checks/run-ZxSmQMl8/history/report.json",
+    "--log-opts=--all",
+    "/home/rodrigo/Projetos/ox"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "exit_code": 10,
+  "state": "failed"
+}

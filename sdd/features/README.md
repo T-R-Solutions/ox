@@ -44,6 +44,11 @@ index lists their names without requiring them as link targets.
 | [skill-consumer-validation](skill-consumer-validation/converge.md) | Executable bounded consumers for nine specializations; independent from product acceptance |
 | [readme-skill-integration](readme-skill-integration/converge.md) | README method import and governance integration; README preservation repair recorded separately |
 | [technical-documentation-visuals](technical-documentation-visuals/spec.md) | Source-grounded documentation and visual authoring method |
+| [scripts-task-closure](scripts-task-closure/converge.md) | Initial automation integration; retirement and automatic invocation decisions have explicit successors |
+| [scripts-security-quality](scripts-security-quality/converge.md) | Retain stack-relevant security/quality capabilities, local rules and governance-copy consumers |
+| [scripts-shell-refactor](scripts-shell-refactor/converge.md) | Bash entry and shared modules; Python retained only for tests within scripts/ |
+| [scripts-toolchain-config](scripts-toolchain-config/converge.md) | Explicit native/toolbox configuration; Trivy/OSV/Grype toolbox ownership successor, real Docker acceptance pending |
+| [scripts-security-preparation](scripts-security-preparation/converge.md) | Separate dataset acquisition/import, offline checks, rule tests and portable toolbox discovery; optional native tools remain unverified |
 
 The nine `skill-*` features cover authoring, routing and evaluation of library
 specializations. Their methods are indexed in the [bridge catalog](../chain/README.md).

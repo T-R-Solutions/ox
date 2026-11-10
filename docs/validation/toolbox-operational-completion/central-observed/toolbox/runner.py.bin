@@ -1,0 +1,167 @@
+"""Planning and on-demand execution, isolated per project and run."""
+import shutil
+import os
+import re
+import datetime as dt
+import hashlib
+from pathlib import Path
+from . import docker
+from .databases import effective_spec, inspect_database
+from .adapters import adapter, classify
+from .config import read_json, tool_info, tool_folder
+from .storage import atomic_json, digest, now, tree_manifest
+
+
+def image_lock(data):
+    path = data['_path'].with_name(data['_path'].stem + '.images.lock.json')
+    lock = read_json(path) if path.exists() else {'schema': 1, 'tools': {}}
+    if (not isinstance(lock, dict) or type(lock.get('schema')) is not int
+            or lock.get('schema') != 1 or not isinstance(lock.get('tools'), dict)
+            or any(not isinstance(row, dict) for row in lock.get('tools', {}).values())):
+        raise ValueError(f'invalid image lock: {path}')
+    return lock
+
+
+def plan(data, selected):
+    lock = image_lock(data)
+    result = []
+    for name, spec in selected.items():
+        spec = effective_spec(name, spec, lock['tools'].get(name, {}))
+        status, reason = 'planned', 'requires prepared and locally available immutable image'
+        if not spec.get('enabled', True):
+            status, reason = 'omitted', spec['reason']
+        elif not spec.get('applicable', True):
+            status, reason = 'inapplicable', spec['reason']
+        elif tool_info(name, spec['version'])['status'] == 'research-blocked' or adapter(name, spec['version']) is None:
+            status, reason = 'prerequisite_missing', 'integration blocked pending version-specific official research and real validation'
+        elif name not in lock['tools']:
+            status, reason = 'prerequisite_missing', 'image lock absent; explicit prepare required'
+        item = {'tool': name, 'version': spec['version'], 'variant': spec.get('variant', 'api'),
+                'status': status, 'reason': reason, 'network': spec.get('network', 'none'),
+                'timeout': spec.get('timeout', 600), 'image': lock['tools'].get(name, {}).get('id')}
+        if adapter(name, spec['version']) and status == 'planned':
+            try:
+                item['argv'], item['environment'] = adapter(name, spec['version']).invocation(spec)
+            except ValueError as e:
+                item.update(status='operational_failure', reason=str(e))
+        result.append(item)
+    return result
+
+
+def check_work_links(root):
+    for folder, dirs, files in os.walk(root, followlinks=False):
+        for name in dirs + files:
+            path = Path(folder) / name
+            if path.is_symlink() and (Path(os.readlink(path)).is_absolute() or not path.resolve().is_relative_to(root)):
+                raise ValueError(f'Playwright work copy requires internal relative symlinks: {path}')
+
+
+def run(store, data, selected):
+    source = data['_root']
+    if store.root.is_relative_to(source):
+        raise ValueError('state directory must be outside consumer sources')
+    for name in selected:
+        if store.volume(name, create=False).is_relative_to(source):
+            raise ValueError(f'{name}: volume directory must be outside consumer sources')
+    run_dir = store.run_dir(data['project'])
+    before = tree_manifest(source)
+    locked = image_lock(data)
+    configuration = {k: v for k, v in data.items() if not k.startswith('_')}
+    atomic_json(run_dir / 'inputs.json', {'source': str(source), 'configuration': configuration,
+                                        'files': before, 'image_lock': locked})
+    summary = {'schema': 1, 'run': run_dir.name, 'project': data['project'], 'started_at': now(),
+               'configuration_sha256': digest(configuration), 'inputs_sha256': digest(before), 'tools': []}
+    ready = docker.doctor()
+    for item in plan(data, selected):
+        name = item['tool']
+        spec = effective_spec(name, selected[name], locked['tools'].get(name, {}))
+        output = store.tool_run(name, data['project'], run_dir.name)
+        (output / 'stdout.log').touch()
+        (output / 'stderr.log').touch()
+        record = dict(item)
+        record.update(started_at=now(), output=str(output), tool_exit_code=None)
+        if item['status'] == 'planned':
+            if not ready['ready']:
+                record.update(status='prerequisite_missing', reason=ready.get('error', 'Docker unavailable'))
+            else:
+                try:
+                    image = locked['tools'][name]
+                    if image['version'] != spec['version'] or image.get('variant', 'api') != spec.get('variant', 'api'):
+                        raise ValueError('image lock differs from selected version/variant; prepare explicitly')
+                    if not re.fullmatch('sha256:[0-9a-f]{64}', image['id']):
+                        raise ValueError('image lock must contain full sha256 image ID')
+                    current_adapter = hashlib.sha256((tool_folder(name, spec['version']) / 'adapter.py').read_bytes()).hexdigest()
+                    if image.get('adapter_sha256') != current_adapter:
+                        raise ValueError('adapter changed since preparation; review and prepare explicitly')
+                    info = docker.inspect(image['id'])
+                    if info['Architecture'] != 'amd64' or info['Os'] != 'linux':
+                        raise ValueError('only linux/amd64 is currently targeted')
+                    for path in [*spec.get('paths', ['.']), *([spec['config']] if 'config' in spec else [])]:
+                        candidate = (source / path).resolve()
+                        if not candidate.is_relative_to(source) or not candidate.exists():
+                            raise ValueError(f'input is missing or escapes consumer root: {path}')
+                    database = None
+                    if name in ('grype', 'osv-scanner', 'trivy'):
+                        if not spec.get('database'):
+                            raise ValueError('database snapshot not selected')
+                        database = store.database(name, spec['version'], spec['database'])
+                        metadata = inspect_database(store, name, spec['version'], spec['database'])['metadata']
+                        if name in ('osv-scanner', 'trivy'):
+                            age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(metadata['prepared_at'].replace('Z', '+00:00'))).total_seconds()
+                            if not 0 <= age <= spec['max_database_age_hours'] * 3600:
+                                raise ValueError(f'{name} database expired or future dated; run update-db explicitly')
+                        shutil.copytree(database, output / 'database')
+                        record['database'] = metadata
+                    if name == 'playwright':
+                        check_work_links(source)
+                        shutil.copytree(source, output / 'work', symlinks=True,
+                                        ignore=shutil.ignore_patterns('node_modules', '.git'))
+                    argv, env = adapter(name, spec['version']).invocation(spec)
+                    container, cmd = docker.command(image['id'], argv, source, output,
+                                                    spec.get('network', 'none'), env, output / 'database' if database else None)
+                    record['command'] = cmd
+                    atomic_json(output / 'started.json', record)
+                    execution = docker.execute(cmd, container, output, spec.get('timeout', 600))
+                    record.update(execution)
+                    status, reason = classify(adapter(name, spec['version']), execution, output)
+                    if database and digest(tree_manifest(output / 'database')) != spec['database']:
+                        raise ValueError('scanner changed database snapshot')
+                    if name == 'osv-scanner' and status in ('success', 'findings'):
+                        report = read_json(output / 'stdout.log')
+                        expected = sorted('/src/' + path for path in spec['paths'])
+                        if sorted(item['source']['path'] for item in report['results']) != expected:
+                            raise ValueError('OSV did not scan every explicit lockfile')
+                    record.update(status=status, reason=reason)
+                    if execution.get('cancelled'):
+                        summary['cancelled'] = True
+                except docker.DockerError as e:
+                    record.update(status='prerequisite_missing', reason=str(e))
+                except (OSError, ValueError, KeyError) as e:
+                    record.update(status='operational_failure', reason=str(e))
+        record['finished_at'] = now()
+        atomic_json(output / 'result.json', record)
+        summary['tools'].append(record)
+        if summary.get('cancelled'):
+            for pending in selected:
+                if pending not in {r['tool'] for r in summary['tools']}:
+                    summary['tools'].append({'tool': pending, 'status': 'omitted', 'reason': 'run cancelled before execution'})
+            break
+    after = tree_manifest(source)
+    summary.update(finished_at=now(), sources_unchanged=(before == after))
+    if before != after:
+        summary['source_integrity_error'] = 'consumer files changed during run (including possible external modifications)'
+    atomic_json(run_dir / 'summary.json', summary)
+    summary['directory'] = str(run_dir)
+    return summary
+
+
+def exit_status(summary):
+    statuses = {r['status'] for r in summary['tools']}
+    if not summary.get('sources_unchanged', True) or statuses & {'operational_failure', 'prerequisite_missing'}:
+        return 2
+    if 'findings' in statuses:
+        return 1
+    # A measurement or intentionally absent tool is not approval.
+    if not statuses or statuses - {'success'}:
+        return 3
+    return 0

@@ -25,8 +25,11 @@ application dependency build. Exact compiler, dependency lock/configuration and
 rlib identities are recorded in the validation environment manifest. Build with
 `rustc +1.99.1 --edition=2024`, `-L dependency=application/target/debug/deps` and
 `--extern iced=<observed rlib>` for gui.rs, and `--test --extern
-x11rb=<observed rlib>` for gui_tests.rs. Destinations are /tmp/ox-consumer-gui
-and /tmp/ox-consumer-gui-tests. Then run:
+x11rb=<observed rlib>` for gui_tests.rs. Create a new directory with `mktemp -d` and place both executables there.
+Set `OX_GUI_CONSUMER` and `OX_GUI_TESTS` to their absolute paths and
+`OX_GUI_CONSUMER_SHA256` and `OX_GUI_TESTS_SHA256` to the build-observed SHA256
+values. The runner requires and verifies these explicit identities before launching
+Xwayland; it has no shared predictable executable fallback. Then run:
 
 ```sh
 python3 tools/governance/consumers/gui_test.py /tmp/ox-gui-report

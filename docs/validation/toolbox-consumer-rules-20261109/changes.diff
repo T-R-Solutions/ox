@@ -1,0 +1,346 @@
+--- before/scripts/lib/registry.sh
++++ scripts/lib/registry.sh
+@@ -46,9 +46,7 @@
+ }
+ check_command() {
+     local name=$1 output=$2 source=${3:-\{source\}} db=${4:-\{reviewed-dataset\}}
+-    local rules=$ROOT/scripts/security/rules
+     CWD=$ROOT
+-    local -a py=(scripts tools/governance sdd/tools)
+     case $name in
+         sdd-structure) CMD=(python3 sdd/tools/validate.py --root . --structure-only);;
+         ox) CMD=(python3 tools/governance/scripts/check-ox.py);;
+@@ -56,29 +54,11 @@
+         rust-fmt) CMD=("${CARGO:-cargo}" fmt --all -- --check); CWD=$ROOT/application;;
+         rust-check|rust-build|rust-test) CMD=("${CARGO:-cargo}" "${name#rust-}" --workspace --locked --offline); CWD=$ROOT/application;;
+         rust-clippy) CMD=("${CARGO:-cargo}" clippy --workspace --all-targets --locked --offline -- -D warnings); CWD=$ROOT/application;;
+-        gitleaks|history)
+-            CMD=(gitleaks dir --config "$rules/gitleaks.toml" --redact=100 --ignore-gitleaks-allow --exit-code 10 --report-format json --report-path "$output/report.json")
+-            if [[ $name == history ]]; then CMD[1]=git; CMD+=(--log-opts=--all "$ROOT"); else CMD+=("$source"); fi;;
+-        osv) CMD=(osv-scanner scan source --offline --config "$ROOT/scripts/config/osv-scanner.toml" --format json --all-packages --lockfile "$ROOT/application/Cargo.lock");;
+-        opengrep) CMD=(opengrep scan --config "$rules/ox.yml" --disable-version-check --strict --no-git-ignore --experimental --x-ignore-semgrepignore-files --disable-nosem --error --json "$source");;
+         audit) CMD=(cargo-audit audit --no-fetch --no-yanked --db "$db" --file Cargo.lock --json --deny warnings); CWD=$output/audit-input;;
+         deny) CMD=(cargo-deny deny --format json --config "$ROOT/scripts/config/deny.toml" --workspace --locked --offline check licenses bans sources); CWD=$ROOT/application;;
+         machete) CMD=(cargo-machete machete --skip-target-dir --no-ignore .); CWD=$source/application;;
+         coverage) CMD=(cargo-llvm-cov llvm-cov --workspace --locked --offline --no-clean --lcov --output-path "$output/coverage.lcov"); CWD=$source/application;;
+         geiger) CMD=(cargo-geiger geiger --locked --offline --all-dependencies --output-format Json); CWD=$source/application;;
+-        trivy) CMD=(trivy --config "$ROOT/scripts/config/trivy.yaml" fs --scanners vuln --ignorefile "$ROOT/scripts/config/trivyignore" --offline-scan --skip-db-update --skip-java-db-update --format json --exit-code 1 --cache-dir "$db" "$source");;
+-        sbom) CMD=(syft --config "$ROOT/scripts/config/syft.yaml" scan "dir:$source" -o syft-json);;
+-        grype) CMD=(grype --config "$ROOT/scripts/config/grype.yaml" "dir:$source" -o json);;
+-        malware) CMD=(yr scan --output-format json --recursive "$rules/suspicious.yar" "$source");;
+-        ruff) CMD=(ruff check --config "$ROOT/scripts/config/ruff.toml" --ignore-noqa --no-fix --no-cache --output-format json "${py[@]}"); CWD=$source;;
+-        bandit) CMD=(bandit --configfile "$ROOT/scripts/config/bandit.yaml" --ini "$ROOT/scripts/config/bandit.ini" --ignore-nosec -r -f json "${py[@]}"); CWD=$source;;
+-        shellcheck)
+-            CMD=(shellcheck --rcfile "$ROOT/scripts/config/shellcheckrc" --format=json)
+-            if [[ -d $source/scripts ]]; then
+-                local -a files
+-                mapfile -d '' -t files < <(find "$source/scripts" -name '*.sh' -type f -print0 | sort -z)
+-                CMD+=("${files[@]}")
+-            else CMD+=("$source/scripts/{shell-files}"); fi;;
+         *) die "Unknown check: $name";;
+     esac
+ }
+--- before/scripts/lib/backends.sh
++++ scripts/lib/backends.sh
+@@ -18,10 +18,13 @@
+     esac
+ }
+ backend_plan() {
++    CMD=() CWD=$ROOT
+     select_backend || { BACKEND=unavailable; return; }
+     if [[ $BACKEND == toolbox ]]; then
+         native_command '{source}'
+         CMD=("$TOOL_BIN" exec --tool "$SCANNER" --project-root '{source}' --results '{output}' --timeout 600 --diagnostic-file '{output}/backend_record.json' -- "${NATIVE[@]}")
++    else
++        check_command "$name" '{output}'
+     fi
+ }
+ run_toolbox() {
+--- before/scripts/checks/run.sh
++++ scripts/checks/run.sh
+@@ -34,8 +34,7 @@
+ fi
+ check_properties "$name" || die "Unknown check: $name"
+ if $plan; then
+-    check_command "$name" '{output}'
+-    backend_plan "$TOOL"
++    backend_plan
+     jq -n --arg check "$name" --arg backend "$BACKEND" --arg tool "$TOOL" --arg data "$DATA" --argjson argv "$(json_args "${CMD[@]}")" \
+       '{check:$check,backend:$backend,tool:$tool,dataset:(if $data=="" then null else $data end),argv:$argv,per_workspace_member:($check=="geiger")}'
+     exit 0
+@@ -86,8 +85,6 @@
+ while IFS= read -r key; do
+     case $key in GITLEAKS_*|SEMGREP_*|OPENGREP_*|GRYPE_*|SYFT_*|TRIVY_*|OSV_SCANNER_*|OSV_SCALIBR_*|RUFF_*|BANDIT_*) unset "$key";; esac
+ done < <(compgen -e)
+-export SEMGREP_SEND_METRICS=off SEMGREP_ENABLE_VERSION_CHECK=0 OPENGREP_ENABLE_VERSION_CHECK=0
+-export SYFT_CHECK_FOR_APP_UPDATE=false GRYPE_DB_AUTO_UPDATE=false GRYPE_CHECK_FOR_APP_UPDATE=false
+ select_backend || fail_check "${BACKEND_REASON:-required tool missing: $TOOL; invalid explicit backend configuration}"
+ tool=$TOOL_BIN
+ tool=$(realpath -e -- "$tool"); tool_sha=$(hash_file "$tool")
+@@ -177,7 +174,6 @@
+     execute "$output/tool" "$CWD" "${CMD[@]}"
+     RAW=$PROCESS_CODE
+     report=$output/tool/stdout.log
+-    [[ $name != gitleaks && $name != history ]] || report=$output/report.json
+     [[ $name != coverage ]] || report=$output/coverage.lcov
+     parser=$name
+     if [[ $name == machete ]]; then
+@@ -198,10 +194,7 @@
+         jq 'group_by(.fields.code // .type)|map({code:(.[0].fields.code // .[0].type),count:length,records:.})' "$report" >"$output/diagnostics.json"
+         [[ $STATE != error ]] || REASON='cargo-deny emitted internal diagnostics; inspect diagnostics.json and raw stderr'
+     fi
+-    if [[ $name == opengrep && ( $STATE == passed || $STATE == findings ) ]]; then
+-        jq -e --arg source "$source/" --slurpfile inputs "$output/inputs.json" \
+-          '.paths.scanned as $scanned | all($inputs[0]|keys[]|select(test("\\.(rs|py)$")); . as $p | ($scanned|index($source+$p))!=null)' "$report" >/dev/null || fail_check 'SAST omitted selected source inputs'
+-    fi
++
+ fi
+ verify_inputs "$output" || fail_check 'Input/snapshot changed during check'
+ [[ $(hash_file "$tool") == "$tool_sha" ]] || fail_check 'Tool binary changed during check'
+--- before/scripts/automate.sh
++++ scripts/automate.sh
+@@ -55,8 +55,8 @@
+ fi
+ if $plan; then
+     for name in "${selected[@]}"; do
+-        check_command "$name" '{output}'
+-        if check_properties "$name"; then backend_plan "$TOOL"; fi
++        if check_properties "$name"; then backend_plan
++        else check_command "$name" '{output}'; fi
+         # Keep paths relative in plan cwd for compatibility with consumers.
+         cwd=${CWD#"$ROOT"}; cwd=${cwd#/}; cwd=${cwd:-.}
+         jq -cn --arg name "$name" --arg cwd "$cwd" --argjson argv "$(json_args "${CMD[@]}")" '[$name,$cwd,$argv]'
+--- before/scripts/README.md
++++ scripts/README.md
+@@ -2,6 +2,7 @@
+ 
+ Bash 4.4+, jq 1.6+ e utilitários GNU executam a automação modular. A CLI
+ Shared Toolbox usa Python 3.11+ e Docker; o Ox não instala scanners durante gates.
++As regras do guia canônico de integração são obrigatórias neste consumidor.
+ 
+ ## Configurar o ambiente consumidor
+ 
+@@ -10,7 +11,7 @@
+ `shared-toolbox/docs/consumer-integration.md`; operação e preparo pertencem a
+ `shared-toolbox/docs/application.md`. Os antigos guias temáticos encaminham para
+ esses dois documentos. Esta integração foi conferida contra seus bytes em
+-09/11/2026; o [registro da adaptação](../docs/validation/toolbox-consumer-alignment-20261109/report.md)
++09/11/2026; o [registro da adaptação](../docs/validation/toolbox-consumer-rules-20261109/report.md)
+ separa inspeção de execução.
+ 
+ Configure no ambiente local ou no CI, substituindo o caminho da instalação:
+@@ -42,7 +43,8 @@
+ `doctor` consulta Docker; list/status não homologam scans, e status não inspeciona
+ o daemon. Versões centrais ativas podem mudar: não copie o inventário datado da
+ plataforma para um pin no Ox. Rust/Cargo, dependências e testes do produto continuam
+-no consumidor. Não há instalação, atualização, ativação ou manutenção implícita.
++no consumidor. Imagens e bases pertencem ao operador. A exceção operacional
++prevista no guia é a renovação automática central de OSV descrita abaixo.
+ 
+ ## Executar as operações escolhidas pelo Ox
+ 
+@@ -94,8 +96,9 @@
+ | audit / deny / machete | cargo-audit / cargo-deny / cargo-machete locais | security / quality |
+ | coverage / geiger | cargo-llvm-cov / cargo-geiger locais | medições opcionais |
+ 
+-`lib/registry.sh` conserva escopos security/quality/full/governance/rust e a lista
+-de opcionais. `automate.sh` seleciona checks; `checks/run.sh` prepara entradas e
++`lib/registry.sh` conserva escopos security/quality/full/governance/rust, a lista
++de opcionais e uma única definição de argv nativo por scanner central. Comandos
++locais ficam restritos à governança e às ferramentas Cargo do consumidor. `automate.sh` seleciona checks; `checks/run.sh` prepara entradas e
+ assessment; `lib/backends.sh` apenas transporta argv via exec e avalia diagnóstico;
+ `lib/files.sh` conserva snapshots/manifests; `lib/reports.sh` valida relatórios.
+ ShellCheck seleciona todos os scripts .sh do manifesto efetivo, inclusive
+@@ -128,6 +131,15 @@
+ separados em diretórios exclusivos, portanto não precisam desses redirecionamentos.
+ O diagnóstico JSON permanece separado do relatório nativo. Rede default é none;
+ OSV recebe também --offline e os outros scanners conservam seus controles offline.
++
++Antes de cada análise OSV por `exec`/`run`, o gerenciador central baixa e valida
++a base se ela estiver ausente ou tiver aquisição de mais de 12 horas. Se a
++aquisição necessária falhar, a análise não prossegue. Isso pode usar rede no
++gerenciador, embora o scanner receba `--offline` e o container use rede `none`.
++A idade de aquisição não substitui a data dos advisories nem o limite Ox de 24h.
++Não há pin, bloqueio ou atualização local de OSV em scripts; os demais scanners
++continuam com manutenção explícita. CI e operadores precisam prever esse efeito
++antes de executar os gates que selecionam OSV.
+ 
+ stdout/stderr são bytes da ferramenta, preservados em tool/*.log. A saída não é
+ JSON da plataforma. backend_record.json separado valida outcome native, código
+@@ -160,7 +172,8 @@
+ cargo-geiger e cargo-llvm-cov estão fora do catálogo central inspecionado e usam
+ preparo local separado com proveniência. Não há suporte central simulado.
+ RustSec usa prepare-datasets.sh --review ... --import ... --only rustsec ou
+---download somente com autorização específica. Nenhum download, fetch ou instalação ocorre em gates; cache não comprova cobertura.
++--download somente com autorização específica. Os comandos Cargo locais não fazem download, fetch ou instalação em gates;
++a renovação central de OSV segue a regra acima. Cache não comprova cobertura.
+ 
+ A disponibilidade e as versões centrais devem ser conferidas na instalação.
+ Testes simulados validam somente o contrato.
+--- before/scripts/tests/test_real_security_backends.py
++++ scripts/tests/test_real_security_backends.py
+@@ -1,4 +1,4 @@
+-"""Real opt-in consumer scans; never prepare, download, activate or update."""
++"""Real opt-in consumer scans; central OSV may acquire its database automatically."""
+ import os
+ import json
+ import subprocess
+--- before/scripts/tests/test_backends.py
++++ scripts/tests/test_backends.py
+@@ -138,6 +138,33 @@
+         self.assertIsNone(row['tool_exit_code'])
+         self.assertFalse((self.root/'native-ran').exists())
+ 
++    def test_plans_use_central_transport_and_unavailable_local_has_no_command(self):
++        for name in ('gitleaks', 'osv', 'ruff', 'opengrep', 'bandit', 'trivy',
++                     'grype', 'sbom', 'malware', 'shellcheck', 'history'):
++            run = subprocess.run(
++                ['bash', str(S.ROOT/'scripts/checks/run.sh'), '--root', str(self.root),
++                 '--check', name, '--plan'], env=self.env, capture_output=True)
++            self.assertEqual(run.returncode, 0, run.stderr)
++            row = json.loads(run.stdout)
++            self.assertEqual(row['backend'], 'toolbox')
++            self.assertEqual(row['argv'][1], 'exec')
++            self.assertIn('--diagnostic-file', row['argv'])
++            self.assertIn('--project-root', row['argv'])
++            self.assertNotIn('--project-write', row['argv'])
++            if name == 'osv':
++                self.assertIn('--offline', row['argv'])
++                self.assertIn('/project/application/Cargo.lock', row['argv'])
++        # A missing product utility must not leave obsolete host invocation argv.
++        run = subprocess.run(
++            ['bash', str(S.ROOT/'scripts/checks/run.sh'), '--root', str(self.root),
++             '--check', 'audit', '--plan'],
++            env=dict(self.env, PATH='/usr/bin:/bin', CARGO_HOME=str(self.root/'empty')),
++            capture_output=True)
++        self.assertEqual(run.returncode, 0, run.stderr)
++        row = json.loads(run.stdout)
++        self.assertEqual(row['backend'], 'unavailable')
++        self.assertEqual(row['argv'], [])
++
+     def test_secret_values_absent_from_process_metadata(self):
+         out=self.root/'capture'; out.mkdir()
+         secret='synthetic-private-value-123'
+--- before/sdd/project.md
++++ sdd/project.md
+@@ -351,3 +351,17 @@
+ or central maintenance. The maintainer selected retention of Iced 0.14 with
+ explicit package/version dispositions for the remaining incompatible generations;
+ no blanket duplicate exception is adopted.
++
++## Mandatory consumer integration rules — 2026-11-09
++
++The maintainer requires scripts/ to conform to the actual
++`/home/rodrigo/Projetos/dev_audit/shared-toolbox/docs/consumer-integration.md`
++and authorizes removal of conflicting, deprecated and obsolete configuration.
++Full route extends scripts-toolbox-native. Native exec remains mandatory; central
++OSV automatically acquires/validates absent data or data acquired more than 12h
++ago before scans. This supersedes earlier promises of no gate acquisition solely
++for that documented central behavior. Scanner offline flags, Ox 24h advisory age,
++Trivy/Grype 120h, native policy and the explicit full-verification environment
++remain. Remove unreachable local scanner argv and ineffective host-only scanner
++exports. No central writes, commits, product changes or full verification required
++by this configuration task; use focused consumer checks and preserve preimages.
+--- before/sdd/features/scripts-toolbox-native/spec.md
++++ sdd/features/scripts-toolbox-native/spec.md
+@@ -28,3 +28,14 @@
+ is introduced. AC-01/02 include this caller-controlled environment contract;
+ the former automatic shared default is superseded. AC-03 still requires real
+ consumer qualification, independent of platform documentation/active inventory.
++
++## Mandatory consumer rules successor — 2026-11-09
++
++REQ-01/02: the supplied consumer-integration.md is the mandatory integration
++contract. Retain only native exec definitions for central scanners; no stale
++local scanner argv or ineffective host exports. Cargo/governance remain local.
++The central manager automatically acquires/validates OSV data absent or acquired
++more than 12h ago; failure blocks scanning. This supersedes earlier no-acquisition
++claims for OSV only. The scanner remains offline, and the Ox 24h data timestamp
++policy remains independent of central acquisition time. Preserve native reports,
++explicit mounts, discovery, diagnostics and caller-selected SELinux behavior.
+--- before/sdd/features/scripts-toolbox-native/plan.md
++++ sdd/features/scripts-toolbox-native/plan.md
+@@ -84,3 +84,27 @@
+ existing discovery guards and define recovery/qualification limits. No delegation.
+ Preimages, primary-source hashes, affected observations and manual results are in
+ docs/validation/toolbox-consumer-alignment-20261109/.
++
++## Mandatory consumer rules successor — 2026-11-09
++
++D-26 / REQ-01/02 / T026: adopt the exact provided consumer guide, including
++central OSV auto-renewal at 12h acquisition age; retain Ox 24h upstream data-age
++checks and offline scanner argv. Remove obsolete local central-scanner commands
++from check_command, host exports not forwarded by exec, and unreachable local
++report branches. Plans choose transport first, so unavailable local tools yield
++no runnable fallback argv. Native argv is defined once in native_command.
++Preserve native configs: all are referenced by current commands or preparation;
++empty trivyignore intentionally forbids vulnerability exclusions. Rejection of
++old OX_* selectors is a diagnostic guard, not a second configuration authority.
++Alternative: leave duplicate commands, risking host-path/local dispatch drift;
++rejected. No schema-1 compatibility files/callers currently exist in scripts/.
++R-26: a future OSV invocation may acquire centrally even with a network-none
++scanner. Document this before execution; tests in this task use fake transport,
++no real Docker/scanner or maintenance operations. Current configuration conformity
++is distinct from AC-03 operational qualification.
++Primary skill selected/read/applied: software-design;
++.codex/skills/software-design/SKILL.md; no declared version; bridge
++sdd/chain/software-design.md version 1. Contribution: separate central native
++argv from local commands, remove dead configuration and verify public caller
++behavior. Observed hashes and preimages are in
++ docs/validation/toolbox-consumer-rules-20261109/. No delegation.
+--- before/sdd/features/scripts-toolbox-native/tasks.md
++++ sdd/features/scripts-toolbox-native/tasks.md
+@@ -13,3 +13,5 @@
+ - T024: Executar comandos públicos e checks afetados, registrar evidências sucessoras por critério. Depende de T021..T023.
+ 
+ - T025 concluída por implementação/inspeção: confrontar README e guias consolidados da Toolbox com os consumidores Ox; remover seleção SELinux implícita, adaptar teste de contrato, orientar ambiente/CI, paths, volumes e resultados; preservar preimagens. Não executou verificadores, testes, scanners ou manutenção central. Aceite executado e T024 permanecem pendentes.
++
++- T026 concluída no contrato local (29 testes aprovados, 1 opt-in ignorado): aplicar o guia obrigatório atual, remover argv local obsoleto de scanners centrais, exports ineficazes e branches inalcançáveis; corrigir o contrato OSV e preservar configs nativas usadas. Conferir planos, descoberta, códigos, relatórios, integridade e sintaxe com a suíte focada; registrar resultado e limites sem renovar aprovação operacional anterior.
+--- before/sdd/features/scripts-toolbox-native/converge.md
++++ sdd/features/scripts-toolbox-native/converge.md
+@@ -57,3 +57,23 @@
+ prior acceptance or evidence hashes. Changed-input observations remain historical;
+ current operational acceptance is not established by this cleanup. See
+ [the cleanup record](../../../docs/validation/scripts-document-cleanup-20261109/report.md).
++
++## Mandatory consumer rules successor — 2026-11-09
++
++REQ-01/02 -> D-26/R-26 -> T026: removed duplicate host commands for central
++scanners, ineffective scanner exports and unreachable local report handling.
++Plans choose the transport before command construction; unavailable local tools
++have empty argv. Native scanner argv, report checks, age policy, discovery and
++caller-controlled mounts are retained. Consumer documentation now accurately
++describes central automatic OSV acquisition and its distinct 12h acquisition age.
++
++Focused public CLI tests: 30 executed, 29 passed, one real-Docker opt-in skipped;
++includes aliases, clean/findings, malformed/missing diagnostics, cleanup failures,
++source/mode/inventory mutations, paths/argv, missing local tools and SELinux
++forwarding. Static inventory: all 11 native config files referenced, no legacy
++JSON/locks. These observations support T026 configuration conformity; broader
++AC-01/02 remain INCONCLUSIVE because no full feature acceptance/freshness run was
++performed on all current inputs. AC-03 remains UNVERIFIED: no real Docker scanner
++or OSV acquisition observed here. Historical evidence.json/logs are unchanged.
++Current inputs, source bytes, patches and test output:
++[consumer rules report](../../../docs/validation/toolbox-consumer-rules-20261109/report.md).
+--- before/sdd/features/scripts-toolbox-native/traceability.json
++++ sdd/features/scripts-toolbox-native/traceability.json
+@@ -6,7 +6,8 @@
+     "risk": "R-01",
+     "tasks": [
+       "T001",
+-      "T025"
++      "T025",
++      "T026"
+     ],
+     "implementation": "scripts/lib/backends.sh",
+     "oracle": "scripts/tests/test_backends.py"
+@@ -18,7 +19,8 @@
+     "risk": "R-01",
+     "tasks": [
+       "T002",
+-      "T025"
++      "T025",
++      "T026"
+     ],
+     "implementation": "scripts/lib/backends.sh",
+     "oracle": "scripts/tests/test_backends.py"

@@ -162,3 +162,8 @@ A expressão histórica `not-yet-implemented` descreve o início do projeto.
 
 [Visuais, fontes Mermaid e reprodução](docs/assets/README.md) ·
 [Revisão visual e verificações](docs/validation/documentation-visuals-20261104/report.md)
+
+O preparo explícito de bases e a descoberta portátil de scanners/toolbox estão
+em [scripts/README.md](scripts/README.md). Consulte
+`bash scripts/security/prepare-datasets.sh --help`; disponibilize `toolbox` no PATH
+ou defina `TOOLBOX_BIN="/caminho com espaços/bin/toolbox"`.

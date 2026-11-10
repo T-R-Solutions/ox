@@ -1,0 +1,66 @@
+> Atualização 08/11/2026: o fluxo nativo vigente usa versões centrais e `exec`, sem config/lock do consumidor ou adapter obrigatório. Consulte [contrato e comandos atuais](native-execution.md) e [validação observada](native-validation.md). O conteúdo abaixo descreve o fluxo legado, preservado para compatibilidade.
+
+# Validação observada e trabalho pendente
+
+Data: 2026-11-06. Host real: openSUSE Tumbleweed 20261103, x86_64, UID/GID 1000. Repositório Git independente inicializado em `shared-toolbox/`, branch `main`, sem remote ou publicação. Nenhum projeto externo foi alterado.
+
+## Evidência observada
+
+[commands.json](../evidence/commands.json) registra argv, diretório, exit e arquivos de stdout/stderr dos comandos realmente executados. [unit-tests.stderr](../evidence/unit-tests.stderr) registra **15 testes unitários aprovados**. Incluem validação estrita, sete estados agregados, parsers de relatórios sintéticos, montagem como argumentos, concorrência de IDs e JSON, retenção por projeto e preservação de fontes no caminho sem execução.
+
+`validate` e `plan` funcionaram nos exemplos. `doctor` retornou exit 2 com erro real de permissão no socket. `lock-base` também falhou por permissão. `prepare` com estado gravável recusou a base sem digest. O shell não resolve `raw.githubusercontent.com`; a consulta web foi feita por canal separado, sem download de executáveis.
+
+O [roteiro de aceitação](../tests/acceptance.py) foi executado com CLI real em seis casos concorrentes. Resultado: **accepted=false**, exit 2, todos sem imagem preparada, `tool_exit_code=null`. [acceptance.json](../evidence/acceptance.json) contém os registros completos. Diretórios e logs separados existem e pertencem ao usuário; isso demonstra armazenamento de diagnósticos, não ferramentas executadas dentro de containers.
+
+## Estado individual das ferramentas
+
+| Ferramenta | Versão selecionada/proposta | Implementação | Execução real |
+|---|---|---|---|
+| Gitleaks | 8.24.3 | Receita/adapter candidatos, files e history | Não executada |
+| Ruff | 0.11.13 | Receita/adapter candidatos | Não executada |
+| ShellCheck | 0.10.0 | Receita/adapter candidatos | Não executada |
+| Grype | 0.119.0 | Receita/adapter de filesystem e updater candidatos | Não executada, DB não preparada |
+| Playwright | 1.56.1 / Node 22.20.0 | Receita, variantes, entrypoint e testes externos candidatos | Nenhum browser ou teste HTTP executado |
+| OSV-Scanner | 2.0.2 | Integração bloqueada por pesquisa incompleta | Não executada |
+| Opengrep | 1.31.0 | Receita candidata desabilitada; sem adapter | Não executada |
+| Bandit | 1.8.3 | Manifesto/documentação e Dockerfile de bloqueio | Não executada |
+| Trivy | 0.61.1 | Manifesto/documentação e Dockerfile de bloqueio | Não executada |
+| Syft | 1.23.1 | Receita candidata desabilitada; sem adapter | Não executada |
+| YARA-X | 1.0.0 | Manifesto/documentação e Dockerfile de bloqueio | Não executada |
+
+Não há imagem disponibilizada, digest Debian resolvido, medição de tamanho ou fechamento de bibliotecas verificado. Versões antigas são escolhas candidatas reprodutíveis, não uma declaração de manutenção ou ausência de vulnerabilidades dessas versões. Todas precisam de avaliação antes de liberação.
+
+## Critérios de aceitação
+
+| Critério solicitado | Evidência atual / pendência |
+|---|---|
+| Dois consumidores reusam imagem | Configurações/exemplos implementados; IDs e reúso real pendentes |
+| Sem instalação por consumidor | Nenhum node_modules/venv/scanner nos exemplos; execução central pendente |
+| Configurações diferentes | Exemplos F401 e regra de segredo/control; aplicação real pendente |
+| Uma imagem por ferramenta | Pastas/receitas independentes; imagens ainda inexistentes |
+| Playwright externo importando pacote central | Cópia, symlink, config ESM e fixture implementados; prova prática pendente |
+| HTTP sem browser | Variante api e fixture implementados; execução pendente |
+| Achado e controle conhecidos | Fixtures presentes; nenhum achado real observado |
+| Ausente versus falha versus achado | Ausência observada na CLI; demais parsers só testes unitários com JSON sintético |
+| Concorrência | IDs/logs separados observados sem ferramentas; containers/caches reais pendentes |
+| Fontes e permissões | Fontes preservados e logs UID 1000 sem containers; verificar após execução real |
+| Persistência após remover containers | Persistência de logs sem execução observada; ciclo real pendente |
+| Reexecução de versões registradas | Locks/IDs implementados, nenhuma imagem preparada |
+| Scanner offline após preparo | Não demonstrado; Grype depende de DB; Gitleaks/Ruff/ShellCheck dependem de imagem |
+| Tamanho local versus transferido | Campos distintos, ambos não medidos; Size e transferência registry não são equivalentes |
+| Portabilidade | Procedimento documentado; segunda máquina e ARM64 não validados |
+
+## Sequência para concluir
+
+1. Disponibilizar daemon Docker local e acesso de rede em uma sessão apropriada. A plataforma não altera socket/grupos e não contorna permissões.
+2. Resolver e versionar o digest Debian real; verificar snapshot APT, artefatos oficiais e seus hashes. Concluir os comandos oficiais de instalação Tumbleweed cuja fonte retornou 403.
+3. Construir e executar primeiro Ruff/Gitleaks/ShellCheck, depois Grype e Playwright; corrigir com evidência qualquer biblioteca, flag ou código divergente. Medir Size por arquitetura e, quando houver registry, bytes das camadas comprimidas.
+4. Ampliar a aceitação real para histórico Git com segredo removido, ShellCheck, falha operacional controlada, offline/DB, timeout, cancelamento, imagens OCI arquivadas, restauração e rede host/container/externa. O roteiro atual não cobre todos esses casos.
+5. Completar a leitura oficial por versão e só então implementar os outros seis adapters/receitas de produção. Auditar o fechamento Python antes de preparar o perfil correspondente.
+6. Executar todos os critérios, registrar evidência por ferramenta e testar restauração em outro computador AMD64. Até lá, não declarar inventário completo, isolamento ou portabilidade.
+
+## Mudança para volumes por ferramenta
+
+Após o registro inicial, o armazenamento foi alterado para `tools/<ferramenta>/volume/`. Os 17 testes atuais do núcleo passaram, incluindo localização de bases/staging/locks, retenção de resultados de vários módulos sem apagar outros projetos, exclusão de volumes da identidade da receita e rejeição de volumes dentro dos fontes consumidores.
+
+A CLI foi invocada realmente a partir de `/tmp`: o diagnóstico de Ruff foi gravado em `tools/ruff/volume/projects/consumer-a/runs/<id>/`, com fontes preservados. Veja [volume-layout.json](../evidence/volume-layout.json) e [stdout](../evidence/volume-layout.stdout). O exit continuou 2 por imagem ausente; nenhum container foi executado. Os arquivos anteriores de aceitação continuam sendo registros históricos do layout anterior.

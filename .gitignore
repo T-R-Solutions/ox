@@ -81,3 +81,7 @@ venv/
 # Importante: NAO ignorar .codex/, sdd/, docs/, config/governance/,
 # tools/, application/Cargo.lock ou evidencias SDD versionadas.
 # Arquivos SQLite de fixture e evidencias devem ser preservados.
+
+# Scratch, snapshots, scanner outputs, datasets and locally acquired tools.
+# Promote reviewed evidence to docs/validation/ before versioning it.
+/.local/

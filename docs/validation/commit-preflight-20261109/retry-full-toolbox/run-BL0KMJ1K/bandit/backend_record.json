@@ -1,0 +1,24 @@
+{
+  "cleanup": "removed",
+  "finished_at": "2026-11-09T22:10:14.520377+00:00",
+  "image": "sha256:2c02ac66451c3557243e80e07b35a9e3fe5c9dfbd91d9cefa39e7900f1bd3919",
+  "native_exit_code": 2,
+  "oom_killed": false,
+  "outcome": "native",
+  "phase": "execute_native",
+  "repo_digests": [
+    "shared-toolbox/bandit@sha256:2c02ac66451c3557243e80e07b35a9e3fe5c9dfbd91d9cefa39e7900f1bd3919"
+  ],
+  "run": "7263cda5700a4b529849c464539a8981",
+  "runtime_exit_code": 2,
+  "selinux": {
+    "automatic_relabel": false,
+    "diagnostic": "SELinux enforcing: inspect Unix permissions, file/process contexts and AVCs; select TOOLBOX_SELINUX_LABEL=shared for bounded shared mounts or provide suitable existing contexts. An unset selection does not relabel paths.",
+    "mode": "enforcing",
+    "selection": "",
+    "selection_valid": true
+  },
+  "started_at": "2026-11-09T22:10:14.098260+00:00",
+  "tool": "bandit",
+  "version": "1.8.3"
+}

@@ -1,0 +1,81 @@
+"""Test-only subprocess adapters. No production implementation is imported."""
+from pathlib import Path
+import hashlib
+import json
+import os
+import subprocess
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def shell(code, *args, root=ROOT):
+    prelude = 'source "$1/lib/common.sh"; for m in process registry files reports; do source "$1/lib/$m.sh"; done; shift; '
+    run = subprocess.run(['/bin/bash', '-c', prelude + code, '_', str(ROOT/'scripts'), *map(str,args)],
+                         capture_output=True, env=dict(os.environ, OX_TEST_ROOT=str(root)))
+    if run.returncode:
+        raise ValueError(run.stderr.decode(errors='replace'))
+    return run.stdout
+
+
+def commands(scope):
+    return json.loads(subprocess.check_output(['/bin/bash',str(ROOT/'scripts/automate.sh'),'--scope',scope,'--plan']))
+
+
+def execute(argv, cwd, env, directory):
+    directory = Path(directory)
+    target = directory/'process'
+    subprocess.run(['/bin/bash','-c','source "$1/lib/common.sh"; source "$1/lib/process.sh"; shift; d=$1; c=$2; shift 2; execute "$d" "$c" "$@"',
+                    '_',str(ROOT/'scripts'),str(target),str(cwd),*argv],env=dict(env,PATH=env.get('PATH','')+':/usr/bin:/bin'),capture_output=True,check=True)
+    for f in ('stdout.log','stderr.log'):
+        (directory/f).write_bytes((target/f).read_bytes())
+    return json.loads((target/'process.json').read_text())
+
+
+def digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def tree_identity(path):
+    return shell('tree_identity "$1"',path).decode().strip()
+
+
+def dataset(root,name):
+    with tempfile.TemporaryDirectory() as tmp:
+        shell('ROOT=$OX_TEST_ROOT; reviewed_dataset "$1" "$2"',name,tmp,root=root)
+        return None,json.loads((Path(tmp)/'dataset.json').read_text())
+
+
+def source_copy(root,output,only_code=False):
+    shell('ROOT=$OX_TEST_ROOT; source_snapshot "$1" "$2"',output,'code' if only_code else 'all',root=root)
+    return Path(output)/'source',json.loads((Path(output)/'inputs.json').read_text())
+
+
+def command(name,root,output):
+    return json.loads(shell('ROOT=$OX_TEST_ROOT; check_command "$1" "$2"; json_args "${CMD[@]}"',name,output,root=root))
+
+
+def assess(name,raw,report):
+    return tuple(json.loads(shell('assess "$1" "$2" "$3"; jq -n --arg state "$STATE" --argjson code "$CODE" --argjson count "$COUNT" \'[$state,$code,$count]\'',name,raw,report)))
+
+
+def member_manifests(workspace):
+    root=Path(workspace).parent
+    doc=json.loads(shell('ROOT=$OX_TEST_ROOT; installed_cargo; workspace_metadata',root=root))
+    paths=[Path(p['manifest_path']) for p in doc['packages'] if p['id'] in doc['workspace_members']]
+    if not paths or any(not p.is_relative_to(workspace) for p in paths):
+        raise ValueError('workspace member escape/empty')
+    return paths
+
+
+def read_json(path):
+    shell('strict_json "$1"',path)
+    return json.loads(Path(path).read_text())
+
+
+def exceptions(rows):
+    with tempfile.TemporaryDirectory() as tmp:
+        p=Path(tmp)/'exceptions.json';p.write_text(json.dumps(rows))
+        run=subprocess.run(['/bin/bash',str(ROOT/'scripts/security/analyzers/validate-exceptions.sh'),str(p)],capture_output=True)
+        if run.returncode:raise ValueError(run.stderr)
+        return json.loads(run.stdout)

@@ -1,0 +1,22 @@
+[
+  {
+    "check": "ruff",
+    "state": "blocked",
+    "exit": 3,
+    "reason": "Toolbox Ruff inline suppression requires review; use strict native adapter",
+    "scanner_started": false
+  },
+  {
+    "check": "gitleaks",
+    "state": "blocked",
+    "exit": 3,
+    "reason": "Toolbox Gitleaks inline suppression requires review; use strict native adapter",
+    "scanner_started": false
+  },
+  {
+    "check": "toolchain-succession",
+    "exact_preimage": true,
+    "unknown_bytes_not_normalized": true,
+    "changed_registry_rejected": true
+  }
+]

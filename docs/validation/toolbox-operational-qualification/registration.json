@@ -1,0 +1,110 @@
+[
+  {
+    "tool": "ruff",
+    "record": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/ruff/volume/images/0.11.13/d27ec6df52cefaa45ad0a11ea461e9446537dc40a9ec3d26564abe68dcdfd6df/image.json",
+    "record_sha256": "c6c61bb9d177ea4dc6bb7c8fb589882d1619fbd64d2f768db7af0284fe4cd245",
+    "exit": 0,
+    "registration": {
+      "tool": "ruff",
+      "revision": "c85f8b3a05cee0aab0a5e3d8b72f8c8ebc9bd06e2f9f2764626359cb0bcd8af6",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    }
+  },
+  {
+    "tool": "bandit",
+    "record": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/bandit/volume/images/1.8.3/4845d0679254c0405c10a8346441267716aa469127a8c06feb580ac4ceed1944/image.json",
+    "record_sha256": "d1e010eed62540501c315a64dc8b176f6b12d4f2a4fb4725c3065eeb79e4e105",
+    "exit": 0,
+    "registration": {
+      "tool": "bandit",
+      "revision": "56a273ede5efc77d80181e70a85923e57f6749dc9da6399689fcbeb87fb93342",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    }
+  },
+  {
+    "tool": "gitleaks",
+    "record": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/gitleaks/volume/images/8.24.3/1bd92411f20adbd18f2fe592fd8daaf7c196601856301c7050e474759b8b6f58/image.json",
+    "record_sha256": "ff3fc022d773803ed4c9188d3e63625d58beadfe3424fba10c38ee6b0b4f1fd2",
+    "exit": 0,
+    "registration": {
+      "tool": "gitleaks",
+      "revision": "ae9e9530ae68c032bbc9cff4e811a3eb60187c309acf6fe7441ffae3056e09ee",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    }
+  },
+  {
+    "tool": "shellcheck",
+    "record": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/shellcheck/volume/images/0.11.0/026758bcf0e95caa3868c65130f4362fb937471d044bec885d42a8a7bcdc17e0/image.json",
+    "record_sha256": "621e619bd06b7190a76653d4ec5098e36c77365f4426e6a3fc1a0b476dd089ec",
+    "exit": 0,
+    "registration": {
+      "tool": "shellcheck",
+      "revision": "4948bb91ede32a98cd3892ca5d0120e9060f2394a7cb777c796092d6c96942db",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    }
+  },
+  {
+    "tool": "opengrep",
+    "record": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/opengrep/volume/images/1.33.1/f44f63894b9bd91b9d5dbc2a6524fea97cba1fe339ebc6e83b21189b184b14ac/image.json",
+    "record_sha256": "d80f18cc9799c962245c50699ae651247c729ee3787a193b02b30cc3ba890679",
+    "exit": 0,
+    "registration": {
+      "tool": "opengrep",
+      "revision": "533b4092d23095841f5879893753a98b6f62e08c35af3801f582c0c203d49cab",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    }
+  },
+  {
+    "tool": "syft",
+    "record": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/syft/volume/images/1.23.1/bbf012ef1e9528ea952d791c636e9f73928ad6d05e15d1b0df6abaf693157f39/image.json",
+    "record_sha256": "df3e2640942f39a664edaa1b10ecf5c6e9b2d558ba5e865534e481726a6462ce",
+    "exit": 0,
+    "registration": {
+      "tool": "syft",
+      "revision": "32f4f91ffd14500e1b19f3d2fad2ee68e68b6a7cde7043f3b418f4aa52819071",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    }
+  },
+  {
+    "tool": "trivy",
+    "record": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/trivy/volume/images/0.76.2/993e881bbf1762d1d5ee1a75d8c860bfb7f200bcb904d9a3f8520672ed769854/image.json",
+    "record_sha256": "670e7ebc6080cc6f02f018ecef7e771ffd4aeb9259d41f3e7d76f23d42592a58",
+    "exit": 0,
+    "registration": {
+      "tool": "trivy",
+      "revision": "862908f5dce407fad2abf9d7db791e3c57cc0609801e66d79cc982dd88f0d59c",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    }
+  },
+  {
+    "tool": "grype",
+    "record": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/grype/volume/images/0.119.0/859f4c45f78032a4cbd8a5831106f33cc3dd73e49b04d627f704cf4d927bbffd/image.json",
+    "record_sha256": "082c0ec71a736843dedccd4f139a87a1c2b96b3f67fe426b9738f961e725ccaa",
+    "exit": 0,
+    "registration": {
+      "tool": "grype",
+      "revision": "390d81b0c862c9aaa289be987bed430fe5b6167fc52d5bb1aff879c313901bb2",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    }
+  },
+  {
+    "tool": "osv-scanner",
+    "record": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/osv-scanner/volume/images/2.7.0/854bd9aa62a168c937a26742a117daff82ed9549b1d79ba8a1a33478a8386647/image.json",
+    "record_sha256": "129aa46cd5066b7889bdbe0ebd56a7ffced88236ef4769181d7fed6078290758",
+    "exit": 0,
+    "registration": {
+      "tool": "osv-scanner",
+      "revision": "3cfe606021fccf654ced4a3bc9a08610363abf24b12a883a58058c7bbb8a90e9",
+      "activated": false,
+      "qualification": "version verified; representative operations still required"
+    }
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "sources": {
+    "docs/assets/check.py": "d7e968c7104f41f87f12ab6b6e04197aae2171bfd3933aa8279727ff9a0611b5",
+    "scripts/tests/support.py": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+    "scripts/tests/test_automation.py": "c59f8e6d0ee0444bfdb167cb75b6a6c65fd3161133fd14c1a8c49f59470006a8",
+    "scripts/tests/test_backends.py": "0c46a37bebb6beabd8094ccd602a5ec37e3e5c0891ec8c584691d3fec712911c",
+    "scripts/tests/test_database_age.py": "86e0e56826eda15087a1325525e02b784978b668c22522494033426f9488ae06",
+    "scripts/tests/test_native_reports.py": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+    "scripts/tests/test_optional_datasets.py": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+    "scripts/tests/test_preparation.py": "92013499faa6e20cbb323f38faa5ba18b063904a186dd088d84cf6c85246ac08",
+    "scripts/tests/test_process_lifecycle.py": "533f1de93031b9f9643a9b2c1c5924b79bf392206e146fcd74a60700fb269682",
+    "scripts/tests/test_real_security_backends.py": "8aea25c90e894cd7af0ba338277cf2237d832e3305814ad6cb61bef8edfa9bbb",
+    "scripts/tests/test_selinux_transport.py": "033e3577700084fbce3540c7443ed9c61de9d816cc6c1f824c821e6dbfa633fa",
+    "tools/governance/consumers/gui_test.py": "9185b93be39a86430e60a2229a60f82680a8b12483666ccecab0de70fd91b95d",
+    "tools/governance/consumers/isolation_test.py": "a9cedd279f22f2e27734dbdfe2d08d5ef5aa6565a84e911a3ec1c2dc45db7c7f",
+    "tools/governance/consumers/run_base.py": "6f33e87b3e6595598976eadc4025439ab88cd6ef343d7fd6f6e5fdcebbb6c892",
+    "tools/governance/scripts/package-ox.py": "5f6c108c1810e13bba9c6d8f6133a7c6b80a8bf0b17db2bcf039dfcfa045e2d9",
+    "tools/governance/scripts/run-checks.py": "33f7f73d5d5c0a10cf266c5cdf41f176ee0d9e463d22331d706ab3cac42992bd",
+    "tools/governance/tests/test_governance.py": "deb23eb56749d6296b1df81515731436434a563ac23ecdf281469bdf1139d1a0",
+    "tools/governance/tests/test_project_revision.py": "5c0fcba74654d86bb26146b107227ad85d88d241169613b4ce5b93377e58c6da",
+    "tools/governance/tests/test_security_quality.py": "3e91a8d83ca594513b4e919d430625050b90a5a0d18ae4137fc4760ce6d04b16",
+    "tools/governance/tests/test_task_closure.py": "d616d676b8caa4fe0a29f728a6d775c6b945540fb5613cca9c9a6e110acd9490"
+  },
+  "policy_files": {
+    "scripts/config/ruff.toml": "ce11e5ebbf6b18d5e3b5bc56c5232c469ea53717ed3b87bfd4ea5c2448674d6b",
+    "scripts/config/bandit-baseline.json": "019918d601c681f7f0c3d8103083e905ac7e443e6f039d5d532a3a83ca3f007b"
+  },
+  "reason": "Reviewed false positives: shell-free argv to explicit test or governance commands; subprocess import alone is not command injection; /tmp literals are adversarial aliases or cwd/tmpfs, never insecure temporary file creation; XML parser handles only the repository SVG corpus. No scanner severity or rule globally disabled. Changed reviewed source or policy fails before scanning."
+}

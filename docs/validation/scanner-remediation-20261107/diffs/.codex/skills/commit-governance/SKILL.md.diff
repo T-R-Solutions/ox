@@ -1,0 +1,47 @@
+--- previous/.codex/skills/commit-governance/SKILL.md
++++ .codex/skills/commit-governance/SKILL.md
+@@ -89,12 +89,42 @@
+ 
+ 1. **Preflight.** Confirm explicit intent; run `git rev-parse --show-toplevel`, `git status --short --branch`, inspect `git diff`, `git diff --cached`, and relevant ignored/untracked status as necessary. Identify nested repositories or submodules instead of assuming one Git root.
+ 2. **Scope.** Classify each changed path as authorized, unrelated, generated, sensitive, conflicting, or uncertain. Preserve unrelated work, including pre-staged files; do not assume that already-staged content was authorized.
+-3. **SDD awareness.** Check whether the change affects SDD features, evidence inputs, or governance checks. Run the relevant existing validators. Do not change evidence hashes merely to make them pass; do not mark unexecuted criteria approved.
+-4. **Validate.** Run checks proportional to the files in each proposed commit. For Rust code, use the applicable Cargo workspace checks; for governance-only changes, use its real validation commands. Report commands not run and their impact.
++3. **SDD awareness.** Check whether the change affects SDD features, evidence inputs, or governance checks. Preserve their actual validation states. Do not change evidence hashes merely to make them pass; do not mark unexecuted criteria approved.
++4. **Validation choice.** Follow the pre-commit question below before staging or creating any commits. Do not run the automation until the user answers.
+ 5. **Group.** Produce coherent commits by purpose and review each staged diff. **Do not impose a blanket separation of UI and core changes:** a single atomic feature may reasonably span `ox-ui`, `ox-core`, SDD and tests. Separate unrelated concerns instead.
+ 6. **Stage.** Prefer explicit path staging (`git add -- <paths>`), inspecting staged hunks. `git add -A` is allowed **only** for an explicitly authorized repository-wide scope, from the verified root, and after a complete status/diff review. Verify staged content again before committing.
+ 7. **Commit.** Use a matching Conventional Commit subject; avoid empty commits unless explicitly requested. Do not modify unrelated hooks or bypass checks merely for convenience.
+ 8. **Verify.** Capture the commit hash, exact subject and committed file list (`git show --stat --oneline HEAD`, or equivalent) and final residual `git status`. Disclose remaining changes, failed validation and any uncommitted authorized paths.
++
++## Pre-commit automation choice
++
++For each explicit request to create commits, prepare the proposed scope and grouping,
++then ask: **“Deseja executar o script automate.sh antes de criar os commits?”**
++Offer exactly **Sim** and **Não**, without a recommended or implied default.
++Use `request_user_input_async` when available, with those two options, and wait
++for the response before staging or committing. If a choice tool is unavailable,
++ask the same question in chat. No answer, a timeout or a preselected option is
++not consent. This question is required by this section; link this SKILL.md when
++explaining why confirmation is needed. A request only to inspect commits or
++create a tag does not trigger this question.
++
++- **Sim:** from the verified Git root, run `bash scripts/automate.sh --scope full`.
++  Wait for completion and inspect its exit status and results. Create the planned
++  commits only if the complete run succeeds with exit code 0 and no reported
++  errors, findings, failed or blocked checks. Missing prerequisites, inability to
++  execute, interruption or incomplete results block every commit in this request.
++  Report the failure and leave the changes uncommitted. Do not silently reduce
++  the scope, skip a failed check or treat a plan/dry run as successful validation.
++  Fixing a reported issue does not authorize a commit until the complete run passes.
++- **Não:** skip the automation and continue the authorized commit workflow.
++  Record that the user declined execution; do not claim the checks passed and
++  do not substitute automatic individual validators for the declined run.
++
++The answer applies to all commits grouped under this request. Ask again for a
++new commit request. If source inputs change after a successful run, rerun it
++under the same affirmative answer before committing those changed inputs.
++The choice does not waive conflict/secret/scope checks or certify SDD/product
++acceptance. This is an instruction for the agent, not a Git hook or enforced UI.
+ 
+ ## Git tags and GitHub releases
+ 

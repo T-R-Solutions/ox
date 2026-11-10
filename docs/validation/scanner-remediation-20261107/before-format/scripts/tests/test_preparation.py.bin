@@ -1,0 +1,68 @@
+"""Real offline OSV acceptance, enabled with OX_REAL_OSV and a published registry."""
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import tempfile
+import unittest
+import support as S
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+@unittest.skipUnless(os.environ.get('OX_REAL_OSV'), 'real OSV acceptance opt-in')
+class RealDatasetTests(unittest.TestCase):
+    def test_offline_and_denials(self):
+        with tempfile.TemporaryDirectory(prefix='Ox real offline ') as tmp:
+            root = Path(tmp)
+            shutil.copytree(ROOT/'scripts', root/'scripts')
+            (root/'application').mkdir()
+            shutil.copy2(ROOT/'application/Cargo.lock', root/'application/Cargo.lock')
+            base = root/'.local/security'
+            base.mkdir(parents=True)
+            row = json.loads((ROOT/'.local/security/datasets.json').read_text())['osv']
+            shutil.copytree(ROOT/row['path'], base/'data')
+            row['path'] = '.local/security/data'
+            registry = base/'datasets.json'
+            row_original = dict(row)
+            imports = root/'imports'
+            shutil.copytree(ROOT/json.loads((ROOT/'.local/security/datasets.json').read_text())['osv']['path'], imports/'osv')
+            origin = ROOT/json.loads((ROOT/'.local/security/datasets.json').read_text())['osv']['path']
+            review = json.loads((origin.parent/'osv-provenance.json').read_text())['review']
+            review['sha256'] = row['sha256']
+            review_file = root/'review.json'
+            review_file.write_text(json.dumps({'osv': review}))
+            prepare = ['bash', str(root/'scripts/security/prepare-datasets.sh'), '--root', str(root),
+                       '--review', str(review_file), '--import', str(imports), '--only', 'osv']
+            run = subprocess.run(prepare, capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0, run.stderr)
+            before = registry.read_bytes()
+            (imports/'osv/osv-scanner/crates.io/all.zip').write_bytes(b'corrupt')
+            run = subprocess.run(prepare, capture_output=True, text=True)
+            self.assertNotEqual(run.returncode, 0)
+            self.assertEqual(registry.read_bytes(), before)
+            review['sha256'] = S.tree_identity(imports/'osv')
+            review_file.write_text(json.dumps({'osv': review}))
+            run = subprocess.run(prepare, capture_output=True, text=True)
+            self.assertNotEqual(run.returncode, 0)
+            self.assertEqual(registry.read_bytes(), before)
+            print('reviewed import accepted; corrupt digest and corrupt ZIP format rejected; registry preserved')
+            for mode in ('valid', 'missing', 'expired', 'corrupt'):
+                row = dict(row_original)
+                if mode == 'missing':
+                    row['path'] = '.local/security/absent'
+                if mode == 'expired':
+                    row['valid_until'] = '2000-01-01'
+                if mode == 'corrupt':
+                    (base/'data/osv-scanner/crates.io/all.zip').write_bytes(b'corrupt')
+                registry.write_text(json.dumps({'osv': row}))
+                run = subprocess.run(['bash', str(root/'scripts/checks/run.sh'), '--root', str(root), '--check', 'osv'], capture_output=True, text=True)
+                reports = list((root/'.local/checks').glob('security-*/assessment.json'))
+                report = json.loads(max(reports, key=lambda p: p.stat().st_mtime_ns).read_text())
+                print(mode, run.returncode, report['state'], report['reason'])
+                if mode == 'valid':
+                    self.assertIn(report['state'], ('passed', 'findings'), run.stderr)
+                else:
+                    self.assertEqual(run.returncode, 3, run.stderr)
+                    self.assertEqual(report['tool_exit_code'], None)

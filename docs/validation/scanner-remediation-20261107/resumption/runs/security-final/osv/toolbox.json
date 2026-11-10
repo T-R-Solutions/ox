@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "project": "ox",
+  "root": "/home/rodrigo/Projetos/ox/.local/checks/run-xBMtLH8r/osv/source",
+  "tools": {
+    "osv-scanner": {
+      "version": "2.7.0",
+      "paths": [
+        "application/Cargo.lock"
+      ],
+      "config": "scripts/config/osv-scanner.toml",
+      "database": "278f1a92df9e920ee1ca5b0d49830a68bceea7b2a20026dd76137c46663a4323",
+      "max_database_age_hours": 24,
+      "network": "none",
+      "timeout": 600
+    }
+  }
+}

@@ -1,0 +1,425 @@
+[
+  {
+    "tool": "Docker",
+    "version": "29.7.2 observed; online current",
+    "url": "https://docs.docker.com/engine/install/",
+    "section": "Other Linux distributions",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Use distribution documentation for Tumbleweed, not an unlisted Docker upstream installation recipe."
+  },
+  {
+    "tool": "Docker",
+    "version": "online current",
+    "url": "https://docs.docker.com/reference/cli/docker/container/run/",
+    "section": "Options and exit status",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Explicit pull policy, readonly mounts, UID/GID, network, stop and original container state."
+  },
+  {
+    "tool": "Docker",
+    "version": "online current",
+    "url": "https://docs.docker.com/reference/cli/docker/image/inspect/",
+    "section": "Description",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Capture immutable local image ID, architecture and Size; not registry transfer size."
+  },
+  {
+    "tool": "Docker",
+    "version": "online current",
+    "url": "https://docs.docker.com/reference/cli/docker/image/save/",
+    "section": "Description and compressed export",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Migration via save/load; gzip export size is not registry compressed layer size."
+  },
+  {
+    "tool": "Debian",
+    "version": "13 trixie",
+    "url": "https://www.debian.org/releases/trixie/",
+    "section": "Life cycle and architectures",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Choose trixie-slim; start with amd64 only; compatibility per tool still needs builds."
+  },
+  {
+    "tool": "Debian",
+    "version": "snapshot 20251015T000000Z proposed",
+    "url": "https://snapshot.debian.org/",
+    "section": "Archive usage",
+    "consulted_at": "2026-11-06",
+    "status": "unread: timeout",
+    "supports": "APT snapshot proposed; content could not be read, snapshot reachability and packages not verified."
+  },
+  {
+    "tool": "openSUSE",
+    "version": "Tumbleweed 20261103 observed",
+    "url": "https://en.opensuse.org/SDB:Docker",
+    "section": "Installation",
+    "consulted_at": "2026-11-06",
+    "status": "unread: HTTP 403",
+    "supports": "Required installation documentation inaccessible; do not assert confirmed installation commands."
+  },
+  {
+    "tool": "openSUSE",
+    "version": "Tumbleweed current",
+    "url": "https://doc.opensuse.org/documentation/tumbleweed/",
+    "section": "Foreword",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Rolling distribution; page recommends Tumbleweed knowledgebase; does not establish Docker installation commands."
+  },
+  {
+    "tool": "Gitleaks",
+    "version": "8.24.3",
+    "url": "https://raw.githubusercontent.com/gitleaks/gitleaks/v8.24.3/README.md",
+    "section": "Installing; Usage; Git/Dir; Configuration",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Release binary, git auxiliary executable, explicit finding exit 42, JSON, redaction; no DB download required."
+  },
+  {
+    "tool": "Ruff",
+    "version": "0.11.13",
+    "url": "https://raw.githubusercontent.com/astral-sh/ruff/0.11.13/README.md",
+    "section": "Installation; Usage; Configuration",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Official executable distribution; consumer TOML; scanner needs no Python runtime."
+  },
+  {
+    "tool": "Ruff",
+    "version": "current docs; reconcile 0.11.13 by real execution",
+    "url": "https://docs.astral.sh/ruff/linter/",
+    "section": "Exit codes",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "0 clean, 1 findings, 2 operational; require valid JSON; disable fixes and cache."
+  },
+  {
+    "tool": "ShellCheck",
+    "version": "0.10.0",
+    "url": "https://raw.githubusercontent.com/koalaman/shellcheck/v0.10.0/shellcheck.1.md",
+    "section": "Formats; Exit status; rcfile",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Explicit file list, json1 comments, .shellcheckrc; validate exit and report together."
+  },
+  {
+    "tool": "Bandit",
+    "version": "1.8.3 release; current CLI docs",
+    "url": "https://bandit.readthedocs.io/en/latest/man/bandit.html",
+    "section": "Synopsis; Options",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Python AST scanner, -c configuration, JSON and baseline; dependency closure and exact-version exit behavior remain unresolved."
+  },
+  {
+    "tool": "Bandit",
+    "version": "1.8.3",
+    "url": "https://github.com/PyCQA/bandit/releases/tag/1.8.3",
+    "section": "Release",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Release existence confirmed; release page alone is not an integration contract."
+  },
+  {
+    "tool": "Bandit",
+    "version": "1.8.3",
+    "url": "https://raw.githubusercontent.com/PyCQA/bandit/1.8.3/bandit/cli/main.py",
+    "section": "main",
+    "consulted_at": "2026-11-06",
+    "status": "unread: cache miss",
+    "supports": "Version-specific error/exit handling could not be read."
+  },
+  {
+    "tool": "OSV-Scanner",
+    "version": "2.0.2",
+    "url": "https://raw.githubusercontent.com/google/osv-scanner/v2.0.2/README.md",
+    "section": "Installation; Scan source; Offline",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Official releases and source installation; v2 source scanning; contains older offline syntax, reconcile exact CLI before enabling."
+  },
+  {
+    "tool": "OSV-Scanner",
+    "version": "current V2, differs from 2.0.2",
+    "url": "https://google.github.io/osv-scanner/usage/",
+    "section": "Post-extraction; Offline",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Online V2 docs use offline-vulnerabilities, differing from tagged README; block guessed adapter flags."
+  },
+  {
+    "tool": "Opengrep",
+    "version": "1.31.0",
+    "url": "https://raw.githubusercontent.com/opengrep/opengrep/v1.31.0/README.md",
+    "section": "Distribution; Installation; Getting started",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Self-contained Nuitka binaries, JSON/SARIF and local rules; shared-library closure and version-specific error behavior still require audit."
+  },
+  {
+    "tool": "Trivy",
+    "version": "0.61.1",
+    "url": "https://github.com/aquasecurity/trivy/releases/tag/v0.61.1",
+    "section": "Release",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Release exists; assets and exact-version commands not sufficiently verified."
+  },
+  {
+    "tool": "Trivy",
+    "version": "0.55 historical; not sufficient for 0.61.1",
+    "url": "https://www.trivy.dev/docs/v0.55/guide/advanced/air-gap/",
+    "section": "Network; Offline; DB",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Databases and skip-update flags exist historically; this does not authorize an unverified 0.61.1 integration."
+  },
+  {
+    "tool": "Trivy",
+    "version": "0.61.1",
+    "url": "https://trivy.dev/v0.61/getting-started/installation/",
+    "section": "Installation",
+    "consulted_at": "2026-11-06",
+    "status": "unread: HTTP 404",
+    "supports": "Versioned documentation request returned 404 after discovery; leave gap explicit."
+  },
+  {
+    "tool": "Grype",
+    "version": "0.119.0",
+    "url": "https://raw.githubusercontent.com/anchore/grype/v0.119.0/README.md",
+    "section": "Installation; Basics",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Official release binaries; filesystem/image/SBOM targets; no need to expose Docker socket for directory scan."
+  },
+  {
+    "tool": "Grype",
+    "version": "0.119.0 generated docs",
+    "url": "https://oss.anchore.com/docs/reference/grype/configuration/",
+    "section": "db; check-for-app-update",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Disable implicit DB/application updates; select cache and explicit age policy; preserve native DB."
+  },
+  {
+    "tool": "Grype",
+    "version": "current docs",
+    "url": "https://oss.anchore.com/docs/installation/grype/",
+    "section": "Official builds; GitHub releases",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Extract executable from official archive; signature verification is separate from checksum verification."
+  },
+  {
+    "tool": "Grype",
+    "version": "current docs",
+    "url": "https://oss.anchore.com/docs/guides/vulnerability/database/",
+    "section": "Updating; Database age",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Local DB requires explicit refresh; native age validation must not be silently disabled."
+  },
+  {
+    "tool": "Syft",
+    "version": "1.23.1",
+    "url": "https://github.com/anchore/syft/releases/tag/v1.23.1",
+    "section": "Release",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Release exists; tag alone insufficient to validate full integration."
+  },
+  {
+    "tool": "Syft",
+    "version": "current README",
+    "url": "https://raw.githubusercontent.com/anchore/syft/main/README.md",
+    "section": "Features; Basics",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "SBOM generation, SPDX/CycloneDX/Syft JSON; inventory measurement, not vulnerability approval."
+  },
+  {
+    "tool": "YARA-X",
+    "version": "1.0.0",
+    "url": "https://github.com/VirusTotal/yara-x/releases/tag/v1.0.0",
+    "section": "Release",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Stable release exists; exact-version CLI output schema and match exit behavior unresolved."
+  },
+  {
+    "tool": "YARA-X",
+    "version": "current docs",
+    "url": "https://virustotal.github.io/yara-x/docs/intro/installation/",
+    "section": "Pre-built binaries; Source",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Official release binaries or Rust build; do not add Python/Node merely because documentation build uses them."
+  },
+  {
+    "tool": "YARA-X",
+    "version": "current docs",
+    "url": "https://virustotal.github.io/yara-x/docs/cli/commands/",
+    "section": "scan; compile; output-format",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Executable is yr; consumer supplies rules; JSON schema and error codes must be checked for 1.0.0."
+  },
+  {
+    "tool": "Playwright",
+    "version": "1.56.1",
+    "url": "https://raw.githubusercontent.com/microsoft/playwright/v1.56.1/packages/playwright/package.json",
+    "section": "engines; dependencies",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Exact Node engine floor and playwright-core package match; use Node 22.20.0 candidate."
+  },
+  {
+    "tool": "Playwright",
+    "version": "1.56.1",
+    "url": "https://raw.githubusercontent.com/microsoft/playwright/v1.56.1/packages/playwright-core/src/server/utils/hostPlatform.ts",
+    "section": "calculatePlatform",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Debian 13 amd64/arm64 platform handling exists; slim library closure still requires actual build."
+  },
+  {
+    "tool": "Playwright",
+    "version": "1.56.1",
+    "url": "https://raw.githubusercontent.com/microsoft/playwright/v1.56.1/packages/playwright-core/src/server/registry/nativeDeps.ts",
+    "section": "Debian dependency tables",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Use selected-browser install --with-deps during preparation; no manual guessed library list."
+  },
+  {
+    "tool": "Playwright",
+    "version": "current docs, supplemental",
+    "url": "https://playwright.dev/docs/docker",
+    "section": "Own image; version matching; networking",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Official Ubuntu container is reference only; own Debian slim build required. Headless does not require host browsers."
+  },
+  {
+    "tool": "Playwright",
+    "version": "current docs, supplemental",
+    "url": "https://playwright.dev/docs/api-testing",
+    "section": "APIRequestContext; Configuration",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "HTTP fixture works without page/browser fixture; demonstration still requires real runtime execution."
+  },
+  {
+    "tool": "Node.js",
+    "version": "22.20.0",
+    "url": "https://nodejs.org/en/download/archive/v22.20.0",
+    "section": "Linux downloads; signed SHASUMS",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Official x64 archive; verify checksum; no claim of signature verification."
+  },
+  {
+    "tool": "Node.js",
+    "version": "22.20.0",
+    "url": "https://nodejs.org/download/release/v22.20.0/docs/api/modules.html",
+    "section": "Loading from node_modules folders",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Explicit staged node_modules link; no global npm or NODE_PATH claim; ESM proof pending."
+  },
+  {
+    "tool": "Python",
+    "version": "3.13 on host observed; runtime not selected for Bandit",
+    "url": "https://docs.python.org/3.13/library/venv.html",
+    "section": "Creation and portability",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Host CLI uses stdlib; any Bandit venv belongs in its image, not consumer or global host."
+  },
+  {
+    "tool": "pip",
+    "version": "current docs; not yet used",
+    "url": "https://pip.pypa.io/en/stable/topics/secure-installs/",
+    "section": "Hash checking",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Future Python integration must lock all transitive packages with hashes; do not introduce unpinned pip install."
+  },
+  {
+    "tool": "Go",
+    "version": "not installed by core",
+    "url": "https://go.dev/doc/install",
+    "section": "Download and install",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Core uses release binaries; Go compiler would belong only in a source-build stage if needed."
+  },
+  {
+    "tool": "Docker",
+    "version": "29.7.2 observed; official current docs",
+    "url": "https://docs.docker.com/engine/storage/bind-mounts/",
+    "section": "Configure the SELinux label",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Opt-in TOOLBOX_SELINUX_LABEL=private uses ro,Z source/database and rw,Z output, existing absolute directories, without disabling SELinux. Ec uses disposable snapshots; run checks immutable images."
+  },
+  {
+    "tool": "ShellCheck",
+    "version": "0.11.0",
+    "url": "https://github.com/koalaman/shellcheck/releases/tag/v0.11.0",
+    "section": "release assets",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Release API supplies SHA256; old 0.10.0 preserved; substitution test rejects mismatched download."
+  },
+  {
+    "tool": "Opengrep",
+    "version": "1.33.1",
+    "url": "https://github.com/opengrep/opengrep/releases/tag/v1.33.1",
+    "section": "release and bundled CLI help",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Local rules, test/scan modes, metrics off, strict errors, disabled suppressions; real execution required."
+  },
+  {
+    "tool": "OSV-Scanner",
+    "version": "2.7.0",
+    "url": "https://raw.githubusercontent.com/google/osv-scanner/v2.7.0/docs/offline-mode.md",
+    "section": "Offline mode and manual database download",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Explicit HTTPS database update; immutable local snapshot, age, exact lockfile inventory; scan offline."
+  },
+  {
+    "tool": "OSV-Scanner",
+    "version": "2.7.0 / SCALIBR 0.5.3",
+    "url": "https://github.com/google/osv-scalibr/blob/5be78a00e3c2/enricher/vulnmatch/osvlocal/matcher.go",
+    "section": "envKeyLocalDBCacheDirectory and setupLocalDBDirectory",
+    "consulted_at": "2026-11-06",
+    "status": "read",
+    "supports": "Runtime requires OSV_SCALIBR_LOCAL_DB_CACHE_DIRECTORY and osv-scalibr/<ecosystem>/all.zip alongside the documented scanner cache."
+  },
+  {
+    "tool": "Bandit",
+    "version": "1.8.3",
+    "url": "https://pypi.org/pypi/bandit/1.8.3/json",
+    "section": "requires_dist and exact wheel digests",
+    "consulted_at": "2026-11-07",
+    "status": "read",
+    "supports": "Seven-wheel Python 3.13 Linux closure; all versions/hashes pinned, no baseline extras"
+  },
+  {
+    "tool": "Bandit",
+    "version": "1.8.3",
+    "url": "https://raw.githubusercontent.com/PyCQA/bandit/1.8.3/bandit/cli/main.py",
+    "section": "arguments and exit handling",
+    "consulted_at": "2026-11-07",
+    "status": "read",
+    "supports": "Explicit INI prevents discovery, ignore-nosec, JSON, inspect errors and metrics separately from exit"
+  }
+]

@@ -1,0 +1,37 @@
+# Convergence
+
+| Criterion | Requirements / decisions / tasks | State | Evidence / limit |
+| --- | --- | --- | --- |
+| AC-01 | REQ-01 / D-01,D-02 / T001 | APPROVED | Consumer transport contract tests; not scanner operation |
+| AC-02 | REQ-02 / D-01,D-03 / T002 | APPROVED | Local contract and lifecycle tests; Docker boundary unverified |
+| AC-03 | REQ-03 / D-03 / T003 | UNVERIFIED | Real opt-in preflight failed: no active revisions; DB age API and RustSec maintenance pending |
+
+See docs/validation/scripts-toolbox-native/report.md for commands, inputs,
+results and resumption. No global operational approval or renewal of historical
+acceptance is asserted. No required runtime gap is marked recorded/passed.
+
+## SELinux successor — 2026-11-08
+
+Eight shared-label real probes passed, with concurrent Ruff/Bandit findings,
+unchanged source hashes and container removal. Public Ox wrapper clean probe
+exited zero. Local suite: 28 tests, one real opt-in skipped; platform: 70 tests.
+E-SELINUX-LOCAL replaces changed-input contract observations; AC-01/02 retain
+bounded local approval. AC-03 remains UNVERIFIED for the larger operational
+matrix. Previous contract/governance/preflight records remain historical.
+
+## Cleanup inspection successor — 2026-11-09
+
+The maintainer redirected the cleanup request to Ox only and prohibited tests,
+verification scripts, commits and publication for this task. Static inspection
+removed unreachable central-scanner setup after the toolbox branch exits, and a
+repeated coverage condition. Public commands, native dispatch, report validation,
+rules and fixtures remain unchanged in scope. Python bytecode caches were removed
+after copying their bytes and metadata; their source files remain present.
+
+AC-01/02 are INCONCLUSIVE on these changed implementation inputs: the previous
+tests and their original hashes remain preserved in evidence.json and historical
+artifacts; no test result was renewed. AC-03 remains UNVERIFIED. This record does
+not adjudicate later operational artifacts or claim current Docker qualification.
+The manual control-flow argument, input identities, preservation observations,
+recovery and remaining gaps are in
+[the cleanup report](../../../docs/validation/repository-cleanup-20261109/report.md).

@@ -1,0 +1,172 @@
+# Operar a instalação central
+
+A plataforma controla a versão ativa, uma imagem Debian slim independente por ferramenta, componentes operacionais, browsers, bases e caches. Projetos fornecem comandos, configs, dependências e serviços da aplicação. Não há serviço permanente compartilhado de scanners; o Docker Engine é infraestrutura do host.
+
+## Verificar acesso e preparar
+
+```bash
+cd /home/rodrigo/Projetos/dev_audit/shared-toolbox
+bin/toolbox doctor
+bin/toolbox central list
+bin/toolbox central prepare --tool ruff --version 0.11.13
+bin/toolbox central prepare --tool trivy --version 0.76.2
+bin/toolbox central prepare --tool playwright --version 1.56.1 --browsers chromium
+```
+
+Comece com doctor. Se o daemon não estiver acessível, siga [docker-access.md](docker-access.md); não altere permissões de socket nos scripts da plataforma. A versão em prepare é escolha do operador. Consulte o catálogo e fontes auditadas antes de selecionar uma versão; recipes candidatas não significam integração homologada. `lock-base` é manutenção explícita para resolver a base caso o digest ainda esteja ausente; uma base existente não é atualizada por análise comum.
+
+Prepare pode baixar artefatos/dependências/bases explicitamente e verifica hashes reais, imagem e versão. Não ativa automaticamente. Não qualifica todos os comandos apenas por --version. A documentação de cada ferramenta e a [matriz de referências](references.md) registram limitações.
+
+## Qualificar, ativar, atualizar e recuperar
+
+```bash
+# O preparo devolve um hash de revisão; substitua os marcadores pelos hashes reais.
+bin/toolbox central activate --tool ruff --revision REVISION
+bin/toolbox central rollback --tool ruff --revision PREVIOUS_REVISION
+# Reaproveitar imagem já preparada exige registro e reverificação no daemon.
+bin/toolbox central register --tool ruff --record /caminho/real/image.json
+```
+
+Qualifique novas versões em instalação isolada de validação antes da ativação de produção. Essa instalação deve ter fontes/volumes próprios e acesso aos caminhos corretos no daemon; não é uma opção de versão do consumidor nem simples mudança de --state. Depois de preparar e ativar nesse ambiente, exercite operações representativas, fixtures com achados/erros e os modos necessários. Promova para produção por preparo/registro e ativação explícitos. Registro reverifica imagem/versão, sem dispensar evidências funcionais.
+
+Para atualizar, repita preparo/qualificação com a versão auditada nova e ative a revisão devolvida. O rename atômico do ponteiro seleciona a nova identidade para chamadas futuras. Chamadas já iniciadas mantêm o ID escolhido. Histórico/revisões anteriores continuam disponíveis para rollback. Rollback exige imagem ainda presente; restaurar JSON não recria camadas Docker removidas.
+
+## Dados e manutenção explícita
+
+Dados persistem sob tools/NAME/volume/, sem deslocamento por TOOLBOX_STATE. `central/` contém revisões, active.json, histórico, locks e executions; `images/` contém registros/contextos; `databases/` contém snapshots e seleção current.json por versão; `native-cache/` é cache por projeto; `native-data/` é dado da ferramenta; `preparation/` conserva staging/diagnósticos.
+
+```bash
+bin/toolbox exec --tool trivy --project-root "$PWD" --maintenance --network bridge \
+  --env TRIVY_SKIP_DB_UPDATE=false -- filesystem --download-db-only
+bin/toolbox exec --tool grype --project-root "$PWD" --maintenance --network bridge -- db update
+```
+
+Análises reutilizam imagens/dados e não instalam ou atualizam por ação oculta do executor. Defaults ambientais desativam updates automáticos suportados; sobrescrevê-los exige conhecer os efeitos do comando. Manutenção nativa é pedido explícito, com argumentos preservados. Para os scanners com snapshots, o escritor exclusivo trabalha em cópia privada e publica só após exit nativo 0; leitores usam snapshot verificado. Dados genéricos em /data têm exclusão mútua, mas comandos arbitrários não ganham transação automática. Confira o [contrato de bases e concorrência](native-execution.md).
+
+Backups devem preservar imagens por ID, volumes completos, revisões, ponteiros/histórico e permissões, além dos índices legados necessários. Coordene uma cópia consistente com escritores parados. `docker image save/load` é explícito; teste a restauração em destino separado. Não execute prune global nem remova dados/imagens de execuções em andamento. Não há garbage collection central implementada.
+
+## Disponibilizar aos consumidores e verificar
+
+Dê acesso controlado à instalação e aos diretórios operacionais usados pelo UID/GID do executor, disponibilize TOOLBOX_BIN ou PATH e informe quais ferramentas foram qualificadas/ativadas. Não distribua locks de versão por projeto para o novo fluxo. Oriente os projetos pelo [guia de integração](consumer-integration.md). Não conceda o socket aos containers das ferramentas por padrão.
+
+```bash
+python3 -m unittest discover -s tests -v
+# Depois de Docker acessível e imagens centrais qualificadas/ativas:
+python3 tests/native_acceptance.py --evidence /tmp/toolbox-native-acceptance-nova
+```
+
+A pasta de evidência deve ser nova. A suíte real não prepara/puxa imagens. Preserve streams, exits, IDs e bases observados. [Validação atual e lacunas](native-validation.md): Docker bloqueado nesta sessão, sem nova homologação de scanner/browser. TTY, UI, concorrência no daemon, redes e troca de imagem em execução ainda exigem seus ensaios reais. Comandos antigos abaixo continuam somente para compatibilidade.
+
+<details>
+<summary>Histórico: interface com adapters e locks por consumidor</summary>
+
+> Atualização 08/11/2026: o fluxo nativo vigente usa versões centrais e `exec`, sem config/lock do consumidor ou adapter obrigatório. Consulte [contrato e comandos atuais](native-execution.md) e [validação observada](native-validation.md). O conteúdo abaixo descreve o fluxo legado, preservado para compatibilidade.
+
+# Preparação, dados, retenção e migração
+
+## Pré-requisitos no openSUSE
+
+Host observado: Tumbleweed 20261103 x86_64; pacotes Docker 29.7.2_ce e Python 3.13.16. A [documentação Docker](https://docs.docker.com/engine/install/) remete às distribuições não listadas para seus mantenedores. A página [openSUSE SDB:Docker](https://en.opensuse.org/SDB:Docker) retornou 403 nesta sessão: a confirmação documental dos comandos de instalação no Tumbleweed está **pendente**. Não foi aplicada instalação nem mudança de grupos/socket. Não use chmod global no socket.
+
+É necessário Docker Engine local acessível ao usuário e Python 3.11+. Verifique com `bin/toolbox doctor`. A CLI não precisa de Node, npm, pip ou scanners nativos. Host remoto, Docker Desktop e UID remapeado/rootless não foram validados. Não tente corrigir permissões por scripts desta plataforma.
+
+## Preparar imagens separadamente das análises
+
+```sh
+bin/toolbox doctor
+bin/toolbox lock-base
+# Revise e versione o digest real em platform.json.
+bin/toolbox prepare --config examples/consumer-a/toolbox.json
+bin/toolbox prepare --config examples/consumer-b/toolbox.json
+bin/toolbox prepare --config examples/playwright-api/toolbox.json
+bin/toolbox prepare --config examples/playwright-ui/toolbox.json
+```
+
+A preparação pode usar rede para pull, apt, arquivos oficiais, npm e browsers. A análise não realiza esses passos. GitHub assets exigem SHA256 oficial (API ou checksum do release), sem fallback para hash de confiança inicial. npm usa SRI; Node usa SHASUMS oficial. Verificação de assinatura não foi implementada: checksum não é assinatura. Downloads com certificado inválido ou hash divergente falham.
+
+`prepare` reusa uma imagem já preparada para a mesma versão/variante/receita. Alteração de receita cria outra identidade; não altera locks antigos automaticamente. Se o ID local foi removido, restaure a imagem salva ou prepare explicitamente e revise a mudança de lock. Não use `latest` para resolver versões de consumidores.
+
+## Preparar e atualizar bases
+
+Trivy 0.76.2, OSV-Scanner 2.7.0 e Grype possuem preparo persistente de bases. `prepare` prepara a primeira base e fixa seu snapshot no lock; execuções posteriores reutilizam os dados. Veja [operação offline](offline-security.md). Para atualizar explicitamente:
+
+```sh
+bin/toolbox update-db --config /caminho/consumidor/toolbox.json --only grype
+```
+
+A atualização usa rede e um diretório de staging, preserva stdout/stderr e publica snapshot por hash. Adote explicitamente o ID retornado na configuração. Snapshot anterior continua disponível; `run` não muda sua seleção. Formato nativo, SQLite/índices e metadados do Grype são conservados. Não existe banco da plataforma.
+
+## Armazenamento e concorrência
+
+Cada ferramenta possui seu próprio diretório persistente no repositório compartilhado:
+
+```text
+tools/<ferramenta>/volume/
+├── images/<versão>/<recipe>/       # Contexto, fontes e registros de preparo; não as camadas Docker
+├── databases/<versão>/<sha>/       # Snapshots no formato nativo
+├── preparation/<id>/              # Staging e logs de atualização de bases
+├── projects/<projeto>/runs/<id>/   # stdout, stderr, relatórios e cópias de trabalho
+└── locks/                         # Locks de preparo da ferramenta
+```
+
+Exemplo: `tools/grype/volume/`. O diretório existe para todos os módulos, inclusive os ainda bloqueados; isso não significa que a ferramenta já foi disponibilizada. `.gitkeep` mantém a pasta no Git; seu conteúdo operacional fica ignorado. Caches persistentes futuros também devem ficar dentro do volume da respectiva ferramenta; os caches temporários atuais continuam descartáveis.
+
+Os mounts são bind mounts: fontes do consumidor em `/src:ro`, resultado de sua ferramenta em `/out:rw` e snapshot da base em `/db:ro`, quando necessário. Playwright escreve em `/out/work`; Grype utiliza cópia privada em `/out/database`. `/tmp` continua sendo tmpfs descartável. As imagens propriamente ditas permanecem no armazenamento do Docker.
+
+`.local/state/projects/<projeto>/runs/<id>/` guarda apenas `inputs.json` e `summary.json`, com referências aos diretórios de cada ferramenta. `.local/state/locks/` contém locks gerais. Esses arquivos de coordenação não são montados nos containers. `TOOLBOX_STATE` e `--state` agora mudam **somente esses índices e locks gerais**, sem deslocar volumes para fora dos módulos. Todos os caminhos são resolvidos a partir da localização da CLI, independentemente do diretório de onde ela foi chamada.
+
+Execuções normais não compartilham cache gravável. Grype copia a base para o diretório da execução; caches temporários ficam no container. Caches de compilação, credenciais de registry e pacotes adicionais Playwright ainda não estão implementados. Bases compartilháveis não incluem credenciais ou fontes de outros consumidores.
+
+```sh
+bin/toolbox results --project consumer-a
+bin/toolbox prune --project consumer-a --keep 20
+bin/toolbox prune --project consumer-a --keep 20 --apply
+```
+
+`prune` é dry-run até `--apply`; só apaga runs concluídos do projeto solicitado. Não apaga bases, imagens, outros projetos ou runs incompletos. Retenção é decisão do operador; 20 acima é exemplo, não política. Bases e imagens exigem remoção manual identificada após verificar todos os locks consumidores. Nunca execute prune global do Docker como parte desta CLI.
+
+## Backup e restauração
+
+Pause execuções, preparações e atualizações enquanto copia os volumes e índices. Para cada consumidor, conserve configuração, lock, regras/testes, estado de suas execuções, snapshots referenciados e metadados de imagens. Não precisa copiar caches temporários. Faça backup em destino fora do repositório e dos volumes.
+
+Salve os IDs exatos referenciados por cada lock:
+
+```sh
+docker image save --output imagens.tar sha256:ID_REAL_REGISTRADO
+# Na máquina de destino:
+docker image load --input imagens.tar
+```
+
+O ID no exemplo é um marcador a substituir, não uma imagem válida. [Docker save](https://docs.docker.com/reference/cli/docker/image/save/) preserva camadas/metadados. Para compactação, gzip do arquivo exportado é opcional. Seu tamanho não representa necessariamente bytes transferidos por um registry.
+
+Copie o repositório e consumidores para o destino. Copie também explicitamente `tools/*/volume/` e `.local/state/`, pois são dados ignorados pelo Git e não acompanham um clone. Se usar `--state`/`TOOLBOX_STATE` personalizado, copie também esse índice. Restaure permissões para o usuário local sem alterar fontes de outros projetos; selecione o novo caminho de estado. Verifique hashes de snapshots e IDs com `docker image inspect`, depois `doctor`, `plan` e `run`. Fontes absolutos de execuções antigas são metadados históricos; novas execuções resolvem o root local da configuração.
+
+Reconstrução precisa do digest da base, snapshot APT disponível, hashes/URLs dos artefatos, versões npm, receita e dependências. Os manifests observados estão nos volumes locais e nas evidências offline e não existe promessa de reconstrução bit a bit. Arquivar imagens prontas evita depender de disponibilidade futura dos distribuidores. AMD64 é o único alvo de recipes; ARM64 exige novas receitas e evidência. Kernel, Docker, CPU e sandbox do navegador também afetam a portabilidade. Nenhuma segunda máquina foi usada.
+
+## Dados anteriores à mudança de layout
+
+Dados antigos não são movidos nem apagados automaticamente. Os diagnósticos anteriores em `.local/validation-state/` permanecem como histórico; esse histórico não representa os preparos posteriores documentados em `offline-security.md`. Novas execuções usam o layout por ferramenta.
+
+Em instalações antigas com dados reais, migre com as execuções paradas e backup prévio: `images/<tool>/<version>/<recipe>` vai para `tools/<tool>/volume/images/<version>/<recipe>`; `databases/<tool>/<version>/<sha>` e os metadados irmãos vão para `tools/<tool>/volume/databases/<version>/`; cada `projects/<project>/runs/<id>/<tool>/` vai para `tools/<tool>/volume/projects/<project>/runs/<id>/`. Preserve os índices antigos para consulta histórica: eles podem conter caminhos absolutos antigos. Não execute limpeza desses índices antes de reconciliar os dados migrados. A migração de uma instalação com imagens/bases reais não foi validada.
+
+Falhas de build e atualizações nativas preservam `<etapa>.execution.json`, código de saída do processo Docker (`process_exit_code`) e logs; timeouts registram código desconhecido (`null`), sem inventar o exit do processo. Retenção verifica links simbólicos em todos os destinos antes da primeira remoção e calcula a seleção sob lock. Pare escritores externos durante manutenção.
+
+</details>
+
+## SELinux bind access correction — 2026-11-08
+
+When SELinux is enforcing, opt in to TOOLBOX_SELINUX_LABEL=shared for native
+exec bind directories used by concurrent readers, e.g.
+`TOOLBOX_SELINUX_LABEL=shared bin/toolbox exec --tool ruff --project-root /absolute/disposable-snapshot -- check .`.
+This emits ro,z for read-only mounts and rw,z for writable mounts. It keeps host
+UID/GID, capability dropping and no-new-privileges. No disable/permissive fallback
+is introduced. private remains supported and emits Z, for exclusive directories
+only; private relabeling shared databases may invalidate other readers' labels.
+Both modes change SELinux xattrs on the specific host directories mounted. Use
+bounded snapshots/results/tool-owned volumes; never relabel /home or /usr.
+Unset/empty retains the existing --mount behavior. Individual file mounts retain
+their existing contract and require separately reviewed contexts. Real isolated
+Ox probes demonstrated read denial without relabeling and success with private
+relabeling; shared and concurrency results are recorded by the consumer. This
+fix does not qualify scanner DB freshness, central activation or all native modes.
+Docker reference: https://docs.docker.com/engine/storage/bind-mounts/#configure-the-selinux-label

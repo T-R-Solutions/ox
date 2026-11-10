@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "project": "ox",
+  "root": "/home/rodrigo/Projetos/ox/.local/checks/run-1rq9nSXj/opengrep/source",
+  "tools": {
+    "opengrep": {
+      "version": "1.33.1",
+      "paths": [
+        "."
+      ],
+      "config": "scripts/security/rules/ox.yml",
+      "network": "none",
+      "timeout": 600
+    }
+  }
+}

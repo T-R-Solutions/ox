@@ -1,0 +1,19 @@
+"""Real opt-in consumer scans; never prepare, download, activate or update."""
+import os
+import json
+import subprocess
+import unittest
+import support as S
+
+
+@unittest.skipUnless(os.environ.get('OX_REAL_SECURITY') == '1', 'requires explicitly enabled central images and Docker')
+class RealSecurity(unittest.TestCase):
+    def test_native_scans(self):
+        registry = subprocess.run([str(S.ROOT/'scripts/toolbox.sh'), 'central', 'list'], capture_output=True)
+        self.assertEqual(registry.returncode, 0, registry.stderr)
+        self.assertTrue(json.loads(registry.stdout), 'No central active revisions; zero scanner operations available')
+        for name in ('ruff','bandit','gitleaks','history','shellcheck','opengrep','osv','trivy','grype','sbom','malware'):
+            with self.subTest(check=name):
+                run=subprocess.run(['bash',str(S.ROOT/'scripts/checks/run.sh'),'--check',name],capture_output=True)
+                # Findings are valid operational outcomes; blocked/error are not.
+                self.assertIn(run.returncode,(0,1),run.stderr.decode(errors='replace'))

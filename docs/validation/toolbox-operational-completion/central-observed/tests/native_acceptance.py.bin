@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+"""Opt-in real scanner suite. Requires central active images; never builds or pulls.
+Run from the repository: python3 tests/native_acceptance.py --evidence DIR
+A blocked Docker daemon is a failed prerequisite, never a passed/skipped scanner.
+"""
+import argparse
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from toolbox import docker
+from toolbox.config import REPO
+from toolbox.storage import atomic_json
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--evidence', required=True, type=Path)
+    args = parser.parse_args()
+    args.evidence.mkdir(parents=True, exist_ok=False)
+    readiness = docker.doctor()
+    atomic_json(args.evidence / 'doctor.json', readiness)
+    if not readiness['ready']:
+        atomic_json(args.evidence / 'summary.json', {'status':'blocked', 'reason':'Docker unavailable',
+                    'scanner_operations_executed':0})
+        print('Real acceptance blocked: Docker unavailable', file=sys.stderr)
+        return 2
+    observations = []
+    with tempfile.TemporaryDirectory(prefix='toolbox-native-real-') as folder:
+        root = Path(folder)
+        shutil.copytree(REPO / 'examples/native', root / 'consumer')
+        project = root / 'consumer'
+        (project / 'app.js').write_text('console.log("fixture");\n')
+        (project / 'bad.sh').write_text('#!/bin/sh\necho $unquoted\n')
+        (project / 'rules.yaml').write_text('rules:\n- id: fixture\n  pattern: print(...)\n  message: fixture\n  severity: WARNING\n  languages: [python]\n')
+        (project / 'rule.yar').write_text('rule fixture { strings: $a = "independent" condition: $a }\n')
+        (project / 'package-lock.json').write_text('{"name":"fixture","version":"1.0.0","lockfileVersion":3,"packages":{"":{"name":"fixture","version":"1.0.0"}}}')
+        def execute(label, tool, argv, flags=(), accepted=(0,)):
+            target = args.evidence / label
+            target.mkdir()
+            command = [str(REPO / 'bin/toolbox'), 'exec', '--tool', tool, '--project-root', str(project),
+                       '--results', str(target), '--timeout', '540', '--diagnostic-file', str(target / 'execution.json'), *flags, '--', *argv]
+            with (target/'stdout').open('wb') as out, (target/'stderr').open('wb') as err:
+                process = subprocess.run(command, stdout=out, stderr=err, timeout=600)
+            metadata = json.loads((target/'execution.json').read_text())
+            passed = metadata['outcome']=='native' and process.returncode in accepted
+            observations.append({'operation':label, 'exit':process.returncode, 'outcome':metadata['outcome'], 'passed':passed})
+            return passed
+        execute('ruff-fix', 'ruff', ['check','--select','F401','--fix','sample.py'], ['--project-write'])
+        observations.append({'operation':'fix-written', 'passed':'import os' not in (project/'sample.py').read_text()})
+        execute('bandit', 'bandit', ['-r','sample.py'])
+        execute('shellcheck', 'shellcheck', ['bad.sh'], accepted=(1,))
+        execute('gitleaks', 'gitleaks', ['dir','--no-banner','.'])
+        execute('opengrep', 'opengrep', ['scan','--config','rules.yaml','sample.py'])
+        execute('syft', 'syft', ['dir:.','-o','json=/out/sbom.json'])
+        execute('grype', 'grype', ['dir:.','-o','json'])
+        execute('trivy-files', 'trivy', ['filesystem','--config','scripts/config/trivy.yaml','.'])
+        execute('trivy-config', 'trivy', ['config','.'])
+        execute('osv', 'osv-scanner', ['scan','source','--offline','--lockfile','package-lock.json'])
+        execute('yara-x', 'yara-x', ['scan','rule.yar','sample.py'])
+        database = args.evidence.resolve() / 'codeql-db'
+        mount = ['--mount', str(args.evidence.resolve()) + ':/evidence:rw']
+        if execute('codeql-create', 'codeql', ['database','create','/evidence/codeql-db','--language=javascript-typescript','--source-root=/project','--build-mode=none'], mount):
+            execute('codeql-analyze', 'codeql', ['database','analyze','/evidence/codeql-db','codeql/javascript-queries','--format=sarif-latest','--output=/out/codeql.sarif'], mount)
+        # Project supplies the HTTP server; browser remains in the Playwright container.
+        server = subprocess.Popen([sys.executable, str(project/'server.py')], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        try:
+            execute('playwright-browser', 'playwright', ['test','--config','playwright.config.cjs','--output','/out/tests'],
+                    ['--network','bridge','--add-host','host.docker.internal:host-gateway',
+                     '--env','APP_BASE_URL=http://host.docker.internal:8000'])
+        finally:
+            server.terminate()
+            server.wait(timeout=10)
+    atomic_json(args.evidence / 'summary.json', {'status':'passed' if all(r['passed'] for r in observations) else 'failed',
+                                               'operations':observations})
+    return 0 if all(r['passed'] for r in observations) else 1
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

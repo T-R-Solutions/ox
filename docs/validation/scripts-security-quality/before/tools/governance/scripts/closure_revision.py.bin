@@ -1,0 +1,29 @@
+"""Exact-content task closure succession; never grants generic path exemptions."""
+import hashlib
+import json
+from pathlib import Path
+
+REGISTRY = 'docs/validation/scripts-task-closure/revision.json'
+REVIEWED = '252155ba4dbe8defb06e55fae98367c457a646965d2a033b538dbb71114be54b'
+
+
+def predecessor(root, relative, data):
+    registry = root / REGISTRY
+    if not registry.exists():
+        return data
+    if registry.is_symlink() or hashlib.sha256(registry.read_bytes()).hexdigest() != REVIEWED:
+        raise ValueError('Closure succession registry changed')
+    rows = json.loads(registry.read_text())['records']
+    for row in rows:
+        if row['destination'] != relative:
+            continue
+        path = root / row['previous']
+        if (not path.resolve().is_relative_to(root.resolve()) or not path.is_file()
+                or any(p.is_symlink() for p in (path, *path.parents) if p.is_relative_to(root))):
+            raise ValueError('Missing/escaping closure predecessor')
+        previous = path.read_bytes()
+        if hashlib.sha256(previous).hexdigest() != row['previous_sha256']:
+            raise ValueError('Closure predecessor changed')
+        if hashlib.sha256(data).hexdigest() == row['sha256']:
+            return previous
+    return data

@@ -3,8 +3,16 @@
 Guia operacional da governança. Para build, uso e testes Rust/Iced, consulte o
 [guia da aplicação](../../application/README.md); o [índice da documentação](../README.md)
 organiza as demais referências.
-Os comandos abaixo são executados na raiz do Ox, com Python 3.11+ e stdlib.
+Os comandos Python abaixo são executados na raiz do Ox, com Python 3.11+ e stdlib.
 Validam governança/skills; não substituem build, testes ou aceitação Rust/Iced.
+
+A [automação local](../../scripts/README.md) fornece a entrada Bash
+`scripts/automate.sh`, com escopos governance, rust, security, quality e full.
+Consulte esse guia para pré-requisitos, seleção de checks, configurações e
+preparo separado de bases. A disponibilidade desses comandos não exige sua
+execução automática ao encerrar toda tarefa; o método segue os critérios e o
+risco da mudança. Instruções do gate opcional de commit pertencem à skill
+de commit, consultada quando o mantenedor solicita operações Git.
 
 ## Fluxo de uma mudança
 
@@ -66,7 +74,9 @@ As baselines históricas de skills, recursos e SDD conservam os bytes originais.
 
 `tools/governance/scripts/package-ox.py` produz exclusivamente `ox-governance.zip`, com
 `package_kind=governance` e `product_included=false` no ZIP e no recibo externo.
-A allowlist inclui `tools/governance/` e `config/governance/`; não inclui `src/`,
+A allowlist inclui `tools/governance/`, `config/governance/` e a árvore mantida
+de `scripts/`, com módulos, configurações e regras locais; não inclui `.local/`,
+`erase.md`, `src/`,
 `application/` (manifesto, lockfile, crates, testes e target), `Cargo.toml`,
 `Cargo.lock` ou `crates/` soltos na raiz, outras ferramentas/configurações, binários ou instaladores.
 O pipeline do aplicativo exigirá manifestos, build, testes e distribuição próprios.

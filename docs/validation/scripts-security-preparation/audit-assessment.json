@@ -1,0 +1,50 @@
+{
+  "check": "audit",
+  "backend": "native",
+  "state": "findings",
+  "exit_code": 1,
+  "tool_exit_code": 1,
+  "runner_exit_code": null,
+  "finding_count": 2,
+  "reason": "",
+  "product_acceptance": false,
+  "tool": {
+    "path": "/home/rodrigo/.cargo/bin/cargo-audit",
+    "sha256": "1cc9768f7dcbda4c406530476c7c49037984ef47b4fe0d4a584700469d56ac36",
+    "version_stdout_sha256": "db7ec1f5601bae24da672cbd457db9538250e50b4d2f9b5ae8135fb852ef5e20"
+  },
+  "limits": [
+    "No automatic product acceptance.",
+    "Generated directories and historical validation excluded; history is separate.",
+    "Offline flags are not OS isolation."
+  ],
+  "inputs": {
+    "application/Cargo.toml": "dc542da62042555c1f1a450212a92a3618c7be5b7d46447bf85818e7bb244e2e",
+    "application/Cargo.lock": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+    "application/rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+    ".local/security/datasets.json": "5c96895de2745b62b905f554384699fe64b877ac3207330c8078da05afb0ccab",
+    "scripts/config/audit.toml": "3c3e7daa975ee80023e698bfa4d88e6879e9fa6358e82fbefd1742c29ca2e2ed"
+  },
+  "dataset": {
+    "path": ".local/security/generations/prepared-7CEBojvY/rustsec",
+    "sha256": "477ae47a4745e761122d66d2090e9b8e6a92fe9d284b1b01013ed13124028a3f",
+    "valid_until": "2026-11-07",
+    "source": "https://github.com/RustSec/advisory-db.git",
+    "license": "CC0-1.0 AND CC-BY-4.0 (retain upstream record attribution)",
+    "registry_sha256": "5c96895de2745b62b905f554384699fe64b877ac3207330c8078da05afb0ccab"
+  },
+  "argv": [
+    "/home/rodrigo/.cargo/bin/cargo-audit",
+    "audit",
+    "--no-fetch",
+    "--no-yanked",
+    "--db",
+    "/home/rodrigo/Projetos/ox/.local/checks/security-uH3ESlm6/dataset",
+    "--file",
+    "Cargo.lock",
+    "--json",
+    "--deny",
+    "warnings"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox/.local/checks/security-uH3ESlm6/audit-input"
+}

@@ -1,0 +1,20 @@
+rules:
+  - id: ox.rust.unsafe-block
+    languages: [rust]
+    severity: ERROR
+    message: "Review first-party unsafe against POL-01; compiler forbid remains authoritative."
+    pattern: unsafe { ... }
+  - id: ox.python.dynamic-eval
+    languages: [python]
+    severity: WARNING
+    message: "Review dynamic code execution and the origin of its input."
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: exec(...)
+  - id: ox.python.shell-true
+    languages: [python]
+    severity: WARNING
+    message: "Review shell interpretation and untrusted command inputs."
+    pattern-either:
+      - pattern: subprocess.run(..., shell=True, ...)
+      - pattern: subprocess.Popen(..., shell=True, ...)

@@ -1,0 +1,160 @@
+"""Opt-in real Docker probes of Ox wrappers; no simulated native reports."""
+
+import json
+import os
+import shutil
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+import support as S
+
+
+@unittest.skipUnless(
+    os.environ.get("OX_REAL_SECURITY_ADAPTERS") == "1",
+    "real Docker adapter probes opt-in",
+)
+class RealSecurityAdapters(unittest.TestCase):
+    def test_opengrep_clean_findings_invalid_rules(self):
+        with tempfile.TemporaryDirectory(prefix="ox-real-opengrep-") as temporary:
+            root = Path(temporary)
+            shutil.copytree(S.ROOT / "scripts/config", root / "scripts/config")
+            rules = root / "scripts/security/rules"
+            rules.mkdir(parents=True)
+            shutil.copyfile(S.ROOT / "scripts/security/rules/ox.yml", rules / "ox.yml")
+            probe = root / "tools/governance/probe.py"
+            probe.parent.mkdir(parents=True)
+            for text, expected in [
+                ('print("safe")\n', "passed"),
+                ("eval(input())\n", "findings"),
+                ('print("safe")\n', "error"),
+            ]:
+                probe.write_text(text)
+                if expected == "error":
+                    (rules / "ox.yml").write_text("rules: [ invalid")
+                run = subprocess.run(
+                    [
+                        "/bin/bash",
+                        str(S.ROOT / "scripts/checks/run.sh"),
+                        "--root",
+                        str(root),
+                        "--check",
+                        "opengrep",
+                    ],
+                    env=dict(os.environ, OX_SCANNER_BACKEND="toolbox"),
+                    capture_output=True,
+                )
+                output = max(
+                    (root / ".local/checks").glob("security-*/assessment.json"),
+                    key=lambda p: p.stat().st_mtime_ns,
+                )
+                result = json.loads(output.read_text())
+                self.assertEqual(
+                    result["state"], expected, (run.stderr.decode(), result)
+                )
+                self.assertEqual(run.returncode == 0, expected == "passed")
+
+    def test_osv_clean_findings_and_malformed_lock(self):
+        import tomllib
+
+        packages = tomllib.loads((S.ROOT / "application/Cargo.lock").read_text())[
+            "package"
+        ]
+        with tempfile.TemporaryDirectory(prefix="ox-real-osv-") as temporary:
+            root = Path(temporary)
+            shutil.copytree(S.ROOT / "scripts/config", root / "scripts/config")
+            (root / "scripts/security/rules").mkdir(parents=True)
+            lock = root / "application/Cargo.lock"
+            lock.parent.mkdir()
+            for name, expected in [
+                ("arrayref", "passed"),
+                ("pin-utils", "findings"),
+                ("malformed", "error"),
+            ]:
+                if name == "malformed":
+                    lock.write_text("invalid = [")
+                else:
+                    package = next(p for p in packages if p["name"] == name)
+                    lock.write_text(
+                        "version = 4\n[[package]]\n"
+                        + "".join(
+                            key + " = " + json.dumps(package[key]) + "\n"
+                            for key in ("name", "version", "source", "checksum")
+                        )
+                    )
+                run = subprocess.run(
+                    [
+                        "/bin/bash",
+                        str(S.ROOT / "scripts/checks/run.sh"),
+                        "--root",
+                        str(root),
+                        "--check",
+                        "osv",
+                    ],
+                    env=dict(os.environ, OX_SCANNER_BACKEND="toolbox"),
+                    capture_output=True,
+                )
+                output = max(
+                    (root / ".local/checks").glob("security-*/assessment.json"),
+                    key=lambda p: p.stat().st_mtime_ns,
+                )
+                result = json.loads(output.read_text())
+                self.assertEqual(
+                    result["state"], expected, (run.stderr.decode(), result)
+                )
+                self.assertEqual(run.returncode == 0, expected == "passed")
+
+    def test_ruff_shellcheck_bandit_clean_findings_and_invalid_config(self):
+        for name, extension, clean, finding, configuration in (
+            ("ruff", "py", 'print("safe")\n', "eval(input())\n", "ruff.toml"),
+            (
+                "shellcheck",
+                "sh",
+                '#!/bin/sh\nprintf "%s\\n" safe\n',
+                "#!/bin/sh\necho $unquoted\n",
+                "shellcheckrc",
+            ),
+            ("bandit", "py", 'print("safe")\n', "eval(input())\n", "bandit.yaml"),
+        ):
+            with tempfile.TemporaryDirectory(
+                prefix="ox-real-" + name + "-"
+            ) as temporary:
+                root = Path(temporary)
+                shutil.copytree(S.ROOT / "scripts/config", root / "scripts/config")
+                (root / "scripts/security/rules").mkdir(parents=True)
+                selection = root / "scripts/config/toolbox.json"
+                config = json.loads(selection.read_text())
+                config["tools"][name]["paths"] = ["scripts/probe." + extension]
+                selection.write_text(json.dumps(config))
+                probe = root / ("scripts/probe." + extension)
+                for text, expected in [
+                    (clean, "passed"),
+                    (finding, "findings"),
+                    (clean, "error"),
+                ]:
+                    probe.write_text(text)
+                    if expected == "error":
+                        (root / "scripts/config" / configuration).write_text(
+                            "invalid = ["
+                        )
+                    run = subprocess.run(
+                        [
+                            "/bin/bash",
+                            str(S.ROOT / "scripts/checks/run.sh"),
+                            "--root",
+                            str(root),
+                            "--check",
+                            name,
+                        ],
+                        env=dict(os.environ, OX_SCANNER_BACKEND="toolbox"),
+                        capture_output=True,
+                    )
+                    output = max(
+                        (root / ".local/checks").glob("security-*/assessment.json"),
+                        key=lambda p: p.stat().st_mtime_ns,
+                    )
+                    result = json.loads(output.read_text())
+                    self.assertEqual(
+                        result["state"], expected, (name, run.stderr.decode(), result)
+                    )
+                    self.assertEqual(run.returncode == 0, expected == "passed")
