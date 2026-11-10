@@ -1,0 +1,75 @@
+[
+  {
+    "name": "structure",
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--structure-only"
+    ],
+    "exit": 0,
+    "log": "docs/validation/t903-memory-20261105/closure-structure.log",
+    "seconds": 0.09428112600289751,
+    "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+  },
+  {
+    "name": "freshness",
+    "command": [
+      "python3",
+      "sdd/tools/validate.py",
+      "--root",
+      ".",
+      "--require-fresh"
+    ],
+    "exit": 0,
+    "log": "docs/validation/t903-memory-20261105/closure-freshness.log",
+    "seconds": 6.207813534005254,
+    "sha256": "e3314be15951fd074cdc514fae6b45bb291358d5abd40e794e3c877182efde2d"
+  },
+  {
+    "name": "governance",
+    "command": [
+      "python3",
+      "tools/governance/scripts/check-ox.py"
+    ],
+    "exit": 1,
+    "log": "docs/validation/t903-memory-20261105/closure-governance.log",
+    "seconds": 17.792175758004305,
+    "sha256": "e7393c7c8a6d9a04f7445b36e6b5c248398e3656e8944a702f3c44782fa37c5d"
+  },
+  {
+    "name": "whitespace",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "log": "docs/validation/t903-memory-20261105/closure-whitespace.log",
+    "seconds": 0.022477206999610644,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "maintenance",
+    "command": [
+      "python3",
+      "tools/governance/scripts/verify-maintenance.py"
+    ],
+    "exit": 0,
+    "log": "docs/validation/t903-memory-20261105/closure-maintenance.log",
+    "seconds": 0.9924138510032208,
+    "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff"
+  },
+  {
+    "name": "acceptance",
+    "command": [
+      "python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-memory-20261105/acceptance.py"
+    ],
+    "exit": 0,
+    "log": "docs/validation/t903-memory-20261105/closure-acceptance.log",
+    "seconds": 8.10083489400131,
+    "sha256": "805befe7a65a755384de69aba31a087dfaabb89091288c32c1a469e9dd023433"
+  }
+]

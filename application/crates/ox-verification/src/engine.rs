@@ -5,7 +5,10 @@ use std::{
     io::{self, Read},
     path::PathBuf,
     process::{Child, Command, ExitStatus, Stdio},
-    sync::atomic::{AtomicBool, Ordering},
+    sync::{
+        Arc,
+        atomic::{AtomicBool, Ordering},
+    },
     thread,
     time::{Duration, Instant},
 };
@@ -36,8 +39,8 @@ pub enum ResultKind {
 pub struct Observation {
     run: u64,
     check: Check,
-    before: Vec<Content>,
-    after: Vec<Content>,
+    before: Arc<Vec<Content>>,
+    after: Arc<Vec<Content>>,
     result: ResultKind,
 }
 impl Observation {
@@ -62,7 +65,7 @@ pub struct Engine {
 fn invalid(message: &str) -> io::Error {
     io::Error::new(io::ErrorKind::InvalidInput, message)
 }
-fn capture(check: &Check) -> io::Result<Vec<Content>> {
+fn capture(check: &Check, known: Option<&Arc<Vec<Content>>>) -> io::Result<Arc<Vec<Content>>> {
     if check.id.is_empty()
         || check.description.is_empty()
         || check.inputs.is_empty()
@@ -80,6 +83,38 @@ fn capture(check: &Check) -> io::Result<Vec<Content>> {
     }
     paths.sort();
     paths.dedup();
+    // Compare bounded chunks against retained bytes before allocating a new
+    // snapshot. This still opens and reads every current input; identity alone
+    // never establishes freshness. A mismatch takes the ordinary capture path.
+    if let Some(known) = known
+        && paths.len() == known.len()
+        && paths.iter().zip(known.iter()).all(|(p, c)| *p == c.path)
+    {
+        let mut same = true;
+        let mut chunk = [0u8; 8192];
+        for content in known.iter() {
+            let mut file = regular_file(&content.path)?;
+            let mut offset = 0;
+            loop {
+                let n = file.read(&mut chunk)?;
+                if n == 0 {
+                    same &= offset == content.bytes.len();
+                    break;
+                }
+                if content.bytes.get(offset..offset + n) != Some(&chunk[..n]) {
+                    same = false;
+                    break;
+                }
+                offset += n;
+            }
+            if !same {
+                break;
+            }
+        }
+        if same {
+            return Ok(Arc::clone(known));
+        }
+    }
     let mut content = Vec::new();
     let mut total = 0;
     for path in paths {
@@ -93,7 +128,7 @@ fn capture(check: &Check) -> io::Result<Vec<Content>> {
         }
         content.push(Content { path, bytes });
     }
-    Ok(content)
+    Ok(Arc::new(content))
 }
 // Metadata is an admission check, not an atomic snapshot or a filesystem deadline.
 fn regular_file(path: &std::path::Path) -> io::Result<File> {
@@ -195,6 +230,16 @@ impl<C: ChildOps> Drop for OwnedChild<C> {
     }
 }
 impl Engine {
+    // Sharing changes physical ownership only. Admission still counts every logical
+    // before/after snapshot. No hash, pathname or pointer is a freshness oracle.
+    fn share_snapshot(&self, snapshot: Arc<Vec<Content>>) -> Arc<Vec<Content>> {
+        for retained in self.observations.iter().flat_map(|o| [&o.before, &o.after]) {
+            if **retained == *snapshot {
+                return Arc::clone(retained);
+            }
+        }
+        snapshot
+    }
     pub fn observations(&self) -> &[Observation] {
         &self.observations
     }
@@ -220,11 +265,12 @@ impl Engine {
         {
             return Err(invalid("execution limit"));
         }
-        let before = capture(check)?;
+        let before =
+            self.share_snapshot(capture(check, self.observations.last().map(|o| &o.after))?);
         let retained: usize = self
             .observations
             .iter()
-            .flat_map(|o| o.before.iter().chain(&o.after))
+            .flat_map(|o| o.before.iter().chain(o.after.iter()))
             .map(|input| input.bytes.len())
             .sum();
         let before_size: usize = before.iter().map(|input| input.bytes.len()).sum();
@@ -275,7 +321,12 @@ impl Engine {
             thread::sleep(Duration::from_millis(2));
         };
         // Missing or unreadable post-inputs cannot produce adequate evidence.
-        let after = capture(check).unwrap_or_default();
+        let after = capture(check, Some(&before)).unwrap_or_default();
+        let after = if after == before {
+            Arc::clone(&before)
+        } else {
+            self.share_snapshot(after)
+        };
         let run = self.observations.len() as u64 + 1;
         self.observations.push(Observation {
             run,
@@ -287,7 +338,7 @@ impl Engine {
         Ok(run)
     }
     pub fn evaluate(&self, check: &Check) -> Verdict {
-        let Ok(current) = capture(check) else {
+        let Ok(current) = capture(check, self.observations.last().map(|o| &o.after)) else {
             return Verdict::NotVerified;
         };
         let mut pass = None;

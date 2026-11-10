@@ -1,0 +1,241 @@
+{
+  "pid": 847653,
+  "binaries": [
+    {
+      "name": "ox",
+      "source": "/tmp/ox-t903-target/debug/ox",
+      "sha256": "615997185ad12ecc53a18bd185ad61d98afdc1f45cc55be5a9490032a681f22f"
+    },
+    {
+      "name": "local-task",
+      "source": "/tmp/ox-t903-target/debug/local-task",
+      "sha256": "db2070d9dc1e1aff71846e73e2b76663be822d9c69a8f8b1f9a53a0de4926d6b"
+    },
+    {
+      "name": "task-oracle",
+      "source": "/tmp/ox-t903-target/debug/held-task-oracle",
+      "sha256": "c55df1ad8e69343254399824a4080864501c4eb3fef0391fb617b8c7f8e81cd4"
+    }
+  ],
+  "threads_verifying": [
+    {
+      "tid": "847653",
+      "comm": "ox"
+    },
+    {
+      "tid": "847654",
+      "comm": "ox"
+    },
+    {
+      "tid": "847655",
+      "comm": "ox"
+    },
+    {
+      "tid": "847656",
+      "comm": "ox"
+    },
+    {
+      "tid": "847657",
+      "comm": "ox"
+    },
+    {
+      "tid": "847658",
+      "comm": "ox"
+    },
+    {
+      "tid": "847659",
+      "comm": "ox"
+    },
+    {
+      "tid": "847660",
+      "comm": "ox"
+    },
+    {
+      "tid": "847661",
+      "comm": "ox"
+    },
+    {
+      "tid": "847662",
+      "comm": "ox"
+    },
+    {
+      "tid": "847663",
+      "comm": "ox"
+    },
+    {
+      "tid": "847664",
+      "comm": "ox"
+    },
+    {
+      "tid": "847665",
+      "comm": "ox"
+    },
+    {
+      "tid": "847666",
+      "comm": "ox"
+    },
+    {
+      "tid": "847667",
+      "comm": "ox"
+    },
+    {
+      "tid": "847668",
+      "comm": "ox"
+    },
+    {
+      "tid": "847669",
+      "comm": "ox"
+    },
+    {
+      "tid": "847670",
+      "comm": "ox"
+    },
+    {
+      "tid": "847671",
+      "comm": "ox"
+    },
+    {
+      "tid": "847672",
+      "comm": "ox"
+    },
+    {
+      "tid": "847673",
+      "comm": "ox"
+    },
+    {
+      "tid": "847674",
+      "comm": "ox"
+    },
+    {
+      "tid": "847675",
+      "comm": "ox"
+    },
+    {
+      "tid": "847676",
+      "comm": "ox"
+    },
+    {
+      "tid": "847677",
+      "comm": "ox"
+    },
+    {
+      "tid": "847703",
+      "comm": "smithay-clipboa"
+    },
+    {
+      "tid": "847907",
+      "comm": "ox-local-task"
+    }
+  ],
+  "oracle_stat_before_cancel": "847908 (task-oracle) S 847653 815217 815217 0 -1 4194304 88 0 0 0 0 0 0 0 20 0 1 0 2851751 3403776 546 18446744073709551615 94488877714688 94488877958704 140734706759824 0 0 0 0 4096 1088 1 0 0 17 11 0 0 0 0 0 94488877977280 94488877979912 94489875267584 140734706766686 140734706766745 140734706766745 140734706773973 0\n",
+  "threads_after_cancel": [
+    {
+      "tid": "847653",
+      "comm": "ox"
+    },
+    {
+      "tid": "847654",
+      "comm": "ox"
+    },
+    {
+      "tid": "847655",
+      "comm": "ox"
+    },
+    {
+      "tid": "847656",
+      "comm": "ox"
+    },
+    {
+      "tid": "847657",
+      "comm": "ox"
+    },
+    {
+      "tid": "847658",
+      "comm": "ox"
+    },
+    {
+      "tid": "847659",
+      "comm": "ox"
+    },
+    {
+      "tid": "847660",
+      "comm": "ox"
+    },
+    {
+      "tid": "847661",
+      "comm": "ox"
+    },
+    {
+      "tid": "847662",
+      "comm": "ox"
+    },
+    {
+      "tid": "847663",
+      "comm": "ox"
+    },
+    {
+      "tid": "847664",
+      "comm": "ox"
+    },
+    {
+      "tid": "847665",
+      "comm": "ox"
+    },
+    {
+      "tid": "847666",
+      "comm": "ox"
+    },
+    {
+      "tid": "847667",
+      "comm": "ox"
+    },
+    {
+      "tid": "847668",
+      "comm": "ox"
+    },
+    {
+      "tid": "847669",
+      "comm": "ox"
+    },
+    {
+      "tid": "847670",
+      "comm": "ox"
+    },
+    {
+      "tid": "847671",
+      "comm": "ox"
+    },
+    {
+      "tid": "847672",
+      "comm": "ox"
+    },
+    {
+      "tid": "847673",
+      "comm": "ox"
+    },
+    {
+      "tid": "847674",
+      "comm": "ox"
+    },
+    {
+      "tid": "847675",
+      "comm": "ox"
+    },
+    {
+      "tid": "847676",
+      "comm": "ox"
+    },
+    {
+      "tid": "847677",
+      "comm": "ox"
+    },
+    {
+      "tid": "847703",
+      "comm": "smithay-clipboa"
+    }
+  ],
+  "cancelled_pid": "847908",
+  "second_pid": "847955",
+  "second_absent": true,
+  "app_exit": 0
+}

@@ -393,3 +393,69 @@ fn post_capture_fifo_is_incomplete_and_timeout_reaps_real_child() {
     assert_eq!(engine.observations()[1].result(), ResultKind::TimedOut);
     std::fs::remove_file(ready).unwrap();
 }
+
+#[test]
+fn repeated_snapshots_preserve_content_identity_and_count_admission() {
+    let f = Fixture::new();
+    let mut e = Engine::default();
+    for run in 1..=31 {
+        assert_eq!(e.execute(&f.check, Duration::from_secs(1)).unwrap(), run);
+    }
+    let old = e.observations()[0].clone();
+    let mut owned = old.inputs().to_vec();
+    owned[0].bytes.clear();
+    f.write(b"different bytes\n");
+    assert_eq!(e.evaluate(&f.check), Verdict::NotVerified);
+    assert_eq!(e.execute(&f.check, Duration::from_secs(1)).unwrap(), 32);
+    assert!(e.execute(&f.check, Duration::from_secs(1)).is_err());
+    assert_eq!(e.observations().len(), 32);
+    assert_eq!(old.inputs(), e.observations()[0].inputs());
+    assert!(old.inputs().iter().any(|c| c.bytes == b"accepted\n"));
+    assert!(
+        e.observations()[31]
+            .inputs()
+            .iter()
+            .any(|c| c.bytes == b"different bytes\n")
+    );
+    f.write(b"accepted\n");
+    assert!(matches!(e.evaluate(&f.check), Verdict::Approved { .. }));
+}
+
+#[test]
+fn current_stream_comparison_detects_chunk_edges_length_and_suffix_changes() {
+    let f = Fixture::new();
+    let mut check = f.check.clone();
+    check.expected_exit = 17;
+    let original = vec![b'x'; 20_000];
+    f.write(&original);
+    let mut e = Engine::default();
+    e.execute(&check, Duration::from_secs(1)).unwrap();
+    assert!(matches!(e.evaluate(&check), Verdict::Approved { .. }));
+    for index in [0, 8191, 8192, 16384, 19999] {
+        let mut changed = original.clone();
+        changed[index] = b'y';
+        f.write(&changed);
+        assert_eq!(e.evaluate(&check), Verdict::NotVerified);
+    }
+    f.write(&original[..19999]);
+    assert_eq!(e.evaluate(&check), Verdict::NotVerified);
+    let mut longer = original.clone();
+    longer.push(b'x');
+    f.write(&longer);
+    assert_eq!(e.evaluate(&check), Verdict::NotVerified);
+    e.execute(&check, Duration::from_secs(1)).unwrap();
+    assert!(
+        e.observations()[1]
+            .inputs()
+            .iter()
+            .any(|c| c.bytes == longer)
+    );
+    assert!(
+        e.observations()[0]
+            .inputs()
+            .iter()
+            .any(|c| c.bytes == original)
+    );
+    f.write(&original);
+    assert!(matches!(e.evaluate(&check), Verdict::Approved { .. }));
+}

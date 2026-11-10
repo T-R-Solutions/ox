@@ -1,0 +1,68 @@
+# Tarefas — reconciliação e gate F0
+
+- [x] T001 [REQ-01,04, D-01, R-01]: inspecionar autoridades/estado; preservar bytes e mapa de dependências antes das edições.
+- [x] T002 [REQ-01, D-01, R-01]: confrontar nove T004 com AC-01..04, corrigir tarefas/resumos e vincular sucessores sem apagar histórico.
+- [x] T003 [REQ-02, D-02, R-02]: detalhar sete linhas de F0, decisões de risco/plataforma, oráculos e bloqueios; não declarar adoção/encerramento.
+- [x] T004 [REQ-03, D-03, R-03]: preparar ADR comparativa e product-local-persistence apenas como proposta.
+- [x] T005 [REQ-04, D-04, R-04]: reexaminar vínculos documentais afetados, executar checks focados, registrar resultados/limites e convergir.
+- [ ] T006 [REQ-02,03, D-02,03,07, R-02,03,06]: mantenedor decide F0-D1..D5 e, separadamente, as decisões da persistência; implementação depende de autorização explícita. Esta decisão externa não é substituída pela aceitação documental AC-01..04.
+
+T005: 46 testes de governança passaram; preservação recuperou 439/439 inputs históricos. Falhas iniciais de sucessão preservadas. A função de recuperação recebeu mapa delimitado de 17 documentos e quatro testes adversariais, sem código de produto. Checks finais de vínculos/estrutura constam em docs/validation/f0-reconciliation-20261101/checks.json.
+
+- [x] T007 [REQ-02,04, D-06, R-05]: distinguir decisão, cobertura de evidência e ausência de implementação; revisar matriz e plano mínimo; preservar registros anteriores.
+- [x] T008 [REQ-03, D-06, R-03,05]: detalhar comparação SQLite/snapshots, corpus e regra de escolha após resultados; remover atalho de adoção direta e limites numéricos sem fundamento.
+- [x] T009 [REQ-01..04, D-04,06, R-01,04,05]: reexaminar somente documentos afetados, conferir preservação/vínculos e registrar checks e limites em decision-preparation.
+
+T007..T009 são autoria e verificação documental; T006 permanece pendente. G1..G4
+na matriz organizam decisão, cobertura, observações faltantes e encerramento;
+P1/P2 organizam experimento autorizado e entrega independente antes do MVP.
+
+- [x] T010 [REQ-02,04, D-07, R-06]: refinar Q01..Q13, matriz F0 e decisões D1..D5; preparar ADR de atualização controlada sem alterar versões efetivas.
+- [x] T011 [REQ-01..04, D-04,07, R-01,04,06]: preservar predecessores, reexaminar AC-01..04, verificar vínculos/estrutura e controles negativos; registrar resultados e limites documentais.
+
+T010/T011 atendem ao pedido “ok, efetue os ajustes recomendados”. Não medem
+cobertura/desempenho nem implementam produto; essas observações pertencem ao
+inventário e à execução após adoção do escopo. F0 permanece aberto.
+
+Resultados em quality-refinement: oito predecessores preservados; 85 inputs de
+produto/persistência/autoridades inalterados; 36 cenários documentais conferidos;
+oito testes existentes de evidência passaram. A evidência predecessora foi rejeitada
+pelos seis inputs alterados e pelo novo vínculo de AC-04. Revisão sucessora e
+checks finais ficam no mesmo diretório; nenhuma medição do produto foi executada.
+
+- [x] T012 [REQ-05, D-08, R-07]: ler autoridades, preservar baseline real e solicitar adoção material; iniciar inventário sem aguardar decisão independente.
+- [x] T013 [REQ-05, D-09, R-08]: reproduzir lacunas reais de cancelamento/limites, corrigir proporcionalmente e conservar falha anterior e sucesso posterior.
+- [x] T014 [REQ-05, D-08, R-07]: medir cobertura total/alterada, força de oráculos e desempenho; verificar interface e registrar limitações.
+- [x] T015 [REQ-05, D-08, R-07]: consolidar matriz, decisões, evidências atuais e dependências exatas; encerrar somente com critérios aplicáveis aprovados.
+
+T006 successor on 2026-11-02: mantenedor adotou F0-D1..D5 explicitamente. As
+decisões próprias de tecnologia/experimento/integração da persistência continuam
+pendentes; a entrega independente permanece obrigatória antes de F3/MVP.
+
+T013–T015 completion records executed fixes, measurements and an explicit open-gate
+matrix, not milestone approval. Current acceptance is in the execution report.
+- [x] T016 [REQ-05, D-16, R-13]: correlacionar a jornada Wayland com workspace, artefatos, veredictos e saída dos processos; comprovar Shift+Tab e repetir os cenários gráficos com entrada confiável.
+- [x] T017 [REQ-05, D-17, R-07]: registrar a adoção explícita dos limites GUI/frame/CPU e da matriz; verificar separadamente as 12 combinações, preservando amostras, falhas e limites dos observadores.
+
+- [x] T018 [REQ-05, D-15, R-12]: reproduce the product-evidence export dependency, exclude operational F0 from governance-only distribution and reexamine affected documentary inputs; preserve regression and execution results.
+
+T016/T017: evidências em docs/validation/f0-resumption-20261103. Jornada primária
+correlacionada, seis jornadas Wayland, 36 testes X11, três repetições Wayland
+com oráculo mantido ativo e três repetições X11 instrumentadas por cobertura.
+Doze células de desempenho atendem ao contrato adotado; nenhuma alteração em
+fontes ou dependências do aplicativo. A exclusão desta nova pasta operacional da
+exportação de governança estende D-15, com regressão antes/depois preservada.
+
+- [x] T019 [REQ-05, D-18, D-19, R-14]: preservar a contraevidência de histórico, validar otimização restrita do rasterizador, repetir a matriz e reavaliar F0 sem relaxar limites.
+
+T019 successor: full-history failure preserved; package-only tiny-skia optimization
+validated across all 12 cells, including42 X11 cases and six native full journeys.
+Current original-product full-flow/held repeats and ordinary Rust checks pass.
+Earlier no-manifest-change statement describes the pre-optimization stage only.
+Final evidence: E-F0-RASTER-CLOSURE; report.md, optimized-checks.json and current
+closure integrity checks. No limits or corpus were relaxed.
+
+
+- [x] T901 [D-ROBUST, R-ROBUST]: preservar inputs, reproduzir FIFO e modelo de erros do filho; corrigir captura/limpeza e testar processos reais e falhas simuladas.
+- [x] T902 [D-ROBUST, R-ROBUST]: executar checks pertinentes e registrar evidências antes/depois e limites em robustness-20261105.
+- [ ] T903 [D-ROBUST, R-ROBUST]: observar UI X11/Wayland, cancelamento/fechamento e desempenho/F0 nos novos inputs; não reutilizar aprovação histórica como observação atual.

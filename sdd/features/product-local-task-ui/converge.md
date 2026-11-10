@@ -90,3 +90,15 @@ plugin-desktop implementation is added; historical F0 closure is not erased.
 Current successor: AC-01..04/06..09 APPROVED for tested bounded API/process
 behavior; AC-05/10/11 UNVERIFIED pending actual graphical response/close/display
 observation. No API test is promoted to GUI acceptance.
+
+
+## T903 current-input successor — 2026-11-05
+
+See docs/validation/t903-20261105/report.md. Historical acceptance and failures are preserved. Current real X11/native Wayland journeys, FIFO, stale history, cooperative cancel/close and worker/direct-child exit are supported. A new32-observation draw violation was reproduced and repaired by newline-preserving Iced column composition; all12 corrected cells pass draw/response. Extra full-count GUI RSS reaches133.69MiB: its applicability against64MiB versus the separately adopted fixed large-history corpus is INCONCLUSIVE. T903 stays open pending that oracle; current F0 is not closed. No threshold, product scope or persistence permission changed.
+
+Rendered-state/cancel/close AC-05/10/11 are APPROVED for the observed controlled journeys; this does not approve F0 memory/performance or universal filesystem interruption.
+
+
+## T903 memory closure successor
+
+Current acceptance and exact observed inputs: docs/validation/t903-memory-20261105/report.md and matrix.json. This supersedes the earlier RSS applicability gap:64MiB applies to full-count GUI,256MiB remains fixed renderer-free. Current Engine/callers preserve API/content equality, immutable history, five states, selective invalidation and logical pre-effect admission. Current independent GUI/function/resource/coverage observations and governance/binding checks support APPROVED in the adopted boundary. Historical F0 remains attached to its original bytes; no automatic transfer or persistence claim.

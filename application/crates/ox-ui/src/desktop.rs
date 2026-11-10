@@ -313,9 +313,14 @@ impl Desktop {
             .spacing(8)
             .wrap(),
         );
-        container(scrollable(content.push(text(&self.status))).id("main"))
-            .padding(24)
-            .into()
+        container(
+            scrollable(content.push(column(
+                self.status.split('\n').map(|line| text(line).into()),
+            )))
+            .id("main"),
+        )
+        .padding(24)
+        .into()
     }
 }
 pub fn run() -> Result {

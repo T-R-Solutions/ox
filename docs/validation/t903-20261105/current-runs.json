@@ -1,0 +1,294 @@
+[
+  {
+    "name": "current-build",
+    "command": [
+      "cargo",
+      "build",
+      "--workspace",
+      "--locked",
+      "--offline"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0
+  },
+  {
+    "name": "current-diagnostic-build",
+    "command": [
+      "cargo",
+      "build",
+      "--workspace",
+      "--offline"
+    ],
+    "cwd": "/tmp/ox-t903-app",
+    "exit": 0
+  },
+  {
+    "name": "current-matrix",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/run-current-matrix.py"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-native-1-900",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-native-1-900",
+      "native",
+      "1",
+      "900",
+      "700"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-x11-1-900",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-x11-1-900",
+      "x11",
+      "1",
+      "900",
+      "700"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-native-1-640",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-native-1-640",
+      "native",
+      "1",
+      "640",
+      "480"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-x11-1-640",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-x11-1-640",
+      "x11",
+      "1",
+      "640",
+      "480"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-native-1.5-900",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-native-1.5-900",
+      "native",
+      "1.5",
+      "900",
+      "700"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-x11-1.5-900",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-x11-1.5-900",
+      "x11",
+      "1.5",
+      "900",
+      "700"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-native-1.5-640",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-native-1.5-640",
+      "native",
+      "1.5",
+      "640",
+      "480"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-x11-1.5-640",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-x11-1.5-640",
+      "x11",
+      "1.5",
+      "640",
+      "480"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-native-2-900",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-native-2-900",
+      "native",
+      "2",
+      "900",
+      "700"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-x11-2-900",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-x11-2-900",
+      "x11",
+      "2",
+      "900",
+      "700"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-native-2-640",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-native-2-640",
+      "native",
+      "2",
+      "640",
+      "480"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-history-x11-2-640",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/history-journey.py",
+      "current-history-x11-2-640",
+      "x11",
+      "2",
+      "640",
+      "480"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-fifo-native",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/fifo-journey.py",
+      "current-fifo-native",
+      "native"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-fifo-x11",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/fifo-journey.py",
+      "current-fifo-x11",
+      "x11"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-held",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/native-held.py",
+      "current-held"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-original",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/native-session.py",
+      "current-original",
+      "--flow"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0
+  },
+  {
+    "name": "current-test",
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked",
+      "--offline"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0
+  },
+  {
+    "name": "current-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0
+  },
+  {
+    "name": "current-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--all-targets",
+      "--locked",
+      "--offline",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0
+  },
+  {
+    "name": "current-matrix-analysis",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/check-current.py"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 1
+  }
+]

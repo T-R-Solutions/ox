@@ -1,0 +1,193 @@
+[
+  {
+    "name": "fifo-native",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/fifo-journey.py",
+      "fifo-native",
+      "native"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 6.756936055000551
+  },
+  {
+    "name": "fifo-x11",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/fifo-journey.py",
+      "fifo-x11",
+      "x11"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 1.19482350600083
+  },
+  {
+    "name": "native-held",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/native-held.py",
+      "native-held-current"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 12.69052945400108
+  },
+  {
+    "name": "product-build",
+    "command": [
+      "cargo",
+      "build",
+      "--workspace",
+      "--locked",
+      "--offline"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.4137052610021783
+  },
+  {
+    "name": "backend",
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "cargo",
+      "run",
+      "-p",
+      "ox-ui",
+      "--example",
+      "f0_measure",
+      "--locked",
+      "--offline",
+      "--",
+      "/home/rodrigo/Projetos/ox/application/target/debug",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/backend-workspace"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.5984916199995496
+  },
+  {
+    "name": "history-0",
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "cargo",
+      "run",
+      "-p",
+      "ox-verification",
+      "--example",
+      "history_measure",
+      "--locked",
+      "--offline",
+      "--",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/large-history-0",
+      "/home/rodrigo/Projetos/ox/application/target/debug/task-oracle"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.14294207899729372
+  },
+  {
+    "name": "history-1",
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "cargo",
+      "run",
+      "-p",
+      "ox-verification",
+      "--example",
+      "history_measure",
+      "--locked",
+      "--offline",
+      "--",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/large-history-1",
+      "/home/rodrigo/Projetos/ox/application/target/debug/task-oracle"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.14103757599878008
+  },
+  {
+    "name": "history-2",
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "cargo",
+      "run",
+      "-p",
+      "ox-verification",
+      "--example",
+      "history_measure",
+      "--locked",
+      "--offline",
+      "--",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/large-history-2",
+      "/home/rodrigo/Projetos/ox/application/target/debug/task-oracle"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.14606112399997073
+  },
+  {
+    "name": "focused-tests",
+    "command": [
+      "cargo",
+      "test",
+      "-p",
+      "ox-ui",
+      "-p",
+      "ox-verification",
+      "--locked",
+      "--offline"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 10.82562801899985
+  },
+  {
+    "name": "fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.06843912399926921
+  },
+  {
+    "name": "clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "-p",
+      "ox-ui",
+      "-p",
+      "ox-verification",
+      "--all-targets",
+      "--locked",
+      "--offline",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.29797527700065984
+  },
+  {
+    "name": "matrix-analysis",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-20261105/check-optimized.py"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 0.051571545998740476
+  }
+]

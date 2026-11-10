@@ -1,0 +1,58 @@
+{
+  "observed_utc": "2026-11-05T20:07:20.868750+00:00",
+  "T903": "COMPLETE",
+  "current_F0": "APPROVED within adopted local boundary",
+  "historical_F0": "Preserved with exact original inputs; no automatic transfer",
+  "features": [
+    {
+      "feature": "product-f0-gate",
+      "criteria": {
+        "AC-01": "APPROVED",
+        "AC-02": "APPROVED",
+        "AC-03": "APPROVED",
+        "AC-04": "APPROVED",
+        "AC-05": "APPROVED"
+      },
+      "evidence_sha256": "11715d1c4281bf9ac0a9845b015941059bd4e74cc56f711fe37cae7c25c4437d"
+    },
+    {
+      "feature": "product-local-task-ui",
+      "criteria": {
+        "AC-01": "APPROVED",
+        "AC-02": "APPROVED",
+        "AC-03": "APPROVED",
+        "AC-04": "APPROVED",
+        "AC-05": "APPROVED",
+        "AC-06": "APPROVED",
+        "AC-07": "APPROVED",
+        "AC-08": "APPROVED",
+        "AC-09": "APPROVED",
+        "AC-10": "APPROVED",
+        "AC-11": "APPROVED"
+      },
+      "evidence_sha256": "26a7cbbb1c4e1d9b2fec2aaf6b7a719bee2d2a32f61bda8130944d581b4f175e"
+    },
+    {
+      "feature": "product-verification-engine",
+      "criteria": {
+        "AC-01": "APPROVED",
+        "AC-02": "APPROVED",
+        "AC-03": "APPROVED",
+        "AC-04": "APPROVED",
+        "AC-05": "APPROVED"
+      },
+      "evidence_sha256": "bec799841c2ccccb55ad5cbc76427cea02cfda612549c003890ce6fa99c2656e"
+    }
+  ],
+  "report_sha256": "976a00f99bfb2df3166db46be542c98daa08437f7e12d2f3f164270c7e20a227",
+  "checks_sha256": "800de3f3e393bf28837546575348aa3c42c4a80c6fcc1e4d696531e1a2c4a946",
+  "product_inputs_sha256": "7688868e384ba99c9e7375792a7e88b97fb13ae39b201d8dc0d204f53deb3328",
+  "remaining_indispensable_dependencies": [],
+  "limitations": [
+    "Isolated X11/native Wayland on identified host, no primary-session extrapolation",
+    "Client draw/present return and captured pixels do not prove physical scanout",
+    "Owned direct children only; no universal descendant containment",
+    "Cooperative cancellation; no arbitrary filesystem-I/O interruption",
+    "Volatile immutable history only; no persistence implementation"
+  ]
+}

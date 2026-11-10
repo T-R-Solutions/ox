@@ -224,3 +224,37 @@ cleanup/RAII. Contribution: explicit ownership and error paths. Edition 2024,
 MSRV 1.99, pinned 1.99.1; no dependency changes. Full route due to uncertain
 cleanup/contract limits, affected feature reused. Current tests/report and input
 manifest: docs/validation/robustness-20261105/. GUI/F0 reobservation remains pending.
+
+
+## T903 revalidation plan — 2026-11-05
+
+Authorized full-route resumption of D-ROBUST/R-ROBUST, REQ-05 (UI feature uses its corresponding requirements). Before trials: preserve exact feature records in docs/validation/t903-20261105/before and identify current product bytes. Primary selected/read/used skill: .codex/skills/performance-engineering/SKILL.md, no declared version, sdd/chain/performance-engineering.md bridge 1. Contribution: workload equivalence, raw samples and measurement boundaries. No delegation.
+
+Reuse adopted f0-boundary-20261102 and decision-proposal contract unchanged: separate native Wayland/X11, scales 1/1.5/2, logical 640x480/900x700. Per cell 3 warmups +20 response/client samples, max response 120 ms, full-corpus client draw/present-return 125 ms including history counterexample, sampled GUI RSS 64 MiB, three 10-second idle windows <=5% one core. Backend execution/verification <=50 ms, cancel-to-direct-exit <=100 ms (3+20); harness RSS32 MiB; large retained history128 MiB with prelaunch refusal, stress RSS256 MiB in three runs. Never infer scanout from client timing.
+
+Build a fresh disposable diagnostic tree from current sources, port only preserved instrumentation, size selectors and input bridge; identify all deltas. Run serial real isolated compositor interaction; correlate screenshots with artifacts/process exit. Add own FIFO-without-writer Refresh/Verify journeys and held verification/close observations. Preserve failures; absent interaction/oracle leaves gates UNVERIFIED. No product contract, dependency or persistence change. Documentary successor must inspect AC-01..04 clauses independently; operational AC-05 stays open unless all obligations supported.
+
+Additional pre-trial protocol: the inherited GUI journey contains two observations;
+explicitly fill 32 observations through Verify in a separate own-fixture run per
+cell, then scroll the actual rendered history (3 warmups+20 changed-frame samples).
+Keep both corpora. Use native compositor capture for this extra X11 observation too,
+label that difference from X11 get_image; compare all client frames with 125 ms.
+Record admission refusal if the payload bound prevents reaching the count. No limit
+changes or assumption that two entries represent the maximum supported history.
+
+D-T903-HISTORY / R-T903-HISTORY: new 32-entry native corpus rejects 900x700
+client draw (154–160 ms). Hypothesis: one text paragraph rasterizes all offscreen
+history lines; compose newline-preserving text widgets in a zero-spacing column,
+using installed Iced column viewport culling. First test in disposable copy at the
+worst 200%/900 cell; promote only after measured behavior/text retention, then
+repeat all rendering-dependent cells and ordinary checks. Keep original binaries,
+logs and source. Supporting read/used skills .codex/skills/iced-engineering/SKILL.md
+and .codex/skills/rust/SKILL.md (no declared versions, respective bridges1): Iced
+composition/culling and safe borrowed text iteration in edition2024/MSRV1.99.
+No new dependency, state/message/process/storage change. X11 additional-runner
+failures are missing focus; XSetInputFocus is confined to its private X server.
+
+
+## T903 memory correction successor
+
+Protocol recorded before new trials: docs/validation/t903-memory-20261105/plan.md. Apply adopted GUI64MiB to full-count history; keep fixed large-history256MiB separate. Preserve public inputs/equality/logical admission and historical evidence. Skills: performance-engineering primary, Rust/Iced supporting, actual entries read, unversioned and bridge v1; contributions in protocol. T903 remains open until final observations and checks.

@@ -1,0 +1,395 @@
+#![forbid(unsafe_code)]
+use ox_verification::{
+    engine::{Check, Engine, ResultKind},
+    verdict::Verdict,
+};
+use std::{
+    path::PathBuf,
+    sync::atomic::{AtomicU64, Ordering},
+    time::Duration,
+};
+static NEXT: AtomicU64 = AtomicU64::new(1);
+struct Fixture {
+    dir: PathBuf,
+    check: Check,
+}
+impl Fixture {
+    fn new() -> Self {
+        let dir = std::env::temp_dir().join(format!(
+            "ox-verify-{}-{}",
+            std::process::id(),
+            NEXT.fetch_add(1, Ordering::Relaxed)
+        ));
+        std::fs::create_dir(&dir).unwrap();
+        let candidate = dir.join("candidate");
+        std::fs::write(&candidate, b"accepted\n").unwrap();
+        let check = Check {
+            id: "AC-local".into(),
+            description: "Literal accepted candidate".into(),
+            executable: env!("CARGO_BIN_EXE_local-oracle").into(),
+            arguments: vec![candidate.to_str().unwrap().into()],
+            directory: dir.clone(),
+            inputs: vec![candidate],
+            expected_exit: 0,
+        };
+        Self { dir, check }
+    }
+    fn write(&self, bytes: &[u8]) {
+        std::fs::write(&self.check.inputs[0], bytes).unwrap();
+    }
+}
+impl Drop for Fixture {
+    fn drop(&mut self) {
+        // Cleanup must not turn a useful regression failure into a double panic.
+        let _ = std::fs::remove_file(self.dir.join("candidate"));
+        let _ = std::fs::remove_dir(&self.dir);
+    }
+}
+#[test]
+fn approval_requires_observation_not_completion_claims() {
+    let f = Fixture::new();
+    let mut e = Engine::default();
+    e.note_completion("Agent says done; task checkbox complete".into())
+        .unwrap();
+    assert_eq!(e.evaluate(&f.check), Verdict::NotVerified);
+    let run = e.execute(&f.check, Duration::from_secs(1)).unwrap();
+    assert_eq!(
+        e.evaluate(&f.check),
+        Verdict::Approved {
+            evidence: format!("run:{run}")
+        }
+    );
+    assert_eq!(e.observations()[0].result(), ResultKind::Exited(Some(0)));
+    assert_eq!(e.observations()[0].check(), &f.check);
+    assert!(!e.observations()[0].inputs().is_empty());
+}
+#[test]
+fn failure_history_survives_repair_and_content_invalidation_is_selective() {
+    let f = Fixture::new();
+    let mut other = Fixture::new();
+    other.check.id = "AC-independent".into();
+    let mut e = Engine::default();
+    f.write(b"defect\n");
+    let failed = e.execute(&f.check, Duration::from_secs(1)).unwrap();
+    assert_eq!(
+        e.evaluate(&f.check),
+        Verdict::Rejected {
+            evidence: format!("run:{failed}")
+        }
+    );
+    e.execute(&other.check, Duration::from_secs(1)).unwrap();
+    f.write(b"accepted\n");
+    assert_eq!(e.evaluate(&f.check), Verdict::NotVerified);
+    assert!(matches!(e.evaluate(&other.check), Verdict::Approved { .. }));
+    e.execute(&f.check, Duration::from_secs(1)).unwrap();
+    assert!(matches!(e.evaluate(&f.check), Verdict::Approved { .. }));
+    assert_eq!(e.observations()[0].result(), ResultKind::Exited(Some(17)));
+    assert!(
+        e.observations()[0]
+            .inputs()
+            .iter()
+            .any(|x| x.bytes == b"defect\n")
+    );
+    let mut altered = f.check.clone();
+    altered.expected_exit = 17;
+    assert_eq!(e.evaluate(&altered), Verdict::NotVerified);
+    altered = f.check.clone();
+    altered.description.push_str(" changed");
+    assert_eq!(e.evaluate(&altered), Verdict::NotVerified);
+    f.write(b"changed again");
+    assert_eq!(e.evaluate(&f.check), Verdict::NotVerified);
+}
+#[test]
+fn incomplete_and_not_applicable_are_not_approval() {
+    let mut f = Fixture::new();
+    let mut e = Engine::default();
+    f.check.arguments = vec!["hang".into()];
+    e.execute(&f.check, Duration::from_millis(30)).unwrap();
+    assert!(matches!(e.evaluate(&f.check), Verdict::Inconclusive { .. }));
+    assert!(Engine::not_applicable(" ").is_err());
+    assert!(matches!(
+        Engine::not_applicable("Outside this criterion's platform scope").unwrap(),
+        Verdict::NotApplicable { .. }
+    ));
+}
+
+#[test]
+fn contradictory_current_pass_does_not_erase_observed_failure() {
+    let mut f = Fixture::new();
+    let marker = f.dir.join("external-state");
+    f.check.arguments = vec!["flip".into(), marker.to_str().unwrap().into()];
+    let mut engine = Engine::default();
+    // The fixture deliberately varies an undeclared dependency. Both observations
+    // share the declared snapshot: the engine must expose rejection, not last-wins.
+    engine.execute(&f.check, Duration::from_secs(1)).unwrap();
+    engine.execute(&f.check, Duration::from_secs(1)).unwrap();
+    assert_eq!(
+        engine.observations()[0].result(),
+        ResultKind::Exited(Some(17))
+    );
+    assert_eq!(
+        engine.observations()[1].result(),
+        ResultKind::Exited(Some(0))
+    );
+    assert!(matches!(
+        engine.evaluate(&f.check),
+        Verdict::Rejected { .. }
+    ));
+    std::fs::remove_file(marker).unwrap();
+}
+
+#[test]
+fn cancellation_after_oracle_ready_reaps_child_and_never_approves() {
+    use std::sync::{Arc, atomic::AtomicBool};
+    use std::time::Instant;
+    let mut f = Fixture::new();
+    let ready = f.dir.join("ready");
+    f.check.arguments = vec!["barrier".into(), ready.to_str().unwrap().into()];
+    let cancel = Arc::new(AtomicBool::new(false));
+    let flag = cancel.clone();
+    let check = f.check.clone();
+    let worker = std::thread::spawn(move || {
+        let mut engine = Engine::default();
+        engine
+            .execute_cancellable(&check, Duration::from_secs(2), &flag)
+            .unwrap();
+        engine
+    });
+    let until = Instant::now() + Duration::from_secs(5);
+    let pid = loop {
+        if let Ok(text) = std::fs::read_to_string(&ready)
+            && let Ok(pid) = text.parse::<u32>()
+        {
+            break pid;
+        }
+        assert!(Instant::now() < until, "oracle did not signal readiness");
+        std::thread::yield_now();
+    };
+    let start = Instant::now();
+    cancel.store(true, Ordering::Relaxed);
+    let engine = worker.join().unwrap();
+    assert_eq!(engine.observations()[0].result(), ResultKind::Cancelled);
+    assert!(
+        !PathBuf::from(format!("/proc/{pid}")).exists(),
+        "owned child must be reaped"
+    );
+    assert!(
+        start.elapsed() < Duration::from_secs(1),
+        "cancellation waited for the subprocess deadline"
+    );
+    assert!(matches!(
+        engine.evaluate(&f.check),
+        Verdict::Inconclusive { .. }
+    ));
+    std::fs::remove_file(ready).unwrap();
+}
+
+#[test]
+fn cancellation_before_launch_has_no_oracle_effect() {
+    use std::sync::atomic::AtomicBool;
+    let mut f = Fixture::new();
+    let marker = f.dir.join("forbidden-effect");
+    f.check.arguments = vec!["flip".into(), marker.to_str().unwrap().into()];
+    let mut engine = Engine::default();
+    let error = engine
+        .execute_cancellable(&f.check, Duration::from_secs(1), &AtomicBool::new(true))
+        .unwrap_err();
+    assert_eq!(error.kind(), std::io::ErrorKind::Interrupted);
+    assert!(!marker.exists());
+    assert!(engine.observations().is_empty());
+    assert_eq!(engine.evaluate(&f.check), Verdict::NotVerified);
+}
+
+#[test]
+fn history_limit_rejects_before_launch_and_restart_has_no_approval() {
+    let f = Fixture::new();
+    let mut engine = Engine::default();
+    for _ in 0..32 {
+        engine.execute(&f.check, Duration::from_secs(1)).unwrap();
+    }
+    assert_eq!(engine.observations().len(), 32);
+    assert!(matches!(
+        engine.evaluate(&f.check),
+        Verdict::Approved { .. }
+    ));
+    let mut denied = f.check.clone();
+    let marker = f.dir.join("forbidden-overflow-effect");
+    denied.arguments = vec!["flip".into(), marker.to_str().unwrap().into()];
+    assert_eq!(
+        engine
+            .execute(&denied, Duration::from_secs(1))
+            .unwrap_err()
+            .kind(),
+        std::io::ErrorKind::InvalidInput
+    );
+    assert!(!marker.exists());
+    assert_eq!(engine.observations().len(), 32);
+    let restarted = Engine::default();
+    assert!(restarted.observations().is_empty());
+    assert_eq!(restarted.evaluate(&f.check), Verdict::NotVerified);
+}
+
+#[test]
+fn invalid_input_count_and_snapshot_size_cannot_launch() {
+    let mut f = Fixture::new();
+    let marker = f.dir.join("forbidden-input-effect");
+    f.check.arguments = vec!["flip".into(), marker.to_str().unwrap().into()];
+    let mut engine = Engine::default();
+    f.check.inputs = vec![f.dir.join("candidate"); 9];
+    assert!(engine.execute(&f.check, Duration::from_secs(1)).is_err());
+    f.check.inputs.truncate(1);
+    std::fs::File::create(&f.check.inputs[0])
+        .unwrap()
+        .set_len(16 * 1024 * 1024 + 1)
+        .unwrap();
+    assert!(engine.execute(&f.check, Duration::from_secs(1)).is_err());
+    assert!(!marker.exists());
+    assert!(engine.observations().is_empty());
+}
+
+#[test]
+fn history_payload_budget_refuses_before_effect_and_preserves_old_records() {
+    let mut f = Fixture::new();
+    let second = f.dir.join("second-input");
+    f.check.inputs.push(second.clone());
+    for input in &f.check.inputs {
+        std::fs::File::create(input)
+            .unwrap()
+            .set_len(15 * 1024 * 1024)
+            .unwrap();
+    }
+    let mut engine = Engine::default();
+    for _ in 0..2 {
+        engine.execute(&f.check, Duration::from_secs(1)).unwrap();
+    }
+    let marker = f.dir.join("forbidden-budget-effect");
+    let mut next = f.check.clone();
+    next.arguments = vec!["flip".into(), marker.to_str().unwrap().into()];
+    let error = engine.execute(&next, Duration::from_secs(1)).unwrap_err();
+    assert!(error.to_string().contains("previous observations retained"));
+    assert_eq!(engine.observations().len(), 2);
+    assert_eq!(
+        engine.observations()[0].result(),
+        ResultKind::Exited(Some(17))
+    );
+    assert!(!marker.exists());
+    assert!(matches!(
+        engine.evaluate(&f.check),
+        Verdict::Rejected { .. }
+    ));
+    std::fs::remove_file(second).unwrap();
+}
+
+// Frozen expectation: unsupported FIFO evidence returns without a writer and
+// cannot launch or approve. The outer process bounds a defective implementation.
+#[test]
+fn special_input_does_not_block() {
+    if let Ok(mode) = std::env::var("OX_FIFO_PROBE") {
+        let f = Fixture::new();
+        std::fs::remove_file(&f.check.inputs[0]).unwrap();
+        assert!(
+            std::process::Command::new("mkfifo")
+                .arg(&f.check.inputs[0])
+                .status()
+                .unwrap()
+                .success()
+        );
+        let mut engine = Engine::default();
+        if mode == "execute" {
+            assert!(engine.execute(&f.check, Duration::from_millis(30)).is_err());
+            assert!(engine.observations().is_empty());
+        } else {
+            assert_eq!(engine.evaluate(&f.check), Verdict::NotVerified);
+        }
+        return;
+    }
+    let mut blocked = Vec::new();
+    for mode in ["evaluate", "execute"] {
+        let mut child = std::process::Command::new(std::env::current_exe().unwrap())
+            .args(["--exact", "special_input_does_not_block", "--nocapture"])
+            .env("OX_FIFO_PROBE", mode)
+            .spawn()
+            .unwrap();
+        let until = std::time::Instant::now() + Duration::from_secs(2);
+        loop {
+            if let Some(status) = child.try_wait().unwrap() {
+                assert!(status.success(), "{mode} failed");
+                break;
+            }
+            if std::time::Instant::now() >= until {
+                child.kill().unwrap();
+                child.wait().unwrap();
+                blocked.push(mode);
+                break;
+            }
+            std::thread::sleep(Duration::from_millis(5));
+        }
+    }
+    assert!(
+        blocked.is_empty(),
+        "blocked FIFO probes killed/reaped: {blocked:?}"
+    );
+}
+
+#[test]
+fn nonregular_missing_and_regular_symlink_inputs() {
+    let mut f = Fixture::new();
+    let mut engine = Engine::default();
+    engine.execute(&f.check, Duration::from_secs(1)).unwrap();
+    let link = f.dir.join("link");
+    std::os::unix::fs::symlink(&f.check.inputs[0], &link).unwrap();
+    f.check.inputs = vec![link.clone()];
+    engine.execute(&f.check, Duration::from_secs(1)).unwrap();
+    assert!(matches!(
+        engine.evaluate(&f.check),
+        Verdict::Approved { .. }
+    ));
+    for input in [
+        f.dir.clone(),
+        PathBuf::from("/dev/null"),
+        f.dir.join("absent"),
+    ] {
+        f.check.inputs = vec![input];
+        assert!(engine.execute(&f.check, Duration::from_secs(1)).is_err());
+        assert_eq!(engine.evaluate(&f.check), Verdict::NotVerified);
+    }
+    std::fs::remove_file(link).unwrap();
+}
+
+#[test]
+fn post_capture_fifo_is_incomplete_and_timeout_reaps_real_child() {
+    let mut f = Fixture::new();
+    let candidate = f.check.inputs[0].clone();
+    // Controlled test-only shell: replaces only this fixture's owned candidate.
+    f.check.executable = "/bin/sh".into();
+    f.check.arguments = vec![
+        "-c".into(),
+        "rm -- \"$1\" && mkfifo -- \"$1\"".into(),
+        "probe".into(),
+        candidate.to_str().unwrap().into(),
+    ];
+    let mut engine = Engine::default();
+    engine.execute(&f.check, Duration::from_secs(1)).unwrap();
+    assert_eq!(
+        engine.observations()[0].result(),
+        ResultKind::Exited(Some(0))
+    );
+    assert_eq!(engine.evaluate(&f.check), Verdict::NotVerified);
+    std::fs::remove_file(&candidate).unwrap();
+    f.write(b"accepted\n");
+    assert!(matches!(
+        engine.evaluate(&f.check),
+        Verdict::Inconclusive { .. }
+    ));
+
+    f.check.executable = env!("CARGO_BIN_EXE_local-oracle").into();
+    let ready = f.dir.join("timeout-ready");
+    f.check.arguments = vec!["barrier".into(), ready.to_str().unwrap().into()];
+    engine
+        .execute(&f.check, Duration::from_millis(500))
+        .unwrap();
+    let pid = std::fs::read_to_string(&ready).unwrap();
+    assert!(!PathBuf::from(format!("/proc/{pid}")).exists());
+    assert_eq!(engine.observations()[1].result(), ResultKind::TimedOut);
+    std::fs::remove_file(ready).unwrap();
+}

@@ -1,0 +1,3 @@
+# Matched renderer-free memory comparison
+
+Supplement after operational gates: legacy large-history /usr/bin/time wrapped cargo run, current observes direct executable. Do not infer equal RSS boundaries. Build the exact resumption Engine preimage in a fresh scratch application copy with unchanged Cargo.lock/toolchain/profile and history_measure source. Serial B0/A0,B1/A1,B2/A2 direct /usr/bin/time, same current task-oracle binary and two15MiB inputs, fresh paths, same logical128MiB admission (2 observations then refusal), <=256MiB for each after run. Retain raw failures, binary/source/config identities and warm-build exclusion. No product input or contract changes.

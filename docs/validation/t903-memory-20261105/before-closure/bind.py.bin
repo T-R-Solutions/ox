@@ -1,0 +1,34 @@
+from pathlib import Path
+import json,hashlib,sys
+r=Path(__file__).resolve().parents[3];b=Path(__file__).resolve().parent;closed='--close' in sys.argv
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+names=['product-f0-gate','product-local-task-ui','product-verification-engine']
+if closed:
+ for name in names:
+  base=r/'sdd/features'/name
+  for filename in ['tasks.md','converge.md']:
+   p=base/filename;q=b/'before-closure'/p.relative_to(r);q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(p.read_bytes())
+  p=base/'tasks.md';s=p.read_text().replace('- [ ] T903','- [x] T903');s+='\n\nSucessor de encerramento T903: docs/validation/t903-memory-20261105/report.md. O registro anterior de pendência é histórico. Correção de compartilhamento imutável e captura por blocos preserva orçamento lógico; matriz12 com32 observações, jornadas/FIFO/worker/processos e corpora separados reobservados. Critérios e checks atuais sustentam encerramento no envelope adotado; sem expansão/persistência/commit.\n';p.write_text(s)
+  p=base/'converge.md';p.write_text(p.read_text()+'\n\n## T903 memory closure successor\n\nCurrent acceptance and exact observed inputs: docs/validation/t903-memory-20261105/report.md and matrix.json. This supersedes the earlier RSS applicability gap:64MiB applies to full-count GUI,256MiB remains fixed renderer-free. Current Engine/callers preserve API/content equality, immutable history, five states, selective invalidation and logical pre-effect admission. Current independent GUI/function/resource/coverage observations and governance/binding checks support APPROVED in the adopted boundary. Historical F0 remains attached to its original bytes; no automatic transfer or persistence claim.\n')
+# Preserve the review report as a separate observation, never overwrite it on closure.
+artifact=b/('report.md' if closed else 'report-review.md')
+if not closed:artifact.write_bytes((b/'report.md').read_bytes())
+paths=set()
+for x in json.loads((b/'product-inputs.json').read_text()):
+ p=r/x['path'];assert sha(p)==x['sha256'],p;paths.add(p)
+for name in names:
+ base=r/'sdd/features'/name;paths.update(base/n for n in ['spec.md','plan.md','tasks.md','traceability.json','converge.md'])
+ for row in json.loads((base/'traceability.json').read_text()):paths.update([r/row['implementation'],r/row['oracle']])
+paths.update(b.glob('*.py'))
+paths.update(b/n for n in ['plan.md','product-inputs.json','accepted-environment.json','accepted-flow-checks.json','accepted-history-checks.json','backend-checks.json','matrix.json','execution-artifacts.json','coverage-accepted/summary.json'])
+paths.update(r/n for n in ['AGENTS.md','sdd/project.md','docs/constitution.md','docs/architecture/context.md','sdd/workflow.md','sdd/evidence.md','docs/decisions/f0-boundary-20261102.md','docs/validation/f0-resumption-20261103/decision-proposal.md','.codex/skills/performance-engineering/SKILL.md','.codex/skills/rust/SKILL.md','.codex/skills/iced-engineering/SKILL.md'])
+inputs=[{'path':str(p.relative_to(r)),'sha256':sha(p),'role':'implementation' if 'application' in p.relative_to(r).parts else 'other'} for p in sorted(paths)]
+for name in names:
+ p=r/'sdd/features'/name/'evidence.json';d=json.loads(p.read_text());eid='E-T903-MEMORY-CLOSURE' if closed else 'E-T903-MEMORY-OBSERVATIONS';assert not any(x['id']==eid for x in d['evidence'])
+ d['environment']='T903 memory successor: identified local isolated native Wayland/X11, final product-inputs.json; current bounded acceptance in docs/validation/t903-memory-20261105/report.md'
+ d['evidence'].append({'id':eid,'kind':'inspection','command_or_method':'Current captured-input review plus actual workspace Rust tests, isolated real graphical twelve-cell full journeys and32-observation matrix, FIFO/held/close worker/direct-child observations, 3+20 backend and3 fixed large-history runs; allocation probes and regression comparisons; coverage; see exact scripts/raw logs and report. Final document changes receive scoped review, not fabricated runtime replay.','observed_result':('Current adopted T903/F0 criteria APPROVED; exact evidence/binding/negative/governance checks independently required.' if closed else 'Operational function/resources/coverage APPROVED on final sources; final documentary bindings/governance pending; T903 OPEN.'),'artifact':str(artifact.relative_to(r)),'sha256':sha(artifact),'inputs':inputs})
+ for q in d['requirements']:
+  q['evidence_ids'].append(eid)
+  q['status']='INCONCLUSIVE' if name=='product-f0-gate' and q['id']=='AC-05' and not closed else 'APPROVED'
+ d['limitations'].insert(0,'Current memory successor: '+('T903 complete within the adopted controlled boundary; earlier open/inconclusive entries below are historical.' if closed else 'Final documentary gates pending.')+' Isolated sessions, no physical scanout, direct children only, cooperative I/O cancellation; see successor report.')
+ p.write_text(json.dumps(d,indent=2)+'\n')

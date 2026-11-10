@@ -1,0 +1,141 @@
+[
+  {
+    "name": "accepted-build-examples",
+    "command": [
+      "cargo",
+      "build",
+      "--workspace",
+      "--examples",
+      "--locked",
+      "--offline"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.08209264199831523
+  },
+  {
+    "name": "backend-accepted",
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "/home/rodrigo/Projetos/ox/application/target/debug/examples/f0_measure",
+      "/home/rodrigo/Projetos/ox/application/target/debug",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-memory-20261105/backend-accepted-workspace"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 0.491840634997061
+  },
+  {
+    "name": "large-accepted-0",
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "/home/rodrigo/Projetos/ox/application/target/debug/examples/history_measure",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-memory-20261105/large-accepted-history-0",
+      "/home/rodrigo/Projetos/ox/application/target/debug/task-oracle"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 0.04412340100680012
+  },
+  {
+    "name": "large-accepted-1",
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "/home/rodrigo/Projetos/ox/application/target/debug/examples/history_measure",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-memory-20261105/large-accepted-history-1",
+      "/home/rodrigo/Projetos/ox/application/target/debug/task-oracle"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 0.0464654649986187
+  },
+  {
+    "name": "large-accepted-2",
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "/home/rodrigo/Projetos/ox/application/target/debug/examples/history_measure",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-memory-20261105/large-accepted-history-2",
+      "/home/rodrigo/Projetos/ox/application/target/debug/task-oracle"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 0.04542844300158322
+  },
+  {
+    "name": "accepted-check",
+    "command": [
+      "cargo",
+      "check",
+      "--workspace",
+      "--locked",
+      "--offline"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.22750833799364045
+  },
+  {
+    "name": "accepted-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.061691650000284426
+  },
+  {
+    "name": "accepted-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--all-targets",
+      "--locked",
+      "--offline",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit": 0,
+    "seconds": 0.31568648100073915
+  },
+  {
+    "name": "accepted-coverage",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-memory-20261105/coverage-accepted.py"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 32.52103477000492
+  },
+  {
+    "name": "accepted-flow-analysis",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-memory-20261105/check-accepted-flow.py"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 0.04247061900241533
+  },
+  {
+    "name": "accepted-history-analysis",
+    "command": [
+      "/usr/bin/python3",
+      "/home/rodrigo/Projetos/ox/docs/validation/t903-memory-20261105/check-accepted-history.py"
+    ],
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit": 0,
+    "seconds": 0.04047518599691102
+  }
+]

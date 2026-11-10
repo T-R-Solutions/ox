@@ -1,0 +1,231 @@
+{
+  "baseline": "Original F0 baseline for unchanged components; Engine immediate T903-memory resumption preimage and UI T903 preimage for changed production lines",
+  "tool": "rustc 1.99.1 LLVM 23.1.1; llvm-cov/profdata 23.1.4; merge accepted profile format",
+  "profile_count": 232,
+  "objects": 42,
+  "scope": "first-party src including handwritten UI; excludes cfg(test) modules and controlled fixture bins, tests/examples/dependencies; ignored GUI tests not executed",
+  "limitations": [
+    "Killed subprocesses do not flush counters; normal helper process profiles included",
+    "One actual native graphical journey included; no universal GUI branch/assistive coverage claim; zero denominator means N/A, never 100%",
+    "Line eligibility from LLVM DA mapping, not source line count; dev build instrumentation changes timing"
+  ],
+  "total": {
+    "covered": 1011,
+    "eligible": 1083,
+    "changed_covered": 92,
+    "changed_eligible": 97,
+    "excluded": 246
+  },
+  "components": {
+    "ox-agent": {
+      "covered": 113,
+      "eligible": 126,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "excluded": 40
+    },
+    "ox-app": {
+      "covered": 6,
+      "eligible": 6,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "excluded": 0
+    },
+    "ox-plugin": {
+      "covered": 213,
+      "eligible": 240,
+      "changed_covered": 40,
+      "changed_eligible": 45,
+      "excluded": 36
+    },
+    "ox-task": {
+      "covered": 7,
+      "eligible": 7,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "excluded": 5
+    },
+    "ox-ui": {
+      "covered": 415,
+      "eligible": 434,
+      "changed_covered": 10,
+      "changed_eligible": 10,
+      "excluded": 49
+    },
+    "ox-verification": {
+      "covered": 252,
+      "eligible": 262,
+      "changed_covered": 42,
+      "changed_eligible": 42,
+      "excluded": 116
+    },
+    "ox-workspace": {
+      "covered": 5,
+      "eligible": 8,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "excluded": 0
+    }
+  },
+  "files": [
+    {
+      "path": "application/crates/ox-agent/src/bin/local-agent.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 7,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-agent/src/bin/local-task.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 33,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-agent/src/runtime.rs",
+      "covered": 113,
+      "eligible": 126,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-app/src/main.rs",
+      "covered": 3,
+      "eligible": 3,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-app/src/startup.rs",
+      "covered": 3,
+      "eligible": 3,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-plugin/src/bin/local-plugin.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 36,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-plugin/src/host.rs",
+      "covered": 210,
+      "eligible": 237,
+      "excluded": 0,
+      "changed_covered": 40,
+      "changed_eligible": 45,
+      "uncovered_changed": [
+        198,
+        200,
+        201,
+        215,
+        221
+      ]
+    },
+    {
+      "path": "application/crates/ox-plugin/src/protocol.rs",
+      "covered": 3,
+      "eligible": 3,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-task/src/state.rs",
+      "covered": 7,
+      "eligible": 7,
+      "excluded": 5,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-ui/src/desktop.rs",
+      "covered": 263,
+      "eligible": 273,
+      "excluded": 41,
+      "changed_covered": 6,
+      "changed_eligible": 6,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-ui/src/local_task.rs",
+      "covered": 143,
+      "eligible": 152,
+      "excluded": 0,
+      "changed_covered": 4,
+      "changed_eligible": 4,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-ui/src/shell.rs",
+      "covered": 9,
+      "eligible": 9,
+      "excluded": 8,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-verification/src/bin/held-task-oracle.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 4,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-verification/src/bin/local-oracle.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 24,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-verification/src/bin/task-oracle.rs",
+      "covered": 0,
+      "eligible": 0,
+      "excluded": 13,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-verification/src/engine.rs",
+      "covered": 252,
+      "eligible": 262,
+      "excluded": 75,
+      "changed_covered": 42,
+      "changed_eligible": 42,
+      "uncovered_changed": []
+    },
+    {
+      "path": "application/crates/ox-workspace/src/root.rs",
+      "covered": 5,
+      "eligible": 8,
+      "excluded": 0,
+      "changed_covered": 0,
+      "changed_eligible": 0,
+      "uncovered_changed": []
+    }
+  ]
+}
