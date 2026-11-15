@@ -8,6 +8,9 @@ REVIEWED = "252155ba4dbe8defb06e55fae98367c457a646965d2a033b538dbb71114be54b"
 
 
 def predecessor(root, relative, data):
+    data = configuration_predecessor(root, relative, data)
+    data = visual_predecessor(root, relative, data)
+    data = maintenance_predecessor(root, relative, data)
     data = repair_predecessor(root, relative, data)
     data = operational_predecessor(root, relative, data)
     data = native_exec_predecessor(root, relative, data)
@@ -387,6 +390,149 @@ def repair_predecessor(root, relative, data):
             raise ValueError("Operational repair predecessor changed")
         if file(root, relative).read_bytes() == data and hashlib.sha256(data).hexdigest() == row["previous_sha256"]:
             raise ValueError("Operational repair predecessor downgrade: " + relative)
+        if hashlib.sha256(data).hexdigest() == row["sha256"]:
+            return previous
+    return data
+
+
+MAINTENANCE_REGISTRY = "docs/validation/repository-maintenance-20261109/succession.json"
+MAINTENANCE_REVIEWED = "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1"
+
+
+def maintenance_predecessor(root, relative, data):
+    """Accept only this reviewed content transition, preserving older checks."""
+    from readme_revision import file, unique
+
+    registry = root / MAINTENANCE_REGISTRY
+    if not registry.exists() and not registry.is_symlink():
+        return data
+    content = file(root, MAINTENANCE_REGISTRY).read_bytes()
+    if hashlib.sha256(content).hexdigest() != MAINTENANCE_REVIEWED:
+        raise ValueError("Repository maintenance registry changed")
+    for row in json.loads(content, object_pairs_hook=unique)["records"]:
+        if row["destination"] != relative:
+            continue
+        previous = file(root, row["previous"]).read_bytes()
+        if hashlib.sha256(previous).hexdigest() != row["previous_sha256"]:
+            raise ValueError("Repository maintenance predecessor changed")
+        if (file(root, relative).read_bytes() == data
+                and hashlib.sha256(data).hexdigest() == row["previous_sha256"]):
+            raise ValueError("Repository maintenance predecessor downgrade: " + relative)
+        if hashlib.sha256(data).hexdigest() == row["sha256"]:
+            return previous
+    return data
+
+
+VISUAL_REGISTRY = "docs/validation/visual-workbench-20261111/succession.json"
+VISUAL_REVIEWED = "2f940a3e30a71c6b3421219f94adbb90ac03d9d6976fc4dce4a0b197c15d4cf9"
+
+def visual_predecessor(root, relative, data):
+    """Accept only this reviewed content transition, preserving older checks."""
+    from readme_revision import file, unique
+
+    registry = root / VISUAL_REGISTRY
+    if not registry.exists() and not registry.is_symlink():
+        return data
+    content = file(root, VISUAL_REGISTRY).read_bytes()
+    if hashlib.sha256(content).hexdigest() != VISUAL_REVIEWED:
+        raise ValueError("Visual method registry changed")
+    for row in json.loads(content, object_pairs_hook=unique)["records"]:
+        if row["destination"] != relative:
+            continue
+        previous = file(root, row["previous"]).read_bytes()
+        if hashlib.sha256(previous).hexdigest() != row["previous_sha256"]:
+            raise ValueError("Visual method predecessor changed")
+        if (file(root, relative).read_bytes() == data
+                and hashlib.sha256(data).hexdigest() == row["previous_sha256"]):
+            raise ValueError("Visual method predecessor downgrade: " + relative)
+        if hashlib.sha256(data).hexdigest() == row["sha256"]:
+            return previous
+    return data
+
+
+CONFIGURATION_REGISTRY = "docs/validation/configuration-refactor-20261111/succession.json"
+CONFIGURATION_REVIEWED = '5245601ebc7c94d65d3a4c6888b08c45461bc9122f4bf60c0c1156fcacadb885'
+
+def configuration_predecessor(root, relative, data):
+    """Accept only this reviewed content transition, preserving older checks."""
+    from readme_revision import file, unique
+
+    data = complete_predecessor(root, relative, data)
+    registry = root / CONFIGURATION_REGISTRY
+    if not registry.exists() and not registry.is_symlink():
+        return data
+    content = file(root, CONFIGURATION_REGISTRY).read_bytes()
+    if hashlib.sha256(content).hexdigest() != CONFIGURATION_REVIEWED:
+        raise ValueError("Configuration cohesion registry changed")
+    for row in json.loads(content, object_pairs_hook=unique)["records"]:
+        if row["destination"] != relative:
+            continue
+        previous = file(root, row["previous"]).read_bytes()
+        if hashlib.sha256(previous).hexdigest() != row["previous_sha256"]:
+            raise ValueError("Configuration cohesion predecessor changed")
+        if (file(root, relative).read_bytes() == data
+                and hashlib.sha256(data).hexdigest() == row["previous_sha256"]):
+            raise ValueError("Configuration cohesion predecessor downgrade: " + relative)
+        if hashlib.sha256(data).hexdigest() == row["sha256"]:
+            return previous
+    return data
+
+
+COMPLETE_REGISTRY = "docs/validation/complete-repair-20261111/succession.json"
+COMPLETE_REVIEWED = "1a9c4fdd5cbc959579f5c2ac67e3555a7343922a901d3cba2adbf512281afe93"
+
+
+def complete_predecessor(root, relative, data):
+    """Authenticate only the reviewed retention/complete/documentation successor."""
+    from readme_revision import file, unique
+
+    data = defaults_predecessor(root, relative, data)
+    registry = root / COMPLETE_REGISTRY
+    if not registry.exists() and not registry.is_symlink():
+        return data
+    content = file(root, COMPLETE_REGISTRY).read_bytes()
+    if hashlib.sha256(content).hexdigest() != COMPLETE_REVIEWED:
+        raise ValueError("Complete repair registry changed")
+    for row in json.loads(content, object_pairs_hook=unique)["records"]:
+        if row["destination"] != relative:
+            continue
+        previous = file(root, row["previous"]).read_bytes()
+        if hashlib.sha256(previous).hexdigest() != row["previous_sha256"]:
+            raise ValueError("Complete repair predecessor changed")
+        if (file(root, relative).read_bytes() == data
+                and hashlib.sha256(data).hexdigest() == row["previous_sha256"]):
+            raise ValueError("Complete repair predecessor downgrade: " + relative)
+        if hashlib.sha256(data).hexdigest() == row["sha256"]:
+            return previous
+    return data
+
+
+DEFAULTS_REGISTRY = "docs/validation/scripts-defaults-20261113/succession.json"
+DEFAULTS_REVIEWED = "94e3d4b3c352c9030a9687ff7e0eee1bf0ebe1f75236377c8fe33795f54f2370"
+
+
+def defaults_predecessor(root, relative, data):
+    """Bind the authorized CLI documentation successor to observed preimages."""
+    from instruction_revision import predecessor as instruction_predecessor
+
+    data = instruction_predecessor(root, relative, data)
+    from readme_revision import file, unique
+
+    registry = root / DEFAULTS_REGISTRY
+    if not registry.exists() and not registry.is_symlink():
+        return data
+    content = file(root, DEFAULTS_REGISTRY).read_bytes()
+    if hashlib.sha256(content).hexdigest() != DEFAULTS_REVIEWED:
+        raise ValueError("Script defaults registry changed")
+    for row in json.loads(content, object_pairs_hook=unique)["records"]:
+        if row["destination"] != relative:
+            continue
+        previous = file(root, row["previous"]).read_bytes()
+        if hashlib.sha256(previous).hexdigest() != row["previous_sha256"]:
+            raise ValueError("Script defaults predecessor changed")
+        if (file(root, relative).read_bytes() == data
+                and hashlib.sha256(data).hexdigest() == row["previous_sha256"]):
+            raise ValueError("Script defaults predecessor downgrade: " + relative)
         if hashlib.sha256(data).hexdigest() == row["sha256"]:
             return previous
     return data

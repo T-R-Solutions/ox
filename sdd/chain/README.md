@@ -34,3 +34,10 @@
 - [agent-usage-accounting](agent-usage-accounting.md)
 
 - [readme-lifecycle-engineering](readme-lifecycle-engineering.md)
+
+For every used bridge, return documentation impact to the task record under
+[the shared closure contract](../workflow.md#documentation-before-task-closure).
+
+Shared routing and outcome rules live in workflow.md and evidence.md. Individual
+bridges retain selection boundaries and artifact contributions. bridge_version=1
+is the supported format; identify editorial revisions by content hash in the plan.

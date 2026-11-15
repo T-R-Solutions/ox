@@ -1,0 +1,813 @@
+--- before/application/crates/ox-ui/src/desktop.rs
++++ application/crates/ox-ui/src/desktop.rs
+@@ -3,6 +3,7 @@
+ use crate::workbench::Surface;
+ use iced::{Element, Task, widget::button};
+ use std::{
++    fmt::Write as _,
+     path::PathBuf,
+     sync::{
+         Arc, Mutex,
+@@ -226,13 +227,13 @@
+     }
+ }
+ impl Desktop {
+-    fn entry(&self) -> bool {
++    const fn entry(&self) -> bool {
+         matches!(self.surface, Surface::Start | Surface::NewProject)
+     }
+-    fn project_available(&self) -> bool {
++    const fn project_available(&self) -> bool {
+         !self.busy && !self.history_busy && !self.closing && self.picker.is_none()
+     }
+-    fn reveal(&self, id: usize) -> Task<Message> {
++    fn reveal(id: usize) -> Task<Message> {
+         iced::advanced::widget::operate(RevealControl {
+             target: iced::widget::Id::from(format!("welcome-control-{id}")),
+             bounds: None,
+@@ -379,58 +380,7 @@
+             return controls;
+         }
+         if self.entry() {
+-            let mut controls = vec![(272, Message::Navigate(Surface::Settings))];
+-            if self.project_available() {
+-                if self.surface == Surface::NewProject {
+-                    controls.extend([
+-                        (290, Message::Activate),
+-                        (291, Message::Activate),
+-                        (292, Message::ChooseFolder),
+-                        (293, Message::CreateProject),
+-                    ]);
+-                } else {
+-                    controls.extend([
+-                        (273, Message::ChooseFolder),
+-                        (274, Message::Navigate(Surface::NewProject)),
+-                    ]);
+-                    controls.push((275, Message::ManualPath));
+-                    if self.manual_path {
+-                        controls.extend([(2, Message::Activate), (3, Message::Select)]);
+-                    }
+-                    if self.history_error.is_some() {
+-                        controls.extend([
+-                            (280, Message::History(HistoryAction::Load)),
+-                            (281, Message::ResetConfirmation(true)),
+-                        ]);
+-                        if self.reset_confirmation {
+-                            controls.extend([
+-                                (282, Message::History(HistoryAction::Reset)),
+-                                (283, Message::ResetConfirmation(false)),
+-                            ]);
+-                        }
+-                    }
+-                    for (i, path) in self.recent.iter().enumerate() {
+-                        controls.extend([
+-                            (400 + i * 2, Message::OpenRecent(path.clone())),
+-                            (
+-                                401 + i * 2,
+-                                Message::History(HistoryAction::Remove(path.clone())),
+-                            ),
+-                        ]);
+-                    }
+-                }
+-            }
+-            if self.surface == Surface::NewProject && !self.busy && !self.closing {
+-                controls.push((294, Message::Navigate(Surface::Start)));
+-            }
+-            if self.surface == Surface::Start && self.selected && !self.closing {
+-                let position = controls
+-                    .iter()
+-                    .position(|(id, _)| *id == 275)
+-                    .unwrap_or(controls.len());
+-                controls.insert(position, (270, Message::Navigate(Surface::Tasks)));
+-            }
+-            return controls;
++            return self.entry_controls();
+         }
+         let mut controls = vec![
+             (212, Message::Navigation),
+@@ -508,6 +458,60 @@
+                 ]),
+                 _ => {}
+             }
++        }
++        controls
++    }
++    fn entry_controls(&self) -> Vec<(usize, Message)> {
++        let mut controls = vec![(272, Message::Navigate(Surface::Settings))];
++        if self.project_available() {
++            if self.surface == Surface::NewProject {
++                controls.extend([
++                    (290, Message::Activate),
++                    (291, Message::Activate),
++                    (292, Message::ChooseFolder),
++                    (293, Message::CreateProject),
++                ]);
++            } else {
++                controls.extend([
++                    (273, Message::ChooseFolder),
++                    (274, Message::Navigate(Surface::NewProject)),
++                ]);
++                controls.push((275, Message::ManualPath));
++                if self.manual_path {
++                    controls.extend([(2, Message::Activate), (3, Message::Select)]);
++                }
++                if self.history_error.is_some() {
++                    controls.extend([
++                        (280, Message::History(HistoryAction::Load)),
++                        (281, Message::ResetConfirmation(true)),
++                    ]);
++                    if self.reset_confirmation {
++                        controls.extend([
++                            (282, Message::History(HistoryAction::Reset)),
++                            (283, Message::ResetConfirmation(false)),
++                        ]);
++                    }
++                }
++                for (i, path) in self.recent.iter().enumerate() {
++                    controls.extend([
++                        (400 + i * 2, Message::OpenRecent(path.clone())),
++                        (
++                            401 + i * 2,
++                            Message::History(HistoryAction::Remove(path.clone())),
++                        ),
++                    ]);
++                }
++            }
++        }
++        if self.surface == Surface::NewProject && !self.busy && !self.closing {
++            controls.push((294, Message::Navigate(Surface::Start)));
++        }
++        if self.surface == Surface::Start && self.selected && !self.closing {
++            let position = controls
++                .iter()
++                .position(|(id, _)| *id == 275)
++                .unwrap_or(controls.len());
++            controls.insert(position, (270, Message::Navigate(Surface::Tasks)));
+         }
+         controls
+     }
+@@ -587,7 +591,7 @@
+                 } else {
+                     "workspace"
+                 }),
+-                self.reveal(id),
++                Self::reveal(id),
+             ]);
+         }
+         self.picker = Some(folder_picker::Request {
+@@ -762,7 +766,7 @@
+                     self.focus = Some(2);
+                     return Task::batch([
+                         iced::widget::operation::focus("workspace"),
+-                        self.reveal(2),
++                        Self::reveal(2),
+                     ]);
+                 }
+             }
+@@ -824,7 +828,7 @@
+                         Err(error) => {
+                             self.history_error = Some(format!(
+                                 "O projeto foi aberto, mas o histórico não foi salvo: {error}"
+-                            ))
++                            ));
+                         }
+                     }
+                 }
+@@ -846,7 +850,11 @@
+                         .cloned()
+                         .unwrap_or_else(|| "Abertura cancelada".into());
+                     if let Some(created) = outcome.created {
+-                        error.push_str(&format!(". A pasta foi criada e preservada em {}. Abra-a como pasta existente; não repita a criação.", created.display()));
++                        let _ = write!(
++                            error,
++                            ". A pasta foi criada e preservada em {}. Abra-a como pasta existente; não repita a criação.",
++                            created.display()
++                        );
+                     }
+                     self.workspace_error = Some(error);
+                 }
+@@ -888,7 +896,7 @@
+                 };
+                 let focus = iced::widget::operation::focus(target);
+                 if self.entry() {
+-                    return Task::batch([focus, self.reveal(controls[next].0)]);
++                    return Task::batch([focus, Self::reveal(controls[next].0)]);
+                 }
+                 if self.surface == Surface::Start
+                     && self
+@@ -950,7 +958,7 @@
+             Message::Toggle => self.details = !self.details,
+             Message::ChooseFolder => return self.choose_folder(),
+             Message::FolderChosen(id, result) => {
+-                if !self.picker.as_ref().is_some_and(|p| p.id == id) {
++                if self.picker.as_ref().is_none_or(|p| p.id != id) {
+                     return Task::none();
+                 }
+                 let picker = self.picker.take().expect("matching request");
+@@ -976,7 +984,7 @@
+                         self.focus = Some(293);
+                         return Task::batch([
+                             iced::widget::operation::focus("no-text-input"),
+-                            self.reveal(293),
++                            Self::reveal(293),
+                         ]);
+                     }
+                     Ok(Some(path)) => {
+@@ -994,7 +1002,7 @@
+                     } else {
+                         "no-text-input"
+                     }),
+-                    self.reveal(id),
++                    Self::reveal(id),
+                 ]);
+             }
+             Message::Path(path) if !self.busy && !self.closing => {
+@@ -1335,7 +1343,7 @@
+         assert!(ui.history_busy);
+         assert_eq!(ui.history_serial, 3);
+         let _ = ui.update(Message::HistoryDone(2, Ok(vec![PathBuf::from("/old")])));
+-        assert!(ui.recent.is_empty());
++        assert_eq!(ui.recent, Vec::<PathBuf>::new());
+         assert!(ui.history_busy);
+         let _ = ui.update(Message::HistoryDone(3, Ok(vec![PathBuf::from("/saved")])));
+         assert!(!ui.history_busy);
+@@ -1482,29 +1490,6 @@
+ 
+     #[test]
+     fn captured_input_click_replaces_stale_button_focus_and_enter_never_confirms_creation() {
+-        use iced::advanced::{
+-            Layout, Shell, layout,
+-            widget::{Operation, Tree, operation::Focusable},
+-        };
+-        struct Bounds {
+-            target: iced::widget::Id,
+-            found: Option<iced::Rectangle>,
+-        }
+-        impl Operation for Bounds {
+-            fn traverse(&mut self, operate: &mut dyn FnMut(&mut dyn Operation)) {
+-                operate(self);
+-            }
+-            fn focusable(
+-                &mut self,
+-                id: Option<&iced::widget::Id>,
+-                bounds: iced::Rectangle,
+-                _: &mut dyn Focusable,
+-            ) {
+-                if id == Some(&self.target) {
+-                    self.found = Some(bounds);
+-                }
+-            }
+-        }
+         let cases = [
+             (
+                 Surface::NewProject,
+@@ -1539,36 +1524,93 @@
+                 project_parent: "/tmp".into(),
+                 ..Desktop::default()
+             };
+-            let mut element = ui.view();
+-            let mut tree = Tree::new(element.as_widget());
+-            let renderer = iced::Renderer::new(crate::design::UI_FONT, iced::Pixels(16.0));
+-            let viewport = iced::Rectangle {
+-                x: 0.0,
+-                y: 0.0,
+-                width: 1280.0,
+-                height: 820.0,
+-            };
+-            let node = element.as_widget_mut().layout(
+-                &mut tree,
+-                &renderer,
+-                &layout::Limits::new(iced::Size::ZERO, viewport.size()),
+-            );
+-            let layout = Layout::new(&node);
+-            let mut bounds = Bounds {
+-                target: iced::widget::Id::new(native_id),
+-                found: None,
+-            };
+-            element
+-                .as_widget_mut()
+-                .operate(&mut tree, layout, &renderer, &mut bounds);
+-            let cursor = iced::mouse::Cursor::Available(
+-                bounds.found.expect("visible native input").center(),
+-            );
+-            let mut click_messages = Vec::new();
+-            let mut shell = Shell::new(&mut click_messages);
++            exercise_input_click(&mut ui, native_id, id, next, non_submitting);
++        }
++    }
++
++    struct Bounds {
++        target: iced::widget::Id,
++        found: Option<iced::Rectangle>,
++    }
++    impl iced::advanced::widget::Operation for Bounds {
++        fn traverse(
++            &mut self,
++            operate: &mut dyn FnMut(&mut dyn iced::advanced::widget::Operation),
++        ) {
++            operate(self);
++        }
++        fn focusable(
++            &mut self,
++            id: Option<&iced::widget::Id>,
++            bounds: iced::Rectangle,
++            _: &mut dyn iced::advanced::widget::operation::Focusable,
++        ) {
++            if id == Some(&self.target) {
++                self.found = Some(bounds);
++            }
++        }
++    }
++    fn exercise_input_click(
++        ui: &mut Desktop,
++        native_id: &'static str,
++        id: usize,
++        next: usize,
++        non_submitting: bool,
++    ) {
++        use iced::advanced::{Layout, Shell, layout, widget::Tree};
++        let mut element = ui.view();
++        let mut tree = Tree::new(element.as_widget());
++        let renderer = iced::Renderer::new(crate::design::UI_FONT, iced::Pixels(16.0));
++        let viewport = iced::Rectangle {
++            x: 0.0,
++            y: 0.0,
++            width: 1280.0,
++            height: 820.0,
++        };
++        let node = element.as_widget_mut().layout(
++            &mut tree,
++            &renderer,
++            &layout::Limits::new(iced::Size::ZERO, viewport.size()),
++        );
++        let layout = Layout::new(&node);
++        let mut bounds = Bounds {
++            target: iced::widget::Id::new(native_id),
++            found: None,
++        };
++        element
++            .as_widget_mut()
++            .operate(&mut tree, layout, &renderer, &mut bounds);
++        let cursor =
++            iced::mouse::Cursor::Available(bounds.found.expect("visible native input").center());
++        let mut click_messages = Vec::new();
++        let mut shell = Shell::new(&mut click_messages);
++        element.as_widget_mut().update(
++            &mut tree,
++            &iced::Event::Mouse(iced::mouse::Event::ButtonPressed(iced::mouse::Button::Left)),
++            layout,
++            cursor,
++            &renderer,
++            &mut iced::advanced::clipboard::Null,
++            &mut shell,
++            &viewport,
++        );
++        assert!(
++            shell.is_event_captured(),
++            "input must capture click: {native_id}"
++        );
++        assert!(
++            click_messages
++                .iter()
++                .any(|m| matches!(m, Message::InputFocused(focused) if *focused == id)),
++            "captured click must synchronize focus: {native_id}"
++        );
++        let mut submit_messages = Vec::new();
++        if non_submitting {
++            let event = enter_key_event();
++            let mut shell = Shell::new(&mut submit_messages);
+             element.as_widget_mut().update(
+                 &mut tree,
+-                &iced::Event::Mouse(iced::mouse::Event::ButtonPressed(iced::mouse::Button::Left)),
++                &event,
+                 layout,
+                 cursor,
+                 &renderer,
+@@ -1578,70 +1620,49 @@
+             );
+             assert!(
+                 shell.is_event_captured(),
+-                "input must capture click: {native_id}"
++                "Enter must not reach global button activation: {native_id}"
+             );
+             assert!(
+-                click_messages
++                submit_messages
+                     .iter()
+-                    .any(|m| matches!(m, Message::InputFocused(focused) if *focused == id)),
+-                "captured click must synchronize focus: {native_id}"
++                    .all(|m| matches!(m, Message::InputFocused(focused) if *focused == id))
+             );
+-            let mut submit_messages = Vec::new();
+-            if non_submitting {
+-                let key = iced::keyboard::Key::Named(iced::keyboard::key::Named::Enter);
+-                let event = iced::Event::Keyboard(iced::keyboard::Event::KeyPressed {
+-                    key: key.clone(),
+-                    modified_key: key,
+-                    physical_key: iced::keyboard::key::Physical::Unidentified(
+-                        iced::keyboard::key::NativeCode::Unidentified,
+-                    ),
+-                    location: iced::keyboard::Location::Standard,
+-                    modifiers: iced::keyboard::Modifiers::empty(),
+-                    text: None,
+-                    repeat: false,
+-                });
+-                let mut shell = Shell::new(&mut submit_messages);
+-                element.as_widget_mut().update(
+-                    &mut tree,
+-                    &event,
+-                    layout,
+-                    cursor,
+-                    &renderer,
+-                    &mut iced::advanced::clipboard::Null,
+-                    &mut shell,
+-                    &viewport,
+-                );
+-                assert!(
+-                    shell.is_event_captured(),
+-                    "Enter must not reach global button activation: {native_id}"
+-                );
+-                assert!(
+-                    submit_messages
+-                        .iter()
+-                        .all(|m| matches!(m, Message::InputFocused(focused) if *focused == id))
+-                );
+-            }
+-            drop(element);
+-            for message in click_messages {
+-                let _ = ui.update(message);
+-            }
+-            assert_eq!(ui.focus, Some(id));
+-            for message in submit_messages {
+-                let _ = ui.update(message);
+-            }
+-            assert!(!ui.busy);
+-            assert!(!ui.closing);
+-            assert!(ui.project_request.is_none());
+-            assert_eq!(ui.controller.lock().unwrap().attempt, 0);
+-            assert_eq!(ui.project_name, "must-not-create");
+-            assert_eq!(ui.project_parent, "/tmp");
+-            let _ = ui.update(Message::Focus(false));
+-            assert_eq!(
+-                ui.focus,
+-                Some(next),
+-                "Tab starts at actual clicked input: {native_id}"
+-            );
+-        }
++        }
++        drop(element);
++        for message in click_messages {
++            let _ = ui.update(message);
++        }
++        assert_eq!(ui.focus, Some(id));
++        for message in submit_messages {
++            let _ = ui.update(message);
++        }
++        assert!(!ui.busy);
++        assert!(!ui.closing);
++        assert!(ui.project_request.is_none());
++        assert_eq!(ui.controller.lock().unwrap().attempt, 0);
++        assert_eq!(ui.project_name, "must-not-create");
++        assert_eq!(ui.project_parent, "/tmp");
++        let _ = ui.update(Message::Focus(false));
++        assert_eq!(
++            ui.focus,
++            Some(next),
++            "Tab starts at actual clicked input: {native_id}"
++        );
++    }
++
++    fn enter_key_event() -> iced::Event {
++        let key = iced::keyboard::Key::Named(iced::keyboard::key::Named::Enter);
++        iced::Event::Keyboard(iced::keyboard::Event::KeyPressed {
++            key: key.clone(),
++            modified_key: key,
++            physical_key: iced::keyboard::key::Physical::Unidentified(
++                iced::keyboard::key::NativeCode::Unidentified,
++            ),
++            location: iced::keyboard::Location::Standard,
++            modifiers: iced::keyboard::Modifiers::empty(),
++            text: None,
++            repeat: false,
++        })
+     }
+ 
+     #[test]
+--- before/application/crates/ox-ui/src/desktop/views.rs
++++ application/crates/ox-ui/src/desktop/views.rs
+@@ -141,7 +141,6 @@
+ 
+ impl Desktop {
+     fn tracked_input<'a>(
+-        &self,
+         input: impl Into<Element<'a, Message>>,
+         id: usize,
+     ) -> Element<'a, Message> {
+@@ -264,7 +263,7 @@
+         } else {
+             input
+         };
+-        let input = self.tracked_input(input, 2);
++        let input = Self::tracked_input(input, 2);
+         let entry = self.surface == Surface::Start;
+         let path_control: Element<'_, Message> = if entry {
+             row![
+@@ -352,7 +351,22 @@
+         errors.into()
+     }
+     fn start_view(&self) -> Element<'_, Message> {
+-        let p = self.appearance.palette();
++        let intro = self.start_intro_view();
++        let recent = self.recent_projects_view();
++        if self.width > 1024.0 {
++            row![
++                container(intro).width(Length::FillPortion(2)),
++                container(recent).width(Length::FillPortion(3))
++            ]
++            .spacing(48)
++            .into()
++        } else {
++            column![intro, rule::horizontal(1), recent]
++                .spacing(28)
++                .into()
++        }
++    }
++    fn start_intro_view(&self) -> Element<'_, Message> {
+         let available = self.project_available();
+         let mut intro = column![
+             text("Bem-vindo ao Ox").font(HEADING_FONT).size(24),
+@@ -407,7 +421,7 @@
+             intro = intro.push(
+                 column![
+                     text("Caminho da pasta").font(HEADING_FONT).size(14),
+-                    container(self.tracked_input(input, 2)).id("welcome-control-2"),
++                    container(Self::tracked_input(input, 2)).id("welcome-control-2"),
+                     self.welcome_control(
+                         3,
+                         "Abrir caminho",
+@@ -427,6 +441,11 @@
+             intro = intro.push(self.paragraph("Abrindo projeto…"));
+         }
+         intro = intro.push(self.welcome_error());
++        intro.into()
++    }
++    fn recent_projects_view(&self) -> Element<'_, Message> {
++        let p = self.appearance.palette();
++        let available = self.project_available();
+         let mut recent = column![text("Projetos recentes").font(HEADING_FONT).size(20)].spacing(12);
+         if self.history_busy {
+             recent = recent.push(self.paragraph("Carregando histórico…"));
+@@ -510,18 +529,7 @@
+                 .style(move |_| design::panel(p.surface_base, p.text_primary, p.border_decorative)),
+             );
+         }
+-        if self.width > 1024.0 {
+-            row![
+-                container(intro).width(Length::FillPortion(2)),
+-                container(recent).width(Length::FillPortion(3))
+-            ]
+-            .spacing(48)
+-            .into()
+-        } else {
+-            column![intro, rule::horizontal(1), recent]
+-                .spacing(28)
+-                .into()
+-        }
++        recent.into()
+     }
+     fn new_project_view(&self) -> Element<'_, Message> {
+         let available = self.project_available();
+@@ -551,9 +559,9 @@
+             text("Novo projeto").font(HEADING_FONT).size(22),
+             self.paragraph("Crie uma pasta vazia para começar."),
+             text("Nome do projeto").font(HEADING_FONT).size(14),
+-            container(self.tracked_input(name, 290)).id("welcome-control-290"),
++            container(Self::tracked_input(name, 290)).id("welcome-control-290"),
+             text("Criar dentro de · caminho absoluto").font(HEADING_FONT).size(14),
+-            container(self.tracked_input(parent, 291)).id("welcome-control-291"),
++            container(Self::tracked_input(parent, 291)).id("welcome-control-291"),
+             self.welcome_control(292, "Escolher pasta de destino…", available.then_some(Message::ChooseFolder), ButtonRole::Secondary),
+             self.notice("Destino completo", if !std::path::Path::new(&self.project_parent).is_absolute() || self.project_name.is_empty() {"Preencha o nome e o caminho absoluto da pasta de destino.".into()} else {destination.display().to_string()}),
+             self.paragraph("Criar e abrir cria somente uma pasta vazia no destino acima. Arquivos existentes são preservados; nenhuma tarefa ou comando é iniciado."),
+@@ -1048,7 +1056,7 @@
+             Surface::NewProject=>self.new_project_view(),
+             Surface::Tasks=>column![self.workspace(),self.task_actions(),self.evidence()].spacing(self.density.gap()).into(),
+             Surface::NewTask=>self.section("Intenção da tarefa","Rascunho de apresentação · preservado apenas nesta sessão",column![
+-                text("Objetivo e restrições").size(14),self.tracked_input(text_input("Descreva o resultado esperado",&self.draft).id("task-draft").size(15).padding(10).on_input(Message::Draft).on_submit(Message::InputFocused(230)),230),
++                text("Objetivo e restrições").size(14),Self::tracked_input(text_input("Descreva o resultado esperado",&self.draft).id("task-draft").size(15).padding(10).on_input(Message::Draft).on_submit(Message::InputFocused(230)),230),
+                 self.notice("Contexto e plano","O planejador futuro deverá explicitar fontes, critérios e consequências antes da execução."),
+                 self.unavailable("Planejar tarefa · não integrado")
+             ].spacing(12).into()),
+@@ -1164,7 +1172,7 @@
+                 .spacing(12)
+                 .wrap(),
+                 self.paragraph("Busque pelo nome ou código. Enter abre o resultado selecionado."),
+-                self.tracked_input(
++                Self::tracked_input(
+                     text_input("Tarefas, arquitetura, S04…", &self.command)
+                         .id("command")
+                         .size(16)
+--- before/application/crates/ox-ui/src/desktop/project_store.rs
++++ application/crates/ox-ui/src/desktop/project_store.rs
+@@ -39,13 +39,13 @@
+ }
+ 
+ impl RecentStore {
+-    pub(super) fn new(path: PathBuf) -> Self {
++    pub(super) const fn new(path: PathBuf) -> Self {
+         Self { path }
+     }
+ 
+     pub(super) fn load(&self) -> Result<Vec<PathBuf>, String> {
+         let _lock = self.lock()?;
+-        self.read().map_err(|error| error.message())
++        self.read().map_err(ReadError::message)
+     }
+ 
+     pub(super) fn record(&self, path: &Path) -> Result<Vec<PathBuf>, String> {
+@@ -56,7 +56,7 @@
+         }
+         validate_path(&canonical).map_err(|reason| format!("Projeto inválido: {reason}"))?;
+         let _lock = self.lock()?;
+-        let mut entries = self.read().map_err(|error| error.message())?;
++        let mut entries = self.read().map_err(ReadError::message)?;
+         entries.retain(|entry| entry != &canonical);
+         entries.insert(0, canonical);
+         entries.truncate(MAX_ENTRIES);
+@@ -68,7 +68,7 @@
+         // Missing projects remain removable. UI passes the stored canonical identity.
+         validate_path(path).map_err(|reason| format!("Caminho inválido: {reason}"))?;
+         let _lock = self.lock()?;
+-        let mut entries = self.read().map_err(|error| error.message())?;
++        let mut entries = self.read().map_err(ReadError::message)?;
+         entries.retain(|entry| entry != path);
+         self.publish(&entries)?;
+         Ok(entries)
+@@ -205,7 +205,7 @@
+             let path = PathBuf::from(name);
+             match OpenOptions::new().write(true).create_new(true).open(&path) {
+                 Ok(file) => return Ok((path, file)),
+-                Err(error) if error.kind() == io::ErrorKind::AlreadyExists => continue,
++                Err(error) if error.kind() == io::ErrorKind::AlreadyExists => {}
+                 Err(error) => {
+                     return Err(format!(
+                         "Não foi possível criar {kind} dos recentes: {error}"
+@@ -363,10 +363,18 @@
+     let mut bytes = Vec::new();
+     bytes.extend_from_slice(MAGIC);
+     bytes.extend_from_slice(&VERSION.to_le_bytes());
+-    bytes.extend_from_slice(&(entries.len() as u32).to_le_bytes());
++    bytes.extend_from_slice(
++        &u32::try_from(entries.len())
++            .expect("bounded snapshot entry count")
++            .to_le_bytes(),
++    );
+     for path in entries {
+         let text = path.to_str().expect("validated UTF-8 snapshot");
+-        bytes.extend_from_slice(&(text.len() as u32).to_le_bytes());
++        bytes.extend_from_slice(
++            &u32::try_from(text.len())
++                .expect("validated bounded path length")
++                .to_le_bytes(),
++        );
+         bytes.extend_from_slice(text.as_bytes());
+     }
+     bytes
+@@ -514,7 +522,7 @@
+         let second = fixture.project("second");
+         fs::write(first.join("sentinel"), b"keep").unwrap();
+         let store = fixture.store();
+-        assert!(store.load().unwrap().is_empty());
++        assert_eq!(store.load().unwrap(), Vec::<PathBuf>::new());
+         store.record(&first).unwrap();
+         store.record(&second).unwrap();
+         assert_eq!(
+@@ -532,7 +540,7 @@
+         );
+         assert_eq!(fs::read(first.join("sentinel")).unwrap(), b"keep");
+         assert_eq!(fixture.store().remove(&second).unwrap(), vec![first]);
+-        assert!(fixture.store().reset().unwrap().is_empty());
++        assert_eq!(fixture.store().reset().unwrap(), Vec::<PathBuf>::new());
+     }
+ 
+     #[test]
+@@ -591,7 +599,7 @@
+         assert!(store.remove(&project).is_err());
+         assert_eq!(fs::read(&store.path).unwrap(), corrupt);
+         store.reset().unwrap();
+-        assert!(store.load().unwrap().is_empty());
++        assert_eq!(store.load().unwrap(), Vec::<PathBuf>::new());
+         let backups = || {
+             fs::read_dir(store.parent().unwrap())
+                 .unwrap()
+@@ -647,7 +655,7 @@
+             bytes[12..16].copy_from_slice(&count.to_le_bytes());
+             assert!(decode(&bytes).is_err());
+         }
+-        for length in [0u32, MAX_PATH_BYTES as u32 + 1, u32::MAX] {
++        for length in [0u32, u32::try_from(MAX_PATH_BYTES).unwrap() + 1, u32::MAX] {
+             let mut bytes = snapshot.clone();
+             bytes[16..20].copy_from_slice(&length.to_le_bytes());
+             assert!(decode(&bytes).is_err());
+@@ -698,23 +706,21 @@
+         let third = fixture.project("third");
+         let fourth = fixture.project("fourth");
+         let barrier = Arc::new(Barrier::new(2));
+-        let threads: Vec<_> = [third, fourth]
+-            .into_iter()
+-            .map(|path| {
+-                let barrier = barrier.clone();
+-                let store = fixture.store();
+-                std::thread::spawn(move || {
+-                    barrier.wait();
+-                    (path.clone(), store.record(&path))
+-                })
++        // Array::map eagerly starts both workers before either is joined.
++        let threads = [third, fourth].map(|path| {
++            let barrier = barrier.clone();
++            let store = fixture.store();
++            std::thread::spawn(move || {
++                barrier.wait();
++                (path.clone(), store.record(&path))
+             })
+-            .collect();
++        });
+         let successful: Vec<_> = threads
+             .into_iter()
+             .map(|thread| thread.join().unwrap())
+             .filter_map(|(path, result)| result.ok().map(|_| path))
+             .collect();
+-        assert!(!successful.is_empty());
++        assert_ne!(successful, Vec::<PathBuf>::new());
+         let loaded = fixture.store().load().unwrap();
+         assert_eq!(loaded.len(), 2 + successful.len());
+         assert!(loaded.contains(&first) && loaded.contains(&second));
+@@ -873,20 +879,18 @@
+     fn simultaneous_project_creators_have_exactly_one_winner() {
+         let fixture = Fixture::new();
+         let barrier = Arc::new(Barrier::new(2));
+-        let threads: Vec<_> = (0..2)
+-            .map(|_| {
+-                let parent = fixture.0.clone();
+-                let barrier = barrier.clone();
+-                std::thread::spawn(move || {
+-                    barrier.wait();
+-                    create_project(&parent, "shared")
+-                })
++        // Eagerly start both contenders before joining either one.
++        let threads = [(); 2].map(|()| {
++            let parent = fixture.0.clone();
++            let barrier = barrier.clone();
++            std::thread::spawn(move || {
++                barrier.wait();
++                create_project(&parent, "shared")
+             })
+-            .collect();
++        });
+         let successes = threads
+             .into_iter()
+-            .map(|thread| thread.join().unwrap())
+-            .filter(Result::is_ok)
++            .flat_map(|thread| thread.join().unwrap())
+             .count();
+         assert_eq!(successes, 1);
+         assert_eq!(fs::read_dir(fixture.0.join("shared")).unwrap().count(), 0);
+--- before/tools/governance/tests/test_instruction_validator.py
++++ tools/governance/tests/test_instruction_validator.py
+@@ -1,15 +1,15 @@
+ """Small isolated contract fixtures for A01/A04/A06, without product acceptance."""
+ 
++import hashlib
++import importlib.machinery
+ import importlib.util
+ import json
+ import os
+-from pathlib import Path
+ import subprocess
+ import sys
+ import tempfile
+-import types
+ import unittest
+-
++from pathlib import Path
+ 
+ ROOT = Path(__file__).resolve().parents[3]
+ ENTRY = ROOT / "sdd/tools/validate.py"
+@@ -119,9 +119,15 @@
+     def test_projection_mismatch_old_checker_misses_and_new_detects(self):
+         folder = self.feature("target", "UNVERIFIED")
+         (folder / "converge.md").write_text(projection([("AC-01", "APPROVED")]))
+-        old = types.ModuleType("pre_correction_validator")
+         preimage = ROOT / "docs/validation/governance-corrections-20261114/before/sdd/tools/validate.py.bin"
+-        exec(compile(preimage.read_bytes(), str(preimage), "exec"), old.__dict__)
++        self.assertEqual(
++            hashlib.sha256(preimage.read_bytes()).hexdigest(),
++            "6df3b403dc50d4d6aebcbd803a65af175ec4baf6f9c18afb21e183b0db2f3aa5",
++        )
++        loader = importlib.machinery.SourceFileLoader("pre_correction_validator", str(preimage))
++        old_spec = importlib.util.spec_from_loader(loader.name, loader)
++        old = importlib.util.module_from_spec(old_spec)
++        loader.exec_module(old)
+         self.assertEqual(old.audit(self.root), [])
+         self.assertEqual(V.audit(self.root), [])  # Portable opt-in is retained.
+         self.assertTrue(any("status mismatch" in e for e in V.audit(

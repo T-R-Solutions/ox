@@ -1,11 +1,11 @@
 """Exercise preserved originals and reject unregistered document mutations."""
 
-from pathlib import Path
 import hashlib
 import json
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 sys.path.insert(
     0, str(Path(__file__).resolve().parents[3] / "tools/governance/scripts")

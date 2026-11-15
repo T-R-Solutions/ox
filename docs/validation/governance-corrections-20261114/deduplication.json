@@ -1,0 +1,1582 @@
+{
+  "schema_version": 1,
+  "scope": "A02/A07/A09 and assigned A08 alignment; configuration-cohesion 2026-11-14",
+  "measurement": "UTF-8 bytes and whitespace-separated words; not tokens, cost, performance or model efficacy",
+  "manifest_before_edit": "9 original paths announced before write; autonomous-verification bridge separately requested and ownership transferred before write; no other skill/bridge edited",
+  "changes": [
+    {
+      "path": ".codex/config.toml",
+      "before_sha256": "14c7a79b0202da683578ff1d1a2e23f33273d500a82ce72c4dbce4f3c8d19835",
+      "after_sha256": "ed3f9ecb380bb4aeb80467ee8865d321964ce4f47213298b4dc01a6c0304bb2f",
+      "before": {
+        "bytes": 831,
+        "whitespace_words": 99
+      },
+      "after": {
+        "bytes": 1211,
+        "whitespace_words": 143
+      },
+      "maintained_owner": "D-10/D-11; common agent procedure",
+      "semantic_change": "Distinguish controller from delegated triager; allow bounded local execution and require high orchestration/independence for material risk; retain model/effort/concurrency."
+    },
+    {
+      "path": ".codex/agents/ec_triador.toml",
+      "before_sha256": "08f16da37a8333c3345aed5fa130a3c587bb7248c907b869e2853de43b7f00a4",
+      "after_sha256": "5b4d3e5bc8c2c932ec0900804d9775291f9f9a38f24425793f0fc3f2a899b40e",
+      "before": {
+        "bytes": 1741,
+        "whitespace_words": 214
+      },
+      "after": {
+        "bytes": 1868,
+        "whitespace_words": 232
+      },
+      "maintained_owner": "D-10; common agent procedure",
+      "semantic_change": "Restrict delegated specialist to read-only/no tests/no children and preserve handoff; root is distinct."
+    },
+    {
+      "path": ".codex/agents/ec_validador.toml",
+      "before_sha256": "e034481769dee5561de152ec69f0f4773ee54ad4698bd5e2df7a1d6ff8ec258b",
+      "after_sha256": "d47682eb3cce0c7bb9bfd113ffcd17519f4e039c85d5d3efb6477ece7a233347",
+      "before": {
+        "bytes": 1196,
+        "whitespace_words": 153
+      },
+      "after": {
+        "bytes": 1064,
+        "whitespace_words": 136
+      },
+      "maintained_owner": "Common agent procedure; sdd/evidence.md",
+      "semantic_change": "Replace duplicated route table/flags with mandatory common procedure; preserve criterion/oracle/input review and require complete explicitly selected feature gates."
+    },
+    {
+      "path": ".codex/agents/ec_validador_alta.toml",
+      "before_sha256": "fad05a3f5bc967f6337b477ebc3ca250ca689439dbf411af3818a46b216f6cb5",
+      "after_sha256": "b97dfe5151decbe387f09d4bbae1913ee3bb04dde7ce9bfe6625e5ad3daf00d5",
+      "before": {
+        "bytes": 1231,
+        "whitespace_words": 149
+      },
+      "after": {
+        "bytes": 1099,
+        "whitespace_words": 132
+      },
+      "maintained_owner": "Common agent procedure; sdd/evidence.md",
+      "semantic_change": "Same route delegation while retaining high-risk contradiction/consumer/failure review and resumption responsibility."
+    },
+    {
+      "path": ".codex/skills/commit-governance/SKILL.md",
+      "before_sha256": "ab7d17253b6b29418aa77de5aa25d8cd716daaeb2ad2d2a89b4c0126fed1915b",
+      "after_sha256": "ba5f5cb409c17eda4d86a7e395cfad20ac3cb8f603862c69fccfe8476abb4bac",
+      "before": {
+        "bytes": 14218,
+        "whitespace_words": 2026
+      },
+      "after": {
+        "bytes": 14815,
+        "whitespace_words": 2103
+      },
+      "maintained_owner": "AGENTS.md recipe; scripts/README.md CLI; this skill choice/failure gate",
+      "semantic_change": "Replace legacy executable recipe with maintained source/heading; retain question, Sim/Não/no-answer/failure effects; applicable explicit user choice takes precedence."
+    },
+    {
+      "path": "sdd/chain/prompt.md",
+      "before_sha256": "ae72855ae7f51edc8a8dd9034b56fac8dbdca8c1062a2fa9db6f81ce5efdd823",
+      "after_sha256": "c541a1843c51e16ad9eba10f765df19bd364a42729fbeae3df4155e85a0c86af",
+      "before": {
+        "bytes": 2941,
+        "whitespace_words": 408
+      },
+      "after": {
+        "bytes": 2751,
+        "whitespace_words": 381
+      },
+      "maintained_owner": "sdd/workflow.md; sdd/evidence.md; feature artifacts",
+      "semantic_change": "Consolidate Completion and authority plus appended Shared routing policy; preserve selection, prompt task non-execution, contributions, handoff and authority; use SDD states explicitly."
+    },
+    {
+      "path": "sdd/chain/distributed-systems.md",
+      "before_sha256": "e325cc1564ee444a1e7a095111f317ee02c704c3b71a8c314b873fc943893810",
+      "after_sha256": "133628bae27c077fde182dc86b27e74b04133ead524b730b82fd2d0430b4a319",
+      "before": {
+        "bytes": 2945,
+        "whitespace_words": 385
+      },
+      "after": {
+        "bytes": 2755,
+        "whitespace_words": 358
+      },
+      "maintained_owner": "sdd/workflow.md; sdd/evidence.md; feature artifacts",
+      "semantic_change": "Same within-file consolidation; retain independent failures/IPC exclusion, invariants, message-failure scenarios and domain-modeling handoff."
+    },
+    {
+      "path": "sdd/chain/autonomous-verification-engineering.md",
+      "before_sha256": "3e21f4001a65315a4cd7791bd014433991c7b5fc1dd4cc5fac4a710cdb4c2874",
+      "after_sha256": "baabe0c1b50a44121b0c8bf4900ca2645f5aedc6496719ab6342c691b2bd41b8",
+      "before": {
+        "bytes": 2520,
+        "whitespace_words": 318
+      },
+      "after": {
+        "bytes": 2670,
+        "whitespace_words": 341
+      },
+      "maintained_owner": "sdd/evidence.md",
+      "semantic_change": "Clarify domain pending versus SDD UNVERIFIED in Plan/ADR cell only; preserve every other contribution."
+    },
+    {
+      "path": "docs/development/codex-agents-replication.md",
+      "before_sha256": "f44246441c053c7371f4849aef0d12081ef7b073366af1d6dafbc08f1765aa6f",
+      "after_sha256": "cb5e22e0abb70a41bfa5a4468fe0eace29fbae553e9e2440f37e9ac695e3ed42",
+      "before": {
+        "bytes": 4258,
+        "whitespace_words": 548
+      },
+      "after": {
+        "bytes": 5114,
+        "whitespace_words": 637
+      },
+      "maintained_owner": "Common agent procedure; adopted ADR",
+      "semantic_change": "Align root/delegated distinction and proportional routes; retain original installation provenance/report and identify successor observations."
+    },
+    {
+      "path": "sdd/codex-agents.md",
+      "before_sha256": "1a20972fd981dbd03e2aff7921a4d197fd2e0e64e0e00eac7e6c8302a0de02d7",
+      "after_sha256": "173cd9196f88eda2cb42cca0d14505291e6b99dd854ec4576d0b1ecb5d5882dd",
+      "before": {
+        "bytes": 2343,
+        "whitespace_words": 280
+      },
+      "after": {
+        "bytes": 3739,
+        "whitespace_words": 430
+      },
+      "maintained_owner": "Common procedure; adopted ADR; original installation scope",
+      "semantic_change": "Append dated successor, preserving exact historical installation scope and original observation text."
+    }
+  ],
+  "inventory": [
+    {
+      "bridge": "sdd/chain/agent-runtime-engineering.md",
+      "skill_path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+      "skill_name": "agent-runtime-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "3e5d548ed059ed1958b6d5321ebc32f0dd19c19745b91a579f7aacd1a307e5f1",
+      "skill_sha256": "5a3509bd323b246e55e197c9b5e12b1c52a0604047b7d9c66deec273d445fa0f",
+      "skill_headings": [
+        "# agent-runtime-engineering",
+        "## Responsibility and selection",
+        "## Inputs and gaps",
+        "## Operating procedure",
+        "## Deliverables and acceptance",
+        "## Boundaries and handoff",
+        "## Specialized references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: ACP/CLI adapter, process supervisor, session/task state, parallel agents, cancellation and resumption.\n\nDo not select for: standalone prompts, model comparison or response quality evaluation without effects; use ai-engineering.",
+        "Inputs and contributions": "Known inputs: supported protocols, executables/versioning, permission policy, resources, session semantics, events and limits. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Sessions and tasks have legal states, stable identifiers and rejected transitions. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Standard adapter (e.g. ACP) with agent-specific fallback; version capabilities. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Create controllable fakes and minimal ACP/CLI integration. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. state machine, testable adapters, ordered events, process controls, cancellation handling, policy integration |",
+        "Conditional handoff": "Optional specialist: `reliability-engineering`. Specific unresolved question: “How can orphaned processes, duplicate effects and event loss be bounded during failures?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "5a3509bd323b246e55e197c9b5e12b1c52a0604047b7d9c66deec273d445fa0f",
+      "bridge_after_sha256": "3e5d548ed059ed1958b6d5321ebc32f0dd19c19745b91a579f7aacd1a307e5f1",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7458,
+        "whitespace_words": 921
+      },
+      "after": {
+        "bytes": 7458,
+        "whitespace_words": 921
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: ACP/CLI adapter, process supervisor, session/task state, parallel agents, cancellation and resumption.\n\nDo not select for: standalone prompts, model comparison or response quality evaluation without effects; use ai-engineering.",
+        "Inputs and contributions": "Known inputs: supported protocols, executables/versioning, permission policy, resources, session semantics, events and limits. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Sessions and tasks have legal states, stable identifiers and rejected transitions. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Standard adapter (e.g. ACP) with agent-specific fallback; version capabilities. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Create controllable fakes and minimal ACP/CLI integration. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. state machine, testable adapters, ordered events, process controls, cancellation handling, policy integration |",
+        "Conditional handoff": "Optional specialist: `reliability-engineering`. Specific unresolved question: “How can orphaned processes, duplicate effects and event loss be bounded during failures?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/agent-usage-accounting.md",
+      "skill_path": ".codex/skills/agent-usage-accounting/SKILL.md",
+      "skill_name": "agent-usage-accounting",
+      "bridge_version": "1",
+      "bridge_sha256": "a22b3699f395fe16760e62473c270fe7bbd168e3f539c3022918f40d81989fd8",
+      "skill_sha256": "0ae44003e7679a7c21ea0a865808c8c8121f15fb36bec8d956ec6d05b45f9fd3",
+      "skill_headings": [
+        "# agent-usage-accounting",
+        "## Responsibility and selection",
+        "## Inputs and gaps",
+        "## Operating procedure",
+        "## Deliverables and acceptance",
+        "## Boundaries and handoff",
+        "## Specialized references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Token counts by chat/day/project, multi-model costs, context windows, caching, prices and usage reports.\n\nDo not select for: generic CPU/RAM instrumentation; use observability-and-diagnostics. Do not confuse functional progress with context consumption.",
+        "Inputs and contributions": "Known inputs: provider/agent events, token/cache types, versioned rates, intervals, session/task identity. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Records distinguish provider-supplied measurements, derivations and estimates. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Immutable usage-event ledger plus computed views; do not mutate measured events. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Create fixtures with caching, replay, partial streaming and missing pricing. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. usage ledger schema, duplicate and gap rules, period views, provenance and estimate accuracy |",
+        "Conditional handoff": "Optional specialist: `observability-and-diagnostics`. Specific unresolved question: “Does the usage event arrive in full, and can it be correlated without violating privacy?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "0ae44003e7679a7c21ea0a865808c8c8121f15fb36bec8d956ec6d05b45f9fd3",
+      "bridge_after_sha256": "a22b3699f395fe16760e62473c270fe7bbd168e3f539c3022918f40d81989fd8",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7240,
+        "whitespace_words": 898
+      },
+      "after": {
+        "bytes": 7240,
+        "whitespace_words": 898
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Token counts by chat/day/project, multi-model costs, context windows, caching, prices and usage reports.\n\nDo not select for: generic CPU/RAM instrumentation; use observability-and-diagnostics. Do not confuse functional progress with context consumption.",
+        "Inputs and contributions": "Known inputs: provider/agent events, token/cache types, versioned rates, intervals, session/task identity. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Records distinguish provider-supplied measurements, derivations and estimates. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Immutable usage-event ledger plus computed views; do not mutate measured events. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Create fixtures with caching, replay, partial streaming and missing pricing. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. usage ledger schema, duplicate and gap rules, period views, provenance and estimate accuracy |",
+        "Conditional handoff": "Optional specialist: `observability-and-diagnostics`. Specific unresolved question: “Does the usage event arrive in full, and can it be correlated without violating privacy?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/ai-engineering.md",
+      "skill_path": ".codex/skills/ai-engineering/SKILL.md",
+      "skill_name": "ai-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "ed9e03c5180a7f096fe6b649aee4af48c16ccc426a8aeb12ac107ba8bc026a7f",
+      "skill_sha256": "af749b1b5b65d5116c69b637f8d5c6407cec37b3f200a0157566895a11ebf079",
+      "skill_headings": [
+        "# AI Engineering",
+        "## Establish the contract",
+        "## Workflow",
+        "## Output and limits"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for implementation, evaluation or diagnosis of a foundation-model application,\nincluding retrieval, tool-using agents, adaptation and inference trade-offs.\nDo not select for prompt-only drafting, ordinary deterministic software or training\na foundation model from scratch. Read the selected skill for the technical method.\nRecord selection and its reason in the feature plan; catalog presence is not activation.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n| --- | --- |\n| Constitution | Read existing project principles, data permissions and effect authority. Introduce no provider-specific policy or consent to upload data. |\n| Spec | Identify the task, supported population, observable completion, unacceptable errors, no-answer behavior and relevant quality/cost/latency constraints. Each criterion needs a concrete scenario and an oracle; do not invent thresholds. |\n| Plan / ADR | Identify the application baseline, model/configuration, corpus/index, tools and evaluator versions. Map the diagnosed failure to intervention alternatives and trade-offs; link requirement, decision and risk IDs. |\n| Tasks | Name changed surfaces, authorized fixtures/data, actual tools, dependencies and completion checks. Separate deterministic integration checks from actual model trials and component results from final effects. |\n| Evidence / convergence | Return criterion IDs, baseline/candidate results on comparable cases, observed variability/cost, denied effects, failures and remaining gaps. Identify model/prompt/data/tool/evaluator versions needed to interpret the evidence. |\n\nKeep evaluation examples and sensitive inputs within the project's authorized\nscope. The bridge grants no API spending, data transfer, deployment or tool-effect\npermission. Discover actual capabilities and versions before execution; an\nunavailable model leaves the corresponding quality criterion unverified.\nA mock tool or generated success message cannot establish real task completion.",
+        "Conditional handoff": "Optional specialist: `application-security`.\nQuestion: “Can retrieved content or model-selected arguments cause data disclosure\nor an effect beyond the caller's authority?” Consult only if unresolved and that\nskill is available. Supply affected requirement/task IDs, boundary, facts,\nconstraints, needed evidence and existing permission scope. Do not recursively\nactivate skills or claim work by an absent specialist; record a material gap and\ncontinue independent work.",
+        "Completion and authority": "Use the destination SDD's outcome vocabulary. Return every applicable criterion\nwith evidence or an explicit pending/inconclusive status. Separate structural\nchecks, semantic review, deterministic execution, actual model trials and production\nobservations. The spec owns behavior, plan/ADRs own decisions and tasks own executable\nwork. The bridge cannot override those artifacts or expand authorization."
+      },
+      "skill_after_sha256": "af749b1b5b65d5116c69b637f8d5c6407cec37b3f200a0157566895a11ebf079",
+      "bridge_after_sha256": "ed9e03c5180a7f096fe6b649aee4af48c16ccc426a8aeb12ac107ba8bc026a7f",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7722,
+        "whitespace_words": 996
+      },
+      "after": {
+        "bytes": 7722,
+        "whitespace_words": 996
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for implementation, evaluation or diagnosis of a foundation-model application,\nincluding retrieval, tool-using agents, adaptation and inference trade-offs.\nDo not select for prompt-only drafting, ordinary deterministic software or training\na foundation model from scratch. Read the selected skill for the technical method.\nRecord selection and its reason in the feature plan; catalog presence is not activation.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n| --- | --- |\n| Constitution | Read existing project principles, data permissions and effect authority. Introduce no provider-specific policy or consent to upload data. |\n| Spec | Identify the task, supported population, observable completion, unacceptable errors, no-answer behavior and relevant quality/cost/latency constraints. Each criterion needs a concrete scenario and an oracle; do not invent thresholds. |\n| Plan / ADR | Identify the application baseline, model/configuration, corpus/index, tools and evaluator versions. Map the diagnosed failure to intervention alternatives and trade-offs; link requirement, decision and risk IDs. |\n| Tasks | Name changed surfaces, authorized fixtures/data, actual tools, dependencies and completion checks. Separate deterministic integration checks from actual model trials and component results from final effects. |\n| Evidence / convergence | Return criterion IDs, baseline/candidate results on comparable cases, observed variability/cost, denied effects, failures and remaining gaps. Identify model/prompt/data/tool/evaluator versions needed to interpret the evidence. |\n\nKeep evaluation examples and sensitive inputs within the project's authorized\nscope. The bridge grants no API spending, data transfer, deployment or tool-effect\npermission. Discover actual capabilities and versions before execution; an\nunavailable model leaves the corresponding quality criterion unverified.\nA mock tool or generated success message cannot establish real task completion.",
+        "Conditional handoff": "Optional specialist: `application-security`.\nQuestion: “Can retrieved content or model-selected arguments cause data disclosure\nor an effect beyond the caller's authority?” Consult only if unresolved and that\nskill is available. Supply affected requirement/task IDs, boundary, facts,\nconstraints, needed evidence and existing permission scope. Do not recursively\nactivate skills or claim work by an absent specialist; record a material gap and\ncontinue independent work.",
+        "Completion and authority": "Use the destination SDD's outcome vocabulary. Return every applicable criterion\nwith evidence or an explicit pending/inconclusive status. Separate structural\nchecks, semantic review, deterministic execution, actual model trials and production\nobservations. The spec owns behavior, plan/ADRs own decisions and tasks own executable\nwork. The bridge cannot override those artifacts or expand authorization."
+      }
+    },
+    {
+      "bridge": "sdd/chain/api-testing.md",
+      "skill_path": ".codex/skills/api-testing/SKILL.md",
+      "skill_name": "api-testing",
+      "bridge_version": "1",
+      "bridge_sha256": "89f4329f277950e1d29f35f62f8886829b60d601546a93508a6f0d2f04fda76a",
+      "skill_sha256": "10007c2c78eb4249ae7c646107b32a21b63b0d7eb1a98860ff420e6d0a33cf5e",
+      "skill_headings": [
+        "# API Testing",
+        "## Establish the boundary",
+        "## Design and execute checks",
+        "## Essential decisions",
+        "## Completion evidence",
+        "## Load only relevant detail",
+        "## Additional investigation references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Protocol, consumer compatibility or authorization boundary.\nDo not select for: Pure calculation with no boundary risk.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish actors, authorization matrix, protocol contracts and compatibility. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve consumer/provider boundaries, test environment and identity assumptions. Link the requirement, decision and risk IDs. |\n| Tasks | Exercise positive/negative requests and independently check state and side effects. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `application-security`.\nTechnical question: “Can a permitted reader grant privileges or mutate another owner object?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "10007c2c78eb4249ae7c646107b32a21b63b0d7eb1a98860ff420e6d0a33cf5e",
+      "bridge_after_sha256": "89f4329f277950e1d29f35f62f8886829b60d601546a93508a6f0d2f04fda76a",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 8709,
+        "whitespace_words": 1129
+      },
+      "after": {
+        "bytes": 8709,
+        "whitespace_words": 1129
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Protocol, consumer compatibility or authorization boundary.\nDo not select for: Pure calculation with no boundary risk.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish actors, authorization matrix, protocol contracts and compatibility. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve consumer/provider boundaries, test environment and identity assumptions. Link the requirement, decision and risk IDs. |\n| Tasks | Exercise positive/negative requests and independently check state and side effects. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `application-security`.\nTechnical question: “Can a permitted reader grant privileges or mutate another owner object?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/application-security.md",
+      "skill_path": ".codex/skills/application-security/SKILL.md",
+      "skill_name": "application-security",
+      "bridge_version": "1",
+      "bridge_sha256": "ebb22cfd335e74cb114b16d0f4599074b55281af07514ebe0b0d4dcbac9457c0",
+      "skill_sha256": "0d992c0538df30bd5e0c6be689990184ec51671225809eac0f01759cc08257c4",
+      "skill_headings": [
+        "# Application Security",
+        "## Scope and evidence",
+        "## Workflow",
+        "## Essential constraints",
+        "## Completion and reporting",
+        "## Additional investigation references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Trust boundary, sensitive operation or abuse path.\nDo not select for: Cosmetic change without security impact.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish assets, trust boundaries, abuse scenarios and required denial behavior. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve threats, control alternatives, privilege assumptions and residual risk. Link the requirement, decision and risk IDs. |\n| Tasks | Implement scoped controls and negative checks; verify denied effects and recovery. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `reliability-engineering`.\nTechnical question: “Does rejection under exhaustion preserve authorization and recovery?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "0d992c0538df30bd5e0c6be689990184ec51671225809eac0f01759cc08257c4",
+      "bridge_after_sha256": "ebb22cfd335e74cb114b16d0f4599074b55281af07514ebe0b0d4dcbac9457c0",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 9228,
+        "whitespace_words": 1162
+      },
+      "after": {
+        "bytes": 9228,
+        "whitespace_words": 1162
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Trust boundary, sensitive operation or abuse path.\nDo not select for: Cosmetic change without security impact.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish assets, trust boundaries, abuse scenarios and required denial behavior. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve threats, control alternatives, privilege assumptions and residual risk. Link the requirement, decision and risk IDs. |\n| Tasks | Implement scoped controls and negative checks; verify denied effects and recovery. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `reliability-engineering`.\nTechnical question: “Does rejection under exhaustion preserve authorization and recovery?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/autonomous-verification-engineering.md",
+      "skill_path": ".codex/skills/autonomous-verification-engineering/SKILL.md",
+      "skill_name": "autonomous-verification-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "3e21f4001a65315a4cd7791bd014433991c7b5fc1dd4cc5fac4a710cdb4c2874",
+      "skill_sha256": "5ddf5e56747ec5aa418e1a97ad8f08d61cdb7e26c3a5be4c68cb4bfe1bf38958",
+      "skill_headings": [
+        "# autonomous-verification-engineering",
+        "## Responsibility and selection",
+        "## Inputs and gaps",
+        "## Operating procedure",
+        "## Deliverables and acceptance",
+        "## Boundaries and handoff",
+        "## Specialized references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Systems that accept/reject agent deliverables; evidence, criteria, gates, autonomous execution and false acceptance risk.\n\nDo not select for: Do not use solely to create unit tests or investigate flaky tests; software-testing owns those methods. Do not produce an uncalibrated “confidence score.”",
+        "Inputs and contributions": "Known inputs: normative criteria, code snapshots, authorized tests/checkers, change risk, approval policy. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Every verdict is bound to an explicit criterion, method and input snapshot. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Separate states: pending, approved, rejected, inconclusive, justified not applicable. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Create fixtures with false tests, failures, skips and post-validation changes. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. gate model, auditable states, requirement-evidence-snapshot bindings, implementation/oracle separation, replay procedures |",
+        "Conditional handoff": "Optional specialist: `software-testing`. Specific unresolved question: “Does the chosen oracle actually fail when a representative defect is introduced?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "5ddf5e56747ec5aa418e1a97ad8f08d61cdb7e26c3a5be4c68cb4bfe1bf38958",
+      "bridge_after_sha256": "baabe0c1b50a44121b0c8bf4900ca2645f5aedc6496719ab6342c691b2bd41b8",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": false,
+      "before": {
+        "bytes": 7458,
+        "whitespace_words": 920
+      },
+      "after": {
+        "bytes": 7608,
+        "whitespace_words": 943
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Clarify domain pending versus SDD UNVERIFIED in Plan/ADR cell only; preserve every other contribution.",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Systems that accept/reject agent deliverables; evidence, criteria, gates, autonomous execution and false acceptance risk.\n\nDo not select for: Do not use solely to create unit tests or investigate flaky tests; software-testing owns those methods. Do not produce an uncalibrated “confidence score.”",
+        "Inputs and contributions": "Known inputs: normative criteria, code snapshots, authorized tests/checkers, change risk, approval policy. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Every verdict is bound to an explicit criterion, method and input snapshot. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Separate domain lifecycle states (including pending) from SDD verdicts; pending is not an SDD status. Record acceptance with the five states in [evidence](../evidence.md), using UNVERIFIED when required evidence has not been collected. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Create fixtures with false tests, failures, skips and post-validation changes. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. gate model, auditable states, requirement-evidence-snapshot bindings, implementation/oracle separation, replay procedures |",
+        "Conditional handoff": "Optional specialist: `software-testing`. Specific unresolved question: “Does the chosen oracle actually fail when a representative defect is introduced?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/code-context-engineering.md",
+      "skill_path": ".codex/skills/code-context-engineering/SKILL.md",
+      "skill_name": "code-context-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "a524b7e3d76de6ecc3811f2627cb5b6530bb8335075211b16da43e78082c5153",
+      "skill_sha256": "7c0575374cd0f098bea28943fbbc44e0e4d45fee986b3fbd86241b1a0e4f8885",
+      "skill_headings": [
+        "# code-context-engineering",
+        "## Responsibility and selection",
+        "## Inputs and gaps",
+        "## Operating procedure",
+        "## Deliverables and acceptance",
+        "## Boundaries and handoff",
+        "## Specialized references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Indexing/invalidators, code search, AST/LSP analysis, context selection, caching, freshness and retrieval evidence.\n\nDo not select for: generic document RAG without code; ai-engineering covers that. Do not treat an AST as proof of call resolution.",
+        "Inputs and contributions": "Known inputs: repository/snapshot, ignore rules, supported languages, symbol model, resource budgets and queries. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Queries return context bound to an identifiable repository version. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Always-useful path/text index, incremental parser per language and LSP only when justified. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Define optional LSP integration and evidence semantics. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. versioned index, search APIs, ranking, provenance, incremental invalidation, accuracy/cost tests and degradation |",
+        "Conditional handoff": "Optional specialist: `ai-engineering`. Specific unresolved question: “Does retrieval actually improve task success compared with simple search?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "7c0575374cd0f098bea28943fbbc44e0e4d45fee986b3fbd86241b1a0e4f8885",
+      "bridge_after_sha256": "a524b7e3d76de6ecc3811f2627cb5b6530bb8335075211b16da43e78082c5153",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7316,
+        "whitespace_words": 914
+      },
+      "after": {
+        "bytes": 7316,
+        "whitespace_words": 914
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Indexing/invalidators, code search, AST/LSP analysis, context selection, caching, freshness and retrieval evidence.\n\nDo not select for: generic document RAG without code; ai-engineering covers that. Do not treat an AST as proof of call resolution.",
+        "Inputs and contributions": "Known inputs: repository/snapshot, ignore rules, supported languages, symbol model, resource budgets and queries. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Queries return context bound to an identifiable repository version. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Always-useful path/text index, incremental parser per language and LSP only when justified. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Define optional LSP integration and evidence semantics. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. versioned index, search APIs, ranking, provenance, incremental invalidation, accuracy/cost tests and degradation |",
+        "Conditional handoff": "Optional specialist: `ai-engineering`. Specific unresolved question: “Does retrieval actually improve task success compared with simple search?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/code-knowledge-graph-engineering.md",
+      "skill_path": ".codex/skills/code-knowledge-graph-engineering/SKILL.md",
+      "skill_name": "code-knowledge-graph-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "b1361a74e0303f4a6e13ff0bde5b122aa2a2a90db93e0318d73d4c38542a357d",
+      "skill_sha256": "e63d51b399f6ca80c3e9cd39e009512090319bf720c66125e8f857564420aaf2",
+      "skill_headings": [
+        "# code-knowledge-graph-engineering",
+        "## Responsibility and selection",
+        "## Inputs and gaps",
+        "## Operating procedure",
+        "## Deliverables and acceptance",
+        "## Boundaries and handoff",
+        "## Specialized references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Node/edge schema, provenance, impact analysis, paths, clusters and subgraph/density visualization.\n\nDo not select for: a marketing graph or static presentation; use design-system/design-review. Do not replace a compiler/LSP with embeddings.",
+        "Inputs and contributions": "Known inputs: stable identities, extracted/inferred relationships, snapshots, impact queries, cardinality and layout limits. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Nodes/edges have types, identity and provenance bound to the snapshot. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Typed node/edge model with stable IDs and a per-snapshot source of truth. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Test incremental invalidation and distinguish inferences. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. versioned graph contract, bounded queries, edge traceability, invalidation policies, structural/dense modes |",
+        "Conditional handoff": "Optional specialist: `code-context-engineering`. Specific unresolved question: “Can the edge's origin be verified in the indexed code snapshot?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "e63d51b399f6ca80c3e9cd39e009512090319bf720c66125e8f857564420aaf2",
+      "bridge_after_sha256": "b1361a74e0303f4a6e13ff0bde5b122aa2a2a90db93e0318d73d4c38542a357d",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7218,
+        "whitespace_words": 883
+      },
+      "after": {
+        "bytes": 7218,
+        "whitespace_words": 883
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Node/edge schema, provenance, impact analysis, paths, clusters and subgraph/density visualization.\n\nDo not select for: a marketing graph or static presentation; use design-system/design-review. Do not replace a compiler/LSP with embeddings.",
+        "Inputs and contributions": "Known inputs: stable identities, extracted/inferred relationships, snapshots, impact queries, cardinality and layout limits. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Nodes/edges have types, identity and provenance bound to the snapshot. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Typed node/edge model with stable IDs and a per-snapshot source of truth. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Test incremental invalidation and distinguish inferences. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. versioned graph contract, bounded queries, edge traceability, invalidation policies, structural/dense modes |",
+        "Conditional handoff": "Optional specialist: `code-context-engineering`. Specific unresolved question: “Can the edge's origin be verified in the indexed code snapshot?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/commit-governance.md",
+      "skill_path": ".codex/skills/commit-governance/SKILL.md",
+      "skill_name": "commit-governance",
+      "bridge_version": "1",
+      "bridge_sha256": "c52ac3679dd9e0aedde79fd7d8679fc2d57035abdd3e19cc3f310c8bd733d16d",
+      "skill_sha256": "ab7d17253b6b29418aa77de5aa25d8cd716daaeb2ad2d2a89b4c0126fed1915b",
+      "skill_headings": [
+        "# Commit Governance — Ox",
+        "## Scope",
+        "## Interpret tags by context",
+        "## Commit convention",
+        "## GitHub labels",
+        "## Authorization boundaries",
+        "## Commit workflow",
+        "## Pre-commit automation choice",
+        "## Git tags and GitHub releases",
+        "## Security and data integrity",
+        "## Result format"
+      ],
+      "bridge_sections": {},
+      "skill_after_sha256": "ba5f5cb409c17eda4d86a7e395cfad20ac3cb8f603862c69fccfe8476abb4bac",
+      "bridge_after_sha256": "c52ac3679dd9e0aedde79fd7d8679fc2d57035abdd3e19cc3f310c8bd733d16d",
+      "skill_bytes_unchanged": false,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 15103,
+        "whitespace_words": 2139
+      },
+      "after": {
+        "bytes": 15700,
+        "whitespace_words": 2216
+      },
+      "method_disposition": "Only Commit workflow item 4 and Pre-commit automation choice changed; other technical sections exact",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {}
+    },
+    {
+      "bridge": "sdd/chain/database-engineering.md",
+      "skill_path": ".codex/skills/database-engineering/SKILL.md",
+      "skill_name": "database-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "403090433335485b9d3af544cb5a8a27aa6f2c1447648bc2cd9ef1d736b9c1f1",
+      "skill_sha256": "9fcee66df99fda30e51a004dd16143e2ac1fde12a4398cb8da88ec4ca72ab686",
+      "skill_headings": [
+        "# Database Engineering",
+        "## Procedure",
+        "## Boundaries and output"
+      ],
+      "bridge_sections": {
+        "Select and do not select": "Select when the feature has a concrete persistence modeling, transaction, query/access\nor migration question and this skill is available at the configured path. Assess\nconcurrency only when relevant to the invariant or workload. Do not select for a\nmechanical/cosmetic change without a persistence question, or merely because another selected bridge mentions this one.\nRead the skill's actual activation boundaries; choose one primary skill and auxiliaries\nonly for unresolved questions. No recursive activation or dependency installation.",
+        "Inputs and contributions": "Supply requirement/criterion, decision, risk and task IDs, authorized scope, schema, emitted SQL, invariants, writers, workload and recovery constraints.\nKeep unknowns explicit and preserve the destination project's authorities.\n\n| Artifact | Contribution |\n| --- | --- |\n| Constitution | Reconcile existing principles, security/data and operational constraints; introduce no product policy or fixed target. |\n| Spec | Identify persistence invariants, data semantics and, where relevant, rejected concurrent outcomes. |\n| Plan / ADR | Connect requirement → decision/risk IDs to schema/transaction/access alternatives, enforcement boundaries and migration risks. |\n| Tasks | Name bounded work, actual inputs/tools, stop conditions and expected evidence: schema/query changes, concurrency schedules, backfill and reconciliation. |\n| Evidence / convergence | Return criterion/task IDs, environment, observation and limitations: committed data, invariant checks, query measurements and recovery limits. |",
+        "Conditional handoff": "Consult postgresql for an unresolved PostgreSQL-specific mechanism only when available and needed. Supply IDs, observations, constraints\nand existing permission scope. Absence is an explicit gap, not a completed consultation.\nThe bridge maps contributions; the skill owns its technical procedure.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "9fcee66df99fda30e51a004dd16143e2ac1fde12a4398cb8da88ec4ca72ab686",
+      "bridge_after_sha256": "403090433335485b9d3af544cb5a8a27aa6f2c1447648bc2cd9ef1d736b9c1f1",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 5624,
+        "whitespace_words": 708
+      },
+      "after": {
+        "bytes": 5624,
+        "whitespace_words": 708
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Select and do not select": "Select when the feature has a concrete persistence modeling, transaction, query/access\nor migration question and this skill is available at the configured path. Assess\nconcurrency only when relevant to the invariant or workload. Do not select for a\nmechanical/cosmetic change without a persistence question, or merely because another selected bridge mentions this one.\nRead the skill's actual activation boundaries; choose one primary skill and auxiliaries\nonly for unresolved questions. No recursive activation or dependency installation.",
+        "Inputs and contributions": "Supply requirement/criterion, decision, risk and task IDs, authorized scope, schema, emitted SQL, invariants, writers, workload and recovery constraints.\nKeep unknowns explicit and preserve the destination project's authorities.\n\n| Artifact | Contribution |\n| --- | --- |\n| Constitution | Reconcile existing principles, security/data and operational constraints; introduce no product policy or fixed target. |\n| Spec | Identify persistence invariants, data semantics and, where relevant, rejected concurrent outcomes. |\n| Plan / ADR | Connect requirement → decision/risk IDs to schema/transaction/access alternatives, enforcement boundaries and migration risks. |\n| Tasks | Name bounded work, actual inputs/tools, stop conditions and expected evidence: schema/query changes, concurrency schedules, backfill and reconciliation. |\n| Evidence / convergence | Return criterion/task IDs, environment, observation and limitations: committed data, invariant checks, query measurements and recovery limits. |",
+        "Conditional handoff": "Consult postgresql for an unresolved PostgreSQL-specific mechanism only when available and needed. Supply IDs, observations, constraints\nand existing permission scope. Absence is an explicit gap, not a completed consultation.\nThe bridge maps contributions; the skill owns its technical procedure.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/design-review.md",
+      "skill_path": ".codex/skills/design-review/SKILL.md",
+      "skill_name": "design-review",
+      "bridge_version": "1",
+      "bridge_sha256": "5a348fddd7c7893db3f8312369546759243cfa82e59365fbc6eb1f27c8cb86b2",
+      "skill_sha256": "b5b4716458d9f14a43292434f46f5c46ce523bffbf90f30b9cfad0d929252c29",
+      "skill_headings": [
+        "# Design Review",
+        "## Scope and evidence",
+        "## Workflow",
+        "## Constraints",
+        "## Report"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Journey inspection or evidence-based design rationale.\nDo not select for: Routine agreed component implementation.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish user tasks, observable usability and accessibility acceptance. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve evidence sources, design alternatives and decision rationale. Link the requirement, decision and risk IDs. |\n| Tasks | Inspect actual interfaces and report reproducible findings with limitations. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `design-system`.\nTechnical question: “Which shared component contract causes the observed keyboard failure?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "b5b4716458d9f14a43292434f46f5c46ce523bffbf90f30b9cfad0d929252c29",
+      "bridge_after_sha256": "5a348fddd7c7893db3f8312369546759243cfa82e59365fbc6eb1f27c8cb86b2",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 8072,
+        "whitespace_words": 1078
+      },
+      "after": {
+        "bytes": 8072,
+        "whitespace_words": 1078
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Journey inspection or evidence-based design rationale.\nDo not select for: Routine agreed component implementation.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish user tasks, observable usability and accessibility acceptance. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve evidence sources, design alternatives and decision rationale. Link the requirement, decision and risk IDs. |\n| Tasks | Inspect actual interfaces and report reproducible findings with limitations. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `design-system`.\nTechnical question: “Which shared component contract causes the observed keyboard failure?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/design-system.md",
+      "skill_path": ".codex/skills/design-system/SKILL.md",
+      "skill_name": "design-system",
+      "bridge_version": "1",
+      "bridge_sha256": "767d06b6c574f2c4909a8dea954e6f98ca5f92c460eee7d2daf48fe433f28cce",
+      "skill_sha256": "bd5c8bac71c275efc4cfc2ae31b2ac7d2e009014a32ffecb91918e5b39279e96",
+      "skill_headings": [
+        "# Design System",
+        "## Scope and evidence",
+        "## Workflow",
+        "## Decision constraints",
+        "## Completion and report"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Shared tokens, component states or contracts.\nDo not select for: Unrelated backend change.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish component states, interaction and accessibility outcomes. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve tokens, shared component contracts and reuse alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Implement the affected components and verify visual/interaction/accessibility behavior. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `design-review`.\nTechnical question: “Can users recover focus and input after this component fails?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "bd5c8bac71c275efc4cfc2ae31b2ac7d2e009014a32ffecb91918e5b39279e96",
+      "bridge_after_sha256": "767d06b6c574f2c4909a8dea954e6f98ca5f92c460eee7d2daf48fe433f28cce",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 6964,
+        "whitespace_words": 896
+      },
+      "after": {
+        "bytes": 6964,
+        "whitespace_words": 896
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Shared tokens, component states or contracts.\nDo not select for: Unrelated backend change.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish component states, interaction and accessibility outcomes. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve tokens, shared component contracts and reuse alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Implement the affected components and verify visual/interaction/accessibility behavior. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `design-review`.\nTechnical question: “Can users recover focus and input after this component fails?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/distributed-systems.md",
+      "skill_path": ".codex/skills/distributed-systems/SKILL.md",
+      "skill_name": "distributed-systems",
+      "bridge_version": "1",
+      "bridge_sha256": "e325cc1564ee444a1e7a095111f317ee02c704c3b71a8c314b873fc943893810",
+      "skill_sha256": "8b23f56dfa9e47ad13153e4118cc9c0a2433faf0bf27470200a1bf65c5849f16",
+      "skill_headings": [
+        "# Distributed Systems",
+        "## Scope and evidence",
+        "## Workflow",
+        "## Essential constraints",
+        "## Completion and report",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Independent failure domains or delivery guarantees.\nDo not select for: Local-only state change.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish consistency, ordering, duplication and partial-failure guarantees. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve failure domains, ownership, coordination and delivery alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Exercise lost/delayed/duplicated messages and recovery against explicit invariants. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `domain-modeling`.\nTechnical question: “Which intermediate state is forbidden during cross-node recovery?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Use the outcome vocabulary defined by the destination SDD. Return every applicable\ncriterion with its evidence or explicit pending/inconclusive status. The feature's\nspec defines behavior; plan/ADRs define decisions; tasks define executable work.\nThis bridge cannot override those artifacts or expand authorization. Changes to\nproduct rules belong in their authoritative artifact, not in this bridge.",
+        "Conditional project profile": "Guarantees across independently failing processes, ordering, replay or synchronization; IPC alone is insufficient. Availability does not imply selection, consultation or use.\n\n\nShared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "8b23f56dfa9e47ad13153e4118cc9c0a2433faf0bf27470200a1bf65c5849f16",
+      "bridge_after_sha256": "133628bae27c077fde182dc86b27e74b04133ead524b730b82fd2d0430b4a319",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": false,
+      "before": {
+        "bytes": 8626,
+        "whitespace_words": 1087
+      },
+      "after": {
+        "bytes": 8436,
+        "whitespace_words": 1060
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Same within-file consolidation; retain independent failures/IPC exclusion, invariants, message-failure scenarios and domain-modeling handoff.",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Independent failure domains or delivery guarantees.\nDo not select for: Local-only state change.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish consistency, ordering, duplication and partial-failure guarantees. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve failure domains, ownership, coordination and delivery alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Exercise lost/delayed/duplicated messages and recovery against explicit invariants. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `domain-modeling`.\nTechnical question: “Which intermediate state is forbidden during cross-node recovery?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization and documentation closure follow\n[workflow](../workflow.md); outcome states follow [evidence](../evidence.md).\nReturn every applicable criterion with evidence or its explicit SDD state,\nincluding UNVERIFIED or INCONCLUSIVE where appropriate. The feature spec owns\nbehavior, plan/ADRs own decisions and tasks organize execution. This bridge maps\nthe selected method to artifacts without activating skills or expanding permissions.\nFor reuse elsewhere, keep these contracts and adapt skill_path to that project.",
+        "Conditional project profile": "Guarantees across independently failing processes, ordering, replay or synchronization; IPC alone is insufficient. Availability does not imply selection, consultation or use."
+      }
+    },
+    {
+      "bridge": "sdd/chain/domain-modeling.md",
+      "skill_path": ".codex/skills/domain-modeling/SKILL.md",
+      "skill_name": "domain-modeling",
+      "bridge_version": "1",
+      "bridge_sha256": "0e7a52bb32b74277f4cd5817f39d4673b3a8376bb7abc30aabccf967a0f8fadc",
+      "skill_sha256": "abf26d78093f28ec3491415c9eb5cfd8ed1ae878a00513caf0c9a7a461faa87f",
+      "skill_headings": [
+        "# Domain Modeling",
+        "## Scope and evidence",
+        "## Workflow",
+        "## Decisions and constraints",
+        "## Completion and report",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Unclear business meaning or consistency boundary.\nDo not select for: Routine persistence mapping.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish business vocabulary, invariants and allowed/rejected state transitions. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve aggregate/context boundaries, transaction ownership and consistency trade-offs. Link the requirement, decision and risk IDs. |\n| Tasks | Implement domain rules and verify transitions with representative domain examples. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `distributed-systems`.\nTechnical question: “Can the invariant survive a delayed or duplicated cross-context event?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "abf26d78093f28ec3491415c9eb5cfd8ed1ae878a00513caf0c9a7a461faa87f",
+      "bridge_after_sha256": "0e7a52bb32b74277f4cd5817f39d4673b3a8376bb7abc30aabccf967a0f8fadc",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7704,
+        "whitespace_words": 1018
+      },
+      "after": {
+        "bytes": 7704,
+        "whitespace_words": 1018
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Unclear business meaning or consistency boundary.\nDo not select for: Routine persistence mapping.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish business vocabulary, invariants and allowed/rejected state transitions. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve aggregate/context boundaries, transaction ownership and consistency trade-offs. Link the requirement, decision and risk IDs. |\n| Tasks | Implement domain rules and verify transitions with representative domain examples. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `distributed-systems`.\nTechnical question: “Can the invariant survive a delayed or duplicated cross-context event?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/engineering-productivity.md",
+      "skill_path": ".codex/skills/engineering-productivity/SKILL.md",
+      "skill_name": "engineering-productivity",
+      "bridge_version": "1",
+      "bridge_sha256": "39980241b4a2a71c92f3ac1ea275d7b5822e50504a853b84ed399da8655468d7",
+      "skill_sha256": "35dc54ead1b8bd7bcc0fa2dc348aa154cf3d11137bcdf38f972d74441416feac",
+      "skill_headings": [
+        "# Engineering Productivity",
+        "## Frame the decision",
+        "## Develop a proportionate evidence plan",
+        "## Deliver a decision that can be revisited",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for a feature or improvement deciding between engineering tools/workflows or\nevaluating a bounded process change. Do not select for runtime profiling, product\nanalytics, individual rankings or ordinary implementation. Record selection and\nthe unresolved decision in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n| --- | --- |\n| Constitution | Read existing data permissions, decision authority and working constraints; introduce no employee-monitoring or collection policy. |\n| Spec | Identify the decision, affected engineering population/task, desired outcome and observations that would change the action. Do not invent productivity quotas or individual scores. |\n| Plan / ADR | Link requirement/decision/risk IDs to goal → signal → measure, options, method, baseline, confounders, authorized data and cost. A decision to avoid an uninformative study is valid. |\n| Tasks | Name the bounded analysis or authorized pilot, actual inputs/tools, observation/stopping conditions and expected deliverable. A protocol does not authorize collecting data, contacting people or changing their tools. |\n| Evidence / convergence | Return criterion IDs, observations, uncertainty, action, responsible role and follow-up trigger. Distinguish proposal, executed collection and association from supported causal evidence. |",
+        "Conditional handoff": "Consult performance-engineering only if a specific machine-cost mechanism remains\nunresolved and that skill is available. Supply task/criterion IDs, workload,\nobservations, constraints and existing permission scope. Do not recursively load\nspecialists or treat their absence as work completed.",
+        "Completion and authority": "Use the destination SDD's outcome vocabulary with evidence or explicit pending/\ninconclusive status for each applicable criterion. Spec owns the desired outcome;\nplan/ADRs own decisions and tasks own executable work. The bridge neither changes\nthose authorities nor grants data access, rollout, outreach or spending permission.",
+        "Conditional project profile": "Evaluation of a human workflow or tool against a baseline and an observable outcome; excludes binary benchmarks. Availability does not imply selection, consultation or use."
+      },
+      "skill_after_sha256": "35dc54ead1b8bd7bcc0fa2dc348aa154cf3d11137bcdf38f972d74441416feac",
+      "bridge_after_sha256": "39980241b4a2a71c92f3ac1ea275d7b5822e50504a853b84ed399da8655468d7",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7266,
+        "whitespace_words": 978
+      },
+      "after": {
+        "bytes": 7266,
+        "whitespace_words": 978
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for a feature or improvement deciding between engineering tools/workflows or\nevaluating a bounded process change. Do not select for runtime profiling, product\nanalytics, individual rankings or ordinary implementation. Record selection and\nthe unresolved decision in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n| --- | --- |\n| Constitution | Read existing data permissions, decision authority and working constraints; introduce no employee-monitoring or collection policy. |\n| Spec | Identify the decision, affected engineering population/task, desired outcome and observations that would change the action. Do not invent productivity quotas or individual scores. |\n| Plan / ADR | Link requirement/decision/risk IDs to goal → signal → measure, options, method, baseline, confounders, authorized data and cost. A decision to avoid an uninformative study is valid. |\n| Tasks | Name the bounded analysis or authorized pilot, actual inputs/tools, observation/stopping conditions and expected deliverable. A protocol does not authorize collecting data, contacting people or changing their tools. |\n| Evidence / convergence | Return criterion IDs, observations, uncertainty, action, responsible role and follow-up trigger. Distinguish proposal, executed collection and association from supported causal evidence. |",
+        "Conditional handoff": "Consult performance-engineering only if a specific machine-cost mechanism remains\nunresolved and that skill is available. Supply task/criterion IDs, workload,\nobservations, constraints and existing permission scope. Do not recursively load\nspecialists or treat their absence as work completed.",
+        "Completion and authority": "Use the destination SDD's outcome vocabulary with evidence or explicit pending/\ninconclusive status for each applicable criterion. Spec owns the desired outcome;\nplan/ADRs own decisions and tasks own executable work. The bridge neither changes\nthose authorities nor grants data access, rollout, outreach or spending permission.",
+        "Conditional project profile": "Evaluation of a human workflow or tool against a baseline and an observable outcome; excludes binary benchmarks. Availability does not imply selection, consultation or use."
+      }
+    },
+    {
+      "bridge": "sdd/chain/iced-engineering.md",
+      "skill_path": ".codex/skills/iced-engineering/SKILL.md",
+      "skill_name": "iced-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "a5d2855e9510006a174bebf46abf3b5206906cfe24ece3ba00bd0c863432d061",
+      "skill_sha256": "9f3bd254dfbd8246dbae59ca0e2276cd5d949ce8f58110546c7f54ccfa0f9438",
+      "skill_headings": [
+        "# iced-engineering",
+        "## Responsibility and selection",
+        "## Inputs and gaps",
+        "## Operating procedure",
+        "## Deliverables and acceptance",
+        "## Boundaries and handoff",
+        "## Specialized references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Iced code, update/view models, custom widgets, split panes, themes, accessibility and graph visualization.\n\nDo not select for: projects without Iced; do not replace design-review/design-system when deciding visual hierarchy.",
+        "Inputs and contributions": "Known inputs: Iced version and features, GUI state, flows, events, size constraints, accessibility and latency. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. The UI does not block on processes, search, indexing or agent events. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Message/Update/View model with explicit state and tasks outside rendering. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Create a UI harness and fixtures for states/loading/events. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. components/update contracts, testable UI, empty/error/loading states, rendering budget and benchmark |",
+        "Conditional handoff": "Optional specialist: `design-system`. Specific unresolved question: “Does the reusable component preserve the defined tokens, variants, states and interaction contract?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "9f3bd254dfbd8246dbae59ca0e2276cd5d949ce8f58110546c7f54ccfa0f9438",
+      "bridge_after_sha256": "a5d2855e9510006a174bebf46abf3b5206906cfe24ece3ba00bd0c863432d061",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7505,
+        "whitespace_words": 934
+      },
+      "after": {
+        "bytes": 7505,
+        "whitespace_words": 934
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Iced code, update/view models, custom widgets, split panes, themes, accessibility and graph visualization.\n\nDo not select for: projects without Iced; do not replace design-review/design-system when deciding visual hierarchy.",
+        "Inputs and contributions": "Known inputs: Iced version and features, GUI state, flows, events, size constraints, accessibility and latency. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. The UI does not block on processes, search, indexing or agent events. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Message/Update/View model with explicit state and tasks outside rendering. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Create a UI harness and fixtures for states/loading/events. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. components/update contracts, testable UI, empty/error/loading states, rendering budget and benchmark |",
+        "Conditional handoff": "Optional specialist: `design-system`. Specific unresolved question: “Does the reusable component preserve the defined tokens, variants, states and interaction contract?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/observability-and-diagnostics.md",
+      "skill_path": ".codex/skills/observability-and-diagnostics/SKILL.md",
+      "skill_name": "observability-and-diagnostics",
+      "bridge_version": "1",
+      "bridge_sha256": "baad4c495526e7836469b920c5dac60b4cc7780c7dff2e7ad2dd8c373f54a741",
+      "skill_sha256": "1d8e057e9dbfa7050a8315f35fbca65aa7e86de2678621f8e97fe424956ffc4f",
+      "skill_headings": [
+        "# Observability and Diagnostics",
+        "## Procedure",
+        "## Output and limits"
+      ],
+      "bridge_sections": {
+        "Select and do not select": "Select only when the feature has a concrete instrumentation or evidence-led diagnosis question and this skill\nis available at the configured path. Do not select for a mechanical/cosmetic change\nwithout that risk, or merely because another selected bridge mentions this one.\nRead the skill's actual activation boundaries; choose one primary skill and auxiliaries\nonly for unresolved questions. No recursive activation or dependency installation.",
+        "Inputs and contributions": "Supply requirement/criterion, decision, risk and task IDs, authorized scope, operational question, symptom/window/cohort, topology, telemetry versions and access constraints.\nKeep unknowns explicit and preserve the destination project's authorities.\n\n| Artifact | Contribution |\n| --- | --- |\n| Constitution | Reconcile existing principles, security/data and operational constraints; introduce no product policy or fixed target. |\n| Spec | Identify observable outcomes and diagnostic questions; no invented SLOs. |\n| Plan / ADR | Connect requirement → decision/risk IDs to question/signal mapping, hypotheses, discriminating observations and telemetry costs/risks. |\n| Tasks | Name bounded work, actual inputs/tools, stop conditions and expected evidence: instrumentation/probe changes, propagation, export-failure and alert/runbook checks. |\n| Evidence / convergence | Return criterion/task IDs, environment, observation and limitations: sanitized observations, loss/sampling limits, rejected hypotheses and supported conclusions. |",
+        "Conditional handoff": "Consult performance-engineering for unresolved quantitative cost attribution or reliability-engineering for recovery policy only when available and needed. Supply IDs, observations, constraints\nand existing permission scope. Absence is an explicit gap, not a completed consultation.\nThe bridge maps contributions; the skill owns its technical procedure.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "1d8e057e9dbfa7050a8315f35fbca65aa7e86de2678621f8e97fe424956ffc4f",
+      "bridge_after_sha256": "baad4c495526e7836469b920c5dac60b4cc7780c7dff2e7ad2dd8c373f54a741",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 5228,
+        "whitespace_words": 638
+      },
+      "after": {
+        "bytes": 5228,
+        "whitespace_words": 638
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Select and do not select": "Select only when the feature has a concrete instrumentation or evidence-led diagnosis question and this skill\nis available at the configured path. Do not select for a mechanical/cosmetic change\nwithout that risk, or merely because another selected bridge mentions this one.\nRead the skill's actual activation boundaries; choose one primary skill and auxiliaries\nonly for unresolved questions. No recursive activation or dependency installation.",
+        "Inputs and contributions": "Supply requirement/criterion, decision, risk and task IDs, authorized scope, operational question, symptom/window/cohort, topology, telemetry versions and access constraints.\nKeep unknowns explicit and preserve the destination project's authorities.\n\n| Artifact | Contribution |\n| --- | --- |\n| Constitution | Reconcile existing principles, security/data and operational constraints; introduce no product policy or fixed target. |\n| Spec | Identify observable outcomes and diagnostic questions; no invented SLOs. |\n| Plan / ADR | Connect requirement → decision/risk IDs to question/signal mapping, hypotheses, discriminating observations and telemetry costs/risks. |\n| Tasks | Name bounded work, actual inputs/tools, stop conditions and expected evidence: instrumentation/probe changes, propagation, export-failure and alert/runbook checks. |\n| Evidence / convergence | Return criterion/task IDs, environment, observation and limitations: sanitized observations, loss/sampling limits, rejected hypotheses and supported conclusions. |",
+        "Conditional handoff": "Consult performance-engineering for unresolved quantitative cost attribution or reliability-engineering for recovery policy only when available and needed. Supply IDs, observations, constraints\nand existing permission scope. Absence is an explicit gap, not a completed consultation.\nThe bridge maps contributions; the skill owns its technical procedure.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/performance-engineering.md",
+      "skill_path": ".codex/skills/performance-engineering/SKILL.md",
+      "skill_name": "performance-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "4878ba2571b2b9b25421a8205e982e5982c36c33e4324295cdf26d74b955f1ca",
+      "skill_sha256": "e2fe6bd6724a3b176fd559875252d6ac5479a83bf453dddb4e31a3fc7da9692e",
+      "skill_headings": [
+        "# Performance Engineering",
+        "## Activation and boundaries",
+        "## Workflow",
+        "## Constraints and completion",
+        "## Supporting material",
+        "## Additional investigation references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Measured cost, slowdown or capacity question.\nDo not select for: Speculative optimization during unrelated work.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish cost metric, workload, input scale and approved performance criterion. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve baseline, measurement method, confounders and profiling alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Measure before/after under comparable conditions and verify equivalent results. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `reliability-engineering`.\nTechnical question: “What admission and cancellation policy bounds unfinished work?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "e2fe6bd6724a3b176fd559875252d6ac5479a83bf453dddb4e31a3fc7da9692e",
+      "bridge_after_sha256": "4878ba2571b2b9b25421a8205e982e5982c36c33e4324295cdf26d74b955f1ca",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 9097,
+        "whitespace_words": 1114
+      },
+      "after": {
+        "bytes": 9097,
+        "whitespace_words": 1114
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Measured cost, slowdown or capacity question.\nDo not select for: Speculative optimization during unrelated work.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish cost metric, workload, input scale and approved performance criterion. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve baseline, measurement method, confounders and profiling alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Measure before/after under comparable conditions and verify equivalent results. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `reliability-engineering`.\nTechnical question: “What admission and cancellation policy bounds unfinished work?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/plugin-protocol-engineering.md",
+      "skill_path": ".codex/skills/plugin-protocol-engineering/SKILL.md",
+      "skill_name": "plugin-protocol-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "bac99ea7c8e1cb5887ff3ac9d28031750fc794e90f3f70ca218f134d8c57f9aa",
+      "skill_sha256": "c8191a6367a199a7ee0a0dc1f54500d8ac032372ca82017bad7d867723d0b067",
+      "skill_headings": [
+        "# plugin-protocol-engineering",
+        "## Responsibility and selection",
+        "## Inputs and gaps",
+        "## Operating procedure",
+        "## Deliverables and acceptance",
+        "## Boundaries and handoff",
+        "## Specialized references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: New protocol/plugin host, capability manifest, IPC, vN/vN+1 compatibility, safe installation/uninstallation.\n\nDo not select for: a lint plugin that only uses an established SDK; use Rust and API Testing in that case. Do not turn this skill into an automatic recommendation for Wasm, gRPC or Dylib.",
+        "Inputs and contributions": "Known inputs: extensibility policies, threat model, operations/capabilities, version matrix, OS, available resources. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Negotiate version and capabilities without performing operations that are not yet authorized. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. External process + versioned contract versus a dynamic library loaded in the host; decide by failure model and ABI. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Implement a test harness for contracts, failures, limits and compatibility. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. message contract, host states, permission model, resource limits, compatibility matrix, failure and migration tests |",
+        "Conditional handoff": "Optional specialist: `application-security`. Specific unresolved question: “Does the chosen isolation actually prevent unauthorized effects from a compromised plugin?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "c8191a6367a199a7ee0a0dc1f54500d8ac032372ca82017bad7d867723d0b067",
+      "bridge_after_sha256": "bac99ea7c8e1cb5887ff3ac9d28031750fc794e90f3f70ca218f134d8c57f9aa",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7772,
+        "whitespace_words": 979
+      },
+      "after": {
+        "bytes": 7772,
+        "whitespace_words": 979
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: New protocol/plugin host, capability manifest, IPC, vN/vN+1 compatibility, safe installation/uninstallation.\n\nDo not select for: a lint plugin that only uses an established SDK; use Rust and API Testing in that case. Do not turn this skill into an automatic recommendation for Wasm, gRPC or Dylib.",
+        "Inputs and contributions": "Known inputs: extensibility policies, threat model, operations/capabilities, version matrix, OS, available resources. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Negotiate version and capabilities without performing operations that are not yet authorized. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. External process + versioned contract versus a dynamic library loaded in the host; decide by failure model and ABI. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Implement a test harness for contracts, failures, limits and compatibility. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. message contract, host states, permission model, resource limits, compatibility matrix, failure and migration tests |",
+        "Conditional handoff": "Optional specialist: `application-security`. Specific unresolved question: “Does the chosen isolation actually prevent unauthorized effects from a compromised plugin?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/prompt.md",
+      "skill_path": ".codex/skills/prompt/SKILL.md",
+      "skill_name": "prompt",
+      "bridge_version": "1",
+      "bridge_sha256": "ae72855ae7f51edc8a8dd9034b56fac8dbdca8c1062a2fa9db6f81ce5efdd823",
+      "skill_sha256": "b03935db88ba5a2da0e3e367bd1cd5424a7d5983c8e8bc915c16d3d86327f561",
+      "skill_headings": [
+        "# Prompt",
+        "## Mandatory independent technical assessment",
+        "## Mandatory evidence policy",
+        "## Extract and clarify",
+        "## Make requirements verifiable",
+        "## Build the prompt",
+        "## Review and deliver",
+        "## Additional investigation references"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Create or revise a prompt.\nDo not select for: Execute the task described in a prompt without authorization.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish intended prompt behavior, accepted outputs and prohibited actions. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve instruction/data boundaries, evaluation cases and model/tool assumptions. Link the requirement, decision and risk IDs. |\n| Tasks | Author or revise the prompt and evaluate representative cases; do not execute its described task without authorization. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `application-security`.\nTechnical question: “Can retrieved content cause a tool action outside the caller authority?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Use the outcome vocabulary defined by the destination SDD. Return every applicable\ncriterion with its evidence or explicit pending/inconclusive status. The feature's\nspec defines behavior; plan/ADRs define decisions; tasks define executable work.\nThis bridge cannot override those artifacts or expand authorization. Changes to\nproduct rules belong in their authoritative artifact, not in this bridge.",
+        "Conditional project profile": "A request to create or revise a prompt as an artifact; does not cover every AI task. Availability does not imply selection, consultation or use.\n\n\nShared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "b03935db88ba5a2da0e3e367bd1cd5424a7d5983c8e8bc915c16d3d86327f561",
+      "bridge_after_sha256": "c541a1843c51e16ad9eba10f765df19bd364a42729fbeae3df4155e85a0c86af",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": false,
+      "before": {
+        "bytes": 10808,
+        "whitespace_words": 1480
+      },
+      "after": {
+        "bytes": 10618,
+        "whitespace_words": 1453
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Consolidate Completion and authority plus appended Shared routing policy; preserve selection, prompt task non-execution, contributions, handoff and authority; use SDD states explicitly.",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Create or revise a prompt.\nDo not select for: Execute the task described in a prompt without authorization.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish intended prompt behavior, accepted outputs and prohibited actions. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve instruction/data boundaries, evaluation cases and model/tool assumptions. Link the requirement, decision and risk IDs. |\n| Tasks | Author or revise the prompt and evaluate representative cases; do not execute its described task without authorization. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `application-security`.\nTechnical question: “Can retrieved content cause a tool action outside the caller authority?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization and documentation closure follow\n[workflow](../workflow.md); outcome states follow [evidence](../evidence.md).\nReturn every applicable criterion with evidence or its explicit SDD state,\nincluding UNVERIFIED or INCONCLUSIVE where appropriate. The feature spec owns\nbehavior, plan/ADRs own decisions and tasks organize execution. This bridge maps\nthe selected method to artifacts without activating skills or expanding permissions.\nFor reuse elsewhere, keep these contracts and adapt skill_path to that project.",
+        "Conditional project profile": "A request to create or revise a prompt as an artifact; does not cover every AI task. Availability does not imply selection, consultation or use."
+      }
+    },
+    {
+      "bridge": "sdd/chain/readme-lifecycle-engineering.md",
+      "skill_path": ".codex/skills/readme-lifecycle-engineering/SKILL.md",
+      "skill_name": "readme-lifecycle-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "c6ab5f75b420fa2107d091289b781a6ad85ffe3a68684a6d8f263f563f51d9a3",
+      "skill_sha256": "4a68d48bfa52160ab3cacbe7f04da1d7faadd6c76cde126617cbd945969473c9",
+      "skill_headings": [
+        "# README Lifecycle Engineering — Accurate Entry Points, Sustainable Documentation",
+        "## Scope and inputs",
+        "## Procedure",
+        "## Load detail when needed",
+        "## Completion and limits"
+      ],
+      "bridge_sections": {
+        "Selection": "Choose for root/package README authoring, audit, splitting, navigation, onboarding and\nsynchronization with evolving product behavior. Do not use it for a general manual or\nAPI reference alone (`technical-documentation`), source-code design decisions\n(`software-architecture`) or documentation-theme styling.",
+        "Inputs and contributions": "Supply selected requirement/acceptance IDs, decisions/risks, task scope, actual repository\nrevision, readers, existing READMEs and linked docs, source of supported commands and status,\nand actual authorization to inspect/run commands.\n\n| Artifact | Contribution |\n|---|---|\n| Constitution | Respect actual repository documentation rules, product truthfulness, permissions, configuration authority and preservation. Create no new project policy. |\n| Spec | Specify reader tasks, support status and observable onboarding/documentation acceptance; list unacceptable stale or fabricated outcomes. |\n| Plan / ADR | Compare one-vs-multiple-README options, canonical ownership, migration/link implications and verification methods; record decision status and risks. |\n| Tasks | Name files, exact impacted links, safe checks and existing tools; keep changes bounded and protect unrelated edits. |\n| Evidence / convergence | Record revision, changed README path(s), source cross-checks, link/render results, executed safe commands, actual outputs, reader review and limitations. |",
+        "Conditional handoff": "Use a specialist only for a concrete question outside README lifecycle (e.g., verified\nsupported CLI command or product schema). Pass IDs, evidence needed and permission scope;\nno recursive chain or unsupported claim that another skill was applied.",
+        "Completion and authority": "Honor the destination project's acceptance status vocabulary. Separate structural checks,\nrendering, actual onboarding execution and user studies. `UNVERIFIED` or its local equivalent\napplies when commands/environments are unavailable; a link checker PASS is not evidence that\na feature was implemented. Preserve requirement → decision → task → artifact → current evidence\ntraceability. This optional bridge grants no publication, install or production authority."
+      },
+      "skill_after_sha256": "4a68d48bfa52160ab3cacbe7f04da1d7faadd6c76cde126617cbd945969473c9",
+      "bridge_after_sha256": "c6ab5f75b420fa2107d091289b781a6ad85ffe3a68684a6d8f263f563f51d9a3",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7304,
+        "whitespace_words": 893
+      },
+      "after": {
+        "bytes": 7304,
+        "whitespace_words": 893
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Choose for root/package README authoring, audit, splitting, navigation, onboarding and\nsynchronization with evolving product behavior. Do not use it for a general manual or\nAPI reference alone (`technical-documentation`), source-code design decisions\n(`software-architecture`) or documentation-theme styling.",
+        "Inputs and contributions": "Supply selected requirement/acceptance IDs, decisions/risks, task scope, actual repository\nrevision, readers, existing READMEs and linked docs, source of supported commands and status,\nand actual authorization to inspect/run commands.\n\n| Artifact | Contribution |\n|---|---|\n| Constitution | Respect actual repository documentation rules, product truthfulness, permissions, configuration authority and preservation. Create no new project policy. |\n| Spec | Specify reader tasks, support status and observable onboarding/documentation acceptance; list unacceptable stale or fabricated outcomes. |\n| Plan / ADR | Compare one-vs-multiple-README options, canonical ownership, migration/link implications and verification methods; record decision status and risks. |\n| Tasks | Name files, exact impacted links, safe checks and existing tools; keep changes bounded and protect unrelated edits. |\n| Evidence / convergence | Record revision, changed README path(s), source cross-checks, link/render results, executed safe commands, actual outputs, reader review and limitations. |",
+        "Conditional handoff": "Use a specialist only for a concrete question outside README lifecycle (e.g., verified\nsupported CLI command or product schema). Pass IDs, evidence needed and permission scope;\nno recursive chain or unsupported claim that another skill was applied.",
+        "Completion and authority": "Honor the destination project's acceptance status vocabulary. Separate structural checks,\nrendering, actual onboarding execution and user studies. `UNVERIFIED` or its local equivalent\napplies when commands/environments are unavailable; a link checker PASS is not evidence that\na feature was implemented. Preserve requirement → decision → task → artifact → current evidence\ntraceability. This optional bridge grants no publication, install or production authority."
+      }
+    },
+    {
+      "bridge": "sdd/chain/reliability-engineering.md",
+      "skill_path": ".codex/skills/reliability-engineering/SKILL.md",
+      "skill_name": "reliability-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "69068440f8f1158f4054b2e8e8c09e9f64ba01d4efb431369509295d0daccd80",
+      "skill_sha256": "28651751ea7505bae0bcc67b0fff54b87c062bbe772e500d45d8cca627a67a9d",
+      "skill_headings": [
+        "# Reliability engineering",
+        "## Activation and boundaries",
+        "## Operational workflow",
+        "## Essential decisions and constraints",
+        "## Completion and reporting",
+        "## Additional investigation references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Overload, leak, cancellation or recovery.\nDo not select for: Small pure-function edit.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish failure behavior, resource bounds, recovery and workload-specific objectives. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve ownership, admission/cancellation, fault propagation and recovery alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Exercise failure/overload/cleanup and observe independent resource and recovery outcomes. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `performance-engineering`.\nTechnical question: “Does retained work grow after arrivals stop and cleanup completes?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "28651751ea7505bae0bcc67b0fff54b87c062bbe772e500d45d8cca627a67a9d",
+      "bridge_after_sha256": "69068440f8f1158f4054b2e8e8c09e9f64ba01d4efb431369509295d0daccd80",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 9509,
+        "whitespace_words": 1178
+      },
+      "after": {
+        "bytes": 9509,
+        "whitespace_words": 1178
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Overload, leak, cancellation or recovery.\nDo not select for: Small pure-function edit.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish failure behavior, resource bounds, recovery and workload-specific objectives. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve ownership, admission/cancellation, fault propagation and recovery alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Exercise failure/overload/cleanup and observe independent resource and recovery outcomes. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `performance-engineering`.\nTechnical question: “Does retained work grow after arrivals stop and cleanup completes?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/rust.md",
+      "skill_path": ".codex/skills/rust/SKILL.md",
+      "skill_name": "rust",
+      "bridge_version": "1",
+      "bridge_sha256": "535441702404d6f398861b8e934d49167d1b3d390da061e247c202f6ed6db336",
+      "skill_sha256": "da7b9ada8326b2d2cb4288ac6f67864c7b9defb833641470904c6fe9221d8891",
+      "skill_headings": [
+        "# Rust",
+        "## Inspect before changing",
+        "## Implement or review",
+        "## Review the result",
+        "## Validate and report",
+        "## Consult the evidence when needed",
+        "## Additional investigation references"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Rust implementation, API design, debugging, refactoring or review, including\nownership, error handling, unsafe boundaries and synchronization.\nDo not select for: Unrelated language or product policy.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish observable safety and error invariants at Rust boundaries. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve edition/MSRV, ownership, unsafe/FFI justification and synchronization alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Implement the changed rust surface and run supported compiler/tests or concurrency checks. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `software-testing`.\nTechnical question: “Which controlled schedule can falsify the publication invariant?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "da7b9ada8326b2d2cb4288ac6f67864c7b9defb833641470904c6fe9221d8891",
+      "bridge_after_sha256": "535441702404d6f398861b8e934d49167d1b3d390da061e247c202f6ed6db336",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 9396,
+        "whitespace_words": 1192
+      },
+      "after": {
+        "bytes": 9396,
+        "whitespace_words": 1192
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Rust implementation, API design, debugging, refactoring or review, including\nownership, error handling, unsafe boundaries and synchronization.\nDo not select for: Unrelated language or product policy.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish observable safety and error invariants at Rust boundaries. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve edition/MSRV, ownership, unsafe/FFI justification and synchronization alternatives. Link the requirement, decision and risk IDs. |\n| Tasks | Implement the changed rust surface and run supported compiler/tests or concurrency checks. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `software-testing`.\nTechnical question: “Which controlled schedule can falsify the publication invariant?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/software-architecture.md",
+      "skill_path": ".codex/skills/software-architecture/SKILL.md",
+      "skill_name": "software-architecture",
+      "bridge_version": "1",
+      "bridge_sha256": "0dadfcde28cd8e831c778a4361a7204d39642108e9926ee43dd6c2399833ec69",
+      "skill_sha256": "739571c2d2d28a4bd8ad389cc30ed59e599f4c8d65068f6d7e86ee0094dcefba",
+      "skill_headings": [
+        "# Software Architecture",
+        "## Scope and required evidence",
+        "## Workflow",
+        "## Essential constraints",
+        "## Completion and presentation",
+        "## Additional investigation references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Structural alternative or migration.\nDo not select for: Mechanical local refactor.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish quality attributes expressed as observable scenarios. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve structural alternatives, ADRs, dependency boundaries and revisit conditions. Link the requirement, decision and risk IDs. |\n| Tasks | Implement the selected slice and check architectural constraints with outcome-based fitness functions. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `distributed-systems`.\nTechnical question: “Which guarantee fails when these stores commit independently?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "739571c2d2d28a4bd8ad389cc30ed59e599f4c8d65068f6d7e86ee0094dcefba",
+      "bridge_after_sha256": "0dadfcde28cd8e831c778a4361a7204d39642108e9926ee43dd6c2399833ec69",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 8326,
+        "whitespace_words": 1060
+      },
+      "after": {
+        "bytes": 8326,
+        "whitespace_words": 1060
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Structural alternative or migration.\nDo not select for: Mechanical local refactor.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish quality attributes expressed as observable scenarios. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve structural alternatives, ADRs, dependency boundaries and revisit conditions. Link the requirement, decision and risk IDs. |\n| Tasks | Implement the selected slice and check architectural constraints with outcome-based fitness functions. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `distributed-systems`.\nTechnical question: “Which guarantee fails when these stores commit independently?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/software-delivery.md",
+      "skill_path": ".codex/skills/software-delivery/SKILL.md",
+      "skill_name": "software-delivery",
+      "bridge_version": "1",
+      "bridge_sha256": "03a1bd4065fe6c7b4e4fdff763dd28ba2891f499d5cafacecc69192584ba3449",
+      "skill_sha256": "cfa0249938fb4dd95fe8dc9b93ffd5dfd71ca137014327090aaeb8e196dc7480",
+      "skill_headings": [
+        "# Software Delivery",
+        "## Procedure",
+        "## Result and boundaries"
+      ],
+      "bridge_sections": {
+        "Select and do not select": "Select only when the feature has a concrete build-input/reproducibility, artifact trust/promotion, or release/recovery question and this skill\nis available at the configured path. Do not select for a mechanical/cosmetic change\nwithout that risk, or merely because another selected bridge mentions this one.\nRead the skill's actual activation boundaries; choose one primary skill and auxiliaries\nonly for unresolved questions. No recursive activation or dependency installation.",
+        "Inputs and contributions": "Supply requirement/criterion, decision, risk and task IDs, authorized scope, source/input graph, toolchains, pipeline, artifact identities, environments and release contract.\nKeep unknowns explicit and preserve the destination project's authorities.\n\n| Artifact | Contribution |\n| --- | --- |\n| Constitution | Reconcile existing principles, security/data and operational constraints; introduce no product policy or fixed target. |\n| Spec | Identify deliverable identities, compatibility and required release outcomes. |\n| Plan / ADR | Connect requirement → decision/risk IDs to dependency trust, reproduction scope, rollout choices and state-recovery limits. |\n| Tasks | Name bounded work, actual inputs/tools, stop conditions and expected evidence: build/pipeline changes, independent rebuild comparison and bounded release verification. |\n| Evidence / convergence | Return criterion/task IDs, environment, observation and limitations: artifact digests, commands, provenance verification and observed rollout/recovery results. |",
+        "Conditional handoff": "Consult software-evolution for an unresolved mixed-version state transition only when available and needed. Supply IDs, observations, constraints\nand existing permission scope. Absence is an explicit gap, not a completed consultation.\nThe bridge maps contributions; the skill owns its technical procedure.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "cfa0249938fb4dd95fe8dc9b93ffd5dfd71ca137014327090aaeb8e196dc7480",
+      "bridge_after_sha256": "03a1bd4065fe6c7b4e4fdff763dd28ba2891f499d5cafacecc69192584ba3449",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 5060,
+        "whitespace_words": 637
+      },
+      "after": {
+        "bytes": 5060,
+        "whitespace_words": 637
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Select and do not select": "Select only when the feature has a concrete build-input/reproducibility, artifact trust/promotion, or release/recovery question and this skill\nis available at the configured path. Do not select for a mechanical/cosmetic change\nwithout that risk, or merely because another selected bridge mentions this one.\nRead the skill's actual activation boundaries; choose one primary skill and auxiliaries\nonly for unresolved questions. No recursive activation or dependency installation.",
+        "Inputs and contributions": "Supply requirement/criterion, decision, risk and task IDs, authorized scope, source/input graph, toolchains, pipeline, artifact identities, environments and release contract.\nKeep unknowns explicit and preserve the destination project's authorities.\n\n| Artifact | Contribution |\n| --- | --- |\n| Constitution | Reconcile existing principles, security/data and operational constraints; introduce no product policy or fixed target. |\n| Spec | Identify deliverable identities, compatibility and required release outcomes. |\n| Plan / ADR | Connect requirement → decision/risk IDs to dependency trust, reproduction scope, rollout choices and state-recovery limits. |\n| Tasks | Name bounded work, actual inputs/tools, stop conditions and expected evidence: build/pipeline changes, independent rebuild comparison and bounded release verification. |\n| Evidence / convergence | Return criterion/task IDs, environment, observation and limitations: artifact digests, commands, provenance verification and observed rollout/recovery results. |",
+        "Conditional handoff": "Consult software-evolution for an unresolved mixed-version state transition only when available and needed. Supply IDs, observations, constraints\nand existing permission scope. Absence is an explicit gap, not a completed consultation.\nThe bridge maps contributions; the skill owns its technical procedure.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/software-design.md",
+      "skill_path": ".codex/skills/software-design/SKILL.md",
+      "skill_name": "software-design",
+      "bridge_version": "1",
+      "bridge_sha256": "e15827b753ed1faa8df77e1c1f07ce06e362535dd207f46758c7bcc8d0268794",
+      "skill_sha256": "4e214fd5dbf141ee437814a5c817b6924a05e8ad75cf6bc208281155204f6143",
+      "skill_headings": [
+        "# Software Design",
+        "## Scope and evidence",
+        "## Workflow",
+        "## Essential decisions",
+        "## Completion and report",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Local responsibility, interface or refactoring.\nDo not select for: System boundary selection without requirements.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish behavior to preserve, intentional contract changes and failure effects. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve responsibility/interface alternatives, coupling and migration costs. Link the requirement, decision and risk IDs. |\n| Tasks | Refactor incrementally and test public behavior plus error/cleanup effects. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `software-testing`.\nTechnical question: “Which observable error and cleanup effects must the refactor preserve?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "4e214fd5dbf141ee437814a5c817b6924a05e8ad75cf6bc208281155204f6143",
+      "bridge_after_sha256": "e15827b753ed1faa8df77e1c1f07ce06e362535dd207f46758c7bcc8d0268794",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 8077,
+        "whitespace_words": 1032
+      },
+      "after": {
+        "bytes": 8077,
+        "whitespace_words": 1032
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Local responsibility, interface or refactoring.\nDo not select for: System boundary selection without requirements.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish behavior to preserve, intentional contract changes and failure effects. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve responsibility/interface alternatives, coupling and migration costs. Link the requirement, decision and risk IDs. |\n| Tasks | Refactor incrementally and test public behavior plus error/cleanup effects. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `software-testing`.\nTechnical question: “Which observable error and cleanup effects must the refactor preserve?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/software-evolution.md",
+      "skill_path": ".codex/skills/software-evolution/SKILL.md",
+      "skill_name": "software-evolution",
+      "bridge_version": "1",
+      "bridge_sha256": "294568595a4118dc955280d8331caf9afb420134db0ad037ed916f21af73ce64",
+      "skill_sha256": "b6649a9db5f2653cccca8b9e53c0489face98a398f2cca8ca7473087ff8b124c",
+      "skill_headings": [
+        "# Software Evolution",
+        "## Procedure",
+        "## Result and boundaries"
+      ],
+      "bridge_sections": {
+        "Select and do not select": "Select only when the feature has a concrete consequential replacement, compatibility or mixed-version transition question and this skill\nis available at the configured path. Do not select for a mechanical/cosmetic change\nwithout that risk, or merely because another selected bridge mentions this one.\nRead the skill's actual activation boundaries; choose one primary skill and auxiliaries\nonly for unresolved questions. No recursive activation or dependency installation.",
+        "Inputs and contributions": "Supply requirement/criterion, decision, risk and task IDs, authorized scope, existing behavior, consumers, contracts, data, dependencies and reachable deployment versions.\nKeep unknowns explicit and preserve the destination project's authorities.\n\n| Artifact | Contribution |\n| --- | --- |\n| Constitution | Reconcile existing principles, security/data and operational constraints; introduce no product policy or fixed target. |\n| Spec | Identify preserved/changed outcomes, coexistence obligations and retirement criteria. |\n| Plan / ADR | Connect requirement → decision/risk IDs to retain/refactor/replace/rewrite choices, authority and cutover/return risks. |\n| Tasks | Name bounded work, actual inputs/tools, stop conditions and expected evidence: observable slice, mixed-version verification, resumable movement and removal of temporary paths. |\n| Evidence / convergence | Return criterion/task IDs, environment, observation and limitations: characterization, compatibility pairs, reconciliation and tested cutover/return limits. |",
+        "Conditional handoff": "Consult postgresql for an unresolved engine-specific migration or software-delivery for artifact/rollout mechanics only when available and needed. Supply IDs, observations, constraints\nand existing permission scope. Absence is an explicit gap, not a completed consultation.\nThe bridge maps contributions; the skill owns its technical procedure.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "b6649a9db5f2653cccca8b9e53c0489face98a398f2cca8ca7473087ff8b124c",
+      "bridge_after_sha256": "294568595a4118dc955280d8331caf9afb420134db0ad037ed916f21af73ce64",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 5241,
+        "whitespace_words": 640
+      },
+      "after": {
+        "bytes": 5241,
+        "whitespace_words": 640
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Select and do not select": "Select only when the feature has a concrete consequential replacement, compatibility or mixed-version transition question and this skill\nis available at the configured path. Do not select for a mechanical/cosmetic change\nwithout that risk, or merely because another selected bridge mentions this one.\nRead the skill's actual activation boundaries; choose one primary skill and auxiliaries\nonly for unresolved questions. No recursive activation or dependency installation.",
+        "Inputs and contributions": "Supply requirement/criterion, decision, risk and task IDs, authorized scope, existing behavior, consumers, contracts, data, dependencies and reachable deployment versions.\nKeep unknowns explicit and preserve the destination project's authorities.\n\n| Artifact | Contribution |\n| --- | --- |\n| Constitution | Reconcile existing principles, security/data and operational constraints; introduce no product policy or fixed target. |\n| Spec | Identify preserved/changed outcomes, coexistence obligations and retirement criteria. |\n| Plan / ADR | Connect requirement → decision/risk IDs to retain/refactor/replace/rewrite choices, authority and cutover/return risks. |\n| Tasks | Name bounded work, actual inputs/tools, stop conditions and expected evidence: observable slice, mixed-version verification, resumable movement and removal of temporary paths. |\n| Evidence / convergence | Return criterion/task IDs, environment, observation and limitations: characterization, compatibility pairs, reconciliation and tested cutover/return limits. |",
+        "Conditional handoff": "Consult postgresql for an unresolved engine-specific migration or software-delivery for artifact/rollout mechanics only when available and needed. Supply IDs, observations, constraints\nand existing permission scope. Absence is an explicit gap, not a completed consultation.\nThe bridge maps contributions; the skill owns its technical procedure.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/software-testing.md",
+      "skill_path": ".codex/skills/software-testing/SKILL.md",
+      "skill_name": "software-testing",
+      "bridge_version": "1",
+      "bridge_sha256": "df02545b33d6953e9e2578eea88ed216e9b204e7f480f8c1d407583ba2cbdef5",
+      "skill_sha256": "2d2fbc0b44e19a2d4428eb98b8602fc7dc58884294a9f6902606423959f34aba",
+      "skill_headings": [
+        "# Software Testing",
+        "## Scope and evidence",
+        "## Workflow",
+        "## Decision constraints",
+        "## Report",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Test strategy, regression or oracle quality.\nDo not select for: Mechanical edit with no behavioral risk.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish observable scenarios, rejected transitions and independent acceptance oracles. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve risk-based test scope, doubles, integration boundaries and known omissions. Link the requirement, decision and risk IDs. |\n| Tasks | Implement tests, prove targeted defect sensitivity and report failures/skips separately. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `domain-modeling`.\nTechnical question: “Which rejected transition is required by the business invariant?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "2d2fbc0b44e19a2d4428eb98b8602fc7dc58884294a9f6902606423959f34aba",
+      "bridge_after_sha256": "df02545b33d6953e9e2578eea88ed216e9b204e7f480f8c1d407583ba2cbdef5",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 9241,
+        "whitespace_words": 1210
+      },
+      "after": {
+        "bytes": 9241,
+        "whitespace_words": 1210
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Test strategy, regression or oracle quality.\nDo not select for: Mechanical edit with no behavioral risk.\nRead the actual skill before use. Its technical scope/procedure remains authoritative\nfor the method; this bridge only maps that method to project artifacts. Presence here\ndoes not activate it. Record the selected bridge and reason in the feature plan.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Read the project's existing principles and permissions; introduce no skill-specific product policy automatically. |\n| Spec | Establish observable scenarios, rejected transitions and independent acceptance oracles. Proposed criteria require a concrete scenario and an oracle, not invented universal thresholds. |\n| Plan / ADR | Resolve risk-based test scope, doubles, integration boundaries and known omissions. Link the requirement, decision and risk IDs. |\n| Tasks | Implement tests, prove targeted defect sensitivity and report failures/skips separately. Name affected files, dependencies, actual tools and completion checks. |\n| Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |",
+        "Conditional handoff": "Optional specialist: `domain-modeling`.\nTechnical question: “Which rejected transition is required by the business invariant?”\nOnly request this handoff if the question remains unresolved and that skill is\navailable. Supply task/requirement IDs, affected surface, known facts, hypotheses,\nconstraints, required evidence and existing permission scope. Never recursively\nactivate a dependency chain or claim work by an absent skill. Continue independent\nwork; record a gap when the missing capability is material to acceptance.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/technical-documentation.md",
+      "skill_path": ".codex/skills/technical-documentation/SKILL.md",
+      "skill_name": "technical-documentation",
+      "bridge_version": "1",
+      "bridge_sha256": "3ebc0979693730d8e4ae88e75e171427c71f3b9deb02a8b23d5f8e9053f8f5b5",
+      "skill_sha256": "f128a9f1c328151c05f6f4364b2de4553dd1eefd24f7028a1057daa17c408483",
+      "skill_headings": [
+        "# Technical Documentation",
+        "## Establish the reader and source",
+        "## Plan the visual explanation",
+        "## Author and verify",
+        "## Completion and maintenance",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use when a tutorial, how-to, API reference or technical explanation is the main\nfeature deliverable. Do not select solely for inline comments, an ADR's architectural\ndecision or binary document formatting. Record the selected bridge and reason in\nthe feature plan; catalog presence does not activate it.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n| --- | --- |\n| Constitution | Read repository documentation conventions, source authority, preservation and publication permissions; add no publishing policy automatically. |\n| Spec | State audience/task, prerequisites, supported version/environment and observable documentation acceptance. Distinguish the documented contract from implementation behavior needing a decision. |\n| Plan / ADR | Link requirement/decision/risk IDs to document type, canonical sources/revisions, examples, visual purpose/renderer, measurable quality gates, verification boundary and maintenance location. Do not invent a separate documentation system. |\n| Tasks | Name actual documents, affected references, Mermaid sources/exports and licensed/data-backed assets where useful, plus executable or illustrative examples. Verify authorized reader paths, arguments, outputs and effects with the available environment. |\n| Evidence / convergence | Return criterion IDs, document locations, consulted versions, checks and actual command outcomes. Distinguish proofreading, parsing, rendering, visual inspection, compilation, execution, external lookup and reader validation. Return observed viewport/theme/contrast/legibility results; no aesthetic score overrides failures. Missing prerequisites remain visible gaps. |",
+        "Conditional handoff": "Consult the affected language/domain skill only for an unresolved contract or\nversion question and only when available. Supply relevant sources, criterion/task\nIDs, the precise uncertainty, needed evidence and existing authority. No recursive\nskill chain or mandatory installation is introduced.",
+        "Completion and authority": "Use the destination SDD's outcome vocabulary. Each applicable criterion needs\nevidence or explicit pending/inconclusive status; a successful link/HEAD request\ncannot substitute for a documented download/execution claim. Spec owns behavior,\nplan/ADRs own decisions and tasks own work. This bridge does not authorize publication,\ndeployment, external messaging or production mutation beyond the user's task."
+      },
+      "skill_after_sha256": "f128a9f1c328151c05f6f4364b2de4553dd1eefd24f7028a1057daa17c408483",
+      "bridge_after_sha256": "3ebc0979693730d8e4ae88e75e171427c71f3b9deb02a8b23d5f8e9053f8f5b5",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 11318,
+        "whitespace_words": 1480
+      },
+      "after": {
+        "bytes": 11318,
+        "whitespace_words": 1480
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use when a tutorial, how-to, API reference or technical explanation is the main\nfeature deliverable. Do not select solely for inline comments, an ADR's architectural\ndecision or binary document formatting. Record the selected bridge and reason in\nthe feature plan; catalog presence does not activate it.",
+        "Inputs and contributions": "| Artifact | Required input / contribution |\n| --- | --- |\n| Constitution | Read repository documentation conventions, source authority, preservation and publication permissions; add no publishing policy automatically. |\n| Spec | State audience/task, prerequisites, supported version/environment and observable documentation acceptance. Distinguish the documented contract from implementation behavior needing a decision. |\n| Plan / ADR | Link requirement/decision/risk IDs to document type, canonical sources/revisions, examples, visual purpose/renderer, measurable quality gates, verification boundary and maintenance location. Do not invent a separate documentation system. |\n| Tasks | Name actual documents, affected references, Mermaid sources/exports and licensed/data-backed assets where useful, plus executable or illustrative examples. Verify authorized reader paths, arguments, outputs and effects with the available environment. |\n| Evidence / convergence | Return criterion IDs, document locations, consulted versions, checks and actual command outcomes. Distinguish proofreading, parsing, rendering, visual inspection, compilation, execution, external lookup and reader validation. Return observed viewport/theme/contrast/legibility results; no aesthetic score overrides failures. Missing prerequisites remain visible gaps. |",
+        "Conditional handoff": "Consult the affected language/domain skill only for an unresolved contract or\nversion question and only when available. Supply relevant sources, criterion/task\nIDs, the precise uncertainty, needed evidence and existing authority. No recursive\nskill chain or mandatory installation is introduced.",
+        "Completion and authority": "Use the destination SDD's outcome vocabulary. Each applicable criterion needs\nevidence or explicit pending/inconclusive status; a successful link/HEAD request\ncannot substitute for a documented download/execution claim. Spec owns behavior,\nplan/ADRs own decisions and tasks own work. This bridge does not authorize publication,\ndeployment, external messaging or production mutation beyond the user's task."
+      }
+    },
+    {
+      "bridge": "sdd/chain/tool-output-engineering.md",
+      "skill_path": ".codex/skills/tool-output-engineering/SKILL.md",
+      "skill_name": "tool-output-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "5ab7436a9d631d4b2f2902e6868478e228e5a5959d9b6f4747f767bf3a1289ff",
+      "skill_sha256": "00c392fac19634a938d9afbca52362dbeb533672c4aa194a038cb68fd9469472",
+      "skill_headings": [
+        "# tool-output-engineering",
+        "## Responsibility and selection",
+        "## Inputs and gaps",
+        "## Operating procedure",
+        "## Deliverables and acceptance",
+        "## Boundaries and handoff",
+        "## Specialized references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Reducing stdout/stderr tokens, command parsers, test summaries, controlled noise suppression, truncation detection.\n\nDo not select for: Do not irreversibly transform audit logs; do not present estimated character reduction as measured savings on the provider bill.",
+        "Inputs and contributions": "Known inputs: raw bytes, exit-code metadata, tool format, limits/encoding, retention strategy and budget. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Each transformed output preserves exit code, error signals and a reference to raw output. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Three forms: append-only raw output, normalized structure and compact view. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Build an adversarial corpus and differential tests with authorized real output. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. preserved raw output, structured events, summaries flagging loss/truncation, comparable measurements |",
+        "Conditional handoff": "Optional specialist: `application-security`. Specific unresolved question: “Can stdout text be mistaken for an instruction or authorized tool input?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "00c392fac19634a938d9afbca52362dbeb533672c4aa194a038cb68fd9469472",
+      "bridge_after_sha256": "5ab7436a9d631d4b2f2902e6868478e228e5a5959d9b6f4747f767bf3a1289ff",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7263,
+        "whitespace_words": 913
+      },
+      "after": {
+        "bytes": 7263,
+        "whitespace_words": 913
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Reducing stdout/stderr tokens, command parsers, test summaries, controlled noise suppression, truncation detection.\n\nDo not select for: Do not irreversibly transform audit logs; do not present estimated character reduction as measured savings on the provider bill.",
+        "Inputs and contributions": "Known inputs: raw bytes, exit-code metadata, tool format, limits/encoding, retention strategy and budget. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. Each transformed output preserves exit code, error signals and a reference to raw output. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Three forms: append-only raw output, normalized structure and compact view. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Build an adversarial corpus and differential tests with authorized real output. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. preserved raw output, structured events, summaries flagging loss/truncation, comparable measurements |",
+        "Conditional handoff": "Optional specialist: `application-security`. Specific unresolved question: “Can stdout text be mistaken for an instruction or authorized tool input?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    },
+    {
+      "bridge": "sdd/chain/workspace-integrity-engineering.md",
+      "skill_path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+      "skill_name": "workspace-integrity-engineering",
+      "bridge_version": "1",
+      "bridge_sha256": "6d3a7dae5de08195c6a425294ccb5ba5194a7bf72c30195a7dc3709b9c181956",
+      "skill_sha256": "42c9ece69f065461c34c4ddeecd6f69a4da758fbd43c4157504c1d423ab88196",
+      "skill_headings": [
+        "# workspace-integrity-engineering",
+        "## Responsibility and selection",
+        "## Inputs and gaps",
+        "## Operating procedure",
+        "## Deliverables and acceptance",
+        "## Boundaries and handoff",
+        "## Specialized references",
+        "## Adjacent responsibilities"
+      ],
+      "bridge_sections": {
+        "Selection": "Use for: Concurrent editing, watchers, write atomicity, Git/worktrees, rollback, paths and symbolic links.\n\nDo not select for: Do not activate to add a SQLite column or review UI formatting; use database-engineering/design-system. Do not reimplement Git merely for convenience.",
+        "Inputs and contributions": "Known inputs: workspace tree, exclusion policy, authorized roots, edit plan, Git state, OS events. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. All file changes respect the authorized root and observed version. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Write through staging+rename when platform semantics allow; document fallback. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Implement tests in temporary directories and with concurrency. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. validated file transactions, loss prevention, change trails, snapshot and recovery strategy |",
+        "Conditional handoff": "Optional specialist: `application-security`. Specific unresolved question: “Are there alternative paths/symlinks that escape the root granted to the agent?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      },
+      "skill_after_sha256": "42c9ece69f065461c34c4ddeecd6f69a4da758fbd43c4157504c1d423ab88196",
+      "bridge_after_sha256": "6d3a7dae5de08195c6a425294ccb5ba5194a7bf72c30195a7dc3709b9c181956",
+      "skill_bytes_unchanged": true,
+      "bridge_bytes_unchanged": true,
+      "before": {
+        "bytes": 7341,
+        "whitespace_words": 939
+      },
+      "after": {
+        "bytes": 7341,
+        "whitespace_words": 939
+      },
+      "method_disposition": "Exact skill bytes retained",
+      "bridge_disposition": "Exact bridge bytes retained",
+      "selection_and_handoff": "Exact section/paragraph preservation checked by focused test",
+      "bridge_sections_after": {
+        "Selection": "Use for: Concurrent editing, watchers, write atomicity, Git/worktrees, rollback, paths and symbolic links.\n\nDo not select for: Do not activate to add a SQLite column or review UI formatting; use database-engineering/design-system. Do not reimplement Git merely for convenience.",
+        "Inputs and contributions": "Known inputs: workspace tree, exclusion policy, authorized roots, edit plan, Git state, OS events. Do not infer missing capabilities or permissions.\n\n| Artifact | Required input / contribution |\n|---|---|\n| Constitution | Reconcile existing authorization, data residency, safety and project constraints; add no product policy automatically. |\n| Spec | Define scoped, observable behavior and rejected cases. All file changes respect the authorized root and observed version. |\n| Plan / ADR | Compare alternatives, contract versions and failure modes; link REQ, AC, D and R IDs; preserve authority boundaries. Write through staging+rename when platform semantics allow; document fallback. |\n| Tasks | Name actual files, fixtures, tools, real permissions, failure injections and completion checks. Implement tests in temporary directories and with concurrency. |\n| Evidence / convergence | Identify observed implementation/oracle/configuration versions and hashes, test results, unsatisfied criteria and explicit limits. validated file transactions, loss prevention, change trails, snapshot and recovery strategy |",
+        "Conditional handoff": "Optional specialist: `application-security`. Specific unresolved question: “Are there alternative paths/symlinks that escape the root granted to the agent?” Consult only if actually present and needed. Supply relevant IDs, known facts, unknowns, permission scope, versions and required evidence. Do not install or load a whole dependency chain. Continue independent work and mark blocked criteria unverified.",
+        "Completion and authority": "Shared routing, authorization, outcome states and documentation closure follow\n[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a\nselected method to artifacts; it neither activates skills nor changes permissions.\nFor reuse elsewhere, keep these shared contracts and adapt skill_path to that project."
+      }
+    }
+  ],
+  "methods_consulted": [
+    {
+      "path": ".codex/skills/software-design/SKILL.md",
+      "sha256": "4e214fd5dbf141ee437814a5c817b6924a05e8ad75cf6bc208281155204f6143",
+      "bridge_version": null,
+      "contribution": "Maintain responsibility boundaries and distinguish policy change from deduplication."
+    },
+    {
+      "path": "sdd/chain/software-design.md",
+      "sha256": "e15827b753ed1faa8df77e1c1f07ce06e362535dd207f46758c7bcc8d0268794",
+      "bridge_version": 1,
+      "contribution": "Map decisions to artifact ownership."
+    },
+    {
+      "path": ".codex/skills/software-testing/SKILL.md",
+      "sha256": "2d2fbc0b44e19a2d4428eb98b8602fc7dc58884294a9f6902606423959f34aba",
+      "bridge_version": null,
+      "contribution": "Select source-based regressions and real plan-only boundary; preserve uncertainty."
+    },
+    {
+      "path": "sdd/chain/software-testing.md",
+      "sha256": "df02545b33d6953e9e2578eea88ed216e9b204e7f480f8c1d407583ba2cbdef5",
+      "bridge_version": 1,
+      "contribution": "Trace scenarios and documentation impact."
+    },
+    {
+      "path": "/home/rodrigo/.codex/skills/.system/skill-creator/SKILL.md",
+      "sha256": "6656e54755638e8efcf275a472b9672eaa8a9a1b9e59dc210e275b03b59e1e66",
+      "bridge_version": null,
+      "contribution": "Narrow skill update preserving scope/metadata; quick_validate and standalone sufficiency."
+    }
+  ],
+  "common_policy_owners": {
+    "permanent_product_policy": "docs/constitution.md",
+    "local_full_route_and_closure": "sdd/workflow.md",
+    "acceptance_states_bindings": "sdd/evidence.md",
+    "local_complete_environment": "AGENTS.md",
+    "CLI_semantics": "scripts/README.md and implementation",
+    "commit_choice_and_failure": "commit-governance skill",
+    "agents_roles_capabilities_handoff": "docs/development/codex-agents.md",
+    "technical_method_standalone_safety": "individual skill"
+  },
+  "retained_common_paragraphs": "9 specialized safety/method/optional-capability paragraphs and 13 general optional-specialist paragraphs remain in their standalone skills; repetition across independent folders alone does not justify removal",
+  "observed_outputs": {
+    "focused_route_tests": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    "complete_plan_checks": 26,
+    "legacy_full_plan_checks": 16,
+    "skill_quick_validate": "valid",
+    "TOML": "root plus thirteen profiles parsed",
+    "baseline_negative": [
+      {
+        "case": "original affirmative commit recipe",
+        "expected": "static route assertion fails before any subprocess",
+        "failures": 1,
+        "errors": 0,
+        "result": "detected"
+      }
+    ],
+    "closure_tests_during_integration": {
+      "tests": 7,
+      "passed": 6,
+      "errors": 1,
+      "cause": "Missing instruction succession registry; coordinator had linked instruction_revision but T017 registry not yet produced",
+      "disposition": "recorded; reexecute after coordinator stabilizes succession"
+    }
+  },
+  "limitations": [
+    "No model invoked by these checks; role/route scenarios below are static semantic review.",
+    "No scanner run, download, commit, hook or external publication performed.",
+    "Independent review/validation and final integration are coordinator-owned and remain outside this implementer report.",
+    "Predecessor registries/evidence/criteria were not modified by this writer."
+  ],
+  "inventory_correction": "Independent review found an overly greedy original heading extractor; section mapping regenerated from exact retained preimages and current bytes, no source/history changed.",
+  "formatting_successor": "Removed one terminal LF from prompt/distributed-systems after initial suite; method sections and words unchanged, original observations retained."
+}

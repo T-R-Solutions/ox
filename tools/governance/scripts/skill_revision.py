@@ -3,12 +3,15 @@
 import hashlib
 import json
 import re
-from readme_revision import predecessor as readme_predecessor, errors as readme_errors
 
 from project_revision import (
-    predecessor as project_predecessor,
     errors as project_errors,
 )
+from project_revision import (
+    predecessor as project_predecessor,
+)
+from readme_revision import errors as readme_errors
+from readme_revision import predecessor as readme_predecessor
 
 REVISION = "readme-skill-integration-001"
 DECISION = "docs/decisions/readme-skill-integration.md"

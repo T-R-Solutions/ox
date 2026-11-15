@@ -17,7 +17,7 @@ Do not select: Do not irreversibly transform audit logs; do not present estimate
 
 raw bytes, exit-code metadata, tool format, limits/encoding, retention strategy and budget.
 
-Inspect actual contracts and resources before execution. A missing version requires consulting the corresponding documentation; a missing permission prevents the dependent effect. Record the gap, its impact and how to resolve it while continuing independent work. Examples in this package are evaluation contracts, not APIs or policies imposed on all consumers.
+Inspect actual contracts, resources and versions; consult documentation for missing versions. Missing permission blocks only its dependent effect; record gaps and continue independent work. Examples are evaluation fixtures, not consumer policy.
 
 ## Operating procedure
 
@@ -37,13 +37,13 @@ Inspect actual contracts and resources before execution. A missing version requi
 
 preserved raw output, structured events, summaries flagging loss/truncation, comparable measurements.
 
-Bind each conclusion to observed inputs, method, result and limitations. Run the normal, boundary and failure cases from the [evaluations](references/evaluation-cases.md) in the authorized environment; distinguish review, simulation and integration results. Written cases remain unexecuted until run. Skill text neither proves effectiveness nor grants authority.
+Bind conclusions to inputs, method, result and limits. Exercise relevant [normal, boundary and failure cases](references/evaluation-cases.md) within authorization; distinguish inspection, simulation and integration. Written cases are not execution evidence.
 
 ## Boundaries and handoff
 
 `application-security` — Can stdout text be mistaken for an instruction or authorized tool input?
 
-Hand off only the distinct unresolved technical question, including scope, criterion IDs, facts, gaps and required evidence. Confirm availability before consultation. A mention does not install, delegate, execute or recursively load other skills. The consumer's contract owns behavior; the skill provides the method.
+Consult another available skill only for a distinct unresolved question, with scope, criteria, facts and evidence needs. Mentions never trigger installation, delegation or recursive activation; the consumer contract owns behavior.
 
 ## Specialized references
 
@@ -55,7 +55,7 @@ Official sources accessed on 2026-10-26 are cited alongside claims. A consulted 
 
 ## Adjacent responsibilities
 
-The specialized capability above does not replace the general methods below. Consult them only when the corresponding question remains unresolved; no handoff is mandatory.
+Adjacent methods are optional; consult only for an unresolved responsibility.
 
 | Capability | Adjacent technical authority |
 |---|---|

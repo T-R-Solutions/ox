@@ -47,3 +47,13 @@ Availability is not activation. For explicit consultation: “Read .codex/skills
 ## Outside the profile
 
 gleam, kotlin and postgresql were not installed. Optional mentions in general skills do not install those capabilities. The three absorbed candidates remain covered by database-engineering/reliability-engineering/software-evolution, ai-engineering/software-testing/performance-engineering and software-delivery/application-security/software-evolution.
+
+## Integration with task closure
+
+When used in Ox, return the documentation impact and reviewed/updated paths to the
+existing task record under [the SDD closure contract](../../sdd/workflow.md#documentation-before-task-closure).
+The workflow owns this policy; individual skills retain their reusable technical scope.
+
+Native visual handoff, geometry constraints and paired state observations are supported
+by iced-engineering through its [native visual reference](iced-engineering/references/native-visual-contract.md).
+Shared component policy remains in design-system; flow critique remains in design-review.

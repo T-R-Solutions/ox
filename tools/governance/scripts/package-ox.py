@@ -1,21 +1,23 @@
 """Create a new local package, inspect it and smoke-test a clean extraction."""
 
-from pathlib import Path
-from datetime import datetime, timezone
+import hashlib
 import json
 import os
 import subprocess
 import sys
 import tempfile
 import zipfile
+from datetime import UTC, datetime
+from pathlib import Path
+
 from governance_support import (
+    PACKAGE_NAME,
     distribution_files,
+    governance_scope,
     inspect_bytes,
     inspect_tree,
-    sha,
-    PACKAGE_NAME,
-    governance_scope,
     scope_errors,
+    sha,
 )
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -23,21 +25,26 @@ ROOT = Path(__file__).resolve().parents[3]
 
 def create_archive(root, package):
     """Serialize the actual governance boundary and scope into a new ZIP."""
+    from instruction_revision import COPY_CONTEXT, COPY_CONTEXT_BYTES, governance_copy
+
+    governance_copy(root)
     paths = distribution_files(root)
     manifest = {p.relative_to(root).as_posix(): sha(p) for p in paths}
+    manifest[COPY_CONTEXT] = hashlib.sha256(COPY_CONTEXT_BYTES).hexdigest()
     scope = governance_scope()
     if scope_errors(scope):
         raise ValueError("Invalid governance package scope")
     with zipfile.ZipFile(package, "x", compression=zipfile.ZIP_DEFLATED) as archive:
         for path in paths:
             archive.write(path, path.relative_to(root).as_posix())
+        archive.writestr(COPY_CONTEXT, COPY_CONTEXT_BYTES)
         archive.writestr("package-manifest.json", json.dumps(manifest, indent=2) + "\n")
         archive.writestr("package-scope.json", json.dumps(scope, indent=2) + "\n")
     return manifest, scope
 
 
 def main():
-    output = ROOT / "dist" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    output = ROOT / "dist" / datetime.now(UTC).strftime("%Y%m%dT%H%M%S.%fZ")
     output.mkdir(parents=True, exist_ok=False)
     errors = inspect_tree(ROOT)
     if errors:
@@ -125,8 +132,13 @@ def main():
                 import shutil
 
                 shutil.copytree(run, observed / run.name)
+    from instruction_revision import COPY_CONTEXT, COPY_CONTEXT_BYTES
+
     unchanged = manifest == {
+        COPY_CONTEXT: hashlib.sha256(COPY_CONTEXT_BYTES).hexdigest(),
+        **{
         p.relative_to(ROOT).as_posix(): sha(p) for p in distribution_files(ROOT)
+        }
     }
     result = {
         **scope,

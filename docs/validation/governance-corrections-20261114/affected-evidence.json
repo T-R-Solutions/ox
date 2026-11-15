@@ -1,0 +1,372 @@
+[
+  {
+    "feature": "product-agent-runtime",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-f0-gate",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-local-persistence",
+    "affected_criteria": [
+      "T009-PREFLIGHT"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-T011-R3-LOCAL-SOURCE-REVIEW",
+        "changed_inputs": [
+          "sdd/features/product-local-persistence/converge.md"
+        ]
+      },
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-local-task-ui",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06",
+      "AC-07",
+      "AC-08",
+      "AC-09",
+      "AC-10",
+      "AC-11"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-plugin-host",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-verification-engine",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "product-visual-workbench",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "repository-maintenance",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-05"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "scripts-centralization",
+    "affected_criteria": [
+      "AC-06",
+      "AC-07"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-EC-PARITY-REVIEW",
+        "changed_inputs": [
+          "sdd/evidence.md",
+          "sdd/tools/validate.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-agent-runtime-engineering",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-agent-usage-accounting",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-autonomous-verification-engineering",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-code-context-engineering",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-code-knowledge-graph-engineering",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-iced-engineering",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-native-visual-method",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-plugin-protocol-engineering",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-tool-output-engineering",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "skill-workspace-integrity-engineering",
+    "affected_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+        "changed_inputs": [
+          "tools/governance/scripts/closure_revision.py"
+        ]
+      }
+    ]
+  },
+  {
+    "feature": "scripts-centralization",
+    "affected_criteria": [
+      "AC-06",
+      "AC-07"
+    ],
+    "removed_observations": [
+      {
+        "id": "E-EC-PARITY-TESTS",
+        "changed_inputs": [
+          "tools/governance/scripts/governance_support.py"
+        ]
+      }
+    ]
+  }
+]

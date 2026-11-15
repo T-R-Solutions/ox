@@ -1,0 +1,18 @@
+{
+  "criterion": "Update affected documentation before task completion; retain a single SDD authority",
+  "method": "Source/guide comparison, SDD freshness, governance and five succession tests",
+  "result": "PASS for bounded documentary correction; no product acceptance",
+  "documentation": [
+    "AGENTS.md",
+    "application/README.md",
+    "docs/README.md",
+    "docs/architecture/context.md",
+    "docs/architecture/application.md",
+    "sdd/features/product-visual-workbench/converge.md",
+    "sdd/features/skill-native-visual-method/converge.md"
+  ],
+  "existing_rule": "sdd/workflow.md#documentation-before-task-closure",
+  "limitations": [
+    "No new product test execution; historical evidence preserved."
+  ]
+}

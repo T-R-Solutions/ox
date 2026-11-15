@@ -1,5 +1,8 @@
 # Specification: [feature]
 
+<!-- Instantiation: follow templates/README.md copy-and-adapt procedure.
+Rewrite authority links relative to the destination and preserve fragments. -->
+
 ## Context and scenarios
 
 Actor, precondition, action, result and rejected transitions. Preserved contracts.

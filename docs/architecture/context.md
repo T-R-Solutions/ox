@@ -1,8 +1,10 @@
 # Contexto e fases do produto
 
 **Fase atual:** `implementation-foundation`; aplicativo `bootstrap-implemented`.
-A feature `product-foundation` entrega a transição da governança. F0 está aprovado no corpus local adotado, após corrigir e revalidar o desenho do histórico; a evidência atual está em
-`docs/validation/f0-resumption-20261103/`. Isso não autoriza uma nova fase.
+A feature `product-foundation` entrega a transição da governança. F0 recebeu aprovação no corpus local de 03/11, após corrigir e revalidar o desenho do histórico; a observação histórica está em
+`docs/validation/f0-resumption-20261103/`. Os estados atuais ficam nos envelopes
+`evidence.json` das features e em suas projeções de convergência. A observação
+antiga não aceita a UI posterior nem autoriza uma nova fase.
 
 **Escopo arquitetural vigente:** resumo autocontido do produto e seus estados. Ox é agent-first, local-first e extensível, com Rust/Iced, LSP e serviços avançados por plugins, dois modos de grafo e confiabilidade verificável como prioridade. Motores de contexto, grafo e compactação serão próprios; bibliotecas auxiliares exigem avaliação. Os 16 crates de `application/` fornecem os contratos da fundação. O shell Iced
 e fatias locais do Plugin Host, Agent Runtime e Verification Engine têm execução
@@ -64,3 +66,27 @@ encoders/trials now. D1 remains post-F0/pre-F3/MVP; F0 guarantees are unchanged.
 D5 technology and D6 product integration remain open; product AC-01..07 UNVERIFIED.
 No product Cargo changes, commit or publication. Network acquisition was separately
 authorized only for the isolated dependency package.
+
+## Visual composition successor — 2026-11-11
+
+The visual workbench now provides 27 destinations with explicit availability.
+Embedded document selection, tabs, source inspection and tool selection are real
+presentation interactions; they do not open or edit user files. A directional
+Cargo-dependency map and role/instance table illustrate planned capabilities.
+Controller/Runtime/Verification Engine continue to own actual local task effects.
+This does not implement persistence, a graph engine, real agents or remote services.
+The [surface map](../design/surfaces.md) and
+[current integration report](../validation/visual-integration-20261111/report.md)
+distinguish current implementation, demonstration and acceptance limits. Historical
+F0 observations above remain tied to their original inputs, not the redesigned UI.
+
+## Project welcome successor — 2026-11-14
+
+The explicit project-entry request authorizes a narrow exception to session-only
+UI state: at most 20 recent canonical project paths persist in a versioned local
+snapshot, separately from task/evidence storage. Desktop workers own this convenience
+metadata and exclusive creation of an empty project directory; Controller retains
+validation and task execution. No new crate/dependency/database is selected.
+General persistence D5/D6 and product-local-persistence ACs remain open. Contracts
+and acceptance are scoped by product-visual-workbench WC-01–06 and its welcome report;
+implementation does not inherit earlier F0 acceptance.

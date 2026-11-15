@@ -112,6 +112,17 @@ def excluded_product_reference(root, source, target):
     """Exact declared source references in a governance-only tree, never escapes."""
     if (root / "application").exists() or not target.is_relative_to(root):
         return False
+    if source == "DESIGN.md":
+        # These two product-dependent criteria are absent from governance exports.
+        # Bind the exception to the reviewed document and exact destinations.
+        return (
+            hashlib.sha256(file(root, source).read_bytes()).hexdigest()
+            == "864f769ee9c4a35ec60801f986e997d93a8a6de45580e215c0e77dca27c4ef9a"
+            and target.relative_to(root).as_posix() in {
+                "sdd/features/product-visual-workbench/converge.md",
+                "sdd/features/skill-native-visual-method/spec.md",
+            }
+        )
     visual = (root / VISUAL_BASE).exists()
     registry = (VISUAL_BASE if visual else BASE) + "/product-references.json"
     document = json.loads(file(root, registry).read_text(), object_pairs_hook=unique)

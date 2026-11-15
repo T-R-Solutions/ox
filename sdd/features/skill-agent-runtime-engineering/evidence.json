@@ -5,540 +5,56 @@
     {
       "id": "AC-01",
       "criterion": "An out-of-order event does not cause an unwarranted completion; oracle: transition test with an adversarial sequence.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-TECH-REVIEW-AC-01",
         "E-TECH-RUN-AC-01",
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
-        "E-T011-R2-SOURCE-RETENTION",
-        "E-SCANNER-INVALIDATION-AC-01"
-      ],
-      "technical_review": {
-        "version": 1,
-        "scope": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-        "review": "E-SCANNER-INVALIDATION-AC-01",
-        "execution": [],
-        "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
-        "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin"
-      }
+        "E-T011-R2-SOURCE-RETENTION"
+      ]
     },
     {
       "id": "AC-02",
       "criterion": "Process death produces a status and cleanup of associated resources; oracle: controlled process with an injected failure.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-TECH-REVIEW-AC-02",
         "E-TECH-RUN-AC-02",
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
-        "E-T011-R2-SOURCE-RETENTION",
-        "E-SCANNER-INVALIDATION-AC-02"
-      ],
-      "technical_review": {
-        "version": 1,
-        "scope": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-        "review": "E-SCANNER-INVALIDATION-AC-02",
-        "execution": [],
-        "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
-        "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin"
-      }
+        "E-T011-R2-SOURCE-RETENTION"
+      ]
     },
     {
       "id": "AC-03",
       "criterion": "Cancellation during heavy output leaves no orphaned tasks; oracle: harness with streams and a deadline.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
-        "E-T011-R2-SOURCE-RETENTION",
-        "E-SCANNER-INVALIDATION-AC-03"
-      ],
-      "technical_review": {
-        "version": 1,
-        "scope": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-        "review": "E-SCANNER-INVALIDATION-AC-03",
-        "execution": [],
-        "consumer": "tools/governance/consumers/operations.rs",
-        "oracle": "tools/governance/consumers/operation_tests.rs"
-      }
+        "E-T011-R2-SOURCE-RETENTION"
+      ]
     },
     {
       "id": "AC-04",
-      "criterion": "A “done” message without a validated artifact does not change the verdict to approved; oracle: deterministic adversarial case.",
-      "status": "INCONCLUSIVE",
+      "criterion": "A \u201cdone\u201d message without a validated artifact does not change the verdict to approved; oracle: deterministic adversarial case.",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-TECH-REVIEW-AC-04",
         "E-TECH-RUN-AC-04",
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
-        "E-T011-R2-SOURCE-RETENTION",
-        "E-SCANNER-INVALIDATION-AC-04"
-      ],
-      "technical_review": {
-        "version": 1,
-        "scope": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-        "review": "E-SCANNER-INVALIDATION-AC-04",
-        "execution": [],
-        "consumer": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
-        "oracle": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin"
-      }
+        "E-T011-R2-SOURCE-RETENTION"
+      ]
     },
     {
       "id": "AC-05",
       "criterion": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
         "E-T011-R2-SOURCE-RETENTION"
       ]
     },
     {
       "id": "AC-06",
       "criterion": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
         "E-T011-R2-SOURCE-RETENTION"
       ]
     }
   ],
   "evidence": [
-    {
-      "id": "E-TECH-REVIEW-AC-01",
-      "kind": "inspection",
-      "command_or_method": "Read criterion, actual source and independent test assertions; compare frozen consumer snapshot; inspect execution/partial observation and limits.",
-      "observed_result": "Adversarial reducer test rejects wrong generation, duplicate start, sequence gap and late success without corrupting terminal state. Reducer evidence is not sender authentication.",
-      "artifact": "docs/validation/technical-acceptance-20261101/skill-agent-runtime-engineering-AC-01.md",
-      "sha256": "a6591fda60ac1e703903bd29d2b3a96086da70df54bb5cacce870c59ab629821",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-agent-runtime-engineering/tasks.md.bin",
-          "sha256": "0bab8876daaf98cc11b763531d23e5a0131753d759c4f4c06dba9e3c17cd3105",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/Cargo.toml.bin",
-          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/Cargo.toml.bin",
-          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/Cargo.toml.bin",
-          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/Cargo.toml.bin",
-          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/Cargo.toml.bin",
-          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/Cargo.toml.bin",
-          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/Cargo.toml.bin",
-          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/Cargo.toml.bin",
-          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/Cargo.toml.bin",
-          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/Cargo.toml.bin",
-          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/Cargo.toml.bin",
-          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/Cargo.toml.bin",
-          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/Cargo.toml.bin",
-          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/Cargo.toml.bin",
-          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/Cargo.toml.bin",
-          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/Cargo.toml.bin",
-          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/lib.rs.bin",
-          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/reference.rs.bin",
-          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/lib.rs.bin",
-          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/artifact.rs.bin",
-          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/lib.rs.bin",
-          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/measurement.rs.bin",
-          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/lib.rs.bin",
-          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/verdict.rs.bin",
-          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
-          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
-          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/local-oracle.rs.bin",
-          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/task-oracle.rs.bin",
-          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/lib.rs.bin",
-          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/capture.rs.bin",
-          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/lib.rs.bin",
-          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/relation.rs.bin",
-          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/lib.rs.bin",
-          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/query.rs.bin",
-          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/lib.rs.bin",
-          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/local.rs.bin",
-          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/lib.rs.bin",
-          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/root.rs.bin",
-          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/tests/root_contract.rs.bin",
-          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/lib.rs.bin",
-          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/state.rs.bin",
-          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/tests/lifecycle.rs.bin",
-          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/lib.rs.bin",
-          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/authorization.rs.bin",
-          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/lib.rs.bin",
-          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/protocol.rs.bin",
-          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
-          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/compatibility.rs.bin",
-          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
-          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/bin/local-plugin.rs.bin",
-          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/lib.rs.bin",
-          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/session.rs.bin",
-          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
-          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin",
-          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-agent.rs.bin",
-          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-task.rs.bin",
-          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/lib.rs.bin",
-          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/capability.rs.bin",
-          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/lib.rs.bin",
-          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/shell.rs.bin",
-          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/desktop.rs.bin",
-          "sha256": "686e976baffce2332862c26b42e6557dd31bc0e9b85c04902223b05ebff2b042",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/local_task.rs.bin",
-          "sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/shell_contract.rs.bin",
-          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/local_task.rs.bin",
-          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/main.rs.bin",
-          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/lib.rs.bin",
-          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/startup.rs.bin",
-          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/desktop.rs.bin",
-          "sha256": "1b11ba4d8078afa389675ca1e9792076e01d42f1559630fa3b62e0b82aa27b55",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/initialization.rs.bin",
-          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.toml.bin",
-          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.lock.bin",
-          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/rust-toolchain.toml.bin",
-          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
-          "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot.json",
-          "sha256": "d15f43fc7cd4862d897fcc7b7f9b1745975791e97c834ea61fa6a76cb4ab15cb",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/technical-acceptance.md",
-          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
-          "role": "other"
-        }
-      ]
-    },
     {
       "id": "E-TECH-RUN-AC-01",
       "kind": "test",
@@ -910,421 +426,6 @@
         {
           "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
           "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8",
-          "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-TECH-REVIEW-AC-02",
-      "kind": "inspection",
-      "command_or_method": "Read criterion, actual source and independent test assertions; compare frozen consumer snapshot; inspect execution/partial observation and limits.",
-      "observed_result": "Real failure returns Failed(17); additional Linux consumer asserts the PID disappears from /proc after observed completion. Direct-child/no-output fixture; descendants and stream resources absent.",
-      "artifact": "docs/validation/technical-acceptance-20261101/skill-agent-runtime-engineering-AC-02.md",
-      "sha256": "926f872895c5773ee3cac78337e2286837cc802227088a38595cceb964380e48",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-agent-runtime-engineering/tasks.md.bin",
-          "sha256": "0bab8876daaf98cc11b763531d23e5a0131753d759c4f4c06dba9e3c17cd3105",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/Cargo.toml.bin",
-          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/Cargo.toml.bin",
-          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/Cargo.toml.bin",
-          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/Cargo.toml.bin",
-          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/Cargo.toml.bin",
-          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/Cargo.toml.bin",
-          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/Cargo.toml.bin",
-          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/Cargo.toml.bin",
-          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/Cargo.toml.bin",
-          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/Cargo.toml.bin",
-          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/Cargo.toml.bin",
-          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/Cargo.toml.bin",
-          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/Cargo.toml.bin",
-          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/Cargo.toml.bin",
-          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/Cargo.toml.bin",
-          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/Cargo.toml.bin",
-          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/lib.rs.bin",
-          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/reference.rs.bin",
-          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/lib.rs.bin",
-          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/artifact.rs.bin",
-          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/lib.rs.bin",
-          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/measurement.rs.bin",
-          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/lib.rs.bin",
-          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/verdict.rs.bin",
-          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
-          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
-          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/local-oracle.rs.bin",
-          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/task-oracle.rs.bin",
-          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/lib.rs.bin",
-          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/capture.rs.bin",
-          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/lib.rs.bin",
-          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/relation.rs.bin",
-          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/lib.rs.bin",
-          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/query.rs.bin",
-          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/lib.rs.bin",
-          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/local.rs.bin",
-          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/lib.rs.bin",
-          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/root.rs.bin",
-          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/tests/root_contract.rs.bin",
-          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/lib.rs.bin",
-          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/state.rs.bin",
-          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/tests/lifecycle.rs.bin",
-          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/lib.rs.bin",
-          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/authorization.rs.bin",
-          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/lib.rs.bin",
-          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/protocol.rs.bin",
-          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
-          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/compatibility.rs.bin",
-          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
-          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/bin/local-plugin.rs.bin",
-          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/lib.rs.bin",
-          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/session.rs.bin",
-          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
-          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin",
-          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-agent.rs.bin",
-          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-task.rs.bin",
-          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/lib.rs.bin",
-          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/capability.rs.bin",
-          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/lib.rs.bin",
-          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/shell.rs.bin",
-          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/desktop.rs.bin",
-          "sha256": "686e976baffce2332862c26b42e6557dd31bc0e9b85c04902223b05ebff2b042",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/local_task.rs.bin",
-          "sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/shell_contract.rs.bin",
-          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/local_task.rs.bin",
-          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/main.rs.bin",
-          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/lib.rs.bin",
-          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/startup.rs.bin",
-          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/desktop.rs.bin",
-          "sha256": "1b11ba4d8078afa389675ca1e9792076e01d42f1559630fa3b62e0b82aa27b55",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/initialization.rs.bin",
-          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.toml.bin",
-          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.lock.bin",
-          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/rust-toolchain.toml.bin",
-          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
-          "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot.json",
-          "sha256": "d15f43fc7cd4862d897fcc7b7f9b1745975791e97c834ea61fa6a76cb4ab15cb",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/technical-acceptance.md",
-          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
           "role": "other"
         }
       ]
@@ -1705,421 +806,6 @@
       ]
     },
     {
-      "id": "E-TECH-REVIEW-AC-04",
-      "kind": "inspection",
-      "command_or_method": "Read criterion, actual source and independent test assertions; compare frozen consumer snapshot; inspect execution/partial observation and limits.",
-      "observed_result": "Engine receives literal agent completion claim and remains NotVerified until a real oracle executes. Controlled deterministic engine consumer, not arbitrary agent integration.",
-      "artifact": "docs/validation/technical-acceptance-20261101/skill-agent-runtime-engineering-AC-04.md",
-      "sha256": "07d7b5ccb7d265f1b09ca6dca292c68a7637a18763a70f1d165387325aa605a3",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-agent-runtime-engineering/tasks.md.bin",
-          "sha256": "0bab8876daaf98cc11b763531d23e5a0131753d759c4f4c06dba9e3c17cd3105",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/Cargo.toml.bin",
-          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/Cargo.toml.bin",
-          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/Cargo.toml.bin",
-          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/Cargo.toml.bin",
-          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/Cargo.toml.bin",
-          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/Cargo.toml.bin",
-          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/Cargo.toml.bin",
-          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/Cargo.toml.bin",
-          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/Cargo.toml.bin",
-          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/Cargo.toml.bin",
-          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/Cargo.toml.bin",
-          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/Cargo.toml.bin",
-          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/Cargo.toml.bin",
-          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/Cargo.toml.bin",
-          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/Cargo.toml.bin",
-          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/Cargo.toml.bin",
-          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/lib.rs.bin",
-          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/reference.rs.bin",
-          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/lib.rs.bin",
-          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/artifact.rs.bin",
-          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/lib.rs.bin",
-          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/measurement.rs.bin",
-          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/lib.rs.bin",
-          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/verdict.rs.bin",
-          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
-          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
-          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/local-oracle.rs.bin",
-          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/task-oracle.rs.bin",
-          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/lib.rs.bin",
-          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/capture.rs.bin",
-          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/lib.rs.bin",
-          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/relation.rs.bin",
-          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/lib.rs.bin",
-          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/query.rs.bin",
-          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/lib.rs.bin",
-          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/local.rs.bin",
-          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/lib.rs.bin",
-          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/root.rs.bin",
-          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/tests/root_contract.rs.bin",
-          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/lib.rs.bin",
-          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/state.rs.bin",
-          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/tests/lifecycle.rs.bin",
-          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/lib.rs.bin",
-          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/authorization.rs.bin",
-          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/lib.rs.bin",
-          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/protocol.rs.bin",
-          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
-          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/compatibility.rs.bin",
-          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
-          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/bin/local-plugin.rs.bin",
-          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/lib.rs.bin",
-          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/session.rs.bin",
-          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
-          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin",
-          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-agent.rs.bin",
-          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-task.rs.bin",
-          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/lib.rs.bin",
-          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/capability.rs.bin",
-          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/lib.rs.bin",
-          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/shell.rs.bin",
-          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/desktop.rs.bin",
-          "sha256": "686e976baffce2332862c26b42e6557dd31bc0e9b85c04902223b05ebff2b042",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/local_task.rs.bin",
-          "sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/shell_contract.rs.bin",
-          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/local_task.rs.bin",
-          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/main.rs.bin",
-          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/lib.rs.bin",
-          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/startup.rs.bin",
-          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/desktop.rs.bin",
-          "sha256": "1b11ba4d8078afa389675ca1e9792076e01d42f1559630fa3b62e0b82aa27b55",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/initialization.rs.bin",
-          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.toml.bin",
-          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.lock.bin",
-          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/rust-toolchain.toml.bin",
-          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
-          "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot.json",
-          "sha256": "d15f43fc7cd4862d897fcc7b7f9b1745975791e97c834ea61fa6a76cb4ab15cb",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/technical-acceptance.md",
-          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
-          "role": "other"
-        }
-      ]
-    },
-    {
       "id": "E-TECH-RUN-AC-04",
       "kind": "test",
       "command_or_method": "cargo test -p ox-agent -p ox-verification -p ox-plugin --offline (application); standalone rustc consumer for missing oracle and direct-child reaping. Test-to-criterion mapping in the linked review.",
@@ -2495,361 +1181,6 @@
       ]
     },
     {
-      "id": "E-F0-EXPORT-BOUNDARY-REVIEW",
-      "kind": "inspection",
-      "command_or_method": "Inspect two-prefix product-record exclusion and regression assertion delta; authenticate old bytes; reexamine scope of unchanged preservation/acceptance algorithms and unchanged technical consumers. See execution-authority-review.md.",
-      "observed_result": "Operational F0 evidence excluded from governance-only export; prior scoped feature verdicts retained, pending current independent-copy results. No skill or product approval transferred.",
-      "artifact": "docs/validation/f0-reconciliation-20261101/execution-authority-review.md",
-      "sha256": "ed47b44829f55104a01fe26acf09190f588fd016f2de1ab20be13b3b5a5d0b9e",
-      "inputs": [
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
-          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/scripts/governance_support.py.bin",
-          "sha256": "96f45b7e2eafb02e92e701705501cac0ccf7d62a0605b0fe91293a78dd175b33",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/tests/test_governance.py.bin",
-          "sha256": "19ad9f877ea6b3eec612a79646a606ce2d1985f720c5c80c4527c234293d9fb2",
-          "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-F0-RESUMPTION-DOCUMENTARY",
-      "kind": "inspection",
-      "command_or_method": "Review exact shared documentary/export delta against unchanged criterion consumers; retain old hashes and identical predecessors. Regression assertion fails before and passes after the bounded export exclusion.",
-      "observed_result": "Existing scoped verdicts retained; no new consumer execution or product approval inferred. Current contracts and actual implementation/oracle identities reexamined; obsolete observations remain historical.",
-      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/review.md",
-      "sha256": "a73aaaa1dd74131f1e7bb792235e2fdfb637a64a7bec19849170518b0281f79f",
-      "inputs": [
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/docs/architecture/context.md.bin",
-          "sha256": "4de3bdbe6fe7fb89c51bfb80087c27425ff3eedcf75b08225366e53e5c76c6e6",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/f0-boundary-20261102.md",
-          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-after.log",
-          "sha256": "8270162f72b25037bb5ce5a9dbc2742241e25cf4009d87afa4e1bffe0f45d892",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-before.log",
-          "sha256": "04eefac525b865179f55c5d74d75506057d3d22cad27e8c9dcc3149fd8d7a571",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
-          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/sdd/project.md.bin",
-          "sha256": "e06b294ec7bcfbd2bfcc6924e03dbe4c6ebfa5378432c8b79e138cdd6cd17913",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
-          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
-          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
-          "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-F0-RASTER-DOCUMENTARY",
-      "kind": "inspection",
-      "command_or_method": "Bounded semantic review of current F0 authority text and unchanged criterion consumers; exact old bytes preserved.",
-      "observed_result": "Existing governance verdict and authorization scope retained; no product acceptance inferred from documentary checks.",
-      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/closure-review.md",
-      "sha256": "3ff01c75d3fe989c29649689b8d70f3d6168f4dcb61b468f728002536edddaf5",
-      "inputs": [
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/application-documentation-20261104/before/docs/architecture/context.md.bin",
-          "sha256": "e7884629c01481f69aeab1cf6d7237e76791f75f19a10ccef918425076e5d971",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/f0-boundary-20261102.md",
-          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
-          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-skill-integration-20261104/before/sdd/project.md.bin",
-          "sha256": "b802650f0b869ccfe0a7ad90d2fcc56c31290732060067ab495a0860ca9c3515",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
-          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
-          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
-          "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-README-SKILL-INTEGRATION-REVIEW",
-      "kind": "inspection",
-      "command_or_method": "Compare actual enumerated profile/import/preservation/doc delta against each affected criterion consumer. Retain old observations and identical input/artifact bytes; current profile receives independent import acceptance.",
-      "observed_result": "Existing scoped criterion states retained; no product execution or scientific/reader-effectiveness claim inferred. New conditional resource identity and negative preservation cases examined separately.",
-      "artifact": "docs/validation/readme-skill-integration-20261104/shared-input-review.md",
-      "sha256": "317f66f9089cdad0ec12524cfaf5d1fd1a9a3aa310e94562dddea655a9c784da",
-      "inputs": [
-        {
-          "path": ".codex/skills/README.md",
-          "sha256": "6161cee65caa6a19ae61cba0c56cc5751d90c6fe54c42a07c0c72a2ee11f05b7",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "other"
-        },
-        {
-          "path": "config/governance/profile.json",
-          "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/readme-skill-integration.md",
-          "sha256": "f8f53eba58ebf0e9e0b7892ab41dbe880806b31bccfe85d3090d31389c613e1d",
-          "role": "other"
-        },
-        {
-          "path": "docs/structure/files.json",
-          "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
-          "role": "other"
-        },
-        {
-          "path": "docs/structure/profile-revisions.json",
-          "sha256": "30f821a9adf357116a8d3b53114a0074da099be735446a79757899d56df972dc",
-          "role": "other"
-        },
-        {
-          "path": "sdd/chain/README.md",
-          "sha256": "c573f472c39f89270a1c405919be1079c165aba77b7223a03fd13d2248544ab9",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
-          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/robustness-20261105/before/sdd/project.md.bin",
-          "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/check-ox.py.bin",
-          "sha256": "5a6a68c5cb41a268d7bedafaa81c4583b60cd87f25603a79d2f4a80f46db72cc",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/governance_support.py.bin",
-          "sha256": "15b4ad904e3d1c950446ded93c7bb85bea5731198c18a56153f1667f8c88bda3",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/skill_revision.py.bin",
-          "sha256": "692cb74cb6a25dde4eca0309616fa3acaf27acc17af0732328108eefd3af1f8a",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
-          "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
-          "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-T009-DOCUMENTARY-SUCCESSOR",
-      "kind": "inspection",
-      "command_or_method": "Inspect adopted D2/D4 and conditional D3/D4-deps against predecessor documentary inputs and existing criteria. Preserve original digest preimages and all other input identities; no operational replay. Exact replacement ledger in successor/impact.json.",
-      "observed_result": "Documentary additions authorize only T009 preparation and isolated acquisition, preserve D1/F0 boundary and prior product criteria; no technology/integration/operational acceptance. Historical observations retain original scope/bytes. T009 remains INCONCLUSIVE; global identity validator condition remains unresolved.",
-      "artifact": "docs/validation/persistence-preflight-20261105/successor/review.md",
-      "sha256": "19d0cae464646bc81249e56ea3089a6e1a123ee4cdf081c323a585e0019987d2",
-      "inputs": [
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "other"
-        },
-        {
-          "path": "docs/architecture/context.md",
-          "sha256": "be256899934dada6f979639015764aae9801e732abdeb935629fd3b17c2eeaab",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/local-persistence-experiment-20261105.md",
-          "sha256": "058e1801df33718a31214b7dedb4065eeb13ceee6a7f0a07eb0cbbb1793fdd1e",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/local-persistence-proposal.md",
-          "sha256": "86453713fd66a0a026f2f968c7692ba3d9e1a088277fa271cd14890ddaaa4609",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/open-questions.md",
-          "sha256": "2b389951eb3d9b3a154253707e03ae64aa93e0077c73a78d0714dec4c9ebc94d",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/product-local-persistence/experiment-protocol.md",
-          "sha256": "2ed78fb91e87a2df3d053645ed3aea105f6e0451bd1125d375cb08e929b4d3bb",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
-          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/persistence-freeze-20261105/before/sdd/project.md.bin",
-          "sha256": "853f04e0dd88f9488b18ff47852740e0c4ad23539499ce5a5bafc72383acba33",
-          "role": "other"
-        }
-      ]
-    },
-    {
       "id": "E-T011-R2-SOURCE-RETENTION",
       "kind": "inspection",
       "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
@@ -2861,166 +1192,6 @@
           "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
           "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
           "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-SCANNER-INVALIDATION-AC-01",
-      "kind": "inspection",
-      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
-      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
-      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
-          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "contract"
-        }
-      ]
-    },
-    {
-      "id": "E-SCANNER-INVALIDATION-AC-02",
-      "kind": "inspection",
-      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
-      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
-      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
-          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "contract"
-        }
-      ]
-    },
-    {
-      "id": "E-SCANNER-INVALIDATION-AC-03",
-      "kind": "inspection",
-      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
-      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
-      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
-          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "contract"
-        }
-      ]
-    },
-    {
-      "id": "E-SCANNER-INVALIDATION-AC-04",
-      "kind": "inspection",
-      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
-      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
-      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
-          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
-          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
-          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
-          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
-          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
-          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
-          "role": "contract"
         }
       ]
     }
@@ -3040,7 +1211,12 @@
     "2026-11-01 documentary reconciliation: old input digests preserved under explicit snapshot paths; new task/successor inspections do not represent operational reruns. See docs/validation/f0-reconciliation-20261101/dependency-impact.json.",
     "2026-11-04 visual-documentation method successor: exact historical inputs are preserved without digest renewal; a new bounded method/consumer inspection is separate from prior execution observations. Inherited README current-byte guard failure is not waived. See docs/validation/technical-documentation-visuals-20261104/.",
     "Task closure succession: affected historical observations preserved under historical_evidence and exact preimage in docs/validation/scripts-task-closure/before; affected decisions INCONCLUSIVE pending bounded successor review. Unaffected operational observations retained.",
-    "Scanner remediation 2026-11-07: changed-input observations preserved verbatim in historical_evidence; no previous hash renewed. Affected acceptance requires reexecution; see docs/validation/scanner-remediation-20261107/evidence-reconciliation.json."
+    "Scanner remediation 2026-11-07: changed-input observations preserved verbatim in historical_evidence; no previous hash renewed. Affected acceptance requires reexecution; see docs/validation/scanner-remediation-20261107/evidence-reconciliation.json.",
+    "Visual successor: affected prior observations preserved in docs/validation/visual-workbench-20261111/superseded-evidence/skill-agent-runtime-engineering.json.bin; acceptance now INCONCLUSIVE until scoped revalidation.",
+    "Configuration inputs changed; affected observations preserved under docs/validation/configuration-refactor-20261111/before-evidence/. Rerun relevant consumer/oracle before renewed technical acceptance.",
+    "2026-11-13 Ec defaults: changed inputs invalidate dependent observations; original evidence preserved at docs/validation/scripts-defaults-20261113/prior/skill-agent-runtime-engineering/evidence.json",
+    "New documentary inspection reexamines changed authority/succession bytes only; original operational states and unaffected evidence references remain unchanged.",
+    "2026-11-14 instruction corrections: changed-input observations preserved unchanged in historical_evidence and governance-corrections-20261114/before; affected decided criteria require a new criterion-specific observation. No product/scanner reacceptance."
   ],
   "historical_evidence": [
     {
@@ -6000,6 +4176,1781 @@
           "path": "docs/validation/f0-reconciliation-20261101/maintenance-final.log",
           "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
           "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-README-SKILL-INTEGRATION-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Compare actual enumerated profile/import/preservation/doc delta against each affected criterion consumer. Retain old observations and identical input/artifact bytes; current profile receives independent import acceptance.",
+      "observed_result": "Existing scoped criterion states retained; no product execution or scientific/reader-effectiveness claim inferred. New conditional resource identity and negative preservation cases examined separately.",
+      "artifact": "docs/validation/readme-skill-integration-20261104/shared-input-review.md",
+      "sha256": "317f66f9089cdad0ec12524cfaf5d1fd1a9a3aa310e94562dddea655a9c784da",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "6161cee65caa6a19ae61cba0c56cc5751d90c6fe54c42a07c0c72a2ee11f05b7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/readme-skill-integration.md",
+          "sha256": "f8f53eba58ebf0e9e0b7892ab41dbe880806b31bccfe85d3090d31389c613e1d",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/profile-revisions.json",
+          "sha256": "30f821a9adf357116a8d3b53114a0074da099be735446a79757899d56df972dc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "c573f472c39f89270a1c405919be1079c165aba77b7223a03fd13d2248544ab9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
+          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/robustness-20261105/before/sdd/project.md.bin",
+          "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "5a6a68c5cb41a268d7bedafaa81c4583b60cd87f25603a79d2f4a80f46db72cc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "15b4ad904e3d1c950446ded93c7bb85bea5731198c18a56153f1667f8c88bda3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/skill_revision.py.bin",
+          "sha256": "692cb74cb6a25dde4eca0309616fa3acaf27acc17af0732328108eefd3af1f8a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
+          "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-TECH-REVIEW-AC-01",
+      "kind": "inspection",
+      "command_or_method": "Read criterion, actual source and independent test assertions; compare frozen consumer snapshot; inspect execution/partial observation and limits.",
+      "observed_result": "Adversarial reducer test rejects wrong generation, duplicate start, sequence gap and late success without corrupting terminal state. Reducer evidence is not sender authentication.",
+      "artifact": "docs/validation/technical-acceptance-20261101/skill-agent-runtime-engineering-AC-01.md",
+      "sha256": "a6591fda60ac1e703903bd29d2b3a96086da70df54bb5cacce870c59ab629821",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-agent-runtime-engineering/tasks.md.bin",
+          "sha256": "0bab8876daaf98cc11b763531d23e5a0131753d759c4f4c06dba9e3c17cd3105",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/Cargo.toml.bin",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/Cargo.toml.bin",
+          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/Cargo.toml.bin",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/Cargo.toml.bin",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/Cargo.toml.bin",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/Cargo.toml.bin",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/Cargo.toml.bin",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/Cargo.toml.bin",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/Cargo.toml.bin",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/Cargo.toml.bin",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/Cargo.toml.bin",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/Cargo.toml.bin",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/Cargo.toml.bin",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/Cargo.toml.bin",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/Cargo.toml.bin",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/Cargo.toml.bin",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/lib.rs.bin",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/reference.rs.bin",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/lib.rs.bin",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/artifact.rs.bin",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/lib.rs.bin",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/measurement.rs.bin",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/lib.rs.bin",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/verdict.rs.bin",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
+          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
+          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/local-oracle.rs.bin",
+          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/task-oracle.rs.bin",
+          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/lib.rs.bin",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/capture.rs.bin",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/lib.rs.bin",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/relation.rs.bin",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/lib.rs.bin",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/query.rs.bin",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/lib.rs.bin",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/local.rs.bin",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/lib.rs.bin",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/root.rs.bin",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/tests/root_contract.rs.bin",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/lib.rs.bin",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/state.rs.bin",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/tests/lifecycle.rs.bin",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/lib.rs.bin",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/authorization.rs.bin",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/lib.rs.bin",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/protocol.rs.bin",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/compatibility.rs.bin",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/bin/local-plugin.rs.bin",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/lib.rs.bin",
+          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/session.rs.bin",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
+          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin",
+          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-agent.rs.bin",
+          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-task.rs.bin",
+          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/lib.rs.bin",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/capability.rs.bin",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/lib.rs.bin",
+          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/shell.rs.bin",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/desktop.rs.bin",
+          "sha256": "686e976baffce2332862c26b42e6557dd31bc0e9b85c04902223b05ebff2b042",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/local_task.rs.bin",
+          "sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/shell_contract.rs.bin",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/local_task.rs.bin",
+          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/main.rs.bin",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/lib.rs.bin",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/startup.rs.bin",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/desktop.rs.bin",
+          "sha256": "1b11ba4d8078afa389675ca1e9792076e01d42f1559630fa3b62e0b82aa27b55",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/initialization.rs.bin",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
+          "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot.json",
+          "sha256": "d15f43fc7cd4862d897fcc7b7f9b1745975791e97c834ea61fa6a76cb4ab15cb",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-TECH-REVIEW-AC-02",
+      "kind": "inspection",
+      "command_or_method": "Read criterion, actual source and independent test assertions; compare frozen consumer snapshot; inspect execution/partial observation and limits.",
+      "observed_result": "Real failure returns Failed(17); additional Linux consumer asserts the PID disappears from /proc after observed completion. Direct-child/no-output fixture; descendants and stream resources absent.",
+      "artifact": "docs/validation/technical-acceptance-20261101/skill-agent-runtime-engineering-AC-02.md",
+      "sha256": "926f872895c5773ee3cac78337e2286837cc802227088a38595cceb964380e48",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-agent-runtime-engineering/tasks.md.bin",
+          "sha256": "0bab8876daaf98cc11b763531d23e5a0131753d759c4f4c06dba9e3c17cd3105",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/Cargo.toml.bin",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/Cargo.toml.bin",
+          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/Cargo.toml.bin",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/Cargo.toml.bin",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/Cargo.toml.bin",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/Cargo.toml.bin",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/Cargo.toml.bin",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/Cargo.toml.bin",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/Cargo.toml.bin",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/Cargo.toml.bin",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/Cargo.toml.bin",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/Cargo.toml.bin",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/Cargo.toml.bin",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/Cargo.toml.bin",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/Cargo.toml.bin",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/Cargo.toml.bin",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/lib.rs.bin",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/reference.rs.bin",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/lib.rs.bin",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/artifact.rs.bin",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/lib.rs.bin",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/measurement.rs.bin",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/lib.rs.bin",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/verdict.rs.bin",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
+          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
+          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/local-oracle.rs.bin",
+          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/task-oracle.rs.bin",
+          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/lib.rs.bin",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/capture.rs.bin",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/lib.rs.bin",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/relation.rs.bin",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/lib.rs.bin",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/query.rs.bin",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/lib.rs.bin",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/local.rs.bin",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/lib.rs.bin",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/root.rs.bin",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/tests/root_contract.rs.bin",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/lib.rs.bin",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/state.rs.bin",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/tests/lifecycle.rs.bin",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/lib.rs.bin",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/authorization.rs.bin",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/lib.rs.bin",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/protocol.rs.bin",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/compatibility.rs.bin",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/bin/local-plugin.rs.bin",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/lib.rs.bin",
+          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/session.rs.bin",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
+          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin",
+          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-agent.rs.bin",
+          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-task.rs.bin",
+          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/lib.rs.bin",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/capability.rs.bin",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/lib.rs.bin",
+          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/shell.rs.bin",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/desktop.rs.bin",
+          "sha256": "686e976baffce2332862c26b42e6557dd31bc0e9b85c04902223b05ebff2b042",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/local_task.rs.bin",
+          "sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/shell_contract.rs.bin",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/local_task.rs.bin",
+          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/main.rs.bin",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/lib.rs.bin",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/startup.rs.bin",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/desktop.rs.bin",
+          "sha256": "1b11ba4d8078afa389675ca1e9792076e01d42f1559630fa3b62e0b82aa27b55",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/initialization.rs.bin",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
+          "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot.json",
+          "sha256": "d15f43fc7cd4862d897fcc7b7f9b1745975791e97c834ea61fa6a76cb4ab15cb",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-TECH-REVIEW-AC-04",
+      "kind": "inspection",
+      "command_or_method": "Read criterion, actual source and independent test assertions; compare frozen consumer snapshot; inspect execution/partial observation and limits.",
+      "observed_result": "Engine receives literal agent completion claim and remains NotVerified until a real oracle executes. Controlled deterministic engine consumer, not arbitrary agent integration.",
+      "artifact": "docs/validation/technical-acceptance-20261101/skill-agent-runtime-engineering-AC-04.md",
+      "sha256": "07d7b5ccb7d265f1b09ca6dca292c68a7637a18763a70f1d165387325aa605a3",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/before/sdd/features/skill-agent-runtime-engineering/tasks.md.bin",
+          "sha256": "0bab8876daaf98cc11b763531d23e5a0131753d759c4f4c06dba9e3c17cd3105",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/Cargo.toml.bin",
+          "sha256": "bb52e2694b107f96dfed157cf4981fabe55c146cd0331b409e240dbd96eaba93",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/Cargo.toml.bin",
+          "sha256": "68ef1bf47f30ad052f397700f71fa102f4d9de413652688dc0f321f0a57b17d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/Cargo.toml.bin",
+          "sha256": "6967950798ddf8af1e04df781f56a234e502a34d470a97745ba2852dcf5d9d0b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/Cargo.toml.bin",
+          "sha256": "5f498fa31ecb1174548358ceac1f3b1cbb4fada21725eae1e313ed8c2e3b22d0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/Cargo.toml.bin",
+          "sha256": "583367257dd88bbe52f26e7af8e0d8a41063f88b87d079173dc4e8aa55b542eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/Cargo.toml.bin",
+          "sha256": "258533545573df62a11d985fe1f204a8886f97075119d951628e5f270c74d741",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/Cargo.toml.bin",
+          "sha256": "8fa9a3c24018fe4d9575998bbcc72db9eac2fd1242bab4ca80cd6dfc1e5aa285",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/Cargo.toml.bin",
+          "sha256": "992f35866f9afe8395d05f11cfd069e677da65c936bd5acbbb6983c041952525",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/Cargo.toml.bin",
+          "sha256": "ebb7a3bdf233d7569ad63b3ede9caebe72dfa44bf8979ffa47e454df027ee372",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/Cargo.toml.bin",
+          "sha256": "41d864b80a79ea1e0aaf28434c1f30566ab1de49deeaf732927448765540c9f2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/Cargo.toml.bin",
+          "sha256": "785dc412d65225663de3dd54c4312d2e14d99972dcbf65622e5715c433f16adb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/Cargo.toml.bin",
+          "sha256": "cb66589737c28f7aa4f4f7cb25b0f9af523974a618a8d79b9986db896ac51181",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/Cargo.toml.bin",
+          "sha256": "19e0997c1caf85e3a5268024277efe0d670df8e2b9d496fa62019a3d8893ad80",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/Cargo.toml.bin",
+          "sha256": "091a311e70a2e52092b7d7038cb19932f0ac41ce54e61337fdc1d5ddbdadbf1e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/Cargo.toml.bin",
+          "sha256": "00ad3d617c296f1aed637fff9d59b1a7b3b2a405381001eb3e73c996bc229568",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/Cargo.toml.bin",
+          "sha256": "197bfeb10e6c9632f239f4c1ede67c61d252467e04eacf6f02c9a493f84bb03c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/lib.rs.bin",
+          "sha256": "f5be2cbfa8176e9aa4904d748a2d3d5ecb0725c41e7bbd6cd4b847b136e4e27b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-skills/src/reference.rs.bin",
+          "sha256": "8e78242b4379625f5abf6f0cea90560ac57e6b2c2ef95806699b0f651357c424",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/lib.rs.bin",
+          "sha256": "8388401258f34cea37f966c7916918c0a77c9e6b79f8b95d52b41fecb50fb13a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-sdd/src/artifact.rs.bin",
+          "sha256": "bbdc13545591d262c9cf134519a3795276d38dbe051d3ef836f941aecc5a9acb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/lib.rs.bin",
+          "sha256": "da2b4f2451f72772c43782d2d4488a969133c7c6c8e5782b4084b589de86a810",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-observability/src/measurement.rs.bin",
+          "sha256": "ef10ae0c106c873e6dd2b392caa457fcb594a73d5f1f96a46447292717931f74",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/lib.rs.bin",
+          "sha256": "c86dc393ddff08b14bf0e733a3d15210886f1bbcb4042620d41b41f02a4880bc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/verdict.rs.bin",
+          "sha256": "b4ae01bde3f5cca4c438fb46d6d6e6769df9de169a4980edb3e2ad45ff37c133",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/engine.rs.bin",
+          "sha256": "65f2fbed3da2118deba4bb43a2a77e182121260eefa0ad07148e809fc3c460eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/tests/engine.rs.bin",
+          "sha256": "f703eda6d63b4ef10a104d646d38e9c58a85c544eed1e629e3451543628d8bfe",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/local-oracle.rs.bin",
+          "sha256": "77d395093099a20e1e926b920c373b0eeaa049fbd4a7c169ca21399236acb9c6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-verification/src/bin/task-oracle.rs.bin",
+          "sha256": "f4d87389d4778732e573de72dd4c453de404686a30f7e5ec2aa111cbb0517999",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/lib.rs.bin",
+          "sha256": "2c12c820c96f8acae375a957a7d14c124b1465c48ec7fbce6efdaf449561e8ed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-output/src/capture.rs.bin",
+          "sha256": "e373370804763de4a8089bb87c892b72bc6e36d6cec798d897eff91b29c85a12",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/lib.rs.bin",
+          "sha256": "0b32621da006777cbfd6a27bcd4c10b34520edbc91e8f1795f0b0ea5c0560867",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-graph/src/relation.rs.bin",
+          "sha256": "3ed92da85391123684c590e5454a096f95a8491ab6227380d920f3a815706e5c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/lib.rs.bin",
+          "sha256": "6b65deef6966d97bbcde67d194e9023f6acd4ae450bb1af37458fb11bb1808b2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-context/src/query.rs.bin",
+          "sha256": "2e40f47aee03486c7ee777e803ec73cbeb34e13da8a03683c64019327b5de44a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/lib.rs.bin",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-storage/src/local.rs.bin",
+          "sha256": "d71b057c0a95c1809812e507068eef39da36bf691dc838d1d4655359cc1785ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/lib.rs.bin",
+          "sha256": "64ac35f64ed0330f302c9899c3959f65abc5b794a8311a03788ccd2fc26360f8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/src/root.rs.bin",
+          "sha256": "75342fde275824e630bc71f2c83e6941c150e56813787fa89b409869134180f7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-workspace/tests/root_contract.rs.bin",
+          "sha256": "fbd09e4ad0933a7ecd59be9c4b638c077d11ff77042913c429ea4cda4fe2c4ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/lib.rs.bin",
+          "sha256": "ec84747b4349946c6e7f2a0794944415d105b89473c66c4e50494fbc318aed54",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/src/state.rs.bin",
+          "sha256": "a554db07b12af7db8b7a244c668bc97315a66b59242b3be3aa6818e734d2add7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-task/tests/lifecycle.rs.bin",
+          "sha256": "ddb13de273d056dbcbc94ce94806151ed8d8b8db1b4c84010d1966b3fa2b71a8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/lib.rs.bin",
+          "sha256": "ca3d0bb4a8eb1afd705585250e88180473d84f25d6355462e47b9c9f99a070b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-policy/src/authorization.rs.bin",
+          "sha256": "d8fced930e97efc1f96586bd6f50d09d3444f0d73788bbb75ab4a60bed3e5426",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/lib.rs.bin",
+          "sha256": "2ba487af853613e85da78cddfbc9b4bb372690284ea2a6aaaaec97ff4c47a9ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/protocol.rs.bin",
+          "sha256": "273b875dc0a003fe4c0e57ddd030a7c2c301c6f0ad3ba1d528350aa286ae3ea0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/host.rs.bin",
+          "sha256": "a3e9176b9d4427365cccf1a3ecf029b9d458c355ac7d93c2926b2a184ca24a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/compatibility.rs.bin",
+          "sha256": "4d47423f18cb91e9446e2bc84aaabacef6d57efbcb3dea6f3245d1b7d6062a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/tests/host.rs.bin",
+          "sha256": "a6f7990f5a977c5f886e2c5b8f94723832232cdfd3acb403f116c77560f3f32b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-plugin/src/bin/local-plugin.rs.bin",
+          "sha256": "b5d0846a20e131405bebf961160c8a6089ba7bb0824e893d2e9c2276781da0f1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/lib.rs.bin",
+          "sha256": "6b3529cfea516f039da61726f546c5531638a1febfa8f6564e95272a56599726",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/session.rs.bin",
+          "sha256": "112dffe739fbf0c74eac19eeede08d275a9e58970fd04f5529b6fa48bf6fbf0f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/runtime.rs.bin",
+          "sha256": "deff9812ed3d412888fb20f949e4ff5defe7f679b3d0cf4333e0331752bcb33e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/tests/runtime.rs.bin",
+          "sha256": "91662cb156bed1743baa8429a733d20eaaca93dfdc6636e4dd141f91e161cf2c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-agent.rs.bin",
+          "sha256": "f2fa3e27b169cfd407c552d2fd527be93b4def8177890761d7c1fbbc4db67fb6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-agent/src/bin/local-task.rs.bin",
+          "sha256": "72be6438e5d4f5b60b3f817f969b74020195c90ab249ba2fa15967ad11861a26",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/lib.rs.bin",
+          "sha256": "4fa1d43aabe99a6e66ae81e01ad3b4acb5e98bd519f801f9a7c02c0d39f75563",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-core/src/capability.rs.bin",
+          "sha256": "741b7a5bad0fa5461b1ebaa7e04931fe5fd0414ddde4aea02d1499de385cddab",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/lib.rs.bin",
+          "sha256": "36c516086a2574c703f3144503687418f113c7983c36cfc70c9b3795c58cce17",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/shell.rs.bin",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/desktop.rs.bin",
+          "sha256": "686e976baffce2332862c26b42e6557dd31bc0e9b85c04902223b05ebff2b042",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/src/local_task.rs.bin",
+          "sha256": "8cf7e98b8ea13fe50e67bca02d0a7d1902726a1432395b2ec887a4de3d0c3174",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/shell_contract.rs.bin",
+          "sha256": "664ba7b854e053a658b7622625c861e0679dd770d3c6781fbe2b9699f63b7465",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-ui/tests/local_task.rs.bin",
+          "sha256": "8d866470879e9d0364f5ef98f7e5d4b6f9935cac798c106fb1c8fd31ef3a4dc7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/main.rs.bin",
+          "sha256": "bfa69cda85547fb178faf8233eea759377f933784a51c4ff6f3c790efd5b08bb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/lib.rs.bin",
+          "sha256": "47fa16b890d3703326c565aa30f2122f14bc22bd43477065df6c6b184d3d96d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/src/startup.rs.bin",
+          "sha256": "901a8b0e22a59c050b2c266449ea32ad4ad850212aadcdf40e489372be077147",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/desktop.rs.bin",
+          "sha256": "1b11ba4d8078afa389675ca1e9792076e01d42f1559630fa3b62e0b82aa27b55",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/crates/ox-app/tests/initialization.rs.bin",
+          "sha256": "e2d6657fcdc56de330e54ebacd00eed96bbb0d781bae955caccc3ccf996be115",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.toml.bin",
+          "sha256": "3e94884a0db268e1b89b15762a6c8a5fe17e8b7ef3d744962ad6fa5b031cb380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/Cargo.lock.bin",
+          "sha256": "fa9da1a977d1ee1a4def928485dfd02f2b01a149fbbb88e95a64352496523268",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/application/rust-toolchain.toml.bin",
+          "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot/docs/validation/skill-criteria-review-20261101/consumer.rs.bin",
+          "sha256": "4a80b70b30a1ac822b213d012cb3e99494df067376bb76cd28efe6d78a14fdb8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-acceptance-20261101/consumer-snapshot.json",
+          "sha256": "d15f43fc7cd4862d897fcc7b7f9b1745975791e97c834ea61fa6a76cb4ab15cb",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/technical-acceptance.md",
+          "sha256": "8b8f92ad14120b8750a4b90c86e1c59b064d92f448ee1e78e11fbf0995621305",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-EXPORT-BOUNDARY-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Inspect two-prefix product-record exclusion and regression assertion delta; authenticate old bytes; reexamine scope of unchanged preservation/acceptance algorithms and unchanged technical consumers. See execution-authority-review.md.",
+      "observed_result": "Operational F0 evidence excluded from governance-only export; prior scoped feature verdicts retained, pending current independent-copy results. No skill or product approval transferred.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/execution-authority-review.md",
+      "sha256": "ed47b44829f55104a01fe26acf09190f588fd016f2de1ab20be13b3b5a5d0b9e",
+      "inputs": [
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
+          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "96f45b7e2eafb02e92e701705501cac0ccf7d62a0605b0fe91293a78dd175b33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "19ad9f877ea6b3eec612a79646a606ce2d1985f720c5c80c4527c234293d9fb2",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-RESUMPTION-DOCUMENTARY",
+      "kind": "inspection",
+      "command_or_method": "Review exact shared documentary/export delta against unchanged criterion consumers; retain old hashes and identical predecessors. Regression assertion fails before and passes after the bounded export exclusion.",
+      "observed_result": "Existing scoped verdicts retained; no new consumer execution or product approval inferred. Current contracts and actual implementation/oracle identities reexamined; obsolete observations remain historical.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/review.md",
+      "sha256": "a73aaaa1dd74131f1e7bb792235e2fdfb637a64a7bec19849170518b0281f79f",
+      "inputs": [
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/docs/architecture/context.md.bin",
+          "sha256": "4de3bdbe6fe7fb89c51bfb80087c27425ff3eedcf75b08225366e53e5c76c6e6",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/f0-boundary-20261102.md",
+          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-after.log",
+          "sha256": "8270162f72b25037bb5ce5a9dbc2742241e25cf4009d87afa4e1bffe0f45d892",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-before.log",
+          "sha256": "04eefac525b865179f55c5d74d75506057d3d22cad27e8c9dcc3149fd8d7a571",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
+          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/sdd/project.md.bin",
+          "sha256": "e06b294ec7bcfbd2bfcc6924e03dbe4c6ebfa5378432c8b79e138cdd6cd17913",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-RASTER-DOCUMENTARY",
+      "kind": "inspection",
+      "command_or_method": "Bounded semantic review of current F0 authority text and unchanged criterion consumers; exact old bytes preserved.",
+      "observed_result": "Existing governance verdict and authorization scope retained; no product acceptance inferred from documentary checks.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/closure-review.md",
+      "sha256": "3ff01c75d3fe989c29649689b8d70f3d6168f4dcb61b468f728002536edddaf5",
+      "inputs": [
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/application-documentation-20261104/before/docs/architecture/context.md.bin",
+          "sha256": "e7884629c01481f69aeab1cf6d7237e76791f75f19a10ccef918425076e5d971",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/f0-boundary-20261102.md",
+          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
+          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/sdd/project.md.bin",
+          "sha256": "b802650f0b869ccfe0a7ad90d2fcc56c31290732060067ab495a0860ca9c3515",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-SCANNER-INVALIDATION-AC-01",
+      "kind": "inspection",
+      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
+      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
+      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
+      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
+          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-SCANNER-INVALIDATION-AC-02",
+      "kind": "inspection",
+      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
+      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
+      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
+      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
+          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-SCANNER-INVALIDATION-AC-03",
+      "kind": "inspection",
+      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
+      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
+      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
+      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
+          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-SCANNER-INVALIDATION-AC-04",
+      "kind": "inspection",
+      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
+      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
+      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
+      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/spec.md",
+          "sha256": "ddbf9cdc522b6567a1bfe27c8b37097da0f6cee6e20e900930449b2307ee4244",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/plan.md",
+          "sha256": "327b1d26b8f83d54e2c2a71ec3f92057d71d2357c72ea4ccebd9cde391b8d597",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/tasks.md",
+          "sha256": "78534379a7ae5d184d66410aa7c4a8209549a59065f821e65fee3f0d0ffcf022",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-agent-runtime-engineering/traceability.json",
+          "sha256": "c629bec0e1124c4619472a40bedc93b136c95b9d15329c58aac11d850e8f37de",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+          "sha256": "8222848e53bb07724becc6d67a854f233cd3eb370881f8ee153d0e7b264c8a08",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/agent-runtime-engineering/references/evaluation-cases.md",
+          "sha256": "4e216a83e617e653e986ae7b685350138ccac64b8b666c9198c7ee5968deadfb",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTATION-CLOSURE-SUCCESSOR",
+      "kind": "inspection",
+      "command_or_method": "Source-grounded documentary review of completion guidance and current visual integration; prior observations archived",
+      "observed_result": "Documentation updated; no product execution rerun or new acceptance. Original observations: docs/validation/documentation-closure-20261111/before-evidence/skill-agent-runtime-engineering.json.bin",
+      "artifact": "docs/validation/documentation-closure-20261111/report.md",
+      "sha256": "2f4ff2363fdb28ec21ca59881cd52d5d4a9134f1da1c9a6d93883abab0c06751",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "3a5f842b1e7c60f3f1004c4998211e34178b23e1b7ebfe08619a879960d45eac",
+          "role": "other"
+        },
+        {
+          "path": "application/README.md",
+          "sha256": "6e50886a75b4a1c56b3f58cd6326a5e3e1e32ecee0c3e4b9c676930573a37eeb",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "4924373702d8484edbb1f7e92dc8a9f63114287c4eba01df4caaa2bf462928ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/application.md",
+          "sha256": "95d18c41e149bbdaf6934836017caed6ce5f4925c053cd89e8942fa40f22dfbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0f6e901bf9d6c1e351395c9ecf6564433ae1c63dac7c7241a9ef58d7862ed704",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "375c0c502f2ef4d1baf38720d787e9710c28bff7890b799794415f2e16e8e490",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-CONFIGURATION-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Compare current configuration with preserved preimages; retire only observations with changed bound inputs",
+      "observed_result": "Configuration text reviewed; no historical execution rerun or application acceptance transferred. Prior document: docs/validation/configuration-refactor-20261111/before-evidence/skill-agent-runtime-engineering.json.bin",
+      "artifact": "docs/validation/configuration-refactor-20261111/report.md",
+      "sha256": "b44e8801970792d2af595dce92eba0b0a70ef29737df71fcf9db52f803251b58",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "60927db048a6f6c9a0498d022a73ca3d6f6fad059b0aa9334bc5ddd1c4902f73",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "99c45c11a051cb0f194d2d2021214ea3d5cd604a3b107d1179f80468c6237273",
+          "role": "configuration"
+        }
+      ]
+    },
+    {
+      "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+      "kind": "inspection",
+      "command_or_method": "Compare preserved authority preimages, inspect the exact-byte succession adapter and unchanged technical inputs; 33 succession tests include corruption, symlink, downgrade and unknown-byte rejection. See defaults report.",
+      "observed_result": "Only the full command, authorized scope and exact-byte documentation succession changed. Skill methods, bridge contributions and product implementation remain unchanged; historical operational acceptance is not renewed.",
+      "artifact": "docs/validation/scripts-defaults-20261113/report.md",
+      "sha256": "9d9c08147f3041902cada932a5cfd9f15e057c2e8e9bd25ff0ed25ce5644e691",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "f482adf1f52bbc5247139b51c5079f100336ba5402a4d9351dbd788f5f2d81a9",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "c612c5a0906869f4d4b18beb8f974a7304ba751be7973cf196154a1194ce3ace",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/scripts-defaults-20261113/succession.json",
+          "sha256": "94e3d4b3c352c9030a9687ff7e0eee1bf0ebe1f75236377c8fe33795f54f2370",
+          "role": "other"
         }
       ]
     }

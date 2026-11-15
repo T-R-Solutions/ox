@@ -128,7 +128,7 @@ supports the workflow; do not describe it as automated freshness checking.
 | Local without a feature | Relevant functional check/inspection, observed input record; standard checker for links/model/bridges, when used | Exit 0 without features validates structure, not acceptance of the change |
 | Local affecting an existing feature | Focused check and updates to affected artifacts/evidence; the same feature gates | The route does not waive ACs, traceability or freshness |
 | Full workflow in progress | Risk-based checks and --structure-only before evidence collection | Not acceptance; do not combine with approval/freshness flags |
-| Automated feature acceptance | `--features <directory> --require-approved --require-fresh` | Requires schema 2, decided ACs and current inputs; does not prove oracle suitability/authenticity |
+| Automated feature acceptance | `--features <directory> --feature NAME --require-approved --require-fresh` | Requires schema 2, decided ACs and current inputs; does not prove oracle suitability/authenticity |
 | Manual workflow, any route | Compare observed/current content and record five states in the existing record | Do not call manual review automated freshness checking |
 
 Schemas and the validator have no local-route exception. To require automated
@@ -138,3 +138,36 @@ A local manual record may be short: goal/criterion, change, inputs/versions,
 method, result, state and relevant limitation. Preserve the previous observation
 when something changes; rerun/reexamine only affected evidence without renewing
 an old result's hashes to make it appear current.
+
+## Current convergence projection
+
+For automated features adopting `--check-convergence`, evidence.json owns current
+states. converge.md contains exactly one delimited projection, not an independent
+editable verdict. Example (replace IDs/states with the actual declared AC set):
+
+```markdown
+<!-- sdd:current-status -->
+| Criterion | Status |
+| --- | --- |
+| AC-01 | UNVERIFIED |
+<!-- /sdd:current-status -->
+```
+
+Include exactly every normative AC once, using English state tokens above (including
+`NOT APPLICABLE`). Reference the evidence envelope outside the block. Preserve
+previous convergence bytes and place prior conclusions under explicit historical
+headings. Historical prose is not parsed or promoted. The read-only checker rejects
+missing/duplicate blocks, malformed rows, invalid states, missing/duplicate/unknown
+criteria and disagreement with JSON. It never repairs JSON or Markdown. This option
+requires full evidence mode and cannot combine with `--structure-only`. Portable
+manual workflows need no block; Ox explicitly opts its automated corpus in.
+
+## Select whole features
+
+`--features DIRECTORY` still selects the feature container. Repeat `--feature NAME`
+to select named direct children; omitted selection checks all direct features.
+Unknown, empty, escaping, symlinked or ambiguous selections fail. Each selected
+feature retains all normative gates and schema/input checks. Shared model, bridge
+and link checks still run; selecting a feature cannot hide broken shared authority.
+For automated acceptance use `--require-approved --require-fresh`; add
+`--check-convergence` for an adopted projection. No per-criterion selection exists.

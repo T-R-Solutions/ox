@@ -1,0 +1,1175 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64; pinned Cargo 1.99.1; dedicated .cache/ox/cargo-home; explicit installed Toolbox and shared SELinux mounts; see complete-repair-20261111/native-results.json for actual tool/image/data identities.",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Native transport contract",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Product integrity/report/metadata contract under fake executor",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Real scanner operation and policy qualification",
+      "status": "UNVERIFIED",
+      "evidence_ids": [],
+      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "AC-03 broader real cancellation/concurrency/data-recovery matrix not requalified.",
+    "Geiger reports incomplete metrics for ox-app/ox-ui; complete scope remains nonzero.",
+    "Full run retained two fixture failures and Bandit/Ruff failures; corrected focused retests passed, without a second monolithic full execution.",
+    "Historical observations retained; no new native UI acceptance or application release.",
+    "Configuration migration invalidates dependent observations; originals remain in docs/validation/scripts-centralization-20261113/prior/scripts-toolbox-native/evidence.json. New contract tests do not renew historical native scanner acceptance."
+  ],
+  "historical_evidence": [
+    {
+      "id": "E-CONTRACT",
+      "kind": "test",
+      "command_or_method": "python3 -m unittest discover -s scripts/tests -v",
+      "observed_result": "Local suite passed; real test disabled by default.",
+      "artifact": "docs/validation/scripts-toolbox-native/tests.stderr",
+      "sha256": "e857e3f675281b6b9fcff802de4cade0bbf32a419deaa31f7e258a029513ff75",
+      "inputs": [
+        {
+          "path": "scripts/README.md",
+          "sha256": "ed2070dd0b30273692e0b1d58469d6df3ea44ce8ce6b4d59c38e50fd2d333c8c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "85ae1aa4a589689fe27420767b4884e49720e649f780ca46dbef49298f8ccb3c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/toolbox.sh",
+          "sha256": "4ffe778fb1c581c33a7bb5984ad0c39d846805bd98c97da3872c974fa5c415f2",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/LICENSE",
+          "sha256": "b2fa7b84692d6b7d79bc3538f670cb7110ec089ac04b7d5f9aa917713661ecd0",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/NOTICE",
+          "sha256": "5271e72438d787703c1afb4704dab703893354427a76adb3916e54a4f3c19807",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/SOURCES.md",
+          "sha256": "bcf98824f51607dd853eb45969a68b5e0eb8e2a8a97b4d15f52073ec86b6db27",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "0b9d0a1254e5a7796eaf134965d5b820d9f3cbc80295f932810f972760a9a22a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/reports/summarize.sh",
+          "sha256": "c78154c0d03f8c7588556aec594594e7f69e7b9c425bd2a41e02cb23d179db5e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "354f5b3e7424e926f7dbdda324348d2803fd6f0f24fa532d63994cd5c1149adc",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/process.sh",
+          "sha256": "6e8881ede9e30c6c5644affcca6426e7e6c159072e2b449bd7be9d52f53081db",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/registry.sh",
+          "sha256": "96e75ed6031521a05ff22bb94d04a46430a5d08dd805173c5f611cf1a5c3002a",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "d1cf086c63fbd73ec2215a420ccb79947edfbc1881abeaf77b1a9af61f6a52ca",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/reports.sh",
+          "sha256": "5eaef65a346096cf853869f693590583cfc8549937bede306fd0f7afd949bfd8",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/backends.sh",
+          "sha256": "5e22bc0df8749939c1c5dc916f3a409e5632de7738a4f0fdfa8dec1b423e6c21",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "121d9f1e33ca31f34d2efdb8e81b4cdc8af74688725779079244342c1c725a02",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/support.py",
+          "sha256": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_automation.py",
+          "sha256": "c59f8e6d0ee0444bfdb167cb75b6a6c65fd3161133fd14c1a8c49f59470006a8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_backends.py",
+          "sha256": "a87bbcc80de5a0d00ab07f75badc46d585318538c3333f675783746e891bde98",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_preparation.py",
+          "sha256": "92013499faa6e20cbb323f38faa5ba18b063904a186dd088d84cf6c85246ac08",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_native_reports.py",
+          "sha256": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_real_security_backends.py",
+          "sha256": "c01bf56474a4717f70dd6c573829a25cfcc63ff8ee9bef3a096884050e766172",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_optional_datasets.py",
+          "sha256": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_json_guard.py",
+          "sha256": "d82350c25348b611492867fddc98df717ac33b97984c4b89a2e7e0e8ae05f953",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_process_lifecycle.py",
+          "sha256": "cdfc21760304ad0cded06be52fac17deaa4fffc6ff5d563a01e9bbcc371bcf2a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/ruff.toml",
+          "sha256": "d6fda112abf48c2be8a9a88410d27001ad615cad64eaac8ba53e5e015b901b87",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/bandit.yaml",
+          "sha256": "4470c96513b6b9edbafd6b78c4cc76ee6acb60ee33da364e142ab1d4a1500dda",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/deny.toml",
+          "sha256": "340147c43af6345559f5717a84609a16cd57abaabad9fb161a2e8ea1d24fd9c8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/audit.toml",
+          "sha256": "3c3e7daa975ee80023e698bfa4d88e6879e9fa6358e82fbefd1742c29ca2e2ed",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/osv-scanner.toml",
+          "sha256": "5737d37bb2cd3e33e8b4e8687193efe1cbe924e6ecc871f20a64cff6882265a9",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/shellcheckrc",
+          "sha256": "618fe69fa4c96d19c826bad2faed550585ed966d265ea73e88e416d81aa02df6",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/grype.yaml",
+          "sha256": "257a35b02bb36482fb661d72e086b424cbd00ab751508babb5ae04012123289c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/syft.yaml",
+          "sha256": "9aee3e875e9cafcb974a70517a522059598073e0f809dcd2dd9fab9bbb5eb5a5",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/trivy.yaml",
+          "sha256": "2ad6b8c4ecd5bc7b13166d571d0a8c078b07ec22c15c65d24adb708461cbd4de",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/bandit.ini",
+          "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/trivyignore",
+          "sha256": "534119fe5ef9d0667b9a0fdc34ec5cf49c3a2b8634abfd4a6a2b9b7afdd27a34",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/rules/ox.py",
+          "sha256": "2afebe512861cabf82d7ff533bc34f0520001bdf08329dbf90c73370ba9c62d6",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/rules/ox.rs",
+          "sha256": "0cf063cab044efb2f70f8c58edc131067d784283c0da64e3ac0d01bfb7191a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/check-report.sh",
+          "sha256": "0fc4dc157f9c40ff91eb80dd722495086ec04e3daac8927c28095b17b6505680",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/validate-exceptions.sh",
+          "sha256": "929e7aa37577086e140c91bf46967498fd56291e0b13dfe819d1d968343fa798",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/suspicious.yar",
+          "sha256": "49951250b1e904ea63bf88f3547fcc9404a4425de0ad6ddb778d9fa6335f241d",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/gitleaks.toml",
+          "sha256": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/ox.yml",
+          "sha256": "8f69f2c9e549ae5ed2c8485586f5ad1d287399b7ddd9b1d01249a40060550a68",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/README.md",
+          "sha256": "68211d729d9ec847456abd7c1853d6205236a899187041cdf24c6582025f80c0",
+          "role": "other"
+        },
+        {
+          "path": "README.md",
+          "sha256": "0c86ddc47634e396f460ba0e81cf10f02849982dc73bdf7abc7680da8150248e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "2575a94b612d4cc19ed7c308d84943572839cf5af0404b9833224f1d76ad582d",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/scripts-toolbox-native.md",
+          "sha256": "afb73501efeb264dc09b1bd0ce2dc8fe55916769467820fb828d4e1931366a8f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/spec.md",
+          "sha256": "3290f70a552ca93693dca7338a74b1a930f9b120a7aac9b032f7f542d8b1d5ad",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/plan.md",
+          "sha256": "f932d1c436ff7672074f850ef10289d421fec00f7950e4ab7aa92ebb57e79450",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/tasks.md",
+          "sha256": "1fccf51ac8883a326f6bbba557db4ce217f75efbd9d7fb877f1476156595e707",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/converge.md",
+          "sha256": "e01046a28c258fe9ebc192311354f0d941a4f7012cad853918f65529f2833191",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/traceability.json",
+          "sha256": "60b6cce02e0692daac4901439b88d2178eaa07ebc6a7e6baf901dd0af732833b",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-GOVERNANCE",
+      "kind": "test",
+      "command_or_method": "python3 -m unittest discover -s tools/governance/tests -p test_security_quality.py -v",
+      "observed_result": "16 tests passed.",
+      "artifact": "docs/validation/scripts-toolbox-native/governance.stderr",
+      "sha256": "cdbf9064169bbfa4f9a68d6cf92d74def5f66f68db262191253a3a3cd347c951",
+      "inputs": [
+        {
+          "path": "scripts/README.md",
+          "sha256": "ed2070dd0b30273692e0b1d58469d6df3ea44ce8ce6b4d59c38e50fd2d333c8c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "85ae1aa4a589689fe27420767b4884e49720e649f780ca46dbef49298f8ccb3c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/toolbox.sh",
+          "sha256": "4ffe778fb1c581c33a7bb5984ad0c39d846805bd98c97da3872c974fa5c415f2",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/LICENSE",
+          "sha256": "b2fa7b84692d6b7d79bc3538f670cb7110ec089ac04b7d5f9aa917713661ecd0",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/NOTICE",
+          "sha256": "5271e72438d787703c1afb4704dab703893354427a76adb3916e54a4f3c19807",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/SOURCES.md",
+          "sha256": "bcf98824f51607dd853eb45969a68b5e0eb8e2a8a97b4d15f52073ec86b6db27",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "0b9d0a1254e5a7796eaf134965d5b820d9f3cbc80295f932810f972760a9a22a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/reports/summarize.sh",
+          "sha256": "c78154c0d03f8c7588556aec594594e7f69e7b9c425bd2a41e02cb23d179db5e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "354f5b3e7424e926f7dbdda324348d2803fd6f0f24fa532d63994cd5c1149adc",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/process.sh",
+          "sha256": "6e8881ede9e30c6c5644affcca6426e7e6c159072e2b449bd7be9d52f53081db",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/registry.sh",
+          "sha256": "96e75ed6031521a05ff22bb94d04a46430a5d08dd805173c5f611cf1a5c3002a",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "d1cf086c63fbd73ec2215a420ccb79947edfbc1881abeaf77b1a9af61f6a52ca",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/reports.sh",
+          "sha256": "5eaef65a346096cf853869f693590583cfc8549937bede306fd0f7afd949bfd8",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/backends.sh",
+          "sha256": "5e22bc0df8749939c1c5dc916f3a409e5632de7738a4f0fdfa8dec1b423e6c21",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "121d9f1e33ca31f34d2efdb8e81b4cdc8af74688725779079244342c1c725a02",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/support.py",
+          "sha256": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_automation.py",
+          "sha256": "c59f8e6d0ee0444bfdb167cb75b6a6c65fd3161133fd14c1a8c49f59470006a8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_backends.py",
+          "sha256": "a87bbcc80de5a0d00ab07f75badc46d585318538c3333f675783746e891bde98",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_preparation.py",
+          "sha256": "92013499faa6e20cbb323f38faa5ba18b063904a186dd088d84cf6c85246ac08",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_native_reports.py",
+          "sha256": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_real_security_backends.py",
+          "sha256": "c01bf56474a4717f70dd6c573829a25cfcc63ff8ee9bef3a096884050e766172",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_optional_datasets.py",
+          "sha256": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_json_guard.py",
+          "sha256": "d82350c25348b611492867fddc98df717ac33b97984c4b89a2e7e0e8ae05f953",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_process_lifecycle.py",
+          "sha256": "cdfc21760304ad0cded06be52fac17deaa4fffc6ff5d563a01e9bbcc371bcf2a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/ruff.toml",
+          "sha256": "d6fda112abf48c2be8a9a88410d27001ad615cad64eaac8ba53e5e015b901b87",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/bandit.yaml",
+          "sha256": "4470c96513b6b9edbafd6b78c4cc76ee6acb60ee33da364e142ab1d4a1500dda",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/deny.toml",
+          "sha256": "340147c43af6345559f5717a84609a16cd57abaabad9fb161a2e8ea1d24fd9c8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/audit.toml",
+          "sha256": "3c3e7daa975ee80023e698bfa4d88e6879e9fa6358e82fbefd1742c29ca2e2ed",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/osv-scanner.toml",
+          "sha256": "5737d37bb2cd3e33e8b4e8687193efe1cbe924e6ecc871f20a64cff6882265a9",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/shellcheckrc",
+          "sha256": "618fe69fa4c96d19c826bad2faed550585ed966d265ea73e88e416d81aa02df6",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/grype.yaml",
+          "sha256": "257a35b02bb36482fb661d72e086b424cbd00ab751508babb5ae04012123289c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/syft.yaml",
+          "sha256": "9aee3e875e9cafcb974a70517a522059598073e0f809dcd2dd9fab9bbb5eb5a5",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/trivy.yaml",
+          "sha256": "2ad6b8c4ecd5bc7b13166d571d0a8c078b07ec22c15c65d24adb708461cbd4de",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/bandit.ini",
+          "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/trivyignore",
+          "sha256": "534119fe5ef9d0667b9a0fdc34ec5cf49c3a2b8634abfd4a6a2b9b7afdd27a34",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/rules/ox.py",
+          "sha256": "2afebe512861cabf82d7ff533bc34f0520001bdf08329dbf90c73370ba9c62d6",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/rules/ox.rs",
+          "sha256": "0cf063cab044efb2f70f8c58edc131067d784283c0da64e3ac0d01bfb7191a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/check-report.sh",
+          "sha256": "0fc4dc157f9c40ff91eb80dd722495086ec04e3daac8927c28095b17b6505680",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/validate-exceptions.sh",
+          "sha256": "929e7aa37577086e140c91bf46967498fd56291e0b13dfe819d1d968343fa798",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/suspicious.yar",
+          "sha256": "49951250b1e904ea63bf88f3547fcc9404a4425de0ad6ddb778d9fa6335f241d",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/gitleaks.toml",
+          "sha256": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/ox.yml",
+          "sha256": "8f69f2c9e549ae5ed2c8485586f5ad1d287399b7ddd9b1d01249a40060550a68",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/README.md",
+          "sha256": "68211d729d9ec847456abd7c1853d6205236a899187041cdf24c6582025f80c0",
+          "role": "other"
+        },
+        {
+          "path": "README.md",
+          "sha256": "0c86ddc47634e396f460ba0e81cf10f02849982dc73bdf7abc7680da8150248e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "2575a94b612d4cc19ed7c308d84943572839cf5af0404b9833224f1d76ad582d",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/scripts-toolbox-native.md",
+          "sha256": "afb73501efeb264dc09b1bd0ce2dc8fe55916769467820fb828d4e1931366a8f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/spec.md",
+          "sha256": "3290f70a552ca93693dca7338a74b1a930f9b120a7aac9b032f7f542d8b1d5ad",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/plan.md",
+          "sha256": "f932d1c436ff7672074f850ef10289d421fec00f7950e4ab7aa92ebb57e79450",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/tasks.md",
+          "sha256": "1fccf51ac8883a326f6bbba557db4ce217f75efbd9d7fb877f1476156595e707",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/converge.md",
+          "sha256": "e01046a28c258fe9ebc192311354f0d941a4f7012cad853918f65529f2833191",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/traceability.json",
+          "sha256": "60b6cce02e0692daac4901439b88d2178eaa07ebc6a7e6baf901dd0af732833b",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-REAL",
+      "kind": "test",
+      "command_or_method": "TOOLBOX_BIN=... OX_REAL_SECURITY=1 python3 -m unittest discover -s scripts/tests -p test_real_security_backends.py -v",
+      "observed_result": "Preflight failed: no active revisions; zero operations.",
+      "artifact": "docs/validation/scripts-toolbox-native/real.stderr",
+      "sha256": "73f955d5a530aeda721a666698e460e74ab5905bb7fe1247fb6e796581784707",
+      "inputs": [
+        {
+          "path": "scripts/README.md",
+          "sha256": "ed2070dd0b30273692e0b1d58469d6df3ea44ce8ce6b4d59c38e50fd2d333c8c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "85ae1aa4a589689fe27420767b4884e49720e649f780ca46dbef49298f8ccb3c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/toolbox.sh",
+          "sha256": "4ffe778fb1c581c33a7bb5984ad0c39d846805bd98c97da3872c974fa5c415f2",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/LICENSE",
+          "sha256": "b2fa7b84692d6b7d79bc3538f670cb7110ec089ac04b7d5f9aa917713661ecd0",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/NOTICE",
+          "sha256": "5271e72438d787703c1afb4704dab703893354427a76adb3916e54a4f3c19807",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/SOURCES.md",
+          "sha256": "bcf98824f51607dd853eb45969a68b5e0eb8e2a8a97b4d15f52073ec86b6db27",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "0b9d0a1254e5a7796eaf134965d5b820d9f3cbc80295f932810f972760a9a22a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/reports/summarize.sh",
+          "sha256": "c78154c0d03f8c7588556aec594594e7f69e7b9c425bd2a41e02cb23d179db5e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "354f5b3e7424e926f7dbdda324348d2803fd6f0f24fa532d63994cd5c1149adc",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/process.sh",
+          "sha256": "6e8881ede9e30c6c5644affcca6426e7e6c159072e2b449bd7be9d52f53081db",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/registry.sh",
+          "sha256": "96e75ed6031521a05ff22bb94d04a46430a5d08dd805173c5f611cf1a5c3002a",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "d1cf086c63fbd73ec2215a420ccb79947edfbc1881abeaf77b1a9af61f6a52ca",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/reports.sh",
+          "sha256": "5eaef65a346096cf853869f693590583cfc8549937bede306fd0f7afd949bfd8",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/backends.sh",
+          "sha256": "5e22bc0df8749939c1c5dc916f3a409e5632de7738a4f0fdfa8dec1b423e6c21",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "121d9f1e33ca31f34d2efdb8e81b4cdc8af74688725779079244342c1c725a02",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/support.py",
+          "sha256": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_automation.py",
+          "sha256": "c59f8e6d0ee0444bfdb167cb75b6a6c65fd3161133fd14c1a8c49f59470006a8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_backends.py",
+          "sha256": "a87bbcc80de5a0d00ab07f75badc46d585318538c3333f675783746e891bde98",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_preparation.py",
+          "sha256": "92013499faa6e20cbb323f38faa5ba18b063904a186dd088d84cf6c85246ac08",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_native_reports.py",
+          "sha256": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_real_security_backends.py",
+          "sha256": "c01bf56474a4717f70dd6c573829a25cfcc63ff8ee9bef3a096884050e766172",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_optional_datasets.py",
+          "sha256": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_json_guard.py",
+          "sha256": "d82350c25348b611492867fddc98df717ac33b97984c4b89a2e7e0e8ae05f953",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_process_lifecycle.py",
+          "sha256": "cdfc21760304ad0cded06be52fac17deaa4fffc6ff5d563a01e9bbcc371bcf2a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/ruff.toml",
+          "sha256": "d6fda112abf48c2be8a9a88410d27001ad615cad64eaac8ba53e5e015b901b87",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/bandit.yaml",
+          "sha256": "4470c96513b6b9edbafd6b78c4cc76ee6acb60ee33da364e142ab1d4a1500dda",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/deny.toml",
+          "sha256": "340147c43af6345559f5717a84609a16cd57abaabad9fb161a2e8ea1d24fd9c8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/audit.toml",
+          "sha256": "3c3e7daa975ee80023e698bfa4d88e6879e9fa6358e82fbefd1742c29ca2e2ed",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/osv-scanner.toml",
+          "sha256": "5737d37bb2cd3e33e8b4e8687193efe1cbe924e6ecc871f20a64cff6882265a9",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/shellcheckrc",
+          "sha256": "618fe69fa4c96d19c826bad2faed550585ed966d265ea73e88e416d81aa02df6",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/grype.yaml",
+          "sha256": "257a35b02bb36482fb661d72e086b424cbd00ab751508babb5ae04012123289c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/syft.yaml",
+          "sha256": "9aee3e875e9cafcb974a70517a522059598073e0f809dcd2dd9fab9bbb5eb5a5",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/trivy.yaml",
+          "sha256": "2ad6b8c4ecd5bc7b13166d571d0a8c078b07ec22c15c65d24adb708461cbd4de",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/bandit.ini",
+          "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/trivyignore",
+          "sha256": "534119fe5ef9d0667b9a0fdc34ec5cf49c3a2b8634abfd4a6a2b9b7afdd27a34",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/rules/ox.py",
+          "sha256": "2afebe512861cabf82d7ff533bc34f0520001bdf08329dbf90c73370ba9c62d6",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/rules/ox.rs",
+          "sha256": "0cf063cab044efb2f70f8c58edc131067d784283c0da64e3ac0d01bfb7191a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/check-report.sh",
+          "sha256": "0fc4dc157f9c40ff91eb80dd722495086ec04e3daac8927c28095b17b6505680",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/validate-exceptions.sh",
+          "sha256": "929e7aa37577086e140c91bf46967498fd56291e0b13dfe819d1d968343fa798",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/suspicious.yar",
+          "sha256": "49951250b1e904ea63bf88f3547fcc9404a4425de0ad6ddb778d9fa6335f241d",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/gitleaks.toml",
+          "sha256": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/ox.yml",
+          "sha256": "8f69f2c9e549ae5ed2c8485586f5ad1d287399b7ddd9b1d01249a40060550a68",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/rules/README.md",
+          "sha256": "68211d729d9ec847456abd7c1853d6205236a899187041cdf24c6582025f80c0",
+          "role": "other"
+        },
+        {
+          "path": "README.md",
+          "sha256": "0c86ddc47634e396f460ba0e81cf10f02849982dc73bdf7abc7680da8150248e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/project.md",
+          "sha256": "2575a94b612d4cc19ed7c308d84943572839cf5af0404b9833224f1d76ad582d",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/scripts-toolbox-native.md",
+          "sha256": "afb73501efeb264dc09b1bd0ce2dc8fe55916769467820fb828d4e1931366a8f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/spec.md",
+          "sha256": "3290f70a552ca93693dca7338a74b1a930f9b120a7aac9b032f7f542d8b1d5ad",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/plan.md",
+          "sha256": "f932d1c436ff7672074f850ef10289d421fec00f7950e4ab7aa92ebb57e79450",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/tasks.md",
+          "sha256": "1fccf51ac8883a326f6bbba557db4ce217f75efbd9d7fb877f1476156595e707",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/converge.md",
+          "sha256": "e01046a28c258fe9ebc192311354f0d941a4f7012cad853918f65529f2833191",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/traceability.json",
+          "sha256": "60b6cce02e0692daac4901439b88d2178eaa07ebc6a7e6baf901dd0af732833b",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-SELINUX-LOCAL",
+      "kind": "test",
+      "command_or_method": "python3 -m unittest discover -s scripts/tests -v",
+      "observed_result": "Final current-input rerun: 28 cases, 27 passed, one real-prerequisite opt-in skipped; no complete operational qualification.",
+      "artifact": "docs/validation/toolbox-selinux-correction/scripts-final.stderr",
+      "sha256": "9a1a0f96a7b8c0ad1330b5d75fa7dbaee7ebd8e43d58d2ac1d7347512ec60ddc",
+      "inputs": [
+        {
+          "path": "scripts/README.md",
+          "sha256": "c0822dd947b758bbfb4c0fcff95bcb8813af90aacba1d2577514f42a3f6d3234",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "85ae1aa4a589689fe27420767b4884e49720e649f780ca46dbef49298f8ccb3c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "121d9f1e33ca31f34d2efdb8e81b4cdc8af74688725779079244342c1c725a02",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/backends.sh",
+          "sha256": "5e22bc0df8749939c1c5dc916f3a409e5632de7738a4f0fdfa8dec1b423e6c21",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "354f5b3e7424e926f7dbdda324348d2803fd6f0f24fa532d63994cd5c1149adc",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "d1cf086c63fbd73ec2215a420ccb79947edfbc1881abeaf77b1a9af61f6a52ca",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/process.sh",
+          "sha256": "6e8881ede9e30c6c5644affcca6426e7e6c159072e2b449bd7be9d52f53081db",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/registry.sh",
+          "sha256": "96e75ed6031521a05ff22bb94d04a46430a5d08dd805173c5f611cf1a5c3002a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/reports.sh",
+          "sha256": "5eaef65a346096cf853869f693590583cfc8549937bede306fd0f7afd949bfd8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/reports/summarize.sh",
+          "sha256": "c78154c0d03f8c7588556aec594594e7f69e7b9c425bd2a41e02cb23d179db5e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/check-report.sh",
+          "sha256": "0fc4dc157f9c40ff91eb80dd722495086ec04e3daac8927c28095b17b6505680",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/validate-exceptions.sh",
+          "sha256": "929e7aa37577086e140c91bf46967498fd56291e0b13dfe819d1d968343fa798",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "0b9d0a1254e5a7796eaf134965d5b820d9f3cbc80295f932810f972760a9a22a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/support.py",
+          "sha256": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_automation.py",
+          "sha256": "c59f8e6d0ee0444bfdb167cb75b6a6c65fd3161133fd14c1a8c49f59470006a8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_backends.py",
+          "sha256": "a87bbcc80de5a0d00ab07f75badc46d585318538c3333f675783746e891bde98",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_json_guard.py",
+          "sha256": "d82350c25348b611492867fddc98df717ac33b97984c4b89a2e7e0e8ae05f953",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_native_reports.py",
+          "sha256": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_optional_datasets.py",
+          "sha256": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_preparation.py",
+          "sha256": "92013499faa6e20cbb323f38faa5ba18b063904a186dd088d84cf6c85246ac08",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_process_lifecycle.py",
+          "sha256": "cdfc21760304ad0cded06be52fac17deaa4fffc6ff5d563a01e9bbcc371bcf2a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_real_security_backends.py",
+          "sha256": "c01bf56474a4717f70dd6c573829a25cfcc63ff8ee9bef3a096884050e766172",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_selinux_transport.py",
+          "sha256": "d9b94ce2c944596beb065e7a32c182a56a82454a7dfdcee24a13ffd0d09b4e4d",
+          "role": "other"
+        },
+        {
+          "path": "scripts/toolbox.sh",
+          "sha256": "b87dcbbe719cf8e508c3455abcd8208323de5c7b0b8b28a2d9b9bc50f15192f9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/plan.md",
+          "sha256": "deb128aa3c98d19a5c943a6dba7fdaa29391181bc19158e29f36968282dc6373",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/spec.md",
+          "sha256": "3290f70a552ca93693dca7338a74b1a930f9b120a7aac9b032f7f542d8b1d5ad",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/tasks.md",
+          "sha256": "b7d66996587d5970ad0cbd063f3f5695aab994b62bf9ca07bdce5d296a23fde9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/traceability.json",
+          "sha256": "60b6cce02e0692daac4901439b88d2178eaa07ebc6a7e6baf901dd0af732833b",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-SELINUX-REAL",
+      "kind": "inspection",
+      "command_or_method": "Controlled no-label/private/shared native exec probes, concurrent report and source integrity checks; see report.md",
+      "observed_result": "Unlabeled read denied; eight private and eight shared probes passed, two concurrent finding probes and public wrapper passed. Operational prerequisites still pending.",
+      "artifact": "docs/validation/toolbox-selinux-correction/report.md",
+      "sha256": "e4593d9eb5d8dec56163ce6fcf91c60289402c8685036dbade1cb8977a15f29c",
+      "inputs": [
+        {
+          "path": "scripts/README.md",
+          "sha256": "c0822dd947b758bbfb4c0fcff95bcb8813af90aacba1d2577514f42a3f6d3234",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "85ae1aa4a589689fe27420767b4884e49720e649f780ca46dbef49298f8ccb3c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "121d9f1e33ca31f34d2efdb8e81b4cdc8af74688725779079244342c1c725a02",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/backends.sh",
+          "sha256": "5e22bc0df8749939c1c5dc916f3a409e5632de7738a4f0fdfa8dec1b423e6c21",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "354f5b3e7424e926f7dbdda324348d2803fd6f0f24fa532d63994cd5c1149adc",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "d1cf086c63fbd73ec2215a420ccb79947edfbc1881abeaf77b1a9af61f6a52ca",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/process.sh",
+          "sha256": "6e8881ede9e30c6c5644affcca6426e7e6c159072e2b449bd7be9d52f53081db",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/registry.sh",
+          "sha256": "96e75ed6031521a05ff22bb94d04a46430a5d08dd805173c5f611cf1a5c3002a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/reports.sh",
+          "sha256": "5eaef65a346096cf853869f693590583cfc8549937bede306fd0f7afd949bfd8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/reports/summarize.sh",
+          "sha256": "c78154c0d03f8c7588556aec594594e7f69e7b9c425bd2a41e02cb23d179db5e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/check-report.sh",
+          "sha256": "0fc4dc157f9c40ff91eb80dd722495086ec04e3daac8927c28095b17b6505680",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/validate-exceptions.sh",
+          "sha256": "929e7aa37577086e140c91bf46967498fd56291e0b13dfe819d1d968343fa798",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "0b9d0a1254e5a7796eaf134965d5b820d9f3cbc80295f932810f972760a9a22a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/support.py",
+          "sha256": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_automation.py",
+          "sha256": "c59f8e6d0ee0444bfdb167cb75b6a6c65fd3161133fd14c1a8c49f59470006a8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_backends.py",
+          "sha256": "a87bbcc80de5a0d00ab07f75badc46d585318538c3333f675783746e891bde98",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_json_guard.py",
+          "sha256": "d82350c25348b611492867fddc98df717ac33b97984c4b89a2e7e0e8ae05f953",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_native_reports.py",
+          "sha256": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_optional_datasets.py",
+          "sha256": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_preparation.py",
+          "sha256": "92013499faa6e20cbb323f38faa5ba18b063904a186dd088d84cf6c85246ac08",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_process_lifecycle.py",
+          "sha256": "cdfc21760304ad0cded06be52fac17deaa4fffc6ff5d563a01e9bbcc371bcf2a",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_real_security_backends.py",
+          "sha256": "c01bf56474a4717f70dd6c573829a25cfcc63ff8ee9bef3a096884050e766172",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_selinux_transport.py",
+          "sha256": "d9b94ce2c944596beb065e7a32c182a56a82454a7dfdcee24a13ffd0d09b4e4d",
+          "role": "other"
+        },
+        {
+          "path": "scripts/toolbox.sh",
+          "sha256": "b87dcbbe719cf8e508c3455abcd8208323de5c7b0b8b28a2d9b9bc50f15192f9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/plan.md",
+          "sha256": "deb128aa3c98d19a5c943a6dba7fdaa29391181bc19158e29f36968282dc6373",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/spec.md",
+          "sha256": "3290f70a552ca93693dca7338a74b1a930f9b120a7aac9b032f7f542d8b1d5ad",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/tasks.md",
+          "sha256": "b7d66996587d5970ad0cbd063f3f5695aab994b62bf9ca07bdce5d296a23fde9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/scripts-toolbox-native/traceability.json",
+          "sha256": "60b6cce02e0692daac4901439b88d2178eaa07ebc6a7e6baf901dd0af732833b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/toolbox-selinux-correction/results.json",
+          "sha256": "4382f17d441b56d13c6b32eecab35fcf8d3de041605918c8b973f7ab88e69d41",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/toolbox-selinux-correction/shared/results.json",
+          "sha256": "500bf7faa18b1a25d9d6a81a6fac5a465638673a969952907fe529d00b7d5a85",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/toolbox-selinux-correction/concurrent/results.json",
+          "sha256": "e65e19de4c79eb12fc736cd8c19b3bca4a5219897413740d8be86d0b6dcdbd47",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/toolbox-selinux-correction/public-wrapper.json",
+          "sha256": "11542d76d1a90465d9887e6f9983fedcdb2212816b6341f8902ad0493c555845",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/toolbox-selinux-correction/platform-inputs.json",
+          "sha256": "24093196d09b616280b064254b185d7d20f85c52a0c586b0af986d57539f12c1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/toolbox-selinux-correction/platform.stderr",
+          "sha256": "8550b03bd99bb05e3cdff4ab61ada8a16d6ee6144522679c54df103c2bcba9c0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/toolbox-selinux-correction/observed-shared-toolbox/toolbox/docker.py",
+          "sha256": "34ba75be04ac3f427a699902376212d8d84b5a6d01643ddf0fd3c663179193a7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/toolbox-selinux-correction/observed-shared-toolbox/tests/test_core.py",
+          "sha256": "99d58b3867f3424269963fddf575331be2d41378b89da093c5881868664bded7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/toolbox-selinux-correction/observed-shared-toolbox/docs/operations.md.bin",
+          "sha256": "50e891d4c4b16849e80f6cd4b50722bbba62201430478bf8d6a8a8bb66e8a614",
+          "role": "other"
+        }
+      ]
+    }
+  ]
+}

@@ -11,13 +11,13 @@ Model agent and model metrics (tokens, cache, context, costs, periods and sessio
 
 Select: Token counts by chat/day/project, multi-model costs, context windows, caching, prices and usage reports.
 
-Do not select: Do not select for generic CPU/RAM instrumentation; use observability-and-diagnostics. Do not confuse functional progress with context consumption.
+Do not select: generic CPU/RAM instrumentation; use observability-and-diagnostics. Do not confuse functional progress with context consumption.
 
 ## Inputs and gaps
 
 provider/agent events, token/cache types, versioned rates, intervals, session/task identity.
 
-Inspect actual contracts and resources before execution. A missing version requires consulting the corresponding documentation; a missing permission prevents the dependent effect. Record the gap, its impact and how to resolve it while continuing independent work. Examples in this package are evaluation contracts, not APIs or policies imposed on all consumers.
+Inspect actual contracts, resources and versions; consult documentation for missing versions. Missing permission blocks only its dependent effect; record gaps and continue independent work. Examples are evaluation fixtures, not consumer policy.
 
 ## Operating procedure
 
@@ -37,13 +37,13 @@ Inspect actual contracts and resources before execution. A missing version requi
 
 usage ledger schema, duplicate and gap rules, period views, provenance and estimate accuracy.
 
-Bind each conclusion to observed inputs, method, result and limitations. Run the normal, boundary and failure cases from the [evaluations](references/evaluation-cases.md) in the authorized environment; distinguish review, simulation and integration results. Written cases remain unexecuted until run. Skill text neither proves effectiveness nor grants authority.
+Bind conclusions to inputs, method, result and limits. Exercise relevant [normal, boundary and failure cases](references/evaluation-cases.md) within authorization; distinguish inspection, simulation and integration. Written cases are not execution evidence.
 
 ## Boundaries and handoff
 
 `observability-and-diagnostics` — Does the usage event arrive in full, and can it be correlated without violating privacy?
 
-Hand off only the distinct unresolved technical question, including scope, criterion IDs, facts, gaps and required evidence. Confirm availability before consultation. A mention does not install, delegate, execute or recursively load other skills. The consumer's contract owns behavior; the skill provides the method.
+Consult another available skill only for a distinct unresolved question, with scope, criteria, facts and evidence needs. Mentions never trigger installation, delegation or recursive activation; the consumer contract owns behavior.
 
 ## Specialized references
 
@@ -55,7 +55,7 @@ Official sources accessed on 2026-10-26 are cited alongside claims. A consulted 
 
 ## Adjacent responsibilities
 
-The specialized capability above does not replace the general methods below. Consult them only when the corresponding question remains unresolved; no handoff is mandatory.
+Adjacent methods are optional; consult only for an unresolved responsibility.
 
 | Capability | Adjacent technical authority |
 |---|---|

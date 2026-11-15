@@ -7,7 +7,8 @@ Os comandos Python abaixo são executados na raiz do Ox, com Python 3.11+ e stdl
 Validam governança/skills; não substituem build, testes ou aceitação Rust/Iced.
 
 A [automação local](../../scripts/README.md) fornece a entrada Bash
-`scripts/automate.sh`, com escopos governance, rust, security, quality e full.
+`./scripts/automate.sh plan|run`, com `--scope complete` ou seleção por
+`--surface docs|scripts|application|security`. A governança permanece obrigatória.
 Consulte esse guia para pré-requisitos, seleção de checks, configurações e
 preparo separado de bases. A disponibilidade desses comandos não exige sua
 execução automática ao encerrar toda tarefa; o método segue os critérios e o

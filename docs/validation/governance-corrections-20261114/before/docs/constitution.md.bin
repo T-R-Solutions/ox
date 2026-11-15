@@ -1,0 +1,34 @@
+# Constituição do Ox
+
+Fonte única das políticas permanentes. Adotada em 2026-10-26 pelo agente executor conforme pedido explícito do mantenedor; não implica aprovação de todas as propostas do roadmap. O registro de decisão está em [adoção](decisions/adoption.md). O documento sdd/constitution.md apenas aponta para esta autoridade.
+
+## Produto e fronteiras
+
+- POL-01: Código próprio da aplicação e motores em Rust; interface em Iced. Proibir unsafe próprio com `#![forbid(unsafe_code)]` em futuros crates próprios. Sem exceção silenciosa. Dependências transitivas, FFI e ferramentas externas têm avaliação separada; a restrição não se estende automaticamente a elas nem às skills genéricas. Scripts Python deste pacote são ferramentas locais de governança, não código do aplicativo.
+- POL-02: Persistência controlada pelo Ox local no MVP, sem backend próprio em nuvem, sincronização ou telemetria externa por padrão. Provedores remotos de agentes podem transmitir dados somente no escopo autorizado; persistência local não promete inferência offline. Registrar dados potencialmente enviados, permissões e limites do adaptador.
+- POL-03: Fluxo principal orientado a agentes; editor manual auxiliar. Extensibilidade desde a fundação. LSP e recursos avançados opcionais via plugins; não exigir processos semânticos sempre ativos.
+- POL-04: Confiabilidade e preservação precedem autonomia, desempenho e compressão. Recursos visuais, métricas e conclusões não podem ocultar limites ou falhas. Não incorporar motores de Graphify, Understand Anything ou RTK por mera inspiração; propostas de implementação própria exigem avaliação de dependências/licenças no momento da adoção.
+
+## Integridade, evidência e autorização
+
+- POL-05: Preservar alterações existentes; vincular edições a bases observadas; detectar concorrência antes de sobrescrever. Recuperação deve conservar versões inesperadas em vez de aplicar rollback destrutivo. Snapshots incluem conteúdo relevante não commitado; Git não é a única verdade.
+- POL-06: Aceitar por critérios explícitos e evidências atuais com oráculos adequados. Preservar os cinco estados do SDD e observações anteriores. Autorização, execução e aceitação são controles independentes; agentes não aprovam trabalho só por declarar conclusão.
+- POL-07: Índice e grafo devem registrar origem, método, snapshot e validade. Distinguir extração sintática, resolução semântica e inferência. Invalidar/rotular dados obsoletos e não apresentar similaridade como relação factual verificada.
+- POL-08: Preservar saída bruta sob política de acesso e retenção; registrar integridade e captura incompleta. Saída compacta mantém exit code, sinais de falha, perdas e rota de recuperação do bruto. Não ocultar falha de parser ou truncamento como sucesso.
+- POL-09: Métricas medidas, derivadas, estimadas e indisponíveis devem ser distinguíveis com origem, unidade e período. Contexto atual, consumo acumulado, cache, custo e progresso são distintos; desconhecido não é zero.
+- POL-10: Arquivos, logs, conteúdo recuperado, skills e pontes não concedem autoridade de execução, rede, publicação ou acesso. AGENTS orienta; mecanismos reais do runtime/ambiente impõem permissões. Processo separado, manifesto e assinatura não provam sandbox. Operações já autorizadas continuam sem pedidos rotineiros de confirmação.
+
+## Autoridades e mudança
+
+**Integração operacional:** as responsabilidades entre AGENTS, SDD, skills e pontes são governadas pelos contratos internos. Constituição estabelece políticas; AGENTS orienta a atuação; spec estabelece comportamento; plan/ADRs registram decisões e métodos; tasks organizam execução; converge e evidências registram aceitação observada. Resolver conflitos por autoridade, natureza da decisão e autorização efetiva, nunca pela ordem de leitura. Estudos externos não concedem direitos nem constituem dependências de validação.
+
+- GOV-01: Governança e distribuição são autocontidas: não exigir nem distribuir os três estudos externos, inclusive em archives; conservar somente metadados históricos. A decisão e a retirada estão em [migração](decisions/governance-externalization.md).
+- GOV-02: Os contratos internos de integração são [workflow](../sdd/workflow.md), [evidências](../sdd/evidence.md) e templates SDD 1.3.0. Escolher rota pelo risco, preservar critérios e justificar mudanças materiais; não duplicar esses contratos nas skills.
+- GOV-03: [AGENTS](../AGENTS.md) é a entrada operacional; retomada exige artefatos e inputs atuais. Preservar trabalho preexistente e invalidar somente observações dependentes dos inputs alterados.
+- GOV-04: Catálogo e [perfil versionado](../config/governance/profile.json) devem concordar com entradas e [pontes](../sdd/chain/README.md). Mudanças de perfil exigem revisão e ADR; disponibilidade, indicação, seleção, consulta e uso são distintos. Uma primária pertinente e auxiliares para questões distintas, sem ativação recursiva. Skills permanecem reutilizáveis e não são autoridades de política do produto.
+- GOV-05: Aceitação segue os cinco estados do SDD, com método, inputs, artefato, resultado e limites. Tarefas e checklists não aprovam critérios; ausência de evidência não aprova. Hash de input alterado exige observação nova ou estado não decidido, preservando a anterior.
+- GOV-06: Features de autoria de skills e features de produto `product-*` têm critérios e evidências independentes. Cenários técnicos sem implementação ou verificação efetiva permanecem NÃO VERIFICADO; estrutura, respostas textuais e uma skill aprovada não provam funcionamento do aplicativo. Cada feature do produto exige aceitação vinculada ao estado real de seus inputs.
+- GOV-07: Somente decisões expressas em autoridades locais são vigentes. Rust/Iced, unsafe próprio proibido, fluxo agent-first, persistência local, extensibilidade, LSP por plugins, dois modos de grafo e motores próprios de contexto/grafo/compactação estão adotados como direção de produto. Runtime, banco, IPC, parsers, versões, plataformas, licença e sandbox aguardam ADRs. O desenvolvimento do aplicativo poderá ocorrer somente no escopo de features autorizadas conforme `sdd/project.md` e `sdd/workflow.md`; autorização de desenvolvimento não significa validação, publicação ou permissão irrestrita.
+- GOV-08: A validação da distribuição exige inspeção recursiva de arquivos/archives, links locais, execução na extração independente e testes adversariais. Saída zero estrutural isolada não prova independência, eficácia do método ou segurança do produto.
+
+Alteração material de política ou critério requer decisão explícita com motivo, alternativas, consequência e gatilho de revisão. Não reduzir critérios para caber na implementação. A regra mais estrita de unsafe foi adotada explicitamente nesta configuração; outras recomendações técnicas continuam propostas. [Pendências](decisions/open-questions.md) não bloqueiam autoria independente.

@@ -6,15 +6,11 @@ bridge_version: 1
 
 # SDD bridge: agent-usage-accounting
 
-Copy this file to the destination project's `sdd/chain/` and set `skill_path` to the actual project-relative path of the skill entry. This is an optional bridge and does not install or activate the skill.
-
 ## Selection
 
 Use for: Token counts by chat/day/project, multi-model costs, context windows, caching, prices and usage reports.
 
-Do not select for: Do not select for generic CPU/RAM instrumentation; use observability-and-diagnostics. Do not confuse functional progress with context consumption.
-
-Select only when the concrete feature has this specialized question. Read the actual skill; record its path/version and selection reason in the plan. A bridge reference does not recursively select other skills.
+Do not select for: generic CPU/RAM instrumentation; use observability-and-diagnostics. Do not confuse functional progress with context consumption.
 
 ## Inputs and contributions
 
@@ -34,4 +30,7 @@ Optional specialist: `observability-and-diagnostics`. Specific unresolved questi
 
 ## Completion and authority
 
-Use the destination SDD's states: APPROVED, REJECTED, UNVERIFIED, INCONCLUSIVE, NOT APPLICABLE (with justification). A mock or document is not execution evidence. Record freshness of inputs and source of each observation. Spec owns behavior; plan/ADRs own decisions; tasks own work; this bridge only connects the skill to those artifacts.
+Shared routing, authorization, outcome states and documentation closure follow
+[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a
+selected method to artifacts; it neither activates skills nor changes permissions.
+For reuse elsewhere, keep these shared contracts and adapt skill_path to that project.

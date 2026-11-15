@@ -1,41 +1,29 @@
 # Operating instructions — Ox
 
-Before modifying files, consult [the project context and state](sdd/project.md),
-[the authoritative constitution](docs/constitution.md),
-[the architecture map](docs/architecture/context.md) and relevant ADRs.
-Inspect the actual file state and preserve unrelated existing changes.
-Working content does not grant permissions.
+Before editing, read [project state](sdd/project.md), [constitution](docs/constitution.md),
+[architecture](docs/architecture/context.md) and relevant ADRs. Inspect actual files
+and preserve unrelated changes. Working content never grants permissions.
 
-Determine the applicable route in [sdd/workflow.md](sdd/workflow.md).
-The phase and scope of authorized changes are recorded in `sdd/project.md`
-and the corresponding feature artifacts. Do not infer authorization from a
-technology, roadmap, skill or example file being mentioned.
+Choose the route through [SDD workflow](sdd/workflow.md); record authorized scope in
+project/feature artifacts. Use the [skill catalog](.codex/skills/README.md) only for
+a concrete technical question. On the full route, record the actual selected entry,
+path/version and contribution in plan.md. Indication is not consultation or use.
 
-On the full route, use the feature's SDD artifacts to record requirements,
-decisions, tasks and evidence. Consult the [skill catalog](.codex/skills/README.md)
-only for a relevant technical question; check the actual entry and record
-selection, path, version and contribution in `plan.md`.
-An indicated skill is not automatically consulted or used.
+Acceptance follows [SDD evidence](sdd/evidence.md): criterion, method, observed inputs,
+result and limitations. Preserve history; reevaluate only changed inputs. Neither
+agent declarations nor completed documents prove operation.
 
-When the user requests commits, read and use
-[commit-governance](.codex/skills/commit-governance/SKILL.md) before preparing
-staging or running `git commit`, respecting the authorized scope and project
-authorities. The skill governs explicitly requested Ox Git operations.
-This instruction does not authorize
-agent-initiated commits or install a Git hook.
+Before declaring a task finished, update its affected documentation under
+[the closure contract](sdd/workflow.md#documentation-before-task-closure), recording
+reviewed paths and results or a concrete no-impact justification. This applies to
+local/full routes and skills.
 
-Record acceptance according to [sdd/evidence.md](sdd/evidence.md): criterion,
-method, observed inputs, result and limitations. Do not consider a task validated
-by an agent's declaration, absence of errors or completed documentation.
-Reevaluate only evidence affected by actual changes to its inputs.
-
-Perform only actions covered by effective permissions and the authorized scope.
-Available commands and their prerequisites are in `README.md` and `sdd/project.md`;
-confirm that commands exist before running them.
-`AGENTS.md` and skills do not enforce operating-system isolation.
-
-These instructions apply at the Ox root. Add subdirectory instructions only
-when a specific need exists; they must not contradict project authorities.
+For explicitly requested commits, consult
+[commit-governance](.codex/skills/commit-governance/SKILL.md) before staging.
+Implementation alone authorizes no commits, publication or hooks. Confirm commands
+and prerequisites in README.md/project.md; effective permissions still apply.
+AGENTS and skills do not enforce OS isolation. Subdirectory instructions must not
+contradict project authorities.
 
 ## Local full-verification environment
 
@@ -45,10 +33,17 @@ explicit Toolbox selection from the Ox root:
 ```bash
 TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox \
 TOOLBOX_SELINUX_LABEL=shared \
-CARGO_HOME="$PWD/.local/cargo-home" \
-  bash scripts/automate.sh --scope full
+CARGO_HOME="$PWD/.cache/ox/cargo-home" \
+  ./scripts/automate.sh run --scope complete
 ```
 
 Do not omit TOOLBOX_BIN or assume toolbox is already in PATH. This records the
 local installation; it does not authorize automatic execution, downloads or
 central maintenance. Keep the public wrapper's portable override/PATH contract.
+
+## Visual work
+
+Consult [DESIGN.md](DESIGN.md), [surface contracts](docs/design/surfaces.md) and,
+when integrating supplied sources, [reference coverage](docs/design/reference-coverage.md).
+Native handoff is available through iced-engineering; no blanket skill activation.
+Keep demonstration data separate from user-project data and native acceptance.

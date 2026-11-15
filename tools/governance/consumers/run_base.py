@@ -71,7 +71,7 @@ def main():
         )
         if args.isolation:
             execute(["python3", str(source / "isolation_test.py")], "isolation.json")
-    except Exception as exc:
+    except (OSError, RuntimeError, ValueError, subprocess.TimeoutExpired) as exc:
         error = str(exc)
     receipt = {
         "platform": platform.platform(),

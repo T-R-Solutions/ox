@@ -1,7 +1,7 @@
 """Bounded dedicated Xwayland session; preserves raw logs and screenshots."""
 
-import json
 import hashlib
+import json
 import os
 import pathlib
 import select
@@ -74,7 +74,7 @@ with (report / "server.log").open("x") as log:
                 timeout=55,
             )
         result["exit"] = run.returncode
-    except Exception as error:
+    except (OSError, RuntimeError, ValueError, subprocess.TimeoutExpired) as error:
         result["error"] = str(error)
     finally:
         os.close(readfd)

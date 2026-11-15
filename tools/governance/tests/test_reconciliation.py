@@ -1,13 +1,13 @@
 """Regression oracles for bounded succession and Git-free distributions."""
 
-from pathlib import Path
-from io import BytesIO
 import importlib.util
 import json
+import sys
 import tempfile
 import unittest
 import zipfile
-import sys
+from io import BytesIO
+from pathlib import Path
 
 sys.path.insert(
     0, str(Path(__file__).resolve().parents[3] / "tools/governance/scripts")
@@ -15,8 +15,8 @@ sys.path.insert(
 from governance_support import (
     copy_distribution,
     distribution_files,
-    succession_errors,
     inspect_bytes,
+    succession_errors,
 )
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -60,6 +60,7 @@ class GitBoundaryTests(unittest.TestCase):
                 "scripts/automate.sh",
                 "scripts/README.md",
                 "AGENTS.md",
+                "DESIGN.md",
                 "README.md",
                 "LICENSE",
                 "NOTICE",
@@ -93,8 +94,11 @@ class GitBoundaryTests(unittest.TestCase):
             copy_distribution(root, copied)
             self.assertEqual(
                 {str(p.relative_to(copied)) for p in copied.rglob("*") if p.is_file()},
-                set(allowed),
+                set(allowed) | {".ox-governance-copy.json"},
             )
+            import instruction_revision
+            self.assertEqual((copied / instruction_revision.COPY_CONTEXT).read_bytes(),
+                             instruction_revision.COPY_CONTEXT_BYTES)
 
 
 class SuccessionTests(unittest.TestCase):

@@ -3,9 +3,10 @@
 import json
 import unittest
 from pathlib import Path
-from test_readme_skill_integration import ReadmeImportTests
-from skill_revision import errors, predecessor, records
+
 import project_revision as P
+from skill_revision import errors, predecessor, records
+from test_readme_skill_integration import ReadmeImportTests
 
 
 class ProjectRevisionTests(unittest.TestCase):

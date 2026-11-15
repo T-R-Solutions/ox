@@ -1,6 +1,5 @@
 """Behavioral scanner contracts using controlled executables; no real scanner claims."""
 
-from pathlib import Path
 import json
 import os
 import shutil
@@ -8,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts/tests"))
 import support as S
@@ -103,7 +103,7 @@ sys.exit(code)""",
     def observation(self, name):
         return json.loads(
             next(
-                (self.root / ".local/checks").glob("*/" + name + "/assessment.json")
+                (self.root / ".local/logs").glob("*/*--" + name + "--assessment.json.log")
             ).read_text()
         )
 
@@ -133,7 +133,7 @@ sys.exit(code)""",
         self.assertEqual(result["state"], "findings")
         self.assertEqual(result["tool_exit_code"], 10)
         report = json.loads(
-            next((self.root / ".local/checks").glob("*/results.json")).read_text()
+            next((self.root / ".local/logs").glob("*/*--results.json.log")).read_text()
         )
         self.assertEqual(report["results"][0]["state"], "findings")
         self.assertIn("application/main.rs", result["inputs"])
@@ -160,13 +160,13 @@ sys.exit(code)""",
         self.assertEqual(row["tool_exit_code"], 0)
 
     def test_data_expiry_digest_and_escape_are_denied(self):
-        base = self.root / ".local/security"
+        base = self.root / ".cache/ox/security"
         base.mkdir(parents=True)
         d = base / "data"
         d.mkdir()
         (d / "x").write_text("x")
         row = {
-            "path": ".local/security/data",
+            "path": ".cache/ox/security/data",
             "sha256": S.tree_identity(d),
             "valid_until": "2000-01-01",
             "source": "fixture",
@@ -212,7 +212,7 @@ sys.exit(code)""",
         obs = self.observation("opengrep")
         self.assertEqual(obs["tool_exit_code"], 23)
         self.assertEqual(obs["state"], "error")
-        log = next((self.root / ".local/checks").glob("*/opengrep/tool/stdout.log"))
+        log = next((self.root / ".local/logs").glob("*/*--opengrep--tool--stdout.log.log"))
         self.assertEqual(log.read_bytes(), b"invalid\x00")
 
     def test_snapshot_preserves_source_and_rejects_alias(self):
@@ -245,7 +245,7 @@ sys.exit(code)""",
         self.assertEqual(S.assess("sbom", 0, report)[0], "recorded")
 
     def test_duplicate_report_and_exceptions_expiry(self):
-        from support import read_json, exceptions
+        from support import exceptions, read_json
 
         p = self.root / "duplicate.json"
         p.write_text('{"results":[],"results":[]}')
@@ -320,7 +320,7 @@ sys.exit(code)""",
         self.assertEqual(self.observation("gitleaks")["tool_exit_code"], 0)
 
     def test_missing_license_policy_blocks_even_with_tool(self):
-        (self.root / "scripts/config/deny.toml").unlink()
+        (self.root / "scripts/config/native/cargo-deny/deny.toml").unlink()
         self.fake(
             "cargo-deny", 'raise AssertionError("scan must not run without policy")'
         )

@@ -5,10 +5,6 @@ bridge_version: 1
 ---
 # SDD bridge: distributed-systems
 
-Copy this file into the destination sdd/chain directory. Set `skill_path` to the
-project-relative path of the copied SKILL.md. This document is an optional bridge,
-not a skill implementation or an instruction to install other skills.
-
 ## Selection
 
 Use for: Independent failure domains or delivery guarantees.
@@ -27,10 +23,6 @@ does not activate it. Record the selected bridge and reason in the feature plan.
 | Tasks | Exercise lost/delayed/duplicated messages and recovery against explicit invariants. Name affected files, dependencies, actual tools and completion checks. |
 | Evidence / convergence | Return changes, findings, observed results, criterion IDs and residual limits. Separate structural checks, semantic review, executed tests and comparative effectiveness. |
 
-Read only relevant project artifacts, changed surfaces and constraints. Discover
-available tools/versions before execution. Missing tools leave the affected criterion
-unverified; they do not permit changing the requirement to make it pass.
-
 ## Conditional handoff
 
 Optional specialist: `domain-modeling`.
@@ -43,11 +35,13 @@ work; record a gap when the missing capability is material to acceptance.
 
 ## Completion and authority
 
-Use the outcome vocabulary defined by the destination SDD. Return every applicable
-criterion with its evidence or explicit pending/inconclusive status. The feature's
-spec defines behavior; plan/ADRs define decisions; tasks define executable work.
-This bridge cannot override those artifacts or expand authorization. Changes to
-product rules belong in their authoritative artifact, not in this bridge.
+Shared routing, authorization and documentation closure follow
+[workflow](../workflow.md); outcome states follow [evidence](../evidence.md).
+Return every applicable criterion with evidence or its explicit SDD state,
+including UNVERIFIED or INCONCLUSIVE where appropriate. The feature spec owns
+behavior, plan/ADRs own decisions and tasks organize execution. This bridge maps
+the selected method to artifacts without activating skills or expanding permissions.
+For reuse elsewhere, keep these contracts and adapt skill_path to that project.
 
 ## Conditional project profile
 

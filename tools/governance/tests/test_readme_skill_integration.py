@@ -1,20 +1,20 @@
 """Behavioral integrity checks for the bounded skill import and its recovery path."""
 
-from pathlib import Path
 import hashlib
 import importlib.util
 import json
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 sys.path.insert(
     0, str(Path(__file__).resolve().parents[3] / "tools/governance/scripts")
 )
-from skill_revision import records, predecessor, errors, EXISTING, ADDED, REVISION
-import readme_revision as R
 import project_revision as P
+import readme_revision as R
 from governance_support import copy_distribution
+from skill_revision import ADDED, EXISTING, REVISION, errors, predecessor, records
 
 ROOT = Path(__file__).resolve().parents[3]
 
@@ -59,6 +59,13 @@ class ReadmeImportTests(unittest.TestCase):
             self.copy(document['review'])
             for transition in document['records']:
                 self.copy(transition['previous'])
+        for registry in (C.CONFIGURATION_REGISTRY, C.VISUAL_REGISTRY, C.COMPLETE_REGISTRY, C.DEFAULTS_REGISTRY):
+            self.copy(registry)
+            for transition in json.loads((ROOT / registry).read_text())["records"]:
+                self.copy(transition["previous"])
+        self.copy(C.MAINTENANCE_REGISTRY)
+        for transition in json.loads((ROOT / C.MAINTENANCE_REGISTRY).read_text())["records"]:
+            self.copy(transition["previous"])
         self.copy(C.REPAIR_REGISTRY)
         for transition in json.loads((ROOT / C.REPAIR_REGISTRY).read_text())["records"]:
             self.copy(transition["previous"])
@@ -85,6 +92,14 @@ class ReadmeImportTests(unittest.TestCase):
         self.copy(C.REGISTRY)
         for row in json.loads((ROOT / C.REGISTRY).read_text())["records"]:
             self.copy(row["previous"])
+        import log_repair_revision
+        for name in log_repair_revision.fixture_paths(ROOT):
+            self.copy(name)
+        import instruction_revision as I
+        self.copy(I.REGISTRY)
+        self.copy(I.DECISION)
+        for row in json.loads((ROOT / I.REGISTRY).read_text())['records']:
+            self.copy(row['previous'])
         for row in records(ROOT).values():
             if row["previous"] is not None:
                 self.copy(row["previous"])
@@ -326,6 +341,14 @@ class ReadmeDistributionTests(unittest.TestCase):
             copy_distribution(ROOT, root)
             app = root / "application/README.md"
             self.assertTrue(R.excluded_product_reference(root, "README.md", app))
+            design_target = root / "sdd/features/product-visual-workbench/converge.md"
+            self.assertTrue(R.excluded_product_reference(root, "DESIGN.md", design_target))
+            self.assertFalse(R.excluded_product_reference(root, "DESIGN.md", root / "docs/missing.md"))
+            design = root / "DESIGN.md"
+            design_original = design.read_bytes()
+            design.write_bytes(design_original + b"unknown")
+            self.assertFalse(R.excluded_product_reference(root, "DESIGN.md", design_target))
+            design.write_bytes(design_original)
             self.assertFalse(
                 R.excluded_product_reference(
                     root, "README.md", root / "application/missing.rs"

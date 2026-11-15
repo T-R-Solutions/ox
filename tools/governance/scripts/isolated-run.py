@@ -4,10 +4,11 @@ This Python audit hook is an observation oracle for our stdlib tools, not a sand
 for untrusted processes or native code. The parent directory is also denied.
 """
 
-from pathlib import Path
 import os
 import runpy
 import sys
+from pathlib import Path
+
 from governance_support import EXTERNAL_DOCUMENTS
 
 

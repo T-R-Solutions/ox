@@ -5,474 +5,53 @@
     {
       "id": "AC-01",
       "criterion": "An attempted write outside the root through .. or a symlink is rejected; oracle: adversarial path fixture.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
-        "E-T011-R2-SOURCE-RETENTION",
-        "E-SCANNER-INVALIDATION-AC-01"
-      ],
-      "technical_review": {
-        "version": 1,
-        "scope": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-        "review": "E-SCANNER-INVALIDATION-AC-01",
-        "execution": [],
-        "consumer": "tools/governance/consumers/operations.rs",
-        "oracle": "tools/governance/consumers/operation_tests.rs"
-      }
+        "E-T011-R2-SOURCE-RETENTION"
+      ]
     },
     {
       "id": "AC-02",
       "criterion": "Two agents edit the same version: the second write conflicts or applies a verified merge; oracle: concurrency test.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
-        "E-T011-R2-SOURCE-RETENTION",
-        "E-SCANNER-INVALIDATION-AC-02"
-      ],
-      "technical_review": {
-        "version": 1,
-        "scope": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-        "review": "E-SCANNER-INVALIDATION-AC-02",
-        "execution": [],
-        "consumer": "tools/governance/consumers/operations.rs",
-        "oracle": "tools/governance/consumers/operation_tests.rs"
-      }
+        "E-T011-R2-SOURCE-RETENTION"
+      ]
     },
     {
       "id": "AC-03",
-      "criterion": "An injected failure between temporary-file creation and rename leaves no incorrect “done” record; oracle: crash test.",
-      "status": "INCONCLUSIVE",
+      "criterion": "An injected failure between temporary-file creation and rename leaves no incorrect \u201cdone\u201d record; oracle: crash test.",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
-        "E-T011-R2-SOURCE-RETENTION",
-        "E-SCANNER-INVALIDATION-AC-03"
-      ],
-      "technical_review": {
-        "version": 1,
-        "scope": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-        "review": "E-SCANNER-INVALIDATION-AC-03",
-        "execution": [],
-        "consumer": "tools/governance/consumers/operations.rs",
-        "oracle": "tools/governance/consumers/operation_tests.rs"
-      }
+        "E-T011-R2-SOURCE-RETENTION"
+      ]
     },
     {
       "id": "AC-04",
       "criterion": "An externally changed file invalidates the hash/snapshot; oracle: watcher plus actual-read verification.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
-        "E-T011-R2-SOURCE-RETENTION",
-        "E-SCANNER-INVALIDATION-AC-04"
-      ],
-      "technical_review": {
-        "version": 1,
-        "scope": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-        "review": "E-SCANNER-INVALIDATION-AC-04",
-        "execution": [],
-        "consumer": "tools/governance/consumers/operations.rs",
-        "oracle": "tools/governance/consumers/operation_tests.rs"
-      }
+        "E-T011-R2-SOURCE-RETENTION"
+      ]
     },
     {
       "id": "AC-05",
       "criterion": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
         "E-T011-R2-SOURCE-RETENTION"
       ]
     },
     {
       "id": "AC-06",
       "criterion": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [
-        "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-F0-RESUMPTION-DOCUMENTARY",
-        "E-F0-RASTER-DOCUMENTARY",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
         "E-T011-R2-SOURCE-RETENTION"
       ]
     }
   ],
   "evidence": [
-    {
-      "id": "E-F0-EXPORT-BOUNDARY-REVIEW",
-      "kind": "inspection",
-      "command_or_method": "Inspect two-prefix product-record exclusion and regression assertion delta; authenticate old bytes; reexamine scope of unchanged preservation/acceptance algorithms and unchanged technical consumers. See execution-authority-review.md.",
-      "observed_result": "Operational F0 evidence excluded from governance-only export; prior scoped feature verdicts retained, pending current independent-copy results. No skill or product approval transferred.",
-      "artifact": "docs/validation/f0-reconciliation-20261101/execution-authority-review.md",
-      "sha256": "ed47b44829f55104a01fe26acf09190f588fd016f2de1ab20be13b3b5a5d0b9e",
-      "inputs": [
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
-          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
-          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
-          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
-          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
-          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
-          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/scripts/governance_support.py.bin",
-          "sha256": "96f45b7e2eafb02e92e701705501cac0ccf7d62a0605b0fe91293a78dd175b33",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/tests/test_governance.py.bin",
-          "sha256": "19ad9f877ea6b3eec612a79646a606ce2d1985f720c5c80c4527c234293d9fb2",
-          "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-F0-RESUMPTION-DOCUMENTARY",
-      "kind": "inspection",
-      "command_or_method": "Review exact shared documentary/export delta against unchanged criterion consumers; retain old hashes and identical predecessors. Regression assertion fails before and passes after the bounded export exclusion.",
-      "observed_result": "Existing scoped verdicts retained; no new consumer execution or product approval inferred. Current contracts and actual implementation/oracle identities reexamined; obsolete observations remain historical.",
-      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/review.md",
-      "sha256": "a73aaaa1dd74131f1e7bb792235e2fdfb637a64a7bec19849170518b0281f79f",
-      "inputs": [
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
-          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
-          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/docs/architecture/context.md.bin",
-          "sha256": "4de3bdbe6fe7fb89c51bfb80087c27425ff3eedcf75b08225366e53e5c76c6e6",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/f0-boundary-20261102.md",
-          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-after.log",
-          "sha256": "8270162f72b25037bb5ce5a9dbc2742241e25cf4009d87afa4e1bffe0f45d892",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-before.log",
-          "sha256": "04eefac525b865179f55c5d74d75506057d3d22cad27e8c9dcc3149fd8d7a571",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
-          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
-          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
-          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
-          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/sdd/project.md.bin",
-          "sha256": "e06b294ec7bcfbd2bfcc6924e03dbe4c6ebfa5378432c8b79e138cdd6cd17913",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
-          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
-          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
-          "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-F0-RASTER-DOCUMENTARY",
-      "kind": "inspection",
-      "command_or_method": "Bounded semantic review of current F0 authority text and unchanged criterion consumers; exact old bytes preserved.",
-      "observed_result": "Existing governance verdict and authorization scope retained; no product acceptance inferred from documentary checks.",
-      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/closure-review.md",
-      "sha256": "3ff01c75d3fe989c29649689b8d70f3d6168f4dcb61b468f728002536edddaf5",
-      "inputs": [
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
-          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
-          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/application-documentation-20261104/before/docs/architecture/context.md.bin",
-          "sha256": "e7884629c01481f69aeab1cf6d7237e76791f75f19a10ccef918425076e5d971",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/f0-boundary-20261102.md",
-          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
-          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
-          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
-          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
-          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-skill-integration-20261104/before/sdd/project.md.bin",
-          "sha256": "b802650f0b869ccfe0a7ad90d2fcc56c31290732060067ab495a0860ca9c3515",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
-          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
-          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
-          "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-README-SKILL-INTEGRATION-REVIEW",
-      "kind": "inspection",
-      "command_or_method": "Compare actual enumerated profile/import/preservation/doc delta against each affected criterion consumer. Retain old observations and identical input/artifact bytes; current profile receives independent import acceptance.",
-      "observed_result": "Existing scoped criterion states retained; no product execution or scientific/reader-effectiveness claim inferred. New conditional resource identity and negative preservation cases examined separately.",
-      "artifact": "docs/validation/readme-skill-integration-20261104/shared-input-review.md",
-      "sha256": "317f66f9089cdad0ec12524cfaf5d1fd1a9a3aa310e94562dddea655a9c784da",
-      "inputs": [
-        {
-          "path": ".codex/skills/README.md",
-          "sha256": "6161cee65caa6a19ae61cba0c56cc5751d90c6fe54c42a07c0c72a2ee11f05b7",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
-          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
-          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
-          "role": "other"
-        },
-        {
-          "path": "config/governance/profile.json",
-          "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/readme-skill-integration.md",
-          "sha256": "f8f53eba58ebf0e9e0b7892ab41dbe880806b31bccfe85d3090d31389c613e1d",
-          "role": "other"
-        },
-        {
-          "path": "docs/structure/files.json",
-          "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
-          "role": "other"
-        },
-        {
-          "path": "docs/structure/profile-revisions.json",
-          "sha256": "30f821a9adf357116a8d3b53114a0074da099be735446a79757899d56df972dc",
-          "role": "other"
-        },
-        {
-          "path": "sdd/chain/README.md",
-          "sha256": "c573f472c39f89270a1c405919be1079c165aba77b7223a03fd13d2248544ab9",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
-          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
-          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
-          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
-          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/robustness-20261105/before/sdd/project.md.bin",
-          "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/check-ox.py.bin",
-          "sha256": "5a6a68c5cb41a268d7bedafaa81c4583b60cd87f25603a79d2f4a80f46db72cc",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/governance_support.py.bin",
-          "sha256": "15b4ad904e3d1c950446ded93c7bb85bea5731198c18a56153f1667f8c88bda3",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/skill_revision.py.bin",
-          "sha256": "692cb74cb6a25dde4eca0309616fa3acaf27acc17af0732328108eefd3af1f8a",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
-          "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
-          "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-T009-DOCUMENTARY-SUCCESSOR",
-      "kind": "inspection",
-      "command_or_method": "Inspect adopted D2/D4 and conditional D3/D4-deps against predecessor documentary inputs and existing criteria. Preserve original digest preimages and all other input identities; no operational replay. Exact replacement ledger in successor/impact.json.",
-      "observed_result": "Documentary additions authorize only T009 preparation and isolated acquisition, preserve D1/F0 boundary and prior product criteria; no technology/integration/operational acceptance. Historical observations retain original scope/bytes. T009 remains INCONCLUSIVE; global identity validator condition remains unresolved.",
-      "artifact": "docs/validation/persistence-preflight-20261105/successor/review.md",
-      "sha256": "19d0cae464646bc81249e56ea3089a6e1a123ee4cdf081c323a585e0019987d2",
-      "inputs": [
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
-          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
-          "role": "other"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
-          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
-          "role": "other"
-        },
-        {
-          "path": "docs/architecture/context.md",
-          "sha256": "be256899934dada6f979639015764aae9801e732abdeb935629fd3b17c2eeaab",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/local-persistence-experiment-20261105.md",
-          "sha256": "058e1801df33718a31214b7dedb4065eeb13ceee6a7f0a07eb0cbbb1793fdd1e",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/local-persistence-proposal.md",
-          "sha256": "86453713fd66a0a026f2f968c7692ba3d9e1a088277fa271cd14890ddaaa4609",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/open-questions.md",
-          "sha256": "2b389951eb3d9b3a154253707e03ae64aa93e0077c73a78d0714dec4c9ebc94d",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/product-local-persistence/experiment-protocol.md",
-          "sha256": "2ed78fb91e87a2df3d053645ed3aea105f6e0451bd1125d375cb08e929b4d3bb",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
-          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
-          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
-          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
-          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/persistence-freeze-20261105/before/sdd/project.md.bin",
-          "sha256": "853f04e0dd88f9488b18ff47852740e0c4ad23539499ce5a5bafc72383acba33",
-          "role": "other"
-        }
-      ]
-    },
     {
       "id": "E-T011-R2-SOURCE-RETENTION",
       "kind": "inspection",
@@ -485,166 +64,6 @@
           "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
           "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
           "role": "other"
-        }
-      ]
-    },
-    {
-      "id": "E-SCANNER-INVALIDATION-AC-01",
-      "kind": "inspection",
-      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
-      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
-      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
-          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
-          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
-          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
-          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
-          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
-          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
-          "role": "contract"
-        }
-      ]
-    },
-    {
-      "id": "E-SCANNER-INVALIDATION-AC-02",
-      "kind": "inspection",
-      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
-      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
-      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
-          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
-          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
-          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
-          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
-          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
-          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
-          "role": "contract"
-        }
-      ]
-    },
-    {
-      "id": "E-SCANNER-INVALIDATION-AC-03",
-      "kind": "inspection",
-      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
-      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
-      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
-          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
-          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
-          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
-          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
-          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
-          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
-          "role": "contract"
-        }
-      ]
-    },
-    {
-      "id": "E-SCANNER-INVALIDATION-AC-04",
-      "kind": "inspection",
-      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
-      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
-      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
-      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
-      "inputs": [
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
-          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
-          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
-          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
-          "role": "contract"
-        },
-        {
-          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
-          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
-          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
-          "role": "contract"
-        },
-        {
-          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
-          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
-          "role": "contract"
         }
       ]
     }
@@ -664,7 +83,12 @@
     "2026-11-01 documentary reconciliation: old input digests preserved under explicit snapshot paths; new task/successor inspections do not represent operational reruns. See docs/validation/f0-reconciliation-20261101/dependency-impact.json.",
     "2026-11-04 visual-documentation method successor: exact historical inputs are preserved without digest renewal; a new bounded method/consumer inspection is separate from prior execution observations. Inherited README current-byte guard failure is not waived. See docs/validation/technical-documentation-visuals-20261104/.",
     "Task closure succession: affected historical observations preserved under historical_evidence and exact preimage in docs/validation/scripts-task-closure/before; affected decisions INCONCLUSIVE pending bounded successor review. Unaffected operational observations retained.",
-    "Scanner remediation 2026-11-07: changed-input observations preserved verbatim in historical_evidence; no previous hash renewed. Affected acceptance requires reexecution; see docs/validation/scanner-remediation-20261107/evidence-reconciliation.json."
+    "Scanner remediation 2026-11-07: changed-input observations preserved verbatim in historical_evidence; no previous hash renewed. Affected acceptance requires reexecution; see docs/validation/scanner-remediation-20261107/evidence-reconciliation.json.",
+    "Visual successor: affected prior observations preserved in docs/validation/visual-workbench-20261111/superseded-evidence/skill-workspace-integrity-engineering.json.bin; acceptance now INCONCLUSIVE until scoped revalidation.",
+    "Configuration inputs changed; affected observations preserved under docs/validation/configuration-refactor-20261111/before-evidence/. Rerun relevant consumer/oracle before renewed technical acceptance.",
+    "2026-11-13 Ec defaults: changed inputs invalidate dependent observations; original evidence preserved at docs/validation/scripts-defaults-20261113/prior/skill-workspace-integrity-engineering/evidence.json",
+    "New documentary inspection reexamines changed authority/succession bytes only; original operational states and unaffected evidence references remain unchanged.",
+    "2026-11-14 instruction corrections: changed-input observations preserved unchanged in historical_evidence and governance-corrections-20261114/before; affected decided criteria require a new criterion-specific observation. No product/scanner reacceptance."
   ],
   "historical_evidence": [
     {
@@ -3549,6 +2973,536 @@
           "path": "docs/validation/f0-reconciliation-20261101/maintenance-final.log",
           "sha256": "5b64266f3a94bb9e722473d5325a56a4eb3fdcc8b90d200d4606cce70fc1e1ff",
           "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-README-SKILL-INTEGRATION-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Compare actual enumerated profile/import/preservation/doc delta against each affected criterion consumer. Retain old observations and identical input/artifact bytes; current profile receives independent import acceptance.",
+      "observed_result": "Existing scoped criterion states retained; no product execution or scientific/reader-effectiveness claim inferred. New conditional resource identity and negative preservation cases examined separately.",
+      "artifact": "docs/validation/readme-skill-integration-20261104/shared-input-review.md",
+      "sha256": "317f66f9089cdad0ec12524cfaf5d1fd1a9a3aa310e94562dddea655a9c784da",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "6161cee65caa6a19ae61cba0c56cc5751d90c6fe54c42a07c0c72a2ee11f05b7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/readme-skill-integration.md",
+          "sha256": "f8f53eba58ebf0e9e0b7892ab41dbe880806b31bccfe85d3090d31389c613e1d",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/profile-revisions.json",
+          "sha256": "30f821a9adf357116a8d3b53114a0074da099be735446a79757899d56df972dc",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "c573f472c39f89270a1c405919be1079c165aba77b7223a03fd13d2248544ab9",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/robustness-20261105/before/sdd/project.md.bin",
+          "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "5a6a68c5cb41a268d7bedafaa81c4583b60cd87f25603a79d2f4a80f46db72cc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "15b4ad904e3d1c950446ded93c7bb85bea5731198c18a56153f1667f8c88bda3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/skill_revision.py.bin",
+          "sha256": "692cb74cb6a25dde4eca0309616fa3acaf27acc17af0732328108eefd3af1f8a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
+          "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-EXPORT-BOUNDARY-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Inspect two-prefix product-record exclusion and regression assertion delta; authenticate old bytes; reexamine scope of unchanged preservation/acceptance algorithms and unchanged technical consumers. See execution-authority-review.md.",
+      "observed_result": "Operational F0 evidence excluded from governance-only export; prior scoped feature verdicts retained, pending current independent-copy results. No skill or product approval transferred.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/execution-authority-review.md",
+      "sha256": "ed47b44829f55104a01fe26acf09190f588fd016f2de1ab20be13b3b5a5d0b9e",
+      "inputs": [
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "96f45b7e2eafb02e92e701705501cac0ccf7d62a0605b0fe91293a78dd175b33",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "19ad9f877ea6b3eec612a79646a606ce2d1985f720c5c80c4527c234293d9fb2",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-RESUMPTION-DOCUMENTARY",
+      "kind": "inspection",
+      "command_or_method": "Review exact shared documentary/export delta against unchanged criterion consumers; retain old hashes and identical predecessors. Regression assertion fails before and passes after the bounded export exclusion.",
+      "observed_result": "Existing scoped verdicts retained; no new consumer execution or product approval inferred. Current contracts and actual implementation/oracle identities reexamined; obsolete observations remain historical.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/review.md",
+      "sha256": "a73aaaa1dd74131f1e7bb792235e2fdfb637a64a7bec19849170518b0281f79f",
+      "inputs": [
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/docs/architecture/context.md.bin",
+          "sha256": "4de3bdbe6fe7fb89c51bfb80087c27425ff3eedcf75b08225366e53e5c76c6e6",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/f0-boundary-20261102.md",
+          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-after.log",
+          "sha256": "8270162f72b25037bb5ce5a9dbc2742241e25cf4009d87afa4e1bffe0f45d892",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/export-before.log",
+          "sha256": "04eefac525b865179f55c5d74d75506057d3d22cad27e8c9dcc3149fd8d7a571",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/resumption-authority/before-history-review/sdd/project.md.bin",
+          "sha256": "e06b294ec7bcfbd2bfcc6924e03dbe4c6ebfa5378432c8b79e138cdd6cd17913",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-F0-RASTER-DOCUMENTARY",
+      "kind": "inspection",
+      "command_or_method": "Bounded semantic review of current F0 authority text and unchanged criterion consumers; exact old bytes preserved.",
+      "observed_result": "Existing governance verdict and authorization scope retained; no product acceptance inferred from documentary checks.",
+      "artifact": "docs/validation/f0-reconciliation-20261101/resumption-authority/closure-review.md",
+      "sha256": "3ff01c75d3fe989c29649689b8d70f3d6168f4dcb61b468f728002536edddaf5",
+      "inputs": [
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/application-documentation-20261104/before/docs/architecture/context.md.bin",
+          "sha256": "e7884629c01481f69aeab1cf6d7237e76791f75f19a10ccef918425076e5d971",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/f0-boundary-20261102.md",
+          "sha256": "590e9c9e15b3e99a921033f5fdcae6149e58c63a4b41ab0ee7c2c7d9e7685371",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/sdd/project.md.bin",
+          "sha256": "b802650f0b869ccfe0a7ad90d2fcc56c31290732060067ab495a0860ca9c3515",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-skill-integration-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "922affefeb1a2a6d6970089464a6e6f940c2439752228341127c270a7b5e5445",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_governance.py.bin",
+          "sha256": "2a1fc49e295edb95e027cf669631aed9cf98953be0dba6f8387ac033a1428d10",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-SCANNER-INVALIDATION-AC-01",
+      "kind": "inspection",
+      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
+      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
+      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
+      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-SCANNER-INVALIDATION-AC-02",
+      "kind": "inspection",
+      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
+      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
+      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
+      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-SCANNER-INVALIDATION-AC-03",
+      "kind": "inspection",
+      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
+      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
+      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
+      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-SCANNER-INVALIDATION-AC-04",
+      "kind": "inspection",
+      "command_or_method": "Inspect changed-input dependency map and criterion contract; explicitly withhold current effectiveness acceptance. See evidence-reconciliation.json and criterion-specific record in acceptance-invalidation.json.",
+      "observed_result": "Current effectiveness is not established: predecessor review depends on modified tooling/consumer inputs. Historical observations remain intact. No risk or license acceptance inferred.",
+      "artifact": "docs/validation/scanner-remediation-20261107/acceptance-invalidation.json",
+      "sha256": "de155a9cbffbd158b930b955bcb0f40b56dbc894af0a22470ee310bee21549d8",
+      "inputs": [
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/spec.md",
+          "sha256": "e2d4c74a25dac9d6105c4f5c59fc63011e59a32b202ae9b9169047381f6285da",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/plan.md",
+          "sha256": "80e41c2efffeff432ee2f1a1651cf46666a2a3b323d718f5e5d6a22dbabe9b6b",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/tasks.md",
+          "sha256": "af579dee51f6028dda448936272713919b9e1e8bf66a604a0f5f0f5b8713242d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/skill-workspace-integrity-engineering/traceability.json",
+          "sha256": "6975476ac2e5a5adaab8f570eca5311247ed5c9f72306d1287c9caf3bc6cbe21",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+          "sha256": "3156e92baceb75376182423952607da665ff2c8db0d8cdc4296b44431b5c915a",
+          "role": "contract"
+        },
+        {
+          "path": ".codex/skills/workspace-integrity-engineering/references/evaluation-cases.md",
+          "sha256": "14a0da21921ed8fc1a22a80c4b67f879e59d3f6353aa8e4807d5e7384d5e56f6",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTATION-CLOSURE-SUCCESSOR",
+      "kind": "inspection",
+      "command_or_method": "Source-grounded documentary review of completion guidance and current visual integration; prior observations archived",
+      "observed_result": "Documentation updated; no product execution rerun or new acceptance. Original observations: docs/validation/documentation-closure-20261111/before-evidence/skill-workspace-integrity-engineering.json.bin",
+      "artifact": "docs/validation/documentation-closure-20261111/report.md",
+      "sha256": "2f4ff2363fdb28ec21ca59881cd52d5d4a9134f1da1c9a6d93883abab0c06751",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "3a5f842b1e7c60f3f1004c4998211e34178b23e1b7ebfe08619a879960d45eac",
+          "role": "other"
+        },
+        {
+          "path": "application/README.md",
+          "sha256": "6e50886a75b4a1c56b3f58cd6326a5e3e1e32ecee0c3e4b9c676930573a37eeb",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "4924373702d8484edbb1f7e92dc8a9f63114287c4eba01df4caaa2bf462928ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/application.md",
+          "sha256": "95d18c41e149bbdaf6934836017caed6ce5f4925c053cd89e8942fa40f22dfbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0f6e901bf9d6c1e351395c9ecf6564433ae1c63dac7c7241a9ef58d7862ed704",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "375c0c502f2ef4d1baf38720d787e9710c28bff7890b799794415f2e16e8e490",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-CONFIGURATION-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Compare current configuration with preserved preimages; retire only observations with changed bound inputs",
+      "observed_result": "Configuration text reviewed; no historical execution rerun or application acceptance transferred. Prior document: docs/validation/configuration-refactor-20261111/before-evidence/skill-workspace-integrity-engineering.json.bin",
+      "artifact": "docs/validation/configuration-refactor-20261111/report.md",
+      "sha256": "b44e8801970792d2af595dce92eba0b0a70ef29737df71fcf9db52f803251b58",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "60927db048a6f6c9a0498d022a73ca3d6f6fad059b0aa9334bc5ddd1c4902f73",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "99c45c11a051cb0f194d2d2021214ea3d5cd604a3b107d1179f80468c6237273",
+          "role": "configuration"
+        }
+      ]
+    },
+    {
+      "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+      "kind": "inspection",
+      "command_or_method": "Compare preserved authority preimages, inspect the exact-byte succession adapter and unchanged technical inputs; 33 succession tests include corruption, symlink, downgrade and unknown-byte rejection. See defaults report.",
+      "observed_result": "Only the full command, authorized scope and exact-byte documentation succession changed. Skill methods, bridge contributions and product implementation remain unchanged; historical operational acceptance is not renewed.",
+      "artifact": "docs/validation/scripts-defaults-20261113/report.md",
+      "sha256": "9d9c08147f3041902cada932a5cfd9f15e057c2e8e9bd25ff0ed25ce5644e691",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "f482adf1f52bbc5247139b51c5079f100336ba5402a4d9351dbd788f5f2d81a9",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "c612c5a0906869f4d4b18beb8f974a7304ba751be7973cf196154a1194ce3ace",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/scripts-defaults-20261113/succession.json",
+          "sha256": "94e3d4b3c352c9030a9687ff7e0eee1bf0ebe1f75236377c8fe33795f54f2370",
+          "role": "other"
         }
       ]
     }

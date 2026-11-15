@@ -27,11 +27,27 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def contained_path(boundary, path):
+    """Check lexical components before resolving: even internal symlinks fail.
+
+    Inspecting before normalization also catches ``alias/../target`` traversal.
+    This is an offline inspection, not an OS isolation or race-free open primitive.
+    """
+    boundary = boundary.resolve()
+    path = path.absolute()
+    if any(part.is_symlink() for part in (path, *path.parents)):
+        raise ValueError(f"Symlink path is not allowed: {path}")
+    resolved = path.resolve()
+    if not resolved.is_relative_to(boundary):
+        raise ValueError(f"Escaping path: {path}")
+    return resolved
+
+
 def local_file(root, value):
     if not isinstance(value, str) or not value or Path(value).is_absolute():
         raise ValueError(f"Expected relative file: {value!r}")
-    path = (root / value).resolve()
-    if not path.is_relative_to(root.resolve()) or not path.is_file():
+    path = contained_path(root, root / value)
+    if not path.is_file():
         raise ValueError(f"Missing or escaping file: {value}")
     return path
 
@@ -352,20 +368,104 @@ def trace_errors(rows, root, feature, document=None):
     return errors
 
 
+def convergence_errors(text, expected, document):
+    """Check only the delimited projection; historical prose is not parsed."""
+    opening, closing = "<!-- sdd:current-status -->", "<!-- /sdd:current-status -->"
+    lines = text.splitlines()
+    if text.count(opening) != 1 or text.count(closing) != 1:
+        return ["Convergence requires exactly one current-status block"]
+    if opening not in lines or closing not in lines:
+        return ["Convergence markers must occupy their own lines"]
+    start, end = lines.index(opening), lines.index(closing)
+    if start >= end:
+        return ["Convergence current-status block is reversed"]
+    body = lines[start + 1 : end]
+    if body[:2] != ["| Criterion | Status |", "| --- | --- |"]:
+        return ["Invalid convergence table header"]
+    errors, projected = [], {}
+    for line in body[2:]:
+        match = re.fullmatch(r"\| (AC-\d+) \| ([A-Z ]+) \|", line)
+        if not match or match[2] not in STATES:
+            errors.append(f"Invalid convergence row: {line}")
+            continue
+        identifier, status = match.groups()
+        if identifier in projected:
+            errors.append(f"Duplicate convergence criterion: {identifier}")
+        projected[identifier] = status
+    if set(projected) != expected:
+        errors.append("Convergence must cover each spec acceptance ID exactly once")
+    requirements = (
+        document.get("requirements", []) if isinstance(document, dict) else []
+    )
+    reported = {}
+    if isinstance(requirements, list):
+        for row in requirements:
+            if isinstance(row, dict) and isinstance(row.get("id"), str):
+                reported[row["id"]] = state(row.get("status"))
+    for identifier in sorted(expected & projected.keys()):
+        if projected[identifier] != reported.get(identifier):
+            errors.append(f"Convergence status mismatch: {identifier}")
+    return errors
+
+
+def select_features(directory, feature_names=None):
+    """Return direct children only; selection never changes container semantics."""
+    if (directory / "spec.md").is_file() and (
+        directory / "traceability.json"
+    ).is_file():
+        raise ValueError(
+            "--features expects a container, not a feature directory; "
+            "use its parent with --feature NAME"
+        )
+    if feature_names is None:
+        return sorted(directory.iterdir())
+    if not feature_names:
+        raise ValueError("Feature selection must not be empty")
+    for name in feature_names:
+        if (
+            not isinstance(name, str)
+            or not name.strip()
+            or name != name.strip()
+            or name in (".", "..")
+            or "/" in name
+            or "\\" in name
+            or Path(name).is_absolute()
+        ):
+            raise ValueError(f"Expected a direct feature name: {name!r}")
+    selected = []
+    for name in sorted(set(feature_names)):
+        path = contained_path(directory, directory / name)
+        if not path.is_dir():
+            raise ValueError(f"Unknown feature: {name}")
+        selected.append(path)
+    return selected
+
+
 def feature_errors(
     root,
     check_evidence=True,
     require_approved=False,
     directory=None,
     require_fresh=False,
+    feature_names=None,
+    check_convergence=False,
 ):
-    """Check every direct feature; keep integrity distinct from acceptance."""
+    """Check complete selected features; keep integrity distinct from acceptance."""
+    if not check_evidence and (require_approved or require_fresh or check_convergence):
+        return ["Acceptance, freshness and convergence checks require evidence"]
     directory = directory or root / "sdd/features"
-    if not directory.exists() and not require_approved:
+    try:
+        directory = contained_path(root, directory)
+    except ValueError as exc:
+        return [str(exc)]
+    if not directory.exists() and not require_approved and feature_names is None:
         return []
     if not directory.is_dir() or directory.is_symlink():
         return ["Missing or symlink feature directory"]
-    features = sorted(directory.iterdir())
+    try:
+        features = select_features(directory, feature_names)
+    except ValueError as exc:
+        return [str(exc)]
     errors = []
     count = 0
     for feature in features:
@@ -386,6 +486,18 @@ def feature_errors(
                 )
                 document = strict_json(path)
                 errors.extend(f"{prefix}: {e}" for e in evidence_errors(document, root))
+                if check_convergence:
+                    convergence = local_file(
+                        root, str((feature / "converge.md").relative_to(root))
+                    )
+                    errors.extend(
+                        f"{prefix}: {e}"
+                        for e in convergence_errors(
+                            convergence.read_text(),
+                            acceptance_ids((feature / "spec.md").read_text()),
+                            document,
+                        )
+                    )
             rows = strict_json(feature / "traceability.json")
             errors.extend(
                 f"{prefix}: {e}" for e in trace_errors(rows, root, feature, document)
@@ -423,8 +535,13 @@ def feature_errors(
     return errors
 
 
-def markdown_errors(folder):
+def markdown_errors(folder, boundary=None):
     """Resolve inline file links without opening external URLs or following symlinks."""
+    boundary = folder if boundary is None else boundary
+    try:
+        folder = contained_path(boundary, folder)
+    except ValueError as exc:
+        return [str(exc)]
     errors = []
     for p in sorted(folder.rglob("*")):
         if p.is_symlink():
@@ -436,8 +553,12 @@ def markdown_errors(folder):
             parts = urlsplit(raw.strip("<>"))
             if parts.scheme or parts.netloc or not parts.path:
                 continue
-            target = (p.parent / unquote(parts.path)).resolve()
-            if not target.is_relative_to(folder.resolve()) or not target.is_file():
+            try:
+                target = contained_path(boundary, p.parent / unquote(parts.path))
+            except ValueError as exc:
+                errors.append(f"Nonportable or missing link: {p}: {raw}: {exc}")
+                continue
+            if not target.is_file():
                 errors.append(f"Nonportable or missing link: {p}: {raw}")
     return errors
 
@@ -520,10 +641,19 @@ def audit(
     features=None,
     model="sdd",
     require_fresh=False,
+    link_scope="project",
+    feature_names=None,
+    check_convergence=False,
 ):
     root = root.resolve()
     if not root.is_dir():
         raise ValueError(f"Missing project root: {root}")
+    if link_scope not in ("project", "portable"):
+        return ["Link scope must be project or portable"]
+    if features is not None and not str(features).strip():
+        return ["Explicit feature container must not be empty"]
+    if not check_evidence and (require_approved or require_fresh or check_convergence):
+        return ["Acceptance, freshness and convergence checks require evidence"]
     sdd = root / model
     if Path(model).is_absolute() or not sdd.resolve().is_relative_to(root):
         return ["Model path must stay inside the project root"]
@@ -541,7 +671,7 @@ def audit(
         local_file(root, str(Path(model) / path))
     if sdd.is_symlink():
         return ["Symlink SDD directory is not allowed"]
-    errors = markdown_errors(sdd)
+    errors = markdown_errors(sdd, root if link_scope == "project" else sdd)
     errors.extend(bridge_errors(root, sdd / "chain"))
     directory = root / (features or str(Path(model) / "features"))
     if Path(
@@ -551,7 +681,15 @@ def audit(
     if features and not directory.is_dir():
         return errors + ["Explicit feature directory is missing"]
     errors.extend(
-        feature_errors(root, check_evidence, require_approved, directory, require_fresh)
+        feature_errors(
+            root,
+            check_evidence,
+            require_approved,
+            directory,
+            require_fresh,
+            feature_names,
+            check_convergence,
+        )
     )
     return errors
 
@@ -562,10 +700,22 @@ def main():
     )
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument(
-        "--model", default="sdd", help="Model directory relative to root (default: sdd)"
+        "--model", help="Model directory relative to root (default: sdd)"
     )
     parser.add_argument(
         "--features", help="Directory of feature directories, relative to project root"
+    )
+    parser.add_argument(
+        "--feature", action="append", dest="feature_names", metavar="NAME",
+        help="Select a direct child of --features (repeatable); shared links/bridges still checked",
+    )
+    parser.add_argument(
+        "--link-scope", choices=("project", "portable"), default=None,
+        help="Allowed link boundary: project root (default) or model folder (portable)",
+    )
+    parser.add_argument(
+        "--check-convergence", action="store_true",
+        help="Check the current-status projection against evidence (opt-in)",
     )
     parser.add_argument(
         "--skill", type=Path, help="Check one standalone skill instead of a project"
@@ -579,16 +729,33 @@ def main():
     mode.add_argument("--structure-only", action="store_true")
     mode.add_argument("--require-approved", action="store_true")
     args = parser.parse_args()
-    if args.structure_only and args.require_fresh:
-        parser.error("--require-fresh cannot be combined with --structure-only")
+    if args.structure_only and (args.require_fresh or args.check_convergence):
+        parser.error(
+            "--require-fresh/--check-convergence cannot be combined with --structure-only"
+        )
     if args.skill and (
-        args.features
+        args.features is not None
+        or args.model is not None
+        or args.feature_names is not None
+        or args.link_scope is not None
+        or args.check_convergence
         or args.require_approved
         or args.structure_only
         or args.require_fresh
     ):
-        parser.error("--skill cannot be combined with feature modes")
+        parser.error("--skill cannot be combined with project/feature modes")
     try:
+        if args.features is not None and not args.features.strip():
+            raise ValueError("Explicit feature container must not be empty")
+        model = args.model or "sdd"
+        if args.feature_names is not None:
+            root = args.root.resolve()
+            relative = args.features or str(Path(model) / "features")
+            if Path(relative).is_absolute():
+                raise ValueError("Feature path must stay inside the project root")
+            directory = contained_path(root, root / relative)
+            selected = select_features(directory, args.feature_names)
+            print("Selected features: " + ", ".join(p.name for p in selected), flush=True)
         errors = (
             skill_errors(args.skill)
             if args.skill
@@ -597,8 +764,11 @@ def main():
                 not args.structure_only,
                 args.require_approved,
                 args.features,
-                args.model,
+                model,
                 args.require_fresh,
+                args.link_scope or "project",
+                args.feature_names,
+                args.check_convergence,
             )
         )
     except (OSError, ValueError, KeyError, TypeError) as exc:
@@ -608,7 +778,7 @@ def main():
         print("FAIL:", error, file=sys.stderr)
     if errors:
         return 1
-    print("PASS: portable files, configured bridges and requested evidence checks")
+    print("PASS: scoped files, configured bridges and requested evidence checks")
     print(
         "Not proof of semantic adequacy, agent execution or comparative effectiveness."
     )

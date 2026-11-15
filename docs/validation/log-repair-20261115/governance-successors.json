@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "revision": "log-repair-20261115",
+  "missing_intermediate": {
+    "path": "sdd/project.md",
+    "sha256": "82c57cdebb84cd3a620e02de99cc91485076c8d389b9644016dc09ebb13bcfa1",
+    "status": "UNVERIFIED",
+    "reason": "Bytes unavailable; new independently reviewed project transition uses available authenticated original; no replay of this intermediate is claimed."
+  },
+  "records": [
+    {
+      "destination": "docs/architecture/context.md",
+      "sha256": "76f8509afee13b3324c3e776add2340af2aba61d646ffd0585a3fe34e9e640b7",
+      "previous": "docs/validation/welcome-projects-20261114/before/docs/architecture/context.md",
+      "previous_sha256": "fca6c3ec9f3f8f25e15e4544c51a46de48df44015f946cca843621c819b06588",
+      "chain_base": "terminal",
+      "replaced_sha256": "fca6c3ec9f3f8f25e15e4544c51a46de48df44015f946cca843621c819b06588"
+    },
+    {
+      "destination": "sdd/features/configuration-cohesion/plan.md",
+      "sha256": "c39dafd2e3a2e2ec77e9233f78251aaf5607f3adb02f8addcbe13c66388a1c21",
+      "previous": "docs/validation/log-repair-20261115/before-governance/sdd/features/configuration-cohesion/plan.md.bin",
+      "previous_sha256": "0ed131d912b7aaa43cdd62be6abcb1907a42992302666cf8a78d4d7190bcb056",
+      "chain_base": "terminal",
+      "replaced_sha256": "0ed131d912b7aaa43cdd62be6abcb1907a42992302666cf8a78d4d7190bcb056"
+    },
+    {
+      "destination": "sdd/features/configuration-cohesion/tasks.md",
+      "sha256": "b932b2f1282e79cce2cbc99c6793fbdf3dd07ca0caafc1baf0c96d34b94047c1",
+      "previous": "docs/validation/log-repair-20261115/before-governance/sdd/features/configuration-cohesion/tasks.md.bin",
+      "previous_sha256": "f28ea85a797545b9b6dcb4526fa7043410520991b9892b498cb344238a0c7197",
+      "chain_base": "terminal",
+      "replaced_sha256": "f28ea85a797545b9b6dcb4526fa7043410520991b9892b498cb344238a0c7197"
+    },
+    {
+      "destination": "sdd/features/product-visual-workbench/converge.md",
+      "sha256": "91981cc160d0444b256d0830f176451204f5bb1928ce2c7217f17f07d3144ce1",
+      "previous": "docs/validation/log-repair-20261115/governance-reconstructed-converge.md.bin",
+      "previous_sha256": "de426c3ad1f1b32ac75e3dc3ef3cd1790b17a2da148d7f0d1637d1ee4352c412",
+      "chain_base": "terminal",
+      "replaced_sha256": "de426c3ad1f1b32ac75e3dc3ef3cd1790b17a2da148d7f0d1637d1ee4352c412"
+    },
+    {
+      "destination": "sdd/project.md",
+      "sha256": "1a28ee403e04f7fbbc8b039783ba2895fa52633a8509364d5282900094b7b4fb",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/project.md.bin",
+      "previous_sha256": "a0d9bbfbde1db828db87a08475dadb37ebc28683ef4e6c0f3b8d810c187472d2",
+      "chain_base": "original",
+      "replaced_sha256": "82c57cdebb84cd3a620e02de99cc91485076c8d389b9644016dc09ebb13bcfa1"
+    },
+    {
+      "destination": "tools/governance/scripts/check-ox.py",
+      "sha256": "9600d3dfa63dae254e261caf386686970af450ab8fb95a17cc99057f2dfa92ef",
+      "previous": "docs/validation/log-repair-20261115/before-governance/tools/governance/scripts/check-ox.py.bin",
+      "previous_sha256": "b633320d85daa941cf3c399118070aa276613e2c5cd379a1bc5d45ec4d3b33d8",
+      "chain_base": "terminal",
+      "replaced_sha256": "b633320d85daa941cf3c399118070aa276613e2c5cd379a1bc5d45ec4d3b33d8"
+    },
+    {
+      "destination": "tools/governance/tests/test_native_exec_succession.py",
+      "sha256": "13f7c74c1e7bafc83101980937144428b6bd5419373e4467f338b9a1a8c98ef3",
+      "previous": "docs/validation/log-repair-20261115/before-governance/tools/governance/tests/test_native_exec_succession.py.bin",
+      "previous_sha256": "e80641aee265e73a1b2c805ae6c5cd6e04f403006799b14025156269679a5ddd",
+      "chain_base": "terminal",
+      "replaced_sha256": "e80641aee265e73a1b2c805ae6c5cd6e04f403006799b14025156269679a5ddd"
+    },
+    {
+      "destination": "tools/governance/tests/test_readme_skill_integration.py",
+      "sha256": "ff232b80d7b6c21656b6a43a03eb0e611626cb481c5e1639e902cdd40e8fea97",
+      "previous": "docs/validation/log-repair-20261115/before-governance/tools/governance/tests/test_readme_skill_integration.py.bin",
+      "previous_sha256": "2d73bf05ea8a65e0efb84ebfc915471b44a97df46bf095206ce666e03ffa424c",
+      "chain_base": "terminal",
+      "replaced_sha256": "2d73bf05ea8a65e0efb84ebfc915471b44a97df46bf095206ce666e03ffa424c"
+    },
+    {
+      "destination": "tools/governance/scripts/package-ox.py",
+      "sha256": "8f06fa93a506ba8037e1708bd5530c456d6fe001885f036e250917d6cd077de0",
+      "previous": "docs/validation/log-repair-20261115/before-governance/tools/governance/scripts/package-ox.py.bin",
+      "previous_sha256": "5c5ce4c9b28a909eb153ff0678b20c85d4f58ef0026548b78d7c65b200614c7d",
+      "chain_base": "terminal",
+      "replaced_sha256": "5c5ce4c9b28a909eb153ff0678b20c85d4f58ef0026548b78d7c65b200614c7d"
+    },
+    {
+      "destination": "tools/governance/scripts/export-clean.py",
+      "sha256": "47ea2af2a2563f19718e8fb96144bd0767f50f1aea25fd492b26a3e92a3808c2",
+      "previous": "docs/validation/log-repair-20261115/before-governance/tools/governance/scripts/export-clean.py.bin",
+      "previous_sha256": "6e74355504d96c8cb9e1ef0c7866bb8fdd625da789988501e3e707a7967180ba",
+      "chain_base": "terminal",
+      "replaced_sha256": "6e74355504d96c8cb9e1ef0c7866bb8fdd625da789988501e3e707a7967180ba"
+    }
+  ]
+}

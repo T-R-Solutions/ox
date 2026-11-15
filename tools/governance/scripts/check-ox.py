@@ -1,31 +1,34 @@
 """Read-only checks of local contracts, resources, evidence and distribution."""
 
-from pathlib import Path
 import hashlib
 import importlib.util
 import json
 import re
 import sys
 import tarfile
-from urllib.parse import urlsplit, unquote
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 sys.path.insert(
     0, str(Path(__file__).resolve().parents[3] / "tools/governance/scripts")
 )
+from documentation_revision import errors as visual_errors
+from documentation_revision import records as visual_records
 from governance_support import (
     inspect_tree,
-    transient,
-    sha as digest,
+    preservation_digest,
     relocated_path,
     relocated_traceability,
-    preservation_digest,
-    succession_records,
     succession_errors,
+    succession_records,
+    transient,
 )
-from technical_acceptance import technical_errors
-from skill_revision import records as integration_records
-from documentation_revision import records as visual_records, errors as visual_errors
+from governance_support import (
+    sha as digest,
+)
 from readme_revision import excluded_product_reference
+from skill_revision import records as integration_records
+from technical_acceptance import technical_errors
 
 ROOT = Path(__file__).resolve().parents[3]
 
@@ -250,6 +253,9 @@ def check(root):
     read = V.strict_json
     errors.extend(phase_errors(root))
     errors.extend(succession_errors(root))
+    from instruction_revision import errors as instruction_errors
+
+    errors.extend(instruction_errors(root))
     errors.extend(visual_errors(root))
     metadata = metadata_revision(root, read)
     for relative, row in metadata.items():
@@ -262,7 +268,7 @@ def check(root):
             errors.append("UI metadata changed/missing: " + relative)
     errors.extend(transition_preservation_errors(root, read))
     profile = read(root / "config/governance/profile.json")
-    names = sum([list(profile[key]) for key in ("general", "conditional", "new")], [])
+    names = [name for key in ("general", "conditional", "new") for name in profile[key]]
     expected = set(names)
     if len(names) != len(expected):
         errors.append("Duplicate/overlapping profile classes")
@@ -355,15 +361,30 @@ def check(root):
         rel = path.relative_to(root)
         if transient(rel) or rel.parts[0] == "dist" or not path.is_file():
             continue
+        from log_repair_revision import origin, symlinked
+        try:
+            original = origin(root, rel.as_posix())
+        except ValueError as error:
+            errors.append(str(error))
+            continue
         for target in re.findall(r"\[[^\]]*\]\(([^)]+)\)", path.read_text()):
             parsed = urlsplit(target.strip("<>"))
             if parsed.scheme or parsed.netloc or not parsed.path:
                 continue
-            resolved = (path.parent / unquote(parsed.path)).resolve()
+            lexical = (root / original).parent / unquote(parsed.path)
+            if symlinked(root, lexical):
+                errors.append(f"Symlink link: {rel}: {target}")
+                continue
+            resolved = lexical.resolve()
             if not resolved.is_relative_to(root) or not (
                 resolved.is_file() or resolved.is_dir()
             ):
-                if not excluded_product_reference(root, rel.as_posix(), resolved):
+                from instruction_revision import excluded_local_reference
+                from log_repair_revision import excluded_reference
+
+                if (not excluded_product_reference(root, original, resolved)
+                        and not excluded_local_reference(root, rel.as_posix(), resolved)
+                        and not excluded_reference(root, rel.as_posix(), resolved)):
                     errors.append(f"Broken/escaping link: {rel}: {target}")
 
     for name in profile["new"]:
@@ -451,7 +472,7 @@ def check(root):
         "docs/decisions/adoption.md",
     ):
         V.local_file(root, name)
-    errors.extend(V.audit(root))
+    errors.extend(V.audit(root, check_convergence=True))
     history = read(
         root / "docs/validation/governance-externalization/history-integrity.json"
     )

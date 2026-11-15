@@ -1,29 +1,29 @@
 """Adversarial tests for adopted validator and Ox-specific preservation checks."""
 
-from pathlib import Path
+import hashlib
 import importlib.util
 import json
+import os
+import re
 import shutil
-import tempfile
-import unittest
 import subprocess
 import sys
-import os
-import hashlib
 import tarfile
+import tempfile
+import unittest
 import zipfile
-import re
 from io import BytesIO
+from pathlib import Path
 
 sys.path.insert(
     0, str(Path(__file__).resolve().parents[3] / "tools/governance/scripts")
 )
 from governance_support import (
+    EXTERNAL_DOCUMENTS,
     copy_distribution,
     inspect_bytes,
-    EXTERNAL_DOCUMENTS,
-    scope_errors,
     preservation_bytes,
+    scope_errors,
 )
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -86,6 +86,24 @@ class GovernanceTests(unittest.TestCase):
             any(p.startswith("docs/validation/f0-resumption-20261103/") for p in names)
         )
         self.assertIn("sdd/features/product-foundation/spec.md", names)
+
+    def test_script_configuration_evidence_is_portable(self):
+        from governance_support import distribution_files
+
+        names = {p.relative_to(ROOT).as_posix() for p in distribution_files(ROOT)}
+        feature = "sdd/features/scripts-centralization/"
+        for name in ("spec.md", "plan.md", "tasks.md", "traceability.json", "evidence.json"):
+            self.assertIn(feature + name, names)
+        document = json.loads((ROOT / feature / "evidence.json").read_text())
+        observations = document["evidence"] + document.get("historical_evidence", [])
+        self.assertTrue(observations, "Portable observation history must be preserved")
+        if not document["evidence"]:
+            self.assertTrue(all(row["status"] in {"UNVERIFIED", "INCONCLUSIVE", "NOT APPLICABLE"}
+                                for row in document["requirements"]))
+        for observation in observations:
+            self.assertIn(observation["artifact"], names)
+            for binding in observation["inputs"]:
+                self.assertIn(binding["path"], names, observation["id"])
 
     def test_declared_criteria_ignore_examples(self):
         self.assertEqual(
@@ -577,6 +595,7 @@ class GovernanceTests(unittest.TestCase):
     def test_governance_package_not_product_release(self):
         for name in (
             "AGENTS.md",
+            "DESIGN.md",
             "README.md",
             "LICENSE",
             "NOTICE",
@@ -822,8 +841,7 @@ class GovernanceTests(unittest.TestCase):
                         )
                     finally:
                         target.write_bytes(current)
-        target = self.root / ".codex/skills/iced-engineering/references/acceptance.md"
-        target = next((target.parent).glob("*.md"))
+        target = self.root / ".codex/skills/iced-engineering/references/evaluation-cases.md"
         old = target.read_bytes()
         try:
             target.write_bytes(old + b"changed resource")

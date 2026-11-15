@@ -1,10 +1,11 @@
 """Check current Markdown targets, anchors and self-contained documentation SVGs."""
 
-from pathlib import Path
-from urllib.parse import urlsplit, unquote
 import json
 import re
 import xml.etree.ElementTree as ET
+from itertools import pairwise
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / "docs/validation/documentation-visuals-20261104"
@@ -33,7 +34,7 @@ def check():
         # Fenced Mermaid is source, not another document outline.
         prose = re.sub(r"```.*?```", "", text, flags=re.S)
         levels = [len(m[0]) for m in re.findall(r"^(#+) (.+)$", prose, re.M)]
-        if any(b > a + 1 for a, b in zip(levels, levels[1:], strict=False)):
+        if any(b > a + 1 for a, b in pairwise(levels)):
             failures.append("Skipped heading level: " + name)
         headings.append({"path": name, "levels": levels})
         for raw in re.findall(r"\[[^\]]*\]\(([^)]+)\)", text):

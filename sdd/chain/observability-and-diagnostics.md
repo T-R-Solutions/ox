@@ -35,8 +35,7 @@ The bridge maps contributions; the skill owns its technical procedure.
 
 ## Completion and authority
 
-Use the destination SDD's outcome vocabulary for every applicable criterion; distinguish
-observed results from pending or inconclusive checks. Preserve requirement → decision/
-risk → task → evidence traceability. Spec owns requirements, plan/ADRs own decisions,
-tasks own executable work and evidence/convergence owns the supported result.
-This bridge grants no deployment, data access, external messaging or spending authority.
+Shared routing, authorization, outcome states and documentation closure follow
+[workflow](../workflow.md) and [evidence](../evidence.md). This bridge maps a
+selected method to artifacts; it neither activates skills nor changes permissions.
+For reuse elsewhere, keep these shared contracts and adapt skill_path to that project.

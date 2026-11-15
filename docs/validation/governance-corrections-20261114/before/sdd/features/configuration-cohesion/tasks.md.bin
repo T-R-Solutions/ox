@@ -1,0 +1,10 @@
+# Tarefas
+
+- [x] T001 — Inventariar entradas, recursos, pontes e autoridades; separar duplicações de métodos próprios. Registro: inventory.json e report.md no diretório de validação configuration-refactor-20261111. Cobertura estática de 225 arquivos; eficácia completa dos métodos não foi reavaliada.
+- [x] T002 — Refatorar 26 pontes, nove skills e AGENTS; preservar procedimentos, links e contribuições. Atualizados project.md, guia sdd-skills.md e chain/README.md; perfil e identidades permanecem coerentes. Comparações em preservation.json e preimagens em before/. Corrigida afirmação obsoleta sobre aceitação dos cenários.
+- [x] T003 — Verificar estrutura e preservação, registrar resultados e atualizar documentação. 28 testes de sucessão, sete de fechamento, 31 validações de skills e check-ox aprovados. Evidências antigas afetadas preservadas; sem nova aceitação de produto ou eficácia. Documentos revisados: AGENTS, workflow/evidence/templates, catálogo/perfil, pontes, guia de integração e artefatos desta feature. Workflow já contém a regra normativa de atualização ao encerrar tarefas; não foi duplicada nas skills.
+
+Comandos e resultados: docs/validation/configuration-refactor-20261111/checks.log.
+Limites e condição de retomada: executar consumidores/oráculos representativos sobre
+os bytes atuais para afirmar eficácia técnica; usar tokenizador e workload definidos
+para alegar economia de tokens. Redução em palavras/bytes não comprova essas alegações.

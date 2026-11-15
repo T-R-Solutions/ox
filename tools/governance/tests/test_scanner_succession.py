@@ -1,5 +1,6 @@
 """Content-bound scanner successor, including active downgrades and corruption."""
 
+import hashlib
 import json
 import sys
 import tempfile
@@ -23,14 +24,24 @@ class ScannerSuccession(unittest.TestCase):
             root = Path(temporary)
             copy_distribution(ROOT, root)
             registry = root / C.REMEDIATION_REGISTRY
+            # Pin this test to the reviewed transition, not today's working files.
+            # The full current predecessor chain is checked by check-ox.py.
+            snapshots = {}
+            for candidate in (ROOT / "docs/validation").rglob("*.bin"):
+                data = candidate.read_bytes()
+                snapshots[hashlib.sha256(data).hexdigest()] = data
             for row in json.loads(registry.read_text())["records"]:
                 name = row["destination"]
                 target = root / name
                 current = target.read_bytes()
+                if hashlib.sha256(current).hexdigest() != row["sha256"]:
+                    self.assertIn(row["sha256"], snapshots, "Missing reviewed transition fixture")
+                    current = snapshots[row["sha256"]]
+                    target.write_bytes(current)
                 previous = (root / row["previous"]).read_bytes()
                 self.assertEqual(
                     C.remediation_predecessor(
-                        root, name, C.ownership_predecessor(root, name, C.native_exec_predecessor(root, name, C.operational_predecessor(root, name, C.repair_predecessor(root, name, current))))
+                        root, name, current
                     ), previous
                 )
                 self.assertEqual(
@@ -69,7 +80,7 @@ class OwnershipSuccession(unittest.TestCase):
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes((ROOT / relative).read_bytes())
         # This unit fixture exercises the ownership transition's terminal bytes.
-        # Later native exec successors are tested through the complete chain above.
+        # The complete current chain is checked by check-ox.py.
         native = json.loads((ROOT / C.NATIVE_REGISTRY).read_text())
         for row in native['records']:
             if row['destination'] == self.row['destination']:

@@ -90,7 +90,7 @@ No phrase authorizes destructive rewrite operations (`reset --hard`, force-push,
 1. **Preflight.** Confirm explicit intent; run `git rev-parse --show-toplevel`, `git status --short --branch`, inspect `git diff`, `git diff --cached`, and relevant ignored/untracked status as necessary. Identify nested repositories or submodules instead of assuming one Git root.
 2. **Scope.** Classify each changed path as authorized, unrelated, generated, sensitive, conflicting, or uncertain. Preserve unrelated work, including pre-staged files; do not assume that already-staged content was authorized.
 3. **SDD awareness.** Check whether the change affects SDD features, evidence inputs, or governance checks. Preserve their actual validation states. Do not change evidence hashes merely to make them pass; do not mark unexecuted criteria approved.
-4. **Validation choice.** Follow the pre-commit question below before staging or creating any commits. Do not run the automation until the user answers.
+4. **Validation choice.** Resolve the pre-commit choice below before staging or creating any commits; an explicit applicable user instruction may already settle it. Do not run the automation without an affirmative choice.
 5. **Group.** Produce coherent commits by purpose and review each staged diff. **Do not impose a blanket separation of UI and core changes:** a single atomic feature may reasonably span `ox-ui`, `ox-core`, SDD and tests. Separate unrelated concerns instead.
 6. **Stage.** Prefer explicit path staging (`git add -- <paths>`), inspecting staged hunks. `git add -A` is allowed **only** for an explicitly authorized repository-wide scope, from the verified root, and after a complete status/diff review. Verify staged content again before committing.
 7. **Commit.** Use a matching Conventional Commit subject; avoid empty commits unless explicitly requested. Do not modify unrelated hooks or bypass checks merely for convenience.
@@ -98,8 +98,10 @@ No phrase authorizes destructive rewrite operations (`reset --hard`, force-push,
 
 ## Pre-commit automation choice
 
-For each explicit request to create commits, prepare the proposed scope and grouping,
-then ask: **“Deseja executar o script automate.sh antes de criar os commits?”**
+For each explicit request to create commits, prepare the proposed scope and grouping.
+First check whether the user has already explicitly settled the choice for this
+request; that instruction takes precedence and does not require asking again.
+Otherwise ask: **“Deseja executar o script automate.sh antes de criar os commits?”**
 Offer exactly **Sim** and **Não**, without a recommended or implied default.
 Use `request_user_input_async` when available, with those two options, and wait
 for the response before staging or committing. If a choice tool is unavailable,
@@ -108,7 +110,11 @@ not consent. This question is required by this section; link this SKILL.md when
 explaining why confirmation is needed. A request only to inspect commits or
 create a tag does not trigger this question.
 
-- **Sim:** from the verified Git root, run `bash scripts/automate.sh --scope full`.
+- **Sim:** from the verified Git root, read the maintained complete-verification
+  recipe and local environment in `AGENTS.md`, section “Local full-verification
+  environment”. Resolve its current CLI semantics and prerequisites against
+  `scripts/README.md` before executing that exact recipe. Do not substitute the
+  legacy `full` scope or omit the selected Toolbox/Cargo environment.
   Wait for completion and inspect its exit status and results. Create the planned
   commits only if the complete run succeeds with exit code 0 and no reported
   errors, findings, failed or blocked checks. Missing prerequisites, inability to
@@ -121,7 +127,8 @@ create a tag does not trigger this question.
   do not substitute automatic individual validators for the declined run.
 
 The answer applies to all commits grouped under this request. Ask again for a
-new commit request. If source inputs change after a successful run, rerun it
+new commit request unless the applicable user instruction already settles it.
+If source inputs change after a successful run, rerun it
 under the same affirmative answer before committing those changed inputs.
 The choice does not waive conflict/secret/scope checks or certify SDD/product
 acceptance. This is an instruction for the agent, not a Git hook or enforced UI.

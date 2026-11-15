@@ -46,10 +46,13 @@ os observados. Preserve o registro anterior antes de substituí-lo por evidênci
 nova; não renove hashes de uma execução antiga. Mantenha APROVADO, REPROVADO,
 NÃO VERIFICADO, INCONCLUSIVO e NÃO APLICÁVEL justificado conforme o contrato SDD.
 
-As features skill-* avaliam autoria e ensaios delimitados. Os quatro cenários
-técnicos de cada especialização permanecem sem integração verificada. Uma feature
-product-* precisa de seus próprios requisitos, oráculos e observações; a aprovação
-de uma skill não certifica o aplicativo nem libera publicação.
+As features skill-* avaliam autoria e ensaios delimitados. O estado de cada cenário
+é determinado pelas evidências atuais da respectiva feature, conforme o
+[contrato de aceitação técnica](../decisions/technical-acceptance.md); não existe
+uma proibição permanente de validar cenários. Observações históricas não se
+transferem para inputs alterados. Uma feature product-* precisa de seus próprios
+requisitos, oráculos e observações; a aprovação de uma skill não certifica o
+aplicativo nem libera publicação.
 
 ## Identidade das especializações
 
@@ -67,3 +70,21 @@ conceptual explanations. Select one primary skill according to the reader's task
 consult another only for a distinct unresolved question. The new bridge is
 [configured here](../../sdd/chain/readme-lifecycle-engineering.md). Its imported
 research record is provenance, not Ox product authority or a new effectiveness test.
+
+## Encerramento de cada tarefa
+
+Ao integrar uma contribuição de skill, registrar os documentos revisados e atualizados
+ou a justificativa verificável de ausência de impacto no registro da tarefa. A regra
+normativa está no [workflow](../../sdd/workflow.md#documentation-before-task-closure);
+ela se aplica antes de marcar cada task concluída, sem duplicá-la nas 31 skills.
+
+## Revisão de coesão
+
+As pontes mantêm seleção e contribuições específicas; regras comuns apontam para
+workflow/evidence. `bridge_version: 1` identifica o formato suportado pelo validador,
+não a revisão editorial: use SHA-256 para identificar o conteúdo consultado.
+O perfil e as identidades das 31 skills foram mantidos. Não remover uma competência
+reutilizável só porque uma fatia do produto ainda não a utiliza. Métodos técnicos
+ficam nas skills; políticas do Ox, nas autoridades do produto.
+O [registro da revisão](../validation/configuration-refactor-20261111/report.md)
+separa preservação estrutural, revisão textual e eficácia não medida.

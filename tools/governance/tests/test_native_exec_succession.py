@@ -28,6 +28,17 @@ class NativeExecSuccession(unittest.TestCase):
         names.append(C.REPAIR_REGISTRY)
         for row in repair["records"]:
             names.extend([row["destination"], row["previous"]])
+        maintenance = json.loads((ROOT / C.MAINTENANCE_REGISTRY).read_text())
+        names.append(C.MAINTENANCE_REGISTRY)
+        names.extend(row["previous"] for row in maintenance["records"])
+        for registry in (C.CONFIGURATION_REGISTRY, C.VISUAL_REGISTRY, C.COMPLETE_REGISTRY, C.DEFAULTS_REGISTRY):
+            names.append(registry)
+            names.extend(row['previous'] for row in json.loads((ROOT / registry).read_text())['records'])
+        import instruction_revision as I
+        names.extend([I.REGISTRY, I.DECISION])
+        names.extend(row['previous'] for row in json.loads((ROOT / I.REGISTRY).read_text())['records'])
+        import log_repair_revision
+        names = list(names) + log_repair_revision.fixture_paths(ROOT)
         for name in names:
             p = self.root / name
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -41,7 +52,7 @@ class NativeExecSuccession(unittest.TestCase):
             previous = (self.root / row["previous"]).read_bytes()
             self.assertEqual(
                 C.native_exec_predecessor(
-                    self.root, name, C.operational_predecessor(self.root, name, C.repair_predecessor(self.root, name, current))
+                    self.root, name, C.operational_predecessor(self.root, name, C.repair_predecessor(self.root, name, C.maintenance_predecessor(self.root, name, C.visual_predecessor(self.root, name, C.configuration_predecessor(self.root, name, current)))))
                 ),
                 previous,
             )

@@ -2,12 +2,12 @@
 
 import json
 import os
-from pathlib import Path
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts/tests"))
 import support as C
@@ -73,17 +73,19 @@ class ClosureTests(unittest.TestCase):
             )
             self.assertFalse((dest / ".local").exists())
             (dest / "application/Cargo.toml").write_text("invalid = [")
-            run = subprocess.run(
-                [
-                    "/bin/bash",
-                    str(dest / "scripts/automate.sh"),
-                    "--scope",
-                    "rust",
-                    "--plan",
-                ],
-                capture_output=True,
-            )
-            self.assertEqual(run.returncode, 2)
+            # Planning projects argv without Cargo. Runtime owns manifest validation.
+            for arguments, expected_success in [
+                (["--scope", "rust", "--plan"], True),
+                (["--scope", "rust", "--check", "rust-check"], False),
+            ]:
+                run = subprocess.run(
+                    ["/bin/bash", str(dest / "scripts/automate.sh"), *arguments],
+                    capture_output=True,
+                )
+                if expected_success:
+                    self.assertEqual(run.returncode, 0, run.stderr)
+                else:
+                    self.assertNotEqual(run.returncode, 0, run.stderr)
 
     def test_failure_and_raw_streams(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -129,7 +131,10 @@ class ClosureTests(unittest.TestCase):
         import closure_revision as R
 
         data = (ROOT / "sdd/workflow.md").read_bytes()
-        self.assertEqual(R.predecessor(ROOT, "sdd/workflow.md", data), data)
+        # Current documentary successor normalizes to the authenticated prior policy.
+        previous = R.maintenance_predecessor(ROOT, "sdd/workflow.md", data)
+        self.assertNotEqual(previous, data)
+        self.assertEqual(R.predecessor(ROOT, "sdd/workflow.md", data), previous)
         self.assertIn(b"Choose the route", data)
         # Current policy no longer contains a mandatory automatic closure invocation.
         self.assertEqual(
@@ -176,7 +181,7 @@ class ClosureTests(unittest.TestCase):
             )
             self.assertEqual(run.returncode, 0, run.stderr)
             report = json.loads(
-                next((dest / ".local/checks").glob("*/results.json")).read_text()
+                next((dest / ".local/logs").glob("*/*--results.json.log")).read_text()
             )
             self.assertTrue(all(x["cwd"] == str(dest) for x in report["results"]))
             self.assertEqual(len(report["results"]), 3)
@@ -189,7 +194,7 @@ class ClosureTests(unittest.TestCase):
             self.assertEqual(run.returncode, 127)
             reports = [
                 json.loads(p.read_text())
-                for p in (dest / ".local/checks").glob("*/results.json")
+                for p in (dest / ".local/logs").glob("*/*--results.json.log")
             ]
             blocked = next(x for x in reports if x["scope"] == "rust")
             self.assertTrue(all(x["state"] == "blocked" for x in blocked["results"]))

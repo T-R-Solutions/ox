@@ -1,8 +1,10 @@
 """Copy the governance allowlist to a new directory; never compress or publish."""
 
-from pathlib import Path
 import argparse
+import hashlib
 import json
+from pathlib import Path
+
 from governance_support import copy_distribution, distribution_files, inspect_tree, sha
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -17,6 +19,9 @@ def export(root, destination):
     if errors:
         raise ValueError("\n".join(errors))
     manifest = {str(p.relative_to(root)): sha(p) for p in distribution_files(root)}
+    from instruction_revision import COPY_CONTEXT, COPY_CONTEXT_BYTES
+
+    manifest[COPY_CONTEXT] = hashlib.sha256(COPY_CONTEXT_BYTES).hexdigest()
     destination.mkdir(parents=True, exist_ok=False)
     copy_distribution(root, destination)
     actual = {

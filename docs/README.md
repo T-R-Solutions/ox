@@ -58,6 +58,7 @@ flowchart TD
 | [Workflow](../sdd/workflow.md) | Escolher rota local ou completa e retomar trabalho |
 | [Evidências](../sdd/evidence.md) | Registrar critérios, métodos, inputs, resultados e limites |
 | [Índice de features](../sdd/features/README.md) | Encontrar especificações e aceitação por entrega |
+| [Agentes Codex](development/codex-agents.md) e [adaptação](development/codex-agents-replication.md) | Triagem, perfis de complexidade, delegação e verificação no Ox |
 | [Integração SDD/skills](development/sdd-skills.md) | Selecionar e registrar métodos sem ativação automática |
 | [Governança](development/governance.md) | Checks Python, preservação, exportação e empacotamento |
 | [Automação local](../scripts/README.md) | Escopos Bash, scanners, configurações, preparo explícito de bases e limites offline |
@@ -106,3 +107,18 @@ Mantenha este índice ao criar ou mover uma entrada de documentação. Atualize 
 explicação canônica quando o código mudar, preservando relatórios de execução e
 seus hashes. O pacote de governança exclui o aplicativo; links de produto nesta
 árvore não significam que ele esteja incluído na exportação.
+
+## Manutenção do workspace
+
+- [Artefatos locais](development/local-artifacts.md): caminhos compartilhados,
+  liberação, simulação, coleta, recuperação e exceções legadas.
+- [Decisão de manutenção](decisions/repository-maintenance.md) e
+  [observações](validation/repository-maintenance-20261109/report.md).
+- [Fechamento documental por tarefa](../sdd/workflow.md#documentation-before-task-closure).
+
+Visual contract: [DESIGN.md](../DESIGN.md); [surface map](design/surfaces.md); [decision](decisions/visual-workbench.md).
+
+Current visual integration: [source coverage](design/reference-coverage.md),
+[native components](design/components.md),
+[observed outcomes and remaining work](validation/visual-integration-20261111/report.md).
+Task completion requires the [SDD documentation update rule](../sdd/workflow.md#documentation-before-task-closure).

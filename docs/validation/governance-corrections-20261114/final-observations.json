@@ -1,0 +1,77 @@
+{
+  "state": "APPROVED",
+  "claim": "Affected consumer checks after explicit-copy repair; initial fast suite and unaffected integration cases retain their original observations. No claim of a complete suite rerun after the corrections.",
+  "initial_observation": "docs/validation/governance-corrections-20261114/initial-observations.json",
+  "initial_observation_sha256": "38617721fe8f07eb33510240f76ddd84d69658cba9c8e55f95281bcc3394ebc1",
+  "input_manifest": "docs/validation/governance-corrections-20261114/closure-inputs.json",
+  "input_manifest_sha256": "71661e61443916817da301857da6032b46e5acffbb75d949d053d12d60b34af8",
+  "changed_during_execution": [],
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/governance/tests",
+        "-p",
+        "test_instruction*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.936,
+      "artifact": "docs/validation/governance-corrections-20261114/closure-01.log",
+      "sha256": "4339d2b2e9f10f0d4b55b9cf712c9d6b01b278069fe3c495577fff4f859bd2ae"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "test_governance.GovernanceTests.test_directory_links_stay_within_root",
+        "test_governance.GovernanceTests.test_independent_copy_and_corrupt_resource",
+        "test_governance.GovernanceTests.test_normative_hash_requires_review",
+        "test_governance.GovernanceTests.test_product_feature_isolated_from_skill_acceptance",
+        "test_readme_skill_integration.ReadmeDistributionTests.test_independent_distribution_retains_import_and_preserved_originals",
+        "test_ui_metadata_inventory.MetadataInventoryTests.test_revision_matches_current_files_and_preserves_prior_revisions",
+        "test_governance.GovernanceTests.test_governance_package_not_product_release",
+        "test_governance.GovernanceTests.test_clean_export_and_recovery",
+        "-v"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 692.879,
+      "artifact": "docs/validation/governance-corrections-20261114/closure-02.log",
+      "sha256": "040d970bb80796b93ba6a6a6a8614dd77859c7a49a1a450baf8e5afc414c7e22"
+    },
+    {
+      "command": [
+        "python3",
+        "sdd/tools/validate.py",
+        "--root",
+        ".",
+        "--check-convergence"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.283,
+      "artifact": "docs/validation/governance-corrections-20261114/closure-03.log",
+      "sha256": "2e2f6772c51501073d4793e1978689b67dcb4c245fb37c25a4013aa8b0c6cd86"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/check-ox.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 21.07,
+      "artifact": "docs/validation/governance-corrections-20261114/closure-04.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    }
+  ],
+  "limitations": [
+    "No real complete Toolbox/scanner run, downloads, Git effects or product execution.",
+    "Opt-in real-tool tests may be skipped; inspect logs, skip is not approval.",
+    "Initial 202-test fast suite passed with one real-tool opt-in skip. Initial 23-test integration had six failures; all six plus affected archive/export consumers are explicitly reexecuted here.",
+    "Receipts declare consumer mode, not authenticity of origin or authority. Snapshots do not install profiles; live equality and exact profile inventory are required locally."
+  ]
+}

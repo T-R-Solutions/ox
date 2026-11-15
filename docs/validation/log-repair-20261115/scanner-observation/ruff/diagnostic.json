@@ -1,0 +1,23 @@
+{
+  "cleanup": "removed",
+  "finished_at": "2026-11-15T11:47:24.115183+00:00",
+  "image": "sha256:8cf322da34f777cef86f18f99266bfc1a7b545d6badbb8b365dd5885b7a8992c",
+  "native_exit_code": 1,
+  "oom_killed": false,
+  "outcome": "native",
+  "phase": "execute_native",
+  "repo_digests": [
+    "shared-toolbox/ruff@sha256:8cf322da34f777cef86f18f99266bfc1a7b545d6badbb8b365dd5885b7a8992c"
+  ],
+  "run": "9c07ee6056d143c593ee542542c0eb60",
+  "runtime_exit_code": 1,
+  "selinux": {
+    "automatic_relabel": false,
+    "mode": "enforcing",
+    "selection": "shared",
+    "selection_valid": true
+  },
+  "started_at": "2026-11-15T11:47:23.817485+00:00",
+  "tool": "ruff",
+  "version": "0.11.13"
+}

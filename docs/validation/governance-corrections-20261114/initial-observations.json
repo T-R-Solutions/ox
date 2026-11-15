@@ -1,0 +1,96 @@
+{
+  "state": "INCONCLUSIVE",
+  "claim": "Command outcomes only; independent review and criterion-level validation remain separate",
+  "input_manifest": "docs/validation/governance-corrections-20261114/stable-inputs.json",
+  "input_manifest_sha256": "e832e0963bdfd6b23aeb0eecb948d14d30a893be8537809399e54255f48584a8",
+  "changed_during_execution": [],
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/governance/tests",
+        "-p",
+        "test_instruction*.py",
+        "-v"
+      ],
+      "environment": "PYTHONDONTWRITEBYTECODE=1; local Python stdlib; controlled fixtures, no opt-in scanner execution",
+      "exit_code": 0,
+      "elapsed_seconds": 2.692,
+      "artifact": "docs/validation/governance-corrections-20261114/final-01.log",
+      "sha256": "30f1e0006cc8ee74d9469a144fa12746bb22dde9180fdc8078ad3ab33ee6c2e8"
+    },
+    {
+      "command": [
+        "python3",
+        "sdd/tools/validate.py",
+        "--root",
+        ".",
+        "--structure-only"
+      ],
+      "environment": "PYTHONDONTWRITEBYTECODE=1; local Python stdlib; controlled fixtures, no opt-in scanner execution",
+      "exit_code": 0,
+      "elapsed_seconds": 0.156,
+      "artifact": "docs/validation/governance-corrections-20261114/final-02.log",
+      "sha256": "2e2f6772c51501073d4793e1978689b67dcb4c245fb37c25a4013aa8b0c6cd86"
+    },
+    {
+      "command": [
+        "python3",
+        "sdd/tools/validate.py",
+        "--root",
+        ".",
+        "--check-convergence"
+      ],
+      "environment": "PYTHONDONTWRITEBYTECODE=1; local Python stdlib; controlled fixtures, no opt-in scanner execution",
+      "exit_code": 0,
+      "elapsed_seconds": 0.313,
+      "artifact": "docs/validation/governance-corrections-20261114/final-03.log",
+      "sha256": "2e2f6772c51501073d4793e1978689b67dcb4c245fb37c25a4013aa8b0c6cd86"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/check-ox.py"
+      ],
+      "environment": "PYTHONDONTWRITEBYTECODE=1; local Python stdlib; controlled fixtures, no opt-in scanner execution",
+      "exit_code": 0,
+      "elapsed_seconds": 23.0,
+      "artifact": "docs/validation/governance-corrections-20261114/final-04.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/run-tests.py",
+        "--group",
+        "fast"
+      ],
+      "environment": "PYTHONDONTWRITEBYTECODE=1; local Python stdlib; controlled fixtures, no opt-in scanner execution",
+      "exit_code": 0,
+      "elapsed_seconds": 153.109,
+      "artifact": "docs/validation/governance-corrections-20261114/final-05.log",
+      "sha256": "c9dfa4eecc54848e6df93f0da0c25cd927cd161e9acbd97fd064056b6689b703"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/governance/scripts/run-tests.py",
+        "--group",
+        "integration"
+      ],
+      "environment": "PYTHONDONTWRITEBYTECODE=1; local Python stdlib; controlled fixtures, no opt-in scanner execution",
+      "exit_code": 1,
+      "elapsed_seconds": 798.769,
+      "artifact": "docs/validation/governance-corrections-20261114/final-06.log",
+      "sha256": "86eea9e99d5efaf23b0578ef881a0a90cac4e9420d5cd09b5303b728deef86af"
+    }
+  ],
+  "limitations": [
+    "No real complete Toolbox/scanner run, downloads, Git effects or product execution.",
+    "Opt-in real-tool tests may be skipped; inspect logs, skip is not approval."
+  ]
+}

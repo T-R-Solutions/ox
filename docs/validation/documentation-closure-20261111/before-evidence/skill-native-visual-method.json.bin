@@ -1,0 +1,96 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64; Rust 1.99.1; Iced 0.14; isolated Mutter Wayland/tiny-skia",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "REQ-01",
+      "status": "UNVERIFIED",
+      "evidence_ids": [
+        "E-VISUAL-COMPOSITION-SUCCESSOR"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "REQ-02",
+      "status": "UNVERIFIED",
+      "evidence_ids": [
+        "E-VISUAL-COMPOSITION-SUCCESSOR"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "REQ-03",
+      "status": "UNVERIFIED",
+      "evidence_ids": [
+        "E-VISUAL-COMPOSITION-SUCCESSOR"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-VISUAL-COMPOSITION-SUCCESSOR",
+      "kind": "inspection",
+      "command_or_method": "Review source/reference integration and identify changed observation inputs; no transfer of historical executions",
+      "observed_result": "Native composition implemented; original broad criteria remain undecided. Original evidence preserved in docs/validation/visual-integration-20261111/superseded-evidence/skill-native-visual-method.json.bin",
+      "artifact": "docs/validation/visual-integration-20261111/report.md",
+      "sha256": "2651117d25e5a3787044f009f1621f62becc95e7a616c61f123a36dbe1f51d06",
+      "inputs": [
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "e86e98218d30ed2accd291d87a0f418c6e595ede886f1f427874692b48e879fc",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/views.rs",
+          "sha256": "b6534519111d4760243bb5a51b1b2cb534f8a78a059699cdbff1fb2d7c446b56",
+          "role": "other"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "8b1782d25f451d77c9e954354a3c399cf56f355afe63b3d5a3ec296ca75b1038",
+          "role": "other"
+        },
+        {
+          "path": "DESIGN.md",
+          "sha256": "864f769ee9c4a35ec60801f986e997d93a8a6de45580e215c0e77dca27c4ef9a",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "b4af5eb4c495c7e9d52bbc551977187529f465af24aa00860feb7cdaf93e121f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/spec.md",
+          "sha256": "a6859b7d14d1c8dc34b687ba0bf124e7932fd26937bd73417629598e48d2154b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/plan.md",
+          "sha256": "4c6c51f4ef67592e7d09bb8bb7dcbe4781cb3322ed7427be9a3f87f1bdba0fb1",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/tasks.md",
+          "sha256": "de2a932e057c7459de5223e84cb2d6a9ea00b9f7e1d4def705ea1ba99364476b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/converge.md",
+          "sha256": "10b1f8c12e9d798ce3826483dd87f7cfd07f9a9306d72ebf66e9661732df5e55",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/traceability.json",
+          "sha256": "fff484aff609377addd054495a99c7e668230f1f6ce723783b6a4c710e68d1ca",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No overall acceptance; historical evidence remains stale rather than silently renewed.",
+    "X11, assistive technology, full graphical failure matrix and remaining future-widget depth need further work."
+  ]
+}

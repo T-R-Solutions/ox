@@ -127,6 +127,11 @@ exigem sessão X11 dedicada; as [instruções](application/README.md#testes-e-re
 detalham interação e limites. Os checks Python verificam
 [governança](docs/development/governance.md), com escopo próprio.
 
+Cada tarefa termina com a revisão e atualização da documentação afetada, conforme
+[o workflow](sdd/workflow.md#documentation-before-task-closure). Consulte
+[artefatos locais](docs/development/local-artifacts.md) para caminhos, retenção e
+limpeza com simulação; dados antigos não são apagados por idade ou tamanho.
+
 Antes de contribuir, leia [AGENTS.md](AGENTS.md), a [constituição](docs/constitution.md),
 o [contexto autorizado](sdd/project.md) e o [workflow SDD](sdd/workflow.md).
 
@@ -167,3 +172,9 @@ O preparo explícito de bases e a descoberta portátil de scanners/toolbox estã
 em [scripts/README.md](scripts/README.md). Consulte
 `bash scripts/security/prepare-datasets.sh --help`; disponibilize `toolbox` no PATH
 ou defina `TOOLBOX_BIN="/caminho com espaços/bin/toolbox"`.
+
+
+A automação segue a interface Ec: `./scripts/automate.sh plan --scope complete`
+para inspecionar e `./scripts/automate.sh run --scope complete` para executar.
+O [guia dos scripts](scripts/README.md) descreve seleção, descoberta do ambiente e
+limites dos analisadores.

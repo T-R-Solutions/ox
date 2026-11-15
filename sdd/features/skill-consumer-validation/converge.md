@@ -1,3 +1,22 @@
+# Current acceptance projection
+
+Current automated states from [evidence.json](evidence.json). This projection
+is not a new observation or product acceptance.
+
+<!-- sdd:current-status -->
+| Criterion | Status |
+| --- | --- |
+| AC-01 | INCONCLUSIVE |
+| AC-02 | INCONCLUSIVE |
+| AC-03 | INCONCLUSIVE |
+| AC-04 | INCONCLUSIVE |
+<!-- /sdd:current-status -->
+
+## Historical convergence — before 2026-11-14 correction
+
+The following conclusions apply only to their original observed inputs. Current
+states are above; prior bytes remain in the bounded correction preimages.
+
 # Convergence — bounded consumer validation
 
 AC-01..04 APPROVED. All 28 pending original scenarios received concrete execution and criterion-specific semantic review. The nine skills now have 36/36 technical and 54/54 total approved criteria, scoped to the identified consumers. Existing 26 approved requirement objects and all original skill contracts are unchanged.

@@ -1,11 +1,11 @@
 """Current UI revision acceptance and preservation rejection cases."""
 
-from pathlib import Path
 import importlib.util
 import json
+import sys
 import tempfile
 import unittest
-import sys
+from pathlib import Path
 
 sys.path.insert(
     0, str(Path(__file__).resolve().parents[3] / "tools/governance/scripts")

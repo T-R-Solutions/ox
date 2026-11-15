@@ -1,11 +1,12 @@
 """Criterion-specific mutation tests, using the actual Ox gate and SDD validator."""
 
-from copy import deepcopy
 import json
-from pathlib import Path
 import tempfile
 import unittest
-from test_governance import V, C
+from copy import deepcopy
+from pathlib import Path
+
+from test_governance import C, V
 
 
 class TechnicalAcceptanceTests(unittest.TestCase):

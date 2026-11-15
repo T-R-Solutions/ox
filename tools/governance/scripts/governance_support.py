@@ -1,7 +1,5 @@
 """Local distribution boundary and recursive archive inspection (stdlib only)."""
 
-from pathlib import PurePosixPath
-from io import BytesIO
 import gzip
 import hashlib
 import json
@@ -9,6 +7,8 @@ import shutil
 import stat
 import tarfile
 import zipfile
+from io import BytesIO
+from pathlib import PurePosixPath
 
 EXTERNAL_DOCUMENTS = frozenset(
     {
@@ -19,6 +19,7 @@ EXTERNAL_DOCUMENTS = frozenset(
 )
 ROOT_FILES = (
     "AGENTS.md",
+    "DESIGN.md",
     "README.md",
     "LICENSE",
     "NOTICE",
@@ -136,7 +137,8 @@ def succession_predecessor(root, row):
 
 
 def succession_errors(root):
-    from skill_revision import errors as integration_errors, predecessor
+    from skill_revision import errors as integration_errors
+    from skill_revision import predecessor
 
     errors = integration_errors(root)
     for relative, row in succession_records(root).items():
@@ -162,9 +164,9 @@ def preservation_bytes(root, relative):
     Historical archives and their hashes remain untouched.
     """
     path = root / relative
-    from skill_revision import predecessor
-    from documentation_revision import predecessor as visual_predecessor
     from closure_revision import predecessor as closure_predecessor
+    from documentation_revision import predecessor as visual_predecessor
+    from skill_revision import predecessor
 
     data = visual_predecessor(
         root, relative, closure_predecessor(root, relative, path.read_bytes())
@@ -284,7 +286,7 @@ def transient(path):
     return (
         ".git" in path.parts
         or "__pycache__" in path.parts
-        or bool(path.parts and path.parts[0] == ".local")
+        or bool(path.parts and path.parts[0] in {".local", ".cache", ".inputs"})
         or path.as_posix().startswith("docs/validation/scratch/")
     )
 
@@ -294,6 +296,8 @@ def product_record(path):
     return path.as_posix().startswith(
         (
             "sdd/features/dependency-hygiene/",
+            "sdd/features/product-visual-workbench/",
+            "sdd/features/skill-native-visual-method/",
             "sdd/features/product-bootstrap/",
             "docs/validation/product-bootstrap/",
             "sdd/features/product-plugin-host/",
@@ -326,12 +330,18 @@ def distribution_files(root):
 
 
 def copy_distribution(root, destination):
+    from instruction_revision import governance_copy
+
+    governance_copy(root)  # Reject a contradictory receipt in the source.
     for source in distribution_files(root):
         if source.is_symlink() or not source.resolve().is_relative_to(root.resolve()):
             raise ValueError(f"Nonportable distribution path: {source}")
         target = destination / source.relative_to(root)
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
+    from instruction_revision import write_copy_context
+
+    write_copy_context(destination)
 
 
 def inspect_bytes(name, data, fingerprints, *, budget=None, depth=0):

@@ -1,11 +1,11 @@
 """Run fast fixtures, full-copy integration checks, or both (default), with timings."""
 
-from pathlib import Path
 import argparse
 import json
 import sys
 import time
 import unittest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 # Explicit classification: unknown/new tests are fast unless decorated or their class

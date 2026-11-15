@@ -72,6 +72,29 @@ Apply the selected skill's procedure, if any. Use references only when needed.
 Keep product policies in their authoritative documents. Record changes, failures
 and checks actually observed; do not hide failing tests by silently changing requirements.
 
+## Documentation before task closure
+
+After implementing and verifying each task, update its affected documentation before
+marking that task complete. This applies to local and full routes and to tasks using
+skills. Review behavior/contracts, instructions, examples, paths and commands; update
+the affected SDD artifacts and reevaluate only evidence dependent on changed inputs.
+Preserve previous observations. Do not change a result's hashes to imply reexecution.
+
+Record a documentation disposition in the task's existing record: documents reviewed
+and updated, relevant verification and outstanding limitations. If documentation is
+unaffected, name the reviewed surfaces and give a concrete, verifiable reason. A
+checkbox or structural checker does not establish semantic documentation correctness.
+Do not create a separate document per task when the existing task/review record suffices.
+
+Examples (illustrative, not execution evidence):
+- Behavior change: a scanner output path changes; update scripts usage, affected
+  caller examples and feature evidence, then record those paths and checks.
+- Documentation-only: repair a README command; compare it with the actual entry's
+  help/implementation, check links and record README plus the inspected command.
+- No documentation impact: add a regression fixture for an unchanged rejection
+  contract; review the documented contract and usage, record why neither changed,
+  and identify the fixture/test observation. New behavior would invalidate this reason.
+
 ## Converge and resume
 
 Trace requirement → decision/risk → task → change → evidence → acceptance.

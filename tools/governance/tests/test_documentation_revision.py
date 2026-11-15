@@ -1,12 +1,12 @@
 """Exact visual-method succession, denied mutations and independent-copy recovery."""
 
-from pathlib import Path
 import hashlib
 import importlib.util
 import json
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 sys.path.insert(
     0, str(Path(__file__).resolve().parents[3] / "tools/governance/scripts")

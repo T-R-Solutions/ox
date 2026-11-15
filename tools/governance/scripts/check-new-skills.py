@@ -1,9 +1,9 @@
 """Optional upstream skill-creator check; requires already available PyYAML."""
 
-from pathlib import Path
 import importlib.util
 import json
 import sys
+from pathlib import Path
 
 root = Path(__file__).resolve().parents[3]
 spec = importlib.util.spec_from_file_location(

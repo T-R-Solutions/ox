@@ -1,0 +1,1412 @@
+{
+  "scope": "Bounded correction inputs, observed before implementation; not operational backup",
+  "inputs": [
+    {
+      "path": ".codex/agents/ec_analista.toml",
+      "sha256": "dab2f12b9fe8658ec69f9817de79ae0d9e8a19244ace96afaab6777279989e49",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_analista.toml.bin",
+      "bytes": 550,
+      "words": 65
+    },
+    {
+      "path": ".codex/agents/ec_analista_alta.toml",
+      "sha256": "0ee73cc774f37408adec779183fa24b92380d178453d35f7ebea6dfa06c7a0d9",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_analista_alta.toml.bin",
+      "bytes": 579,
+      "words": 67
+    },
+    {
+      "path": ".codex/agents/ec_implementador.toml",
+      "sha256": "c0a239ad74caf892313b1509969eee5a7118b41c16baed8b757e8cf91f696d0d",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_implementador.toml.bin",
+      "bytes": 889,
+      "words": 104
+    },
+    {
+      "path": ".codex/agents/ec_implementador_extra_alto.toml",
+      "sha256": "709fdf48271c2d224f13740a7eccfa1a9b04ab66543d11d09e363c09db050a58",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_implementador_extra_alto.toml.bin",
+      "bytes": 736,
+      "words": 83
+    },
+    {
+      "path": ".codex/agents/ec_orquestrador_alta.toml",
+      "sha256": "d5196f29ef1ac848dc9c4b315f981cd6bf69e7e87138aceabe9a27b3fff8f409",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_orquestrador_alta.toml.bin",
+      "bytes": 727,
+      "words": 94
+    },
+    {
+      "path": ".codex/agents/ec_orquestrador_normal.toml",
+      "sha256": "53bedc6fbe79793305ae115ffd0475f93168a79611ed6a2ae9894d9a22bd034e",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_orquestrador_normal.toml.bin",
+      "bytes": 739,
+      "words": 95
+    },
+    {
+      "path": ".codex/agents/ec_planejador.toml",
+      "sha256": "36bd0410797dfdb1cc7ab8f9592431801bf4ef3cb9b6ec49e65383539b50eb5a",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_planejador.toml.bin",
+      "bytes": 642,
+      "words": 77
+    },
+    {
+      "path": ".codex/agents/ec_planejador_alta.toml",
+      "sha256": "e289dccf286c6131c80e65dec16417276d5e6de252866e550b8dba7ea8d67d4d",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_planejador_alta.toml.bin",
+      "bytes": 662,
+      "words": 71
+    },
+    {
+      "path": ".codex/agents/ec_revisor.toml",
+      "sha256": "bff2c757d7c31559d84aa6655f72b901e612912dce0a8502040b2dbdf91ff0d4",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_revisor.toml.bin",
+      "bytes": 713,
+      "words": 87
+    },
+    {
+      "path": ".codex/agents/ec_testador.toml",
+      "sha256": "5f4d0e6dc8341b162dac5920b7c4c4da0246ae15bcecb9380b2fb3e3929f1fda",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_testador.toml.bin",
+      "bytes": 893,
+      "words": 112
+    },
+    {
+      "path": ".codex/agents/ec_triador.toml",
+      "sha256": "08f16da37a8333c3345aed5fa130a3c587bb7248c907b869e2853de43b7f00a4",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_triador.toml.bin",
+      "bytes": 1741,
+      "words": 214
+    },
+    {
+      "path": ".codex/agents/ec_validador.toml",
+      "sha256": "e034481769dee5561de152ec69f0f4773ee54ad4698bd5e2df7a1d6ff8ec258b",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_validador.toml.bin",
+      "bytes": 1196,
+      "words": 153
+    },
+    {
+      "path": ".codex/agents/ec_validador_alta.toml",
+      "sha256": "fad05a3f5bc967f6337b477ebc3ca250ca689439dbf411af3818a46b216f6cb5",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/agents/ec_validador_alta.toml.bin",
+      "bytes": 1231,
+      "words": 149
+    },
+    {
+      "path": ".codex/config.toml",
+      "sha256": "14c7a79b0202da683578ff1d1a2e23f33273d500a82ce72c4dbce4f3c8d19835",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/config.toml.bin",
+      "bytes": 831,
+      "words": 99
+    },
+    {
+      "path": ".codex/skills/agent-runtime-engineering/SKILL.md",
+      "sha256": "5a3509bd323b246e55e197c9b5e12b1c52a0604047b7d9c66deec273d445fa0f",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/agent-runtime-engineering/SKILL.md.bin",
+      "bytes": 5037,
+      "words": 617
+    },
+    {
+      "path": ".codex/skills/agent-usage-accounting/SKILL.md",
+      "sha256": "0ae44003e7679a7c21ea0a865808c8c8121f15fb36bec8d956ec6d05b45f9fd3",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/agent-usage-accounting/SKILL.md.bin",
+      "bytes": 4818,
+      "words": 589
+    },
+    {
+      "path": ".codex/skills/ai-engineering/SKILL.md",
+      "sha256": "af749b1b5b65d5116c69b637f8d5c6407cec37b3f200a0157566895a11ebf079",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/ai-engineering/SKILL.md.bin",
+      "bytes": 4405,
+      "words": 558
+    },
+    {
+      "path": ".codex/skills/api-testing/SKILL.md",
+      "sha256": "10007c2c78eb4249ae7c646107b32a21b63b0d7eb1a98860ff420e6d0a33cf5e",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/api-testing/SKILL.md.bin",
+      "bytes": 6359,
+      "words": 814
+    },
+    {
+      "path": ".codex/skills/application-security/SKILL.md",
+      "sha256": "0d992c0538df30bd5e0c6be689990184ec51671225809eac0f01759cc08257c4",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/application-security/SKILL.md.bin",
+      "bytes": 6857,
+      "words": 846
+    },
+    {
+      "path": ".codex/skills/autonomous-verification-engineering/SKILL.md",
+      "sha256": "5ddf5e56747ec5aa418e1a97ad8f08d61cdb7e26c3a5be4c68cb4bfe1bf38958",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/autonomous-verification-engineering/SKILL.md.bin",
+      "bytes": 4938,
+      "words": 602
+    },
+    {
+      "path": ".codex/skills/code-context-engineering/SKILL.md",
+      "sha256": "7c0575374cd0f098bea28943fbbc44e0e4d45fee986b3fbd86241b1a0e4f8885",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/code-context-engineering/SKILL.md.bin",
+      "bytes": 4918,
+      "words": 605
+    },
+    {
+      "path": ".codex/skills/code-knowledge-graph-engineering/SKILL.md",
+      "sha256": "e63d51b399f6ca80c3e9cd39e009512090319bf720c66125e8f857564420aaf2",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/code-knowledge-graph-engineering/SKILL.md.bin",
+      "bytes": 4810,
+      "words": 579
+    },
+    {
+      "path": ".codex/skills/commit-governance/SKILL.md",
+      "sha256": "ab7d17253b6b29418aa77de5aa25d8cd716daaeb2ad2d2a89b4c0126fed1915b",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/commit-governance/SKILL.md.bin",
+      "bytes": 14218,
+      "words": 2026
+    },
+    {
+      "path": ".codex/skills/database-engineering/SKILL.md",
+      "sha256": "9fcee66df99fda30e51a004dd16143e2ac1fde12a4398cb8da88ec4ca72ab686",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/database-engineering/SKILL.md.bin",
+      "bytes": 3183,
+      "words": 391
+    },
+    {
+      "path": ".codex/skills/design-review/SKILL.md",
+      "sha256": "b5b4716458d9f14a43292434f46f5c46ce523bffbf90f30b9cfad0d929252c29",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/design-review/SKILL.md.bin",
+      "bytes": 5752,
+      "words": 768
+    },
+    {
+      "path": ".codex/skills/design-system/SKILL.md",
+      "sha256": "bd5c8bac71c275efc4cfc2ae31b2ac7d2e009014a32ffecb91918e5b39279e96",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/design-system/SKILL.md.bin",
+      "bytes": 4673,
+      "words": 588
+    },
+    {
+      "path": ".codex/skills/distributed-systems/SKILL.md",
+      "sha256": "8b23f56dfa9e47ad13153e4118cc9c0a2433faf0bf27470200a1bf65c5849f16",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/distributed-systems/SKILL.md.bin",
+      "bytes": 5681,
+      "words": 702
+    },
+    {
+      "path": ".codex/skills/domain-modeling/SKILL.md",
+      "sha256": "abf26d78093f28ec3491415c9eb5cfd8ed1ae878a00513caf0c9a7a461faa87f",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/domain-modeling/SKILL.md.bin",
+      "bytes": 5355,
+      "words": 707
+    },
+    {
+      "path": ".codex/skills/engineering-productivity/SKILL.md",
+      "sha256": "35dc54ead1b8bd7bcc0fa2dc348aa154cf3d11137bcdf38f972d74441416feac",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/engineering-productivity/SKILL.md.bin",
+      "bytes": 4604,
+      "words": 617
+    },
+    {
+      "path": ".codex/skills/iced-engineering/SKILL.md",
+      "sha256": "9f3bd254dfbd8246dbae59ca0e2276cd5d949ce8f58110546c7f54ccfa0f9438",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/iced-engineering/SKILL.md.bin",
+      "bytes": 5154,
+      "words": 627
+    },
+    {
+      "path": ".codex/skills/observability-and-diagnostics/SKILL.md",
+      "sha256": "1d8e057e9dbfa7050a8315f35fbca65aa7e86de2678621f8e97fe424956ffc4f",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/observability-and-diagnostics/SKILL.md.bin",
+      "bytes": 2777,
+      "words": 330
+    },
+    {
+      "path": ".codex/skills/performance-engineering/SKILL.md",
+      "sha256": "e2fe6bd6724a3b176fd559875252d6ac5479a83bf453dddb4e31a3fc7da9692e",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/performance-engineering/SKILL.md.bin",
+      "bytes": 6727,
+      "words": 802
+    },
+    {
+      "path": ".codex/skills/plugin-protocol-engineering/SKILL.md",
+      "sha256": "c8191a6367a199a7ee0a0dc1f54500d8ac032372ca82017bad7d867723d0b067",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/plugin-protocol-engineering/SKILL.md.bin",
+      "bytes": 5215,
+      "words": 643
+    },
+    {
+      "path": ".codex/skills/prompt/SKILL.md",
+      "sha256": "b03935db88ba5a2da0e3e367bd1cd5424a7d5983c8e8bc915c16d3d86327f561",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/prompt/SKILL.md.bin",
+      "bytes": 7867,
+      "words": 1072
+    },
+    {
+      "path": ".codex/skills/readme-lifecycle-engineering/SKILL.md",
+      "sha256": "4a68d48bfa52160ab3cacbe7f04da1d7faadd6c76cde126617cbd945969473c9",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/readme-lifecycle-engineering/SKILL.md.bin",
+      "bytes": 4622,
+      "words": 548
+    },
+    {
+      "path": ".codex/skills/reliability-engineering/SKILL.md",
+      "sha256": "28651751ea7505bae0bcc67b0fff54b87c062bbe772e500d45d8cca627a67a9d",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/reliability-engineering/SKILL.md.bin",
+      "bytes": 7134,
+      "words": 868
+    },
+    {
+      "path": ".codex/skills/rust/SKILL.md",
+      "sha256": "da7b9ada8326b2d2cb4288ac6f67864c7b9defb833641470904c6fe9221d8891",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/rust/SKILL.md.bin",
+      "bytes": 6988,
+      "words": 868
+    },
+    {
+      "path": ".codex/skills/software-architecture/SKILL.md",
+      "sha256": "739571c2d2d28a4bd8ad389cc30ed59e599f4c8d65068f6d7e86ee0094dcefba",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/software-architecture/SKILL.md.bin",
+      "bytes": 5984,
+      "words": 751
+    },
+    {
+      "path": ".codex/skills/software-delivery/SKILL.md",
+      "sha256": "cfa0249938fb4dd95fe8dc9b93ffd5dfd71ca137014327090aaeb8e196dc7480",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/software-delivery/SKILL.md.bin",
+      "bytes": 2657,
+      "words": 328
+    },
+    {
+      "path": ".codex/skills/software-design/SKILL.md",
+      "sha256": "4e214fd5dbf141ee437814a5c817b6924a05e8ad75cf6bc208281155204f6143",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/software-design/SKILL.md.bin",
+      "bytes": 5732,
+      "words": 720
+    },
+    {
+      "path": ".codex/skills/software-evolution/SKILL.md",
+      "sha256": "b6649a9db5f2653cccca8b9e53c0489face98a398f2cca8ca7473087ff8b124c",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/software-evolution/SKILL.md.bin",
+      "bytes": 2774,
+      "words": 326
+    },
+    {
+      "path": ".codex/skills/software-testing/SKILL.md",
+      "sha256": "2d2fbc0b44e19a2d4428eb98b8602fc7dc58884294a9f6902606423959f34aba",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/software-testing/SKILL.md.bin",
+      "bytes": 6883,
+      "words": 894
+    },
+    {
+      "path": ".codex/skills/technical-documentation/SKILL.md",
+      "sha256": "f128a9f1c328151c05f6f4364b2de4553dd1eefd24f7028a1057daa17c408483",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/technical-documentation/SKILL.md.bin",
+      "bytes": 8497,
+      "words": 1120
+    },
+    {
+      "path": ".codex/skills/tool-output-engineering/SKILL.md",
+      "sha256": "00c392fac19634a938d9afbca52362dbeb533672c4aa194a038cb68fd9469472",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/tool-output-engineering/SKILL.md.bin",
+      "bytes": 4836,
+      "words": 596
+    },
+    {
+      "path": ".codex/skills/workspace-integrity-engineering/SKILL.md",
+      "sha256": "42c9ece69f065461c34c4ddeecd6f69a4da758fbd43c4157504c1d423ab88196",
+      "previous": "docs/validation/governance-corrections-20261114/before/.codex/skills/workspace-integrity-engineering/SKILL.md.bin",
+      "bytes": 4932,
+      "words": 627
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "f482adf1f52bbc5247139b51c5079f100336ba5402a4d9351dbd788f5f2d81a9",
+      "previous": "docs/validation/governance-corrections-20261114/before/AGENTS.md.bin",
+      "bytes": 2476,
+      "words": 266
+    },
+    {
+      "path": "README.md",
+      "sha256": "603f2d40188d0fee52440737d672d4a2a60862174564ee3733b8e3281abea825",
+      "previous": "docs/validation/governance-corrections-20261114/before/README.md.bin",
+      "bytes": 8811,
+      "words": 1025
+    },
+    {
+      "path": "config/governance/normative-coverage.json",
+      "sha256": "fc0a61619047e141b4c2cc1de406b6ee932ca7f33da1e87c74fdd218202a67c2",
+      "previous": "docs/validation/governance-corrections-20261114/before/config/governance/normative-coverage.json.bin",
+      "bytes": 6631,
+      "words": 486
+    },
+    {
+      "path": "docs/architecture/context.md",
+      "sha256": "4924373702d8484edbb1f7e92dc8a9f63114287c4eba01df4caaa2bf462928ff",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/architecture/context.md.bin",
+      "bytes": 6234,
+      "words": 804
+    },
+    {
+      "path": "docs/constitution.md",
+      "sha256": "ae44bf96f769493a9bdc518e7e692a95cdac2dea72076c45439eade95103f1f8",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/constitution.md.bin",
+      "bytes": 7170,
+      "words": 894
+    },
+    {
+      "path": "docs/decisions/governance-layout.md",
+      "sha256": "48625ed1eeeeafc6755f77f18f3a637801f00230dd7ac698d7e2832a40f80f7d",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/decisions/governance-layout.md.bin",
+      "bytes": 2715,
+      "words": 349
+    },
+    {
+      "path": "docs/decisions/governance-reconciliation.md",
+      "sha256": "d80d7244f37a7427719330bffb1d98a26dec89ececd81ad5382d452d68035eda",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/decisions/governance-reconciliation.md.bin",
+      "bytes": 2845,
+      "words": 373
+    },
+    {
+      "path": "docs/decisions/open-questions.md",
+      "sha256": "2b389951eb3d9b3a154253707e03ae64aa93e0077c73a78d0714dec4c9ebc94d",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/decisions/open-questions.md.bin",
+      "bytes": 6544,
+      "words": 836
+    },
+    {
+      "path": "docs/decisions/scripts-task-closure.md",
+      "sha256": "6dfbb8fee5b5814012a41aface2ef9696e51810fe0f993ab182070cc61491968",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/decisions/scripts-task-closure.md.bin",
+      "bytes": 2592,
+      "words": 330
+    },
+    {
+      "path": "docs/development/codex-agents-replication.md",
+      "sha256": "f44246441c053c7371f4849aef0d12081ef7b073366af1d6dafbc08f1765aa6f",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/development/codex-agents-replication.md.bin",
+      "bytes": 4258,
+      "words": 548
+    },
+    {
+      "path": "docs/development/codex-agents.md",
+      "sha256": "5c113f779049de4cecb52d255114b3b4e515a1e31c7243a5c60396420303f9e4",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/development/codex-agents.md.bin",
+      "bytes": 12834,
+      "words": 1651
+    },
+    {
+      "path": "docs/development/local-artifacts.md",
+      "sha256": "2603a2eba0d9bc4006157d5083ce0a2ef57d8908c6f99ca4976fcf636ea3dfe9",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/development/local-artifacts.md.bin",
+      "bytes": 3539,
+      "words": 481
+    },
+    {
+      "path": "docs/structure/files.json",
+      "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/structure/files.json.bin",
+      "bytes": 236229,
+      "words": 7591
+    },
+    {
+      "path": "docs/validation/governance-audit-20261114/report.md",
+      "sha256": "d4cf3458bca8c51bab2101d392d25d7776f75d52b09c94e642c53b8a7fcddb0e",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/validation/governance-audit-20261114/report.md.bin",
+      "bytes": 22296,
+      "words": 2849
+    },
+    {
+      "path": "scripts/README.md",
+      "sha256": "0fbfbc5cbc2aa651b87debfdf2ab5272bfdb2b3813bc1231790ace1b4ee36597",
+      "previous": "docs/validation/governance-corrections-20261114/before/scripts/README.md.bin",
+      "bytes": 22306,
+      "words": 2823
+    },
+    {
+      "path": "scripts/automate.sh",
+      "sha256": "3c61e9797c41dca68e9cd01ffcef8ff8e344585dbf11b8adf532fe37eac55118",
+      "previous": "docs/validation/governance-corrections-20261114/before/scripts/automate.sh.bin",
+      "bytes": 8654,
+      "words": 918
+    },
+    {
+      "path": "sdd/README.md",
+      "sha256": "c1c0167434068716a0286234b3d0a29c86ade94c4c2c93d1f40ea0157f25a12c",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/README.md.bin",
+      "bytes": 4024,
+      "words": 538
+    },
+    {
+      "path": "sdd/chain/README.md",
+      "sha256": "b99cfd66d7e8d329391031953d17e1b031ad1993333a59f3b460dc858e1f50bc",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/README.md.bin",
+      "bytes": 2701,
+      "words": 216
+    },
+    {
+      "path": "sdd/chain/agent-runtime-engineering.md",
+      "sha256": "3e5d548ed059ed1958b6d5321ebc32f0dd19c19745b91a579f7aacd1a307e5f1",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/agent-runtime-engineering.md.bin",
+      "bytes": 2421,
+      "words": 304
+    },
+    {
+      "path": "sdd/chain/agent-usage-accounting.md",
+      "sha256": "a22b3699f395fe16760e62473c270fe7bbd168e3f539c3022918f40d81989fd8",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/agent-usage-accounting.md.bin",
+      "bytes": 2422,
+      "words": 309
+    },
+    {
+      "path": "sdd/chain/ai-engineering.md",
+      "sha256": "ed9e03c5180a7f096fe6b649aee4af48c16ccc426a8aeb12ac107ba8bc026a7f",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/ai-engineering.md.bin",
+      "bytes": 3317,
+      "words": 438
+    },
+    {
+      "path": "sdd/chain/api-testing.md",
+      "sha256": "89f4329f277950e1d29f35f62f8886829b60d601546a93508a6f0d2f04fda76a",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/api-testing.md.bin",
+      "bytes": 2350,
+      "words": 315
+    },
+    {
+      "path": "sdd/chain/application-security.md",
+      "sha256": "ebb22cfd335e74cb114b16d0f4599074b55281af07514ebe0b0d4dcbac9457c0",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/application-security.md.bin",
+      "bytes": 2371,
+      "words": 316
+    },
+    {
+      "path": "sdd/chain/autonomous-verification-engineering.md",
+      "sha256": "3e21f4001a65315a4cd7791bd014433991c7b5fc1dd4cc5fac4a710cdb4c2874",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/autonomous-verification-engineering.md.bin",
+      "bytes": 2520,
+      "words": 318
+    },
+    {
+      "path": "sdd/chain/code-context-engineering.md",
+      "sha256": "a524b7e3d76de6ecc3811f2627cb5b6530bb8335075211b16da43e78082c5153",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/code-context-engineering.md.bin",
+      "bytes": 2398,
+      "words": 309
+    },
+    {
+      "path": "sdd/chain/code-knowledge-graph-engineering.md",
+      "sha256": "b1361a74e0303f4a6e13ff0bde5b122aa2a2a90db93e0318d73d4c38542a357d",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/code-knowledge-graph-engineering.md.bin",
+      "bytes": 2408,
+      "words": 304
+    },
+    {
+      "path": "sdd/chain/commit-governance.md",
+      "sha256": "c52ac3679dd9e0aedde79fd7d8679fc2d57035abdd3e19cc3f310c8bd733d16d",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/commit-governance.md.bin",
+      "bytes": 885,
+      "words": 113
+    },
+    {
+      "path": "sdd/chain/database-engineering.md",
+      "sha256": "403090433335485b9d3af544cb5a8a27aa6f2c1447648bc2cd9ef1d736b9c1f1",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/database-engineering.md.bin",
+      "bytes": 2441,
+      "words": 317
+    },
+    {
+      "path": "sdd/chain/design-review.md",
+      "sha256": "5a348fddd7c7893db3f8312369546759243cfa82e59365fbc6eb1f27c8cb86b2",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/design-review.md.bin",
+      "bytes": 2320,
+      "words": 310
+    },
+    {
+      "path": "sdd/chain/design-system.md",
+      "sha256": "767d06b6c574f2c4909a8dea954e6f98ca5f92c460eee7d2daf48fe433f28cce",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/design-system.md.bin",
+      "bytes": 2291,
+      "words": 308
+    },
+    {
+      "path": "sdd/chain/distributed-systems.md",
+      "sha256": "e325cc1564ee444a1e7a095111f317ee02c704c3b71a8c314b873fc943893810",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/distributed-systems.md.bin",
+      "bytes": 2945,
+      "words": 385
+    },
+    {
+      "path": "sdd/chain/domain-modeling.md",
+      "sha256": "0e7a52bb32b74277f4cd5817f39d4673b3a8376bb7abc30aabccf967a0f8fadc",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/domain-modeling.md.bin",
+      "bytes": 2349,
+      "words": 311
+    },
+    {
+      "path": "sdd/chain/engineering-productivity.md",
+      "sha256": "39980241b4a2a71c92f3ac1ea275d7b5822e50504a853b84ed399da8655468d7",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/engineering-productivity.md.bin",
+      "bytes": 2662,
+      "words": 361
+    },
+    {
+      "path": "sdd/chain/iced-engineering.md",
+      "sha256": "a5d2855e9510006a174bebf46abf3b5206906cfe24ece3ba00bd0c863432d061",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/iced-engineering.md.bin",
+      "bytes": 2351,
+      "words": 307
+    },
+    {
+      "path": "sdd/chain/observability-and-diagnostics.md",
+      "sha256": "baad4c495526e7836469b920c5dac60b4cc7780c7dff2e7ad2dd8c373f54a741",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/observability-and-diagnostics.md.bin",
+      "bytes": 2451,
+      "words": 308
+    },
+    {
+      "path": "sdd/chain/performance-engineering.md",
+      "sha256": "4878ba2571b2b9b25421a8205e982e5982c36c33e4324295cdf26d74b955f1ca",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/performance-engineering.md.bin",
+      "bytes": 2370,
+      "words": 312
+    },
+    {
+      "path": "sdd/chain/plugin-protocol-engineering.md",
+      "sha256": "bac99ea7c8e1cb5887ff3ac9d28031750fc794e90f3f70ca218f134d8c57f9aa",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/plugin-protocol-engineering.md.bin",
+      "bytes": 2557,
+      "words": 336
+    },
+    {
+      "path": "sdd/chain/prompt.md",
+      "sha256": "ae72855ae7f51edc8a8dd9034b56fac8dbdca8c1062a2fa9db6f81ce5efdd823",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/prompt.md.bin",
+      "bytes": 2941,
+      "words": 408
+    },
+    {
+      "path": "sdd/chain/readme-lifecycle-engineering.md",
+      "sha256": "c6ab5f75b420fa2107d091289b781a6ad85ffe3a68684a6d8f263f563f51d9a3",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/readme-lifecycle-engineering.md.bin",
+      "bytes": 2682,
+      "words": 345
+    },
+    {
+      "path": "sdd/chain/reliability-engineering.md",
+      "sha256": "69068440f8f1158f4054b2e8e8c09e9f64ba01d4efb431369509295d0daccd80",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/reliability-engineering.md.bin",
+      "bytes": 2375,
+      "words": 310
+    },
+    {
+      "path": "sdd/chain/rust.md",
+      "sha256": "535441702404d6f398861b8e934d49167d1b3d390da061e247c202f6ed6db336",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/rust.md.bin",
+      "bytes": 2408,
+      "words": 324
+    },
+    {
+      "path": "sdd/chain/software-architecture.md",
+      "sha256": "0dadfcde28cd8e831c778a4361a7204d39642108e9926ee43dd6c2399833ec69",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/software-architecture.md.bin",
+      "bytes": 2342,
+      "words": 309
+    },
+    {
+      "path": "sdd/chain/software-delivery.md",
+      "sha256": "03a1bd4065fe6c7b4e4fdff763dd28ba2891f499d5cafacecc69192584ba3449",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/software-delivery.md.bin",
+      "bytes": 2403,
+      "words": 309
+    },
+    {
+      "path": "sdd/chain/software-design.md",
+      "sha256": "e15827b753ed1faa8df77e1c1f07ce06e362535dd207f46758c7bcc8d0268794",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/software-design.md.bin",
+      "bytes": 2345,
+      "words": 312
+    },
+    {
+      "path": "sdd/chain/software-evolution.md",
+      "sha256": "294568595a4118dc955280d8331caf9afb420134db0ad037ed916f21af73ce64",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/software-evolution.md.bin",
+      "bytes": 2467,
+      "words": 314
+    },
+    {
+      "path": "sdd/chain/software-testing.md",
+      "sha256": "df02545b33d6953e9e2578eea88ed216e9b204e7f480f8c1d407583ba2cbdef5",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/software-testing.md.bin",
+      "bytes": 2358,
+      "words": 316
+    },
+    {
+      "path": "sdd/chain/technical-documentation.md",
+      "sha256": "3ebc0979693730d8e4ae88e75e171427c71f3b9deb02a8b23d5f8e9053f8f5b5",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/technical-documentation.md.bin",
+      "bytes": 2821,
+      "words": 360
+    },
+    {
+      "path": "sdd/chain/tool-output-engineering.md",
+      "sha256": "5ab7436a9d631d4b2f2902e6868478e228e5a5959d9b6f4747f767bf3a1289ff",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/tool-output-engineering.md.bin",
+      "bytes": 2427,
+      "words": 317
+    },
+    {
+      "path": "sdd/chain/workspace-integrity-engineering.md",
+      "sha256": "6d3a7dae5de08195c6a425294ccb5ba5194a7bf72c30195a7dc3709b9c181956",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/chain/workspace-integrity-engineering.md.bin",
+      "bytes": 2409,
+      "words": 312
+    },
+    {
+      "path": "sdd/codex-agents.md",
+      "sha256": "1a20972fd981dbd03e2aff7921a4d197fd2e0e64e0e00eac7e6c8302a0de02d7",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/codex-agents.md.bin",
+      "bytes": 2343,
+      "words": 280
+    },
+    {
+      "path": "sdd/evidence.md",
+      "sha256": "5aff51a144d4fe800ca1c668c7180a25de1e4109a30d9d07161b85342b920483",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/evidence.md.bin",
+      "bytes": 8302,
+      "words": 1119
+    },
+    {
+      "path": "sdd/features/adoption-governance/converge.md",
+      "sha256": "6c8a2aeab9c773d6cefda1952f1a68774751bbbc4e7170b44b444883295c1d7a",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/adoption-governance/converge.md.bin",
+      "bytes": 1178,
+      "words": 157
+    },
+    {
+      "path": "sdd/features/adoption-governance/evidence.json",
+      "sha256": "fe607baf2d51fc4c71d66e5c3616549e9865ec0addb9b7a6dc203d176bb46338",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/adoption-governance/evidence.json.bin",
+      "bytes": 57877,
+      "words": 2854
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/converge.md",
+      "sha256": "7648029700498c944eadba5d4cb8cffcf976ef32e0dedc3e7e26212d89a6e662",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/configuration-cohesion/converge.md.bin",
+      "bytes": 1485,
+      "words": 199
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/evidence.json",
+      "sha256": "c6dd73e16506eb7ef702e749bb78a58c51276ce51d57bc18c3643d1e9797677b",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/configuration-cohesion/evidence.json.bin",
+      "bytes": 25149,
+      "words": 1094
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/plan.md",
+      "sha256": "de239ab538d87a4c1e48e46845d44c6343884b3e420031685dc95c1bd3100f3c",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/configuration-cohesion/plan.md.bin",
+      "bytes": 1283,
+      "words": 145
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/spec.md",
+      "sha256": "e8d5cff025977d11758e7ded97a127cc5d0dc5dbf1a67add7efa2567b3b0a060",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/configuration-cohesion/spec.md.bin",
+      "bytes": 845,
+      "words": 107
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/tasks.md",
+      "sha256": "f3f3e91980d1701eec7ebaf5067c4c60e93fa6e97a9431ea13040e52c2767f82",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/configuration-cohesion/tasks.md.bin",
+      "bytes": 1525,
+      "words": 183
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/traceability.json",
+      "sha256": "0cd917e62eb35746262236a0552b4aee00653f66ad10fe1aa6c3083b08825194",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/configuration-cohesion/traceability.json.bin",
+      "bytes": 943,
+      "words": 62
+    },
+    {
+      "path": "sdd/features/dependency-hygiene/converge.md",
+      "sha256": "e98e9b37b58486a2fa827e4ff9c3363c70512822a19386f7b02585b1894af2b7",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/dependency-hygiene/converge.md.bin",
+      "bytes": 1017,
+      "words": 151
+    },
+    {
+      "path": "sdd/features/dependency-hygiene/evidence.json",
+      "sha256": "460f70716495602837325563a9b49ca77b155b349fb143da9200af5150f6034a",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/dependency-hygiene/evidence.json.bin",
+      "bytes": 5899,
+      "words": 413
+    },
+    {
+      "path": "sdd/features/governance-externalization/converge.md",
+      "sha256": "3667a0e43711c73f30689ec585e565e162b0fbbc321f54484b8cd8c09f46fd4b",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/governance-externalization/converge.md.bin",
+      "bytes": 2527,
+      "words": 314
+    },
+    {
+      "path": "sdd/features/governance-externalization/evidence.json",
+      "sha256": "c13bacdabb5fc7c194cbc0fdbd230bcf675ff78f35db27857ba16e78a26849df",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/governance-externalization/evidence.json.bin",
+      "bytes": 98837,
+      "words": 4797
+    },
+    {
+      "path": "sdd/features/governance-layout/converge.md",
+      "sha256": "07ecb40e23d3d077bcb37e0ddb5a52ad31bb579625ba61f9d2e21d0a76f695c3",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/governance-layout/converge.md.bin",
+      "bytes": 2013,
+      "words": 251
+    },
+    {
+      "path": "sdd/features/governance-layout/evidence.json",
+      "sha256": "9a2e6af8b46c17f39ed8729d941740c59403057cf87d73bd02eecf7ab3482e1a",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/governance-layout/evidence.json.bin",
+      "bytes": 139198,
+      "words": 5694
+    },
+    {
+      "path": "sdd/features/governance-reconciliation/converge.md",
+      "sha256": "465907cf4a9565fc595025941ff897900720c4fbbc9532105ad8fbc98b8378b3",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/governance-reconciliation/converge.md.bin",
+      "bytes": 3128,
+      "words": 359
+    },
+    {
+      "path": "sdd/features/governance-reconciliation/evidence.json",
+      "sha256": "4546b843c6261bd39979721ab001f9d3261aec64aacbcda74e66c837c48a7ac2",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/governance-reconciliation/evidence.json.bin",
+      "bytes": 420525,
+      "words": 15711
+    },
+    {
+      "path": "sdd/features/maintenance-001/converge.md",
+      "sha256": "815c0456a399f8dc928126b941cce425b03ce13934f375bf44f3f5e1ded5bba8",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/maintenance-001/converge.md.bin",
+      "bytes": 2200,
+      "words": 274
+    },
+    {
+      "path": "sdd/features/maintenance-001/evidence.json",
+      "sha256": "af21eab930f80a1099d490be974130f75e848fb2359d66ac6bc3480692f3bbef",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/maintenance-001/evidence.json.bin",
+      "bytes": 92067,
+      "words": 4365
+    },
+    {
+      "path": "sdd/features/product-agent-runtime/converge.md",
+      "sha256": "5181fe73914419b54f2c66657b1fa1cbd3800a1c4c707766bbf866dbda43c32d",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-agent-runtime/converge.md.bin",
+      "bytes": 1633,
+      "words": 193
+    },
+    {
+      "path": "sdd/features/product-agent-runtime/evidence.json",
+      "sha256": "4336a7675ae7160604174b79f517c63b8af09ac3136e79cf47f6ed852531586a",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-agent-runtime/evidence.json.bin",
+      "bytes": 239223,
+      "words": 8996
+    },
+    {
+      "path": "sdd/features/product-bootstrap/converge.md",
+      "sha256": "134b46771219f8c73cc9095a2cd1845e8eb60f8c96df080b772914cf46b1beb2",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-bootstrap/converge.md.bin",
+      "bytes": 15764,
+      "words": 2032
+    },
+    {
+      "path": "sdd/features/product-bootstrap/evidence.json",
+      "sha256": "e8ded92069de62a0fbd011abb7a7507c17202f15f79c4160ec4477f6ed2ab4e1",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-bootstrap/evidence.json.bin",
+      "bytes": 1113306,
+      "words": 40677
+    },
+    {
+      "path": "sdd/features/product-f0-gate/converge.md",
+      "sha256": "bc0855add9dbe5edee13d49288441d07c28fdb62756dd152bc682cc2b3a2c9c6",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-f0-gate/converge.md.bin",
+      "bytes": 6883,
+      "words": 797
+    },
+    {
+      "path": "sdd/features/product-f0-gate/evidence.json",
+      "sha256": "f37be0b4cc29e6b0cfa775e652453d22ed3121fab9f20fb233c0af51f7eddb84",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-f0-gate/evidence.json.bin",
+      "bytes": 771634,
+      "words": 27721
+    },
+    {
+      "path": "sdd/features/product-foundation/converge.md",
+      "sha256": "85db4db8da2922b3718f7da895ec6e73497f5ebec735019295fb52904f3bda0e",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-foundation/converge.md.bin",
+      "bytes": 2122,
+      "words": 263
+    },
+    {
+      "path": "sdd/features/product-foundation/evidence.json",
+      "sha256": "e5d9e02d0c26d4fe7919d8a4df80447bf0f8a884a24d6378a6b4906c5a6e3c21",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-foundation/evidence.json.bin",
+      "bytes": 101478,
+      "words": 4828
+    },
+    {
+      "path": "sdd/features/product-local-persistence/converge.md",
+      "sha256": "ae88609cfc5e973ddb0336849ae26aae1b51b0439deddff34cafc683415378de",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-local-persistence/converge.md.bin",
+      "bytes": 5382,
+      "words": 615
+    },
+    {
+      "path": "sdd/features/product-local-persistence/evidence.json",
+      "sha256": "ab2a8c96f4821d23df9f36169f703eb59dcba82f3e646340ad91a34b13654121",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-local-persistence/evidence.json.bin",
+      "bytes": 39300,
+      "words": 2191
+    },
+    {
+      "path": "sdd/features/product-local-task-ui/converge.md",
+      "sha256": "e44e4c9205f603c30e95d9cc8e8e7296bcd41cbaf15d56408e801b8ce95866bd",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-local-task-ui/converge.md.bin",
+      "bytes": 7295,
+      "words": 859
+    },
+    {
+      "path": "sdd/features/product-local-task-ui/evidence.json",
+      "sha256": "edbbd1d89afd868d42723eed61f41e276e1a2d99ca9ccbcefe63d46ea45bc0b8",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-local-task-ui/evidence.json.bin",
+      "bytes": 1081958,
+      "words": 40067
+    },
+    {
+      "path": "sdd/features/product-plugin-host/converge.md",
+      "sha256": "8d02b1a85d36881b824d7b02257b2786692a370a65f250845344414308bc0e35",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-plugin-host/converge.md.bin",
+      "bytes": 2249,
+      "words": 264
+    },
+    {
+      "path": "sdd/features/product-plugin-host/evidence.json",
+      "sha256": "4e05a1e63806376a0e5cc28288c7d719c0296984bd233684a8549e76b964a360",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-plugin-host/evidence.json.bin",
+      "bytes": 616103,
+      "words": 21905
+    },
+    {
+      "path": "sdd/features/product-verification-engine/converge.md",
+      "sha256": "2612ae8a54f263676534145cd9d8c65bd5ff66857341e47d2882a6d4d8e3f8de",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-verification-engine/converge.md.bin",
+      "bytes": 4642,
+      "words": 532
+    },
+    {
+      "path": "sdd/features/product-verification-engine/evidence.json",
+      "sha256": "a0facdd334693b3a3351e7187a118a4329cecc0ff2ab240548bf97225d08fce0",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-verification-engine/evidence.json.bin",
+      "bytes": 730605,
+      "words": 26256
+    },
+    {
+      "path": "sdd/features/product-visual-workbench/converge.md",
+      "sha256": "3710c167ce0d9cc27049a7a48641f7df39f4476553bda36196dae6c3f35e8761",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-visual-workbench/converge.md.bin",
+      "bytes": 918,
+      "words": 104
+    },
+    {
+      "path": "sdd/features/product-visual-workbench/evidence.json",
+      "sha256": "ffd3002d34d81458568965fc4c3948edaa1fd1d5ce4e194893302432703000de",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/product-visual-workbench/evidence.json.bin",
+      "bytes": 8458,
+      "words": 533
+    },
+    {
+      "path": "sdd/features/readme-skill-integration/converge.md",
+      "sha256": "972cd0b88e69a4c7100ca77e3d82cfdf27293df353009de031fda06233a7af7f",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/readme-skill-integration/converge.md.bin",
+      "bytes": 3459,
+      "words": 399
+    },
+    {
+      "path": "sdd/features/readme-skill-integration/evidence.json",
+      "sha256": "bf302c12b7b29e613c170cb25a91f25fb48319d5054afb828c0daef73331830f",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/readme-skill-integration/evidence.json.bin",
+      "bytes": 67602,
+      "words": 3271
+    },
+    {
+      "path": "sdd/features/repository-maintenance/converge.md",
+      "sha256": "3de92eb3357bf6d5554de3b7c2d16945518038838c658303d370ffeae3dbce6d",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/repository-maintenance/converge.md.bin",
+      "bytes": 1670,
+      "words": 252
+    },
+    {
+      "path": "sdd/features/repository-maintenance/evidence.json",
+      "sha256": "73a8c2486ac40b89ae8f27e213ba4b5c52acf129bbe657b8beb13f8580186726",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/repository-maintenance/evidence.json.bin",
+      "bytes": 49873,
+      "words": 2489
+    },
+    {
+      "path": "sdd/features/scripts-centralization/evidence.json",
+      "sha256": "2b510c965199e202e9132429f94d76aa55e7c302fcade1c7587749ba0ec5a50f",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-centralization/evidence.json.bin",
+      "bytes": 21622,
+      "words": 1125
+    },
+    {
+      "path": "sdd/features/scripts-security-preparation/converge.md",
+      "sha256": "02e332e87bb75e6b42eda005ee4722c58a235e2f5cffe1f32e3d0578b13d3d0d",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-security-preparation/converge.md.bin",
+      "bytes": 3153,
+      "words": 409
+    },
+    {
+      "path": "sdd/features/scripts-security-preparation/evidence.json",
+      "sha256": "bc42139ab2fff34d466f650047fdc6a1b4d25dd02395ee86975937c7483f73fe",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-security-preparation/evidence.json.bin",
+      "bytes": 112078,
+      "words": 4733
+    },
+    {
+      "path": "sdd/features/scripts-security-quality/converge.md",
+      "sha256": "9d56843ec6f11e1719938c63f75df8eaef77ec82f67661b813b82c8d995bed81",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-security-quality/converge.md.bin",
+      "bytes": 3022,
+      "words": 413
+    },
+    {
+      "path": "sdd/features/scripts-security-quality/evidence.json",
+      "sha256": "878ed25159fa4b5fb8d922e390236da51c22f95a77fafe34f4b775f7320bd28b",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-security-quality/evidence.json.bin",
+      "bytes": 58435,
+      "words": 2428
+    },
+    {
+      "path": "sdd/features/scripts-shell-refactor/converge.md",
+      "sha256": "f8f2f010f339c6267453f2a3786514b8227b6c17cdfd0becb3749f3a4691db57",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-shell-refactor/converge.md.bin",
+      "bytes": 2245,
+      "words": 326
+    },
+    {
+      "path": "sdd/features/scripts-shell-refactor/evidence.json",
+      "sha256": "e1c166910e35608e2b3ba46be859f551c0ca33ebb97c05883987e62122897a2e",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-shell-refactor/evidence.json.bin",
+      "bytes": 46904,
+      "words": 2078
+    },
+    {
+      "path": "sdd/features/scripts-task-closure/converge.md",
+      "sha256": "fd23d8f8d531b3f7afe4a8b39e7953342a6ed4f28b5c454965d4928b4795a342",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-task-closure/converge.md.bin",
+      "bytes": 5255,
+      "words": 674
+    },
+    {
+      "path": "sdd/features/scripts-task-closure/evidence.json",
+      "sha256": "f50363b3904949a5ac40b6b82e83537ff9ccf1da10c19d0c9f3b516e2a9ca545",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-task-closure/evidence.json.bin",
+      "bytes": 29106,
+      "words": 1271
+    },
+    {
+      "path": "sdd/features/scripts-toolbox-native/converge.md",
+      "sha256": "d5b2d684647f69e6304240bf611affdd98182404e7d7cbffe57df9b344c1732b",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-toolbox-native/converge.md.bin",
+      "bytes": 4956,
+      "words": 635
+    },
+    {
+      "path": "sdd/features/scripts-toolbox-native/evidence.json",
+      "sha256": "76d6b06e87b7ef3592c3d79b6c9526fba2a66b57c683db8009debd4da9cba2ff",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-toolbox-native/evidence.json.bin",
+      "bytes": 45325,
+      "words": 2082
+    },
+    {
+      "path": "sdd/features/scripts-toolchain-config/converge.md",
+      "sha256": "5e35442545dc4604bdf0e9429953d3fe97f0c12ac8891d4cc5c0e3b823bd7b24",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-toolchain-config/converge.md.bin",
+      "bytes": 7589,
+      "words": 986
+    },
+    {
+      "path": "sdd/features/scripts-toolchain-config/evidence.json",
+      "sha256": "6606d348de3aed191481d7f3bc83ca2f9eb6ec4dc801102fc6167ca83f1c5ab0",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/scripts-toolchain-config/evidence.json.bin",
+      "bytes": 166402,
+      "words": 7295
+    },
+    {
+      "path": "sdd/features/skill-agent-runtime-engineering/converge.md",
+      "sha256": "5190a1b1222215faf786386b18b7f6f956cdfd9fe0c6ef186003ab4bf80cf06c",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-agent-runtime-engineering/converge.md.bin",
+      "bytes": 1414,
+      "words": 160
+    },
+    {
+      "path": "sdd/features/skill-agent-runtime-engineering/evidence.json",
+      "sha256": "4dc0da17cc8e41d7393e335635f0e6128c7ed5c2f61d01edd5eb7cceb738db3b",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-agent-runtime-engineering/evidence.json.bin",
+      "bytes": 307329,
+      "words": 11729
+    },
+    {
+      "path": "sdd/features/skill-agent-usage-accounting/converge.md",
+      "sha256": "680a4998ab47769356b50f27b7b90e48c70a3c17d2c26d0b70f99e8b7abd948c",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-agent-usage-accounting/converge.md.bin",
+      "bytes": 1411,
+      "words": 160
+    },
+    {
+      "path": "sdd/features/skill-agent-usage-accounting/evidence.json",
+      "sha256": "51e2666f3d5936ec1c8ddc35566c0554987d75b1d45e12719b4c374243f72f9a",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-agent-usage-accounting/evidence.json.bin",
+      "bytes": 166244,
+      "words": 7877
+    },
+    {
+      "path": "sdd/features/skill-autonomous-verification-engineering/converge.md",
+      "sha256": "2ccfab5a1fb05e25e00d85c78660eb91f6f49415aa5a8d2c08c32b2913431d57",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-autonomous-verification-engineering/converge.md.bin",
+      "bytes": 1424,
+      "words": 160
+    },
+    {
+      "path": "sdd/features/skill-autonomous-verification-engineering/evidence.json",
+      "sha256": "3cacb90259fd6a61580b26d019af543459f6af4811ac47b924b8c4fd810e3e45",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-autonomous-verification-engineering/evidence.json.bin",
+      "bytes": 309173,
+      "words": 11725
+    },
+    {
+      "path": "sdd/features/skill-code-context-engineering/converge.md",
+      "sha256": "a12149d1d896bf1c1c44c51b58eb96c245189f44642bc9cded84d625fd0489f1",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-code-context-engineering/converge.md.bin",
+      "bytes": 1413,
+      "words": 160
+    },
+    {
+      "path": "sdd/features/skill-code-context-engineering/evidence.json",
+      "sha256": "7254d30bf0816a2ff3e04a7db0044aa0b516603617c6e5881fea06d881d77519",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-code-context-engineering/evidence.json.bin",
+      "bytes": 166973,
+      "words": 7910
+    },
+    {
+      "path": "sdd/features/skill-code-knowledge-graph-engineering/converge.md",
+      "sha256": "ed38af6a33f972bbf9ee5fb625cd0db7993d85375680c583892a87c7ed6b64a2",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-code-knowledge-graph-engineering/converge.md.bin",
+      "bytes": 1421,
+      "words": 160
+    },
+    {
+      "path": "sdd/features/skill-code-knowledge-graph-engineering/evidence.json",
+      "sha256": "3947e0211faa600aa561941d12dcd0a58bbb2f7b03281c4f93bbdf15eb074d38",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-code-knowledge-graph-engineering/evidence.json.bin",
+      "bytes": 168131,
+      "words": 7883
+    },
+    {
+      "path": "sdd/features/skill-consumer-validation/converge.md",
+      "sha256": "f11203bacbb28b31bb6cb95bd7b21c0b0140e94815962ae1a9a3eaded78e9f30",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-consumer-validation/converge.md.bin",
+      "bytes": 1030,
+      "words": 128
+    },
+    {
+      "path": "sdd/features/skill-consumer-validation/evidence.json",
+      "sha256": "a33f33d77c2d64495095ba29ad0e97d52bb0445f16edb36117d0295079b60a8b",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-consumer-validation/evidence.json.bin",
+      "bytes": 140692,
+      "words": 5810
+    },
+    {
+      "path": "sdd/features/skill-iced-engineering/converge.md",
+      "sha256": "fbe82e970b74008f6711dbe61ea0eba8d783e5c156d7c51254c2ccb0fc302f13",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-iced-engineering/converge.md.bin",
+      "bytes": 1405,
+      "words": 160
+    },
+    {
+      "path": "sdd/features/skill-iced-engineering/evidence.json",
+      "sha256": "93e53a1b069c2b02f4be028b0ad018d63a0c858d0bb8c2f9834ddd8628955930",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-iced-engineering/evidence.json.bin",
+      "bytes": 164983,
+      "words": 7774
+    },
+    {
+      "path": "sdd/features/skill-native-visual-method/converge.md",
+      "sha256": "fe5710597065b8ff22eeb986292a3dfb05fbe01f1b82bee9355d639fc4dff106",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-native-visual-method/converge.md.bin",
+      "bytes": 631,
+      "words": 76
+    },
+    {
+      "path": "sdd/features/skill-native-visual-method/evidence.json",
+      "sha256": "32e75455ce917604541127bf1ac969efe888d4772fefb9365db4b1e23add76b3",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-native-visual-method/evidence.json.bin",
+      "bytes": 5710,
+      "words": 369
+    },
+    {
+      "path": "sdd/features/skill-plugin-protocol-engineering/converge.md",
+      "sha256": "ff7a09c38ad4eb6ed16f996e5b58edf7a1c05831bf7f6e6dbbe58935dfaf11d4",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-plugin-protocol-engineering/converge.md.bin",
+      "bytes": 1416,
+      "words": 160
+    },
+    {
+      "path": "sdd/features/skill-plugin-protocol-engineering/evidence.json",
+      "sha256": "dac6c3a3cddfef4a186d1717f2129b54bd64ad9f1caef06a1044fd78640e0635",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-plugin-protocol-engineering/evidence.json.bin",
+      "bytes": 283262,
+      "words": 11210
+    },
+    {
+      "path": "sdd/features/skill-tool-output-engineering/converge.md",
+      "sha256": "69797ca81f89d54ec55e5ed51b31c33f3ec9f91d18804c0472f693e07501cda5",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-tool-output-engineering/converge.md.bin",
+      "bytes": 1412,
+      "words": 160
+    },
+    {
+      "path": "sdd/features/skill-tool-output-engineering/evidence.json",
+      "sha256": "86a97bbc80c70e9e6ee8620a0a25b33387203872ce9aef10b443359994d07b20",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-tool-output-engineering/evidence.json.bin",
+      "bytes": 166546,
+      "words": 7907
+    },
+    {
+      "path": "sdd/features/skill-ui-metadata-inventory/converge.md",
+      "sha256": "5756e3900472c87090604a4e1d6587feb3a3d63914e4d628cc6920af8d3e8297",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-ui-metadata-inventory/converge.md.bin",
+      "bytes": 3251,
+      "words": 410
+    },
+    {
+      "path": "sdd/features/skill-ui-metadata-inventory/evidence.json",
+      "sha256": "2fbdc900ea6a3070bd8767c903d3a43596d153883c6c1e95411daac5130f0d22",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-ui-metadata-inventory/evidence.json.bin",
+      "bytes": 293692,
+      "words": 10991
+    },
+    {
+      "path": "sdd/features/skill-workspace-integrity-engineering/converge.md",
+      "sha256": "592b7f3b699f99e0f4b55a36c038d3e63f8521441053ac99ebaaed45a6931c8a",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-workspace-integrity-engineering/converge.md.bin",
+      "bytes": 1420,
+      "words": 160
+    },
+    {
+      "path": "sdd/features/skill-workspace-integrity-engineering/evidence.json",
+      "sha256": "34a0085d99635f9c2e81ec1c3b6390c1cca033861998209752461d4f891a7380",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/skill-workspace-integrity-engineering/evidence.json.bin",
+      "bytes": 168455,
+      "words": 7958
+    },
+    {
+      "path": "sdd/features/technical-acceptance/converge.md",
+      "sha256": "d5ccbd80c50efd19dd51c6906f311ef756570ed42f5210502904a8deb74f1e43",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/technical-acceptance/converge.md.bin",
+      "bytes": 532,
+      "words": 59
+    },
+    {
+      "path": "sdd/features/technical-acceptance/evidence.json",
+      "sha256": "9836e13534e6d3e281bd7f86d28bb06a1f623560e7ae585a58de70acb99cb837",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/technical-acceptance/evidence.json.bin",
+      "bytes": 123904,
+      "words": 5300
+    },
+    {
+      "path": "sdd/features/technical-documentation-visuals/converge.md",
+      "sha256": "82ac546d7eefafb697cb8057a9031577adf6f2babd6e27542637c00a11bd1b84",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/technical-documentation-visuals/converge.md.bin",
+      "bytes": 1128,
+      "words": 178
+    },
+    {
+      "path": "sdd/features/technical-documentation-visuals/evidence.json",
+      "sha256": "094b280fdcf5cd5281b0ca88359db3a8cdc4b5d62e4b327c7ccacdc4e3ab195a",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/features/technical-documentation-visuals/evidence.json.bin",
+      "bytes": 49553,
+      "words": 2264
+    },
+    {
+      "path": "sdd/project.md",
+      "sha256": "a0d9bbfbde1db828db87a08475dadb37ebc28683ef4e6c0f3b8d810c187472d2",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/project.md.bin",
+      "bytes": 26857,
+      "words": 3130
+    },
+    {
+      "path": "sdd/templates/README.md",
+      "sha256": "9a51c26ad0e86551b88fe534bbc17fbdee2c833297fad026b73ac153ab82fd60",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/templates/README.md.bin",
+      "bytes": 852,
+      "words": 114
+    },
+    {
+      "path": "sdd/templates/checklist.md",
+      "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/templates/checklist.md.bin",
+      "bytes": 649,
+      "words": 94
+    },
+    {
+      "path": "sdd/templates/converge.md",
+      "sha256": "d58e6d0e6a4d44add2bdfb0a8516caf6b49704f5427e07023cdb8613215dc0f1",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/templates/converge.md.bin",
+      "bytes": 701,
+      "words": 107
+    },
+    {
+      "path": "sdd/templates/plan.md",
+      "sha256": "b871b0674c054a7b4b6cb9aa3030d8fd74c764dc0f3b869eb001f608088dcb71",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/templates/plan.md.bin",
+      "bytes": 782,
+      "words": 115
+    },
+    {
+      "path": "sdd/templates/spec.md",
+      "sha256": "2ef528f28c10746850c576d97b63dc46a1150012b34a43d4e41f67b274026701",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/templates/spec.md.bin",
+      "bytes": 792,
+      "words": 104
+    },
+    {
+      "path": "sdd/templates/tasks.md",
+      "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/templates/tasks.md.bin",
+      "bytes": 897,
+      "words": 114
+    },
+    {
+      "path": "sdd/tools/validate.py",
+      "sha256": "6df3b403dc50d4d6aebcbd803a65af175ec4baf6f9c18afb21e183b0db2f3aa5",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/tools/validate.py.bin",
+      "bytes": 23265,
+      "words": 2021
+    },
+    {
+      "path": "sdd/workflow.md",
+      "sha256": "55d3be46cda7c3748b158c98c8896af8695e17ae89e30382d2b3b1171fa16488",
+      "previous": "docs/validation/governance-corrections-20261114/before/sdd/workflow.md.bin",
+      "bytes": 6485,
+      "words": 915
+    },
+    {
+      "path": "tools/governance/scripts/check-ox.py",
+      "sha256": "82f52262550e9483f6402a32c0a1131f24f86694c3471e5c652573c7454b7c92",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/check-ox.py.bin",
+      "bytes": 19324,
+      "words": 1649
+    },
+    {
+      "path": "tools/governance/scripts/closure_revision.py",
+      "sha256": "c612c5a0906869f4d4b18beb8f974a7304ba751be7973cf196154a1194ce3ace",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/closure_revision.py.bin",
+      "bytes": 24163,
+      "words": 1745
+    },
+    {
+      "path": "tools/governance/scripts/documentation_revision.py",
+      "sha256": "1e88e7589f16887febf99e1f6742d140e0d366e43fdaf8e674e0da038562944a",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/documentation_revision.py.bin",
+      "bytes": 3546,
+      "words": 338
+    },
+    {
+      "path": "tools/governance/scripts/governance_support.py",
+      "sha256": "d34034081f6f0731fedb2696670ddcac86d8d3d1be3019d9aab6746f65939920",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/governance_support.py.bin",
+      "bytes": 17293,
+      "words": 1398
+    },
+    {
+      "path": "tools/governance/scripts/project_revision.py",
+      "sha256": "6b68ae0989737f936af997de61ee70afc6ab2cf2405b3a0a9a3c334ea9c0ef80",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/project_revision.py.bin",
+      "bytes": 3787,
+      "words": 325
+    },
+    {
+      "path": "tools/governance/scripts/readme_revision.py",
+      "sha256": "70706df87f79f99d52532a3ced39b1c639755b6249175fda9b76883da85a1eb0",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/readme_revision.py.bin",
+      "bytes": 8316,
+      "words": 707
+    },
+    {
+      "path": "tools/governance/scripts/run-tests.py",
+      "sha256": "7931fe525b1d70f799242a403b2ae05fe5a051449742b18e8377afb55c3b06c1",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/run-tests.py.bin",
+      "bytes": 3201,
+      "words": 221
+    },
+    {
+      "path": "tools/governance/scripts/skill_revision.py",
+      "sha256": "e6f79c92a365291332dee47bfeb88209887bbc46e491d36f0c57fb3b53e6cf7f",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/skill_revision.py.bin",
+      "bytes": 5685,
+      "words": 439
+    },
+    {
+      "path": "tools/governance/tests/test_configuration_succession.py",
+      "sha256": "82a95576956de63c70ec56403314e823536e99bc3f2aa3925f46b6087511d2e0",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/tests/test_configuration_succession.py.bin",
+      "bytes": 3507,
+      "words": 204
+    },
+    {
+      "path": "tools/governance/tests/test_governance.py",
+      "sha256": "80507b0d0afd794bc24a56f05fcc2fb52079650e8f9119df17ecba2e077c575e",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/tests/test_governance.py.bin",
+      "bytes": 34814,
+      "words": 2096
+    },
+    {
+      "path": "tools/governance/tests/test_native_exec_succession.py",
+      "sha256": "1bfcec3667bc8eb8869316fc510d2695ba448b4523b883ed386214556e230a13",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/tests/test_native_exec_succession.py.bin",
+      "bytes": 5207,
+      "words": 320
+    },
+    {
+      "path": "tools/governance/tests/test_readme_skill_integration.py",
+      "sha256": "34ebfcade952e89d7023647ea717a74e49be596dbac06ca254dd8c0bee1a5246",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/tests/test_readme_skill_integration.py.bin",
+      "bytes": 15887,
+      "words": 941
+    },
+    {
+      "path": "tools/governance/scripts/package-ox.py",
+      "sha256": "5f0a69e773b2682c26217afbe67727de6ddd3ff7e8fa247ccb3e8145906ed6e6",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/package-ox.py.bin",
+      "bytes": 5634,
+      "words": 438
+    },
+    {
+      "path": "tools/governance/scripts/export-clean.py",
+      "sha256": "702fdc93bb804990bf9cef203597ae79c1d9a3042b7c402b043692606ef7d6f4",
+      "previous": "docs/validation/governance-corrections-20261114/before/tools/governance/scripts/export-clean.py.bin",
+      "bytes": 1538,
+      "words": 142
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "1017d9c84faaf46bd79ecd7402915b9d3e7b8e7c73f25c20d4a81cb8a352fa5a",
+      "previous": "docs/validation/governance-corrections-20261114/before/docs/README.md.bin",
+      "bytes": 7634,
+      "words": 796
+    }
+  ]
+}

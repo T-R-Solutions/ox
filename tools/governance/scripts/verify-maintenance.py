@@ -1,10 +1,11 @@
 """Verify maintenance preservation and reconstructible historical inputs, read-only."""
 
-from pathlib import Path
 import hashlib
 import json
-import tarfile
 import sys
+import tarfile
+from pathlib import Path
+
 from governance_support import (
     distribution_files,
     preservation_bytes,
@@ -21,6 +22,11 @@ def digest(data):
 
 def historical_bytes(root, relative, expected):
     candidates = [root / relative, root / BASE / "previous" / (relative + ".bin")]
+    if relative.startswith("tools/governance/scripts/"):
+        candidates.append(
+            root / "docs/validation/complete-repair-20261113/prior/maintenance-originals"
+            / (relative + ".bin")
+        )
     if relative == "docs/structure/profile-revisions.json":
         candidates.append(
             root
