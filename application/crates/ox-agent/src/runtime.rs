@@ -44,16 +44,19 @@ pub struct Machine {
     events: Vec<Event>,
 }
 impl Machine {
-    pub fn new(identity: Identity) -> Self {
+    #[must_use]
+    pub const fn new(identity: Identity) -> Self {
         Self {
             identity,
             state: State::Idle,
             events: Vec::new(),
         }
     }
-    pub fn state(&self) -> State {
+    #[must_use]
+    pub const fn state(&self) -> State {
         self.state
     }
+    #[must_use]
     pub fn events(&self) -> &[Event] {
         &self.events
     }
@@ -65,10 +68,8 @@ impl Machine {
         let next = match (self.state, event.kind) {
             (State::Idle, Kind::Started) => State::Running,
             (State::Running, Kind::CancelRequested) => State::Cancelling,
-            (State::Running, Kind::Exited(o @ (Outcome::Success | Outcome::Failed(_)))) => {
-                State::Finished(o)
-            }
-            (State::Cancelling, Kind::Exited(o @ (Outcome::Cancelled | Outcome::TimedOut))) => {
+            (State::Running, Kind::Exited(o @ (Outcome::Success | Outcome::Failed(_))))
+            | (State::Cancelling, Kind::Exited(o @ (Outcome::Cancelled | Outcome::TimedOut))) => {
                 State::Finished(o)
             }
             _ => return false,
@@ -93,6 +94,8 @@ pub struct Runtime {
     pid: u32,
 }
 impl Runtime {
+    /// # Errors
+    /// Returns an input error for a relative executable or deadline outside (0, 10s], or an OS error when spawning fails.
     pub fn spawn(
         executable: &Path,
         mode: &str,
@@ -124,18 +127,24 @@ impl Runtime {
             pid,
         })
     }
-    pub fn state(&self) -> State {
+    #[must_use]
+    pub const fn state(&self) -> State {
         self.machine.state()
     }
+    #[must_use]
     pub fn events(&self) -> &[Event] {
         self.machine.events()
     }
-    pub fn pid(&self) -> u32 {
+    #[must_use]
+    pub const fn pid(&self) -> u32 {
         self.pid
     }
-    pub fn output_available(&self) -> bool {
+    #[must_use]
+    pub const fn output_available(&self) -> bool {
         false
     }
+    /// # Errors
+    /// Returns an OS error if observing or terminating the direct child fails.
     pub fn poll(&mut self) -> io::Result<State> {
         if let Some(child) = self.child.as_mut() {
             if let Some(status) = child.try_wait()? {
@@ -146,6 +155,8 @@ impl Runtime {
         }
         Ok(self.state())
     }
+    /// # Errors
+    /// Returns an OS error if observing or terminating the direct child fails.
     pub fn cancel(&mut self) -> io::Result<State> {
         self.poll()?;
         if self.state() == State::Running {

@@ -34,6 +34,10 @@ pub enum Error {
     InvalidLimit,
     Cancelled,
 }
+#[expect(
+    clippy::needless_pass_by_value,
+    reason = "Owned error adapter for Result::map_err"
+)]
 fn io(error: std::io::Error) -> Error {
     match error.kind() {
         std::io::ErrorKind::TimedOut | std::io::ErrorKind::WouldBlock => Error::Timeout,
@@ -53,6 +57,8 @@ pub struct Host {
     next: u64,
 }
 impl Host {
+    /// # Errors
+    /// Returns an error for invalid limits, I/O failure, early exit, timeout, or an invalid/incompatible handshake.
     pub fn start(
         executable: &Path,
         scenario: &str,
@@ -105,7 +111,7 @@ impl Host {
             if host
                 .child
                 .as_mut()
-                .expect("spawned child")
+                .ok_or(Error::InvalidState)?
                 .try_wait()
                 .map_err(io)?
                 .is_some()
@@ -137,17 +143,23 @@ impl Host {
         host.state = State::Ready;
         Ok(host)
     }
-    pub fn state(&self) -> State {
+    #[must_use]
+    pub const fn state(&self) -> State {
         self.state
     }
+    #[must_use]
     pub fn socket_directory(&self) -> &Path {
         &self.directory
     }
+    /// # Errors
+    /// Returns an error when the host is not ready/authorized, the token is invalid, or communication fails.
     pub fn echo(&mut self, token: &str) -> Result<String, Error> {
         self.echo_cancellable(token, &AtomicBool::new(false))
     }
     /// One I/O deadline spans send and receive; cleanup still waits for OS exit.
     /// Cancelling an admitted call fails this host and reaps its direct child.
+    /// # Errors
+    /// Returns an error for invalid state/grant/token, cancellation, timeout, malformed reply, or I/O failure.
     pub fn echo_cancellable(&mut self, token: &str, cancel: &AtomicBool) -> Result<String, Error> {
         if self.state != State::Ready {
             return Err(Error::InvalidState);
@@ -230,6 +242,8 @@ impl Host {
             Ok(value) => restore.map(|()| value),
         }
     }
+    /// # Errors
+    /// Returns an error when not ready, on I/O failure, timeout, or an unsuccessful child exit.
     pub fn shutdown(&mut self) -> Result<(), Error> {
         if self.state != State::Ready {
             return Err(Error::InvalidState);
@@ -241,7 +255,7 @@ impl Host {
                 if let Some(status) = self
                     .child
                     .as_mut()
-                    .expect("owned child")
+                    .ok_or(Error::InvalidState)?
                     .try_wait()
                     .map_err(io)?
                 {

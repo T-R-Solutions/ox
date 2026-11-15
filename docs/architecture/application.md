@@ -195,3 +195,11 @@ atualize o README e a seção correspondente destes guias, reexaminando apenas
 observações afetadas. Responsabilidade de manutenção: contribuinte da mudança e
 mantenedor do Ox. O [registro desta revisão](../validation/application-documentation-20261104/report.md)
 identifica os bytes inspecionados, checks e limites.
+
+## Current presentation integration
+
+The ox-ui desktop separates presentation state (navigation, theme, density,
+embedded document/tool selection) from Controller-owned local effects. See
+[component contracts](../design/components.md), [surface map](../design/surfaces.md)
+and [reference coverage](../design/reference-coverage.md). Future surfaces are
+explicitly labelled; an available destination does not establish backend integration.

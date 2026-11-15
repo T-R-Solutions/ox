@@ -42,7 +42,7 @@ fn main() {
         start.elapsed().as_secs_f64() * 1000.,
         e.observations()
             .iter()
-            .flat_map(|o| o.inputs())
+            .flat_map(ox_verification::engine::Observation::inputs)
             .map(|i| i.bytes.len())
             .sum::<usize>()
     );

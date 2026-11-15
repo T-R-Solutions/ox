@@ -5,7 +5,8 @@ pub struct ProtocolVersion {
 }
 impl ProtocolVersion {
     /// A peer must share the major and provide at least the required minor.
-    pub fn accepts(self, peer: Self) -> bool {
+    #[must_use]
+    pub const fn accepts(self, peer: Self) -> bool {
         self.major == peer.major && peer.minor >= self.minor
     }
 }

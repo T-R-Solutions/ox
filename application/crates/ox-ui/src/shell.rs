@@ -13,10 +13,11 @@ pub enum Effect {
     Exit,
 }
 impl Shell {
-    pub fn details_visible(&self) -> bool {
+    #[must_use]
+    pub const fn details_visible(&self) -> bool {
         self.details_visible
     }
-    pub fn update(&mut self, message: Message) -> Effect {
+    pub const fn update(&mut self, message: Message) -> Effect {
         match message {
             Message::ToggleDetails => {
                 self.details_visible = !self.details_visible;

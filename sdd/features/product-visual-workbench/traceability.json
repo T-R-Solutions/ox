@@ -1,0 +1,68 @@
+[
+  {
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001"
+    ],
+    "implementation": "DESIGN.md",
+    "oracle": "docs/validation/visual-workbench-20261111/review.md"
+  },
+  {
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T002"
+    ],
+    "implementation": "application/crates/ox-ui/src/design.rs",
+    "oracle": "application/tools/native_review.py"
+  },
+  {
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T003"
+    ],
+    "implementation": "application/crates/ox-ui/src/desktop.rs",
+    "oracle": "application/crates/ox-ui/src/local_task.rs"
+  },
+  {
+    "acceptance": "AC-04",
+    "requirement": "REQ-04",
+    "decision": "D-04",
+    "risk": "R-04",
+    "tasks": [
+      "T003"
+    ],
+    "implementation": "application/crates/ox-ui/src/workbench.rs",
+    "oracle": "docs/design/surfaces.md"
+  },
+  {
+    "acceptance": "AC-05",
+    "requirement": "REQ-05",
+    "decision": "D-05",
+    "risk": "R-05",
+    "tasks": [
+      "T003"
+    ],
+    "implementation": "application/crates/ox-ui/src/desktop/views.rs",
+    "oracle": "application/tools/native_review.py"
+  },
+  {
+    "acceptance": "AC-06",
+    "requirement": "REQ-06",
+    "decision": "D-06",
+    "risk": "R-06",
+    "tasks": [
+      "T003"
+    ],
+    "implementation": "docs/design/tokens.json",
+    "oracle": "application/tools/check_contrast.py"
+  }
+]

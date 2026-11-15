@@ -178,6 +178,20 @@ fn successful_exit(app: &mut App) -> Result {
         None => Ok(false),
     })
 }
+fn scaled_dimension(logical: u16, scale: f32) -> Result<u16> {
+    let scaled = (f32::from(logical) * scale).trunc();
+    if !scaled.is_finite() || !(1.0..=f32::from(u16::MAX)).contains(&scaled) {
+        return Err("scaled X11 dimension outside [1, 65535]".into());
+    }
+    #[expect(
+        clippy::cast_possible_truncation,
+        clippy::cast_sign_loss,
+        reason = "Finite, integral, positive value checked against u16 bounds above"
+    )]
+    let pixels = scaled as u16;
+    Ok(pixels)
+}
+
 #[test]
 #[ignore = "requires an X11 graphical session; explicit desktop acceptance run"]
 fn real_window_toggle_and_exit_button() -> Result {
@@ -315,8 +329,8 @@ fn visual_response_and_window_matrix() -> Result {
                 window,
                 0,
                 0,
-                (400.0 * scale) as u16,
-                (200.0 * scale) as u16,
+                scaled_dimension(400, scale)?,
+                scaled_dimension(200, scale)?,
                 u32::MAX,
             )?
             .reply()?
@@ -344,9 +358,9 @@ fn visual_response_and_window_matrix() -> Result {
         // Ensure each subsequent sample begins after the previous event settles.
         thread::sleep(Duration::from_millis(30));
     }
-    for (logical_width, logical_height) in [(640, 480), (900, 700)] {
-        let width = (logical_width as f32 * scale) as u32;
-        let height = (logical_height as f32 * scale) as u32;
+    for (logical_width, logical_height) in [(640_u16, 480_u16), (900, 700)] {
+        let width = u32::from(scaled_dimension(logical_width, scale)?);
+        let height = u32::from(scaled_dimension(logical_height, scale)?);
         conn.configure_window(
             window,
             &ConfigureWindowAux::new().width(width).height(height),
@@ -409,7 +423,7 @@ fn cancel_verification_observes_oracle_exit_in_ui() -> Result {
     ] {
         std::fs::copy(built.join(source), bins.join(target))?;
     }
-    let workspace = root.clone();
+    let workspace = root;
     std::fs::write(workspace.join("sentinel"), b"preserve")?;
     let (mut app, conn, window) = launch_binary(&bins.join("ox"))?;
     thread::sleep(Duration::from_millis(400));
@@ -428,7 +442,7 @@ fn cancel_verification_observes_oracle_exit_in_ui() -> Result {
     let mut attempt = None;
     wait_until(|| {
         attempt = std::fs::read_dir(&workspace)?
-            .filter_map(|p| p.ok())
+            .filter_map(std::result::Result::ok)
             .map(|p| p.path())
             .find(|p| p.join("result.txt").exists());
         Ok(attempt.is_some())
@@ -508,14 +522,14 @@ fn local_task_rendered_flow() -> Result {
     let mut attempt = None;
     wait_until(|| {
         attempt = std::fs::read_dir(&directory)?
-            .filter_map(|e| e.ok())
+            .filter_map(std::result::Result::ok)
             .map(|e| e.path())
             .find(|p| p.join("result.txt").is_file());
         Ok(attempt.is_some())
     })?;
     let attempt = attempt.ok_or("missing task directory")?;
     let request = std::fs::read(attempt.join("request.txt"))?;
-    let mut expected = request.clone();
+    let mut expected = request;
     expected.extend_from_slice(b"result=42\n");
     assert_eq!(std::fs::read(attempt.join("result.txt"))?, expected);
     thread::sleep(Duration::from_millis(100));

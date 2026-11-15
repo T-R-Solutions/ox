@@ -44,16 +44,20 @@ pub struct Observation {
     result: ResultKind,
 }
 impl Observation {
-    pub fn run(&self) -> u64 {
+    #[must_use]
+    pub const fn run(&self) -> u64 {
         self.run
     }
-    pub fn check(&self) -> &Check {
+    #[must_use]
+    pub const fn check(&self) -> &Check {
         &self.check
     }
+    #[must_use]
     pub fn inputs(&self) -> &[Content] {
         &self.before
     }
-    pub fn result(&self) -> ResultKind {
+    #[must_use]
+    pub const fn result(&self) -> ResultKind {
         self.result
     }
 }
@@ -240,9 +244,12 @@ impl Engine {
         }
         snapshot
     }
+    #[must_use]
     pub fn observations(&self) -> &[Observation] {
         &self.observations
     }
+    /// # Errors
+    /// Returns an input error when the note exceeds 1024 bytes or 32 claims are already retained.
     pub fn note_completion(&mut self, note: String) -> io::Result<()> {
         if self.claims.len() >= 32 || note.len() > 1024 {
             return Err(invalid("claim limit"));
@@ -250,11 +257,15 @@ impl Engine {
         self.claims.push(note);
         Ok(())
     }
+    /// # Errors
+    /// Returns an error for invalid execution limits, failed input capture, retained-byte limits, or subprocess I/O failure.
     pub fn execute(&mut self, check: &Check, deadline: Duration) -> io::Result<u64> {
         self.execute_cancellable(check, deadline, &AtomicBool::new(false))
     }
     /// The deadline bounds subprocess supervision, not filesystem capture or OS reap.
     /// Cancellation is terminal only after the owned direct child has been reaped.
+    /// # Errors
+    /// Returns an error for invalid execution limits, failed input capture, retained-byte limits, or subprocess I/O failure.
     pub fn execute_cancellable(
         &mut self,
         check: &Check,
@@ -337,6 +348,7 @@ impl Engine {
         });
         Ok(run)
     }
+    #[must_use]
     pub fn evaluate(&self, check: &Check) -> Verdict {
         let Ok(current) = capture(check, self.observations.last().map(|o| &o.after)) else {
             return Verdict::NotVerified;
@@ -353,7 +365,7 @@ impl Engine {
             }
             match observation.result {
                 ResultKind::Exited(Some(code)) if code == check.expected_exit => {
-                    pass = Some(observation.run)
+                    pass = Some(observation.run);
                 }
                 ResultKind::Exited(_) => {
                     return Verdict::Rejected {
@@ -370,13 +382,12 @@ impl Engine {
                         .into(),
             };
         }
-        match pass {
-            Some(run) => Verdict::Approved {
-                evidence: format!("run:{run}"),
-            },
-            None => Verdict::NotVerified,
-        }
+        pass.map_or(Verdict::NotVerified, |run| Verdict::Approved {
+            evidence: format!("run:{run}"),
+        })
     }
+    /// # Errors
+    /// Returns an input error when the applicability reason is empty or whitespace.
     pub fn not_applicable(reason: &str) -> io::Result<Verdict> {
         if reason.trim().is_empty() {
             return Err(invalid("nonempty applicability rationale required"));
@@ -410,7 +421,7 @@ mod ownership_tests {
             self.calls.push("wait");
             self.waits
                 .pop_front()
-                .unwrap_or(Ok(ExitStatus::from_raw(0)))
+                .unwrap_or_else(|| Ok(ExitStatus::from_raw(0)))
         }
     }
     fn owner() -> OwnedChild<Fake> {

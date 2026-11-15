@@ -1,3 +1,25 @@
+# Current acceptance projection
+
+Current automated states from [evidence.json](evidence.json). This projection
+is not a new observation or product acceptance.
+
+<!-- sdd:current-status -->
+| Criterion | Status |
+| --- | --- |
+| AC-01 | UNVERIFIED |
+| AC-02 | UNVERIFIED |
+| AC-03 | UNVERIFIED |
+| AC-04 | UNVERIFIED |
+| AC-05 | UNVERIFIED |
+| AC-06 | UNVERIFIED |
+| AC-07 | UNVERIFIED |
+<!-- /sdd:current-status -->
+
+## Historical convergence — before 2026-11-14 correction
+
+The following conclusions apply only to their original observed inputs. Current
+states are above; prior bytes remain in the bounded correction preimages.
+
 # Convergence — design proposal only
 
 AC-01..07: UNVERIFIED. ADR and bounded specification are prepared; no storage code, dependency, migration, fault experiment or backup has been implemented/executed. T001 completion is a documentary result, not product acceptance.

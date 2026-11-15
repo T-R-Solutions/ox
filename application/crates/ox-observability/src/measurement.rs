@@ -1,4 +1,4 @@
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Measurement<T> {
     Measured {
         value: T,
@@ -16,7 +16,7 @@ pub enum Measurement<T> {
     },
     Unknown,
 }
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Sample<T> {
     pub unit: String,
     pub period: std::ops::Range<std::time::SystemTime>,

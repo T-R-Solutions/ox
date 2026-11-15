@@ -23,6 +23,7 @@ pub struct Controller {
     check: Option<Check>,
 }
 impl Controller {
+    #[must_use]
     pub fn new(binaries: PathBuf) -> Self {
         Self {
             workspace: None,
@@ -36,6 +37,8 @@ impl Controller {
             check: None,
         }
     }
+    /// # Errors
+    /// Returns a filesystem error for a missing, unreadable or non-directory workspace.
     pub fn select(&mut self, path: &Path) -> io::Result<String> {
         let root = path.canonicalize()?;
         if !root.is_dir() {
@@ -46,6 +49,12 @@ impl Controller {
         self.check = None;
         Ok(format!("Workspace: {} — UNVERIFIED", root.display()))
     }
+    /// # Errors
+    /// Returns an error for an unknown scenario, absent workspace, filesystem failure, or child supervision failure.
+    #[expect(
+        clippy::needless_pass_by_value,
+        reason = "Worker entry takes ownership of its cancellation handle"
+    )]
     pub fn execute(&mut self, mode: &str, cancel: Arc<AtomicBool>) -> io::Result<String> {
         if !matches!(mode, "good" | "bad" | "failure" | "hang") {
             return Err(io::Error::other("Unknown scenario"));
@@ -83,7 +92,7 @@ impl Controller {
             mode,
             &dir,
             Identity {
-                session: std::process::id() as u64,
+                session: u64::from(std::process::id()),
                 task: 1,
                 attempt: self.attempt,
             },
@@ -108,9 +117,13 @@ impl Controller {
             std::thread::sleep(Duration::from_millis(10));
         }
     }
+    /// # Errors
+    /// Returns an error when no result is selected, inputs cannot be read, or verification fails to execute.
     pub fn verify(&mut self, execute: bool) -> io::Result<String> {
         self.verify_cancellable(execute, &AtomicBool::new(false))
     }
+    /// # Errors
+    /// Returns an error when no result is selected, inputs cannot be read, or verification fails to execute.
     pub fn verify_cancellable(&mut self, execute: bool, cancel: &AtomicBool) -> io::Result<String> {
         let check = self
             .check

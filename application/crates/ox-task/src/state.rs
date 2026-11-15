@@ -10,7 +10,9 @@ pub enum TaskState {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct InvalidTransition;
 impl TaskState {
-    pub fn transition(&mut self, next: Self) -> Result<(), InvalidTransition> {
+    /// # Errors
+    /// Returns `InvalidTransition` when the requested edge is not allowed; preserves the state.
+    pub const fn transition(&mut self, next: Self) -> Result<(), InvalidTransition> {
         if matches!(
             (*self, next),
             (Self::Planned, Self::Running | Self::Cancelled)

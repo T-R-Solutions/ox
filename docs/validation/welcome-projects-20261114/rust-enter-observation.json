@@ -1,0 +1,17 @@
+{
+  "method": "Final offline locked Cargo suite, clippy and build reported by implementer; coordinator independently read raw output and compared source/binary manifest",
+  "source_manifest": "docs/validation/welcome-projects-20261114/enter-correction-inputs.json",
+  "tests": "41 unit + 4 integration + 1 shell passed; 1 helper intentionally ignored in parent runner, invoked by subprocess parent tests",
+  "source_identity_comparison": "All recorded implementation inputs matched actual current bytes at inspection",
+  "external_raw_logs": {
+    "/tmp/welcome-ui-enter-tests.log": "b3827fbfa68dd773c2be6db8e335702691ee4cc7dfa3cd01b6228fb87904e490",
+    "/tmp/welcome-ui-enter-clippy.log": "115d79ba0d764581e0c448a73949f59dd753521f0165ec45ac4b6f3999b6dc74",
+    "/tmp/welcome-ui-enter-build.log": "8415e0b178247973e0f4e0ff5a830a114214ffe96dee8864c6edc80f4b7bdf18"
+  },
+  "retention": "Temporary /tmp raw logs retained for independent review/validation; no permanent availability guarantee. Existing .local dates13/14 were not rotated or third date created in this task.",
+  "limitations": [
+    "Actual widget-tree/event regression is not native desktop execution",
+    "Native fixed-pointer observation is a separate oracle",
+    "No full scanners or broad product acceptance"
+  ]
+}

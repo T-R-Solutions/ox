@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "--offline",
+    "-p",
+    "ox-ui"
+  ],
+  "cwd": "application",
+  "exit": 0,
+  "log": ".local/logs/2026-11-14/folder-picker-cargo-test.log",
+  "log_sha256": "9034241f181dcbc227b8fa61e8327d09dcbe6dc42ee6b603e54bf000e51f0830",
+  "reason": "Independent final-source raw test observation after dialog argv correction; prior implementer summaries lack retained raw log",
+  "inputs": {
+    "application/crates/ox-ui/src/lib.rs": "61c23020682f6d9f5aaa1e343af54186d42d1288accd2469f7d10d6e10410e92",
+    "application/crates/ox-ui/src/shell.rs": "7bada6d11a830b4afd46a424ce94f638a43a1cdfee6c2e533aad72c417176aec",
+    "application/crates/ox-ui/src/desktop.rs": "8c492b4d681cd059a8f7857edc27173558589d9865cd3bace4af4660a1cfef1d",
+    "application/crates/ox-ui/src/local_task.rs": "be1c7329991f6a131108fccfb4088ddddf6b81ce2ff2e5ea467c321b10cda6cf",
+    "application/crates/ox-ui/src/design.rs": "034ada223df864e71d41de2afc32a7bedb571df99449e3cd30a2d82cd8851b00",
+    "application/crates/ox-ui/src/workbench.rs": "854d5a37d0dff90f50e24f05965417bc26237d2ec68a160be4dae6db2bdb9402",
+    "application/crates/ox-ui/src/tokens.rs": "7da9492b92a332568e495ba48569ef4a471f2cbbd0755cc8066580c144787431",
+    "application/crates/ox-ui/src/desktop/views.rs": "d70a6a5a5c85fe1b637730e930cbdf99b1d3db6937e0b95eaf52afd0f8d221a3",
+    "application/crates/ox-ui/src/desktop/folder_picker.rs": "ab8625cfd36b99b624b676c19f822c37e8cd61286105f1dadbe0a12f7032b6fb"
+  }
+}

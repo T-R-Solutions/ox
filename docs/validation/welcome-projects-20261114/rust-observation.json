@@ -1,0 +1,15 @@
+{
+  "method": "Final implementer offline locked Cargo suite/clippy/build; coordinator read raw logs and independently compared final input hashes",
+  "source_manifest": "docs/validation/welcome-projects-20261114/implementation-inputs.json",
+  "identity_comparison": "All current source/binary/manifest/lock/skill bytes match implementer-observed manifest",
+  "tests": "40 unit passed, 4 local-task integration passed, 1 shell passed; 1 subprocess helper intentionally ignored in parent runner and invoked by parent tests",
+  "logs": {
+    ".local/logs/2026-11-14/welcome-ui-cargo-test-final.log": "0f1ad66884e092b2aae77ebeac9b0ac41cadc8b3a20eff33b3d44106da1b0341",
+    ".local/logs/2026-11-14/welcome-ui-clippy-final.log": "d2c66aa8be48b0fbba829a1aa3cd8bec33a1708d762a75120adce2856d992e60",
+    ".local/logs/2026-11-14/welcome-ui-build-final.log": "04b97a26d6877e4c9b5fd5c460db8bf24fc0f0a2b14973149e80c1527bec46ac"
+  },
+  "limitations": [
+    "UI state tests use injected messages; graphical journeys require separate observation",
+    "No complete scanner or broad product/F0 acceptance"
+  ]
+}

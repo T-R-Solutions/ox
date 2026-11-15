@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64; Rust 1.99.1; Iced 0.14; isolated Mutter Wayland/tiny-skia",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "REQ-01",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-VISUAL-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "REQ-02",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-VISUAL-REVIEW"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "REQ-03",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-VISUAL-REVIEW"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-VISUAL-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Inspect current native sources, source inventory, contrast results, Rust logs and isolated native captures; separate unexecuted scenarios",
+      "observed_result": "Bounded implementation and native observation; full criteria remain incomplete. See review for individual gaps. Documentary successor reviewed; prior observations preserved and no current product acceptance inferred.",
+      "artifact": "docs/validation/visual-workbench-20261111/review.md",
+      "sha256": "36e0f92e131073d1a9e1e2445edff04f1d321b5fcdde6d26e60c6e62eff7677d",
+      "inputs": [
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "71a1b3865155056432e2a1c449b9451ed950587fb54a5153233593d2f709c624",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/native-visual-contract.md",
+          "sha256": "4c446d9dae4d715631a6aa962cf7f5cb70f7170d51a055ff3ed6ca5e13f596c5",
+          "role": "other"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "ea07bbcba1a3f17b7627bf4a03109b6b5b301ea58ab991ddb08a8016294ef1b3",
+          "role": "other"
+        },
+        {
+          "path": "DESIGN.md",
+          "sha256": "1a22ee925fa6ce09c8c49eef98cb4d4311722bfabc5e6181a44d57d50eeb10a7",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "04ef2b57aca9674f5f72888773a633fdff21c839c447b777f8b746e8347f7b26",
+          "role": "other"
+        },
+        {
+          "path": "application/Cargo.toml",
+          "sha256": "d5a0c6919cd516238ebfa4413d8a21416b3ef45f3b31e9d70929021226c73950",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/design.rs",
+          "sha256": "e48fa85d53f3a0bbfe4c2477adf2736d3d110d7f572ff0e02ebc00ae33e2859d",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/views.rs",
+          "sha256": "88b767d1340f36e448f8b5de4199b56a6f68287f12d1f64f4b9d35206201bd85",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "6c29a7d62b83523fe5840be74239f1723ef0f3fc4b5a444e197fd700e5230d38",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/lib.rs",
+          "sha256": "61c23020682f6d9f5aaa1e343af54186d42d1288accd2469f7d10d6e10410e92",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/local_task.rs",
+          "sha256": "093a03c0f2e76866b12c7c72429027b7b4c4bba9991ebcbe331ce4537d6b3dec",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/shell.rs",
+          "sha256": "f1ce99b38bfd35be57fef1e8cb019cd60973b7485ef1932b9d7eeb4d6e2a49e2",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "7da9492b92a332568e495ba48569ef4a471f2cbbd0755cc8066580c144787431",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/workbench.rs",
+          "sha256": "f04204b1cbdf0bf72568573d918285fadcf4ab02b16e87c75859c21f5f56e3c9",
+          "role": "other"
+        },
+        {
+          "path": "application/tools/check_contrast.py",
+          "sha256": "a57c2c86cec7ebf2a3dee130f1d437979ef4d884b856e6ee5012a0a68520598f",
+          "role": "other"
+        },
+        {
+          "path": "application/tools/native_review.py",
+          "sha256": "56d7e75522791ffc3c356df769115df51aee5736c39fd19406ccc3eb3e5b1c60",
+          "role": "other"
+        },
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "d61656b016362545c87a3991ed7414f4c237a4378e7faf698609bd44bf47f371",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-workbench-20261111/review.md",
+          "sha256": "36e0f92e131073d1a9e1e2445edff04f1d321b5fcdde6d26e60c6e62eff7677d",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/converge.md",
+          "sha256": "10b1f8c12e9d798ce3826483dd87f7cfd07f9a9306d72ebf66e9661732df5e55",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/plan.md",
+          "sha256": "4c6c51f4ef67592e7d09bb8bb7dcbe4781cb3322ed7427be9a3f87f1bdba0fb1",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/spec.md",
+          "sha256": "a6859b7d14d1c8dc34b687ba0bf124e7932fd26937bd73417629598e48d2154b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/tasks.md",
+          "sha256": "de2a932e057c7459de5223e84cb2d6a9ea00b9f7e1d4def705ea1ba99364476b",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/skill-native-visual-method/traceability.json",
+          "sha256": "fff484aff609377addd054495a99c7e668230f1f6ce723783b6a4c710e68d1ca",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No overall acceptance; historical evidence remains stale rather than silently renewed.",
+    "X11, assistive technology, full graphical failure matrix and remaining future-widget depth need further work."
+  ]
+}

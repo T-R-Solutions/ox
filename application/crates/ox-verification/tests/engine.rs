@@ -61,7 +61,7 @@ fn approval_requires_observation_not_completion_claims() {
     );
     assert_eq!(e.observations()[0].result(), ResultKind::Exited(Some(0)));
     assert_eq!(e.observations()[0].check(), &f.check);
-    assert!(!e.observations()[0].inputs().is_empty());
+    assert_ne!(e.observations()[0].inputs(), []);
 }
 #[test]
 fn failure_history_survives_repair_and_content_invalidation_is_selective() {

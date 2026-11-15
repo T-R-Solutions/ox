@@ -1,0 +1,46 @@
+# Specification: native visual workbench
+
+Authorized by the maintainer's visual development request of 2026-11-11.
+Full route: shared presentation contracts, interaction and planned surfaces change.
+The existing local Controller/Runtime/Engine remain the functional authority.
+
+- REQ-01: Maintain one English design reference reconciled from supplied v3/v4 sources, preserving institutional Light colors and proposal provenance.
+- REQ-02: Provide a native task-first workbench with navigation, shared components, three explicit themes and two densities; settings are session-only.
+- REQ-03: Preserve real workspace selection, controlled execution, cancellation, independent verification, freshness and supervised close.
+- REQ-04: Provide navigable native compositions for current and documented future capabilities; unavailable backends and demonstration data are explicit.
+- REQ-05: Preserve keyboard access, visible focus, readable localized content and adaptive layout without hiding critical actions.
+- REQ-06: Record source-bound visual, functional and contrast evidence; distinguish implementation from acceptance and retain previous observations.
+- AC-01 → REQ-01: Inspect consolidated DESIGN.md, reconciliation and source inventory; legacy values and unresolved proposal status remain traceable.
+- AC-02 → REQ-02: Exercise theme/density/navigation in native Iced and inspect representative rendered surfaces; no browser CSS runtime or remote service is introduced.
+- AC-03 → REQ-03: Execute correct/incorrect/missing/stale results and cancellation/close scenarios; actual artifact bytes and direct-child exit remain independent oracles.
+- AC-04 → REQ-04: Every documented capability has a source-backed destination and integration contract; planned screens never report fabricated backend success or metrics.
+- AC-05 → REQ-05: Exercise Tab/Shift+Tab, activation, escape and resizing; inspect focus and content at small/large sizes, themes and densities. Assistive-technology support requires separate observation.
+- AC-06 → REQ-06: Run relevant Rust and documentary checks and record exact inputs/results/limits; inherited F0 acceptance is not transferred to the redesigned GUI.
+
+No new backend engines, remote providers, persistence, sandbox, commit or publication.
+Planned surfaces are native presentation/integration contracts, not delivered engines.
+
+## Start-screen successor — 2026-11-14
+
+The current request selects S01 as a bounded continuation of REQ-02–06. Present an
+existing-directory entry point, an honest empty session, and a resume action for
+the currently validated directory. R4 entry hierarchy is the primary composition
+reference; R11/R12 refine contextual selection. Do not fabricate recent projects,
+backend readiness or persisted history. A typed draft is not a validated workspace.
+Navigation must remain free of task effects; directory validation keeps its existing
+transition to Tasks. The scoped SC-01–04 observations in the successor report support
+this delivery without replacing or reducing AC-01–06 above.
+
+## Folder chooser successor — 2026-11-14
+
+The requested S01 action “Escolher pasta…” opens a nonblocking directory dialog.
+Confirmation carries the exact selected path into existing validation and opens Tasks
+only on success, without execution. Cancellation preserves draft/selection/result.
+Failure leaves manual entry available and restores meaningful visible focus.
+Only one dialog is owned; stale replies after edits/navigation/close cannot change
+current state. Owned dialog cleanup is observed; non-UTF8 paths must not be silently
+converted to another path. The 640×480 expanded-details case remains accessible.
+
+Scoped criteria FP-01 integration/paths, FP-02 cancellation/lifecycle, FP-03 native
+keyboard/adaptive behavior and FP-04 regression/review/documentation are evaluated
+in the successor report without replacing the broader AC-01–06 gates.

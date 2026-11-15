@@ -1,0 +1,1386 @@
+[
+  {
+    "id": "V3-L21",
+    "heading": "Key Characteristics",
+    "source_line": 21,
+    "source_text": "- **Recognizable brand:** slate-blue shell `#243C59`, with an additional deep tone `#182535` visible in the provided screenshots; primary action `#28679F`.",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L22",
+    "heading": "Key Characteristics",
+    "source_line": 22,
+    "source_text": "- **Distinct surfaces:** white editor, cool-gray navigation, neutral tool windows, and deep-blue chrome; avoid a continuous pale-blue background across the whole workspace.",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L23",
+    "heading": "Key Characteristics",
+    "source_line": 23,
+    "source_text": "- **Expressive semantic triad:** green for verification/success, amber for alerts/attention, and red for failures/destructive actions. Use desaturated ramps and contextual states rather than pure, saturated colors.",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L24",
+    "heading": "Key Characteristics",
+    "source_line": 24,
+    "source_text": "- **Information-first hierarchy:** task title, file, source line, status, and evidence take precedence over decoration.",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L25",
+    "heading": "Key Characteristics",
+    "source_line": 25,
+    "source_text": "- **IDE-appropriate density:** compact but readable tables, trees, tabs, gutters, timelines, and inspectors; structured panels rather than a collection of unrelated cards.",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L26",
+    "heading": "Key Characteristics",
+    "source_line": 26,
+    "source_text": "- **Traceable AI output:** `inferred` (violet/dashed) must be distinct from `verified` (green/icon/evidence), and `implemented` must be distinct from `accepted`.",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L27",
+    "heading": "Key Characteristics",
+    "source_line": 27,
+    "source_text": "- **Functional typography:** Inter for the interface and JetBrains Mono for the editor, **as a proposed alignment** with the screenshots and contemporary IDE conventions; IBM Plex Sans/Mono remain recorded as the legacy typefaces.",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L28",
+    "heading": "Key Characteristics",
+    "source_line": 28,
+    "source_text": "- **Decoupled themes:** Light, Dark, and High Contrast have role-specific tokens; the editor syntax scheme is separate from the shell theme.",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L29",
+    "heading": "Key Characteristics",
+    "source_line": 29,
+    "source_text": "- **Understated technical aesthetic:** thin outlines, minimal shadows, precise geometry, and restrained transitions.",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L39",
+    "heading": "Comparative References (Documented Facts vs. Ox Decisions)",
+    "source_line": 39,
+    "source_text": "**Official comparison references:** [JetBrains New UI](https://www.jetbrains.com/help/idea/new-ui.html), [JetBrains Islands](https://blog.jetbrains.com/platform/2025/09/islands-theme-the-new-look-coming-to-jetbrains-ides/), [JetBrains editor customization](https://www.jetbrains.com/help/idea/customize-editor.html), [WebStorm New UI](https://www.jetbrains.com/help/webstorm/new-ui.html), [Rider New UI](https://www.jetbrains.com/help/rider/New_UI.html), [PyCharm Themes](https://www.jetbrains.com/help/pycharm/user-interface-themes.html), [Visual Studio 2026 Release Notes](https://learn.microsoft.com/visualstudio/releases/2026/release-notes), [Fluent Theme Tokens](https://learn.microsoft.com/en-us/visualstudio/extensibility/ux-guidelines/theme-color-token-reference), [Fonts & Formatting for Visual Studio](https://learn.microsoft.com/en-us/visualstudio/extensibility/ux-guidelines/fonts-and-formatting-for-visual-studio), [Microsoft Cascadia](https://github.com/microsoft/cascadia-code).",
+    "target": "DESIGN.md §2 Identity; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L45",
+    "heading": "2. Color Palette & Roles",
+    "source_line": 45,
+    "source_text": "**Master rule:** retain the institutional blue identity, but **do not make every surface blue**. Every color must have an unambiguous role. Status colors and category colors represent different dimensions. All new values below are **original Ox proposals**, not colors extracted from JetBrains or Microsoft products.",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L82",
+    "heading": "Surface & Background",
+    "source_line": 82,
+    "source_text": "**Recommended Light composition:** `#243C59` (chrome), `#F2F4F6` (navigation), `#F7F8FA` (workbench), and `#FFFFFF` (editor). `#EDF3FA` remains a legacy brand color for limited use; its HEX and token remain unchanged.",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L109",
+    "heading": "Semantic & Accent — Green, Amber/Yellow, and Red",
+    "source_line": 109,
+    "source_text": "**Semantic-triad tokens:**",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L111",
+    "heading": "Semantic & Accent — Green, Amber/Yellow, and Red",
+    "source_line": 111,
+    "source_text": "- **Green:** `--ox-state-success` (`#226B50`), `--ox-state-success-vivid` (`#2F8060`), `--ox-state-success-soft` (`#EDF6F0`), `--ox-state-success-border` (`#8BBAA4`).",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L112",
+    "heading": "Semantic & Accent — Green, Amber/Yellow, and Red",
+    "source_line": 112,
+    "source_text": "- **Amber:** `--ox-state-warning` (`#80521D`), `--ox-state-warning-vivid` (`#A26720`), `--ox-state-warning-soft` (`#FFF4E3`), `--ox-state-warning-border` (`#D9B579`).",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L113",
+    "heading": "Semantic & Accent — Green, Amber/Yellow, and Red",
+    "source_line": 113,
+    "source_text": "- **Red:** `--ox-state-error` (`#A53848`), `--ox-state-error-vivid` (`#C14B58`), `--ox-state-error-soft` (`#FCEEF1`), `--ox-state-error-border` (`#DFA4AC`).",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L114",
+    "heading": "Semantic & Accent — Green, Amber/Yellow, and Red",
+    "source_line": 114,
+    "source_text": "- **Preserved violet:** `--ox-state-inferred` (`#775C8B`) and `--ox-state-inferred-soft` (`#F3EEF7`).",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L116",
+    "heading": "Semantic & Accent — Green, Amber/Yellow, and Red",
+    "source_line": 116,
+    "source_text": "**Usage and hierarchy rules:**",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L129",
+    "heading": "Gradient System",
+    "source_line": 129,
+    "source_text": "- **Default:** solid surfaces and tonal contrast, with **no persistent gradients** in editor, explorer, tool windows, or chrome.",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L130",
+    "heading": "Gradient System",
+    "source_line": 130,
+    "source_text": "- **Exceptions:** an explanatory illustration or diagram may use a subtle transition if it remains legible and is technically justified.",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L131",
+    "heading": "Gradient System",
+    "source_line": 131,
+    "source_text": "- **Prohibited:** decorative generic green→amber→red gradients; risk/heat scales must expose values, thresholds, period, and legend.",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L231",
+    "heading": "Dark Theme — Dedicated Tokens, Not Automatic Inversion",
+    "source_line": 231,
+    "source_text": "**Prototype proposal**, not an approved theme. Dark preserves each token's role while mapping it to new values for legibility. Overrides must not leak into Light; dark state text colors must not be automatically reused on dark surfaces.",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L260",
+    "heading": "Dark Theme — Dedicated Tokens, Not Automatic Inversion",
+    "source_line": 260,
+    "source_text": "**Dark requirements:** also define hover, pressed, focus, disabled, inactive selection, menus, overlays, diff, charts, syntax highlighting, and domain states. The table above is a starting point, **not an exhaustive final specification**.",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L283",
+    "heading": "Contrast & Accessibility Rules",
+    "source_line": 283,
+    "source_text": "**Targets:** ≥4.5:1 for normal text, ≥3:1 for large text under the relevant WCAG criterion, and ≥3:1 for essential non-text information where applicable. Provide a perceptible ~2px focus outline or an appropriately tested equivalent. A `#E8F2FD` selection background requires an additional marker, text/icon, or structural cue. Opaque calculations do not cover antialiasing, overlays, disabled states, and native-rendering details. Do not claim full WCAG conformance from a token-pair matrix alone.",
+    "target": "DESIGN.md §4 Color roles; 5 tokens",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L290",
+    "heading": "Font Family",
+    "source_line": 290,
+    "source_text": "**Version 3.0 proposal (not yet deployed):**",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L292",
+    "heading": "Font Family",
+    "source_line": 292,
+    "source_text": "- **Primary UI:** **Inter** `400 / 500 / 600` — headings, trees, commands, forms, results, navigation, and tool windows. It matches the font visible in the Open Design previews and the family used in the JetBrains New UI. It is **not an officially approved Ox typeface** until accepted.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L293",
+    "heading": "Font Family",
+    "source_line": 293,
+    "source_text": "- **Code and monospaced data:** **JetBrains Mono** `400 / 600` — editor, diffs, logs, console, trace lines, paths, and fixed-alignment tabular values. Make ligatures a user preference; the proposed default is **off** for literal comparison of operators.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L294",
+    "heading": "Font Family",
+    "source_line": 294,
+    "source_text": "- **Legacy compatibility:** **IBM Plex Sans / IBM Plex Mono**, declared in the previous `DESIGN_.md`, **must not be erased**. Keep them in existing versions/fallbacks until the typography migration is approved.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L295",
+    "heading": "Font Family",
+    "source_line": 295,
+    "source_text": "- **Microsoft reference:** **Segoe UI** is the traditionally documented Windows environment font for Visual Studio; **Cascadia Mono / Cascadia Code** are editor alternatives. Do not assume an immutable single font in Visual Studio 2026, since users can customize their font settings.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L296",
+    "heading": "Font Family",
+    "source_line": 296,
+    "source_text": "- **Licensing and redistribution:** check licensing and packaging before shipping any font. Inter and JetBrains Mono are openly distributed, but their license notices must still be respected. Do not bundle proprietary system fonts without the required rights.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L316",
+    "heading": "Principles",
+    "source_line": 316,
+    "source_text": "- **Distinguish UI from code:** use proportional text for the interface and monospaced text for the editor. Do not turn the entire Ox interface monospaced as a styling gimmick.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L317",
+    "heading": "Principles",
+    "source_line": 317,
+    "source_text": "- **Avoid arbitrary mixing:** use one primary UI family and one code family, with consistent fallback chains.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L318",
+    "heading": "Principles",
+    "source_line": 318,
+    "source_text": "- **Validate real glyph metrics:** test `0/O`, `1/l/I`, `{}`, `[]`, `=>`, `!=`, pt-BR diacritics, arrows, and Unicode glyphs. Prefer a slashed zero if an appropriate font variant exists.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L319",
+    "heading": "Principles",
+    "source_line": 319,
+    "source_text": "- **Configurable sizes:** scaling/zoom must preserve alignment, focus, tooltips, and resizable windows; Compact mode should primarily adjust spacing rather than compromise code readability.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L320",
+    "heading": "Principles",
+    "source_line": 320,
+    "source_text": "- **Diagnostic text:** always identify severity with labels, symbols, prefixes, or icons in addition to color.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L321",
+    "heading": "Principles",
+    "source_line": 321,
+    "source_text": "- **Confirm loaded fonts:** silent fallback can cause clipping and invalidate layout tests. Verify on Windows, and on macOS/Linux when those platforms are in scope.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L325",
+    "heading": "Note on Font Substitutes",
+    "source_line": 325,
+    "source_text": "- UI: `Inter → IBM Plex Sans → Segoe UI → system-ui → sans-serif`.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L326",
+    "heading": "Note on Font Substitutes",
+    "source_line": 326,
+    "source_text": "- Editor: `JetBrains Mono → IBM Plex Mono → Cascadia Mono → Consolas → monospace`.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L327",
+    "heading": "Note on Font Substitutes",
+    "source_line": 327,
+    "source_text": "- **Changing typography is a design decision, not an automatic consequence of referencing JetBrains/Microsoft products.** Conduct visual A/B reviews involving glyph widths, line heights, diacritics, extended reading, and clipping before acceptance.",
+    "target": "DESIGN.md §6 Typography; 5 independent editor theme",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L362",
+    "heading": "Cards & Containers",
+    "source_line": 362,
+    "source_text": "- **Workbench panels:** neutral or white surface, subtle border, 4–6px radius; prioritize dividers and docking. Do not turn every feature into a rounded card.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L363",
+    "heading": "Cards & Containers",
+    "source_line": 363,
+    "source_text": "- **Tool windows:** compact header, neutral/category icon when warranted, visible close/dock affordances, dense content.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L364",
+    "heading": "Cards & Containers",
+    "source_line": 364,
+    "source_text": "- **Code / diff / terminal:** separate reading areas and gutters through tone; no shadows between code lines.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L365",
+    "heading": "Cards & Containers",
+    "source_line": 365,
+    "source_text": "- **Evidence / impact groups:** localized copper markers and document-like typography; explicitly identify missing validation.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L366",
+    "heading": "Cards & Containers",
+    "source_line": 366,
+    "source_text": "- **Status callouts:** soft green/amber/red background with an icon and heading; use only for state-related information, never as a full-window foundation.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L367",
+    "heading": "Cards & Containers",
+    "source_line": 367,
+    "source_text": "- **Agent card (if it already exists in the prototype):** agent role, execution state, progress, and evidence are visually separate fields. Correct inaccurate visual classification without adding new functionality.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L371",
+    "heading": "Inputs & Forms",
+    "source_line": 371,
+    "source_text": "- Use `--ox-input-bg` as the background and `--ox-input-border` for functional outlines; provide persistent labels when needed for context and secondary helper text.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L372",
+    "heading": "Inputs & Forms",
+    "source_line": 372,
+    "source_text": "- Provide a ~2px blue focus ring or a tested equivalent; use a red outline **and an explicit contextual message** for errors.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L373",
+    "heading": "Inputs & Forms",
+    "source_line": 373,
+    "source_text": "- Search and command palette should accommodate paths/commands, show shortcuts, support keyboard navigation, and clearly indicate the active result.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L374",
+    "heading": "Inputs & Forms",
+    "source_line": 374,
+    "source_text": "- Checkbox, radio, and toggle states must differ geometrically; on/off must not rely only on red and green.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L375",
+    "heading": "Inputs & Forms",
+    "source_line": 375,
+    "source_text": "- Settings should maintain stable categories and professional density instead of colorful cards for every option.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L379",
+    "heading": "Navigation",
+    "source_line": 379,
+    "source_text": "- **Titlebar:** `--ox-shell` with light text. Reserve `--ox-shell-deep` for the rail or a depth accent; avoid two competing brand bars.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L380",
+    "heading": "Navigation",
+    "source_line": 380,
+    "source_text": "- **Activity rail:** ~48px wide, monochromatic inactive icons, active destination indicated with blue/shape. States may appear as small markers without coloring every icon.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L381",
+    "heading": "Navigation",
+    "source_line": 381,
+    "source_text": "- **Explorer:** `--ox-surface-nav`; selection `#E8F2FD` **plus** a blue bar/icon or selected text treatment; compact rows.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L382",
+    "heading": "Navigation",
+    "source_line": 382,
+    "source_text": "- **Tabs:** neutral base; active tab indicated by stronger text weight and a ~2px blue line. Dirty/modified, error, and active states must keep separate meanings.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L383",
+    "heading": "Navigation",
+    "source_line": 383,
+    "source_text": "- **Tool-window headers:** `--ox-surface-recessed` or `--ox-surface-workbench`, restrained actions, consistent borders.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L384",
+    "heading": "Navigation",
+    "source_line": 384,
+    "source_text": "- **Status bar:** summarize current state, branch, diagnostics, and context without becoming a multicolored ribbon; apply green/amber/red only to meaningful diagnostics.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L429",
+    "heading": "Spacing System",
+    "source_line": 429,
+    "source_text": "- Base unit: **4px**; logical-pixel scale `4 / 8 / 12 / 16 / 20 / 24 / 32 / 40`.",
+    "target": "DESIGN.md §7 Geometry",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L430",
+    "heading": "Spacing System",
+    "source_line": 430,
+    "source_text": "- Use `8–12px` between related controls and `16–24px` between tool sections. Make optical adjustments only when justified.",
+    "target": "DESIGN.md §7 Geometry",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L431",
+    "heading": "Spacing System",
+    "source_line": 431,
+    "source_text": "- **Comfortable** and **Compact** density modes primarily change internal spacing, control/row heights, and progressive disclosure. They must not indiscriminately shrink the typography.",
+    "target": "DESIGN.md §7 Geometry",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L464",
+    "heading": "Border Radius Scale",
+    "source_line": 464,
+    "source_text": "**Do not turn the IDE into a collection of pills and 16–24px-radius cards.**",
+    "target": "DESIGN.md §7 Geometry",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L478",
+    "heading": "6. Depth & Elevation",
+    "source_line": 478,
+    "source_text": "**Preserved legacy shadow references:** `0 1px 2px #243C5905` and `0 8px 24px #243C5910`. Use the first for minimally raised surfaces and the second for menus/dialogs. Shadows should **clarify depth**, not make every docked panel resemble a SaaS card.",
+    "target": "DESIGN.md §7 Geometry / restrained depth",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L482",
+    "heading": "Decorative Depth",
+    "source_line": 482,
+    "source_text": "- Avoid *glassmorphism*, glow, or gradient backgrounds as the standard editor language.",
+    "target": "DESIGN.md §7 Geometry / restrained depth",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L483",
+    "heading": "Decorative Depth",
+    "source_line": 483,
+    "source_text": "- Motion baseline: `fast 150ms`, `base 230ms`, retained from the legacy specification; reduce or remove transitions when reduced motion is preferred.",
+    "target": "DESIGN.md §7 Geometry / restrained depth",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L484",
+    "heading": "Decorative Depth",
+    "source_line": 484,
+    "source_text": "- Avoid continuous animation in agent metrics and logs. New lines may appear with minimal updates without distracting from reading.",
+    "target": "DESIGN.md §7 Geometry / restrained depth",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L533",
+    "heading": "Touch Targets / Pointer Targets",
+    "source_line": 533,
+    "source_text": "- Primary desktop environment: icon hitboxes generally ~28–32px, with functional keyboard support, hover, context menus, and tooltips.",
+    "target": "DESIGN.md §7 Adaptive behavior; 10 accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L534",
+    "heading": "Touch Targets / Pointer Targets",
+    "source_line": 534,
+    "source_text": "- If a touch mode exists, expand hit targets and spacing specifically; **do not claim a universal 44px desktop target requirement**.",
+    "target": "DESIGN.md §7 Adaptive behavior; 10 accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L535",
+    "heading": "Touch Targets / Pointer Targets",
+    "source_line": 535,
+    "source_text": "- Respect DPI, zoom, configurable font sizes, and system preferences across multiple monitors.",
+    "target": "DESIGN.md §7 Adaptive behavior; 10 accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L547",
+    "heading": "Image / Graph / Diff Behavior",
+    "source_line": 547,
+    "source_text": "- **Graphs:** keep pan/zoom and a legend discoverable; do not replace actual relationships with photos or generic charts.",
+    "target": "DESIGN.md §7 Adaptive behavior; 10 accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L548",
+    "heading": "Image / Graph / Diff Behavior",
+    "source_line": 548,
+    "source_text": "- **Diff:** prefer side-by-side where space allows, with a suitable presentation in narrower windows. Preserve addition/deletion semantics.",
+    "target": "DESIGN.md §7 Adaptive behavior; 10 accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L549",
+    "heading": "Image / Graph / Diff Behavior",
+    "source_line": 549,
+    "source_text": "- **Tables/logs:** use scrolling/virtualization when truly supported, without inventing performance improvements.",
+    "target": "DESIGN.md §7 Adaptive behavior; 10 accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L550",
+    "heading": "Image / Graph / Diff Behavior",
+    "source_line": 550,
+    "source_text": "- **Screenshots/references:** capture at identical dimensions, data, and zoom for objective comparisons.",
+    "target": "DESIGN.md §7 Adaptive behavior; 10 accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L577",
+    "heading": "Example Component Prompts",
+    "source_line": 577,
+    "source_text": "- **Master:** “Design an Ox desktop IDE in Light mode with a `#243C59` titlebar, `#182535` rail, `#F2F4F6` explorer, `#FFFFFF` editor, and `#F7F8FA` workbench. Use `#28679F` blue only for actions and selection, teal for execution logs, and green for confirmed verification. Use Inter for UI and JetBrains Mono for code. Preserve professional IDE density.”",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L578",
+    "heading": "Example Component Prompts",
+    "source_line": 578,
+    "source_text": "- **Review/Diff:** “Create an engineering diff with gutters, hunks, and verifiable states. Use `#EDF6F0` for added-line backgrounds and `#2F8060` markers; use `#FCEEF1` for removed lines and `#C14B58` markers; use `#FFF4E3` for warnings. Never confuse ‘implemented’ with ‘verified’.”",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L579",
+    "heading": "Example Component Prompts",
+    "source_line": 579,
+    "source_text": "- **Agents/Traces:** “Present agents as inspectable processes. Running uses teal `#216C73`, verified uses green `#226B50`, warning uses amber `#80521D`, and failed uses red `#A53848`. Give every state a label and icon. Preserve evidence and technical hierarchy.”",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L580",
+    "heading": "Example Component Prompts",
+    "source_line": 580,
+    "source_text": "- **Architecture:** “Render a structural graph on a neutral canvas with indigo `#5D5E9F` nodes, copper `#985F40` impact indicators, and dashed violet `#775C8B` for inference. Include a legend, selection indicators, and readable labels.”",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L581",
+    "heading": "Example Component Prompts",
+    "source_line": 581,
+    "source_text": "- **Settings / Themes:** “Create a compact appearance panel offering Light, Dark, and High Contrast themes, states, and previews of actual product surfaces. Preserve the institutional blue and test Inter/JetBrains Mono without removing legacy IBM Plex until approved.”",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L611",
+    "heading": "Quality Gates / Acceptance Criteria",
+    "source_line": 611,
+    "source_text": "**Acceptance veto:** unreadable engineering content, insufficient contrast where applicable, invisible selection/focus, false verification claims, unreachable critical actions, meaningless color usage, severe layout regressions, or misleading status. A visually harmonious screenshot is not sufficient evidence of usability.",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L615",
+    "heading": "Known Gaps / Provenance",
+    "source_line": 615,
+    "source_text": "- **Reviewed materials:** provided `DESIGN_.md` v2.0, Open Design screenshots, two example DESIGN.md files (Apple and Airbnb) **used only as structural references**, and the JetBrains/Microsoft documentation linked above.",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L616",
+    "heading": "Known Gaps / Provenance",
+    "source_line": 616,
+    "source_text": "- **Not inspected in this design update:** actual Rust/Iced code, full original R2–R12 assets, runtime font settings, telemetry, user testing, or compiled native styles. Do not infer implementation results.",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L617",
+    "heading": "Known Gaps / Provenance",
+    "source_line": 617,
+    "source_text": "- **New HEX status:** proposed Ox design decisions; not copied from competitors or approved in the running application.",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L618",
+    "heading": "Known Gaps / Provenance",
+    "source_line": 618,
+    "source_text": "- **Font status:** Inter appears in the Open Design previews; IBM Plex is specified in the legacy design document. Inter/JetBrains Mono is a proposal aligned with the references and requires acceptance before replacing the existing configuration.",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L619",
+    "heading": "Known Gaps / Provenance",
+    "source_line": 619,
+    "source_text": "- **Themes:** Dark and High Contrast still need final mappings and native tests; the Dark table is a **starter**, not a finished theme.",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L620",
+    "heading": "Known Gaps / Provenance",
+    "source_line": 620,
+    "source_text": "- **Contrast limitations:** the HEX examples use opaque pairs. Transparency, antialiasing, disabled treatments, overlays, and editor-specific backgrounds require separate validation.",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L621",
+    "heading": "Known Gaps / Provenance",
+    "source_line": 621,
+    "source_text": "- **Design-only scope:** this document neither creates nor guarantees new functionality, improved performance, integrations, or AI-agent behavior.",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V3-L640",
+    "heading": "Official Reference Links",
+    "source_line": 640,
+    "source_text": "**Final handoff:** Version 3.0 aims to make Ox **less monochromatic without sacrificing its blue identity**, while improving information hierarchy, consistency, and verifiable semantic distinctions. Preserve existing product behavior until specific changes are approved.",
+    "target": "DESIGN.md §12 Review; 13 handoff; examples remain non-normative",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L36",
+    "heading": "1. Identidade, propósito e princípio estético",
+    "source_line": 36,
+    "source_text": "**Conceito visual:** **Ox Signature Blue · Chromatic Engineering Workbench** — uma bancada de engenharia sóbria, técnica, orientada a artefatos verificáveis, com identidade azul, áreas de leitura neutras e cor usada como informação. O projeto visual deve ser reconhecível mesmo sem logotipo: barra de contexto azul-ardósia, rail contido, explorer com seleção precisa, editor dominante, tool windows compactas, inspetor de evidências e grafos de relações com semântica explícita.",
+    "target": "DESIGN.md §2 Identity",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L83",
+    "heading": "2.1. Entidades visuais",
+    "source_line": 83,
+    "source_text": "**Invariantes bloqueantes:** `implemented ≠ verified ≠ accepted`; `unknown ≠ inferred`; `running ≠ success`; `role ≠ state`; `requested ≠ confirmed`; `observed ≠ estimated`; `0 ≠ no data`; `count(steps completed) ≠ time remaining`; `simulation ≠ real backend`.",
+    "target": "DESIGN.md §3 Truth states",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L106",
+    "heading": "2.2. Matriz canônica de comunicação",
+    "source_line": 106,
+    "source_text": "**Estado técnico versus cor de domínio:** teal execução ≠ teal categoria arquivo; indigo arquitetura ≠ violeta inferência; copper impacto ≠ âmbar alerta. Forma, legenda e localização resolvem ambiguidades. `syntax-green` de uma string não é estado `verified`.",
+    "target": "DESIGN.md §3 Truth states",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L116",
+    "heading": "3.1. Assinatura Ox Signature Blue (`LOCKED` — Light)",
+    "source_line": 116,
+    "source_text": "**Estes valores Light e seus significados legados são preservados integralmente:**",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L147",
+    "heading": "3.2. Superfícies neutras e hierarquia",
+    "source_line": 147,
+    "source_text": "- Shell: `#243C59`; rail profundo: `#182535`.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L148",
+    "heading": "3.2. Superfícies neutras e hierarquia",
+    "source_line": 148,
+    "source_text": "- Navegação/explorer: `#F2F4F6`; workbench: `#F7F8FA`; editor/diff: `#FFFFFF`; reentrâncias/cabeçalhos de tools: `#E8ECEF`.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L149",
+    "heading": "3.2. Superfícies neutras e hierarquia",
+    "source_line": 149,
+    "source_text": "- Bordas decorativas: `#CBD8E6` / `#CDD4DB`; bordas funcionais e inputs: `#7A8798` quando necessário para percepção do contorno.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L150",
+    "heading": "3.2. Superfícies neutras e hierarquia",
+    "source_line": 150,
+    "source_text": "- Texto: `#263548`, secundário `#43566E`, metadata `#52657C`.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L184",
+    "heading": "3.5. Direções A/B/C para R13 — não confundir recomendação com aprovação",
+    "source_line": 184,
+    "source_text": "**O candidato B NÃO é padrão vigente da R12.** Há flag R12 `?categoryTrial=teal`/`data-category-trial=teal` experimental e desligada por padrão. Na projeção deste pacote, o mesmo conceito fica condicionado a `data-ox-direction=\"chromatic-b\"`, separado das cores de estado. Dark/HC possuem variantes próprias **ainda não aprovadas**, presentes em `data/design-tokens.json`. Não adotar `color-mix`/`oklch` como saída nativa sem verificar o renderizador; exportar sRGB final.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L186",
+    "heading": "3.5. Direções A/B/C para R13 — não confundir recomendação com aprovação",
+    "source_line": 186,
+    "source_text": "**Matriz de decisão cromática:** verificar se os usuários conseguem reconhecer tipos de arquivos, localizar bloqueios e distinguir estados em conteúdo equivalente. **Não usar porcentagem de pixels coloridos como indicador de qualidade.** Uma opção mais contida pode ser melhor que uma paleta mais rica se as tarefas forem mais rápidas e menos confusas.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L190",
+    "heading": "3.6. Sintaxe, dados e status nunca se fundem",
+    "source_line": 190,
+    "source_text": "- Sintaxe do editor tem paleta independente de shell e status: `keyword`, `type`, `function`, `string`, `comment`, `number`, `diagnostic`. A R12 conserva destaques sintéticos; migração requer teste com Rust, C#, Python, TypeScript e diffs reais.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L191",
+    "heading": "3.6. Sintaxe, dados e status nunca se fundem",
+    "source_line": 191,
+    "source_text": "- Data-viz requer significação por série, legenda, forma e unidade. Série principal pode ser azul e segunda série cinza; teal só se existir uma segunda série verdadeira. Inferência violeta não serve de cor arbitrária de gráfico.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L192",
+    "heading": "3.6. Sintaxe, dados e status nunca se fundem",
+    "source_line": 192,
+    "source_text": "- Git: `modified/staged/conflict/untracked` não são `success/failure` indiscriminados; indicar status Git por símbolo e letra/tooltip.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L193",
+    "heading": "3.6. Sintaxe, dados e status nunca se fundem",
+    "source_line": 193,
+    "source_text": "- High Contrast: não inverter pixel por filtro. Usar papéis definidos e, quando suportado, cores/preferências acessíveis do sistema operacional.",
+    "target": "DESIGN.md §4 Color roles",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L197",
+    "heading": "4. Arquitetura dos tokens e dos temas",
+    "source_line": 197,
+    "source_text": "**Cadeia única de decisão:** `DESIGN.md (semântica) → data/design-tokens.json (dados controlados e status) → assets/tokens.generated.css + data/native-tokens-manifest.json (saídas geradas) → componentes → snapshots/QA`. O build não edita a especificação. Toda mudança de token exige PR de decisão e regeneração dos artefatos. Evitar hexadecimais embutidos em cada tela.",
+    "target": "DESIGN.md §5 Token architecture",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L199",
+    "heading": "4. Arquitetura dos tokens e dos temas",
+    "source_line": 199,
+    "source_text": "- **Primitivos:** valores sRGB opacos, raios, espaçamentos, durações, tamanhos.",
+    "target": "DESIGN.md §5 Token architecture",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L200",
+    "heading": "4. Arquitetura dos tokens e dos temas",
+    "source_line": 200,
+    "source_text": "- **Papéis:** `shell_bg`, `editor_bg`, `text_primary`, `success_fg`, `category_code_fg` etc. — representados em CSS por `--ox-shell-bg`, `--ox-editor-bg`, etc.",
+    "target": "DESIGN.md §5 Token architecture",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L201",
+    "heading": "4. Arquitetura dos tokens e dos temas",
+    "source_line": 201,
+    "source_text": "- **Componentes:** `data/role-map.json` relaciona cada família aos papéis permitidos. Exceções exigem justificativa.",
+    "target": "DESIGN.md §5 Token architecture",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L202",
+    "heading": "4. Arquitetura dos tokens e dos temas",
+    "source_line": 202,
+    "source_text": "- **Temas:** `light`, `dark`, `hc`; todos definem os **mesmos 63 papéis**, com valores específicos. Dark e HC são candidatos de avaliação, não equivalentes ao Light por inversão automática.",
+    "target": "DESIGN.md §5 Token architecture",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L203",
+    "heading": "4. Arquitetura dos tokens e dos temas",
+    "source_line": 203,
+    "source_text": "- **Direções:** A como composição comparativa, B **opt-in** para avaliação; C não possui especificação aprovada.",
+    "target": "DESIGN.md §5 Token architecture",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L204",
+    "heading": "4. Arquitetura dos tokens e dos temas",
+    "source_line": 204,
+    "source_text": "- **Densidade:** Comfortable/Compact governa espaçamentos e geometria; não governa o tamanho semântico do texto.",
+    "target": "DESIGN.md §5 Token architecture",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L205",
+    "heading": "4. Arquitetura dos tokens e dos temas",
+    "source_line": 205,
+    "source_text": "- **Precedência de estilo:** token de papel → mapeamento de tema → componente/variante → estado de interação → preferência acessível da plataforma. **Permissão e confirmação do domínio prevalecem** sobre tratamento estético.",
+    "target": "DESIGN.md §5 Token architecture",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L228",
+    "heading": "5.1. Posição sobre fontes — conflito histórico resolvido com evidência",
+    "source_line": 228,
+    "source_text": "- **Baseline executável da R12:** `IBM Plex Sans` (UI) + `IBM Plex Mono` (código), com WOFF2/licenças dentro dos protótipos enviados. **Esta é a tipografia de compatibilidade atual.**",
+    "target": "DESIGN.md §6 Typography",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L229",
+    "heading": "5.1. Posição sobre fontes — conflito histórico resolvido com evidência",
+    "source_line": 229,
+    "source_text": "- **Estudo v3.0 / referência de previews:** `Inter` (UI) + `JetBrains Mono` (código) é uma **proposta**. Não substituir IBM Plex, nem afirmar que os previews ou fontes da concorrência aprovam a migração.",
+    "target": "DESIGN.md §6 Typography",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L230",
+    "heading": "5.1. Posição sobre fontes — conflito histórico resolvido com evidência",
+    "source_line": 230,
+    "source_text": "- Um A/B tipográfico deve testar larguras de árvore, menus, Tarefa/Trace, editor, caracteres pt-BR, `0/O`, `1/l/I`, `{}`, operadores, código com ligaturas desabilitadas por padrão, Windows, zoom e DPI. Se não houver ganho comprovado de leitura/consistência, **preservar IBM Plex**.",
+    "target": "DESIGN.md §6 Typography",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L231",
+    "heading": "5.1. Posição sobre fontes — conflito histórico resolvido com evidência",
+    "source_line": 231,
+    "source_text": "- Não incluir fontes comerciais, de sistema ou arquivos WOFF2 em novos pacotes sem conferir as licenças. Este kit **não redistribui fontes**.",
+    "target": "DESIGN.md §6 Typography",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L257",
+    "heading": "6. Geometria, densidade, alinhamento e profundidade",
+    "source_line": 257,
+    "source_text": "**Grid:** 4 px, com progressão recomendada `4 / 8 / 12 / 16 / 20 / 24 / 32 / 40`. Padrão: 8–12 px dentro de grupo; 16–24 px separando grupos. Guias são baseline, não exigências universalmente rígidas.",
+    "target": "DESIGN.md §7 Geometry",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L273",
+    "heading": "6. Geometria, densidade, alinhamento e profundidade",
+    "source_line": 273,
+    "source_text": "**Raios:** 0 (editor/aba acoplada), 4 (chips), 6 (botões/fields/painéis utilitários), 8 (menus/popovers), 12 (nós ou exceção). Evitar pílulas em toda a UI e caixas com 16–24 px de raio. **Profundidade:** flat + borda fina em workbench; sombra leve só em popovers e modal; sem glassmorphism/painéis flutuantes por toda a tela.",
+    "target": "DESIGN.md §7 Geometry",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L298",
+    "heading": "7.1. Chrome e navegação",
+    "source_line": 298,
+    "source_text": "- **Titlebar:** shell `#243C59`, marca discreta, projeto/tarefa/contexto, busca/comandos e ações de janela. Não duplicar o título em duas barras fortes sem necessidade.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L299",
+    "heading": "7.1. Chrome e navegação",
+    "source_line": 299,
+    "source_text": "- **Rail:** ícones lineares inativos monocromáticos, seleção azul + geometria; tooltip e label acessíveis. Não colorir ícone de seção como estado do agente.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L300",
+    "heading": "7.1. Chrome e navegação",
+    "source_line": 300,
+    "source_text": "- **Explorer:** árvore com 28–32 px, tipologia arquivo por silhueta/extensão/ícone, seleção Ice + barra azul, badges Git independentes. Multi-seleção/foco não devem ser parecidos.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L301",
+    "heading": "7.1. Chrome e navegação",
+    "source_line": 301,
+    "source_text": "- **Tab strip:** ativo = nome/linha azul de ~2px; dirty marker ≠ erro ≠ ativo; overflow/fechar/atalho testados.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L302",
+    "heading": "7.1. Chrome e navegação",
+    "source_line": 302,
+    "source_text": "- **Status bar:** resumo branch/tarefa/execução/diagnóstico, poucas cores semânticas, sem animação contínua.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L303",
+    "heading": "7.1. Chrome e navegação",
+    "source_line": 303,
+    "source_text": "- **Command palette:** escopo/tecla/resultado selecionado claros; match destacado, localização/ação; `Esc`/teclado com restauração de foco.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L307",
+    "heading": "7.2. Botões, inputs, menus e modais",
+    "source_line": 307,
+    "source_text": "- **Primário:** azul `action_bg`, texto de contraste verificado, hover `action_hover`, foco visível. Nunca verde “porque é CTA”.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L308",
+    "heading": "7.2. Botões, inputs, menus e modais",
+    "source_line": 308,
+    "source_text": "- **Secundário:** superfície neutra + contorno perceptível; hover/pressed sem salto de layout.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L309",
+    "heading": "7.2. Botões, inputs, menus e modais",
+    "source_line": 309,
+    "source_text": "- **Toolbar/ghost:** ícone 16–18px dentro de hitbox 28–32; tooltip/aria-label quando não houver texto.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L310",
+    "heading": "7.2. Botões, inputs, menus e modais",
+    "source_line": 310,
+    "source_text": "- **Destrutivo:** vermelho + verbo explícito + consequências; confirmação conforme irreversibilidade e contrato real.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L311",
+    "heading": "7.2. Botões, inputs, menus e modais",
+    "source_line": 311,
+    "source_text": "- **Input/selector:** label persistente, valor, ajuda, estado alterado e erro com mensagem; borda essencial suficientemente visível. Não depender só de placeholder.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L312",
+    "heading": "7.2. Botões, inputs, menus e modais",
+    "source_line": 312,
+    "source_text": "- **Dialog:** título, contexto, ações e efeitos; foco inicial/retorno/cancelamento, teclado e leitura assistiva quando tecnicamente suportados; **nunca inventar rollback**.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L313",
+    "heading": "7.2. Botões, inputs, menus e modais",
+    "source_line": 313,
+    "source_text": "- **Settings:** árvore lateral compacta, propriedades e controles em colunas, hierarquia `categoria → propriedade → ajuda/escopo → ação`. Prévia de aparência não confirma persistência até `Apply/OK` real do protótipo.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L339",
+    "heading": "7.5. Grafos, tabelas e visualizações",
+    "source_line": 339,
+    "source_text": "- Diferenciar relação `confirmed` por linha contínua + origem e `inferred` por **violeta/tracejado/label**; `unknown` é ausência de confirmação, **não uma aresta violeta**.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L340",
+    "heading": "7.5. Grafos, tabelas e visualizações",
+    "source_line": 340,
+    "source_text": "- Nós distinguíveis por tipo/ícone/legenda; seleção azul é separada de cor do tipo. Painel de detalhes e tabela alternativa quando o grafo for essencial.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L341",
+    "heading": "7.5. Grafos, tabelas e visualizações",
+    "source_line": 341,
+    "source_text": "- Diagramas de arquitetura devem suportar zoom/inspeção e milhares de nós só se implementado/validado; não alegar virtualização/performance sem teste.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L342",
+    "heading": "7.5. Grafos, tabelas e visualizações",
+    "source_line": 342,
+    "source_text": "- Gráfico exibe unidade, período, definição da métrica e provenance. **Ocupa a área necessária, não deve competir com o editor em evidência crítica.** Não criar barras de progresso em métricas que não são percentual.",
+    "target": "DESIGN.md §8 Components",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L385",
+    "heading": "8.2. Regras por tela/destino",
+    "source_line": 385,
+    "source_text": "**Nota de cobertura:** o mapa completo está em `data/coverage-matrix.json`, incluindo S01–S14, W00/A01–A06, TW01–TW05 e áreas auxiliares. Ele é inventário de **design**, não inventário de funcionalidades operacionais comprovadas.",
+    "target": "DESIGN.md §9 Surface coverage",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L409",
+    "heading": "10. Acessibilidade, ergonomia e internacionalização",
+    "source_line": 409,
+    "source_text": "- **Contraste:** alvo ≥4,5:1 texto normal; ≥3:1 texto grande nos critérios aplicáveis; ≥3:1 informação não textual essencial. `data/design-validation.json` contém **apenas pares opacos calculados**, não verificação de alpha, antialias, componente real, vídeo ou assistivo.",
+    "target": "DESIGN.md §10 Accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L410",
+    "heading": "10. Acessibilidade, ergonomia e internacionalização",
+    "source_line": 410,
+    "source_text": "- **Foco:** contorno contínuo distinguível (~2–3 px ou alternativa testada), não obscurecido pelo overlay; foco/seleção/hover/disabled são sinais diferentes.",
+    "target": "DESIGN.md §10 Accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L411",
+    "heading": "10. Acessibilidade, ergonomia e internacionalização",
+    "source_line": 411,
+    "source_text": "- **Teclado:** ordem lógica, escape/cancelamento, menus e árvores navegáveis, confirmação segura, foco inicial e retorno de diálogo, atalhos apresentados em locale/OS. Não assumir que protótipo funcional com mouse atende teclado.",
+    "target": "DESIGN.md §10 Accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L412",
+    "heading": "10. Acessibilidade, ergonomia e internacionalização",
+    "source_line": 412,
+    "source_text": "- **Não usar só cor:** status também tem texto e forma; linhas de gráfico usam marcador/legenda, relações tracejadas possuem legenda, rótulos não desaparecem por ocultação do ícone.",
+    "target": "DESIGN.md §10 Accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L413",
+    "heading": "10. Acessibilidade, ergonomia e internacionalização",
+    "source_line": 413,
+    "source_text": "- **Legibilidade:** sem `font-size: 10px` para dados essenciais, sem truncar o único identificador de decisão; fornecer expansão/tooltip/cópia quando o caminho for longo.",
+    "target": "DESIGN.md §10 Accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L414",
+    "heading": "10. Acessibilidade, ergonomia e internacionalização",
+    "source_line": 414,
+    "source_text": "- **Redução de movimento:** transições/atividades não essenciais suprimidas se preferência ativa, sem ocultar conteúdo.",
+    "target": "DESIGN.md §10 Accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L415",
+    "heading": "10. Acessibilidade, ergonomia e internacionalização",
+    "source_line": 415,
+    "source_text": "- **Zoom/DPI:** testar escala e fontes carregadas, com OS Windows como primeira plataforma de produto se aplicável, e demais somente quando em escopo aprovado.",
+    "target": "DESIGN.md §10 Accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L416",
+    "heading": "10. Acessibilidade, ergonomia e internacionalização",
+    "source_line": 416,
+    "source_text": "- **Texto:** pt-BR correto, plural e formatação de número/moeda/unidade; distinguir `—` de ausência, `0`, `indisponível`, `estimado` e `parcial`.",
+    "target": "DESIGN.md §10 Accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L417",
+    "heading": "10. Acessibilidade, ergonomia e internacionalização",
+    "source_line": 417,
+    "source_text": "- **Assistivos:** teste com leitores de tela e APIs de acessibilidade nativa na implantação; capturas e ARIA do HTML não bastam.",
+    "target": "DESIGN.md §10 Accessibility",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L425",
+    "heading": "11. Movimento, feedback, performance e resiliência visual",
+    "source_line": 425,
+    "source_text": "**Resiliência:** textos muito longos, nomes Unicode, caminhos profundos, dezenas de abas, múltiplos agentes, erros de permissão, confirmação atrasada, histórico volumoso, erro de fonte, dados ausentes e janela pequena. Se o render truncar ação essencial, é **P0/P1**, não questão estética facultativa.",
+    "target": "DESIGN.md §11 Resilience",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L431",
+    "heading": "Gate 0 — inventário e prova de baseline",
+    "source_line": 431,
+    "source_text": "- Identificar arquivo realmente vigente para o componente, revisão e dependências de asset.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L432",
+    "heading": "Gate 0 — inventário e prova de baseline",
+    "source_line": 432,
+    "source_text": "- Extrair valores/tokens e regras conflitantes, inclusive CSS runtime e flags experimentais.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L433",
+    "heading": "Gate 0 — inventário e prova de baseline",
+    "source_line": 433,
+    "source_text": "- Capturar o **mesmo estado** em R11/R12 quando aplicável. Capturas históricas são rotuladas como tal; R12 não ganha screenshot novo por herdar PNG de R11.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L434",
+    "heading": "Gate 0 — inventário e prova de baseline",
+    "source_line": 434,
+    "source_text": "- Classificar cada achado: `P0` segurança/semântica inacessível, `P1` obstáculo operacional, `P2` consistência/usabilidade, `P3` polimento.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L438",
+    "heading": "Gate 1 — direção controlada e contrato de componente",
+    "source_line": 438,
+    "source_text": "- Especificar objetivo e restrições; por exemplo: “diferenciar tipos de arquivo sem roubar cores de status”.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L439",
+    "heading": "Gate 1 — direção controlada e contrato de componente",
+    "source_line": 439,
+    "source_text": "- Selecionar A/B/C ou declarar que não há mudança cromática.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L440",
+    "heading": "Gate 1 — direção controlada e contrato de componente",
+    "source_line": 440,
+    "source_text": "- Mapear token/estado/variantes; não aplicar HEX no CSS de página.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L441",
+    "heading": "Gate 1 — direção controlada e contrato de componente",
+    "source_line": 441,
+    "source_text": "- Aprovar visualmente *com fixture e resolução idênticas*. Previews não aprovados permanecem `PROPOSED`.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L445",
+    "heading": "Gate 2 — implantação no protótipo e neutralidade funcional",
+    "source_line": 445,
+    "source_text": "- Extrair CSS em componentes e tokens sem reescrever fixtures/fluxos de domínio.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L446",
+    "heading": "Gate 2 — implantação no protótipo e neutralidade funcional",
+    "source_line": 446,
+    "source_text": "- Preservar valores e contratos R12, especialmente `unknown`, `inferred`, `implemented`, `verified`, `accepted`, Apply/Cancel/OK.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L447",
+    "heading": "Gate 2 — implantação no protótipo e neutralidade funcional",
+    "source_line": 447,
+    "source_text": "- Gerar CSS e manifesto de dados nativos; evitar dependência real de `color-mix()` no código Rust.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L448",
+    "heading": "Gate 2 — implantação no protótipo e neutralidade funcional",
+    "source_line": 448,
+    "source_text": "- Verificar comentários, escopo de seletores, media queries e caminhos de assets, inclusive links montados dinamicamente.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L465",
+    "heading": "Gate 3 — QA multidimensional",
+    "source_line": 465,
+    "source_text": "**Mínimo de qualidade sobre tokens:** ≥95% de declarações elegíveis tokenizadas, *com total/declarador de exclusões*; 0 exceções não revisadas. A porcentagem não substitui revisão visual. O modelo completo de testes é reproduzível em `docs/QA_PROTOCOL.md`.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L471",
+    "heading": "Gate 4 — loop até resolução mensurável",
+    "source_line": 471,
+    "source_text": "**Critério de parada:** zero P0/P1 **nos casos efetivamente executados**, contrato semântico intacto, artefatos gerados consistentes e decisão visual assinada quando requerida. Se ferramenta, runtime ou plataforma estiver indisponível, classificar gate `BLOCKED/PENDING`; **não** fingir “100% concluído”. Números absolutos devem informar o denominador: 42/42 capturas, 84/84 pares, etc. A ausência de inspeção não conta como aprovação.",
+    "target": "DESIGN.md §12 Review protocol",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L515",
+    "heading": "14. Política de arquivos, manutenção e responsabilidades",
+    "source_line": 515,
+    "source_text": "**Gestão de alterações:** nenhuma skill pode alterar automaticamente produto/fluxos por preferência estética; cada mudança de papel semântico exige atualização simultânea de documento, tokens, role-map, screenshot e decisão. Evitar copiar CSS antigo e acrescentar apenas overrides amplos. Não instalar e executar códigos de terceiros automaticamente; consultar licenças/dependências. As skills deste pacote são **originais e locais**, inspiradas em práticas públicas, não forks vendorizados.",
+    "target": "DESIGN.md §13 Maintenance",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L523",
+    "heading": "14.2. Responsabilidades e revisão humana",
+    "source_line": 523,
+    "source_text": "- **Design System Owner:** aprova novos roles, status, fontes e exceções.",
+    "target": "DESIGN.md §13 Maintenance",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L524",
+    "heading": "14.2. Responsabilidades e revisão humana",
+    "source_line": 524,
+    "source_text": "- **Product/Domain Owner:** confirma que UI representa fatos e consequências de operações.",
+    "target": "DESIGN.md §13 Maintenance",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L525",
+    "heading": "14.2. Responsabilidades e revisão humana",
+    "source_line": 525,
+    "source_text": "- **Accessibility reviewer:** avalia foco, contraste, semântica, DPI, tecnologias assistivas.",
+    "target": "DESIGN.md §13 Maintenance",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L526",
+    "heading": "14.2. Responsabilidades e revisão humana",
+    "source_line": 526,
+    "source_text": "- **Frontend owner:** implementa tokens/variantes e testes no renderer real.",
+    "target": "DESIGN.md §13 Maintenance",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L527",
+    "heading": "14.2. Responsabilidades e revisão humana",
+    "source_line": 527,
+    "source_text": "- **Visual QA:** compara capturas de mesma fixture, detecta regressões e documenta evidências.",
+    "target": "DESIGN.md §13 Maintenance",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L535",
+    "heading": "15.1. Materiais do usuário",
+    "source_line": 535,
+    "source_text": "- `DESIGN.md` recebido (especificação v3.0) foi utilizado como base de identidade/cores e registrado em `docs/` apenas como origem histórica, não como contrato paralelo.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L536",
+    "heading": "15.1. Materiais do usuário",
+    "source_line": 536,
+    "source_text": "- `OX-VISAO-DO-PRODUTO-E-COBERTURA-DE-TELAS.md`: mapa conceitual S01–S14/W00/A01–A06 e distinção design/implementação.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L537",
+    "heading": "15.1. Materiais do usuário",
+    "source_line": 537,
+    "source_text": "- `OX-R12-AUDITORIA-EXAUSTIVA-E-ROADMAP-R13.md`: diagnóstico estático da monocromia, das flags, das fontes e das limitações R12.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L538",
+    "heading": "15.1. Materiais do usuário",
+    "source_line": 538,
+    "source_text": "- `OX-R13-PROMPT-MASTER-OPEN-DESIGN.md`: restrições, direção A/B/C e critérios de QA da R13.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L539",
+    "heading": "15.1. Materiais do usuário",
+    "source_line": 539,
+    "source_text": "- `r11.zip`, `r12.zip`, `OX-REFERENCIAS-PARA-DESIGN-SYSTEM.zip` e montagem de screenshots: fontes locais, protótipos e referências visuais.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L543",
+    "heading": "15.2. Referências externas verificáveis (princípios, **não assets para copiar**)",
+    "source_line": 543,
+    "source_text": "- Taste Skill — https://github.com/Leonxlnx/taste-skill — decisões estéticas deliberadas, revisão em navegador real, inspect/fix/inspect; **marketing-web específico não se aplica automaticamente à IDE**. Repositório MIT informado no GitHub.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L544",
+    "heading": "15.2. Referências externas verificáveis (princípios, **não assets para copiar**)",
+    "source_line": 544,
+    "source_text": "- Impeccable — https://github.com/pbakaus/impeccable — vocabulário de melhoria (`critique`, `audit`, `colorize`, `polish`, `harden`, `adapt`, `extract`) e arquivos de contexto; **as skills Ox reimplementam somente o método, em escrita própria**. Repositório Apache-2.0 informado no GitHub.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L545",
+    "heading": "15.2. Referências externas verificáveis (princípios, **não assets para copiar**)",
+    "source_line": 545,
+    "source_text": "- JetBrains, New UI e temas independentes — https://www.jetbrains.com/help/idea/new-ui.html e https://www.jetbrains.com/help/idea/user-interface-themes.html.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L546",
+    "heading": "15.2. Referências externas verificáveis (princípios, **não assets para copiar**)",
+    "source_line": 546,
+    "source_text": "- Visual Studio, tokens semânticos — https://learn.microsoft.com/en-us/visualstudio/extensibility/ux-guidelines/theme-color-token-reference.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L547",
+    "heading": "15.2. Referências externas verificáveis (princípios, **não assets para copiar**)",
+    "source_line": 547,
+    "source_text": "- W3C, WCAG 2.2 — https://www.w3.org/TR/WCAG22/.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L548",
+    "heading": "15.2. Referências externas verificáveis (princípios, **não assets para copiar**)",
+    "source_line": 548,
+    "source_text": "- Iced (API deve ser checada na versão fixada pelo produto) — https://docs.rs/iced/latest/iced/.",
+    "target": "DESIGN.md §1 Provenance; 15 references",
+    "status": "documentary mapping; native implementation not implied"
+  },
+  {
+    "id": "V4-L573",
+    "heading": "16. Resumo normativo — 12 vetos de aprovação",
+    "source_line": 573,
+    "source_text": "**Estado da entrega `4.0.0`:** documento normativo + manifesto de tokens + skills + QA de artefatos. **Próximo gate independente:** aplicar as decisões ao protótipo R13 e validar com capturas nativas do browser/IDE e revisão humana.",
+    "target": "DESIGN.md §14 Blocking failures",
+    "status": "documentary mapping; native implementation not implied"
+  }
+]

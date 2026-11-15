@@ -130,7 +130,8 @@ rejeição observada é diferente de não ter observação. Consulte a
 | Verificação recusada ou desatualizada | Identidade da tentativa, bytes dos artefatos e estado do oráculo; não deduzir aceitação do exit code do produtor |
 
 Não há execução de prompts ou comandos arbitrários, provedor remoto, sandbox,
-captura de stdout/stderr pelo runtime ou persistência durável. O host de plugins
+captura de stdout/stderr pelo runtime ou persistência durável de tarefas/evidências.
+A lista de projetos recentes tem persistência local delimitada, descrita abaixo. O host de plugins
 é uma API independente da UI. Esses limites importam ao interpretar resultados
 da demonstração e dos testes.
 
@@ -178,9 +179,82 @@ distingue os comandos executados dos apenas conferidos no código.
 ## Encerramento de alterações
 
 Quando a tarefa autorizar verificações, a entrada vigente na raiz é
-`bash scripts/automate.sh --scope rust`: fmt, check, build dos auxiliares, testes
-e clippy, com dependências offline e lockfile preservado. O escopo `full` também
-inclui governança, segurança e qualidade; sua seleção depende dos critérios da
-tarefa. Veja os [limites e diagnóstico](../scripts/README.md). Aceitação gráfica
+`./scripts/automate.sh run --surface application`: verificações Rust, cobertura
+e ferramentas Cargo, além da governança obrigatória, com dependências offline e
+lockfile preservado. `run --scope complete` inclui todas as superfícies e os
+complementares; sua seleção depende dos critérios da tarefa. Veja os [limites e diagnóstico](../scripts/README.md). Aceitação gráfica
 permanece separada. A limpeza de 09/11/2026 usou somente inspeção e não executou
 esses comandos.
+
+## Visual workbench
+
+The native shell provides 27 current/planned destinations, Ctrl+K command search,
+three session themes and two densities. See [DESIGN.md](../DESIGN.md) and the
+[surface contracts](../docs/design/surfaces.md). Planned screens identify unavailable
+backends. `python3 application/tools/build_design.py --check` from the repository
+root checks generated roles. `python3 application/tools/native_review.py` runs an
+isolated graphical observation when Mutter/PipeWire prerequisites are available.
+
+### Current native composition
+
+Editor e arquivos and Modo de foco provide three build-embedded documents with
+selectable file navigation/tabs, line numbers, an origin inspector and contextual
+tools. They are read-only demonstrations, not files opened from the selected
+workspace. Architecture shows declared Cargo dependencies; agent screens separate
+roles from unavailable instances. Preferences remain session-only.
+
+From the repository root, `python3 application/tools/native_composition_review.py
+--output <new-directory-name>` exercises the composition in isolated Mutter/Wayland;
+use a fresh output name to preserve earlier observations. Prerequisites are Mutter,
+PyGObject, GStreamer/PipeWire, Pillow and built Ox/helper binaries.
+This graphical command requires the effective environment permissions.
+
+Current results and pending scope are in the
+[reference integration report](../docs/validation/visual-integration-20261111/report.md).
+Its two native runs and 12 Rust tests do not establish X11 or assistive-technology
+acceptance. Source coverage and component contracts remain linked from DESIGN.md.
+
+## Tela inicial: começar ou retomar um projeto
+
+A página de boas-vindas oferece **Abrir pasta…**, **Novo projeto**, **Configurações**
+e **Projetos recentes**. **Abrir pasta…** usa o seletor gráfico existente; confirmar
+valida o diretório e abre a tarefa local controlada. **Digitar caminho…** revela a
+alternativa manual. Abrir ou criar um projeto não executa tarefas, agentes ou comandos.
+**Configurações** abre as preferências atuais; temas/densidade continuam de sessão.
+
+**Novo projeto** pede nome e caminho absoluto de uma pasta de destino existente, mostra o destino completo
+e a consequência antes de **Criar e abrir**. A operação cria somente uma pasta
+vazia; não gera arquivos, inicializa Git ou baixa dependências. Nomes que escapem
+da pasta-pai e destinos já existentes (inclusive links e arquivos) são recusados.
+**Cancelar** antes da confirmação não altera arquivos. Se a pasta for criada e a
+abertura falhar, ela é preservada e o diagnóstico orienta abri-la como pasta existente.
+
+Os recentes contêm até 20 caminhos reais, com nome e caminho visíveis, ordenados pela
+última abertura bem-sucedida. Reabrir um caminho já registrado o move para o início;
+a identidade usa o caminho absoluto canônico. Clique no projeto para reabrir e validar
+novamente. Caminhos movidos ou indisponíveis permanecem na lista com feedback
+recuperável ao tentar abrir. **Remover** retira somente o registro, sem apagar o projeto.
+Reiniciar carrega a lista e não reabre nem executa projetos automaticamente.
+
+O histórico fica em `$XDG_STATE_HOME/ox/recent-projects.v1`; sem XDG_STATE_HOME,
+usa `$HOME/.local/state/ox/recent-projects.v1`. O diretório de estado deve ser absoluto.
+O formato versionado limita 20 registros e 16 KiB por caminho UTF-8. O arquivo `.lock`
+serializa operações cooperativas; falhas/ocupação são informadas e não impedem abrir
+um projeto. **Tentar novamente** relê o histórico. **Redefinir histórico…** exige
+confirmação e esvazia a lista; dados corrompidos dentro do limite são preservados
+em arquivo `.corrupt-backup-*`. Arquivos grandes demais ou de versões futuras
+permanecem intactos e a redefinição é recusada, exigindo recuperação manual/versão
+compatível. Esta persistência não armazena tarefas, resultados, aprovações ou preferências.
+
+O seletor gráfico usa o programa GTK `zenity`, instalado separadamente e disponível
+no PATH (observado localmente: 4.2.2). O Ox não o instala automaticamente. Se não
+estiver disponível ou falhar, a entrada manual continua acessível. Cancelar o diálogo
+preserva o caminho e o trabalho anterior. Apenas um diálogo é aberto por vez;
+mudar de contexto ou encerrar o Ox solicita seu encerramento supervisionado.
+Nomes sem representação UTF-8 são recusados sem conversão silenciosa.
+
+As observações atuais e limitações estão no
+[relatório de boas-vindas](../docs/validation/welcome-projects-20261114/report.md).
+Os relatórios anteriores de
+[tela inicial](../docs/validation/start-screen-20261114/report.md) e
+[seletor](../docs/validation/folder-picker-20261114/report.md) permanecem históricos.

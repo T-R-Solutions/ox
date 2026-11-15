@@ -1,0 +1,2121 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64 local checkout; Python stdlib/Bash/jq; 2026-11-09/10. Cooperative same-user filesystem boundary.",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "AC-01",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-MAINTENANCE-01-R3"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "AC-02",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-MAINTENANCE-02-R3"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "AC-03",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-MAINTENANCE-03-R3"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "AC-04",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-MAINTENANCE-04-R3"
+      ]
+    },
+    {
+      "id": "AC-05",
+      "criterion": "AC-05",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-MAINTENANCE-05-R3"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-MAINTENANCE-01-R3",
+      "kind": "inspection",
+      "command_or_method": "Reexamine inventory/removal receipt and protected retained data against archived inputs; removal is not replayed. Review final task metadata without changing the original outcome.",
+      "observed_result": "Only empty obsolete placeholder removed; distinct logs and historical duplicates preserved.",
+      "artifact": "docs/validation/repository-maintenance-20261109/stage1.json",
+      "sha256": "d503c867fa60d03a45755598d9e10f3bba1f9f02287ffabd51282e4837962010",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "cf76690852d04af14b3cdf97df795dbd0f370bd41c7c3c5dcb94c67dd25fb96c",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/acceptance.py",
+          "sha256": "1cf3168e04a1d9977e60e4e600d107240cd907bf7a8a020a8ed435421402d7bd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/initial-status.txt",
+          "sha256": "cdedd2c1b70a67f2b1671407198954211f55a0cd48084ac54e6dda9eb92586d8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/local-before.json",
+          "sha256": "2590597109b92eaf91567da59f12c1314dcbc0a3eda03f3174ae8c53dee08766",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/source-inventory.json",
+          "sha256": "04b91c4a399ed6ff29a1b788e91e5a2ec49a9053d7b11ade840a1e2ab3611d96",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/stage1.json",
+          "sha256": "d503c867fa60d03a45755598d9e10f3bba1f9f02287ffabd51282e4837962010",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "0be1b3efe2f9082b734bc8413fc694e2976fe51f967500c7b62f8b46ae8f54dd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "dedd1f7437983dba069587ce201a6e456eea0861c45d8b9bc2da8a41a9628c36",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "051adbdd30526ccf9ebf3e123c042780f7e0dc3aa5f10e3168feb7caa7cc21e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-02-R3",
+      "kind": "inspection",
+      "command_or_method": "Semantic inspection of workflow, templates and catalog/bridge integration against preimages; three task documentation cases reviewed.",
+      "observed_result": "One normative closure policy and shared skill links; behavior/documentation/no-impact cases satisfy the stated contract.",
+      "artifact": "docs/validation/repository-maintenance-20261109/documentary-review.md",
+      "sha256": "01836e76b8b1e025c5bd445d46456ca57774ab6094fbdb880734cd5259e7c361",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "cf76690852d04af14b3cdf97df795dbd0f370bd41c7c3c5dcb94c67dd25fb96c",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/acceptance.py",
+          "sha256": "1cf3168e04a1d9977e60e4e600d107240cd907bf7a8a020a8ed435421402d7bd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/documentary-review.md",
+          "sha256": "01836e76b8b1e025c5bd445d46456ca57774ab6094fbdb880734cd5259e7c361",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "0be1b3efe2f9082b734bc8413fc694e2976fe51f967500c7b62f8b46ae8f54dd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "dedd1f7437983dba069587ce201a6e456eea0861c45d8b9bc2da8a41a9628c36",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "051adbdd30526ccf9ebf3e123c042780f7e0dc3aa5f10e3168feb7caa7cc21e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/workflow.md",
+          "sha256": "55d3be46cda7c3748b158c98c8896af8695e17ae89e30382d2b3b1171fa16488",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-03-R3",
+      "kind": "test",
+      "command_or_method": "Real automate.sh --scope governance --check sdd-structure plus producer/lease fixture and migration hash verification.",
+      "observed_result": "Real producer created completed owned run at stable checks destination; 16 records moved with identical hashes and reversible mapping.",
+      "artifact": "docs/validation/repository-maintenance-20261109/producer.txt",
+      "sha256": "1b83da015d1568116544055a0e272a7c7dad36494d4ad15bddacc1dd5a73b164",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "cf76690852d04af14b3cdf97df795dbd0f370bd41c7c3c5dcb94c67dd25fb96c",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/acceptance.py",
+          "sha256": "1cf3168e04a1d9977e60e4e600d107240cd907bf7a8a020a8ed435421402d7bd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/local-after.json",
+          "sha256": "84af206b6883a620c59436afa6a47d4bc88210d894049f4f528af55f3c61fbad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/local-before.json",
+          "sha256": "2590597109b92eaf91567da59f12c1314dcbc0a3eda03f3174ae8c53dee08766",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/migration.json",
+          "sha256": "605ddba6d8a9186653d162fdda5c724a7cbe93758cb2cd56d7f8f93bce615b2c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "0be1b3efe2f9082b734bc8413fc694e2976fe51f967500c7b62f8b46ae8f54dd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "dedd1f7437983dba069587ce201a6e456eea0861c45d8b9bc2da8a41a9628c36",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "051adbdd30526ccf9ebf3e123c042780f7e0dc3aa5f10e3168feb7caa7cc21e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-04-R3",
+      "kind": "test",
+      "command_or_method": "python3 -m unittest discover -s scripts/tests -p test_local_lifecycle.py -v; 23 fresh real shell/filesystem fixtures after hardening, plus semantic review of final task metadata. Prior 20-case observation and source/oracle bytes archived in before-final-hardening.",
+      "observed_result": "23 tests passed including leases, dry-run, real deletion, traversal, symlinks, FIFO, repeat and crash recovery.",
+      "artifact": "docs/validation/repository-maintenance-20261109/lifecycle-tests.txt",
+      "sha256": "09c4c2bc9ad6234f8658f48ba72bbb5fab69f177e0a7eb61d15b0b2362e257e1",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "cf76690852d04af14b3cdf97df795dbd0f370bd41c7c3c5dcb94c67dd25fb96c",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/acceptance.py",
+          "sha256": "1cf3168e04a1d9977e60e4e600d107240cd907bf7a8a020a8ed435421402d7bd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/local.sh",
+          "sha256": "5907c08e9ac4506e5448108f7c4a4af486664bac19d0e54e20a5cca54cb06436",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "0be1b3efe2f9082b734bc8413fc694e2976fe51f967500c7b62f8b46ae8f54dd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "dedd1f7437983dba069587ce201a6e456eea0861c45d8b9bc2da8a41a9628c36",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "051adbdd30526ccf9ebf3e123c042780f7e0dc3aa5f10e3168feb7caa7cc21e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-05-R3",
+      "kind": "inspection",
+      "command_or_method": "Final semantic documentation/task-closure review, broad regression with two exact affected-case successful rechecks, 23-case collector successor, six succession cases, main governance check, and structured native scan/source-identity review; see report.",
+      "observed_result": "Final governed verification passed; tests and native scan observations are in report and retained outputs. No product source changes or new product acceptance.",
+      "artifact": "docs/validation/repository-maintenance-20261109/report.md",
+      "sha256": "4995598d179a2994632addd453d037f3604000b1ad10d188923f9799c8818c1c",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "README.md",
+          "sha256": "0079a2d93be8618074d14ee7847efc58ff11ae3d74e2875d71b6ac9f3d27ac43",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "cf76690852d04af14b3cdf97df795dbd0f370bd41c7c3c5dcb94c67dd25fb96c",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/acceptance-native-commands.sh.bin",
+          "sha256": "1d52bc0c1186479c26b3b3d0636993fcb6cfc37404494571dcf89266be9549d3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/acceptance.py",
+          "sha256": "1cf3168e04a1d9977e60e4e600d107240cd907bf7a8a020a8ed435421402d7bd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/bandit-diagnostic.json",
+          "sha256": "177fb9e39cfdb3ca59f8d0059ba9d55134319cf26d28341c86b87ca77bf4488b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/bandit.json",
+          "sha256": "925300ca02768658d764321a9e0491d5925c266c9b8956a349a226742225955c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/broad-inputs.json",
+          "sha256": "a6420e2fc1fa672ea5f3888dc203d2f460b3fa3d4d49e6e010e32929fd66a030",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/broad-regression.txt",
+          "sha256": "cde60b69f2ff522e79026a3750770bdbcb670ae8d53e707ec23f34eec4d78386",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/harness-bandit-diagnostic.json",
+          "sha256": "8788095f9cef8baaf278a32064a61919b3507d4d1146d88de529bd23df865d5e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/harness-bandit.json",
+          "sha256": "bd559d151e5a367cb3325f8281dc42a6548aee69a81278b7408f1477a0e0bd94",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/harness-ruff-diagnostic.json",
+          "sha256": "897785c6a395980090d910e353e1495ee5ff5e9f7b2f88e400c55963f71013df",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/harness-ruff.json",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/isolation-recheck.txt",
+          "sha256": "09dd5e50b822f17ac83fb1294dcc9f4661be1cf63d64df505b8b9b0ff68dc682",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/native-python-commands.sh.bin",
+          "sha256": "11ca64b666ea32098fce94f9f90d37d3530007b76c0dd20e91bb6d31e4579519",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/native-shell-commands.sh.bin",
+          "sha256": "2aa20f3cf91b5eb9a3af56b4bab3e0ddcb8196c6ed0119b32b1f23740757c9b0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/native-summary.json",
+          "sha256": "a574608142f1d8901369c670ac45b4b5016827ec4eef38c5b8d512e8eb7e13c5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/normative-recheck.txt",
+          "sha256": "a4bd913135af79fae1b711bf3b2c8f686307866d774ab3e6316a2d23e8999fdd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/report.md",
+          "sha256": "4995598d179a2994632addd453d037f3604000b1ad10d188923f9799c8818c1c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/ruff-diagnostic.json",
+          "sha256": "4bdc98c4334f9f5464ca1f470a13b28a6608bfce7dea341d99d1941ba250970e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/ruff.json",
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/shellcheck-diagnostic.json",
+          "sha256": "55fa2e44a54759a01b9bffd6e5cf77e2584a5e92b015066cb9929e43efdd5e29",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/shellcheck.json",
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/bandit-baseline.json",
+          "sha256": "019918d601c681f7f0c3d8103083e905ac7e443e6f039d5d532a3a83ca3f007b",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/bandit.ini",
+          "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/bandit.yaml",
+          "sha256": "0fe6892ce433dbc9d6e77d6d48a5cad95b174121dd3361635ce90cec6c17b060",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/ruff.toml",
+          "sha256": "ce11e5ebbf6b18d5e3b5bc56c5232c469ea53717ed3b87bfd4ea5c2448674d6b",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/shellcheckrc",
+          "sha256": "618fe69fa4c96d19c826bad2faed550585ed966d265ea73e88e416d81aa02df6",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/backends.sh",
+          "sha256": "a9f2f733413e8925072ee32961512cdc269e0e8deb0a321f92b7f6e36026c020",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/process.sh",
+          "sha256": "6e8881ede9e30c6c5644affcca6426e7e6c159072e2b449bd7be9d52f53081db",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/registry.sh",
+          "sha256": "7ef17117e9d0c67eb63fbb78488710625a25cdc06e6d1c2549aa076a2366a234",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/reports.sh",
+          "sha256": "7d70e276e99a5c5f368f8120b5e49fccfb61d09ab45095de6d64c822dd500e31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/local.sh",
+          "sha256": "5907c08e9ac4506e5448108f7c4a4af486664bac19d0e54e20a5cca54cb06436",
+          "role": "other"
+        },
+        {
+          "path": "scripts/reports/summarize.sh",
+          "sha256": "c78154c0d03f8c7588556aec594594e7f69e7b9c425bd2a41e02cb23d179db5e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/check-report.sh",
+          "sha256": "0fc4dc157f9c40ff91eb80dd722495086ec04e3daac8927c28095b17b6505680",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/analyzers/validate-exceptions.sh",
+          "sha256": "929e7aa37577086e140c91bf46967498fd56291e0b13dfe819d1d968343fa798",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/support.py",
+          "sha256": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_automation.py",
+          "sha256": "c59f8e6d0ee0444bfdb167cb75b6a6c65fd3161133fd14c1a8c49f59470006a8",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_backends.py",
+          "sha256": "0c46a37bebb6beabd8094ccd602a5ec37e3e5c0891ec8c584691d3fec712911c",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_database_age.py",
+          "sha256": "86e0e56826eda15087a1325525e02b784978b668c22522494033426f9488ae06",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_json_guard.py",
+          "sha256": "d82350c25348b611492867fddc98df717ac33b97984c4b89a2e7e0e8ae05f953",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "0be1b3efe2f9082b734bc8413fc694e2976fe51f967500c7b62f8b46ae8f54dd",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_native_reports.py",
+          "sha256": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_optional_datasets.py",
+          "sha256": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_preparation.py",
+          "sha256": "92013499faa6e20cbb323f38faa5ba18b063904a186dd088d84cf6c85246ac08",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_process_lifecycle.py",
+          "sha256": "533f1de93031b9f9643a9b2c1c5924b79bf392206e146fcd74a60700fb269682",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_real_security_backends.py",
+          "sha256": "8aea25c90e894cd7af0ba338277cf2237d832e3305814ad6cb61bef8edfa9bbb",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_selinux_transport.py",
+          "sha256": "033e3577700084fbce3540c7443ed9c61de9d816cc6c1f824c821e6dbfa633fa",
+          "role": "other"
+        },
+        {
+          "path": "scripts/toolbox.sh",
+          "sha256": "99052b0136d3351db9bbf99122b4a6ec711980c92d5a25c0594e61e3ebbaf3e6",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "dedd1f7437983dba069587ce201a6e456eea0861c45d8b9bc2da8a41a9628c36",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "051adbdd30526ccf9ebf3e123c042780f7e0dc3aa5f10e3168feb7caa7cc21e4",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/tools/validate.py",
+          "sha256": "6df3b403dc50d4d6aebcbd803a65af175ec4baf6f9c18afb21e183b0db2f3aa5",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/gui_test.py",
+          "sha256": "9185b93be39a86430e60a2229a60f82680a8b12483666ccecab0de70fd91b95d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/isolation_test.py",
+          "sha256": "a9cedd279f22f2e27734dbdfe2d08d5ef5aa6565a84e911a3ec1c2dc45db7c7f",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/consumers/run_base.py",
+          "sha256": "6f33e87b3e6595598976eadc4025439ab88cd6ef343d7fd6f6e5fdcebbb6c892",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-new-skills.py",
+          "sha256": "4bacd7bab191ad4294fab4e84402ca27692bb1af89076e709686cfba04c7e0f1",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "257b6dcbc4192cf991100b7afe18ea8211abe9cedbb6702e56ef67fb957e1736",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/documentation_revision.py",
+          "sha256": "1e88e7589f16887febf99e1f6742d140e0d366e43fdaf8e674e0da038562944a",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/export-clean.py",
+          "sha256": "1285eb490e30f9a7291b5f0241ca9e671bf4ed3ebb93741ec1a7c56d43c0c8a5",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/governance_support.py",
+          "sha256": "4e8ece2612fa9323bf30923aedcc2f4f164e62d41f68a52126f23f44ebf3ab5b",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/isolated-run.py",
+          "sha256": "caa101890f56fb747b3f91aca16e40740b643677cad09945f9e7dd95db8562c4",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/package-ox.py",
+          "sha256": "5f6c108c1810e13bba9c6d8f6133a7c6b80a8bf0b17db2bcf039dfcfa045e2d9",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/project_revision.py",
+          "sha256": "82132be958a40d25a07a53751d2e60054cfe5c38e690b734f4d1f31cc92cc092",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/readme_revision.py",
+          "sha256": "eaaa461c4e6ad26bf5e0a1aec24d7f46d6e9643e581b89d9e2f4e83fa3e53d8d",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/run-checks.py",
+          "sha256": "33f7f73d5d5c0a10cf266c5cdf41f176ee0d9e463d22331d706ab3cac42992bd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/run-tests.py",
+          "sha256": "84d846a045d274a7923ca5cebc089601c89f06a97ddca2c91bf4815dedccec14",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/skill-quick-validate.py",
+          "sha256": "ee6dba90f44d37171c5a6edb8095979c54919ff6822c1a907afca2e78c48738c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/skill_revision.py",
+          "sha256": "d74ba14cdab23b370bdd78d6db970f15703afcd1f220025052a359754c8ec218",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/technical_acceptance.py",
+          "sha256": "52a411edaab5376be20f69ee05f58e99075eee4b53b6c10ea6e9156aabbd2cb5",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/verify-maintenance.py",
+          "sha256": "75a8d97b3c7526f308a66d6048eba08e780a39e1ff0954669673538891b9cda7",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_document_succession.py",
+          "sha256": "9bb75a9e5b694d88982557286cf01c276a13e4a526f3e700a6c647c06f322c24",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_documentation_revision.py",
+          "sha256": "4aecf241fa704d95d4589c623992796a1d6a0edb1619390dce959514816a70eb",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_governance.py",
+          "sha256": "deb23eb56749d6296b1df81515731436434a563ac23ecdf281469bdf1139d1a0",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_native_exec_succession.py",
+          "sha256": "d85b90efc7c4bcd28bbc2bac43c0c8bc391a2a4e58cf748c8ace63beeca8fbcc",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_project_revision.py",
+          "sha256": "5c0fcba74654d86bb26146b107227ad85d88d241169613b4ce5b93377e58c6da",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_readme_skill_integration.py",
+          "sha256": "8daf7fcc9844e9a1e358dd16847d4b79cfa2b6f8e2b9791d643af384cdfc009f",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_reconciliation.py",
+          "sha256": "9dde1e04cbe9c48568431e340ec927471d3606cc177ab14315f2c092685a2905",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_scanner_succession.py",
+          "sha256": "0be44272b7ce3d326627a37232ab42ed8f4444b331841239c32007e1d6bb2038",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_security_quality.py",
+          "sha256": "3e91a8d83ca594513b4e919d430625050b90a5a0d18ae4137fc4760ce6d04b16",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_task_closure.py",
+          "sha256": "8b37a014edb9a533b43edf1194018f29395d32ffb2c26d44b83061e983f48c01",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_technical_acceptance.py",
+          "sha256": "faf2508454c065deeef9149e5b889ce4daf2fdd081a5800663d70222205faafe",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_ui_metadata_inventory.py",
+          "sha256": "a50c2d596bdf7507142e141e34a4d69439ffdaa4f53fbbebdd299cdc75839f75",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No product source/Cargo changes or new product behavior acceptance.",
+    "Legacy build/recovery/checks without ownership metadata remain pinned; no inferred 44 GB reclaim.",
+    "Documentary example review does not measure autonomous agent compliance.",
+    "Cooperative leases and path checks are not hostile-writer OS isolation or power-loss transactions."
+  ],
+  "historical_evidence": [
+    {
+      "id": "E-MAINTENANCE-01",
+      "kind": "inspection",
+      "command_or_method": "Source and local inventory, byte comparison of similar logs, rmdir empty-only precondition, preserved removal receipt.",
+      "observed_result": "Only empty obsolete placeholder removed; distinct logs and historical duplicates preserved.",
+      "artifact": "docs/validation/repository-maintenance-20261109/stage1.json",
+      "sha256": "d503c867fa60d03a45755598d9e10f3bba1f9f02287ffabd51282e4837962010",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "55823757eb907c6a47dd09ba0af71ae13a6a07bc870d24e97e1180df40ec99bf",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/source-inventory.json",
+          "sha256": "04b91c4a399ed6ff29a1b788e91e5a2ec49a9053d7b11ade840a1e2ab3611d96",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/stage1.json",
+          "sha256": "d503c867fa60d03a45755598d9e10f3bba1f9f02287ffabd51282e4837962010",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "d673b4040fa3c620e5285670d11357dee153764f527d4863681c66c3c45914e6",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "7dfe784fb0cc0c11d10e8ca44a7070df4c0998f01f4ba29ed5c868ebcef1369d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "8e8f8586a8408a40675bdea588fd450ce045b44e5292573593a4bc27873afe36",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-02",
+      "kind": "inspection",
+      "command_or_method": "Semantic inspection of workflow, templates and catalog/bridge integration against preimages; three task documentation cases reviewed.",
+      "observed_result": "One normative closure policy and shared skill links; behavior/documentation/no-impact cases satisfy the stated contract.",
+      "artifact": "docs/validation/repository-maintenance-20261109/documentary-review.md",
+      "sha256": "01836e76b8b1e025c5bd445d46456ca57774ab6094fbdb880734cd5259e7c361",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "55823757eb907c6a47dd09ba0af71ae13a6a07bc870d24e97e1180df40ec99bf",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/documentary-review.md",
+          "sha256": "01836e76b8b1e025c5bd445d46456ca57774ab6094fbdb880734cd5259e7c361",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "d673b4040fa3c620e5285670d11357dee153764f527d4863681c66c3c45914e6",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "7dfe784fb0cc0c11d10e8ca44a7070df4c0998f01f4ba29ed5c868ebcef1369d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "8e8f8586a8408a40675bdea588fd450ce045b44e5292573593a4bc27873afe36",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/workflow.md",
+          "sha256": "55d3be46cda7c3748b158c98c8896af8695e17ae89e30382d2b3b1171fa16488",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-03",
+      "kind": "test",
+      "command_or_method": "Real automate.sh --scope governance --check sdd-structure plus producer/lease fixture and migration hash verification.",
+      "observed_result": "Real producer created completed owned run at stable checks destination; 16 records moved with identical hashes and reversible mapping.",
+      "artifact": "docs/validation/repository-maintenance-20261109/producer.txt",
+      "sha256": "1b83da015d1568116544055a0e272a7c7dad36494d4ad15bddacc1dd5a73b164",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "55823757eb907c6a47dd09ba0af71ae13a6a07bc870d24e97e1180df40ec99bf",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "d673b4040fa3c620e5285670d11357dee153764f527d4863681c66c3c45914e6",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "7dfe784fb0cc0c11d10e8ca44a7070df4c0998f01f4ba29ed5c868ebcef1369d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "8e8f8586a8408a40675bdea588fd450ce045b44e5292573593a4bc27873afe36",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-04",
+      "kind": "test",
+      "command_or_method": "python3 -m unittest discover -s scripts/tests -p test_local_lifecycle.py -v; real shell/filesystem fixtures.",
+      "observed_result": "20 tests passed including leases, dry-run, real deletion, traversal, symlinks, FIFO, repeat and crash recovery.",
+      "artifact": "docs/validation/repository-maintenance-20261109/lifecycle-tests.txt",
+      "sha256": "82a4ccb8dfc3ef753af4e1a6e3a2ba95a60849aa27fab4b690ece326b77d2ffb",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "55823757eb907c6a47dd09ba0af71ae13a6a07bc870d24e97e1180df40ec99bf",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/local.sh",
+          "sha256": "9e8e3b26d0ff7c3c10103f63f1599d8790de6f1baf955d6f6b66ad388eba5aac",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "d673b4040fa3c620e5285670d11357dee153764f527d4863681c66c3c45914e6",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "7dfe784fb0cc0c11d10e8ca44a7070df4c0998f01f4ba29ed5c868ebcef1369d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "8e8f8586a8408a40675bdea588fd450ce045b44e5292573593a4bc27873afe36",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-01-R2",
+      "kind": "inspection",
+      "command_or_method": "Reexamine inventory/removal receipt and protected retained data against archived inputs; removal is not replayed. Review final task metadata without changing the original outcome.",
+      "observed_result": "Only empty obsolete placeholder removed; distinct logs and historical duplicates preserved.",
+      "artifact": "docs/validation/repository-maintenance-20261109/stage1.json",
+      "sha256": "d503c867fa60d03a45755598d9e10f3bba1f9f02287ffabd51282e4837962010",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "cf76690852d04af14b3cdf97df795dbd0f370bd41c7c3c5dcb94c67dd25fb96c",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/source-inventory.json",
+          "sha256": "04b91c4a399ed6ff29a1b788e91e5a2ec49a9053d7b11ade840a1e2ab3611d96",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/stage1.json",
+          "sha256": "d503c867fa60d03a45755598d9e10f3bba1f9f02287ffabd51282e4837962010",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "0be1b3efe2f9082b734bc8413fc694e2976fe51f967500c7b62f8b46ae8f54dd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "7dfe784fb0cc0c11d10e8ca44a7070df4c0998f01f4ba29ed5c868ebcef1369d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "d49aeaee99ef42d3e5bb432abf05d49c153cb80bbe5361ea77cdb72c324655ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-02-R2",
+      "kind": "inspection",
+      "command_or_method": "Semantic inspection of workflow, templates and catalog/bridge integration against preimages; three task documentation cases reviewed.",
+      "observed_result": "One normative closure policy and shared skill links; behavior/documentation/no-impact cases satisfy the stated contract.",
+      "artifact": "docs/validation/repository-maintenance-20261109/documentary-review.md",
+      "sha256": "01836e76b8b1e025c5bd445d46456ca57774ab6094fbdb880734cd5259e7c361",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "cf76690852d04af14b3cdf97df795dbd0f370bd41c7c3c5dcb94c67dd25fb96c",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/documentary-review.md",
+          "sha256": "01836e76b8b1e025c5bd445d46456ca57774ab6094fbdb880734cd5259e7c361",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "0be1b3efe2f9082b734bc8413fc694e2976fe51f967500c7b62f8b46ae8f54dd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "7dfe784fb0cc0c11d10e8ca44a7070df4c0998f01f4ba29ed5c868ebcef1369d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "d49aeaee99ef42d3e5bb432abf05d49c153cb80bbe5361ea77cdb72c324655ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/workflow.md",
+          "sha256": "55d3be46cda7c3748b158c98c8896af8695e17ae89e30382d2b3b1171fa16488",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-03-R2",
+      "kind": "test",
+      "command_or_method": "Real automate.sh --scope governance --check sdd-structure plus producer/lease fixture and migration hash verification.",
+      "observed_result": "Real producer created completed owned run at stable checks destination; 16 records moved with identical hashes and reversible mapping.",
+      "artifact": "docs/validation/repository-maintenance-20261109/producer.txt",
+      "sha256": "1b83da015d1568116544055a0e272a7c7dad36494d4ad15bddacc1dd5a73b164",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "cf76690852d04af14b3cdf97df795dbd0f370bd41c7c3c5dcb94c67dd25fb96c",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "0be1b3efe2f9082b734bc8413fc694e2976fe51f967500c7b62f8b46ae8f54dd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "7dfe784fb0cc0c11d10e8ca44a7070df4c0998f01f4ba29ed5c868ebcef1369d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "d49aeaee99ef42d3e5bb432abf05d49c153cb80bbe5361ea77cdb72c324655ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-MAINTENANCE-04-R2",
+      "kind": "test",
+      "command_or_method": "python3 -m unittest discover -s scripts/tests -p test_local_lifecycle.py -v; 23 fresh real shell/filesystem fixtures after hardening, plus semantic review of final task metadata. Prior 20-case observation and source/oracle bytes archived in before-final-hardening.",
+      "observed_result": "23 tests passed including leases, dry-run, real deletion, traversal, symlinks, FIFO, repeat and crash recovery.",
+      "artifact": "docs/validation/repository-maintenance-20261109/lifecycle-tests.txt",
+      "sha256": "09c4c2bc9ad6234f8658f48ba72bbb5fab69f177e0a7eb61d15b0b2362e257e1",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "c94562dc3a9d598c82d969004f55677d19293af5404e20f45a0a8204040bc196",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0385ce0354ceab9d723decea1f8d1e6ca7d4000e5de5f5c97e8fe5d3ede4a18b",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/local-artifacts.md",
+          "sha256": "cf76690852d04af14b3cdf97df795dbd0f370bd41c7c3c5dcb94c67dd25fb96c",
+          "role": "other"
+        },
+        {
+          "path": "docs/development/sdd-skills.md",
+          "sha256": "1d8b80a3feac8d24b6eb2d93f49317ab5837152cf5f5b13f67ee3c3d27db6cae",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/repository-maintenance-20261109/succession.json",
+          "sha256": "22838269b63f96ce87ffdfbc465483b0fbc24e65d7ded08b52aed277792d6bf1",
+          "role": "other"
+        },
+        {
+          "path": "scripts/README.md",
+          "sha256": "e373bdb091a647cc4e191cf058dcd23125a104a9b834ce16287adbc022e8ef60",
+          "role": "other"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "e5321160616d07f08457e6c032d38c97fe684ea3efb14adb6414ed2092867a4e",
+          "role": "other"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "6b708264d2020b5e91d4bc810050cc882676896f6f5ca62fa5fc315887d0fc31",
+          "role": "other"
+        },
+        {
+          "path": "scripts/config/static-review.json",
+          "sha256": "c4e47d1e562d7672d20a3d6f188d5848adefbd22b8c60683e0b70d2bd1370946",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "5cfee4d85463c8bfc3fa9168c09c73a96e67198fc4cbec34fc816315f5278c96",
+          "role": "other"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "baccc4d159496f916c35da9ad43e4b12d8ac696eceda2699991fb9ca721ee191",
+          "role": "other"
+        },
+        {
+          "path": "scripts/local.sh",
+          "sha256": "5907c08e9ac4506e5448108f7c4a4af486664bac19d0e54e20a5cca54cb06436",
+          "role": "other"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "905139ee6bc5100732ef83a5da8e9e7a06e40c2c4eac51300159c5730ef5fce7",
+          "role": "other"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "0be1b3efe2f9082b734bc8413fc694e2976fe51f967500c7b62f8b46ae8f54dd",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "5b31a347df1c74cf95b8ae98c2481631d735e2cb889b99c56b03d01f2cbe7486",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/plan.md",
+          "sha256": "7dfe784fb0cc0c11d10e8ca44a7070df4c0998f01f4ba29ed5c868ebcef1369d",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/spec.md",
+          "sha256": "26d023bfc2d79efa9e3e7b1eec68303f7974ac2829b8b34f3780b293ca534627",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/tasks.md",
+          "sha256": "d49aeaee99ef42d3e5bb432abf05d49c153cb80bbe5361ea77cdb72c324655ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/repository-maintenance/traceability.json",
+          "sha256": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/templates/checklist.md",
+          "sha256": "c2d5132973478faedac706511ce0a2c6b43766e8b30cead872bfd96ce2807914",
+          "role": "other"
+        },
+        {
+          "path": "sdd/templates/tasks.md",
+          "sha256": "79b79db76907070a6964fc3d83bb3fba39f4d82b920da577556f720fbab9b7fd",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "d994d13db24654d0d8ff1fe73da0baf59a8753424c568160a22869fefe109f28",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_maintenance_succession.py",
+          "sha256": "b0f0e77c8b4560c9d4e3e9215b169c24abee3587a0262b8c993b5d56881eb9b9",
+          "role": "other"
+        }
+      ]
+    }
+  ]
+}

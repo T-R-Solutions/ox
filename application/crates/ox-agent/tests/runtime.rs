@@ -5,7 +5,7 @@ use std::{
     thread,
     time::{Duration, Instant},
 };
-fn identity(attempt: u64) -> Identity {
+const fn identity(attempt: u64) -> Identity {
     Identity {
         session: 7,
         task: 11,

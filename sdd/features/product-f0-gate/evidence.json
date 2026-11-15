@@ -8,9 +8,7 @@
       "status": "INCONCLUSIVE",
       "evidence_ids": [
         "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-README-SKILL-INTEGRATION-REVIEW",
         "E-DOCUMENTATION-REFRESH",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
         "E-T011-R2-SOURCE-RETENTION"
       ]
     },
@@ -20,9 +18,7 @@
       "status": "INCONCLUSIVE",
       "evidence_ids": [
         "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-README-SKILL-INTEGRATION-REVIEW",
         "E-DOCUMENTATION-REFRESH",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
         "E-T011-R2-SOURCE-RETENTION"
       ]
     },
@@ -32,9 +28,7 @@
       "status": "INCONCLUSIVE",
       "evidence_ids": [
         "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-README-SKILL-INTEGRATION-REVIEW",
         "E-DOCUMENTATION-REFRESH",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
         "E-T011-R2-SOURCE-RETENTION"
       ]
     },
@@ -44,9 +38,7 @@
       "status": "INCONCLUSIVE",
       "evidence_ids": [
         "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-README-SKILL-INTEGRATION-REVIEW",
         "E-DOCUMENTATION-REFRESH",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
         "E-T011-R2-SOURCE-RETENTION"
       ]
     },
@@ -56,8 +48,6 @@
       "status": "INCONCLUSIVE",
       "evidence_ids": [
         "E-F0-EXPORT-BOUNDARY-REVIEW",
-        "E-README-SKILL-INTEGRATION-REVIEW",
-        "E-T009-DOCUMENTARY-SUCCESSOR",
         "E-T011-R2-SOURCE-RETENTION"
       ]
     }
@@ -134,121 +124,6 @@
       ]
     },
     {
-      "id": "E-README-SKILL-INTEGRATION-REVIEW",
-      "kind": "inspection",
-      "command_or_method": "Compare actual enumerated profile/import/preservation/doc delta against each affected criterion consumer. Retain old observations and identical input/artifact bytes; current profile receives independent import acceptance.",
-      "observed_result": "Existing scoped criterion states retained; no product execution or scientific/reader-effectiveness claim inferred. New conditional resource identity and negative preservation cases examined separately.",
-      "artifact": "docs/validation/readme-skill-integration-20261104/shared-input-review.md",
-      "sha256": "317f66f9089cdad0ec12524cfaf5d1fd1a9a3aa310e94562dddea655a9c784da",
-      "inputs": [
-        {
-          "path": ".codex/skills/README.md",
-          "sha256": "6161cee65caa6a19ae61cba0c56cc5751d90c6fe54c42a07c0c72a2ee11f05b7",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/robustness-20261105/before/application/crates/ox-verification/src/engine.rs.bin",
-          "sha256": "4d1e2797a027e9e82d3adc44a19c46f9fa7361f86087f6b36f34b8c0514ba2a5",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/robustness-20261105/before/application/crates/ox-verification/tests/engine.rs.bin",
-          "sha256": "7e23f63a41994906f119438827dbad3353bb15c58d29ef798d8a007198dfbbe4",
-          "role": "other"
-        },
-        {
-          "path": "config/governance/profile.json",
-          "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/robustness-20261105/before/docs/decisions/local-persistence-proposal.md.bin",
-          "sha256": "b8769a02eaf4343c9f42197cc5ac49580a6d3985187ef2af65e07fd8b8b92233",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/readme-skill-integration.md",
-          "sha256": "f8f53eba58ebf0e9e0b7892ab41dbe880806b31bccfe85d3090d31389c613e1d",
-          "role": "other"
-        },
-        {
-          "path": "docs/structure/files.json",
-          "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
-          "role": "other"
-        },
-        {
-          "path": "docs/structure/profile-revisions.json",
-          "sha256": "30f821a9adf357116a8d3b53114a0074da099be735446a79757899d56df972dc",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/quality-refinement/dependency-impact.json",
-          "sha256": "a7575af684b87049846cea3477652c0ad09c491c2db85a036538ae69d4cfbeee",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/skill-t004.json",
-          "sha256": "5011ceea5bc4924784d45195e68389bbe1a97a9e1d52cd7f3085420b675084ee",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/foundation-current-20261101/f0.md",
-          "sha256": "5fbab15e54a2e75fe32dc4033aab0f4756c50ff92cc22990f8f9b8a6884b34b3",
-          "role": "other"
-        },
-        {
-          "path": "sdd/chain/README.md",
-          "sha256": "c573f472c39f89270a1c405919be1079c165aba77b7223a03fd13d2248544ab9",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/robustness-20261105/before/sdd/features/product-f0-gate/plan.md.bin",
-          "sha256": "8e6676823915a36d96caf6ef479032a7ede11b70687962cebee971844182857f",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/product-f0-gate/spec.md",
-          "sha256": "0f1b71c6b3f8d251e61c19a8c6973bd32823847768d4c45078f8acd2737cf479",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/robustness-20261105/before/sdd/features/product-f0-gate/tasks.md.bin",
-          "sha256": "2e09371aad12d518065b88c09d27e1db30c1a0bf46a56dc24812106a768d55b8",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/robustness-20261105/before/sdd/features/product-f0-gate/traceability.json.bin",
-          "sha256": "4dd8075e03c65f2c00cfe3647c92751914883e484620451fe13ccec0649a9cba",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/robustness-20261105/before/sdd/project.md.bin",
-          "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/check-ox.py.bin",
-          "sha256": "5a6a68c5cb41a268d7bedafaa81c4583b60cd87f25603a79d2f4a80f46db72cc",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/governance_support.py.bin",
-          "sha256": "15b4ad904e3d1c950446ded93c7bb85bea5731198c18a56153f1667f8c88bda3",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/skill_revision.py.bin",
-          "sha256": "692cb74cb6a25dde4eca0309616fa3acaf27acc17af0732328108eefd3af1f8a",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
-          "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
-          "role": "other"
-        }
-      ]
-    },
-    {
       "id": "E-DOCUMENTATION-REFRESH",
       "kind": "inspection",
       "command_or_method": "Compare changed feature index against product-f0-gate spec, final raster-profile convergence successor, persistence proposal and unchanged application input hashes; see documentation refresh report and final checks.",
@@ -279,91 +154,6 @@
       ]
     },
     {
-      "id": "E-T009-DOCUMENTARY-SUCCESSOR",
-      "kind": "inspection",
-      "command_or_method": "Inspect adopted D2/D4 and conditional D3/D4-deps against predecessor documentary inputs and existing criteria. Preserve original digest preimages and all other input identities; no operational replay. Exact replacement ledger in successor/impact.json.",
-      "observed_result": "Documentary additions authorize only T009 preparation and isolated acquisition, preserve D1/F0 boundary and prior product criteria; no technology/integration/operational acceptance. Historical observations retain original scope/bytes. T009 remains INCONCLUSIVE; global identity validator condition remains unresolved.",
-      "artifact": "docs/validation/persistence-preflight-20261105/successor/review.md",
-      "sha256": "19d0cae464646bc81249e56ea3089a6e1a123ee4cdf081c323a585e0019987d2",
-      "inputs": [
-        {
-          "path": "application/crates/ox-verification/src/engine.rs",
-          "sha256": "42f0bd8a33593dc13f245a28b5f4a1477bdc79b5feab18f1d303c164402448ab",
-          "role": "other"
-        },
-        {
-          "path": "application/crates/ox-verification/tests/engine.rs",
-          "sha256": "dc7b6ea02bd4fbb4a047ee7260f1d2016eabcb4a7719c6002d50af9629af6ece",
-          "role": "other"
-        },
-        {
-          "path": "docs/architecture/context.md",
-          "sha256": "be256899934dada6f979639015764aae9801e732abdeb935629fd3b17c2eeaab",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/local-persistence-experiment-20261105.md",
-          "sha256": "058e1801df33718a31214b7dedb4065eeb13ceee6a7f0a07eb0cbbb1793fdd1e",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/local-persistence-proposal.md",
-          "sha256": "86453713fd66a0a026f2f968c7692ba3d9e1a088277fa271cd14890ddaaa4609",
-          "role": "other"
-        },
-        {
-          "path": "docs/decisions/open-questions.md",
-          "sha256": "2b389951eb3d9b3a154253707e03ae64aa93e0077c73a78d0714dec4c9ebc94d",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/quality-refinement/dependency-impact.json",
-          "sha256": "a7575af684b87049846cea3477652c0ad09c491c2db85a036538ae69d4cfbeee",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/f0-reconciliation-20261101/skill-t004.json",
-          "sha256": "5011ceea5bc4924784d45195e68389bbe1a97a9e1d52cd7f3085420b675084ee",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/foundation-current-20261101/f0.md",
-          "sha256": "5fbab15e54a2e75fe32dc4033aab0f4756c50ff92cc22990f8f9b8a6884b34b3",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/product-f0-gate/plan.md",
-          "sha256": "27e48d0e53204dc3614636d490fa3dfd4077c7fe5b7a3c46291636864fba4531",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/product-f0-gate/spec.md",
-          "sha256": "0f1b71c6b3f8d251e61c19a8c6973bd32823847768d4c45078f8acd2737cf479",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/product-f0-gate/tasks.md",
-          "sha256": "0bb5a16b390a9245e07c5d014184a0d28e274ae6b968822d40270c40ea4842f4",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/product-f0-gate/traceability.json",
-          "sha256": "6dc91e2990968fdd75dfd81c8739f7263e064b63cf7c4ce9a9e61bd0199e6f9e",
-          "role": "other"
-        },
-        {
-          "path": "sdd/features/product-local-persistence/experiment-protocol.md",
-          "sha256": "2ed78fb91e87a2df3d053645ed3aea105f6e0451bd1125d375cb08e929b4d3bb",
-          "role": "other"
-        },
-        {
-          "path": "docs/validation/persistence-freeze-20261105/before/sdd/project.md.bin",
-          "sha256": "853f04e0dd88f9488b18ff47852740e0c4ad23539499ce5a5bafc72383acba33",
-          "role": "other"
-        }
-      ]
-    },
-    {
       "id": "E-T011-R2-SOURCE-RETENTION",
       "kind": "inspection",
       "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
@@ -385,7 +175,7 @@
     "T903 successor: current F0/full-count GUI RSS acceptance INCONCLUSIVE, T903 open; small GUI/functional/worker observations and documentary preparation are independently bounded. See report. Historical limitations below retain original scope.",
     "Current successor: F0 OPEN. Historical limitations below describe their original observations. Full native journey, GUI/frame/CPU adopted limits and instrumented GUI intermittency remain unresolved; see current report. No persistence/distribution/remote-agent implementation or commits.",
     "Documentary preparation only; no adopted F0 boundary or operational acceptance.",
-    "Q01–Q13 operationally UNVERIFIED; F0 has four INCONCLUSIVE and three UNVERIFIED rows.",
+    "Q01\u2013Q13 operationally UNVERIFIED; F0 has four INCONCLUSIVE and three UNVERIFIED rows.",
     "No dependency changes, coverage/performance measurement, Cargo/GUI replay, new product tests, persistence experiments or installation.",
     "Completeness/authenticity are not proven by hashes.",
     "Initial wrongly scoped validator calls checked no feature and do not count as validation; corrected invocations and final checks are recorded separately.",
@@ -394,7 +184,12 @@
     "2026-11-05: historical graphical/performance closure is preserved on old inputs; current UI response/close/display and F0 operational acceptance await T903. Storage is not implemented. See docs/validation/robustness-20261105/report.md.",
     "Task closure succession: affected historical observations preserved under historical_evidence and exact preimage in docs/validation/scripts-task-closure/before; affected decisions INCONCLUSIVE pending bounded successor review. Unaffected operational observations retained.",
     "Scanner remediation 2026-11-07: changed-input observations preserved verbatim in historical_evidence; no previous hash renewed. Affected acceptance requires reexecution; see docs/validation/scanner-remediation-20261107/evidence-reconciliation.json.",
-    "2026-11-07 resumption: active observations bound to earlier Cargo manifests moved verbatim to historical_evidence. Exact local version constraints changed; no renewed GUI or product acceptance. See scanner-remediation-20261107/resumption/reconciliation.json."
+    "2026-11-07 resumption: active observations bound to earlier Cargo manifests moved verbatim to historical_evidence. Exact local version constraints changed; no renewed GUI or product acceptance. See scanner-remediation-20261107/resumption/reconciliation.json.",
+    "Visual successor: affected prior observations preserved in docs/validation/visual-workbench-20261111/superseded-evidence/product-f0-gate.json.bin; acceptance now INCONCLUSIVE until scoped revalidation.",
+    "Configuration inputs changed; affected observations preserved under docs/validation/configuration-refactor-20261111/before-evidence/. Rerun relevant consumer/oracle before renewed technical acceptance.",
+    "2026-11-13 Ec defaults: changed inputs invalidate dependent observations; original evidence preserved at docs/validation/scripts-defaults-20261113/prior/product-f0-gate/evidence.json",
+    "New documentary inspection reexamines changed authority/succession bytes only; original operational states and unaffected evidence references remain unchanged.",
+    "2026-11-14 instruction corrections: changed-input observations preserved unchanged in historical_evidence and governance-corrections-20261114/before; affected decided criteria require a new criterion-specific observation. No product/scanner reacceptance."
   ],
   "historical_evidence": [
     {
@@ -9391,7 +9186,7 @@
         "id": "E-T903-20261105",
         "kind": "inspection",
         "command_or_method": "Actual isolated compositor keyboard/pointer and rendered-state journeys; per-cell 3+20 response samples/all frame logs, three10s idle windows; 32-observation journeys; FIFO/held worker/direct-child observations; original binary corroboration; backend and fixed large-history metrics; current coverage/Rust tests; scoped documentary successor review. See report and exact per-run commands.",
-        "observed_result": "Current functional journeys and adopted small GUI 12-cell matrix pass; full32 history draw failure159.935ms repaired and reobserved <=74.384ms. Full32 GUI RSS90.63–133.69MiB exceeds64MiB small corpus; applicability of separate256MiB fixed stress envelope is not adopted for this workload. T903 remains OPEN/current F0 INCONCLUSIVE, no limit relaxed. Documentary preparation inspected separately.",
+        "observed_result": "Current functional journeys and adopted small GUI 12-cell matrix pass; full32 history draw failure159.935ms repaired and reobserved <=74.384ms. Full32 GUI RSS90.63\u2013133.69MiB exceeds64MiB small corpus; applicability of separate256MiB fixed stress envelope is not adopted for this workload. T903 remains OPEN/current F0 INCONCLUSIVE, no limit relaxed. Documentary preparation inspected separately.",
         "artifact": "docs/validation/t903-20261105/report.md",
         "sha256": "d7a8508012f48ee44968ed442c4a84a1b196fd9eeca469783e88f72a2e10c10e",
         "inputs": [
@@ -16189,6 +15984,206 @@
           "path": "docs/validation/persistence-preflight-20261105/before/sdd/features/product-local-persistence/experiment-protocol.md.bin",
           "sha256": "3d5cdeffaf926cb26533449d67397368479a67451e620f6c1cdb63592296dd79",
           "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-README-SKILL-INTEGRATION-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Compare actual enumerated profile/import/preservation/doc delta against each affected criterion consumer. Retain old observations and identical input/artifact bytes; current profile receives independent import acceptance.",
+      "observed_result": "Existing scoped criterion states retained; no product execution or scientific/reader-effectiveness claim inferred. New conditional resource identity and negative preservation cases examined separately.",
+      "artifact": "docs/validation/readme-skill-integration-20261104/shared-input-review.md",
+      "sha256": "317f66f9089cdad0ec12524cfaf5d1fd1a9a3aa310e94562dddea655a9c784da",
+      "inputs": [
+        {
+          "path": ".codex/skills/README.md",
+          "sha256": "6161cee65caa6a19ae61cba0c56cc5751d90c6fe54c42a07c0c72a2ee11f05b7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/robustness-20261105/before/application/crates/ox-verification/src/engine.rs.bin",
+          "sha256": "4d1e2797a027e9e82d3adc44a19c46f9fa7361f86087f6b36f34b8c0514ba2a5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/robustness-20261105/before/application/crates/ox-verification/tests/engine.rs.bin",
+          "sha256": "7e23f63a41994906f119438827dbad3353bb15c58d29ef798d8a007198dfbbe4",
+          "role": "other"
+        },
+        {
+          "path": "config/governance/profile.json",
+          "sha256": "f9c23288d4538fea0200325510950f901c5ee12ab53dcdda94beb30128803fa1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/robustness-20261105/before/docs/decisions/local-persistence-proposal.md.bin",
+          "sha256": "b8769a02eaf4343c9f42197cc5ac49580a6d3985187ef2af65e07fd8b8b92233",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/readme-skill-integration.md",
+          "sha256": "f8f53eba58ebf0e9e0b7892ab41dbe880806b31bccfe85d3090d31389c613e1d",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/files.json",
+          "sha256": "1c624948d9c19eef7104d25cfbead751167d9b4c3ec3d428635ae6b1df691515",
+          "role": "other"
+        },
+        {
+          "path": "docs/structure/profile-revisions.json",
+          "sha256": "30f821a9adf357116a8d3b53114a0074da099be735446a79757899d56df972dc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/quality-refinement/dependency-impact.json",
+          "sha256": "a7575af684b87049846cea3477652c0ad09c491c2db85a036538ae69d4cfbeee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/skill-t004.json",
+          "sha256": "5011ceea5bc4924784d45195e68389bbe1a97a9e1d52cd7f3085420b675084ee",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/foundation-current-20261101/f0.md",
+          "sha256": "5fbab15e54a2e75fe32dc4033aab0f4756c50ff92cc22990f8f9b8a6884b34b3",
+          "role": "other"
+        },
+        {
+          "path": "sdd/chain/README.md",
+          "sha256": "c573f472c39f89270a1c405919be1079c165aba77b7223a03fd13d2248544ab9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/robustness-20261105/before/sdd/features/product-f0-gate/plan.md.bin",
+          "sha256": "8e6676823915a36d96caf6ef479032a7ede11b70687962cebee971844182857f",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-f0-gate/spec.md",
+          "sha256": "0f1b71c6b3f8d251e61c19a8c6973bd32823847768d4c45078f8acd2737cf479",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/robustness-20261105/before/sdd/features/product-f0-gate/tasks.md.bin",
+          "sha256": "2e09371aad12d518065b88c09d27e1db30c1a0bf46a56dc24812106a768d55b8",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/robustness-20261105/before/sdd/features/product-f0-gate/traceability.json.bin",
+          "sha256": "4dd8075e03c65f2c00cfe3647c92751914883e484620451fe13ccec0649a9cba",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/robustness-20261105/before/sdd/project.md.bin",
+          "sha256": "fd2ca767da1c7acc1119f309fdb3b8e875ec4b26a9fd418395a0a323fc25176f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/check-ox.py.bin",
+          "sha256": "5a6a68c5cb41a268d7bedafaa81c4583b60cd87f25603a79d2f4a80f46db72cc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/technical-documentation-visuals-20261104/before/tools/governance/scripts/governance_support.py.bin",
+          "sha256": "15b4ad904e3d1c950446ded93c7bb85bea5731198c18a56153f1667f8c88bda3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/scripts/skill_revision.py.bin",
+          "sha256": "692cb74cb6a25dde4eca0309616fa3acaf27acc17af0732328108eefd3af1f8a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
+          "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTATION-CLOSURE-SUCCESSOR",
+      "kind": "inspection",
+      "command_or_method": "Source-grounded documentary review of completion guidance and current visual integration; prior observations archived",
+      "observed_result": "Documentation updated; no product execution rerun or new acceptance. Original observations: docs/validation/documentation-closure-20261111/before-evidence/product-f0-gate.json.bin",
+      "artifact": "docs/validation/documentation-closure-20261111/report.md",
+      "sha256": "2f4ff2363fdb28ec21ca59881cd52d5d4a9134f1da1c9a6d93883abab0c06751",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "3a5f842b1e7c60f3f1004c4998211e34178b23e1b7ebfe08619a879960d45eac",
+          "role": "other"
+        },
+        {
+          "path": "application/README.md",
+          "sha256": "6e50886a75b4a1c56b3f58cd6326a5e3e1e32ecee0c3e4b9c676930573a37eeb",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "4924373702d8484edbb1f7e92dc8a9f63114287c4eba01df4caaa2bf462928ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/application.md",
+          "sha256": "95d18c41e149bbdaf6934836017caed6ce5f4925c053cd89e8942fa40f22dfbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0f6e901bf9d6c1e351395c9ecf6564433ae1c63dac7c7241a9ef58d7862ed704",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "375c0c502f2ef4d1baf38720d787e9710c28bff7890b799794415f2e16e8e490",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-CONFIGURATION-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Compare current configuration with preserved preimages; retire only observations with changed bound inputs",
+      "observed_result": "Configuration text reviewed; no historical execution rerun or application acceptance transferred. Prior document: docs/validation/configuration-refactor-20261111/before-evidence/product-f0-gate.json.bin",
+      "artifact": "docs/validation/configuration-refactor-20261111/report.md",
+      "sha256": "b44e8801970792d2af595dce92eba0b0a70ef29737df71fcf9db52f803251b58",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "60927db048a6f6c9a0498d022a73ca3d6f6fad059b0aa9334bc5ddd1c4902f73",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "99c45c11a051cb0f194d2d2021214ea3d5cd604a3b107d1179f80468c6237273",
+          "role": "configuration"
+        }
+      ]
+    },
+    {
+      "id": "E-CONFIGURATION-REVIEW-COMPLETE-REPAIR-EC-DEFAULTS",
+      "kind": "inspection",
+      "command_or_method": "Compare preserved authority preimages, inspect the exact-byte succession adapter and unchanged technical inputs; 33 succession tests include corruption, symlink, downgrade and unknown-byte rejection. See defaults report.",
+      "observed_result": "Only the full command, authorized scope and exact-byte documentation succession changed. Skill methods, bridge contributions and product implementation remain unchanged; historical operational acceptance is not renewed.",
+      "artifact": "docs/validation/scripts-defaults-20261113/report.md",
+      "sha256": "9d9c08147f3041902cada932a5cfd9f15e057c2e8e9bd25ff0ed25ce5644e691",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "f482adf1f52bbc5247139b51c5079f100336ba5402a4d9351dbd788f5f2d81a9",
+          "role": "configuration"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "c612c5a0906869f4d4b18beb8f974a7304ba751be7973cf196154a1194ce3ace",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/scripts-defaults-20261113/succession.json",
+          "sha256": "94e3d4b3c352c9030a9687ff7e0eee1bf0ebe1f75236377c8fe33795f54f2370",
+          "role": "other"
         }
       ]
     }
