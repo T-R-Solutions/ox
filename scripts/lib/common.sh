@@ -3,8 +3,8 @@
 set -Eeuo pipefail
 umask 077
 LIB_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
-SCRIPTS_DIR=$(dirname -- "$LIB_DIR")
-ROOT=$(dirname -- "$SCRIPTS_DIR")
+SCRIPTS_DIR=$(dirname -- "${LIB_DIR}")
+ROOT=$(dirname -- "${SCRIPTS_DIR}")
 export PYTHONDONTWRITEBYTECODE=1 CARGO_NET_OFFLINE=true RUSTUP_AUTO_INSTALL=0
 
 die() { printf '%s\n' "$*" >&2; exit 2; }
@@ -16,6 +16,7 @@ json_args() { if (($#)); then printf '%s\0' "$@" | jq -Rs 'split("\u0000")[:-1]'
 # jq normally accepts duplicate object keys. Streaming events retain them. Track
 # each node as its parent is entered, including empty containers and close events.
 strict_json() {
+    [[ -f $1 && -r $1 ]] || return 1
     # Validate tokens without repeatedly copying an entire unquoted line.
     # jq accepts nonfinite literals; allow only JSON keywords and exponent letters.
     LC_ALL=C awk 'function word_end() {
@@ -58,21 +59,71 @@ strict_json() {
     jq -es 'length==1' "$1" >/dev/null
 }
 contained() {
-    local rel=$1 part current=$ROOT
-    [[ $rel != /* && $rel != *$'\n'* ]] || return 1
+    local rel=$1 part current=${ROOT}
+    [[ ${rel} != /* && ${rel} != *$'\n'* ]] || return 1
     local -a parts
-    IFS=/ read -ra parts <<< "$rel"
+    IFS=/ read -ra parts <<< "${rel}"
     for part in "${parts[@]}"; do
-        [[ $part != .. ]] || return 1
-        current+=/$part
-        [[ ! -L $current ]] || return 1
+        [[ ${part} != .. ]] || return 1
+        current+=/${part}
+        [[ ! -L ${current} ]] || return 1
     done
-    printf '%s\n' "$current"
+    printf '%s\n' "${current}"
 }
-log_parent() {
-    local parent
-    parent=$(contained .local/checks) || die 'Symlinked log directory'
-    mkdir -p -- "$parent"
-    printf '%s\n' "$parent"
+local_path() {
+    # shellcheck source=registry.sh
+    source "${LIB_DIR}/registry.sh" || return 1
+    catalog_load
+    local relative
+    relative=$(jq -er --arg key "$1" '.paths[$key] // error("Unknown local category")' <<<"${AUTOMATION_JSON}") || die 'Unknown local category'
+    contained "${relative}"
 }
-new_run() { mktemp -d "$(log_parent)/$1-XXXXXXXX"; }
+run_lease() {
+    local run=$1 owner
+    owner=$(cat "${run}/.owner") || return 1
+    [[ -f ${run}/.owner && ${owner} == ox-local-v2 ]] || die 'Unowned run'
+    export OX_ACTIVE_RUN=${run}
+}
+run_complete() {
+    local completed_run=$1 rc=0 owner
+    owner=$(cat "${completed_run}/.owner") || return 1
+    [[ ! -L ${completed_run} && -f ${completed_run}/.owner && ${owner} == ox-local-v2 ]] || return 2
+    # shellcheck source=logs.sh
+    source "${LIB_DIR}/logs.sh" || return 2
+    # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
+    retain_logs "${ROOT}" "${completed_run}" || rc=$?
+    # Even a publication failure must not retain source or dataset copies.
+    rm -rf -- "${completed_run}" || return 2
+    return "${rc}"
+}
+new_run() {
+    local run
+    run=$(mktemp -d "${TMPDIR:-/tmp}/ox-$1-XXXXXXXX") || return
+    printf 'ox-local-v2\n' >"${run}/.owner" || return 1
+    printf '%s\n' "${run}"
+}
+
+# A failed producer must not become an empty, successful mapfile.
+capture_lines() {
+    local destination=$1 captured
+    shift
+    captured=$("$@") || return
+    local -n captured_array=${destination}
+    captured_array=()
+    # shellcheck disable=SC2034 # Nameref writes the caller-owned destination array.
+    if [[ -n ${captured} ]]; then mapfile -t captured_array <<<"${captured}"; fi
+}
+
+# Preserve NUL-delimited producer status separately from array loading.
+capture_nul() {
+    local destination=$1 temporary rc=0
+    shift
+    temporary=$(mktemp) || return 1
+    if "$@" >"${temporary}"; then
+        local -n nul_array=${destination}
+        # shellcheck disable=SC2034 # Nameref writes the caller-owned destination array.
+        mapfile -d '' -t nul_array <"${temporary}" || rc=$?
+    else rc=$?; fi
+    rm -f -- "${temporary}" || return 1
+    return "${rc}"
+}

@@ -1,8 +1,9 @@
 """Real opt-in consumer scans; central OSV may acquire its database automatically."""
-import os
 import json
+import os
 import subprocess
 import unittest
+
 import support as S
 
 

@@ -1,0 +1,28 @@
+{
+  "method": "new manual inspection, not reexecution or renewal of original snapshot",
+  "original_input_count": 816,
+  "whole_snapshot_state": "STALE",
+  "changed": [
+    {
+      "path": "sdd/features/scripts-centralization/tasks.md",
+      "observed_sha256": "7470d416937f8b6a5f40be6d700278d91d1f5d9b3e06484adcd9a5dd786dfd4d",
+      "current_sha256": "ac024dcd1b527b58d9244a63d844ee7fc7ceaa67881f7d6c1d7ded1663f8b3da"
+    },
+    {
+      "path": "scripts/tests/test_geiger_selection.py",
+      "observed_sha256": "2dd87ed130fe6dec18d441020f0c18741a69c83c41d56b5fc64aef270fcd4d79",
+      "current_sha256": "8bb4497654687937a331695b00e8f72ba4c0582a9b26474180b2d1cf7c45d73f"
+    }
+  ],
+  "runtime_inputs_unchanged": true,
+  "limitations": "Fixture and task closure changed after native observation; see independent review and validation. No full-tree approval.",
+  "scanner_whole_snapshot_state": "STALE",
+  "scanner_changed": [
+    {
+      "path": "sdd/features/scripts-centralization/tasks.md",
+      "observed_sha256": "7470d416937f8b6a5f40be6d700278d91d1f5d9b3e06484adcd9a5dd786dfd4d",
+      "current_sha256": "ac024dcd1b527b58d9244a63d844ee7fc7ceaa67881f7d6c1d7ded1663f8b3da"
+    }
+  ],
+  "scanner_reexamination": "Only task-status documentation differs; executable inputs unchanged, per independent validation."
+}

@@ -1,6 +1,5 @@
 """Shell acceptance through public CLIs and boundary effects, using disposable files."""
 
-from pathlib import Path
 import hashlib
 import json
 import os
@@ -8,6 +7,8 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from pathlib import Path
+
 import support as S
 
 ROOT = S.ROOT
@@ -206,7 +207,7 @@ class ShellAutomationTests(unittest.TestCase):
             if p.suffix == ".sh":
                 run = subprocess.run(["/bin/bash", "-n", str(p)], capture_output=True)
                 self.assertEqual(run.returncode, 0, (str(p), run.stderr))
-                self.assertNotIn(b"python3 -", p.read_bytes())
+                self.assertNotRegex(p.read_bytes(), rb"python3\s+-(?:c(?:\s|$)|\s)")
 
     def test_generated_scanner_snapshots_are_transient_not_source_documents(self):
         import sys
@@ -214,7 +215,7 @@ class ShellAutomationTests(unittest.TestCase):
         sys.path.insert(0, str(ROOT / "tools/governance/scripts"))
         from governance_support import transient
 
-        self.assertTrue(transient(Path(".local/checks/run-ID/source/README.md")))
+        self.assertTrue(transient(Path(".local/logs/run-ID/source/README.md")))
         self.assertFalse(transient(Path("docs/README.md")))
         self.assertFalse(transient(Path("docs/.local/reference.md")))
 
@@ -254,18 +255,18 @@ class ShellAutomationTests(unittest.TestCase):
             p.touch()
         registry = {}
         for name in ["osv", "rustsec", "trivy", "grype"]:
-            d = self.root / ".local/security" / name
+            d = self.root / ".cache/ox/security" / name
             d.mkdir(parents=True)
             (d / "data").write_text(name)
             registry[name] = {
                 "path": str(d.relative_to(self.root)),
                 "sha256": S.tree_identity(d),
-                "valid_until": (dt.date.today() + dt.timedelta(days=1)).isoformat(),
+                "valid_until": (dt.datetime.now(dt.UTC).date() + dt.timedelta(days=1)).isoformat(),
                 "source": "controlled fixture",
                 "license": "fixture",
             }
-        (self.root / ".local/security/datasets.json").write_text(json.dumps(registry))
-        (self.root / ".local/security/deny.toml").write_text("[licenses]\nallow=[]\n")
+        (self.root / ".cache/ox/security/datasets.json").write_text(json.dumps(registry))
+        (self.root / ".cache/ox/security/deny.toml").write_text("[licenses]\nallow=[]\n")
         tools = {
             "gitleaks": "gitleaks",
             "osv": "osv-scanner",
@@ -294,6 +295,9 @@ if n=="cargo":
  print(json.dumps({"workspace_members":members,"packages":[{"id":m,"manifest_path":str(root/"application/crates"/m/"Cargo.toml")} for m in members]}));sys.exit(0)
 if n=="git":print("false");sys.exit(0)
 if "--version" in sys.argv or "version" in sys.argv:print("0.9.2" if n=="cargo-machete" else "controlled tool 1");sys.exit(0)
+if n=="cargo-geiger":
+ assert os.environ["RUST_MIN_STACK"]=="16777216"
+ assert "--all-features" in sys.argv
 if n=="gitleaks":Path(sys.argv[sys.argv.index("--report-path")+1]).write_text("[]");sys.exit(0)
 if n=="cargo-llvm-cov":Path(sys.argv[sys.argv.index("--output-path")+1]).write_text("SF:fixture.rs\\nend_of_record\\n");sys.exit(0)
 if n=="cargo-machete":
@@ -319,8 +323,16 @@ else:
             p = binary / name
             p.write_text("#!" + sys.executable + "\n" + body)
             p.chmod(0o755)
+        catalog_path = self.root / "scripts/config/automation.json"
+        catalog = json.loads(catalog_path.read_text())
+        catalog["checks"]["geiger"]["executable"] = {
+            "path": "bin/cargo-geiger",
+            "sha256": S.digest(binary / "cargo-geiger"),
+        }
+        catalog_path.write_text(json.dumps(catalog))
         env = dict(
-            os.environ, PATH=str(binary) + ":/usr/bin:/bin", FIXTURE_ROOT=str(self.root)
+            os.environ, PATH=str(binary) + ":/usr/bin:/bin", FIXTURE_ROOT=str(self.root),
+            CARGO_HOME=str(self.root / "cargo-home"), OX_CARGO_BIN=str(binary),
         )
         # Database scanners are covered by toolbox boundary tests.
         for name in (n for n in tools if n in ("audit", "deny", "machete", "coverage", "geiger")):
@@ -337,7 +349,7 @@ else:
             with self.subTest(check=name):
                 self.assertEqual(run.returncode, 0, run.stderr)
                 assessment = sorted(
-                    (self.root / ".local/checks").glob("security-*/assessment.json"),
+                    (self.root / ".local/logs").glob("*/ox-security-*--assessment.json.log"),
                     key=lambda p: p.stat().st_mtime_ns,
                 )[-1]
                 row = json.loads(assessment.read_text())
@@ -359,7 +371,7 @@ else:
         )
         self.assertEqual(run.returncode, 2, run.stderr)
         assessment = max(
-            (self.root / ".local/checks").glob("security-*/assessment.json"),
+            (self.root / ".local/logs").glob("*/ox-security-*--assessment.json.log"),
             key=lambda p: p.stat().st_mtime_ns,
         )
         row = json.loads(assessment.read_text())

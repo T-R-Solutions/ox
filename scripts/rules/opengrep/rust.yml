@@ -1,0 +1,26 @@
+# Rust indicators adapted from Ec; Ox POL-01 rules remain in ox.yml.
+rules:
+  - id: ox.reference.rust.uninitialized-value
+    languages: [rust]
+    severity: ERROR
+    message: Revisar valor não inicializado; usar inicialização válida ou MaybeUninit com invariantes demonstradas.
+    pattern-either:
+      - pattern: std::mem::uninitialized(...)
+      - pattern: mem::uninitialized(...)
+  - id: ox.reference.rust.dynamic-postgres-query
+    languages: [rust]
+    severity: ERROR
+    message: Revisar SQL montado com format!; usar parâmetros PostgreSQL para valores e validar separadamente identificadores dinâmicos.
+    pattern-either:
+      - pattern: $CLIENT.query(&format!(...), ...)
+      - pattern: $CLIENT.query_one(&format!(...), ...)
+      - pattern: $CLIENT.execute(&format!(...), ...)
+      - pattern: $CLIENT.batch_execute(&format!(...))
+  - id: ox.reference.rust.weak-hash
+    languages: [rust]
+    severity: ERROR
+    message: Revisar MD5/SHA-1 em credenciais ou integridade; os contratos de bytes/revisões/artefatos Ox usam SHA-256. Identificação Git exige avaliação de contexto própria.
+    pattern-either:
+      - pattern: md5::compute(...)
+      - pattern: md5::Md5::new(...)
+      - pattern: sha1::Sha1::new(...)

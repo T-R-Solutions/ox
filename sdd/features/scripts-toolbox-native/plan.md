@@ -143,3 +143,35 @@ include the repair registry/preimages before resolving the full chain.
 Bridges actually consulted: sdd/chain/software-design.md, application-security.md,
 observability-and-diagnostics.md and workspace-integrity-engineering.md, all v1;
 entry paths and distinct contributions are recorded above.
+
+## Complete-run repair — 2026-11-11
+
+D-29/R-29: inspect every published file of run ox-run-eujcD5Sa, distinguish
+configuration/preparation failures from regressions, and repair callers without
+weakening report completeness, source identity or freshness gates. Reconcile
+exact documentary successors; preserve prior observations before reexamination.
+Governance exports continue to exclude criteria needing absent product sources.
+Primary skill selected, read and used: software-delivery,
+.codex/skills/software-delivery/SKILL.md (unversioned), bridge
+sdd/chain/software-delivery.md v1. Contribution: diagnose tool/cache inputs,
+repair execution contracts and validate failed stages against their real inputs.
+No delegation. Details, criteria and final limitations belong to the repair report.
+
+Supporting skill selected/read/applied: application-security,
+.codex/skills/application-security/SKILL.md (unversioned), bridge
+sdd/chain/application-security.md v1; contribution: review every historical
+Gitleaks occurrence and bound dispositions to immutable commit fingerprints,
+with tamper and positive-detection controls. D-30/R-30: no directory/rule/commit
+allowlist, no current-tree suppression; unknown or altered fingerprints fail
+review. The native 8.24.3 implementation confirms exact commit fingerprint matching.
+Trivy keeps the central Checks Bundle/cache mounts; YARA's indicator uses an
+equivalent regex spelling to avoid matching its own rule file. Geiger omissions
+remain errors and require separate tool-level remediation, never silent removal.
+
+Static successor: Bandit --quiet keeps JSON free of progress output without
+changing severity or exit policy. Six reviewed subprocess import/call occurrences
+in native review helpers and lifecycle tests use explicit argv; the Bash test
+uses /bin/bash and a fixed program with positional paths. Exact-source guarded
+native baseline/per-file S603 dispositions apply, not global exclusions. Python
+style corrections preserve AST except an unused import and strict zip of fixed
+three-channel tuples. Native UI execution is not renewed by this comparison.

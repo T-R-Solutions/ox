@@ -2,12 +2,13 @@
 
 import json
 import os
-from pathlib import Path
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
+
 import support as S
 
 
@@ -48,7 +49,7 @@ elif tool in ('ruff','shellcheck'):
  if tool=='shellcheck': assert '/project/scripts/security/prepare-datasets.sh' in native and '/project/scripts/toolbox.sh' in native
  report=[{'code':'F821'}]*count; code=1 if count else 0
 elif tool=='bandit':
- assert '--ignore-nosec' in native and '--ini' in native
+ assert '--ignore-nosec' in native and '--ini' in native and '--quiet' in native
  report={'errors':[], 'results':[{}]*count, 'metrics':{'/project/'+str(p.relative_to(root)):{} for p in root.rglob('*.py')}}; code=1 if count else 0
 elif tool=='opengrep':
  assert '--disable-nosem' in native and '--no-git-ignore' in native
@@ -92,7 +93,7 @@ sys.exit(code)
             env=dict(self.env, FIXTURE_MODE=mode),
             capture_output=True,
         )
-        files = list((self.root / ".local/checks").glob("security-*/assessment.json"))
+        files = list((self.root / ".local/logs").glob("*/ox-security-*--assessment.json.log"))
         row = json.loads(max(files, key=lambda p: p.stat().st_mtime_ns).read_text())
         return run, row
 
@@ -120,6 +121,35 @@ sys.exit(code)
                     self.assertFalse(row["product_acceptance"])
                     self.assertNotIn("argv", row)
                     self.assertEqual(row["backend_record"]["outcome"], "native")
+
+    def test_native_plugin_discovery_preserves_path_priority(self):
+        cargo = self.root / "cargo-home"
+        selected = self.root / "selected plugins"
+        path_bin = self.root / "path-bin"
+        for directory in (cargo / "bin", selected, path_bin):
+            directory.mkdir(parents=True)
+            tool = directory / "cargo-geiger"
+            tool.write_text("#!/bin/sh\nexit 99\n")
+            tool.chmod(0o700)
+        program = '''source "$1/lib/backends.sh"
+EXECUTOR=native
+TOOL=cargo-geiger
+PATH=$2
+CARGO_HOME=$3
+unset OX_CARGO_BIN OX_TOOLBOX_BIN OX_SCANNER_BACKEND
+if [[ $4 != unset ]]; then OX_CARGO_BIN=$4; fi
+if select_backend; then json_args "$TOOL_BIN"; else json_args "$BACKEND_REASON"; fi
+'''
+        for path, override, expected in (
+            (f"{path_bin}:/usr/bin:/bin", "unset", path_bin / "cargo-geiger"),
+            ("/usr/bin:/bin", "unset", cargo / "bin/cargo-geiger"),
+            ("/usr/bin:/bin", str(selected), selected / "cargo-geiger"),
+            (f"{path_bin}:/usr/bin:/bin", str(selected), path_bin / "cargo-geiger"),
+            (f"{path_bin}:/usr/bin:/bin", "", "OX_CARGO_BIN is empty; select the installed Cargo plugins"),
+        ):
+            with self.subTest(path=path, override=override):
+                result = S.shell(program, S.ROOT / "scripts", path, cargo, override)
+                self.assertEqual(json.loads(result), [str(expected)])
 
     def test_fail_closed_diagnostic_report_integrity(self):
         for mode in (
@@ -190,6 +220,10 @@ sys.exit(code)
         self.assertNotEqual(run.returncode, 0)
         self.assertIsNone(row["tool_exit_code"])
         self.assertFalse((self.root / "native-ran").exists())
+        self.assertEqual(row["runner_exit_code"], 125)
+        self.assertIn("runner exit 125", row["reason"])
+        self.assertIn("TOOLBOX_BIN", row["reason"])
+        self.assertNotIn(b"awk:", run.stderr)
 
     def test_plans_use_central_transport_and_unavailable_local_has_no_command(self):
         for name in (
@@ -225,6 +259,13 @@ sys.exit(code)
             self.assertIn("--diagnostic-file", row["argv"])
             self.assertIn("--project-root", row["argv"])
             self.assertNotIn("--project-write", row["argv"])
+            if name == "trivy":
+                self.assertNotIn("--cache-dir", row["argv"])
+                self.assertIn("--skip-check-update", row["argv"])
+            if name == "history":
+                self.assertIn("--gitleaks-ignore-path", row["argv"])
+            if name == "gitleaks":
+                self.assertNotIn("--gitleaks-ignore-path", row["argv"])
             if name == "osv":
                 self.assertIn("--offline", row["argv"])
                 self.assertIn("/project/application/Cargo.lock", row["argv"])
@@ -270,13 +311,32 @@ sys.exit(code)
         self.assertEqual(row["state"], "blocked")
         self.assertIn("review", row["reason"].lower())
         target.write_bytes(old)
-        policy = self.root / "scripts/config/ruff.toml"
+        policy = self.root / "scripts/config/native/ruff/ruff.toml"
         policy.write_bytes(policy.read_bytes() + b"\n# mutation\n")
         _, row = self.run_check("ruff")
         self.assertEqual(row["state"], "blocked")
 
     def test_static_review_missing_registry_is_rejected(self):
-        (self.root / "scripts/config/static-review.json").unlink()
+        catalog = self.root / "scripts/config/automation.json"
+        data = json.loads(catalog.read_text())
+        del data["reviews"]["static"]
+        catalog.write_text(json.dumps(data))
         _, row = self.run_check("bandit")
         self.assertEqual(row["state"], "blocked")
         self.assertIn("Missing static review", row["reason"])
+
+    def test_history_fingerprints_require_exact_reviewed_bytes(self):
+        subprocess.run(["git", "init", "-q", str(self.root)], check=True, capture_output=True)
+        run, row = self.run_check("history")
+        self.assertEqual(run.returncode, 0, run.stderr)
+        self.assertEqual(row["state"], "passed")
+        policy = self.root / "scripts/config/native/gitleaks/gitleaks-history.ignore"
+        policy.write_text(policy.read_text() + "unknown:secret.txt:rule:1\n")
+        run, row = self.run_check("history")
+        self.assertNotEqual(run.returncode, 0)
+        self.assertIn("reviewed history fingerprints", row["reason"])
+        self.assertIsNone(row["tool_exit_code"])
+        policy.unlink()
+        run, row = self.run_check("history")
+        self.assertNotEqual(run.returncode, 0)
+        self.assertIn("reviewed history fingerprints", row["reason"])

@@ -1,0 +1,16 @@
+# Tarefas: manutenção do repositório
+
+- [x] T001 [REQ-01, AC-01, D-01, R-01]: inventariar fontes e artefatos; remover duplicação comprovada e placeholder vazio, com recibo e verificação.
+- [x] T002 [REQ-02, AC-02, D-02, R-02]: atualizar fechamento documental, templates e integração de skills; depende de T001.
+- [x] T003 [REQ-03, AC-03, D-03, R-03]: centralizar destinos e migrar logs elegíveis com manifesto; depende de T002.
+- [x] T004 [REQ-04, AC-04, D-04, R-04]: implementar retenção por ciclo de vida e testar limites/falhas; depende de T003.
+- [ ] T005 [REQ-05, AC-05, D-05, R-05]: consolidar documentação, sucessão e evidências, executar regressões e medir resultado; depende de T004.
+
+T001/T002: disposição documental e revisão dos três exemplos em
+`docs/validation/repository-maintenance-20261109/report.md`, etapas 1 e 2.
+
+T003: migração e exceções registradas em migration.json/report.md; caminhos públicos
+preservados e implementação do resolver inspecionada. Testes funcionais na T004.
+
+T004: guia local-artifacts e report atualizados; 20 cenários de filesystem e
+seis de sucessão executados, com saídas preservadas na evidência desta entrega.

@@ -1,0 +1,37 @@
+import importlib.util
+import json
+import sys
+import tempfile
+from pathlib import Path
+
+ROOT = Path('/home/rodrigo/Projetos/ox')
+sys.path.insert(0, str(ROOT / 'tools/governance/scripts'))
+from governance_support import copy_distribution
+
+with tempfile.TemporaryDirectory(prefix='ox-ec-independent-') as temporary:
+    detached = Path(temporary)
+    copy_distribution(ROOT, detached)
+    assert not (detached / 'application').exists()
+    assert not (detached / '.cache').exists()
+    feature = detached / 'sdd/features/scripts-centralization'
+    assert feature.is_dir(), 'Configuration feature must remain in the package'
+    spec = importlib.util.spec_from_file_location('independent_validator', detached / 'sdd/tools/validate.py')
+    validator = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(validator)
+    document = validator.strict_json(feature / 'evidence.json')
+    rows = validator.strict_json(feature / 'traceability.json')
+    errors = validator.evidence_errors(document, detached)
+    errors += validator.trace_errors(rows, detached, feature, document)
+    errors += validator.input_errors(document, detached, rows, feature, True)
+    assert not errors, errors
+    print('PASS: independent governance copy retains the feature and validates current schema-2 inputs.')
+    target = detached / 'scripts/lib/backends.sh'
+    original = target.read_bytes()
+    target.write_bytes(original + b'\n# rejected mutation\n')
+    errors = validator.input_errors(document, detached, rows, feature, True)
+    assert any('Stale input:' in error and 'scripts/lib/backends.sh' in error for error in errors), errors
+    print('PASS: mutated current binding is rejected.')
+    target.unlink()
+    errors = validator.input_errors(document, detached, rows, feature, True)
+    assert any('Missing or escaping file:' in error and 'scripts/lib/backends.sh' in error for error in errors), errors
+    print('PASS: missing current binding is rejected.')

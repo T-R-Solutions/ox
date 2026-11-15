@@ -5,3 +5,5 @@
 - T003 concluída no contrato dos IDs: Audit passa e OSV comprova filtragem; base OSV vencida impede aprovação operacional, sem renovar datas.
 - T004 concluída no limite escolhido pelo mantenedor: três famílias eliminadas; nove versões antigas com exceções exatas e motivos por cadeia. Iced 0.14 preservado; Deny final passou, sem skip genérico ou alegação de remoção total.
 - T005 concluída no escopo observado: testes Rust e gates nativos registrados; matriz visual e suíte completa não reexecutadas nesta etapa.
+
+- T006 (estado, evidências e fechamento no relatório de reparo): Revisar o grafo ampliado de 13/11, permitir BSL-1.0 somente após revisão, unificar windows-sys compatível, registrar disposições exatas das gerações incompatíveis e verificar Deny/Audit. Documentação: docs/licensing/dependency-policy-20261109.md e docs/validation/complete-repair-20261113/report.md.

@@ -3,10 +3,11 @@
 import datetime
 import json
 import os
-from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+from pathlib import Path
+
 import support as S
 
 
@@ -25,7 +26,7 @@ class RustSecPreparation(unittest.TestCase):
             git("-c", "user.name=Ox Fixture", "-c", "user.email=fixture@example.invalid", "-c", "commit.gpgsign=false", "commit", "-m", "fixture")
             day = git("show", "-s", "--format=%cs", "HEAD")
             review = {"source": "https://github.com/RustSec/advisory-db.git", "revision": git("rev-parse", "HEAD"),
-                      "dataset_date": day, "valid_until": datetime.datetime.now(datetime.timezone.utc).date().isoformat(),
+                      "dataset_date": day, "valid_until": datetime.datetime.now(datetime.UTC).date().isoformat(),
                       "license": "fixture", "reviewer": "test", "provenance": "controlled Git fixture",
                       "sha256": S.tree_identity(origin)}
             review_file = root / "review.json"
@@ -42,7 +43,7 @@ class RustSecPreparation(unittest.TestCase):
             env = dict(os.environ, PATH=str(binary) + ":/usr/bin:/bin")
             run = subprocess.run(argv, capture_output=True, env=env)
             self.assertEqual(run.returncode, 0, run.stderr)
-            registry = root / ".local/security/datasets.json"
+            registry = root / ".cache/ox/security/datasets.json"
             before = registry.read_bytes()
             self.assertEqual(list(json.loads(before)), ["rustsec"])
             (origin / "advisory.md").write_text("corrupted")

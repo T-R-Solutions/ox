@@ -1,0 +1,122 @@
+[
+  {
+    "path": "negative.fixture",
+    "sha256": "1b559f24dc116d561fdbf07b8edd6a6db406931210659e90fffc428d2eef4db9"
+  },
+  {
+    "path": "positive.fixture",
+    "sha256": "1bff07154ea1ac8250820a207f77acedc6cd03ff045be281a98fa3e39ae9457d"
+  },
+  {
+    "path": "Dockerfile",
+    "sha256": "0c838b00c23e582783e40d6a6934863f1af1d8b4f52d73331d5d88d2f3ef0d70"
+  },
+  {
+    "path": "Cargo.lock",
+    "sha256": "414c5ed357d81df8d0384cbd478ea59c3413683a1741dd0eb5a8532245a519fb"
+  },
+  {
+    "path": "Cargo.toml",
+    "sha256": "0e05481a149afa6ff51767f6113ef304ac72881d8aafe2563fa73dae078c750e"
+  },
+  {
+    "path": "negative.sh",
+    "sha256": "5c9efb35e41c9564f599299604959ace8b14412add9192832ea2a57134d13c8e"
+  },
+  {
+    "path": "positive.sh",
+    "sha256": "5e405e34e0d304dbe684488e4db044af721e0274745953b3bf627a1f1d9e0be2"
+  },
+  {
+    "path": "negative.py",
+    "sha256": "9ee796e75b4e9fcccbd2179f8066d622818e9d2818e1829f660229ffec1f5569"
+  },
+  {
+    "path": "positive.py",
+    "sha256": "bf71077c665dd48f0b1dc3a951fbedfaf09726241011eb9cbb5340ccc77ee664"
+  },
+  {
+    "path": "yara-targets/negative.fixture",
+    "sha256": "1b559f24dc116d561fdbf07b8edd6a6db406931210659e90fffc428d2eef4db9"
+  },
+  {
+    "path": "yara-targets/positive.fixture",
+    "sha256": "1bff07154ea1ac8250820a207f77acedc6cd03ff045be281a98fa3e39ae9457d"
+  },
+  {
+    "path": "rules/README.md",
+    "sha256": "d93929366fac58d9bacea76073d3e0de0baf92cd209fe9f8a341bcabcce7daf7"
+  },
+  {
+    "path": "config/clippy/clippy.toml",
+    "sha256": "60f64e3a3f21fd0f21059f6b2a8f52d21999ec22b2cab44cbf68d04311a40761"
+  },
+  {
+    "path": "config/trivy/trivyignore",
+    "sha256": "534119fe5ef9d0667b9a0fdc34ec5cf49c3a2b8634abfd4a6a2b9b7afdd27a34"
+  },
+  {
+    "path": "config/trivy/trivy.yaml",
+    "sha256": "b713175dbb70162c0934d09b499fd2792b53c6b01ea15b15d180af59b38d4637"
+  },
+  {
+    "path": "config/syft/syft.yaml",
+    "sha256": "d7572074a858a2f16cdea29a9de12ae5e00048c1ea69979d6a2559faf69d896a"
+  },
+  {
+    "path": "config/shellcheck/shellcheckrc",
+    "sha256": "47908de5b3ad03b88a7a9af23f45a58748585768ae959a7e73b18a519232c25f"
+  },
+  {
+    "path": "config/osv-scanner/osv-scanner.toml",
+    "sha256": "4ff7c0c2aa0eb183a286ac59666302ab3fe62a6122bffdde3bd390119f2903c9"
+  },
+  {
+    "path": "config/grype/grype.yaml",
+    "sha256": "c05d01661f6256034a37d0518b2ac167dc56a00c02356eb1776d235e1dbd7020"
+  },
+  {
+    "path": "config/ruff/ruff.toml",
+    "sha256": "703f78483bfe05807d221d7a9930d9e89d330fcee39eaeb0d8fac926f27024ee"
+  },
+  {
+    "path": "config/gitleaks/gitleaks.toml",
+    "sha256": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777"
+  },
+  {
+    "path": "config/gitleaks/gitleaks-history.ignore",
+    "sha256": "9b22293e830940fe9f16d9ea3c330ed3e6a14304f2e9d4aa5a50a676bc125ff4"
+  },
+  {
+    "path": "config/bandit/bandit-baseline.json",
+    "sha256": "2c6b0eb33086a200b0f114e2480acd388e0c5bf4a3433b6a4a6f81b72b7cc579"
+  },
+  {
+    "path": "config/bandit/bandit.ini",
+    "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e"
+  },
+  {
+    "path": "config/bandit/bandit.yaml",
+    "sha256": "6e8208e442237c5fe77b1907e8839aa741b6c37dc1c53404b4f135cb3cf781be"
+  },
+  {
+    "path": "config/cargo-deny/deny.toml",
+    "sha256": "c105d1a552d0abf969943ca8bc34b812261aa9d805d29c931fc3ba6b2720f1d1"
+  },
+  {
+    "path": "config/cargo-audit/audit.toml",
+    "sha256": "28147fe7d3b59b8cd6eaad27d87edecf4b47d4d702e832bde0d73880ff42dd83"
+  },
+  {
+    "path": "rules/yara-x/ox.yar",
+    "sha256": "fbc36185ed4422d3b09f9ff4f46827e09167da2137af07b193312052f3ef6908"
+  },
+  {
+    "path": "rules/opengrep/rust.yml",
+    "sha256": "5e6e678092134f47f782f59a401af07656fd6a253186cd7c57a5e48190e496a3"
+  },
+  {
+    "path": "rules/opengrep/ox.yml",
+    "sha256": "8f69f2c9e549ae5ed2c8485586f5ad1d287399b7ddd9b1d01249a40060550a68"
+  }
+]

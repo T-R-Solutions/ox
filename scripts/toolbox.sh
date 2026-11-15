@@ -3,9 +3,9 @@ set -euo pipefail
 ((BASH_VERSINFO[0]>4 || (BASH_VERSINFO[0]==4 && BASH_VERSINFO[1]>=4))) || { echo "Bash 4.4+ required" >&2; exit 125; }
 # Discovery/dispatch only. SELinux relabel is an explicit operator selection;
 # preserve TOOLBOX_SELINUX_LABEL as supplied, including unset/empty.
-if [[ ${TOOLBOX_BIN+x} ]]; then
-    [[ -x "$TOOLBOX_BIN" && ! -d "$TOOLBOX_BIN" ]] || { echo 'TOOLBOX_BIN must name an executable' >&2; exit 125; }
-    exec "$TOOLBOX_BIN" "$@"
+if [[ -n ${TOOLBOX_BIN+x} ]]; then
+    [[ -x "${TOOLBOX_BIN}" && ! -d "${TOOLBOX_BIN}" ]] || { echo 'TOOLBOX_BIN must name an executable' >&2; exit 125; }
+    exec "${TOOLBOX_BIN}" "$@"
 fi
 command -v toolbox >/dev/null || { echo 'Set TOOLBOX_BIN or add toolbox to PATH' >&2; exit 125; }
 exec toolbox "$@"

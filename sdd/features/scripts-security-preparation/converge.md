@@ -1,3 +1,22 @@
+# Current acceptance projection
+
+Current automated states from [evidence.json](evidence.json). This projection
+is not a new observation or product acceptance.
+
+<!-- sdd:current-status -->
+| Criterion | Status |
+| --- | --- |
+| AC-01 | UNVERIFIED |
+| AC-02 | UNVERIFIED |
+| AC-03 | UNVERIFIED |
+| AC-04 | UNVERIFIED |
+<!-- /sdd:current-status -->
+
+## Historical convergence — before 2026-11-14 correction
+
+The following conclusions apply only to their original observed inputs. Current
+states are above; prior bytes remain in the bounded correction preimages.
+
 # Convergence
 
 | Criterion | State | Observation and limits |

@@ -1,0 +1,24 @@
+test_normative_hash_requires_review (test_governance.GovernanceTests.test_normative_hash_requires_review) ... FAIL
+
+======================================================================
+FAIL: test_normative_hash_requires_review (test_governance.GovernanceTests.test_normative_hash_requires_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rodrigo/Projetos/ox/tools/governance/tests/test_governance.py", line 708, in test_normative_hash_requires_review
+    self.assertEqual(C.check(self.root), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['Nonportable or missing link: /tmp/ox-tes[123 chars].md'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'Nonportable or missing link: /tmp/ox-test-g0wsdfnt/sdd/features/repository-maintenance/converge.md: ../../../docs/validation/repository-maintenance-20261109/report.md'
+
++ []
+- ['Nonportable or missing link: '
+-  '/tmp/ox-test-g0wsdfnt/sdd/features/repository-maintenance/converge.md: '
+-  '../../../docs/validation/repository-maintenance-20261109/report.md']
+
+----------------------------------------------------------------------
+Ran 1 test in 45.167s
+
+FAILED (failures=1)

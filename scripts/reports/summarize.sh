@@ -2,6 +2,7 @@
 # shellcheck source=../lib/common.sh
 source "$(dirname -- "${BASH_SOURCE[0]}")/../lib/common.sh"
 [[ $# == 1 ]] || die 'Usage: summarize.sh RESULTS.json'
+# shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
 strict_json "$1" || die 'Invalid report'
 jq -e '.product_acceptance==false and (.results|type=="array" and length>0) and
   all(.results[];.state as $state | (.argv|type=="array" and all(.[];type=="string")) and
@@ -13,4 +14,5 @@ jq -r '
   "| Command | State | Exit |", "| --- | --- | --- |",
   (.results[] | "| \((.argv|join(" "))|cell) | \(.state|cell) | \(.exit_code) |"),
   (.omitted[]? | "\nOmitted: \(tojson)"), (.manual_evidence[]? | "\nManual evidence: \(.)")' "$1"
-exit "$(jq -r '[.results[].exit_code|select(.!=0)][0]//0' "$1")"
+aggregate_code=$(jq -r '[.results[].exit_code|select(.!=0)][0]//0' "$1") || exit 2
+exit "${aggregate_code}"

@@ -1,0 +1,506 @@
+{
+  "schema_version": 2,
+  "environment": "Local Linux checkout; Bash/jq/Python; installed Cargo toolchain and selected native Toolbox executors with explicit shared label. No full product run.",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Reference disposition",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-DEFAULTS-DOC",
+        "E-DEFAULTS-TEST"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Central catalog consumers",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-DEFAULTS-DOC",
+        "E-DEFAULTS-TEST"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Regression verification",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-DEFAULTS-DOC",
+        "E-DEFAULTS-TEST"
+      ]
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Ec public CLI parity",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-DEFAULTS-DOC",
+        "E-DEFAULTS-TEST"
+      ]
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Applicable analyzer defaults",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-DEFAULTS-DOC",
+        "E-DEFAULTS-TEST",
+        "E-DEFAULTS-NATIVE"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-DEFAULTS-DOC",
+      "kind": "inspection",
+      "command_or_method": "Compare Ec reference inventory, exact documentation successors, plans, native settings and traceability; inspect new CLI and analyzer policy coverage.",
+      "observed_result": "Reference/default differences and product-specific boundaries documented; active examples match parser; unchanged historical methods preserved.",
+      "artifact": "docs/validation/scripts-defaults-20261113/report.md",
+      "sha256": "9d9c08147f3041902cada932a5cfd9f15e057c2e8e9bd25ff0ed25ce5644e691",
+      "inputs": [
+        {
+          "path": "sdd/features/scripts-centralization/spec.md",
+          "sha256": "4fe80719801c4e49e8709d0a777938168752292520b905136bc987323d03b657",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/scripts-centralization/plan.md",
+          "sha256": "f643dd8573103e763e00c894c95308618bc6db38867496455cceb03c1cf51610",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/scripts-centralization/tasks.md",
+          "sha256": "39164f0b9bc38a8f83eba104e11d1699daa35715c18e4065081c7241d6898a7f",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/scripts-centralization/traceability.json",
+          "sha256": "0d03b8cbd86627a397f9190b426504a81f65997ce39073a54fb3dc4ee826bc0f",
+          "role": "contract"
+        },
+        {
+          "path": "scripts/lib/registry.sh",
+          "sha256": "bee76bb250a7d37209835cb0b3304b0d760f0927dde6ea0a237de87e3ba04347",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/tests/test_catalog.py",
+          "sha256": "5192d74ab42bdf1d39659588caece4b96b268771d788dbbc108dd32f852f38da",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/scripts-defaults-20261113/reference.json",
+          "sha256": "4b095c289470416e8f6ef71945db176878e4c1ec0711d6ac66671c10e68da12a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/scripts-defaults-20261113/succession.json",
+          "sha256": "94e3d4b3c352c9030a9687ff7e0eee1bf0ebe1f75236377c8fe33795f54f2370",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-DEFAULTS-TEST",
+      "kind": "test",
+      "command_or_method": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -v",
+      "observed_result": "53 tests passed, one explicitly opt-in real-security suite skipped; current shell selection/adapters and negative cases passed.",
+      "artifact": "docs/validation/scripts-defaults-20261113/checks/scripts-tests.log",
+      "sha256": "ddf60a03a76b0f4983c4a35cab929cc8e04154810718c5fa8e9800cb6898ded9",
+      "inputs": [
+        {
+          "path": "scripts/README.md",
+          "sha256": "1a9b2bb2a502372dae61c8e13fcbd81f3e173977bacb6832cf786b0f8cdbadfb",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/automate.sh",
+          "sha256": "8c96e1b181860c0db1d85090d46406123d9ab385688cf2291a0fedfcd9d09d56",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/check.sh",
+          "sha256": "1fa36099ae318d281752ccbc86d524b90aa0e2230d137ca7e7b7455c2853771b",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/checks/run.sh",
+          "sha256": "0f874e9397b96810d0a7eb1556a3a12b62a20c7cca9bc6771e829fbeaecddfc0",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/config/automation.json",
+          "sha256": "404c793e8e493c98fccdc321824265166e8b182089d062b7a87b4823cd627d3f",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/bandit/bandit-baseline.json",
+          "sha256": "2c6b0eb33086a200b0f114e2480acd388e0c5bf4a3433b6a4a6f81b72b7cc579",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/bandit/bandit.ini",
+          "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/bandit/bandit.yaml",
+          "sha256": "6e8208e442237c5fe77b1907e8839aa741b6c37dc1c53404b4f135cb3cf781be",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/cargo-audit/audit.toml",
+          "sha256": "28147fe7d3b59b8cd6eaad27d87edecf4b47d4d702e832bde0d73880ff42dd83",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/cargo-deny/deny.toml",
+          "sha256": "5e45473fdb52f9829c55d8133ec8b1b2243948096e20f2366e248dd0609b3791",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/clippy/clippy.toml",
+          "sha256": "60f64e3a3f21fd0f21059f6b2a8f52d21999ec22b2cab44cbf68d04311a40761",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/gitleaks/gitleaks-history.ignore",
+          "sha256": "9b22293e830940fe9f16d9ea3c330ed3e6a14304f2e9d4aa5a50a676bc125ff4",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/gitleaks/gitleaks.toml",
+          "sha256": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/grype/grype.yaml",
+          "sha256": "c05d01661f6256034a37d0518b2ac167dc56a00c02356eb1776d235e1dbd7020",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/osv-scanner/osv-scanner.toml",
+          "sha256": "4ff7c0c2aa0eb183a286ac59666302ab3fe62a6122bffdde3bd390119f2903c9",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/ruff/ruff.toml",
+          "sha256": "703f78483bfe05807d221d7a9930d9e89d330fcee39eaeb0d8fac926f27024ee",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/shellcheck/shellcheckrc",
+          "sha256": "47908de5b3ad03b88a7a9af23f45a58748585768ae959a7e73b18a519232c25f",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/syft/syft.yaml",
+          "sha256": "d7572074a858a2f16cdea29a9de12ae5e00048c1ea69979d6a2559faf69d896a",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/trivy/trivy.yaml",
+          "sha256": "b713175dbb70162c0934d09b499fd2792b53c6b01ea15b15d180af59b38d4637",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/trivy/trivyignore",
+          "sha256": "534119fe5ef9d0667b9a0fdc34ec5cf49c3a2b8634abfd4a6a2b9b7afdd27a34",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/lib/backends.sh",
+          "sha256": "48671a70cded4b0fa03dcc3a5bc7bef09444944a26eb2996e72f0fabe9ef819d",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/common.sh",
+          "sha256": "02e02fbbc625c2c03ef8bf39ca6e83ad834e5b154bfa30844605a5613e11c93e",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/files.sh",
+          "sha256": "8570a7f75834aad05d59e4faa4f33ee02328705f5f193ef84843b717abe63ea1",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/logs.sh",
+          "sha256": "a4ea62006c23e2b1b532ee1ca5efaa71fe9607462535641426c1069a9433c893",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/process.sh",
+          "sha256": "6e8881ede9e30c6c5644affcca6426e7e6c159072e2b449bd7be9d52f53081db",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/registry.sh",
+          "sha256": "bee76bb250a7d37209835cb0b3304b0d760f0927dde6ea0a237de87e3ba04347",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/reports.sh",
+          "sha256": "97bc8a7cb4fd39fd618e2e5720bf47b5eac27264f6b4512f1ff7d23e7a304acd",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/lib/selection.sh",
+          "sha256": "aaeb5bda082729b8194bf7a1b3ebfaeace6494075a5e5d6af05c6c7f272318cd",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/local.sh",
+          "sha256": "b49bad0a6c6845e326030da76b3333fcc4ee68cf501aeccd7db66d210e34480c",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/reports/summarize.sh",
+          "sha256": "c78154c0d03f8c7588556aec594594e7f69e7b9c425bd2a41e02cb23d179db5e",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/rules/README.md",
+          "sha256": "d93929366fac58d9bacea76073d3e0de0baf92cd209fe9f8a341bcabcce7daf7",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/rules/opengrep/ox.yml",
+          "sha256": "8f69f2c9e549ae5ed2c8485586f5ad1d287399b7ddd9b1d01249a40060550a68",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/rules/opengrep/rust.yml",
+          "sha256": "5e6e678092134f47f782f59a401af07656fd6a253186cd7c57a5e48190e496a3",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/rules/yara-x/ox.yar",
+          "sha256": "fbc36185ed4422d3b09f9ff4f46827e09167da2137af07b193312052f3ef6908",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/security/LICENSE",
+          "sha256": "b2fa7b84692d6b7d79bc3538f670cb7110ec089ac04b7d5f9aa917713661ecd0",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/security/NOTICE",
+          "sha256": "933ba11928978fde1d740d8ef357bc5260caf8d2d06cd9785fb60449512568c4",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/security/SOURCES.md",
+          "sha256": "7b3b508b563c99185aeee462ba7eda6e4fa9f756b64fc761b42c30fd89539fdd",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/security/analyzers/check-report.sh",
+          "sha256": "0fc4dc157f9c40ff91eb80dd722495086ec04e3daac8927c28095b17b6505680",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/security/analyzers/validate-exceptions.sh",
+          "sha256": "929e7aa37577086e140c91bf46967498fd56291e0b13dfe819d1d968343fa798",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/security/prepare-datasets.sh",
+          "sha256": "3886b924cd3fc67f3d3a77a51cfec9f52cd78ebd3679b263edb2a13fc4d2fb83",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/tests/rules/README.md",
+          "sha256": "e5bd7f68174db596562e51feec2604532da929f6c6d4307d352f8efd215b989a",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/tests/rules/ox.py.txt",
+          "sha256": "2afebe512861cabf82d7ff533bc34f0520001bdf08329dbf90c73370ba9c62d6",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/tests/rules/ox.rs.txt",
+          "sha256": "0cf063cab044efb2f70f8c58edc131067d784283c0da64e3ac0d01bfb7191a4e",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/tests/support.py",
+          "sha256": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_automation.py",
+          "sha256": "ac617f737239d58181de5b54389734775a28a12457348c25fd07e98c774c1c63",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_backends.py",
+          "sha256": "74541f69c1c92d4228fa02d5cda291542f547fda921bda47dd57fa17db52a9a1",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_catalog.py",
+          "sha256": "5192d74ab42bdf1d39659588caece4b96b268771d788dbbc108dd32f852f38da",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_database_age.py",
+          "sha256": "541c8b9b3046b0ad4f0b428123ef9c09d85c2d2a03ee7a9215ef702a5942da98",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_defaults.py",
+          "sha256": "e1f0c50da395e8984958959ff876f1b6d677367f7fc364d3d0f751cdb1d70dfe",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_json_guard.py",
+          "sha256": "d82350c25348b611492867fddc98df717ac33b97984c4b89a2e7e0e8ae05f953",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_local_lifecycle.py",
+          "sha256": "f3973c2d0c8bc9ec019d84c3afb9dee3b46d24f176ff6a1285f75c5db52ee41e",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_native_reports.py",
+          "sha256": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_optional_datasets.py",
+          "sha256": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_preparation.py",
+          "sha256": "1cee880f16f8a6f31edf0845f299759bd3a3f4091ccb812307adf6c07b1ec7fa",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_process_lifecycle.py",
+          "sha256": "533f1de93031b9f9643a9b2c1c5924b79bf392206e146fcd74a60700fb269682",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_real_security_backends.py",
+          "sha256": "8aea25c90e894cd7af0ba338277cf2237d832e3305814ad6cb61bef8edfa9bbb",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/tests/test_selinux_transport.py",
+          "sha256": "033e3577700084fbce3540c7443ed9c61de9d816cc6c1f824c821e6dbfa633fa",
+          "role": "oracle"
+        },
+        {
+          "path": "scripts/toolbox.sh",
+          "sha256": "99052b0136d3351db9bbf99122b4a6ec711980c92d5a25c0594e61e3ebbaf3e6",
+          "role": "implementation"
+        }
+      ]
+    },
+    {
+      "id": "E-DEFAULTS-NATIVE",
+      "kind": "test",
+      "command_or_method": "Direct public Toolbox native exec with observed policy files and fixtures; commands.txt/probe.sh.txt record exact argv. Separate current regression evidence covers Ox adapters and Trivy redaction.",
+      "observed_result": "Ruff/ShellCheck/Bandit/Opengrep positive detection and clean negative files; Syft inventory, Grype parse, Trivy misconfiguration findings, YARA EICAR and Clippy accepted. See summary for native exits.",
+      "artifact": "docs/validation/scripts-defaults-20261113/native/summary.json",
+      "sha256": "49fef8ab403ec80789d10f97100a980c29ccf54717334b022f9076e3eff815f7",
+      "inputs": [
+        {
+          "path": "scripts/toolbox.sh",
+          "sha256": "99052b0136d3351db9bbf99122b4a6ec711980c92d5a25c0594e61e3ebbaf3e6",
+          "role": "implementation"
+        },
+        {
+          "path": "scripts/config/native/ruff/ruff.toml",
+          "sha256": "703f78483bfe05807d221d7a9930d9e89d330fcee39eaeb0d8fac926f27024ee",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/shellcheck/shellcheckrc",
+          "sha256": "47908de5b3ad03b88a7a9af23f45a58748585768ae959a7e73b18a519232c25f",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/bandit/bandit.yaml",
+          "sha256": "6e8208e442237c5fe77b1907e8839aa741b6c37dc1c53404b4f135cb3cf781be",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/bandit/bandit.ini",
+          "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/syft/syft.yaml",
+          "sha256": "d7572074a858a2f16cdea29a9de12ae5e00048c1ea69979d6a2559faf69d896a",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/grype/grype.yaml",
+          "sha256": "c05d01661f6256034a37d0518b2ac167dc56a00c02356eb1776d235e1dbd7020",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/trivy/trivy.yaml",
+          "sha256": "b713175dbb70162c0934d09b499fd2792b53c6b01ea15b15d180af59b38d4637",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/trivy/trivyignore",
+          "sha256": "534119fe5ef9d0667b9a0fdc34ec5cf49c3a2b8634abfd4a6a2b9b7afdd27a34",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/native/clippy/clippy.toml",
+          "sha256": "60f64e3a3f21fd0f21059f6b2a8f52d21999ec22b2cab44cbf68d04311a40761",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/rules/opengrep/ox.yml",
+          "sha256": "8f69f2c9e549ae5ed2c8485586f5ad1d287399b7ddd9b1d01249a40060550a68",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/rules/opengrep/rust.yml",
+          "sha256": "5e6e678092134f47f782f59a401af07656fd6a253186cd7c57a5e48190e496a3",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/rules/yara-x/ox.yar",
+          "sha256": "fbc36185ed4422d3b09f9ff4f46827e09167da2137af07b193312052f3ef6908",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/scripts-defaults-20261113/native/commands.txt",
+          "sha256": "48402b6b01cd0aacefd814bce9472f1f7ae61ccf12343b1754e3f32e23366add",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/scripts-defaults-20261113/native/probe.sh.txt",
+          "sha256": "be2c5b2c5ecc5256db63a7bf8e3a50cefbd362724df025e9712905a862fd986b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/scripts-defaults-20261113/native/inputs.json",
+          "sha256": "7dcecf261790e3740b74143e601503e2d66619c4e1b7c20e43e34aee81ac9cfa",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/scripts-defaults-20261113/native/clippy.log",
+          "sha256": "dd5fe0f3b5f4172b3d0a1739b615c07d2efbf985119575dc0410b4ed10bf54e8",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Legacy and canonical interfaces coexist; Ec-only services, CodeQL and external rule-catalog engines are not implemented by this configuration migration.",
+    "Native fixtures validate policy parsing and bounded detection; no complete Ox scanner/GUI/Cargo acceptance.",
+    "Trivy native probe demonstrated misconfiguration detection; secret redaction/counting verified by controlled tests, not a full native efficacy suite.",
+    "Historical observations preserved under docs/validation/scripts-defaults-20261113/prior; no old operational results renewed.",
+    "Native policy probes colocated source/output directories; native/commands.txt records the inventory boundary. These observations do not claim complete per-invocation source snapshots or full native Ox adapter acceptance."
+  ]
+}

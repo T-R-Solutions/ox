@@ -5,28 +5,28 @@
     {
       "id": "AC-01",
       "criterion": "REQ-01",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [],
       "reason": "Toolbox ownership successor changes observed inputs; prior real observations retained historically. See scripts-toolchain-config AC-05..07."
     },
     {
       "id": "AC-02",
       "criterion": "REQ-02",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [],
       "reason": "Toolbox ownership successor changes observed inputs; prior real observations retained historically. See scripts-toolchain-config AC-05..07."
     },
     {
       "id": "AC-03",
       "criterion": "REQ-03",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [],
       "reason": "Toolbox ownership successor changes observed inputs; prior real observations retained historically. See scripts-toolchain-config AC-05..07."
     },
     {
       "id": "AC-04",
       "criterion": "REQ-01",
-      "status": "INCONCLUSIVE",
+      "status": "UNVERIFIED",
       "evidence_ids": [],
       "reason": "Toolbox ownership successor changes observed inputs; prior real observations retained historically. See scripts-toolchain-config AC-05..07."
     }
@@ -38,7 +38,8 @@
     "Geiger attempted all 16 members but two reports remain incomplete and the aggregate returns error; coverage and SBOM have no invented threshold.",
     "Runtime binaries, datasets and full source/build snapshots remain private. Portable observed identity records are integrity/provenance evidence, not authentication of external services.",
     "All original observations and failures remain historical; current selective successors are explicit in the resumption report.",
-    "2026-11-07: Trivy/OSV/Grype data preparation/execution moved to toolbox. No Docker execution in Ox-only task; predecessor local-data execution is historical."
+    "2026-11-07: Trivy/OSV/Grype data preparation/execution moved to toolbox. No Docker execution in Ox-only task; predecessor local-data execution is historical.",
+    "Script policy paths moved by scripts-centralization; previous observations preserved in docs/validation/scripts-centralization-20261113/prior/scripts-security-preparation/evidence.json. Operational revalidation pending."
   ],
   "historical_evidence": [
     {

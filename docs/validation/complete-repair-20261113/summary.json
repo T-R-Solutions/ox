@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-13T20:41:09.927784+00:00",
+  "scope": "Bounded complete-run remediation; no later full 26-check run or graphical acceptance",
+  "plans": "Canonical and legacy planning do not invoke Cargo; runtime rejects malformed Cargo input",
+  "rust": {
+    "passed": 43,
+    "graphical_ignored": 6,
+    "clippy_workspace_all_targets_all_features_exit": 0,
+    "fmt_exit": 0
+  },
+  "scripts": {
+    "total": 58,
+    "passed": 57,
+    "opt_in_ignored": 1
+  },
+  "governance": {
+    "combined_total": 186,
+    "initial_failures": 3,
+    "initial_errors": 1,
+    "ignored": 1,
+    "targeted_retests": 4,
+    "targeted_retests_passed": 4,
+    "single_final_full_suite_exit_zero_observed": false
+  },
+  "native_linters": {
+    "ruff": 0,
+    "shellcheck": 0,
+    "bandit": 0
+  },
+  "audit": {
+    "exit": 0,
+    "vulnerabilities": 0,
+    "valid_until": "2026-11-18",
+    "positive_unknown_vulnerability_exit": 1,
+    "adopted_maintenance_fixture_exit": 0
+  },
+  "deny": {
+    "exit": 0,
+    "warnings": 0,
+    "errors": 0,
+    "inventoried_packages": 279,
+    "manifest_archive_mismatches": 0,
+    "removed_version": "windows-sys 0.59.0",
+    "incompatible_generations": "Exact older-version policy dispositions; not eliminated"
+  },
+  "geiger": {
+    "run": "ox-security-geiger-9O65HZUQ",
+    "version": "0.14.0+ox.1",
+    "member_count": 16,
+    "all_native_exits_zero": true,
+    "state": "recorded",
+    "graph_regressions_passed": 11,
+    "later_changes": "geiger-catalog-reexamination.json plus final-input-reexamination.json; no Geiger build/adapter input changed"
+  },
+  "yara": {
+    "positive_matches": 1,
+    "rule_source_negative_matches": 0
+  },
+  "dispositions": "static-review.json; source-bound preserved SDD/runner, status/module predicates and exact dependency versions",
+  "limits": [
+    "Recorded metrics are not product/security acceptance.",
+    "Full coverage and graphical acceptance were not reexecuted.",
+    "No commits, global installation, publication or central source edits.",
+    "Three unrelated features retain INCONCLUSIVE affected observations; originals are preserved."
+  ]
+}

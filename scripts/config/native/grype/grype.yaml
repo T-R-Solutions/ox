@@ -1,0 +1,15 @@
+# Alvo selecionado pelo Ox; snapshot central observado no diagnóstico do executor.
+# Nenhuma exceção de vulnerabilidade ou atualização durante o scan.
+ignore: []
+exclude: []
+only-fixed: false
+only-notfixed: false
+ignore-states: ""
+show-suppressed: true
+add-cpes-if-none: true
+# A seleção de camadas/arquivos pertence ao produtor Syft do SBOM consumido.
+check-for-app-update: false
+db:
+  auto-update: false
+  validate-age: true
+  max-allowed-built-age: 120h

@@ -1,39 +1,43 @@
 {
   "schema_version": 2,
-  "environment": "Ox local Linux x86_64; native tool observations and static review",
+  "environment": "Linux x86_64; Rust 1.99.1; explicit maintainer Toolbox/shared selection for native tools; offline/locked Cargo; prepared .cache/ox Cargo/RustSec/tool inputs. Observations 2026-11-13.",
   "requirements": [
     {
       "id": "AC-01",
       "criterion": "REQ-01",
       "status": "INCONCLUSIVE",
       "evidence_ids": [],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "reason": "Composite bound inputs changed during Ec Cargo discovery/portable evidence refactoring. Original observation preserved in docs/validation/ec-cargo-parity-20261113/prior; no operational reacceptance is claimed."
     },
     {
       "id": "AC-02",
       "criterion": "REQ-02",
       "status": "INCONCLUSIVE",
       "evidence_ids": [],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "reason": "Composite bound inputs changed during Ec Cargo discovery/portable evidence refactoring. Original observation preserved in docs/validation/ec-cargo-parity-20261113/prior; no operational reacceptance is claimed."
     },
     {
       "id": "AC-03",
       "criterion": "REQ-03",
       "status": "INCONCLUSIVE",
       "evidence_ids": [],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "reason": "Composite bound inputs changed during Ec Cargo discovery/portable evidence refactoring. Original observation preserved in docs/validation/ec-cargo-parity-20261113/prior; no operational reacceptance is claimed."
     },
     {
       "id": "AC-04",
       "criterion": "REQ-04",
       "status": "INCONCLUSIVE",
       "evidence_ids": [],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "reason": "Composite bound inputs changed during Ec Cargo discovery/portable evidence refactoring. Original observation preserved in docs/validation/ec-cargo-parity-20261113/prior; no operational reacceptance is claimed."
     }
   ],
   "evidence": [],
   "limitations": [
-    "No full suite/commit approval; nine Linux duplicate families retained under exact maintainer-approved exceptions, not removed; OSV data older than 24h; graphical tests not run; redistribution notice inventory remains incomplete."
+    "Current bounded repair acceptance only; prior observations retained in docs/validation/complete-repair-20261113/prior and earlier reports.",
+    "No new complete-scope/coverage/graphical run or publication approval. The raw combined suite had four problems, all resolved by targeted reevaluation; no single later full-suite exit-zero claim.",
+    "Source-bound style/status/duplicate dispositions are explicit; remaining incompatible generations were not removed.",
+    "Dependency distribution notice gaps remain, including clipboard-win standalone notice; observed RustSec review expires 2026-11-18.",
+    "2026-11-13 successor: affected composite observations preserved byte-for-byte under docs/validation/ec-cargo-parity-20261113/prior; current refactoring does not reapprove earlier native/product/dependency results."
   ],
   "historical_evidence": [
     {

@@ -6,7 +6,7 @@ A licença própria continua GPL-3.0-only; nenhuma dependência foi relicenciada
 
 ## Licenças
 
-A allowlist de scripts/config/deny.toml admite GPL-3.0-only para os crates próprios
+A allowlist de scripts/config/native/cargo-deny/deny.toml admite GPL-3.0-only para os crates próprios
 e MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, Unicode-3.0 e Zlib nas
 dependências revistas. Os demais identificadores continuam recusados por padrão.
 Não foi adotada permissão automática por categoria OSI/FSF nem exclusão de crates
@@ -65,3 +65,26 @@ feitos downgrades amplos de bibliotecas para eliminar contagens: conservaram-se
 as versões existentes dos consumidores. Revisar cada exceção na próxima alteração
 da stack; versões/famílias novas continuam negadas. Não foi usado skip-tree.
 O Deny final passou com as licenças revistas e essas disposições explícitas.
+
+## Revisão sucessora — 13/11/2026
+
+O mantenedor solicitou tratar todos os achados de cargo-deny. A revisão dos
+manifests e arquivos de licença locais confirmou BSL-1.0 (Boost Software License)
+em clipboard-win 5.4.3 e error-code 3.4.0. BSL-1.0 passa a ser permitida de forma
+explícita; preservam-se textos/avisos aplicáveis na composição distribuída. A
+[lista GNU](https://www.gnu.org/licenses/license-list.html#boost) classifica a
+licença como permissiva e compatível com GPL; o
+[texto oficial](https://github.com/boostorg/boost/blob/master/LICENSE_1_0.txt)
+orienta a preservação de avisos. Isto não aprova a distribuição do produto.
+
+A resolução isolada/offline eliminou windows-sys 0.59.0: rustix 0.38 aceita
+0.52, já exigida por winit. Nenhuma dependência nova foi adquirida. As demais
+faixas incompatíveis foram revistas por aresta em
+[duplicate-review.json](../validation/complete-repair-20261113/duplicate-review.json).
+A política mantém multiple-versions=deny e adiciona apenas versões exatas de
+bitflags, getrandom, jni-sys, objc2, objc2-foundation, r-efi, redox_syscall e
+windows-sys. Clippy também reconhece a família objc2-quartz-core, presente no seu
+grafo ampliado e ausente do grafo observado pelo Deny. O gate Deny rejeita
+novas versões/famílias; os nomes adicionais em Clippy não substituem esse gate.
+Rever na próxima alteração da stack Iced/plataformas. Nenhuma versão incompatível
+foi forçada. O inventário original preserva a observação anterior à unificação.

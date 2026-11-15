@@ -1,20 +1,18 @@
 {
   "schema_version": 2,
-  "environment": "Linux amd64; Bash/jq/Python; Docker daemon 29.7.2-ce accessible only after sandbox escalation; central list empty",
+  "environment": "Linux x86_64; pinned Cargo 1.99.1; dedicated .cache/ox/cargo-home; explicit installed Toolbox and shared SELinux mounts; see complete-repair-20261111/native-results.json for actual tool/image/data identities.",
   "requirements": [
     {
       "id": "AC-01",
       "criterion": "Native transport contract",
-      "status": "INCONCLUSIVE",
-      "evidence_ids": [],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "status": "UNVERIFIED",
+      "evidence_ids": []
     },
     {
       "id": "AC-02",
       "criterion": "Product integrity/report/metadata contract under fake executor",
-      "status": "INCONCLUSIVE",
-      "evidence_ids": [],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "status": "UNVERIFIED",
+      "evidence_ids": []
     },
     {
       "id": "AC-03",
@@ -26,10 +24,11 @@
   ],
   "evidence": [],
   "limitations": [
-    "No scanner operation or image/base identities available.",
-    "OSV/Trivy public database age verification unavailable.",
-    "RustSec expired; no maintenance/download authorized or performed.",
-    "Historical check-ox evidence is stale; not rehashed to conceal changes."
+    "AC-03 broader real cancellation/concurrency/data-recovery matrix not requalified.",
+    "Geiger reports incomplete metrics for ox-app/ox-ui; complete scope remains nonzero.",
+    "Full run retained two fixture failures and Bandit/Ruff failures; corrected focused retests passed, without a second monolithic full execution.",
+    "Historical observations retained; no new native UI acceptance or application release.",
+    "Configuration migration invalidates dependent observations; originals remain in docs/validation/scripts-centralization-20261113/prior/scripts-toolbox-native/evidence.json. New contract tests do not renew historical native scanner acceptance."
   ],
   "historical_evidence": [
     {

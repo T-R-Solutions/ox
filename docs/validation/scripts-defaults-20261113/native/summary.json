@@ -1,0 +1,66 @@
+[
+  {
+    "tool": "ruff",
+    "native_exit": 1,
+    "cleanup": "removed",
+    "version": "0.11.13",
+    "findings": 2,
+    "negative_file_findings": 0
+  },
+  {
+    "tool": "shellcheck",
+    "native_exit": 1,
+    "cleanup": "removed",
+    "version": "0.11.0",
+    "findings": 3,
+    "negative_file_findings": 0
+  },
+  {
+    "tool": "bandit",
+    "native_exit": 1,
+    "cleanup": "removed",
+    "version": "1.9.4",
+    "findings": 2,
+    "negative_file_findings": 0
+  },
+  {
+    "tool": "syft",
+    "native_exit": 0,
+    "cleanup": "removed",
+    "version": "1.57.1",
+    "artifacts": 1
+  },
+  {
+    "tool": "grype",
+    "native_exit": 0,
+    "cleanup": "removed",
+    "version": "0.121.3",
+    "findings": 0
+  },
+  {
+    "tool": "trivy",
+    "native_exit": 1,
+    "cleanup": "removed",
+    "version": "0.76.2",
+    "counts": {
+      "Vulnerabilities": 0,
+      "Misconfigurations": 27,
+      "Secrets": 0
+    }
+  },
+  {
+    "tool": "opengrep",
+    "native_exit": 1,
+    "cleanup": "removed",
+    "version": "1.33.1",
+    "findings": 1,
+    "negative_file_findings": 0
+  },
+  {
+    "tool": "yara-x",
+    "native_exit": 0,
+    "cleanup": "removed",
+    "version": "1.0.0",
+    "findings": 1
+  }
+]

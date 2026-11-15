@@ -1,0 +1,28 @@
+test_active_run_blocks_release_and_collection (test_local_lifecycle.LocalLifecycleTests.test_active_run_blocks_release_and_collection) ... ok
+test_changed_payload_or_retained_blocks_deletion (test_local_lifecycle.LocalLifecycleTests.test_changed_payload_or_retained_blocks_deletion) ... ok
+test_collector_lock (test_local_lifecycle.LocalLifecycleTests.test_collector_lock) ... ok
+test_dry_run_then_real_delete_and_repeat (test_local_lifecycle.LocalLifecycleTests.test_dry_run_then_real_delete_and_repeat) ... ok
+test_empty_directory_difference_prevents_release (test_local_lifecycle.LocalLifecycleTests.test_empty_directory_difference_prevents_release) ... ok
+test_fifo_audit_receipt_refused (test_local_lifecycle.LocalLifecycleTests.test_fifo_audit_receipt_refused) ... ok
+test_fifo_maintenance_lock_refused (test_local_lifecycle.LocalLifecycleTests.test_fifo_maintenance_lock_refused) ... ok
+test_incomplete_run_refused (test_local_lifecycle.LocalLifecycleTests.test_incomplete_run_refused) ... ok
+test_new_producer_metadata_and_lease (test_local_lifecycle.LocalLifecycleTests.test_new_producer_metadata_and_lease) ... ok
+test_partial_trash_changed_bytes_are_protected (test_local_lifecycle.LocalLifecycleTests.test_partial_trash_changed_bytes_are_protected) ... ok
+test_partial_trash_recovery (test_local_lifecycle.LocalLifecycleTests.test_partial_trash_recovery) ... ok
+test_pinned_and_unrecognized_are_preserved (test_local_lifecycle.LocalLifecycleTests.test_pinned_and_unrecognized_are_preserved) ... ok
+test_pre_rename_interruption_recovery (test_local_lifecycle.LocalLifecycleTests.test_pre_rename_interruption_recovery) ... ok
+test_query_path_does_not_create_runtime_state (test_local_lifecycle.LocalLifecycleTests.test_query_path_does_not_create_runtime_state) ... ok
+test_repeat_release (test_local_lifecycle.LocalLifecycleTests.test_repeat_release) ... ok
+test_retained_difference_prevents_release (test_local_lifecycle.LocalLifecycleTests.test_retained_difference_prevents_release) ... ok
+test_special_fifo_prevents_cleanup (test_local_lifecycle.LocalLifecycleTests.test_special_fifo_prevents_cleanup) ... ok
+test_symlinked_audit_destination_refused (test_local_lifecycle.LocalLifecycleTests.test_symlinked_audit_destination_refused) ... ok
+test_symlinked_parent_refused (test_local_lifecycle.LocalLifecycleTests.test_symlinked_parent_refused) ... ok
+test_symlinks_and_special_files_are_preserved (test_local_lifecycle.LocalLifecycleTests.test_symlinks_and_special_files_are_preserved) ... ok
+test_traversal_release_refused (test_local_lifecycle.LocalLifecycleTests.test_traversal_release_refused) ... ok
+test_unowned_trash_is_never_removed (test_local_lifecycle.LocalLifecycleTests.test_unowned_trash_is_never_removed) ... ok
+test_unreadable_payload_refused (test_local_lifecycle.LocalLifecycleTests.test_unreadable_payload_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.476s
+
+OK

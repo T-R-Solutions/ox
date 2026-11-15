@@ -1,13 +1,14 @@
 """Local supervisor lifecycle; does not prove Docker cleanup."""
 
 import json
-from pathlib import Path
 import signal
 import subprocess
 import sys
 import tempfile
 import time
 import unittest
+from pathlib import Path
+
 import support as S
 
 

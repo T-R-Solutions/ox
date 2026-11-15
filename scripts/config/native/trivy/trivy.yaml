@@ -1,0 +1,33 @@
+# Política Ox: vuln/misconfig/secret via executor central, sem supressões implícitas.
+format: json
+list-all-pkgs: true
+pkg:
+  include-dev-deps: true
+scan:
+  detection-priority: comprehensive
+  scanners:
+    - vuln
+    - misconfig
+    - secret
+  offline: true
+  show-suppressed: true
+  skip-dirs: []
+  skip-files: []
+  sbom-sources: []
+severity:
+  - UNKNOWN
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+vulnerability:
+  ignore-unfixed: false
+  ignore-status: []
+  vex: []
+  skip-vex-repo-update: true
+db:
+  skip-update: true
+  java-skip-update: true
+rego:
+  # Bundle externo selecionado pela plataforma e montado ro em /cache/policy.
+  skip-check-update: true

@@ -15,7 +15,7 @@ Para utilitários Cargo locais, permanecem as referências oficiais:
 - [cargo-llvm-cov](https://github.com/taiki-e/cargo-llvm-cov).
 - [cargo-geiger](https://github.com/geiger-rs/cargo-geiger).
 
-Regras e fixtures locais são descritas em [rules/README.md](rules/README.md).
+Regras e fixtures locais são descritas em [rules/README.md](../rules/README.md).
 Licenças e atribuições permanecem em LICENSE/NOTICE deste diretório.
 
 A pesquisa anterior de interfaces/versões, preparo nativo de OSV/Trivy/Grype,

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -u
+export TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox TOOLBOX_SELINUX_LABEL=shared
+root=/tmp/ox-ec-defaults-probe
+if (($#==0)); then set -- syft trivy opengrep yara-x; fi
+for tool in "$@"; do
+    case $tool in
+        grype) args=(--config /project/config/grype/grype.yaml dir:/project -o json);;
+        syft) args=(--config /project/config/syft/syft.yaml scan dir:/project -o syft-json);;
+        trivy) args=(--config /project/config/trivy/trivy.yaml fs --quiet --ignorefile /project/config/trivy/trivyignore --offline-scan --skip-db-update --skip-java-db-update --skip-check-update --format json --output /out/report.json --list-all-pkgs --include-dev-deps --include-non-failures --exit-code 1 /project);;
+        opengrep) args=(scan --config /project/rules/opengrep/ox.yml --config /project/rules/opengrep/rust.yml --disable-version-check --strict --no-git-ignore --experimental --x-ignore-semgrepignore-files --disable-nosem --max-target-bytes 0 --taint-intrafile --timeout 0 --timeout-threshold 0 --error --json /project/positive.py /project/negative.py);;
+        yara-x) args=(scan --output-format json --recursive /project/rules/yara-x/ox.yar /project/yara-targets);;
+    esac
+    rc=0
+    bash scripts/toolbox.sh exec --tool "$tool" --project-root "$root" --results "$root/$tool" --timeout 120 --diagnostic-file "$root/$tool/diagnostic.json" -- "${args[@]}" >"$root/$tool/stdout.log" 2>"$root/$tool/stderr.log" || rc=$?
+    printf '%s: exit %s\n' "$tool" "$rc"
+done

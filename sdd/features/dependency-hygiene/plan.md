@@ -15,3 +15,7 @@ Maintainer disposition: preserve Iced 0.14; exact nine-version duplicate excepti
 are adopted for the retained graph, with per-chain reasons and review on stack
 updates. No skip-tree or global duplicate allow, and no claim that waived packages
 were removed. Native Deny exits zero under this explicit policy.
+
+## Complete-run remediation — 2026-11-13
+
+Maintainer selected all cargo-deny findings. Preserve GPL-3.0-only and Iced 0.14. Review cached package license files and exact declaration/resolved edges; unify only compatible ranges in an isolated/offline lock candidate. Explicitly allow BSL-1.0 after comparison with Boost text/GNU compatibility classification. Exact older-version dispositions retain deny-by-default for unknown generations; no skip-tree. Current report records native checks and distribution limitations. Supporting application-security entry .codex/skills/application-security/SKILL.md (bridge sdd/chain/application-security.md version 1) was actually consulted for dependency control and evidence; primary software-delivery and Rust contributions are recorded in scripts-centralization's remediation plan.

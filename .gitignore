@@ -85,3 +85,7 @@ venv/
 # Scratch, snapshots, scanner outputs, datasets and locally acquired tools.
 # Promote reviewed evidence to docs/validation/ before versioning it.
 /.local/
+
+# Operational inputs relocated out of log-only .local.
+/.cache/
+/.inputs/

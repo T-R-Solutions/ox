@@ -5,7 +5,8 @@
     "decision": "D-01",
     "risk": "R-01",
     "tasks": [
-      "T001"
+      "T001",
+      "T006"
     ],
     "implementation": "AGENTS.md",
     "oracle": "sdd/features/dependency-hygiene/spec.md"
@@ -16,9 +17,10 @@
     "decision": "D-02",
     "risk": "R-02",
     "tasks": [
-      "T002"
+      "T002",
+      "T006"
     ],
-    "implementation": "scripts/config/deny.toml",
+    "implementation": "scripts/config/native/cargo-deny/deny.toml",
     "oracle": "docs/validation/dependency-hygiene-20261109/license-review.json"
   },
   {
@@ -27,9 +29,10 @@
     "decision": "D-03",
     "risk": "R-03",
     "tasks": [
-      "T003"
+      "T003",
+      "T006"
     ],
-    "implementation": "scripts/config/audit.toml",
+    "implementation": "scripts/config/native/cargo-audit/audit.toml",
     "oracle": "sdd/features/dependency-hygiene/spec.md"
   },
   {
@@ -38,7 +41,8 @@
     "decision": "D-04",
     "risk": "R-04",
     "tasks": [
-      "T004"
+      "T004",
+      "T006"
     ],
     "implementation": "application/Cargo.lock",
     "oracle": "sdd/features/dependency-hygiene/spec.md"

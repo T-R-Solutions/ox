@@ -1,0 +1,25 @@
+target-version = "py311"
+line-length = 100
+respect-gitignore = false
+preview = false
+# O inventário canônico seleciona as fontes; não manter exclusões paralelas.
+exclude = []
+
+[lint]
+# Scripts stdlib/CLI e testes unittest; sem impor pytest, docstrings, anotações,
+# copyright ou pacotes tradicionais às ferramentas que usam namespaces Python.
+# Erros, imports, compatibilidade Python 3.11 e construções suspeitas continuam ativos.
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "ASYNC", "BLE", "DTZ", "G", "LOG", "PIE", "RSE", "RUF", "T10"]
+ignore = ["RUF005", "UP038"]
+# Concatenação de listas é convenção válida; não exigir unpacking (RUF005).
+# isinstance aceita tupla de tipos; UP038 foi depreciada pelo próprio Ruff.
+# Segurança Python pertence ao scan Bandit integral, com revisão vinculada a
+# hash/regra/linha em automation.json; não duplicar S sem a mesma revisão contextual.
+# O formatter cuida de layout; não há exclusões de fontes nem fixes no gate.
+
+
+[lint.per-file-ignores]
+# Authenticated preserved core/runner: changing these bytes violates the existing
+# SDD/transition succession contract. Exact source hashes are required by the adapter.
+"sdd/tools/validate.py" = ["I001"]
+"tools/governance/scripts/run-checks.py" = ["I001", "UP017"]

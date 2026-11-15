@@ -1,0 +1,4 @@
+#!/bin/bash
+export TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox
+export TOOLBOX_SELINUX_LABEL=shared
+bash scripts/toolbox.sh exec --tool shellcheck --project-root /tmp/ox-maintenance-native --timeout 120 --diagnostic-file /tmp/ox-maintenance-shellcheck-focused-diagnostic.json -- --rcfile /project/scripts/config/shellcheckrc --format json /project/scripts/lib/common.sh /project/scripts/local.sh /project/scripts/automate.sh /project/scripts/checks/run.sh /project/scripts/lib/files.sh /project/scripts/security/prepare-datasets.sh > /tmp/ox-maintenance-shellcheck-focused.txt 2>&1

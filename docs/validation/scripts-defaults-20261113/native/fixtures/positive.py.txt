@@ -1,0 +1,6 @@
+import pickle
+
+def unsafe(data):
+    return pickle.loads(data)
+
+print(unknown_variable)

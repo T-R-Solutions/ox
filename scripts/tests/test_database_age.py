@@ -19,7 +19,7 @@ class DatabaseAge(unittest.TestCase):
                 [
                     "bash",
                     "-c",
-                    'source "$1"; validate_database_age "$2" "$3"',
+                    'source "${1%/*}/common.sh"; source "${1%/*}/registry.sh"; source "$1"; validate_database_age "$2" "$3"',
                     "age",
                     str(ROOT / "scripts/lib/backends.sh"),
                     str(path),
@@ -31,7 +31,7 @@ class DatabaseAge(unittest.TestCase):
 
     def record(self, age):
         timestamp = (
-            datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=age)
+            datetime.datetime.now(datetime.UTC) - datetime.timedelta(hours=age)
         ).isoformat()
         return {
             "database": "a" * 64,

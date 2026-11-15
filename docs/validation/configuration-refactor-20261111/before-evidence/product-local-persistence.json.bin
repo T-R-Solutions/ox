@@ -1,0 +1,682 @@
+{
+  "schema_version": 2,
+  "environment": "2026-11-05 isolated preparation and dependency resolution only; no candidate or product storage execution",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "Across two separate processes, task/attempt/check/observation/history round-trip with identical identities, arguments, expected result and before/after content identities; unknown remains distinct from zero/missing. Oracle: independent expected manifest, not serializer output.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Run clean restart and kills before/after intent, after effect, before/after commit acknowledgement; truncate/corrupt owned copies. Oracle: expected acknowledged histories, no invented approval/relaunch, preserved damaged bytes and explicit interrupted state within adopted durability envelope.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-03",
+      "criterion": "After restart change one input, oracle, arguments or criterion independently; only dependent acceptance becomes stale. Missing evidence never approves. Exercise all five states, including justified inapplicability. Oracle: independent verdict/dependency table with negative controls.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Old/current/future schemas, interrupted upgrade and rejected downgrade preserve recoverable original bytes; no partial migrated visibility. Oracle: independent version/entity manifest and before/after original-byte comparison.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-05",
+      "criterion": "While a writer is active, produce a consistent store+evidence manifest; restore into a fresh directory/process and compare expected entities/provenance, marking missing/changed external inputs stale. Incomplete/tampered backup fails visibly without overwriting originals. Oracle: independent manifest and restored-state query.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Permission denied, disk full, corrupt/unavailable store and bounded busy/restore failures remain visible; UI interaction/heartbeat continues within adopted bound; no silent volatile approval. Oracle: injected real storage errors plus independent graphical/heartbeat observation.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "AC-07",
+      "criterion": "Two actual processes race to write the same store; second writer obeys adopted exclusion/deadline. Same operation+payload is one result, conflicting payload is rejected; lost acknowledgement resolves durable ID without executing effect twice. Oracle: independent operation/effect counter and recorded interleaving.",
+      "status": "UNVERIFIED",
+      "evidence_ids": []
+    },
+    {
+      "id": "T009-PREFLIGHT",
+      "criterion": "Concrete serializer-independent manifests and exact isolated dependency/configuration package ready for pre-execution review; no trials or product integration.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-T009-PREPARATION",
+        "E-T009-CORRECTIVE-REVIEW",
+        "E-T011-R2-SOURCE-RETENTION",
+        "E-T011-R3-LOCAL-SOURCE-REVIEW",
+        "E-DOCUMENTATION-CLOSURE-SUCCESSOR"
+      ],
+      "reason": "Corrective preparation reviewed; pre-execution disposition pending. Global README/project registry identity fails; target license notice gaps and effective build/runtime observations remain explicit. Documentary success cannot close T009."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-T009-PREPARATION",
+      "kind": "inspection",
+      "command_or_method": "Current Engine/controller source inspection; isolated Cargo fetch after specific permission and locked offline metadata; verify.py reference/hash checks with negative controls; SDD structure and check-ox observations in checks.json. No candidate execution.",
+      "observed_result": "Neutral M0/M1/M32/ML materialized and checked; 120 MiB ML raw input content. Exact rusqlite 0.41.1/libsqlite3-sys 0.39.1/SQLite 3.54.1 sources inventoried. Structure and whitespace pass. Global check-ox fails stale documentary bindings; review/build/runtime and real ENOSPC remain pending. Product AC-01..07 UNVERIFIED.",
+      "artifact": "docs/validation/persistence-preflight-20261105/package-index.json",
+      "sha256": "6ca74330b53e251cb630bef482ce6b4567b5c644261a4061cce393794c6ee907",
+      "inputs": [
+        {
+          "path": "docs/validation/persistence-freeze-20261105/before/sdd/features/product-local-persistence/spec.md.bin",
+          "sha256": "d23598f67d1d98fc5055aba4e2f2f929dc774da4c96e075d166e2e3fa5a09ecc",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/successor/before/sdd/features/product-local-persistence/plan.md.bin",
+          "sha256": "0dd05c1ecd9d1dd9ff4ccb97be48fa9b4d28b7557aabc73b5400139e5db79286",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/successor/before/sdd/features/product-local-persistence/tasks.md.bin",
+          "sha256": "d1d4bfc8152f0fcd2c4754cb33b888b86c8f442cdb3b24ae9924c6b81b4f69d9",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-local-persistence/traceability.json",
+          "sha256": "9821d34f08bd0d6f8032f603a3b9d9f90481ba92a5152ab587b1bb7188a58fb6",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/successor/before/sdd/features/product-local-persistence/experiment-protocol.md.bin",
+          "sha256": "08c12b332232a2ddeb176514b51eb145565482483092b76e23edb45702145260",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/successor/before/docs/validation/persistence-preflight-20261105/review.md.bin",
+          "sha256": "b9b17612a57fb9d0d00313f83e99635b8b44d638151347679dca602047fbed88",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/checks.json",
+          "sha256": "acb3585498960ea3dc0667ad38c164f6aaac3d6cb484b2fcdd0d5b0629983edb",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/fixture-hashes.json",
+          "sha256": "d03f262eed8760aa0993f5b8ff10447773199828ab075e9de4fd798e6945be94",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/Cargo.lock",
+          "sha256": "21c161d8dc4e38ae617c2df9a0d300ab91f5ac0d3299f7c9d132604e04da5207",
+          "role": "configuration"
+        }
+      ]
+    },
+    {
+      "id": "E-T009-CORRECTIVE-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Read authorities/current sources and fixture tables; original verifier plus supplemental independently reconstructed oracle dependencies and admission arithmetic with negative controls; locked offline metadata and local license/source review; structural, whitespace and global checks. Preserve old observations by exact bytes only.",
+      "observed_result": "Manifest/audit/metadata/structure/whitespace PASS; global check remains exit 1 solely for README integration project identity condition. Corpus unchanged; 26 affected feature envelopes reconciled, 135 historical bindings retained by original digests. Native build/runtime, target notice gaps and review disposition remain pending; no product acceptance.",
+      "artifact": "docs/validation/persistence-preflight-20261105/successor/package-index.json",
+      "sha256": "a6c9fabe40e852374ec99df76d95da71de73f5ef090cfc0528a3eb7e6faf9d49",
+      "inputs": [
+        {
+          "path": "docs/validation/persistence-freeze-20261105/before/sdd/features/product-local-persistence/spec.md.bin",
+          "sha256": "d23598f67d1d98fc5055aba4e2f2f929dc774da4c96e075d166e2e3fa5a09ecc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105/before/sdd/features/product-local-persistence/plan.md.bin",
+          "sha256": "a92e9f1826050116822ad8426ba97989028e3bf1cce6cea11212efeda47f2ccd",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105/before/sdd/features/product-local-persistence/tasks.md.bin",
+          "sha256": "a6189a95c76bbf9438be002a93ddf49cc803d2acba9d2903e1b5e64fadd0ae5e",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-persistence/traceability.json",
+          "sha256": "9821d34f08bd0d6f8032f603a3b9d9f90481ba92a5152ab587b1bb7188a58fb6",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-persistence/experiment-protocol.md",
+          "sha256": "2ed78fb91e87a2df3d053645ed3aea105f6e0451bd1125d375cb08e929b4d3bb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/successor/review.md",
+          "sha256": "19d0cae464646bc81249e56ea3089a6e1a123ee4cdf081c323a585e0019987d2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/successor/checks.json",
+          "sha256": "66ae9d7fd5c9341767ee2e01ade892cb805d6582434460ce1e1d75561e0be7f0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/successor/audit.py",
+          "sha256": "56471a0d8604941249dc4978dece18df1752186f71163978da45dbaf1379e4e1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/successor/impact.json",
+          "sha256": "59c1be4a802593381f501637d1f29172270a63fdcd3bab656c7a9ec4713d1a9f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-preflight-20261105/successor/preservation.json",
+          "sha256": "6a867f1b66ace8fa515194e51a102e69ebc4a7542de68aeb0d2f6ac86ebb6a7b",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-T011-R2-SOURCE-RETENTION",
+      "kind": "inspection",
+      "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
+      "observed_result": "Raw bytes unchanged, no fabricated missing link target; current index points to README.md.bin. License/source/asset blockers unchanged; T009/T011 OPEN.",
+      "artifact": "docs/validation/persistence-freeze-20261105-r2/retention-review.md",
+      "sha256": "9d4269d5f51cbd23d178b465f0e44336eb6a308437f7d69345e57a6feae62f45",
+      "inputs": [
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
+          "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-T011-R3-LOCAL-SOURCE-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Read exact retained archives, full source members/font name tables/XML file notices and Linux resolution; compare documentary appendix delta with preserved before bytes; preserve stale historical bindings by exact SHA preimage. No external acquisition or execution.",
+      "observed_result": "Bounded documentary delta adds retained-source findings and keeps all gates unchanged. Three font grant/full-notice chains and sctk MPL provenance remain unresolved. 30 XML/module mappings, 29 file notices/full texts; fullscreen-shell has no file notice. Static scanner search found no copyright propagation. T009/T011 OPEN, product AC-01..07 UNVERIFIED; unchanged F0 operational inputs do not require GUI rerun. This observation supports documentary succession only, not prior runtime results or legal readiness.",
+      "artifact": "docs/validation/persistence-freeze-20261105-r3/review.md",
+      "sha256": "32d72cde6f6228a2109de284828c6be67aaababd8788593b96a417c214919fb2",
+      "inputs": [
+        {
+          "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/crates/ox-storage/src/lib.rs.bin",
+          "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r3/acquisition-request.md",
+          "sha256": "d073e23246abef0f4e178bf9641ea94fab905136b203ed838edf2f61373f3adb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r3/asset-matrix.json",
+          "sha256": "9cbed896c0323ddd693bb3fb77b02120a851726163298857417fc1a839db0c3c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r3/license-matrix.json",
+          "sha256": "1274e909aeaddddadc049e8deaef2b136f0c805694ee42e40ebe3daf1eede9d9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r3/obligations.json",
+          "sha256": "27cf26d840ad24571ed39a88c6e8b9733ab11c27e339e6065a3c0ec036d61b22",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r3/primary-index.json",
+          "sha256": "762d39b38ea6ed483016a183004d1e6ed4c9c42f1475e3dae19d241a58031a6e",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r3/protocol-notices.json",
+          "sha256": "6f2270027064cea8fc0718d242bf661be05c5195d5d9d90ee4a53d56f3edcd95",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r3/resolved-features.json",
+          "sha256": "c0cd2dfa7d60ed39ba71ce9e9b546a71a66c765855bc2ae74b2d2d6d2edd7c3c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r3/review.md",
+          "sha256": "32d72cde6f6228a2109de284828c6be67aaababd8788593b96a417c214919fb2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r3/source-notice-review.json",
+          "sha256": "63e26385b65e16ba44a6c6f237acf7189b0e78111d7520943447fc8c4279891a",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-persistence/converge.md",
+          "sha256": "ae88609cfc5e973ddb0336849ae26aae1b51b0439deddff34cafc683415378de",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-persistence/plan.md",
+          "sha256": "1567ea605dc329974f6a608eec8a907cb67508d0b2c78959914e136d3cd79a15",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-persistence/spec.md",
+          "sha256": "d25c2a28df6f5d60499e04d416d9b57714d881ecc5945a27737708028ecc5105",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-persistence/tasks.md",
+          "sha256": "ee919adb69590c54b04ba6c0fae4b81f0ad94302ae3aaa7007f2cfde13945691",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-local-persistence/traceability.json",
+          "sha256": "9821d34f08bd0d6f8032f603a3b9d9f90481ba92a5152ab587b1bb7188a58fb6",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-DOCUMENTATION-CLOSURE-SUCCESSOR",
+      "kind": "inspection",
+      "command_or_method": "Source-grounded documentary review of completion guidance and current visual integration; prior observations archived",
+      "observed_result": "Documentation updated; no product execution rerun or new acceptance. Original observations: docs/validation/documentation-closure-20261111/before-evidence/product-local-persistence.json.bin",
+      "artifact": "docs/validation/documentation-closure-20261111/report.md",
+      "sha256": "2f4ff2363fdb28ec21ca59881cd52d5d4a9134f1da1c9a6d93883abab0c06751",
+      "inputs": [
+        {
+          "path": "AGENTS.md",
+          "sha256": "3a5f842b1e7c60f3f1004c4998211e34178b23e1b7ebfe08619a879960d45eac",
+          "role": "other"
+        },
+        {
+          "path": "application/README.md",
+          "sha256": "6e50886a75b4a1c56b3f58cd6326a5e3e1e32ecee0c3e4b9c676930573a37eeb",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/context.md",
+          "sha256": "4924373702d8484edbb1f7e92dc8a9f63114287c4eba01df4caaa2bf462928ff",
+          "role": "other"
+        },
+        {
+          "path": "docs/architecture/application.md",
+          "sha256": "95d18c41e149bbdaf6934836017caed6ce5f4925c053cd89e8942fa40f22dfbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "0f6e901bf9d6c1e351395c9ecf6564433ae1c63dac7c7241a9ef58d7862ed704",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "375c0c502f2ef4d1baf38720d787e9710c28bff7890b799794415f2e16e8e490",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "D2/D4 adopted; D3/D4-deps conditionally authorized. T009 preparation and isolated acquisition do not validate product storage; D5/D6 pending.",
+    "Traceability implementation points to an exact source-inspection snapshot of the empty storage boundary; oracle points to the proposed expected-result contract, not an executable test. Replace with authorized real implementation/oracles before acceptance.",
+    "Task closure succession: affected historical observations preserved under historical_evidence and exact preimage in docs/validation/scripts-task-closure/before; affected decisions INCONCLUSIVE pending bounded successor review. Unaffected operational observations retained."
+  ],
+  "historical_evidence": [
+    {
+      "observation": {
+        "id": "E-T011-PREEXECUTION-REVIEW",
+        "kind": "inspection",
+        "command_or_method": "Full-route bounded successor implementation; diagnostic adversarial tests, final fast suite, Linux-filtered locked offline metadata and checksum-verified source archive review. See content-frozen review and logs.",
+        "observed_result": "Registered governance succession accepted, arbitrary current bytes and registry rehash rejected; 56 final fast tests pass. 159 target/build crates retained; 113 graph exclusions. Ten Iced main license texts and compatibility/attribution pending. Global historical freshness failures preserved explicitly. No candidates, trials or product acceptance.",
+        "artifact": "docs/validation/persistence-freeze-20261105/review.md",
+        "sha256": "fe6eed1e21d51e7934d94ca329e30190ca48c3e96cf06d4a4b1c08d64be556e5",
+        "inputs": [
+          {
+            "path": "docs/validation/persistence-freeze-20261105/review.md",
+            "sha256": "fe6eed1e21d51e7934d94ca329e30190ca48c3e96cf06d4a4b1c08d64be556e5",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105/project-succession.json",
+            "sha256": "2c278bd10d10b54c3c0d40f3384391710845b1df5364a8eb51aabae8e2efd52e",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105/succession-review.md",
+            "sha256": "6bd26f7ac58998de44fdebdc2c734dc7d7137d08181cafa5aa50992dd2bd8383",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105/linux-metadata.json",
+            "sha256": "d23c9029080712a45085cafb8c8f3a8bea19ebb8f09caaf28044bfbabf0c40f1",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105/linux-licenses.json",
+            "sha256": "72aaa74d1fc3e00af9a5080fe6dc9c245e9dd2abb4bb1fb09551e30a998bb645",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105/license-summary.json",
+            "sha256": "a95d5c5e16ffe041b3dd08bb5dc71df7f6c0f671dda1ecfacf7ceb465f208233",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105/fast-final.log",
+            "sha256": "7f95396e4ce043331bbc3c8b2ffaf2659f83bbd0380e775907e54a345d9e16fa",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105/project-tests-final.log",
+            "sha256": "2bebaaed4b5cb406b0b3e58fed3d1f3bcccb35dc41188b49a8f6a7f823e38a89",
+            "role": "other"
+          },
+          {
+            "path": "sdd/project.md",
+            "sha256": "c632a8a644ad8ce17c2260035d3cc50cc547beb435054a08e35a6cff48057b6b",
+            "role": "other"
+          },
+          {
+            "path": "sdd/features/product-local-persistence/spec.md",
+            "sha256": "d25c2a28df6f5d60499e04d416d9b57714d881ecc5945a27737708028ecc5105",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/before/sdd/features/product-local-persistence/plan.md.bin",
+            "sha256": "8807da94ccaff1f5f3b0ccca34f87ab6a180cf057846d94c5c89fa96e485bd3d",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/before/sdd/features/product-local-persistence/tasks.md.bin",
+            "sha256": "e1df421d8b4be0352ddbc4e358068200670dc73b561f4889bdd7d4fe350e684b",
+            "role": "other"
+          },
+          {
+            "path": "sdd/features/product-local-persistence/traceability.json",
+            "sha256": "9821d34f08bd0d6f8032f603a3b9d9f90481ba92a5152ab587b1bb7188a58fb6",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/scripts/skill_revision.py",
+            "sha256": "473be4953d10e4645db2c2fd6d917b2a663e2f251494fd2184550b93e71a0150",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/scripts/project_revision.py",
+            "sha256": "9a5ccaaf4d562fc2b918896df3a44aaa5a80a78caedd74549f5c23b2632df39d",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/tests/test_project_revision.py",
+            "sha256": "51762bf9f8b8687a2187578c6250f7f8358a3c4ef58463faef7626cb02ecb87f",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/tests/test_readme_skill_integration.py",
+            "sha256": "b3cd5f3a7331b769b095ed5e698b8817651f9c06011056fd2703a010e4ad43a8",
+            "role": "other"
+          }
+        ]
+      },
+      "invalidated_by": [
+        "sdd/project.md",
+        "tools/governance/scripts/skill_revision.py",
+        "tools/governance/scripts/project_revision.py",
+        "tools/governance/tests/test_readme_skill_integration.py"
+      ],
+      "reason": "Task closure changed observed inputs; previous approval not transferred."
+    },
+    {
+      "observation": {
+        "id": "E-T011-R2-SELECTIVE-REVIEW",
+        "kind": "inspection",
+        "command_or_method": "Compare exact stale bindings and preserved preimages with actual current documentary and governance inputs; retain old hashes/results as historical; review authority/criteria delta and current focused regressions. Ledger: docs/validation/persistence-freeze-20261105-r2/freshness-impact.json.",
+        "observed_result": "Current bounded preparation authority and registered governance succession preserve historical criteria and operational scope. Current fast governance regression and manifest checks observed in checks-pre-succession.json; per-criterion impact reviewed in freshness-review.md. Historical results not reused for changed inputs. License assets remain blocker; T009/T011 OPEN, product AC-01..07 UNVERIFIED, F0 operational envelope preserved.",
+        "artifact": "docs/validation/persistence-freeze-20261105-r2/intermediate/docs/validation/persistence-freeze-20261105-r2/freshness-review.md.bin",
+        "sha256": "13302ff85abb8feb2b7623183aa59c7fbd2a3bf595e8b7101e058ae98c00cecd",
+        "inputs": [
+          {
+            "path": "docs/architecture/context.md",
+            "sha256": "be256899934dada6f979639015764aae9801e732abdeb935629fd3b17c2eeaab",
+            "role": "other"
+          },
+          {
+            "path": "docs/decisions/licensing.md",
+            "sha256": "9bff1c91f023e57131477ea62d967d8fa82da63c67bf74131d2a038ab60580b2",
+            "role": "other"
+          },
+          {
+            "path": "docs/decisions/local-persistence-experiment-20261105.md",
+            "sha256": "058e1801df33718a31214b7dedb4065eeb13ceee6a7f0a07eb0cbbb1793fdd1e",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/crates/ox-storage/src/lib.rs.bin",
+            "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/asset-matrix.json",
+            "sha256": "f72ecbfd6024fcdd17a6b2ba3cfc0b8e1f8317ab3422c5710e27e4ec0592607b",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/checks-pre-succession.json",
+            "sha256": "ca9f64f3af4a85802e48ac4aba69d387dd41050114a9d7499cb4d34bf3a8aba6",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/intermediate/docs/validation/persistence-freeze-20261105-r2/freshness-review.md.bin",
+            "sha256": "13302ff85abb8feb2b7623183aa59c7fbd2a3bf595e8b7101e058ae98c00cecd",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/graph-review.json",
+            "sha256": "87b955c6dc99a6d9dcd0b5c854f2970d6ea1240387140268967de2e891409c35",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/iced-applicability.json",
+            "sha256": "392e5d4ef75a5ba2f72be8d4249e2e8989b2776cdac12cab7925be52a3a017e8",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/intermediate/docs/validation/persistence-freeze-20261105-r2/license-matrix.json.bin",
+            "sha256": "2ea958f06b9bebb06f96a4e41df9ea7a7d986f8c8e1b05a784756968f63db008",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/intermediate/docs/validation/persistence-freeze-20261105-r2/review.md.bin",
+            "sha256": "7fdfc1c2023f3f4dc175d8ab2b0ccc04731b8aaef4efc49fa73e587b91bdaa80",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r3/before/sdd/features/product-local-persistence/plan.md.bin",
+            "sha256": "8252aaff60efc9aabb4fd3c4b6fca3cef6beec459ba9493f469ed3e45b0feea2",
+            "role": "other"
+          },
+          {
+            "path": "sdd/features/product-local-persistence/spec.md",
+            "sha256": "d25c2a28df6f5d60499e04d416d9b57714d881ecc5945a27737708028ecc5105",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/intermediate/sdd/features/product-local-persistence/tasks.md.bin",
+            "sha256": "9d312655f86caf0f74bbe2460fe91b1e3b3e2c42353b8ef4ee05c1add57df52b",
+            "role": "other"
+          },
+          {
+            "path": "sdd/features/product-local-persistence/traceability.json",
+            "sha256": "9821d34f08bd0d6f8032f603a3b9d9f90481ba92a5152ab587b1bb7188a58fb6",
+            "role": "other"
+          },
+          {
+            "path": "sdd/project.md",
+            "sha256": "c632a8a644ad8ce17c2260035d3cc50cc547beb435054a08e35a6cff48057b6b",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/scripts/project_revision.py",
+            "sha256": "9a5ccaaf4d562fc2b918896df3a44aaa5a80a78caedd74549f5c23b2632df39d",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/scripts/skill_revision.py",
+            "sha256": "473be4953d10e4645db2c2fd6d917b2a663e2f251494fd2184550b93e71a0150",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/tests/test_project_revision.py",
+            "sha256": "51762bf9f8b8687a2187578c6250f7f8358a3c4ef58463faef7626cb02ecb87f",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/tests/test_readme_skill_integration.py",
+            "sha256": "b3cd5f3a7331b769b095ed5e698b8817651f9c06011056fd2703a010e4ad43a8",
+            "role": "other"
+          }
+        ]
+      },
+      "invalidated_by": [
+        "sdd/project.md",
+        "tools/governance/scripts/project_revision.py",
+        "tools/governance/scripts/skill_revision.py",
+        "tools/governance/tests/test_readme_skill_integration.py"
+      ],
+      "reason": "Task closure changed observed inputs; previous approval not transferred."
+    },
+    {
+      "observation": {
+        "id": "E-T011-R2-FINAL-SELECTIVE-REVIEW",
+        "kind": "inspection",
+        "command_or_method": "Compare exact stale bindings and preserved preimages with actual current documentary and governance inputs; retain old hashes/results as historical; review authority/criteria delta and current focused regressions. Ledger: docs/validation/persistence-freeze-20261105-r2/freshness-impact.json.",
+        "observed_result": "Current bounded preparation authority and registered governance succession preserve historical criteria and operational scope. Current fast governance regression and manifest checks observed in checks-pre-succession.json; per-criterion impact reviewed in freshness-review.md. Historical results not reused for changed inputs. License assets remain blocker; T009/T011 OPEN, product AC-01..07 UNVERIFIED, F0 operational envelope preserved. Final source review also identifies sctk-adwaita MPL-2.0 provenance warning and unresolved protocol XML/generated notice attribution; these reinforce INCONCLUSIVE preparation.",
+        "artifact": "docs/validation/persistence-freeze-20261105-r2/freshness-review.md",
+        "sha256": "cfc1234fca7ad0804e155c1aa75003406e7db41188852c685635ee6595090d01",
+        "inputs": [
+          {
+            "path": "docs/architecture/context.md",
+            "sha256": "be256899934dada6f979639015764aae9801e732abdeb935629fd3b17c2eeaab",
+            "role": "other"
+          },
+          {
+            "path": "docs/decisions/licensing.md",
+            "sha256": "9bff1c91f023e57131477ea62d967d8fa82da63c67bf74131d2a038ab60580b2",
+            "role": "other"
+          },
+          {
+            "path": "docs/decisions/local-persistence-experiment-20261105.md",
+            "sha256": "058e1801df33718a31214b7dedb4065eeb13ceee6a7f0a07eb0cbbb1793fdd1e",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/f0-reconciliation-20261101/source-observation/application/crates/ox-storage/src/lib.rs.bin",
+            "sha256": "450358818973e67575c26ed8a022f1fb74accacfbe671cfb9584c059c169b0b7",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/asset-matrix.json",
+            "sha256": "f72ecbfd6024fcdd17a6b2ba3cfc0b8e1f8317ab3422c5710e27e4ec0592607b",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/checks-pre-succession.json",
+            "sha256": "ca9f64f3af4a85802e48ac4aba69d387dd41050114a9d7499cb4d34bf3a8aba6",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/freshness-review.md",
+            "sha256": "cfc1234fca7ad0804e155c1aa75003406e7db41188852c685635ee6595090d01",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/graph-review.json",
+            "sha256": "87b955c6dc99a6d9dcd0b5c854f2970d6ea1240387140268967de2e891409c35",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/iced-applicability.json",
+            "sha256": "392e5d4ef75a5ba2f72be8d4249e2e8989b2776cdac12cab7925be52a3a017e8",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/license-matrix.json",
+            "sha256": "a0637c788343c747856067f3e6d4c96c584a2f9b8ac7cf7d877e92c8d5d7132d",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/license-summary.json",
+            "sha256": "c4339fddaaa769b3bfd58187a0062cfa05eb4bd84d5586e9eeb262397d5dfb71",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/protocol-notices.json",
+            "sha256": "b60986b6e9e54c2a09d7f7f4fc71b5ab4e5d901987997dfe6abee1a3d49c29b9",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/review.md",
+            "sha256": "d89c7c3a63733298eca9f444ef2129f4226fefdca300c97b27c9c9403d95723f",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r2/intermediate/source-notice-review.json.bin",
+            "sha256": "d277b7a0fb217b2e1637c0087930f58ca3133c485ba3827e972154ffd1e946fe",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r3/before/sdd/features/product-local-persistence/plan.md.bin",
+            "sha256": "8252aaff60efc9aabb4fd3c4b6fca3cef6beec459ba9493f469ed3e45b0feea2",
+            "role": "other"
+          },
+          {
+            "path": "sdd/features/product-local-persistence/spec.md",
+            "sha256": "d25c2a28df6f5d60499e04d416d9b57714d881ecc5945a27737708028ecc5105",
+            "role": "other"
+          },
+          {
+            "path": "docs/validation/persistence-freeze-20261105-r3/before/sdd/features/product-local-persistence/tasks.md.bin",
+            "sha256": "0c6792d9806975a46a29214adb5146ce2ce734a6b06ea6f4d3dbde98c8ff3fe5",
+            "role": "other"
+          },
+          {
+            "path": "sdd/features/product-local-persistence/traceability.json",
+            "sha256": "9821d34f08bd0d6f8032f603a3b9d9f90481ba92a5152ab587b1bb7188a58fb6",
+            "role": "other"
+          },
+          {
+            "path": "sdd/project.md",
+            "sha256": "c632a8a644ad8ce17c2260035d3cc50cc547beb435054a08e35a6cff48057b6b",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/scripts/project_revision.py",
+            "sha256": "9a5ccaaf4d562fc2b918896df3a44aaa5a80a78caedd74549f5c23b2632df39d",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/scripts/skill_revision.py",
+            "sha256": "473be4953d10e4645db2c2fd6d917b2a663e2f251494fd2184550b93e71a0150",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/tests/test_project_revision.py",
+            "sha256": "51762bf9f8b8687a2187578c6250f7f8358a3c4ef58463faef7626cb02ecb87f",
+            "role": "other"
+          },
+          {
+            "path": "tools/governance/tests/test_readme_skill_integration.py",
+            "sha256": "b3cd5f3a7331b769b095ed5e698b8817651f9c06011056fd2703a010e4ad43a8",
+            "role": "other"
+          }
+        ]
+      },
+      "invalidated_by": [
+        "sdd/project.md",
+        "tools/governance/scripts/project_revision.py",
+        "tools/governance/scripts/skill_revision.py",
+        "tools/governance/tests/test_readme_skill_integration.py"
+      ],
+      "reason": "Task closure changed observed inputs; previous approval not transferred."
+    }
+  ]
+}

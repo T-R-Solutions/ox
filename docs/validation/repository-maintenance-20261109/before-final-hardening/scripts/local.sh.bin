@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+# Lifecycle cleanup of explicitly retained, completed run copies. Dry-run by default.
+# shellcheck source=lib/common.sh
+source "$(dirname -- "${BASH_SOURCE[0]}")/lib/common.sh"
+# shellcheck source=lib/files.sh
+source "$LIB_DIR/files.sh"
+apply=false release='' retained='' category=''
+while (($#)); do
+    case $1 in
+        --root|--release|--retained|--path)
+            (($#>=2)) || die "Missing value: $1"
+            case $1 in --root) ROOT=$2;; --release) release=$2;; --retained) retained=$2;; --path) category=$2;; esac
+            shift 2;;
+        --apply) apply=true; shift;;
+        --help|-h)
+            printf 'Usage: local.sh [--root ROOT] [--apply | --path CATEGORY]\n       local.sh [--root ROOT] --release RUN_ID --retained docs/validation/DIRECTORY\nDry-run lists eligible paths/reasons. Release requires a complete retained byte-identical copy.\n'
+            exit 0;;
+        *) die "Unknown argument: $1";;
+    esac
+done
+ROOT=$(cd -- "$ROOT" && pwd -P) || die 'Missing root'
+if [[ -n $category ]]; then
+    [[ -z $release && -z $retained && $apply == false ]] || die '--path is exclusive'
+    local_path "$category"
+    exit 0
+fi
+need flock
+# Serialize release/collection. Producers use a separate per-run lease.
+base=$(local_path root) || die 'Unsafe local root'
+mkdir -p -- "$base"
+[[ ! -L $base/.maintenance.lock ]] || die 'Unsafe maintenance lock'
+exec 9>"$base/.maintenance.lock"
+flock -n 9 || die 'Another local maintenance operation is active'
+runs=$(local_path runs)
+records=$(local_path records)
+trash=$(local_path trash) || die 'Unsafe trash'
+# Refuse symlinks/special files anywhere in a payload before hashing or removing it.
+regular_tree() {
+    [[ -d $1 && ! -L $1 ]] || return 1
+    [[ -z $(find "$1" -mindepth 1 ! -type d ! -type f -print -quit) ]]
+}
+payload_manifest() {
+    local dir=$1
+    (
+        cd -- "$dir" || return
+        find . -type d -print0 | LC_ALL=C sort -z
+        find . -type f ! -path './.owner' ! -path './.state' ! -path './.lease' ! -path './.release.json' -print0 |
+            LC_ALL=C sort -z | xargs -0 -r sha256sum
+    ) | sha256sum | cut -c1-64
+}
+retention_valid() {
+    local dir=$1 path expected
+    [[ -f $dir/.release.json && ! -L $dir/.release.json ]] || return 1
+    strict_json "$dir/.release.json" || return 1
+    path=$(jq -er '.retained | select(type=="string" and startswith("docs/validation/"))' "$dir/.release.json") || return 1
+    expected=$(jq -er '.payload_sha256 | select(test("^[a-f0-9]{64}$"))' "$dir/.release.json") || return 1
+    path=$(contained "$path") || return 1
+    regular_tree "$path" && regular_tree "$dir" || return 1
+    [[ $(payload_manifest "$path") == "$expected" && $(payload_manifest "$dir") == "$expected" ]]
+}
+if [[ -n $release ]]; then
+    ! $apply || die 'Release and apply are separate operations'
+    [[ $release =~ ^(run|security)-[A-Za-z0-9]+$ && $retained == docs/validation/* ]] || die 'Invalid run ID or retained path'
+    run=$runs/$release || die 'Unsafe run'
+    keep=$(contained "$retained") || die 'Unsafe retained path'
+    if ! regular_tree "$run" || ! regular_tree "$keep"; then die 'Nonregular run/retained tree'; fi
+    run_lease "$run"
+    [[ $(cat "$run/.state") == complete || $(cat "$run/.state") == released ]] || die 'Run is not complete'
+    identity=$(payload_manifest "$run")
+    [[ $(payload_manifest "$keep") == "$identity" ]] || die 'Retained copy differs'
+    jq -n --arg path "$retained" --arg hash "$identity" '{retained:$path,payload_sha256:$hash}' >"$run/.release.next"
+    mv -- "$run/.release.next" "$run/.release.json"
+    printf 'released\n' >"$run/.state.next"; mv -- "$run/.state.next" "$run/.state"
+    printf 'Released after identical retention: %s\n' "$run"
+    exit 0
+fi
+[[ -z $retained ]] || die '--retained requires --release'
+if $apply; then
+    mkdir -p -- "$records" "$trash"
+    [[ ! -L $records/cleanup.json && ! -L $records/cleanup.previous.json && ! -L $records/cleanup.next ]] || die 'Unsafe audit path'
+    # Persist each action BEFORE mutation; keep previous receipt for interrupted retries.
+    [[ ! -f $records/cleanup.json ]] || mv -- "$records/cleanup.json" "$records/cleanup.previous.json"
+    printf '[]\n' >"$records/cleanup.json"
+fi
+record() {
+    local path=$1 state=$2
+    printf '%s: %s\n' "$state" "$path"
+    if $apply; then
+        jq --arg path "$path" --arg state "$state" --arg at "$(date -u +%FT%TZ)" \
+           '.+[{path:$path,state:$state,at:$at}]' "$records/cleanup.json" >"$records/cleanup.next"
+        mv -- "$records/cleanup.next" "$records/cleanup.json"
+    fi
+}
+collect() {
+    local dir=$1 resume=$2 id target
+    id=${dir##*/}
+    [[ $id =~ ^(run|security)-[A-Za-z0-9]+$ ]] || { record "$dir" protected-name; return; }
+    regular_tree "$dir" || { record "$dir" protected-nonregular; return; }
+    [[ -f $dir/.owner && $(cat "$dir/.owner") == ox-local-v1 &&
+       -f $dir/.state && $(cat "$dir/.state") == released && -f $dir/.lease ]] || { record "$dir" protected-unreleased; return; }
+    local lease
+    exec {lease}>"$dir/.lease"
+    if ! flock -n "$lease"; then
+        record "$dir" protected-active; exec {lease}>&-; return
+    fi
+    if ! retention_valid "$dir"; then
+        record "$dir" protected-retention-mismatch; exec {lease}>&-; return
+    fi
+    record "$dir" eligible-retained-copy
+    if $apply; then
+        target=$trash/$id
+        if [[ $resume == false ]]; then
+            [[ ! -e $target && ! -L $target ]] || die 'Trash collision'
+            [[ ! -e $trash/.ticket-$id.json && ! -L $trash/.ticket-$id.json ]] || die 'Trash ticket collision'
+            cp -- "$dir/.release.json" "$trash/.ticket-$id.json"
+            record "$dir" moving-to-trash
+            mv -T -- "$dir" "$target"
+        fi
+        # Ticket survives partial deletion, allowing remaining files to be checked
+        # against retained bytes without trusting half-deleted lifecycle metadata.
+        finish_trash "$target"
+    fi
+    exec {lease}>&-
+}
+finish_trash() {
+    local target=$1 id ticket path expected rel item keep
+    id=${target##*/}; ticket=$trash/.ticket-$id.json
+    [[ $id =~ ^(run|security)-[A-Za-z0-9]+$ && -f $ticket && ! -L $ticket ]] || { record "$target" protected-ticket; return; }
+    strict_json "$ticket" || { record "$target" protected-ticket; return; }
+    path=$(jq -er '.retained | select(type=="string" and startswith("docs/validation/"))' "$ticket") || return 1
+    expected=$(jq -er '.payload_sha256 | select(test("^[a-f0-9]{64}$"))' "$ticket") || return 1
+    keep=$(contained "$path") || return 1
+    regular_tree "$keep" && [[ $(payload_manifest "$keep") == "$expected" ]] || { record "$target" protected-retention-mismatch; return; }
+    if [[ -e $target || -L $target ]]; then
+        regular_tree "$target" || { record "$target" protected-nonregular; return; }
+        while IFS= read -r -d '' item; do
+            rel=${item#"$target"/}
+            case $rel in .owner|.state|.lease|.release.json) continue;; esac
+            [[ -f $keep/$rel && $(hash_file "$item") == "$(hash_file "$keep/$rel")" ]] || { record "$target" protected-retention-mismatch; return; }
+        done < <(find "$target" -type f -print0)
+    fi
+    record "$target" eligible-trash-resume
+    if $apply; then
+        record "$target" deleting
+        rm -rf -- "$target"
+        rm -f -- "$ticket"
+        record "$target" deleted
+    fi
+}
+shopt -s nullglob dotglob
+# Tickets are written before rename and removed only after successful deletion.
+for ticket in "$trash"/.ticket-*.json; do
+    id=${ticket##*/.ticket-}; id=${id%.json}
+    [[ $id =~ ^(run|security)-[A-Za-z0-9]+$ ]] || die 'Invalid trash ticket'
+    # A pre-rename crash leaves the run in place; validate it in the normal pass.
+    if [[ -e $runs/$id && ! -e $trash/$id ]]; then
+        if $apply; then rm -f -- "$ticket"; fi
+        continue
+    fi
+    finish_trash "$trash/$id"
+done
+for dir in "$runs"/*; do collect "$dir" false; done

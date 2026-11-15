@@ -1,0 +1,193 @@
+{
+  "import_and_utc_edits": [
+    {
+      "path": "docs/assets/check.py",
+      "before_sha256": "d7e968c7104f41f87f12ab6b6e04197aae2171bfd3933aa8279727ff9a0611b5",
+      "after_sha256": "ad2348ce9b6052047420f213ebe2d5dc3c9fc841c4d3a2ce41e0093602ebf474",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/support.py",
+      "before_sha256": "bf4286f859bc295dd2ccccea29246d75b7e92dded61f53ea28718bfa43420cdb",
+      "after_sha256": "4e20b3fcf40835b2c63e828f339e2d9226035cffd9b4c7a085df4e5e3c9fda5e",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_automation.py",
+      "before_sha256": "ac617f737239d58181de5b54389734775a28a12457348c25fd07e98c774c1c63",
+      "after_sha256": "fd1cc875f81c687cdc86943d74e8007b8ba8a6232d479cc3dac8274d19c779e1",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_backends.py",
+      "before_sha256": "74541f69c1c92d4228fa02d5cda291542f547fda921bda47dd57fa17db52a9a1",
+      "after_sha256": "4fa32297fc0c10b8711f911d099539dbbefb5ca7a3189fd2f8bb2009379f503a",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_database_age.py",
+      "before_sha256": "541c8b9b3046b0ad4f0b428123ef9c09d85c2d2a03ee7a9215ef702a5942da98",
+      "after_sha256": "de9ef349a55edc02cb497e190730e4814ac98c92745ff5588288c0893b9d01ee",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_native_reports.py",
+      "before_sha256": "b91c5f05017b474cf566266541fd1242f6e3a6cc67325891c4cbb9645ea8c365",
+      "after_sha256": "29dcdbdc3f453f4aa1c6daf96b1da664a374ef8acc97e227fc0e938b630f47a3",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_optional_datasets.py",
+      "before_sha256": "aa31fe6c2f15a019fcad8af8c3d4da15cf415a112277feeb21abe19c187ed654",
+      "after_sha256": "08f0d89b84af8315380e82fcf29c312f908732e0e11aac4f19e6da3feafd3441",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_preparation.py",
+      "before_sha256": "1cee880f16f8a6f31edf0845f299759bd3a3f4091ccb812307adf6c07b1ec7fa",
+      "after_sha256": "3f7883561b03eec292581f9ad60e958d8195f089b2b6a963d4445a63127a65ef",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_process_lifecycle.py",
+      "before_sha256": "533f1de93031b9f9643a9b2c1c5924b79bf392206e146fcd74a60700fb269682",
+      "after_sha256": "f1b1da475db9cbdb69c140d56805e44b23e973267a71a65905bc9255d348c8f7",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_real_security_backends.py",
+      "before_sha256": "8aea25c90e894cd7af0ba338277cf2237d832e3305814ad6cb61bef8edfa9bbb",
+      "after_sha256": "65bb0d2ef1ba0a31f9f4b5ed97073e50abe05af998b42ab7a78d3ee6f8df8262",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_selinux_transport.py",
+      "before_sha256": "033e3577700084fbce3540c7443ed9c61de9d816cc6c1f824c821e6dbfa633fa",
+      "after_sha256": "6c9186e45cc8abfa21210a88474603ddf0227992d28ef1f3e544918bf78e1d5a",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "tools/governance/consumers/gui_test.py",
+      "before_sha256": "9185b93be39a86430e60a2229a60f82680a8b12483666ccecab0de70fd91b95d",
+      "after_sha256": "1ffc519b3ba47d063582639f4cc39157877aa3f397967ec2a6e946fe783ebf2b",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "tools/governance/consumers/run_base.py",
+      "before_sha256": "6f33e87b3e6595598976eadc4025439ab88cd6ef343d7fd6f6e5fdcebbb6c892",
+      "after_sha256": "f35b99825aa5cc8be39d78f532dd04cebe07acf9d23e4d28af5c0d7b12718083",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "tools/governance/scripts/package-ox.py",
+      "before_sha256": "5f6c108c1810e13bba9c6d8f6133a7c6b80a8bf0b17db2bcf039dfcfa045e2d9",
+      "after_sha256": "5f0a69e773b2682c26217afbe67727de6ddd3ff7e8fa247ccb3e8145906ed6e6",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "tools/governance/scripts/run-checks.py",
+      "before_sha256": "33f7f73d5d5c0a10cf266c5cdf41f176ee0d9e463d22331d706ab3cac42992bd",
+      "after_sha256": "d5d04f7d0df1ae1e108f3c99c2323f2e2d101200cff4404d570d58d6388a1b34",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "tools/governance/tests/test_governance.py",
+      "before_sha256": "e25ce39306b56f84f6d5aedc773c181af2a160e591d33543fb30934dd6a4e206",
+      "after_sha256": "873b46be078f0551ac7325dc2e45a95baf77c8f3609a79de1b53508d95a3fc44",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "tools/governance/tests/test_project_revision.py",
+      "before_sha256": "5c0fcba74654d86bb26146b107227ad85d88d241169613b4ce5b93377e58c6da",
+      "after_sha256": "db1d4479779a79d6baf5637f7d05fa64598152e73f7c1075d5596efe323d1337",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "tools/governance/tests/test_security_quality.py",
+      "before_sha256": "cfd70404af38b92f551d70a6c1b0994829ee1b975e309d59b2098a239c62b150",
+      "after_sha256": "38737b2c3a38d833d9ea60afc250d0d314b04f7983bbe41ae5d867c3b325d6e2",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "tools/governance/tests/test_task_closure.py",
+      "before_sha256": "239c3275b34ad6ddc24f27c6f451d6c82ae56c67d89f60edcc0529e81c41fb00",
+      "after_sha256": "299cefaa50f94459e50eaad3ee043dcfb6034c13ef0c3053f86a711e7548194e",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_local_lifecycle.py",
+      "before_sha256": "f3973c2d0c8bc9ec019d84c3afb9dee3b46d24f176ff6a1285f75c5db52ee41e",
+      "after_sha256": "c118e9d83141fd267695af69edb931266e8a00982ed4f6d6179b335f34e6090c",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "application/tools/native_review.py",
+      "before_sha256": "387056f1f9b0657612cfc843541a3e6097e7cb6773f9f6d030e5dfacd7c38454",
+      "after_sha256": "2bf921de96eb5adbe9f50961dfd60bf8f0c423bb2e2aec1f8c4c3579bc0377ec",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "application/tools/native_composition_review.py",
+      "before_sha256": "0e092997d6657294c3609320b8e0d99b633d43e76623327c4b909deb0a7a1bf8",
+      "after_sha256": "18671fa7d3757a6c512f65c58a102c737388dd7c379f17dc9563a93cbf308fb8",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    },
+    {
+      "path": "scripts/tests/test_catalog.py",
+      "before_sha256": "5192d74ab42bdf1d39659588caece4b96b268771d788dbbc108dd32f852f38da",
+      "after_sha256": "3739359fc3fe39bab56ff2f50ec4b5ac6f3a596ec8542faaf7e21c192f06ad50",
+      "review": "Import ordering/UTC modernization; explicit narrow exception handling in consumer receipts; no shell invocation added. Native Bandit baseline remains unchanged; native positive/negative detection and regression checks required."
+    }
+  ],
+  "current_reviewed_inputs": {
+    "sources": {
+      "docs/assets/check.py": "ad2348ce9b6052047420f213ebe2d5dc3c9fc841c4d3a2ce41e0093602ebf474",
+      "scripts/tests/support.py": "4e20b3fcf40835b2c63e828f339e2d9226035cffd9b4c7a085df4e5e3c9fda5e",
+      "scripts/tests/test_automation.py": "fd1cc875f81c687cdc86943d74e8007b8ba8a6232d479cc3dac8274d19c779e1",
+      "scripts/tests/test_backends.py": "4fa32297fc0c10b8711f911d099539dbbefb5ca7a3189fd2f8bb2009379f503a",
+      "scripts/tests/test_database_age.py": "de9ef349a55edc02cb497e190730e4814ac98c92745ff5588288c0893b9d01ee",
+      "scripts/tests/test_native_reports.py": "29dcdbdc3f453f4aa1c6daf96b1da664a374ef8acc97e227fc0e938b630f47a3",
+      "scripts/tests/test_optional_datasets.py": "08f0d89b84af8315380e82fcf29c312f908732e0e11aac4f19e6da3feafd3441",
+      "scripts/tests/test_preparation.py": "3f7883561b03eec292581f9ad60e958d8195f089b2b6a963d4445a63127a65ef",
+      "scripts/tests/test_process_lifecycle.py": "f1b1da475db9cbdb69c140d56805e44b23e973267a71a65905bc9255d348c8f7",
+      "scripts/tests/test_real_security_backends.py": "65bb0d2ef1ba0a31f9f4b5ed97073e50abe05af998b42ab7a78d3ee6f8df8262",
+      "scripts/tests/test_selinux_transport.py": "6c9186e45cc8abfa21210a88474603ddf0227992d28ef1f3e544918bf78e1d5a",
+      "tools/governance/consumers/gui_test.py": "1ffc519b3ba47d063582639f4cc39157877aa3f397967ec2a6e946fe783ebf2b",
+      "tools/governance/consumers/isolation_test.py": "a9cedd279f22f2e27734dbdfe2d08d5ef5aa6565a84e911a3ec1c2dc45db7c7f",
+      "tools/governance/consumers/run_base.py": "f35b99825aa5cc8be39d78f532dd04cebe07acf9d23e4d28af5c0d7b12718083",
+      "tools/governance/scripts/package-ox.py": "5f0a69e773b2682c26217afbe67727de6ddd3ff7e8fa247ccb3e8145906ed6e6",
+      "tools/governance/scripts/run-checks.py": "33f7f73d5d5c0a10cf266c5cdf41f176ee0d9e463d22331d706ab3cac42992bd",
+      "tools/governance/tests/test_governance.py": "873b46be078f0551ac7325dc2e45a95baf77c8f3609a79de1b53508d95a3fc44",
+      "tools/governance/tests/test_project_revision.py": "db1d4479779a79d6baf5637f7d05fa64598152e73f7c1075d5596efe323d1337",
+      "tools/governance/tests/test_security_quality.py": "38737b2c3a38d833d9ea60afc250d0d314b04f7983bbe41ae5d867c3b325d6e2",
+      "tools/governance/tests/test_task_closure.py": "299cefaa50f94459e50eaad3ee043dcfb6034c13ef0c3053f86a711e7548194e",
+      "scripts/tests/test_local_lifecycle.py": "c118e9d83141fd267695af69edb931266e8a00982ed4f6d6179b335f34e6090c",
+      "application/tools/native_review.py": "2bf921de96eb5adbe9f50961dfd60bf8f0c423bb2e2aec1f8c4c3579bc0377ec",
+      "application/tools/native_composition_review.py": "18671fa7d3757a6c512f65c58a102c737388dd7c379f17dc9563a93cbf308fb8",
+      "scripts/tests/test_catalog.py": "3739359fc3fe39bab56ff2f50ec4b5ac6f3a596ec8542faaf7e21c192f06ad50",
+      "sdd/tools/validate.py": "6df3b403dc50d4d6aebcbd803a65af175ec4baf6f9c18afb21e183b0db2f3aa5"
+    },
+    "policy_files": {
+      "scripts/config/native/ruff/ruff.toml": "eb3d3cbfc78ef2b897e75870ade7c26917d5e4b98d7fcd4a719311d1962cc4a0",
+      "scripts/config/native/bandit/bandit-baseline.json": "7549a06642bff8aa79b08070e81b397549194ef05d9538ff4a54a6c75683896c"
+    },
+    "reason": "Reviewed false positives: shell-free argv to explicit test or governance commands; subprocess import alone is not command injection; /tmp literals are adversarial aliases or cwd/tmpfs, never insecure temporary file creation; XML parser handles only the repository SVG corpus. No scanner severity or rule globally disabled. Changed reviewed source or policy fails before scanning. 2026-11-11: reviewed fixture path migration to dated logs and .cache/ox; shell-only production contract remains unchanged. Existing suppression rules unchanged. Complete-run repair: reviewed only retained-log/cache fixture paths, a deterministic historical resource selection and missing-diagnostic assertions; executable subprocess boundaries and suppression policies unchanged. Reviewed six new native-helper/lifecycle subprocess occurrences: user-selected local binary passed as one argv element without a shell; fixed Bash test program with positional fixture paths. Fixed absolute Bash executable; only exact source hashes and native occurrences/per-file S603 accepted. 2026-11-13: maintainer requested Ec analyzer defaults. Ruff adopts Ec groups (security remains integral Bandit); old Ruff per-file exceptions removed. test_automation.py changes only the shell-layout assertion to permit unittest -m while still rejecting inline Python; subprocess boundaries and Bandit baseline unchanged. 2026-11-13 complete repair: preserve authenticated SDD validator/runner bytes; bounded Ruff I001/UP017 style dispositions and one baseline B110 validator path handler. trace_errors already reports rejected paths; no security error is accepted. Source and policy hashes enforce these reviewed inputs."
+  },
+  "dispositions": {
+    "Ruff": [
+      "sdd/tools/validate.py:I001 (authenticated SDD core)",
+      "tools/governance/scripts/run-checks.py:I001,UP017 (authenticated succession runner)"
+    ],
+    "Bandit": [
+      "sdd/tools/validate.py:B110 (trace_errors already reports the rejected path)"
+    ],
+    "ShellCheck": [
+      "SC2310 at explicit status predicates with guarded producers/effects",
+      "SC2034/SC2154 for documented sourced-module and nameref interfaces"
+    ],
+    "Clippy": [
+      "Source-local expect with reasons for cohesive view composition, independent UI toggles, owned worker handles, and checked numeric conversions",
+      "Duplicate family names are complemented by exact-version cargo-deny policy."
+    ]
+  }
+}

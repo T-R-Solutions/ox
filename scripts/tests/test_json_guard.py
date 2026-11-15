@@ -1,9 +1,10 @@
 """Independent JSON oracle for the shell lexical and duplicate-key guards."""
 
 import json
-from pathlib import Path
 import tempfile
 import unittest
+from pathlib import Path
+
 import support as S
 
 

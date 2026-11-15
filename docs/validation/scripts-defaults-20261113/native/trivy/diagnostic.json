@@ -1,0 +1,68 @@
+{
+  "checks": {
+    "checks": "45bd3d33e7743ac015502427d473725e2ae60a79e7df2d63b6abba9c29306c9f",
+    "image": "sha256:ab2c55d4a4135fee93c79022a87a88999fae885f0d46270adb73e45aa3c2a8cf",
+    "native": {
+      "Digest": "sha256:b0e12d009b01dcc8ca2ebbc199b9caf3922491978d21c17b61c1d7f6dc75220b",
+      "DownloadedAt": "2026-11-13T01:59:02.641490463Z",
+      "MajorVersion": 2
+    },
+    "origin": "ghcr.io/aquasecurity/trivy-checks:2",
+    "version": "0.76.2"
+  },
+  "checks_runtime": {
+    "mount": {
+      "Destination": "/cache/policy",
+      "Mode": "ro,z",
+      "Propagation": "rprivate",
+      "RW": false,
+      "Source": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/tools/trivy/volume/checks/0.76.2/45bd3d33e7743ac015502427d473725e2ae60a79e7df2d63b6abba9c29306c9f",
+      "Type": "bind"
+    },
+    "network": "none"
+  },
+  "cleanup": "removed",
+  "database": "b0732e9cd9df64fa6509401fffb9cd58d239fdee5c89babd2d3383aa84d9148e",
+  "database_metadata": {
+    "data_timestamp": "2026-11-13T00:58:46.183130+00:00",
+    "schema": 1,
+    "snapshot": "b0732e9cd9df64fa6509401fffb9cd58d239fdee5c89babd2d3383aa84d9148e",
+    "sources": [
+      {
+        "data_timestamp": "2026-11-13T00:58:46.183130125Z",
+        "metadata_file": "db/metadata.json",
+        "sha256": "e4ce9073634fce8da1f6a72911b9d0237d22645cf15fd3530245f1225d60fc6f",
+        "timestamp_semantics": "native_database_updated_at",
+        "url": "https://github.com/aquasecurity/trivy-db"
+      },
+      {
+        "data_timestamp": "2026-11-13T01:08:15.464357406Z",
+        "metadata_file": "java-db/metadata.json",
+        "sha256": "032cb5a6a59eeeef5a478b5d9327ff50dc7464ad3ee088ecf01059f3400bf580",
+        "timestamp_semantics": "native_database_updated_at",
+        "url": "https://github.com/aquasecurity/trivy-java-db"
+      }
+    ],
+    "timestamp_semantics": "oldest_required_source"
+  },
+  "finished_at": "2026-11-13T16:47:09.378280+00:00",
+  "image": "sha256:ab2c55d4a4135fee93c79022a87a88999fae885f0d46270adb73e45aa3c2a8cf",
+  "native_exit_code": 1,
+  "oom_killed": false,
+  "outcome": "native",
+  "phase": "execute_native",
+  "repo_digests": [
+    "shared-toolbox/trivy@sha256:ab2c55d4a4135fee93c79022a87a88999fae885f0d46270adb73e45aa3c2a8cf"
+  ],
+  "run": "3cdb0f2a3add4175a6d4d0df775d6720",
+  "runtime_exit_code": 1,
+  "selinux": {
+    "automatic_relabel": false,
+    "mode": "enforcing",
+    "selection": "shared",
+    "selection_valid": true
+  },
+  "started_at": "2026-11-13T16:47:06.722341+00:00",
+  "tool": "trivy",
+  "version": "0.76.2"
+}

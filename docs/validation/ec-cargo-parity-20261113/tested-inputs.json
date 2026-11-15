@@ -1,0 +1,246 @@
+[
+  {
+    "path": "scripts/README.md",
+    "sha256": "0fbfbc5cbc2aa651b87debfdf2ab5272bfdb2b3813bc1231790ace1b4ee36597"
+  },
+  {
+    "path": "scripts/automate.sh",
+    "sha256": "3c61e9797c41dca68e9cd01ffcef8ff8e344585dbf11b8adf532fe37eac55118"
+  },
+  {
+    "path": "scripts/check.sh",
+    "sha256": "1a0119c09786afa5023146246bc3f1a0382fdc8b10f2a74a8474c823c9b1da42"
+  },
+  {
+    "path": "scripts/checks/run.sh",
+    "sha256": "c54d5110c4a55541cfd47ebde0da3d47550f2c2eca70f91066fe9215a43b6d62"
+  },
+  {
+    "path": "scripts/config/automation.json",
+    "sha256": "e3a240c0ff168616c381fd4c9be325793bbe11edbd989c07b32ae509ff6c024e"
+  },
+  {
+    "path": "scripts/config/native/bandit/bandit-baseline.json",
+    "sha256": "7549a06642bff8aa79b08070e81b397549194ef05d9538ff4a54a6c75683896c"
+  },
+  {
+    "path": "scripts/config/native/bandit/bandit.ini",
+    "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e"
+  },
+  {
+    "path": "scripts/config/native/bandit/bandit.yaml",
+    "sha256": "6e8208e442237c5fe77b1907e8839aa741b6c37dc1c53404b4f135cb3cf781be"
+  },
+  {
+    "path": "scripts/config/native/cargo-audit/audit.toml",
+    "sha256": "28147fe7d3b59b8cd6eaad27d87edecf4b47d4d702e832bde0d73880ff42dd83"
+  },
+  {
+    "path": "scripts/config/native/cargo-deny/deny.toml",
+    "sha256": "3b397f5f93a510e2bfc8414beff0eff9c636274e6df8ca9559aad67535cc3298"
+  },
+  {
+    "path": "scripts/config/native/clippy/clippy.toml",
+    "sha256": "2aa44e81428dac0d5dc058d15713ef5b616bd5f39950bd084ef8946d137641f1"
+  },
+  {
+    "path": "scripts/config/native/gitleaks/gitleaks-history.ignore",
+    "sha256": "9b22293e830940fe9f16d9ea3c330ed3e6a14304f2e9d4aa5a50a676bc125ff4"
+  },
+  {
+    "path": "scripts/config/native/gitleaks/gitleaks.toml",
+    "sha256": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777"
+  },
+  {
+    "path": "scripts/config/native/grype/grype.yaml",
+    "sha256": "c05d01661f6256034a37d0518b2ac167dc56a00c02356eb1776d235e1dbd7020"
+  },
+  {
+    "path": "scripts/config/native/osv-scanner/osv-scanner.toml",
+    "sha256": "4ff7c0c2aa0eb183a286ac59666302ab3fe62a6122bffdde3bd390119f2903c9"
+  },
+  {
+    "path": "scripts/config/native/ruff/ruff.toml",
+    "sha256": "eb3d3cbfc78ef2b897e75870ade7c26917d5e4b98d7fcd4a719311d1962cc4a0"
+  },
+  {
+    "path": "scripts/config/native/shellcheck/shellcheckrc",
+    "sha256": "47908de5b3ad03b88a7a9af23f45a58748585768ae959a7e73b18a519232c25f"
+  },
+  {
+    "path": "scripts/config/native/syft/syft.yaml",
+    "sha256": "d7572074a858a2f16cdea29a9de12ae5e00048c1ea69979d6a2559faf69d896a"
+  },
+  {
+    "path": "scripts/config/native/trivy/trivy.yaml",
+    "sha256": "b713175dbb70162c0934d09b499fd2792b53c6b01ea15b15d180af59b38d4637"
+  },
+  {
+    "path": "scripts/config/native/trivy/trivyignore",
+    "sha256": "534119fe5ef9d0667b9a0fdc34ec5cf49c3a2b8634abfd4a6a2b9b7afdd27a34"
+  },
+  {
+    "path": "scripts/lib/backends.sh",
+    "sha256": "cebc07419f3ec1d41e118f8b8a3d07fe0a2943f6793878899e346210a0c7b808"
+  },
+  {
+    "path": "scripts/lib/common.sh",
+    "sha256": "c4f7c9b3d9d0b94076dc87564dde18cb6ca6b7bac6037c373a8a04426632c7af"
+  },
+  {
+    "path": "scripts/lib/files.sh",
+    "sha256": "8934361cd7ff8e0e0b33cae8de61f8dcd977ab21aff5d1fb6318d58d8116f2ab"
+  },
+  {
+    "path": "scripts/lib/logs.sh",
+    "sha256": "52390e2804a487f649570bd029a48cfa3db328977117bae1b4c9770590c2fca5"
+  },
+  {
+    "path": "scripts/lib/process.sh",
+    "sha256": "14cc08554cd3002a7776f0b4901ef7ddebef8eb43e9dd2cc9dbee1b7de74671f"
+  },
+  {
+    "path": "scripts/lib/registry.sh",
+    "sha256": "677c391f31d13e1b62d1714739df130afa0775a266a924bf17bf2b0f0a84ef7a"
+  },
+  {
+    "path": "scripts/lib/reports.sh",
+    "sha256": "803ab3e64f6d576fb91027e0e50725f34c759066d42d6ed8522fdc5dad1f8fd7"
+  },
+  {
+    "path": "scripts/lib/selection.sh",
+    "sha256": "c2771632b9191685ab4b6352ba858d08cff7d98b0b817f22529c6f43e8737bac"
+  },
+  {
+    "path": "scripts/local.sh",
+    "sha256": "bb0207c3d9ccd9b7d7a96b5d2d252d1b2d9de3b7760a4a56ec3086dfe3daf0e2"
+  },
+  {
+    "path": "scripts/reports/summarize.sh",
+    "sha256": "0874455a47bf42ffe632eca8c0dd928156a21ed5d9afd69f5646d69d6777ec16"
+  },
+  {
+    "path": "scripts/rules/README.md",
+    "sha256": "d93929366fac58d9bacea76073d3e0de0baf92cd209fe9f8a341bcabcce7daf7"
+  },
+  {
+    "path": "scripts/rules/opengrep/ox.yml",
+    "sha256": "8f69f2c9e549ae5ed2c8485586f5ad1d287399b7ddd9b1d01249a40060550a68"
+  },
+  {
+    "path": "scripts/rules/opengrep/rust.yml",
+    "sha256": "5e6e678092134f47f782f59a401af07656fd6a253186cd7c57a5e48190e496a3"
+  },
+  {
+    "path": "scripts/rules/yara-x/ox.yar",
+    "sha256": "d704dd8d354b12976f0efdc0b27c3b8f8738fd8d372f7eec34c9892aac140519"
+  },
+  {
+    "path": "scripts/security/LICENSE",
+    "sha256": "b2fa7b84692d6b7d79bc3538f670cb7110ec089ac04b7d5f9aa917713661ecd0"
+  },
+  {
+    "path": "scripts/security/NOTICE",
+    "sha256": "933ba11928978fde1d740d8ef357bc5260caf8d2d06cd9785fb60449512568c4"
+  },
+  {
+    "path": "scripts/security/SOURCES.md",
+    "sha256": "7b3b508b563c99185aeee462ba7eda6e4fa9f756b64fc761b42c30fd89539fdd"
+  },
+  {
+    "path": "scripts/security/analyzers/check-report.sh",
+    "sha256": "edd5b7b58f9ed90c41f529bd7598a67e2b25fee28c0f6a10307942ca0a3878c6"
+  },
+  {
+    "path": "scripts/security/analyzers/validate-exceptions.sh",
+    "sha256": "77cb388bf2b640fca17875ba432974de4a9894b82368d0a969e18e3e25696492"
+  },
+  {
+    "path": "scripts/security/prepare-datasets.sh",
+    "sha256": "7b521afddfd83f514aef1bd3713f0cbd8142e0cbed5e7588513ae760e2a56bb0"
+  },
+  {
+    "path": "scripts/tests/rules/README.md",
+    "sha256": "e5bd7f68174db596562e51feec2604532da929f6c6d4307d352f8efd215b989a"
+  },
+  {
+    "path": "scripts/tests/rules/ox.py.txt",
+    "sha256": "2afebe512861cabf82d7ff533bc34f0520001bdf08329dbf90c73370ba9c62d6"
+  },
+  {
+    "path": "scripts/tests/rules/ox.rs.txt",
+    "sha256": "0cf063cab044efb2f70f8c58edc131067d784283c0da64e3ac0d01bfb7191a4e"
+  },
+  {
+    "path": "scripts/tests/support.py",
+    "sha256": "4e20b3fcf40835b2c63e828f339e2d9226035cffd9b4c7a085df4e5e3c9fda5e"
+  },
+  {
+    "path": "scripts/tests/test_automation.py",
+    "sha256": "98f45dcf78021d1c2732ad4759f582e9c098e69c17f46cd80dbe7d4e43686042"
+  },
+  {
+    "path": "scripts/tests/test_backends.py",
+    "sha256": "718077360c8984f5ed35bfa20e9c5cdbf46711ba0b6067913eecfb40fc22162d"
+  },
+  {
+    "path": "scripts/tests/test_capture_status.py",
+    "sha256": "4e97f36e7f192050bd284317de0b60f0ca37f18096355f23010e8063199598bc"
+  },
+  {
+    "path": "scripts/tests/test_catalog.py",
+    "sha256": "3e646b4a1f83610188b9105cba8e1e57688d4fb93bf8024f3067221a4fbfbbc1"
+  },
+  {
+    "path": "scripts/tests/test_database_age.py",
+    "sha256": "de9ef349a55edc02cb497e190730e4814ac98c92745ff5588288c0893b9d01ee"
+  },
+  {
+    "path": "scripts/tests/test_defaults.py",
+    "sha256": "c66b6b8933c9160381deca1c0257d9fcc502f2acaab9d526a354f19d427a7a7e"
+  },
+  {
+    "path": "scripts/tests/test_json_guard.py",
+    "sha256": "fce6cbbb39789bf961b25c7b6500db137fa80fe8dbf5145ddcb350c64c5b7d65"
+  },
+  {
+    "path": "scripts/tests/test_local_lifecycle.py",
+    "sha256": "c118e9d83141fd267695af69edb931266e8a00982ed4f6d6179b335f34e6090c"
+  },
+  {
+    "path": "scripts/tests/test_native_reports.py",
+    "sha256": "29dcdbdc3f453f4aa1c6daf96b1da664a374ef8acc97e227fc0e938b630f47a3"
+  },
+  {
+    "path": "scripts/tests/test_optional_datasets.py",
+    "sha256": "08f0d89b84af8315380e82fcf29c312f908732e0e11aac4f19e6da3feafd3441"
+  },
+  {
+    "path": "scripts/tests/test_preparation.py",
+    "sha256": "3f7883561b03eec292581f9ad60e958d8195f089b2b6a963d4445a63127a65ef"
+  },
+  {
+    "path": "scripts/tests/test_process_lifecycle.py",
+    "sha256": "f1b1da475db9cbdb69c140d56805e44b23e973267a71a65905bc9255d348c8f7"
+  },
+  {
+    "path": "scripts/tests/test_real_security_backends.py",
+    "sha256": "65bb0d2ef1ba0a31f9f4b5ed97073e50abe05af998b42ab7a78d3ee6f8df8262"
+  },
+  {
+    "path": "scripts/tests/test_selinux_transport.py",
+    "sha256": "6c9186e45cc8abfa21210a88474603ddf0227992d28ef1f3e544918bf78e1d5a"
+  },
+  {
+    "path": "scripts/toolbox.sh",
+    "sha256": "a2574e19d6825f6ba83490446c84c51bac814cfda71b5b80fc5172fe56619a0c"
+  },
+  {
+    "path": "tools/governance/scripts/governance_support.py",
+    "sha256": "d34034081f6f0731fedb2696670ddcac86d8d3d1be3019d9aab6746f65939920"
+  },
+  {
+    "path": "tools/governance/tests/test_governance.py",
+    "sha256": "80507b0d0afd794bc24a56f05fcc2fb52079650e8f9119df17ecba2e077c575e"
+  }
+]
