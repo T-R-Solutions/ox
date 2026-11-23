@@ -6,22 +6,24 @@ stable. These contracts describe implemented components, not future widgets.
 
 | Component | Purpose / consumers | Variants and states | Keyboard / focus | Sizing and overflow |
 |---|---|---|---|---|
-| Control | commands on every surface | primary, secondary, danger, chrome, navigation; disabled/hover/pressed/focus | explicit visible-control traversal; Enter/Space; disabled omitted | density padding; toolbar wraps |
-| Navigation | all 27 destinations | selected marker, hover, focused | Tab and Ctrl+K; hidden items omitted; focus moves to visible toggle | 232 logical px when wide; collapses below 980; scroll |
+| Control | commands on every surface; icon-only chrome 32 with hover/focus labels | primary, secondary, danger, chrome, navigation; disabled/hover/pressed/focus | explicit visible-control traversal; Enter/Space; disabled omitted | density padding; toolbar wraps |
+| Navigation | all 27 destinations | 3-unit selected side marker, hover, focused; native group icons | Tab and Ctrl+K; hidden items omitted; focus moves to visible toggle | preferred 256; bounded drag 200..420/window; rail 52; scroll |
 | Workspace input | start/project/task | editable, disabled while busy, focused, validation text | persistent label; Enter validates; text editing preserves native behavior | fills available width; text scrolls |
 | Section / notice | task, settings, planned views | surface/recessed, title, context, content | noninteractive text; no fabricated focus target | fills width; body vertically scrolls |
-| Evidence badge | task/history/header | unverified, approved criterion, rejected, inconclusive; busy overrides historical verdict | text and symbol; no activation | wraps with header; historical raw data separate |
+| Evidence badge | task/history/header | unverified, approved criterion, rejected, inconclusive, not applicable; busy overrides historical verdict | text and symbol; no activation | wraps with header; historical raw data separate |
 | Command palette | all destinations | query, empty, selection | Ctrl+K; arrows; Tab; Enter; Escape restores trigger | bounded 760 px; scrollable results |
 | Theme/density selector | settings and toolbar | 3 themes; 2 densities; session-only | controls in traversal, explicit selection | wrap; never reduces body font |
 | Code/diff preview | editor/focus/review | labelled embedded/synthetic data | read-only; no save/accept effect | monospace; WordOrGlyph wrapping for source |
 | Planned capability | future screens | unavailable reason and disabled effect | navigation stays active; unavailable effect excluded | vertical scroll; no fake result or progress |
 
-Original text symbols ☰ / • / ✓ supplement localized labels; no third-party icon
-library is redistributed. This is a minimal native icon vocabulary, not completion
-of the supplied 122-icon library. Dedicated graph/editor interaction widgets and
+Native 16-unit line icons in `desktop/icons.rs` supplement localized command
+labels (folder, add, panels, search, settings, file and activity). Evidence symbols
+remain redundant with state text. No third-party icon library is redistributed;
+this bounded vocabulary does not complete the supplied 122-icon library. Dedicated graph/editor interaction widgets and
 full tree/table icon coverage remain future visual work; backend absence alone does
 not prove their design complete. Font provenance and bundled OFL are recorded in
-font-provenance.json. Screen-reader semantics have not been verified.
+font-provenance.json. This Iced 0.14 build has no AccessKit integration;
+accessible-name/state announcements remain unimplemented platform work.
 
 ## Embedded workbench successor
 
@@ -35,3 +37,58 @@ inspector flank the primary canvas; otherwise the composition stacks.
 `relationship_map` uses declared Cargo dependencies, with a stacked alternative below
 1200. `agent_roles` provides a role/responsibility/instance table with no invented
 agent activity. Existing theme roles and body sizes apply; no new asset dependency.
+
+## Enterprise chrome successor — 2026-11-16
+
+A single context row combines navigation, identity, project context and
+presentation commands at every supported width; there is no 1100-unit breakpoint. Busy cancellation retains its own visible
+control region. The status footer is a single compact row. S01/S02 context
+separators have bounded height; unrestricted vertical rules must not expand
+header rows. The current S01 action sidebar is 280 units, or 210 below 900 logical units;
+actions and projects scroll independently, with Plugins docked at the bottom.
+
+Preferences default to theme/density and a concise session-scope explanation.
+The dedicated settings canvas exposes theme/density preview and Save/Back;
+there are no Details specimens. Task evidence badges and backend
+implementation notices are absent from S13/S14.
+
+## Desktop navigation interaction — 2026-11-17
+
+`desktop/splitter.rs` owns only hit testing/cursor/start on a 6-unit handle; Desktop
+owns transient drag/width lifecycle and observes move/release independent of event
+capture status. Pointer grab offset prevents jumps. End/cancel paths include
+CursorLeft/Unfocused/Escape/navigation/command/resize. Min 200/max 420 and
+window width − 326 preserve the primary region; rail 52 keeps actual destination
+controls. Width is remembered only for the session.
+
+`desktop/hint.rs` provides a keyboard-focus label overlay; native tooltip covers
+pointer hover. Settings (control 272) deliberately uses hover-only text with a visible focus
+border, per the user request. Controls 215/216 reduce/increase width by 24 units and stay in explicit
+traversal only when expanded. Ctrl+B toggles; Ctrl+Alt+arrows is optional because
+window managers can intercept it. The 27 destinations use 26 geometries (S09/S13 share the cog);
+labels and IDs remain the authority. AT conformance is not inferred from a tooltip.
+
+Project-entry correction (2026-11-17): Settings and agent-settings entries share
+one native cog renderer. S01 primary action is New project, followed by Open
+folders and disabled Clone repository with an unavailable tooltip. Recents and
+resume controls occupy the main area; the fixed 210-unit narrow sidebar remains beside it.
+Keyboard traversal follows rendered actionable order and excludes disabled Clone.
+
+## Reference translation contract — 2026-11-17
+
+Future changes use the VISUAL STUDIO 2026 ENTERPRISE baseline in DESIGN revision 5.0.
+Map source shell/tool windows to Ox navigation, document tabs, inspector and tool
+regions; map command hierarchy to existing controls and status to source-bound
+feedback. Preserve distinct hover/focus/selection/disabled/busy states, accessible
+names, keyboard routes, overflow recovery and opaque material fallbacks. Document
+any new component/variant and its actual native verification. The implemented table
+above is an inventory, not proof of fidelity to the new target.
+
+Current focus variant preserves each role's opaque background and label colors,
+including its hover/pressed state and selected navigation surface. Focus adds a
+two-unit border: the role foreground for Primary/Chrome, or the theme focus color
+for other roles. Disabled controls retain their muted colors and one-unit border.
+Enabled pressed controls use a two-unit border; unfocused hover alone uses one.
+Native observations and remaining limits are recorded in the audit follow-up;
+assistive-technology acceptance remains pending. The chrome also includes Sair; theme/density shortcuts act immediately,
+whereas Settings uses preview/Save/Back. Signatures render at 128×40.

@@ -1,5 +1,5 @@
 //! Local task controller. Invoke blocking methods only on a worker.
-use ox_agent::runtime::{Identity, Runtime, State};
+use ox_agent::runtime::{Identity, Outcome, Runtime, State};
 use ox_verification::{
     engine::{Check, Engine},
     verdict::Verdict,
@@ -42,12 +42,12 @@ impl Controller {
     pub fn select(&mut self, path: &Path) -> io::Result<String> {
         let root = path.canonicalize()?;
         if !root.is_dir() {
-            return Err(io::Error::other("Not a directory"));
+            return Err(io::Error::other("O caminho não é um diretório"));
         }
         fs::read_dir(&root)?;
         self.workspace = Some(root.clone());
         self.check = None;
-        Ok(format!("Workspace: {} — UNVERIFIED", root.display()))
+        Ok(format!("Projeto: {} — não verificado", root.display()))
     }
     /// # Errors
     /// Returns an error for an unknown scenario, absent workspace, filesystem failure, or child supervision failure.
@@ -57,12 +57,12 @@ impl Controller {
     )]
     pub fn execute(&mut self, mode: &str, cancel: Arc<AtomicBool>) -> io::Result<String> {
         if !matches!(mode, "good" | "bad" | "failure" | "hang") {
-            return Err(io::Error::other("Unknown scenario"));
+            return Err(io::Error::other("Cenário desconhecido"));
         }
         let root = self
             .workspace
             .as_ref()
-            .ok_or_else(|| io::Error::other("Select workspace"))?;
+            .ok_or_else(|| io::Error::other("Selecione um projeto"))?;
         fs::read_dir(root)?;
         self.attempt += 1;
         let id = format!("{}:1:{}", self.session, self.attempt);
@@ -76,7 +76,7 @@ impl Controller {
         request.sync_all()?;
         self.check = Some(Check {
             id: format!("result:{id}"),
-            description: "Identity and result=42".into(),
+            description: "Identidade e resultado=42".into(),
             executable: self.binaries.join("task-oracle"),
             arguments: vec![id],
             directory: dir.clone(),
@@ -103,15 +103,11 @@ impl Controller {
                 runtime.cancel()?;
             }
             if let State::Finished(outcome) = runtime.poll()? {
-                let result_note = if dir.join("result.txt").is_file() {
-                    "Result produced. Choose Verify result before starting another attempt."
-                } else {
-                    "No result was produced; verification cannot approve missing evidence. Start a new attempt."
-                };
-                return Ok(format!(
-                    "Attempt {}: {outcome:?}; observed exit. {}. UNVERIFIED. {result_note}",
+                return Ok(attempt_message(
                     self.attempt,
-                    dir.display()
+                    outcome,
+                    &dir,
+                    dir.join("result.txt").is_file(),
                 ));
             }
             std::thread::sleep(Duration::from_millis(10));
@@ -128,7 +124,7 @@ impl Controller {
         let check = self
             .check
             .as_ref()
-            .ok_or_else(|| io::Error::other("No result"))?;
+            .ok_or_else(|| io::Error::other("Nenhum resultado"))?;
         if execute {
             for path in check
                 .inputs
@@ -139,7 +135,7 @@ impl Controller {
                     return Err(io::Error::new(
                         io::ErrorKind::NotFound,
                         format!(
-                            "Attempt {} has no readable regular evidence input: {}. No approval is possible. Verify immediately after Run correct or Run incorrect; Fail, Timeout and Cancel may produce no result.",
+                            "A tentativa {} não tem uma entrada de evidência regular e legível: {}. Não é possível aprovar. Verifique logo após Executar correto ou Executar incorreto; Falha, Prazo excedido e Cancelar podem não produzir resultado.",
                             self.attempt,
                             path.display()
                         ),
@@ -151,17 +147,20 @@ impl Controller {
                 .map_err(|error| {
                     io::Error::new(
                         error.kind(),
-                        format!("Verification of {} could not complete: {error}", check.id),
+                        format!(
+                            "Não foi possível concluir a verificação de {}: {error}",
+                            check.id
+                        ),
                     )
                 })?;
         }
         let verdict = self.engine.evaluate(check);
-        let status = match verdict {
-            Verdict::Approved { .. } => "APPROVED",
-            Verdict::Rejected { .. } => "REJECTED",
-            Verdict::NotVerified => "UNVERIFIED / stale or missing",
-            Verdict::Inconclusive { .. } => "INCONCLUSIVE",
-            Verdict::NotApplicable { .. } => "NOT APPLICABLE",
+        let status = match &verdict {
+            Verdict::Approved { .. } => "Critério aprovado",
+            Verdict::Rejected { .. } => "Critério reprovado",
+            Verdict::NotVerified => "Não verificado / entradas alteradas ou ausentes",
+            Verdict::Inconclusive { .. } => "Inconclusivo",
+            Verdict::NotApplicable { .. } => "Não aplicável",
         };
         let history = self
             .engine
@@ -182,22 +181,103 @@ impl Controller {
                     .collect::<Vec<_>>()
                     .join("; ");
                 format!(
-                    "run {}: {} {:?}; {} inputs; recorded content: {contents}",
+                    "execução {}: {} {}; {} entradas; conteúdo registrado: {contents}",
                     o.run(),
                     o.check().id,
-                    o.result(),
+                    observation_result(o.result()),
                     o.inputs().len()
                 )
             })
             .collect::<Vec<_>>()
             .join("\n");
         Ok(format!(
-            "{status}\nCriterion: {}\n{verdict:?}\nObserved {:?}; refresh explicitly after edits.\nInputs: {:?}\nOracle: {} {:?}\nHistory:\n{history}",
+            "{status}\nCritério: {}\nReferência: {}\nObservado em {:?}; atualize explicitamente após editar.\nEntradas: {:?}\nOráculo: {} {:?}\nHistórico:\n{history}",
             check.id,
+            verdict_reference(&verdict),
             SystemTime::now(),
             check.inputs,
             check.executable.display(),
             check.arguments
         ))
+    }
+}
+
+fn verdict_reference(verdict: &Verdict) -> &str {
+    match verdict {
+        Verdict::Approved { evidence } | Verdict::Rejected { evidence } => evidence,
+        Verdict::Inconclusive { reason } | Verdict::NotApplicable { reason } => reason,
+        Verdict::NotVerified => "Nenhuma evidência atual permite decidir o critério",
+    }
+}
+
+fn observation_result(result: ox_verification::engine::ResultKind) -> String {
+    use ox_verification::engine::ResultKind;
+    match result {
+        ResultKind::Exited(Some(code)) => format!("código de saída {code}"),
+        ResultKind::Exited(None) => "encerramento sem código de saída".into(),
+        ResultKind::TimedOut => "prazo excedido".into(),
+        ResultKind::Cancelled => "cancelada".into(),
+    }
+}
+
+fn attempt_message(attempt: u64, outcome: Outcome, directory: &Path, has_result: bool) -> String {
+    let outcome = match outcome {
+        Outcome::Success => "concluída com sucesso".to_owned(),
+        Outcome::Failed(Some(code)) => format!("falhou (código de saída {code})"),
+        Outcome::Failed(None) => "falhou sem código de saída".to_owned(),
+        Outcome::Cancelled => "cancelada".to_owned(),
+        Outcome::TimedOut => "prazo excedido".to_owned(),
+    };
+    let result_note = if has_result {
+        "Resultado produzido. Escolha Verificar resultado antes de iniciar outra tentativa."
+    } else {
+        "Nenhum resultado foi produzido; a verificação não pode aprovar evidências ausentes. Inicie outra tentativa."
+    };
+    format!(
+        "Tentativa {attempt}: {outcome}; encerramento observado. Artefatos: {}. Estado: não verificado. {result_note}",
+        directory.display()
+    )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn attempt_messages_translate_every_outcome_without_claiming_verification() {
+        for (outcome, expected) in [
+            (Outcome::Success, "concluída com sucesso"),
+            (Outcome::Failed(Some(7)), "falhou (código de saída 7)"),
+            (Outcome::Failed(None), "falhou sem código de saída"),
+            (Outcome::Cancelled, "cancelada"),
+            (Outcome::TimedOut, "prazo excedido"),
+        ] {
+            for has_result in [true, false] {
+                let message = attempt_message(3, outcome, Path::new("artefatos"), has_result);
+                assert!(message.starts_with("Tentativa 3:"));
+                assert!(message.contains(expected));
+                assert!(message.contains("Estado: não verificado"));
+                assert_eq!(
+                    crate::design::EvidenceState::from_status(&message),
+                    crate::design::EvidenceState::Unverified
+                );
+                assert!(message.contains(if has_result {
+                    "Resultado produzido"
+                } else {
+                    "Nenhum resultado foi produzido"
+                }));
+                for old in [
+                    "Attempt",
+                    "Success",
+                    "Failed",
+                    "Cancelled",
+                    "TimedOut",
+                    "observed exit",
+                    "UNVERIFIED",
+                    "No result",
+                ] {
+                    assert!(!message.contains(old));
+                }
+            }
+        }
     }
 }

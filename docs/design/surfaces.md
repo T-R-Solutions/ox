@@ -2,9 +2,28 @@
 
 Product requirements originate in architecture and product feature contracts; prototype IDs are presentation detail, not new backend authorization. Each `Surface::dependency()` names the integration prerequisite.
 
+## Current interaction rules — 2026-11-17 correction
+
+S01 has a fixed 280-unit actions sidebar (210 below 900 logical units), with an
+independent `welcome-sidebar` scroll region; recent projects scroll in `main`.
+These dimensions supersede the historical stacking compositions below. A failed
+folder chooser reveals and focuses the manual path field in the actions sidebar.
+Cancel and stale replies preserve the prior project and verification state.
+S02 chooser errors retain its existing parent-path input.
+
+S13/S14 reveal focused theme/density controls in their own `main` scroll region;
+Voltar/Salvar remain fixed. Navigation shortcuts apply to workbench surfaces and
+respect captured text-input events. Pointer motion is subscribed only during an
+active divider drag; release, cursor exit, window defocus and resize end the drag.
+These are source/unit-test observations, not renewed native or assistive-technology
+acceptance. Visual composition remains DESIGN revision 5.0, Visual Studio 2026
+Enterprise; no artwork or visual baseline changes are introduced by this repair.
+
+## Surface inventory
+
 | Capability | Requirement source | Flow | Screen/component | Backend state | Visual delivery |
 |---|---|---|---|---|---|
-| S01 Central de projetos | `sdd/features/product-local-task-ui/spec.md` | select → execute → verify → inspect | `Surface::Start` / desktop/views.rs | local Controller integrated | native controls/evidence |
+| S01 Boas-vindas | `product-visual-workbench` welcome successor | choose/create/reopen → validate/open project | `Surface::Start` / desktop/views.rs + project_store.rs | bounded project metadata and creation; no task execution on S01 | native project entry |
 | S02 Novo projeto | `product-visual-workbench` welcome successor | name + parent → confirm → exclusive create → validate/open | `Surface::NewProject` / desktop/views.rs + project_store.rs | bounded local empty-directory creation | native form and explicit consequence |
 | S03 Visão do projeto | `sdd/features/product-local-task-ui/spec.md` | select → execute → verify → inspect | `Surface::Project` / desktop/views.rs | local Controller integrated | native controls/evidence |
 | S04 Tarefas | `sdd/features/product-local-task-ui/spec.md` | select → execute → verify → inspect | `Surface::Tasks` / desktop/views.rs | local Controller integrated | native controls/evidence |
@@ -16,7 +35,7 @@ Product requirements originate in architecture and product feature contracts; pr
 | S10 Modelos e provedores | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Providers` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | S11 Contexto e conhecimento | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Context` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | S12 Ferramentas e plugins | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Tools` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
-| S13 Preferências | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Settings` / desktop/views.rs | session presentation | native preferences |
+| S13 Configurações | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Settings` / desktop/views.rs | session presentation | native preferences |
 | S14 Aparência | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Appearance` / desktop/views.rs | session presentation | native preferences |
 | W00 Editor e arquivos | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Editor` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | A01 Arquitetura | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Architecture` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
@@ -65,3 +84,56 @@ reset is explicit and preserves bounded corrupted bytes. Opening/creating does n
 execute tasks. Settings/theme remain session-only; general persistence is unchanged.
 Current evidence: [welcome report](../validation/welcome-projects-20261114/report.md).
 The earlier session-only S01/form composition above is historical.
+
+Welcome identity/layout successor (2026-11-16): Historical S01 embedded the supplied definitive
+signature (Catalisador/Valência) and tagged cotton mascot; the 17 November
+successor retains only the signatures at runtime. A 240-unit navy identity
+column accompanies the primary actions and recent list inside a 1080-unit maximum
+reading surface. Below 900 logical units the identity stacks as a compact strip.
+The body scrolls, long paths wrap and focused controls retain the existing reveal
+operation. S01/S02 share the concise “Central de projetos” header and Settings.
+The empty-list explanation is shown only after loading succeeds; unavailable
+history retains its diagnosis/reset controls. Effects, history format and creation
+confirmation are unchanged. [Scoped native observations](../validation/welcome-identity-20261116/report.md).
+
+Enterprise desktop successor (2026-11-16): supersedes the preceding welcome
+identity geometry. S01 fills the window with context chrome, docked actions/recents
+and neutral primary canvas; compact identity is subordinate. The later fixed sidebar uses 280 units, or 210 below 900 logical units. S02 uses a docked scrollable form.
+Shared workbench navigation, sections and preferences adopt flat separators and
+consistent chrome. Effects/availability/history and confirmation remain governed
+by existing contracts. Current observations: [enterprise report](../validation/enterprise-visual-20261116/report.md).
+
+S13/S14 enterprise refinement: normal preferences contain session scope, theme
+and density with preview/Save/Back. There are no Details specimens. No task-evidence
+badge or backend-integration notice is shown in this presentation-only flow.
+
+Desktop navigation successor (2026-11-17): S01/S02 use icon-only Settings and no
+mascot. Workbench chrome is a compact icon strip with hover/focus labels; 27
+destinations use 26 icon geometries (S09/S13 share the cog), grouped once. Sidebar divider permits horizontal
+drag with safe bounds; rail 52 preserves navigation when collapsed and expansion
+restores preferred width. Keyboard shrink/grow controls and Ctrl+B remain local
+presentation interactions with no domain effects.
+
+S01 project-entry correction (2026-11-17): docked actions are Novo projeto, Abrir
+pastas… and disabled Clonar repositório (unavailable tooltip). The separate manual
+path action is removed; a field is disclosed automatically on chooser failure.
+Recents and current-project resumption move to the primary area beside the fixed actions sidebar, including narrow windows. All settings icons share the cog. Effects/history unchanged.
+Scoped observations: [entry report](../validation/project-entry-20261117/report.md).
+
+## Visual Studio 2026 Enterprise target — 2026-11-17
+
+All listed surfaces follow DESIGN revision 5.0 for future visual changes.
+S01/S02 adopt a professional project-entry hierarchy; W00/A06 use the central
+artifact workspace with tabs and contextual panes; S03–S14/SDD/SKL use compact
+navigation, forms and data-oriented views; A01–A05/TW retain specialized content
+inside the same shell. The mandatory base is **VISUAL STUDIO 2026 ENTERPRISE**.
+The [source analysis](windows-apps-analysis.md) covers supporting Windows guidance.
+This is target direction only: existing implementation rows and backend availability
+above are unchanged, and no new native parity observation is claimed.
+
+S01 fixed sidebar successor (2026-11-17): docked full content-height sidebar,
+Plugins at the bottom, independently scrolling actions/projects. At widths below
+900 the sidebar uses 210 units instead of stacking. S13/S14 omit general navigation
+and keep Voltar/Salvar fixed at bottom right. Save confirms session-only preview
+and returns to the originating surface; Back/Escape discard it. Plugins opens the
+existing Tools destination and retains its explicit integration limits.

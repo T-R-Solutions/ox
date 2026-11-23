@@ -4,8 +4,8 @@ use super::{
 };
 use crate::design::{self, CODE_FONT, HEADING_FONT};
 use iced::{
-    Alignment, Color, Length,
-    widget::{column, container, row, rule, scrollable, space, text, text_input},
+    Alignment, Length,
+    widget::{column, container, image, row, rule, scrollable, space, stack, text, text_input},
 };
 
 // TextInput owns native focus. Observe it after pointer handling, including
@@ -141,9 +141,12 @@ impl<'a> From<TrackedInput<'a>> for Element<'a, Message> {
 
 impl Desktop {
     fn tracked_input<'a>(
-        input: impl Into<Element<'a, Message>>,
+        &self,
+        input: iced::widget::TextInput<'a, Message>,
         id: usize,
     ) -> Element<'a, Message> {
+        let p = self.appearance.palette();
+        let input = input.style(move |_, status| design::input_style(p, status));
         TrackedInput {
             input: input.into(),
             id,
@@ -168,11 +171,18 @@ impl Desktop {
         if !caption.is_empty() {
             content = content.push(text(caption).size(13).color(p.text_muted));
         }
-        content = content.push(body).spacing(self.density.gap());
+        content = content
+            .push(rule::horizontal(1))
+            .push(body)
+            .spacing(self.density.gap());
+        // Flat docked hierarchy: heading, caption and separator instead of a card.
         container(content)
-            .padding(self.density.inset())
+            .padding([self.density.gap(), 0.0])
             .width(Length::Fill)
-            .style(move |_| design::panel(p.surface_base, p.text_primary, p.border_decorative))
+            .style(move |_| container::Style {
+                text_color: Some(p.text_primary),
+                ..Default::default()
+            })
             .into()
     }
     fn notice<'a>(
@@ -183,25 +193,70 @@ impl Desktop {
         let p = self.appearance.palette();
         container(
             column![
-                text(title).font(HEADING_FONT).size(14),
+                text(title)
+                    .font(HEADING_FONT)
+                    .size(14)
+                    .color(p.text_primary),
                 text(description.into()).size(14)
             ]
             .spacing(6),
         )
         .padding(12)
         .width(Length::Fill)
-        .style(move |_| design::panel(p.surface_recessed, p.text_secondary, p.border_decorative))
+        .style(move |_| design::note(p))
+        .into()
+    }
+    /// The one page-level availability banner. Dependency text appears here
+    /// only; unavailable actions below state their reason without repeating it.
+    fn info_bar<'a>(
+        &self,
+        title: &'a str,
+        description: impl Into<std::borrow::Cow<'a, str>>,
+    ) -> Element<'a, Message> {
+        let p = self.appearance.palette();
+        let stripe = container(space::horizontal())
+            .width(3)
+            .height(Length::Fill)
+            .style(move |_| container::Style {
+                background: Some(p.selection_indicator.into()),
+                ..Default::default()
+            });
+        container(
+            row![
+                stripe,
+                container(super::icons::icon(super::icons::Kind::Info)).padding([2, 0]),
+                column![
+                    text(title).font(HEADING_FONT).size(14),
+                    text(description.into())
+                        .size(14)
+                        .color(p.text_secondary)
+                        .wrapping(text::Wrapping::WordOrGlyph)
+                ]
+                .spacing(4)
+                .width(Length::Fill)
+            ]
+            .spacing(10)
+            .height(Length::Shrink),
+        )
+        .padding([10, 12])
+        .width(Length::Fill)
+        .style(move |_| design::info_bar(p))
         .into()
     }
     fn unavailable<'a>(&self, action: &'a str) -> Element<'a, Message> {
-        column![
-            self.notice("Backend não integrado", self.surface.dependency()),
-            self.control(900, action, None)
+        let p = self.appearance.palette();
+        row![
+            self.control(900, action, None),
+            text("Disponível após a integração do backend")
+                .size(13)
+                .color(p.text_muted)
         ]
         .spacing(12)
+        .align_y(Alignment::Center)
+        .wrap()
         .into()
     }
-    fn badge(&self) -> Element<'_, Message> {
+    pub(super) fn evidence_badge(&self) -> Element<'_, Message> {
         let p = self.appearance.palette();
         let state = EvidenceState::from_status(&self.status);
         let (fg, bg) = if self.busy {
@@ -263,7 +318,7 @@ impl Desktop {
         } else {
             input
         };
-        let input = Self::tracked_input(input, 2);
+        let input = self.tracked_input(input, 2);
         let entry = self.surface == Surface::Start;
         let path_control: Element<'_, Message> = if entry {
             row![
@@ -331,9 +386,62 @@ impl Desktop {
         message: Option<Message>,
         role: ButtonRole,
     ) -> Element<'a, Message> {
-        container(self.styled_control(id, label, message, role))
-            .id(format!("welcome-control-{id}"))
-            .into()
+        let button = self.styled_control(id, label, message, role);
+        let button = if matches!(id, 270 | 273 | 274 | 275 | 276) {
+            button.width(Length::Fill)
+        } else {
+            button
+        };
+        container(button).id(format!("welcome-control-{id}")).into()
+    }
+    /// S01 action: icon, title and one-line consequence. A visible tag states
+    /// unavailability; the tooltip is supplementary.
+    #[expect(
+        clippy::too_many_arguments,
+        reason = "Tile identity, content and role are independent"
+    )]
+    fn action_tile<'a>(
+        &self,
+        id: usize,
+        kind: super::icons::Kind,
+        title: &'a str,
+        description: &'a str,
+        message: Option<Message>,
+        role: ButtonRole,
+        tag: Option<&'a str>,
+    ) -> Element<'a, Message> {
+        let p = self.appearance.palette();
+        let focused = self.focus == Some(id);
+        let mut label = column![text(title).font(HEADING_FONT).size(14)].spacing(2);
+        if !description.is_empty() {
+            label = label.push(
+                text(description)
+                    .size(12)
+                    .wrapping(text::Wrapping::WordOrGlyph),
+            );
+        }
+        let mut content = row![super::icons::icon(kind), label.width(Length::Fill)]
+            .spacing(10)
+            .align_y(Alignment::Center);
+        if let Some(tag) = tag {
+            content = content.push(
+                container(text(tag).size(11))
+                    .padding([2, 6])
+                    .style(move |_| {
+                        design::panel(p.surface_base, p.text_secondary, p.border_neutral)
+                    }),
+            );
+        }
+        let button = iced::widget::button(content)
+            .padding(if description.is_empty() {
+                [7, 12]
+            } else {
+                [8, 12]
+            })
+            .width(Length::Fill)
+            .on_press_maybe(message)
+            .style(move |_, status| design::button_style(p, role, focused, status));
+        container(button).id(format!("welcome-control-{id}")).into()
     }
     fn welcome_error(&self) -> Element<'_, Message> {
         let p = self.appearance.palette();
@@ -351,63 +459,104 @@ impl Desktop {
         errors.into()
     }
     fn start_view(&self) -> Element<'_, Message> {
-        let intro = self.start_intro_view();
-        let recent = self.recent_projects_view();
-        if self.width > 1024.0 {
-            row![
-                container(intro).width(Length::FillPortion(2)),
-                container(recent).width(Length::FillPortion(3))
-            ]
-            .spacing(48)
-            .into()
-        } else {
-            column![intro, rule::horizontal(1), recent]
-                .spacing(28)
-                .into()
-        }
-    }
-    fn start_intro_view(&self) -> Element<'_, Message> {
-        let available = self.project_available();
-        let mut intro = column![
-            text("Bem-vindo ao Ox").font(HEADING_FONT).size(24),
-            self.paragraph("Seu próximo projeto começa aqui."),
-            self.paragraph("Abra uma pasta do computador ou crie um projeto vazio."),
-            row![
-                self.welcome_control(
-                    273,
-                    "Abrir pasta…",
-                    available.then_some(Message::ChooseFolder),
-                    ButtonRole::Primary
-                ),
-                self.welcome_control(
-                    274,
-                    "Novo projeto",
-                    available.then_some(Message::Navigate(Surface::NewProject)),
-                    ButtonRole::Secondary
-                )
-            ]
-            .spacing(10)
-            .wrap(),
-        ]
-        .spacing(14);
+        let p = self.appearance.palette();
+        let sidebar = container(column![
+            scrollable(
+                column![
+                    container(text("Projetos e arquivos").font(HEADING_FONT).size(16))
+                        .padding([8, 0]),
+                    self.start_intro_view(),
+                ]
+                .spacing(12)
+                .padding(16)
+            )
+            .id("welcome-sidebar")
+            .direction(design::thin_scrollbar())
+            .style(design::scrollable_style(p))
+            .height(Length::Fill),
+            rule::horizontal(1),
+            container(self.action_tile(
+                275,
+                super::icons::Kind::Plugin,
+                "Plugins",
+                "",
+                Some(Message::Navigate(Surface::Tools)),
+                ButtonRole::Navigation(false),
+                None
+            ))
+            .width(Length::Fill)
+            .padding([8, 16]),
+        ])
+        .width(if self.width < 900.0 { 210 } else { 280 })
+        .height(Length::Fill)
+        .style(move |_| container::Style {
+            background: Some(p.explorer_bg.into()),
+            text_color: Some(p.text_primary),
+            ..Default::default()
+        });
+        let mut projects = column![].spacing(24);
         if self.selected {
-            intro = intro.push(self.welcome_control(
+            projects = projects.push(self.welcome_control(
                 270,
                 "Retomar projeto aberto",
                 (!self.closing).then_some(Message::Navigate(Surface::Tasks)),
                 ButtonRole::Secondary,
             ));
         }
-        intro = intro.push(self.welcome_control(
-            275,
-            if self.manual_path {
-                "Ocultar caminho manual"
-            } else {
-                "Digitar caminho…"
-            },
-            available.then_some(Message::ManualPath),
-            ButtonRole::Navigation(false),
-        ));
+        projects = projects.push(self.recent_projects_view());
+        let workspace = scrollable(
+            container(container(projects).max_width(880).width(Length::Fill))
+                .padding(24)
+                .width(Length::Fill),
+        )
+        .direction(design::thin_scrollbar())
+        .style(design::scrollable_style(p))
+        .id("main")
+        .width(Length::Fill)
+        .height(Length::Fill);
+        row![sidebar, rule::vertical(1), workspace]
+            .height(Length::Fill)
+            .into()
+    }
+    fn start_intro_view(&self) -> Element<'_, Message> {
+        let available = self.project_available();
+        let mut intro = column![
+            column![
+                self.action_tile(
+                    274,
+                    super::icons::Kind::Plus,
+                    "Novo projeto",
+                    "Crie uma pasta vazia e abra-a no Ox",
+                    available.then_some(Message::Navigate(Surface::NewProject)),
+                    ButtonRole::Primary,
+                    None
+                ),
+                self.action_tile(
+                    273,
+                    super::icons::Kind::Folder,
+                    "Abrir pasta…",
+                    "Abra uma pasta existente do seu computador",
+                    available.then_some(Message::ChooseFolder),
+                    ButtonRole::Secondary,
+                    None
+                ),
+                iced::widget::tooltip(
+                    self.action_tile(
+                        276,
+                        super::icons::Kind::Repository,
+                        "Clonar repositório",
+                        "Clonagem ainda não disponível nesta versão",
+                        None,
+                        ButtonRole::Secondary,
+                        Some("Em breve")
+                    ),
+                    "Clonagem de repositórios ainda indisponível",
+                    iced::widget::tooltip::Position::Bottom,
+                )
+            ]
+            .spacing(8),
+        ]
+        .spacing(8);
         if self.manual_path {
             let input = text_input("/caminho/do/projeto", &self.path)
                 .id("workspace")
@@ -421,7 +570,7 @@ impl Desktop {
             intro = intro.push(
                 column![
                     text("Caminho da pasta").font(HEADING_FONT).size(14),
-                    container(Self::tracked_input(input, 2)).id("welcome-control-2"),
+                    container(self.tracked_input(input, 2)).id("welcome-control-2"),
                     self.welcome_control(
                         3,
                         "Abrir caminho",
@@ -446,11 +595,31 @@ impl Desktop {
     fn recent_projects_view(&self) -> Element<'_, Message> {
         let p = self.appearance.palette();
         let available = self.project_available();
-        let mut recent = column![text("Projetos recentes").font(HEADING_FONT).size(20)].spacing(12);
+        let mut recent = column![text("Projetos recentes").font(HEADING_FONT).size(20)].spacing(10);
         if self.history_busy {
             recent = recent.push(self.paragraph("Carregando histórico…"));
-        } else if self.recent.is_empty() {
-            recent = recent.push(self.paragraph("Os projetos que você abrir aparecerão aqui."));
+        } else if self.recent.is_empty() && self.history_error.is_none() {
+            recent = recent.push(
+                container(
+                    row![
+                        container(super::icons::icon(super::icons::Kind::Folder)).padding([2, 0]),
+                        column![
+                            text("Nenhum projeto recente").font(HEADING_FONT).size(15),
+                            self.paragraph(
+                                "As pastas que você abrir aparecerão aqui para retomar depois."
+                            ),
+                            text("Use Novo projeto ou Abrir pasta… na barra lateral para começar.")
+                                .size(13)
+                                .color(p.text_muted)
+                        ]
+                        .spacing(6)
+                    ]
+                    .spacing(12),
+                )
+                .padding(16)
+                .width(Length::Fill)
+                .style(move |_| design::note(p)),
+            );
         }
         if let Some(error) = &self.history_error {
             recent = recent
@@ -481,55 +650,73 @@ impl Desktop {
                     ].spacing(8).wrap());
             }
         }
-        for (i, path) in self.recent.iter().enumerate() {
-            let id = 400 + i * 2;
-            let name = path
-                .file_name()
-                .and_then(|n| n.to_str())
-                .unwrap_or("Projeto local");
-            let focused = self.focus == Some(id);
-            let open = iced::widget::button(
-                column![
-                    text(name)
-                        .font(HEADING_FONT)
-                        .size(16)
-                        .wrapping(text::Wrapping::WordOrGlyph),
-                    text(path.to_str().expect("history is UTF-8"))
-                        .size(14)
-                        .color(p.text_secondary)
-                        .wrapping(text::Wrapping::WordOrGlyph)
-                ]
-                .spacing(5)
-                .width(Length::Fill),
-            )
-            .on_press_maybe(available.then_some(Message::OpenRecent(path.clone())))
-            .padding(12)
-            .width(Length::Fill)
-            .style(move |_, status| {
-                design::button_style(p, ButtonRole::Navigation(false), focused, status)
-            });
-            recent = recent.push(
-                container(
-                    row![
-                        container(open)
-                            .id(format!("welcome-control-{id}"))
-                            .width(Length::Fill),
-                        self.welcome_control(
-                            id + 1,
-                            "Remover",
-                            available
-                                .then_some(Message::History(HistoryAction::Remove(path.clone()))),
-                            ButtonRole::Navigation(false)
-                        )
-                    ]
-                    .spacing(6)
-                    .align_y(Alignment::Center),
-                )
-                .width(Length::Fill)
-                .style(move |_| design::panel(p.surface_base, p.text_primary, p.border_decorative)),
-            );
+        if !self.recent.is_empty() {
+            let filter = text_input("Filtrar projetos recentes", &self.recent_filter)
+                .id("recent-filter")
+                .size(14)
+                .padding(8)
+                .style(move |_, status| design::input_style(p, status))
+                .on_input(Message::RecentFilter);
+            recent =
+                recent.push(container(self.tracked_input(filter, 284)).id("welcome-control-284"));
+        }
+        let visible = self.visible_recent();
+        if !self.recent.is_empty() && visible.is_empty() {
+            recent = recent.push(self.paragraph("Nenhum projeto recente corresponde ao filtro."));
+        }
+        for (i, path) in visible {
+            recent = recent.push(self.recent_row(i, path));
         }
         recent.into()
+    }
+    /// One recent project: open action (name + full path) and removal.
+    fn recent_row<'a>(&self, index: usize, path: &'a std::path::Path) -> Element<'a, Message> {
+        let p = self.appearance.palette();
+        let available = self.project_available();
+        let id = 400 + index * 2;
+        let name = path
+            .file_name()
+            .and_then(|n| n.to_str())
+            .unwrap_or("Projeto local");
+        let focused = self.focus == Some(id);
+        let open = iced::widget::button(
+            column![
+                text(name)
+                    .font(HEADING_FONT)
+                    .size(15)
+                    .wrapping(text::Wrapping::WordOrGlyph),
+                text(path.to_str().expect("history is UTF-8"))
+                    .size(13)
+                    .color(p.text_secondary)
+                    .wrapping(text::Wrapping::WordOrGlyph)
+            ]
+            .spacing(5)
+            .width(Length::Fill),
+        )
+        .on_press_maybe(available.then(|| Message::OpenRecent(path.to_path_buf())))
+        .padding(12)
+        .width(Length::Fill)
+        .style(move |_, status| {
+            design::button_style(p, ButtonRole::Navigation(false), focused, status)
+        });
+        container(
+            row![
+                container(open)
+                    .id(format!("welcome-control-{id}"))
+                    .width(Length::Fill),
+                self.welcome_control(
+                    id + 1,
+                    "Remover",
+                    available.then(|| Message::History(HistoryAction::Remove(path.to_path_buf()))),
+                    ButtonRole::Navigation(false)
+                )
+            ]
+            .spacing(6)
+            .align_y(Alignment::Center),
+        )
+        .width(Length::Fill)
+        .style(move |_| design::panel(p.surface_base, p.text_primary, p.border_decorative))
+        .into()
     }
     fn new_project_view(&self) -> Element<'_, Message> {
         let available = self.project_available();
@@ -559,9 +746,9 @@ impl Desktop {
             text("Novo projeto").font(HEADING_FONT).size(22),
             self.paragraph("Crie uma pasta vazia para começar."),
             text("Nome do projeto").font(HEADING_FONT).size(14),
-            container(Self::tracked_input(name, 290)).id("welcome-control-290"),
+            container(self.tracked_input(name, 290)).id("welcome-control-290"),
             text("Criar dentro de · caminho absoluto").font(HEADING_FONT).size(14),
-            container(Self::tracked_input(parent, 291)).id("welcome-control-291"),
+            container(self.tracked_input(parent, 291)).id("welcome-control-291"),
             self.welcome_control(292, "Escolher pasta de destino…", available.then_some(Message::ChooseFolder), ButtonRole::Secondary),
             self.notice("Destino completo", if !std::path::Path::new(&self.project_parent).is_absolute() || self.project_name.is_empty() {"Preencha o nome e o caminho absoluto da pasta de destino.".into()} else {destination.display().to_string()}),
             self.paragraph("Criar e abrir cria somente uma pasta vazia no destino acima. Arquivos existentes são preservados; nenhuma tarefa ou comando é iniciado."),
@@ -599,37 +786,76 @@ impl Desktop {
         let p = self.appearance.palette();
         let header = container(
             row![
-                text("Ox").font(HEADING_FONT).size(23),
+                image(super::identity::signature(
+                    self.appearance == Appearance::HighContrast
+                ))
+                .width(128)
+                .height(40)
+                .content_fit(iced::ContentFit::Contain),
+                container(rule::vertical(1)).height(20),
+                text(if self.surface == Surface::NewProject {
+                    "Projetos / Novo projeto"
+                } else {
+                    "Central de projetos"
+                })
+                .size(14),
                 space::horizontal(),
-                self.control(
+                self.icon_control(
                     272,
                     "Configurações",
-                    Some(Message::Navigate(Surface::Settings))
+                    super::icons::Kind::Settings,
+                    Message::Navigate(Surface::Settings)
                 )
             ]
-            .align_y(Alignment::Center)
-            .spacing(12),
+            .spacing(16)
+            .align_y(Alignment::Center),
         )
-        .padding([16, 24])
-        .width(Length::Fill);
-        let content = if self.surface == Surface::NewProject {
-            self.new_project_view()
+        .padding([6, 16])
+        .width(Length::Fill)
+        .style(move |_| container::Style {
+            background: Some(p.shell_bg.into()),
+            text_color: Some(p.text_shell),
+            ..Default::default()
+        });
+        let body: Element<'_, Message> = if self.surface == Surface::NewProject {
+            scrollable(
+                container(self.new_project_view())
+                    .padding(if self.width < 900.0 { 24 } else { 40 })
+                    .width(Length::Fill),
+            )
+            .id("main")
+            .height(Length::Fill)
+            .width(Length::Fill)
+            .into()
         } else {
             self.start_view()
         };
-        let body = scrollable(
-            container(container(content).max_width(1000).width(Length::Fill))
-                .padding(if self.width < 700.0 { 20 } else { 36 })
-                .center_x(Length::Fill),
+        let footer = container(
+            row![
+                text("OX").font(HEADING_FONT).size(12),
+                text(if self.busy {
+                    "Operação em andamento"
+                } else {
+                    self.focused_label().unwrap_or("Ambiente local")
+                })
+                .size(12),
+                space::horizontal()
+            ]
+            .spacing(12)
+            .align_y(Alignment::Center),
         )
-        .id("main")
+        .padding([6, 16])
         .width(Length::Fill)
-        .height(Length::Fill);
-        container(column![header, body].height(Length::Fill))
+        .style(move |_| container::Style {
+            background: Some(p.explorer_bg.into()),
+            text_color: Some(p.text_secondary),
+            ..Default::default()
+        });
+        container(column![header, body, rule::horizontal(1), footer].height(Length::Fill))
             .height(Length::Fill)
             .width(Length::Fill)
             .style(move |_| container::Style {
-                background: Some(p.workbench_bg.into()),
+                background: Some(p.surface_base.into()),
                 text_color: Some(p.text_primary),
                 ..Default::default()
             })
@@ -667,73 +893,88 @@ impl Desktop {
         }))
         .spacing(0);
         self.section("Observação e evidências","Diagnóstico original · histórico em memória · atualidade depende de atualização explícita",column![
-            self.badge(),
+            self.evidence_badge(),
             self.paragraph("Aprovação técnica vale para o critério e os inputs observados. Aceite humano não é registrado por este fluxo."),
             container(raw).padding(12).width(Length::Fill).style(move |_|design::panel(p.unknown_bg,p.text_primary,p.border_decorative))
         ].spacing(12).into())
     }
     fn appearance_view(&self) -> Element<'_, Message> {
-        let p = self.appearance.palette();
         let themes = row(Appearance::ALL.iter().enumerate().map(|(i, a)| {
-            self.styled_control(
+            container(self.styled_control(
                 220 + i,
                 a.label(),
                 Some(Message::Appearance(*a)),
                 ButtonRole::Navigation(self.appearance == *a),
-            )
+            ))
+            .id(format!("welcome-control-{}", 220 + i))
             .into()
         }))
         .spacing(8)
         .wrap();
         let density = row![
-            self.styled_control(
+            container(self.styled_control(
                 223,
                 "Confortável",
                 Some(Message::Density(Density::Comfortable)),
                 ButtonRole::Navigation(self.density == Density::Comfortable)
-            ),
-            self.styled_control(
+            ))
+            .id("welcome-control-223"),
+            container(self.styled_control(
                 224,
                 "Compacta",
                 Some(Message::Density(Density::Compact)),
                 ButtonRole::Navigation(self.density == Density::Compact)
-            )
+            ))
+            .id("welcome-control-224")
         ]
         .spacing(8)
         .wrap();
-        let swatches = row![
-            Self::color_sample("Identidade", p.shell_bg, p.text_shell),
-            Self::color_sample("Ação", p.action_bg, p.action_text),
-            Self::color_sample("Verificação", p.success_bg, p.success_fg),
-            Self::color_sample("Atenção", p.warning_bg, p.warning_fg),
-            Self::color_sample("Falha", p.error_bg, p.error_fg),
-            Self::color_sample("Inferência", p.inferred_bg, p.inferred_fg)
-        ]
-        .spacing(8)
-        .wrap();
-        column![
-            self.notice("Preferências desta sessão","Mudanças são imediatas e reversíveis. Reiniciar restaura Claro / Confortável; não há persistência de preferências."),
-            self.section("Tema da bancada","Escuro e alto contraste são candidatos nativos em avaliação.",column![themes,swatches].spacing(16).into()),
-            self.section("Densidade","Espaçamento e altura dos controles mudam; texto e código mantêm o tamanho.",density.into()),
-            self.section("Tipografia","IBM Plex Sans + IBM Plex Mono · arquivos nativos incorporados sob SIL OFL 1.1",column![
-                text("Intenção → execução → evidência → decisão").size(20).font(HEADING_FONT),
-                text("ação · verificação · permissões · 0/O · 1/l/I").size(15),
-                text("fn verify(result: &Artifact) -> Verdict { /* origem + inputs */ }").font(CODE_FONT).size(15).wrapping(text::Wrapping::WordOrGlyph),
-                self.paragraph("Inter / JetBrains Mono e as categorias cromáticas R13 permanecem propostas; não foram ativadas silenciosamente.")
-            ].spacing(12).into()),
-            self.section("Prévia de estados","Cor acompanha texto e forma; a prévia abaixo não é um resultado de teste.",self.notice("DEMONSTRAÇÃO DE COMPONENTE","Implementada ≠ Verificada ≠ Aceita. Desconhecida ≠ Inferida. Tema do editor será uma preferência independente quando o editor estiver integrado."))
-        ].spacing(self.density.gap()).into()
+        let preferences = column![
+            self.paragraph("Confira a prévia e clique em Salvar para usar as alterações nesta sessão. Voltar descarta a prévia."),
+            self.section("Tema", "Escolha a aparência da área de trabalho.", themes.into()),
+            self.section("Densidade", "Ajuste o espaçamento dos controles. O tamanho do texto é preservado.", density.into())
+        ].spacing(self.density.gap());
+        preferences.into()
     }
-    fn color_sample(label: &str, bg: Color, fg: Color) -> Element<'_, Message> {
-        container(text(label).size(13))
-            .padding([12, 16])
-            .style(move |_| design::panel(bg, fg, bg))
-            .into()
+
+    fn settings_view(&self) -> Element<'_, Message> {
+        let p = self.appearance.palette();
+        container(
+            column![
+                container(text("Configurações").font(HEADING_FONT).size(22)).padding([16, 24]),
+                rule::horizontal(1),
+                scrollable(
+                    container(self.appearance_view())
+                        .padding(24)
+                        .width(Length::Fill)
+                )
+                .id("main")
+                .height(Length::Fill),
+                rule::horizontal(1),
+                container(
+                    row![
+                        space::horizontal(),
+                        self.control(225, "Voltar", Some(Message::BackSettings)),
+                        self.styled_control(
+                            226,
+                            "Salvar",
+                            Some(Message::SaveSettings),
+                            ButtonRole::Primary
+                        )
+                    ]
+                    .spacing(12)
+                    .align_y(Alignment::Center)
+                )
+                .padding([16, 24]),
+            ]
+            .height(Length::Fill),
+        )
+        .width(Length::Fill)
+        .height(Length::Fill)
+        .style(move |_| design::panel(p.surface_base, p.text_primary, p.border_decorative))
+        .into()
     }
-    #[expect(
-        clippy::too_many_lines,
-        reason = "Embedded document composition keeps one view and its local widget lifetimes together (view composition)"
-    )]
+
     fn document_view(&self) -> Element<'_, Message> {
         let p = self.appearance.palette();
         let names = ["shell.rs", "workbench.rs", "Cargo.toml"];
@@ -816,31 +1057,9 @@ impl Desktop {
         } else {
             column![files, editor, inspector].spacing(12).into()
         };
-        let mut tools = row![].spacing(8);
-        for (i, label) in ["Problemas", "Testes", "Rastro"].iter().enumerate() {
-            tools = tools.push(self.styled_control(
-                260 + i,
-                label,
-                Some(Message::DemoTool(i)),
-                ButtonRole::Navigation(self.demo_tool == i),
-            ));
-        }
-        let tool = match self.demo_tool {
-            0 => self.notice(
-                "Sem provedor de diagnósticos",
-                "Não integrado · ausência de dados não significa ausência de problemas.",
-            ),
-            1 => self.notice(
-                "Testes do documento indisponíveis",
-                "A verificação da tarefa controlada é independente e permanece na tela Testes.",
-            ),
-            _ => self.notice(
-                "Rastro do documento indisponível",
-                "Nenhum evento de edição ou processo foi produzido por esta demonstração.",
-            ),
-        };
-        column![self.notice("DEMONSTRAÇÃO · arquivos embutidos", "Selecione um arquivo na árvore ou nas abas. Nenhuma leitura ou escrita no seu projeto é realizada."),work,
-            self.section("Ferramentas", "Contexto do documento", column![tools.wrap(),tool].spacing(10).into())].spacing(self.density.gap()).into()
+        column![self.notice("DEMONSTRAÇÃO · arquivos embutidos", "Selecione um arquivo na árvore ou nas abas. Nenhuma leitura ou escrita no seu projeto é realizada. Problemas, testes e rastro ficam no painel de ferramentas (Ctrl+J)."),work]
+            .spacing(self.density.gap())
+            .into()
     }
     fn relationship_map(&self) -> Element<'_, Message> {
         let node = |title, caption| self.notice(title, caption);
@@ -932,7 +1151,7 @@ impl Desktop {
             mode,
             self.relationship_map(),
             container(text("Confirmada: linha contínua + origem. Inferida: tracejado + hipótese. Desconhecida: ausência de confirmação.").size(14)).padding(12).style(move |_|design::panel(p.domain_architecture_bg,p.domain_architecture_fg,p.border_decorative)),
-            self.unavailable("Consultar grafo do projeto · não integrado")
+            self.unavailable("Consultar grafo do projeto")
         ].spacing(12).into())
     }
     fn observability_view(&self) -> Element<'_, Message> {
@@ -952,7 +1171,7 @@ impl Desktop {
             row![metric("Tokens consumidos"),metric("Cache utilizado")].spacing(12).wrap(),
             row![metric("Custo observado"),metric("Contexto atual")].spacing(12).wrap(),
             self.section("Séries e proveniência","Sem coletor, período ou amostras",self.notice("Sem dados disponíveis","Não há série temporal a desenhar. Quando houver dados, cada série terá unidade, período, escopo e origem; estimativas serão identificadas.")),
-            self.unavailable("Inspecionar métricas · não integrado")
+            self.unavailable("Inspecionar métricas")
         ].spacing(self.density.gap()).into()
     }
     fn review_view(&self) -> Element<'_, Message> {
@@ -960,9 +1179,9 @@ impl Desktop {
         column![
             self.section("Alterações e verificação","Exemplo de composição · nenhum arquivo foi alterado por esta tela",column![
                 self.notice("DEMONSTRAÇÃO DE DIFF","Dados sintéticos para avaliar legibilidade de adições e remoções; não representam mudanças do seu projeto."),
-                container(text("− result=41").font(CODE_FONT).size(15)).padding(10).width(Length::Fill).style(move |_|design::panel(p.diff_remove_bg,p.error_fg,p.error_fg)),
-                container(text("+ result=42").font(CODE_FONT).size(15)).padding(10).width(Length::Fill).style(move |_|design::panel(p.diff_add_bg,p.success_fg,p.success_fg)),
-                self.unavailable("Aceitar alterações · não integrado")
+                container(text("− demonstracao: cor=ambar").font(CODE_FONT).size(15)).padding(10).width(Length::Fill).style(move |_|design::panel(p.diff_remove_bg,p.error_fg,p.error_fg)),
+                container(text("+ demonstracao: cor=azul").font(CODE_FONT).size(15)).padding(10).width(Length::Fill).style(move |_|design::panel(p.diff_add_bg,p.success_fg,p.success_fg)),
+                self.unavailable("Aceitar alterações")
             ].spacing(12).into()),self.evidence()
         ].spacing(self.density.gap()).into()
     }
@@ -973,44 +1192,71 @@ impl Desktop {
                 self.section("Definições e instâncias","Papéis não são estados de execução",column![
                     self.notice("Nenhum agente de IA conectado","O runtime local supervisiona processos controlados. Isso não configura um provedor ou uma instância de agente."),
                     self.paragraph("Contrato da instância: definição → tarefa → execução/tentativa → atividade → evidência. Permissões e confirmação pertencem ao domínio."),
-                    self.unavailable("Configurar instância · não integrado")
+                    self.unavailable("Configurar instância")
                 ].spacing(12).into()),
                 self.section("Plano e dependências","Composição da futura supervisão",self.notice("Sem plano de orquestração","Etapas terão identidade e dependências. Etapas concluídas não serão convertidas em porcentagem de tempo restante."))
             ].spacing(12).into(),
             Surface::Context=>self.section("Fontes e validade","Contratos previstos para contexto incremental",column![
                 self.notice("Índice indisponível","Nenhum arquivo do diretório foi indexado. Resultados futuros precisam de snapshot, origem, método e validade."),
                 self.paragraph("Extração sintática, resolução semântica e inferência serão identificadas separadamente. Similaridade não comprova uma chamada entre símbolos."),
-                self.unavailable("Consultar contexto · não integrado")
+                self.unavailable("Consultar contexto")
             ].spacing(12).into()),
             Surface::Providers=>self.section("Provedores e modelos","Conexão exige escopo de transmissão e autorização",column![
                 self.notice("Nenhum provedor integrado","Não há envio de código, credenciais ou solicitações a modelos nesta interface."),
                 self.paragraph("A configuração futura mostrará disponibilidade, capacidades e dados potencialmente transmitidos. Preço e limites só serão exibidos com fonte e período."),
-                self.unavailable("Conectar provedor · não integrado")
+                self.unavailable("Conectar provedor")
             ].spacing(12).into()),
             Surface::Tools=>self.section("Plugin Host e ferramentas","Fundação disponível como API independente",column![
                 self.notice("Host ainda não conectado ao desktop","O contrato local de plugins possui negociação e ciclo de vida. Um manifesto não comprova isolamento do sistema operacional."),
                 self.paragraph("LSP e serviços avançados serão opcionais via plugins. Navegar nesta tela não inicia processos."),
-                self.unavailable("Gerenciar plugins · não integrado")
+                self.unavailable("Gerenciar plugins")
             ].spacing(12).into()),
             Surface::Decisions=>self.section("Caixa de decisões","Solicitação → consequência → resposta → confirmação",column![
                 self.notice("Nenhuma caixa de decisões integrada","A tela não deduz permissões a partir de arquivos, planos, skills ou silêncio do usuário."),
                 self.paragraph("Cada decisão futura terá escopo, identidade, validade e consequência. Solicitar, responder e aplicar são etapas distintas."),
-                self.unavailable("Responder decisão · não integrado")
+                self.unavailable("Responder decisão")
             ].spacing(12).into()),
             Surface::Sdd=>self.section("Artefatos portáveis","Arquivos são a autoridade; não há parser integrado ao desktop",column![
                 self.notice("spec.md","Requisitos, atores, invariantes e critérios de aceitação."),
                 self.notice("plan.md / tasks.md","Decisões e riscos, métodos consultados, dependências e trabalho verificável."),
                 self.notice("traceability.json / evidence.json","Vínculo entre critério, implementação, oráculo e observação; hashes não substituem avaliação semântica."),
-                self.unavailable("Abrir SDD do projeto · não integrado")
+                self.unavailable("Abrir SDD do projeto")
             ].spacing(12).into()),
             Surface::Skills=>self.section("Descoberta e uso de competências","Biblioteca do repositório e skills do projeto do usuário são contextos distintos",column![
                 self.notice("Disponível → indicada → selecionada → consultada → usada","Nenhuma dessas etapas concede autorização de execução ou prova aceitação do produto."),
                 self.paragraph("A biblioteca do Ox orienta este desenvolvimento. O carregamento e o registro de skills de projetos do usuário ainda não estão integrados ao aplicativo."),
-                self.unavailable("Carregar skills do projeto · não integrado")
+                self.unavailable("Carregar skills do projeto")
             ].spacing(12).into()),
             _=>self.unavailable("Operação não integrada"),
         };
         body
+    }
+    /// Content of a tool window, hosted by the bottom dock.
+    pub(super) fn tool_content(&self, surface: Surface) -> Element<'_, Message> {
+        match surface {
+            Surface::Tests | Surface::Trace => column![
+                self.section(if surface == Surface::Tests {"Oráculo local"} else {"Tentativa e observações"},"Informação do Controller atual; não é streaming de logs",self.notice("Verificação independente","O produtor grava o candidato e o oráculo compara identidade e conteúdo. Atualizar inputs reavalia a atualidade sem executar o oráculo.")),
+                self.evidence()
+            ].spacing(12).into(),
+            Surface::Problems => self.section("Diagnósticos","Origem e severidade são necessárias",column![self.notice("Sem provedor de diagnósticos","Não há análise LSP conectada. Ausência de dados não significa ausência de problemas no projeto."),self.unavailable("Inspecionar diagnóstico")].spacing(12).into()),
+            _ => self.section("Saída do processo","Captura bruta e compactação têm contratos próprios",column![self.notice("Terminal não integrado","O cenário controlado não captura stdout/stderr. Não há shell arbitrário ou saída fictícia nesta tela."),self.unavailable("Abrir terminal")].spacing(12).into()),
+        }
+    }
+    fn group_label(surface: Surface) -> &'static str {
+        match surface.group() {
+            "PROJETO" => "Projeto",
+            "TRABALHO" => "Trabalho",
+            "CAPACIDADES" => "Capacidades",
+            "PREFERÊNCIAS" => "Preferências",
+            _ => "Bancada",
+        }
+    }
+    /// Evidence state belongs to the local task; other destinations omit it.
+    pub(super) const fn shows_task_evidence(surface: Surface) -> bool {
+        matches!(
+            surface,
+            Surface::Project | Surface::Tasks | Surface::Activity | Surface::Recovery
+        )
     }
     fn content(&self) -> Element<'_, Message> {
         if self.surface == Surface::Start {
@@ -1027,50 +1273,56 @@ impl Desktop {
             .spacing(self.density.gap())
             .into();
         }
-        let p = self.appearance.palette();
-        let mut body = column![
-            row![
-                text(format!(
-                    "{}  /  {}",
-                    self.surface.group(),
-                    self.surface.code()
-                ))
-                .size(12)
-                .color(p.text_muted),
-                space::horizontal(),
-                self.badge()
+        if matches!(self.surface, Surface::Settings | Surface::Appearance) {
+            return column![
+                text(self.surface.title()).font(HEADING_FONT).size(24),
+                self.appearance_view()
             ]
-            .spacing(12)
-            .wrap(),
+            .spacing(self.density.gap())
+            .into();
+        }
+        let p = self.appearance.palette();
+        let mut trail = row![
+            text(format!(
+                "{} › {}",
+                Self::group_label(self.surface),
+                self.surface.title()
+            ))
+            .size(12)
+            .color(p.text_muted),
+            space::horizontal(),
+        ]
+        .spacing(12)
+        .align_y(Alignment::Center);
+        if Self::shows_task_evidence(self.surface) {
+            trail = trail.push(self.evidence_badge());
+        }
+        let mut body = column![
+            trail.wrap(),
             text(self.surface.title()).font(HEADING_FONT).size(24),
             self.paragraph(self.surface.summary()),
-            self.notice(self.surface.backend(), self.surface.dependency())
+            self.info_bar(self.surface.backend(), self.surface.dependency())
         ]
         .spacing(self.density.gap());
         if let Some(error) = &self.history_error {
             body = body.push(self.notice("Histórico de projetos", error.as_str()));
         }
         let contents:Element<'_,Message>=match self.surface {
-            Surface::Start=>self.start_view(),
             Surface::Project=>column![self.workspace(),self.section("Capacidades do projeto","Disponibilidade real, sem inferir indexação ou agentes",self.notice("Fundação local","Tarefa controlada, supervisão e verificação independente. Editor, agentes de IA, contexto, grafos e persistência têm integração própria pendente."))].spacing(12).into(),
-            Surface::NewProject=>self.new_project_view(),
             Surface::Tasks=>column![self.workspace(),self.task_actions(),self.evidence()].spacing(self.density.gap()).into(),
-            Surface::NewTask=>self.section("Intenção da tarefa","Rascunho de apresentação · preservado apenas nesta sessão",column![
-                text("Objetivo e restrições").size(14),Self::tracked_input(text_input("Descreva o resultado esperado",&self.draft).id("task-draft").size(15).padding(10).on_input(Message::Draft).on_submit(Message::InputFocused(230)),230),
+            Surface::NewTask=>container(self.section("Intenção da tarefa","Rascunho de apresentação · preservado apenas nesta sessão",column![
+                text("Objetivo e restrições").size(14),self.tracked_input(text_input("Descreva o resultado esperado",&self.draft).id("task-draft").size(15).padding(10).on_input(Message::Draft).on_submit(Message::InputFocused(230)),230),
                 self.notice("Contexto e plano","O planejador futuro deverá explicitar fontes, critérios e consequências antes da execução."),
-                self.unavailable("Planejar tarefa · não integrado")
-            ].spacing(12).into()),
-            Surface::Activity|Surface::Trace|Surface::Tests=>column![
-                self.section(if self.surface==Surface::Tests{"Oráculo local"}else{"Tentativa e observações"},"Informação do Controller atual; não é streaming de logs",self.notice("Verificação independente","O produtor grava o candidato e o oráculo compara identidade e conteúdo. Atualizar inputs reavalia a atualidade sem executar o oráculo.")),self.evidence()
+                self.unavailable("Planejar tarefa")
+            ].spacing(12).into())).max_width(880).into(),
+            Surface::Activity=>column![
+                self.section("Tentativa e observações","Informação do Controller atual; não é streaming de logs",self.notice("Verificação independente","O produtor grava o candidato e o oráculo compara identidade e conteúdo. Atualizar inputs reavalia a atualidade sem executar o oráculo.")),self.evidence()
             ].spacing(12).into(),
-            Surface::Settings|Surface::Appearance=>self.appearance_view(),
-            Surface::Editor|Surface::Focus=>self.document_view(),
+            Surface::Problems|Surface::Tests|Surface::Trace|Surface::Terminal=>self.tool_content(self.surface),
             Surface::Architecture=>self.architecture_view(),
             Surface::Observability=>self.observability_view(),
             Surface::Review=>self.review_view(),
             Surface::Recovery=>column![self.section("Efeitos e recuperação","Cancelamento não significa reversão",self.notice("Preservação primeiro","Os arquivos exclusivos de tentativa permanecem no diretório. Sem serviço de recuperação, esta tela não oferece rollback nem garante desfazer efeitos.")),self.evidence()].spacing(12).into(),
-            Surface::Problems=>self.section("Diagnósticos","Origem e severidade são necessárias",column![self.notice("Sem provedor de diagnósticos","Não há análise LSP conectada. Ausência de dados não significa ausência de problemas no projeto."),self.unavailable("Inspecionar diagnóstico · não integrado")].spacing(12).into()),
-            Surface::Terminal=>self.section("Saída do processo","Captura bruta e compactação têm contratos próprios",column![self.notice("Terminal não integrado","O cenário controlado não captura stdout/stderr. Não há shell arbitrário ou saída fictícia nesta tela."),self.unavailable("Abrir terminal · não integrado")].spacing(12).into()),
             _=>self.capability_view(),
         };
         if self.details {
@@ -1080,68 +1332,100 @@ impl Desktop {
     }
     fn navigation(&self) -> Element<'_, Message> {
         let p = self.appearance.palette();
-        let mut items = column![
-            text("EXPLORAR A BANCADA")
-                .font(HEADING_FONT)
-                .size(12)
-                .color(p.text_muted)
-        ]
-        .spacing(4);
+        let mut items = column![].spacing(3);
         let mut group = "";
-        for surface in Surface::ALL {
+        for surface in Self::navigation_order() {
             if surface.group() != group {
                 group = surface.group();
-                items = items
-                    .push(container(text(group).size(11).color(p.text_muted)).padding([12, 8]));
+                if self.navigation_open {
+                    items = items.push(
+                        container(
+                            text(Self::group_label(surface))
+                                .size(12)
+                                .color(p.text_muted),
+                        )
+                        .padding([10, 8]),
+                    );
+                } else if group != "PROJETO" {
+                    items = items.push(rule::horizontal(1));
+                }
             }
-            let button = self
-                .styled_control(
-                    surface.id(),
-                    surface.title(),
-                    Some(Message::Navigate(surface)),
-                    ButtonRole::Navigation(self.surface == surface),
-                )
-                .width(Length::Fill);
-            items = items.push(button);
-        }
-        container(column![
-            container(
-                column![
-                    text("OX WORKBENCH").size(13).font(HEADING_FONT),
-                    text(if self.selected {
-                        "Projeto local validado"
-                    } else {
-                        "Nenhum projeto selecionado"
+            let selected = self.surface == surface;
+            let focused = self.focus == Some(surface.id());
+            let marker = container(space::horizontal())
+                .width(3)
+                .height(18)
+                .style(move |_| container::Style {
+                    background: selected.then_some(p.selection_indicator.into()),
+                    ..Default::default()
+                });
+            let mut content = row![
+                marker,
+                super::icons::icon(super::icons::Kind::Destination(surface))
+            ]
+            .spacing(8)
+            .align_y(Alignment::Center);
+            if self.navigation_open {
+                content = content.push(
+                    text(surface.title())
+                        .size(14)
+                        .wrapping(text::Wrapping::WordOrGlyph),
+                );
+            }
+            let button = iced::widget::button(content)
+                .padding([7, 5])
+                .width(Length::Fill)
+                .on_press(Message::Navigate(surface))
+                .style(move |_, status| {
+                    design::button_style(p, ButtonRole::Navigation(selected), focused, status)
+                });
+            let label = || {
+                container(text(surface.title()).size(13))
+                    .padding(8)
+                    .style(move |_| {
+                        design::panel(p.surface_base, p.text_primary, p.border_interactive)
                     })
-                    .size(12)
-                    .color(p.text_muted)
-                ]
-                .spacing(5)
-            )
-            .padding(12),
-            rule::horizontal(1),
-            scrollable(items.padding(8))
+            };
+            let hinted =
+                iced::widget::tooltip(button, label(), iced::widget::tooltip::Position::Right)
+                    .gap(6)
+                    .into();
+            items = items.push(
+                container(super::hint::focus(hinted, label().into(), focused)).id(
+                    iced::widget::Id::from(format!("navigation-control-{}", surface.id())),
+                ),
+            );
+        }
+        let mut panel = column![].spacing(0);
+        if self.navigation_open {
+            panel = panel
+                .push(
+                    container(
+                        text("EXPLORADOR")
+                            .font(HEADING_FONT)
+                            .size(12)
+                            .color(p.text_secondary),
+                    )
+                    .padding([10, 12]),
+                )
+                .push(rule::horizontal(1));
+        }
+        panel = panel.push(
+            scrollable(items.padding(if self.navigation_open { 8 } else { 4 }))
                 .id("navigation")
+                .direction(design::thin_scrollbar())
+                .style(design::scrollable_style(p))
                 .height(Length::Fill),
-            container(
-                text("Local-first · Rust / Iced")
-                    .size(12)
-                    .color(p.text_muted)
-            )
-            .padding(12)
-        ])
-        .width(if self.width < 980.0 {
-            Length::Fill
-        } else {
-            Length::Fixed(232.0)
-        })
-        .height(Length::Fill)
-        .style(move |_| container::Style {
-            background: Some(p.explorer_bg.into()),
-            text_color: Some(p.text_primary),
-            ..Default::default()
-        })
-        .into()
+        );
+        container(panel)
+            .width(self.sidebar_width())
+            .height(Length::Fill)
+            .style(move |_| container::Style {
+                background: Some(p.explorer_bg.into()),
+                text_color: Some(p.text_primary),
+                ..Default::default()
+            })
+            .into()
     }
     fn command_palette(&self) -> Element<'_, Message> {
         let p = self.appearance.palette();
@@ -1172,7 +1456,7 @@ impl Desktop {
                 .spacing(12)
                 .wrap(),
                 self.paragraph("Busque pelo nome ou código. Enter abre o resultado selecionado."),
-                Self::tracked_input(
+                self.tracked_input(
                     text_input("Tarefas, arquitetura, S04…", &self.command)
                         .id("command")
                         .size(16)
@@ -1191,93 +1475,55 @@ impl Desktop {
         .style(move |_| design::panel(p.surface_base, p.text_primary, p.border_decorative))
         .into()
     }
-    #[expect(
-        clippy::too_many_lines,
-        reason = "Top-level widget tree composes header, navigation, main panel and footer"
-    )]
+    /// Reading width for the primary canvas: artifact views use the full
+    /// width; pages keep a controlled line length.
+    pub(super) const fn reading_width(surface: Surface) -> f32 {
+        match surface {
+            Surface::Editor | Surface::Focus | Surface::Architecture => f32::INFINITY,
+            _ => 1200.0,
+        }
+    }
+    fn document_area(&self) -> Element<'_, Message> {
+        let p = self.appearance.palette();
+        let main_panel = scrollable(
+            container(
+                container(self.content())
+                    .id("document-content")
+                    .width(Length::Fill)
+                    .max_width(Self::reading_width(self.surface)),
+            )
+            .id("document-canvas")
+            .width(Length::Fill)
+            .padding(self.density.inset()),
+        )
+        .id("main")
+        .direction(design::thin_scrollbar())
+        .style(design::scrollable_style(p))
+        .width(Length::Fill)
+        .height(Length::Fill);
+        let mut area = column![
+            self.tab_strip(),
+            container(main_panel)
+                .width(Length::Fill)
+                .height(Length::FillPortion(7))
+                .style(move |_| container::Style {
+                    background: Some(p.surface_base.into()),
+                    ..Default::default()
+                })
+        ];
+        if self.dock_visible() {
+            area = area.push(self.dock_panel());
+        }
+        area.width(Length::Fill).height(Length::Fill).into()
+    }
     pub(super) fn view(&self) -> Element<'_, Message> {
+        if matches!(self.surface, Surface::Settings | Surface::Appearance) && !self.command_open {
+            return self.settings_view();
+        }
         if self.entry() && !self.command_open {
             return self.welcome_view();
         }
         let p = self.appearance.palette();
-        let context = if self.selected {
-            "Projeto local"
-        } else {
-            "Selecione um projeto"
-        };
-        let chrome = container(
-            row![
-                self.styled_control(
-                    212,
-                    if self.navigation_open {
-                        "☰ Ocultar navegação"
-                    } else {
-                        "☰ Navegação"
-                    },
-                    Some(Message::Navigation),
-                    ButtonRole::Chrome
-                ),
-                text("Ox").font(HEADING_FONT).size(24),
-                text(context).size(13),
-                space::horizontal(),
-                text("LOCAL").size(12)
-            ]
-            .spacing(14)
-            .align_y(Alignment::Center),
-        )
-        .padding([8, 12])
-        .width(Length::Fill)
-        .style(move |_| container::Style {
-            background: Some(p.shell_bg.into()),
-            text_color: Some(p.text_shell),
-            ..Default::default()
-        });
-        let mut tools = row![
-            self.styled_control(
-                213,
-                "Ir para…  Ctrl+K",
-                Some(Message::Command),
-                ButtonRole::Secondary
-            ),
-            self.control(
-                210,
-                if self.width < 980.0 {
-                    "Tema"
-                } else {
-                    self.appearance.label()
-                },
-                Some(Message::CycleAppearance)
-            ),
-            self.control(211, self.density.label(), Some(Message::CycleDensity)),
-            self.control(
-                0,
-                if self.details {
-                    "Ocultar detalhes"
-                } else {
-                    "Detalhes"
-                },
-                Some(Message::Toggle)
-            ),
-            self.control(1, "Sair", Some(Message::Close))
-        ];
-        // On the entry screen, an idle cancellation affordance only consumes
-        // space needed by the folder form at the minimum supported window size.
-        if self.busy || self.surface != Surface::Start {
-            tools = tools.push(self.styled_control(
-                214,
-                "Cancelar operação",
-                self.busy.then_some(Message::Cancel),
-                ButtonRole::Danger,
-            ));
-        }
-        let toolbar = container(tools.spacing(8).wrap())
-            .padding([8, 12])
-            .width(Length::Fill)
-            .style(move |_| container::Style {
-                background: Some(p.surface_recessed.into()),
-                text_color: Some(p.text_primary),
-                ..Default::default()
-            });
         let center: Element<'_, Message> = if self.command_open {
             container(self.command_palette())
                 .padding(self.density.inset())
@@ -1285,61 +1531,55 @@ impl Desktop {
                 .height(Length::Fill)
                 .into()
         } else {
-            let main_panel = scrollable(
-                container(self.content())
-                    .width(Length::Fill)
-                    .max_width(1320)
-                    .padding(self.density.inset()),
-            )
-            .id("main")
-            .width(Length::Fill)
-            .height(Length::Fill);
-            if self.navigation_open {
-                if self.width < 980.0 {
-                    self.navigation()
-                } else {
-                    row![self.navigation(), main_panel]
-                        .height(Length::Fill)
-                        .into()
-                }
+            let divider: Element<'_, Message> = if self.navigation_open {
+                super::splitter::divider(
+                    p.border_decorative,
+                    p.selection_indicator,
+                    self.navigation_drag,
+                )
             } else {
-                main_panel.into()
-            }
+                container(space::horizontal())
+                    .width(1)
+                    .height(Length::Fill)
+                    .style(move |_| container::Style {
+                        background: Some(p.border_decorative.into()),
+                        ..Default::default()
+                    })
+                    .into()
+            };
+            row![self.navigation(), divider, self.document_area()]
+                .height(Length::Fill)
+                .into()
         };
-        let footer = container(
-            row![
-                text(if self.busy {
-                    "◌ Operação em andamento"
-                } else {
-                    "• Sessão local"
-                })
-                .size(12),
-                space::horizontal(),
-                text(format!(
-                    "{} · {} · tarefas nesta sessão",
-                    self.surface.code(),
-                    self.density.label()
+        let header: Element<'_, Message> = if self.busy {
+            column![
+                self.chrome_bar(),
+                container(self.styled_control(
+                    214,
+                    "Cancelar operação",
+                    Some(Message::Cancel),
+                    ButtonRole::Danger
                 ))
-                .size(12)
+                .padding([6, 12])
             ]
-            .spacing(8)
-            .wrap(),
-        )
-        .padding([6, 12])
-        .width(Length::Fill)
-        .style(move |_| container::Style {
-            background: Some(p.shell_deep.into()),
-            text_color: Some(p.text_shell),
-            ..Default::default()
-        });
-        container(column![chrome, toolbar, center, footer].height(Length::Fill))
+            .into()
+        } else {
+            self.chrome_bar()
+        };
+        let base = container(column![header, center, self.status_bar()].height(Length::Fill))
             .height(Length::Fill)
             .width(Length::Fill)
             .style(move |_| container::Style {
                 background: Some(p.workbench_bg.into()),
                 text_color: Some(p.text_primary),
                 ..Default::default()
-            })
-            .into()
+            });
+        match self.menu {
+            Some(menu) => stack![base, self.menu_overlay(menu)]
+                .width(Length::Fill)
+                .height(Length::Fill)
+                .into(),
+            None => base.into(),
+        }
     }
 }

@@ -43,10 +43,10 @@ fn real_result_identity_history_invalidation_and_preservation() {
     assert!(
         c.execute("good", cancel.clone())
             .unwrap()
-            .contains("Success")
+            .contains("concluída com sucesso")
     );
-    assert!(c.verify(false).unwrap().contains("UNVERIFIED"));
-    assert!(c.verify(true).unwrap().starts_with("APPROVED"));
+    assert!(c.verify(false).unwrap().contains("Não verificado"));
+    assert!(c.verify(true).unwrap().starts_with("Critério aprovado"));
     let task = fs::read_dir(&dir)
         .unwrap()
         .map(|p| p.unwrap().path())
@@ -54,24 +54,24 @@ fn real_result_identity_history_invalidation_and_preservation() {
         .unwrap();
     fs::write(task.join("result.txt"), b"wrong").unwrap();
     let stale = c.verify(false).unwrap();
-    assert!(stale.starts_with("UNVERIFIED"));
-    assert!(stale.contains("run 1"));
-    assert!(c.verify(true).unwrap().starts_with("REJECTED"));
+    assert!(stale.starts_with("Não verificado"));
+    assert!(stale.contains("execução 1"));
+    assert!(c.verify(true).unwrap().starts_with("Critério reprovado"));
     fs::remove_file(task.join("result.txt")).unwrap();
     assert!(
         c.verify(true)
             .unwrap_err()
             .to_string()
-            .contains("No approval is possible")
+            .contains("Não é possível aprovar")
     );
-    assert!(c.verify(false).unwrap().starts_with("UNVERIFIED"));
+    assert!(c.verify(false).unwrap().starts_with("Não verificado"));
     assert!(
         c.execute("bad", cancel.clone())
             .unwrap()
-            .contains("Success")
+            .contains("concluída com sucesso")
     );
-    assert!(c.verify(true).unwrap().starts_with("REJECTED"));
-    assert!(c.execute("failure", cancel).unwrap().contains("Failed"));
+    assert!(c.verify(true).unwrap().starts_with("Critério reprovado"));
+    assert!(c.execute("failure", cancel).unwrap().contains("falhou"));
     assert_eq!(fs::read(dir.join("user.txt")).unwrap(), b"untouched\0");
 }
 #[test]
@@ -84,12 +84,12 @@ fn cancellation_and_timeout_observe_exit() {
         std::thread::sleep(Duration::from_millis(50));
         flag.store(true, Ordering::Relaxed);
     });
-    assert!(c.execute("hang", cancel).unwrap().contains("Cancelled"));
+    assert!(c.execute("hang", cancel).unwrap().contains("cancelada"));
     worker.join().unwrap();
     assert!(
         c.execute("hang", Arc::new(AtomicBool::new(false)))
             .unwrap()
-            .contains("TimedOut")
+            .contains("prazo excedido")
     );
 }
 
@@ -109,7 +109,7 @@ fn fifo_result_refresh_and_verify_cannot_approve() {
     let (mut c, dir) = setup();
     c.select(&dir).unwrap();
     c.execute("good", Arc::new(AtomicBool::new(false))).unwrap();
-    assert!(c.verify(true).unwrap().starts_with("APPROVED"));
+    assert!(c.verify(true).unwrap().starts_with("Critério aprovado"));
     let task = fs::read_dir(&dir)
         .unwrap()
         .map(|p| p.unwrap().path())
@@ -124,7 +124,7 @@ fn fifo_result_refresh_and_verify_cannot_approve() {
             .unwrap()
             .success()
     );
-    assert!(c.verify(false).unwrap().starts_with("UNVERIFIED"));
+    assert!(c.verify(false).unwrap().starts_with("Não verificado"));
     assert!(c.verify(true).is_err());
     fs::remove_file(result).unwrap();
 }

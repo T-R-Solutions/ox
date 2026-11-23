@@ -1,4 +1,5 @@
 [workspace]
+exclude = ["vendor/cryoglyph-0.1.0", "vendor/png-0.18.1"]
 resolver = "3"
 members = [
     "crates/ox-app",
@@ -27,7 +28,7 @@ license = "GPL-3.0-only"
 publish = false
 
 [workspace.dependencies]
-iced = { version = "=0.14.0", default-features = false, features = ["tiny-skia", "x11", "wayland", "fira-sans", "thread-pool", "advanced"] }
+iced = { version = "=0.14.0", default-features = false, features = ["tiny-skia", "x11", "wayland", "fira-sans", "thread-pool", "advanced", "image-without-codecs"] }
 ox-ui = { path = "crates/ox-ui", version = "=0.1.0" }
 
 [workspace.lints.rust]
@@ -39,3 +40,10 @@ debug = 0
 # Keep software rasterization responsive while first-party dev code stays unoptimized.
 [profile.dev.package.tiny-skia]
 opt-level = 3
+
+# Backport the upstream lru security dependency bump without changing Iced/wgpu.
+[patch.crates-io]
+cryoglyph = { path = "vendor/cryoglyph-0.1.0" }
+
+# Remove a verified unused upstream dependency; codec source remains unchanged.
+png = { path = "vendor/png-0.18.1" }

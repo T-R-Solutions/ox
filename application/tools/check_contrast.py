@@ -15,7 +15,7 @@ def check():
     pairs += [('action_text',bg,4.5) for bg in ('action_bg','action_hover')]
     pairs += [(f'{role}_fg',f'{role}_bg',4.5) for role in ('success','warning','error','unknown','domain_execution','domain_architecture')]
     pairs += [('success_fg','diff_add_bg',4.5),('error_fg','diff_remove_bg',4.5),('error_fg','surface_recessed',4.5)]
-    pairs += [(fg,bg,3) for fg in ('border_interactive','focus') for bg in ('surface_base','surface_recessed')]
+    pairs += [(fg,bg,3) for fg in ('border_interactive','focus') for bg in ('surface_base','surface_recessed','surface_selected','explorer_bg','workbench_bg')]
     results=[]
     for theme,data in json.loads((ROOT/'docs/design/tokens.json').read_text())['themes'].items():
         for fg,bg,minimum in pairs:

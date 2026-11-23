@@ -14,5 +14,7 @@ workspace = true
 
 [dependencies]
 iced.workspace = true
+# Enable only PNG decoding for the bundled identity, rather than every image codec.
+image = { version = "=0.25.10", default-features = false, features = ["png"] }
 ox-agent = { path = "../ox-agent", version = "=0.1.0" }
 ox-verification = { path = "../ox-verification", version = "=0.1.0" }

@@ -1,10 +1,85 @@
 # Ox visual design contract
 
-Contract revision: **4.1 — native workbench consolidation**, 2026-11-11.
+Contract revision: **5.0 — Visual Studio 2026 Enterprise baseline**, 2026-11-17.
+Sections 1–16 define reusable requirements; dated successors retain observations.
+The current implementation inventory below resolves superseded geometry claims.
+The Visual Studio target remains distinct from current implementation.
 Documentation: English. Product interface: Brazilian Portuguese (pt-BR).
 This is the maintained visual reference for Ox, subordinate to
 [the constitution](docs/constitution.md), functional contracts and the SDD.
 Design intent, native implementation and acceptance are separate outcomes.
+
+## Current visual authority — 2026-11-17
+
+**Ox must have VISUAL STUDIO 2026 ENTERPRISE as its visual base.** This explicit
+maintainer decision governs future visual work: desktop IDE composition, compact
+context chrome, artifact-first central workspace, docked contextual tools, document
+tabs, explorer/inspector hierarchy, restrained separators and coherent command/status
+placement. Enterprise identifies the requested reference product; it does not imply
+an Enterprise-only palette or capabilities. Use the verified sources and limits in
+[Windows design analysis](docs/design/windows-apps-analysis.md).
+
+Windows/Fluent guidance supplies supporting principles and interaction guidance.
+Visual Studio 2026 Enterprise supplies the primary visual direction. Earlier R2–R13,
+IntelliJ-inspired compositions and source kits retain provenance and applicable
+functional details, but cannot override this baseline. The reference is the full
+Visual Studio IDE, not Visual Studio Code or a generic Windows settings page.
+
+Translate the baseline into Ox's agent-first workflow and Rust/Iced renderer.
+Preserve OX signature artwork, IBM Plex, semantic status roles and documented legacy
+color values unless a later authorized token change names its replacement and
+validation. Do not copy Microsoft marks, proprietary assets or undocumented pixel
+values. No WinUI/XAML migration, Windows platform expansion or new backend feature
+is selected by this documentary decision.
+
+| Area | Required Ox interpretation | Evidence for a future native change |
+| --- | --- | --- |
+| Shell and workspace | compact commands, stable context, dominant working canvas; contextual docked panes | paired captures with same state, logical size, scale and theme |
+| Color and themes | semantic surfaces and interaction states; accent restrained; status redundant in text/icon | rendered contrast and state comparisons in Light/Dark/high contrast |
+| Elevation/materials | hierarchy through surface roles and separators; opaque readable fallback | active/inactive, fallback and reduced effects observation |
+| Geometry and density | aligned controls, deliberate grouping, resizable panes; preserve reading/target size | resize, long paths, localization, scale and keyboard resize |
+| Typography/icons | Plex hierarchy and consistent semantic line icons; accessible names | glyph fallback, truncation recovery, labels and focus |
+| Navigation/commands | distinguish destination, selection and focus; expose actual available actions | keyboard traversal, focus restoration, disabled/empty/error cases |
+| Motion | purposeful optional feedback; no essential animated information | reduced motion and interruption behavior |
+| Accessibility | contrast, keyboard, visible focus, target reachability and native semantics | separate actual assistive-technology/platform observations |
+
+This revision defines the target contract. It does not assert that current native
+screens already match Visual Studio 2026 Enterprise or renew earlier acceptance.
+Surface adoption and implementation boundaries are in [surfaces](docs/design/surfaces.md);
+source disposition is in [reference coverage](docs/design/reference-coverage.md).
+
+### Welcome identity successor — 2026-11-16
+
+The supplied definitive OX identity is adopted for S01: Catalisador v2 symbol,
+Valência lettering/composition and the cotton mascot with its approved Ferris tag.
+The PNG signatures are embedded, unchanged, under
+`application/crates/ox-ui/assets/identity/`; that directory records provenance.
+The signature is artwork, not a replacement for IBM Plex UI typography.
+
+The mascot PNG is retained as historical artwork and is not rendered.
+The enterprise desktop and fixed-sidebar successors supersede the original layout.
+Original observations remain in [identity report](docs/validation/welcome-identity-20261116/report.md).
+
+### Enterprise desktop composition successor — 2026-11-16
+
+S01 uses the entire native window: institutional context chrome, docked project
+actions/real recent paths and a neutral primary canvas. Identity belongs to compact
+chrome; the mascot was removed by the 17 November successor. The earlier floating
+1080-unit card and 240-unit identity column are retired by explicit user request.
+The fixed-sidebar successor uses 280 units, or 210 below 900 logical units,
+with independently scrolling actions and projects. S02 is a docked form.
+
+Workbench context commands currently share one row at every supported width;
+a compact single-row status footer preserves working height. Narrow-width
+clipping remains a native verification obligation, without a 1100-unit breakpoint.
+Navigation uses group line icons and a selected side marker distinct from focus.
+Workbench navigation, section headings and preferences use the same flat hierarchy:
+restrained chrome, neutral surfaces, thin separators, readable compact controls
+and contextual information. Existing IBM Plex fonts, controlled color values,
+semantic status and theme roles remain authoritative. Definitive identity artwork
+retains its original bytes, proportions and transparency. No IntelliJ capability
+is inferred from the supplied reference screenshots. Current observation/limits:
+[enterprise report](docs/validation/enterprise-visual-20261116/report.md).
 
 ## 1. Sources, authority and decision status
 
@@ -146,13 +221,16 @@ a quality metric. Do not fabricate a second chart series to justify a color.
 
 Decision flow: DESIGN.md → [controlled tokens](docs/design/tokens.json) →
 generated native sRGB roles → component variants → observed QA.
-The source JSON preserves all supplied legacy tokens and all three 63-role
-theme maps. Compatibility aliases remain until consumers are inspected.
+The source JSON contains three 63-role theme maps. The legacy palette in §4
+also records reference values that are not consumed by the native palette; it is
+not a claim that every reference value has a generated Rust constant.
 
 Primitives define colors/spacing/radii/type; semantic roles define meaning;
 components map roles to states; themes override values without changing roles;
 density changes geometry without altering meaning. Runtime Iced does not parse
-CSS, color-mix or OKLCH. Generated Rust must agree with the source JSON.
+CSS, color-mix or OKLCH. Generated Rust color roles must agree with JSON themes.
+The current generator reads themes only; scales, typography and proposed palettes
+are design metadata and are not generated or checked against native geometry.
 
 Light is the initial implementation candidate. Dark and High Contrast are explicit
 session-selectable native candidates, not automatically inverted Light or claims
@@ -196,10 +274,15 @@ SVG nor a font filename proves permission, glyph coverage or native rendering.
 ## 7. Geometry, density and adaptive behavior
 
 Use a 4-unit spacing baseline (4/8/12/16/20/24/32/40), adjusted for actual content.
-Start with 48–52 context chrome, 36–44 tool headers, approximately 32 controls,
-28–32 rows, 240–320 navigation and 280–360 inspector. These are starting
-constraints, not hardcoded universal dimensions. Radii: 0 for docked editor,
-4 for chips, 6 for controls, 8 for menus; avoid large pill-shaped containers.
+Current composition uses 56-unit context chrome (52 in Compact), 36–44 tool
+headers, approximately 32-unit controls, 28–32-unit rows, navigation adjustable
+from 200 to 420 units (52-unit rail), and a 240-unit inspector when displayed.
+These role-specific dimensions replace the earlier generic starting ranges;
+content and overflow constraints still govern adaptation. Radii: 0 for docked editor,
+4 for chips and controls, 8 for menus are target values. Current native
+buttons/all tracked inputs use radius 4 and generic panels (including badges/editor) 6.
+Panel-versus-editor/chip radius remains a target gap;
+avoid large pill-shaped containers.
 Workbench depth is flat plus thin separators; shadows belong to actual overlays.
 
 Comfortable is default. Compact reduces gaps/padding/rows, preserving text,
@@ -406,3 +489,71 @@ These details remain planned, not silently discarded or declared implemented.
 Dedicated graph pan/zoom, split-pane resizing, editing and persistent settings remain
 separate integration work. Historical prototype quotas and approval rituals are not
 imported as policy. All existing legacy and R13 proposal classifications remain.
+
+Preferences successor: S13/S14 present session scope, theme and density as the
+primary content. The dedicated settings canvas contains no Details specimens.
+Task-evidence badges and backend-engine notices do not appear
+in the normal preferences flow.
+
+### Desktop navigation successor — 2026-11-17
+
+The UI no longer renders the mascot; original artwork remains preserved. Settings
+at the upper right is an icon-only 32-unit target with real hover tooltip and
+visible keyboard-focus border. Its label appears only on hover as requested;
+other chrome/rail icons retain focus labels. Workbench top chrome is 56 units
+(40-unit signature plus vertical padding); welcome chrome is 52 units. Both use
+16-unit line icons, compact
+signature/context and commands; content still uses IBM Plex at established sizes.
+
+The 27 destinations use 26 semantic icon geometries; Settings and agent settings
+share one cog. This supersedes the earlier distinct-icon claim. Grouped navigation
+appears once per category with stable IDs and aligned keyboard order. Expanded
+sidebar defaults to 256, drags between 200 and 420, further limited by window width
+minus 326 to reserve a 320-unit primary area and 6-unit divider. Collapsed rail 52
+retains destinations/tooltips/focus; expansion restores the session's preferred
+width. Window resize clamps the visible width. No geometry is persisted.
+
+Drag ends on release, cursor leaving the window, focus loss, Escape, navigation
+or resize. Ctrl+B toggles; sidebar shrink/grow buttons support Tab/Enter in 24-unit
+steps. Ctrl+Alt+Left/Right is supplementary and may be consumed by the window
+manager. Actual geometry/pointer/keyboard evidence is in the navigation report.
+
+### Project-entry correction — 2026-11-17
+
+Settings controls always use the same cog, including agent settings and destination
+navigation. S01 actions follow Novo projeto → Abrir pastas… → Clonar repositório.
+Clone remains disabled with an unavailable tooltip until implemented. No manual-path
+menu action is shown; chooser failure can disclose its recovery field. Recent
+projects and current-session resumption belong in the primary area. The fixed
+sidebar successor below supersedes the earlier narrow vertical composition.
+
+### Fixed sidebar/settings successor — 2026-11-17
+
+S01 keeps its actions column docked for the full content height with Plugins in
+a separate bottom area; only its upper actions and primary project list scroll.
+At narrow widths the sidebar is 210 units, retaining the bottom destination.
+S13/S14 use a dedicated settings canvas without the general navigation/chrome.
+Voltar and Salvar remain outside scrolling content at bottom right. Theme/density
+preview immediately; Save retains session values and returns, Back/Escape cancel.
+No preference persistence or plugin runtime integration is introduced.
+
+## Current implementation limits observed in the audit correction
+
+Focus and selection share a hue but use separate geometry: navigation selection
+uses a persistent side marker; keyboard focus uses a full perimeter. Focused
+buttons use an opaque base surface (the selected surface for selected navigation)
+and focus border in every role, with primary
+text; pressed buttons use a two-unit border, distinguishing them from hover.
+The palette contrast check includes these neutral outline backgrounds. This is
+component/palette evidence, not assistive-technology or raster acceptance.
+
+Iced 0.14.0 in this build has no AccessKit integration. Accessible-name/state
+announcement requirements remain unimplemented platform work, not merely an
+unperformed screen-reader test. The Settings cog keeps the explicitly requested
+hover-only label; other chrome controls expose keyboard-focus labels. Native
+Wayland decoration behavior remains unobserved in this correction.
+
+The signature uses 128×40 logical units, respecting the supplied 128 px minimum
+at scale 1. Native scaling, narrow-window fit and the revised focus style still
+require new native observation. Toolbar theme/density shortcuts apply immediately;
+the dedicated settings canvas instead supports preview, Save and Back.

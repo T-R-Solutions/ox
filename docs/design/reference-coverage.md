@@ -173,3 +173,58 @@ remote-development entries, branded assets and onboarding promotion are not adop
 R4/R12 remain inspiration for hierarchy; DESIGN owns roles, fonts and themes.
 Recent rows now require actual successful-open metadata under the newly authorized
 welcome contract; fictional projects remain excluded. No pixel-identical copy claimed.
+
+## Definitive identity integration — 2026-11-16
+
+The supplied `.local/assets/definitivo/README.md` and `prancha.png` were inspected.
+Identity revision identidade-definitiva-01 selects Catalisador v2 study 06,
+Valência v1 study 01 and the cotton mascot v5 study 17, with approved Ferris tag
+revision algodao-etiqueta-vetorial-05. S01 embeds byte-identical `logo-escuro.png`,
+`logo-branco.png` and `mascote-ox.png`; proportions, negative space and alpha remain
+intact. No source board, historical study, generator or `.local` path is loaded
+at runtime. Signature layout is preserved inside the artwork; its integration
+adapts to the native project-entry geometry rather than reproducing the board's
+informational captions. The mascot is raster; no vectorization/animation is claimed.
+Source/copy hashes and observed captures: [identity report](../validation/welcome-identity-20261116/report.md).
+
+## Enterprise desktop reference successor — 2026-11-16
+
+The two newly supplied IntelliJ Home captures show the same structural direction:
+window-filling context bar, slim navigation, docked project actions/recents, expansive
+neutral workspace and discreet status/tools. The maintainer contrasts these with
+the rejected Ox floating welcome card. Adopt hierarchy, restrained density and
+docked layout across native presentation; preserve DESIGN palette and IBM Plex.
+Third-party branding, clone/remote/terminal effects and unknown interaction behavior
+are not imported. Definitive OX assets remain intact with a compact signature and
+secondary mascot. Version and runtime behavior cannot be inferred from captures.
+See [enterprise report](../validation/enterprise-visual-20261116/report.md).
+
+## Windows / Visual Studio successor — 2026-11-17
+
+The maintained [Windows design analysis](windows-apps-analysis.md) inventories
+consulted sources, topics, dispositions and remaining limits. It supplies the
+source trace for DESIGN revision 5.0 and the windows-design-baseline SDD feature.
+
+| Reference | Disposition | Boundary |
+| --- | --- | --- |
+| VISUAL STUDIO 2026 ENTERPRISE | mandatory primary visual base by explicit request | IDE shell/workspace hierarchy; no edition-exclusive visual claims |
+| Windows app design / Fluent | supporting principles, foundations, controls, interaction and accessibility | translated to Rust/Iced and actual target platforms |
+| R2–R13 and previous enterprise/IntelliJ references | historical/supporting, subordinate in visual conflicts | retain domain details, identity provenance and observed evidence |
+| WinUI/XAML/API samples and Windows shell integrations | implementation-specific, deferred where no Ox capability exists | no dependency or platform adoption |
+| Microsoft fonts/icons/material samples | reference only unless separately licensed/adopted | retain Plex and Ox assets |
+
+Every affected visual task must identify its actual source/version, surface/component,
+adoption or justified adaptation, and future native evidence. Documentary coverage
+does not establish visual, interaction or accessibility parity.
+
+## Identity and implementation correction — 2026-11-17
+
+The identity/enterprise entries above record their dated observations. The current
+UI embeds only the two signature PNGs at 128×40 logical units; the mascot remains
+historical artwork. S01 has a fixed 280-unit action column, 210 below 900, with
+Plugins docked at the bottom and projects scrolling independently. S09/S13 share
+a cog: 27 destinations use 26 geometries. S13/S14 share the settings canvas and
+have no Details specimens. See the audit correction report for checks and limits.
+The IntelliJ temporary screenshot path above is historical acquisition metadata;
+its hash identifies the earlier input but that temporary path is not a retained
+reproduction source. It is not a build or current acceptance dependency.

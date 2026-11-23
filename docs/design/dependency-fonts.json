@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "observed_date": "2026-11-17",
+  "method": "Inspect cached iced_graphics src/text.rs include_bytes and TTF name records; no download or native rendering.",
+  "package": {
+    "name": "iced_graphics",
+    "version": "0.14.0",
+    "registry_source": "registry+https://github.com/rust-lang/crates.io-index",
+    "checksum": "234ca1c2cec4155055f68fa5fad1b5242c496ac8238d80a259bca382fb44a102",
+    "declared_license": "MIT"
+  },
+  "implementation": {
+    "crate_relative_path": "src/text.rs",
+    "sha256": "7f0f1df4f0a3c8ed5203eccf8ad2b423694f197bde98fd8cb0949a7035de68e4"
+  },
+  "feature_selection": {
+    "path": "application/Cargo.toml",
+    "sha256": "db8cf6cbce0cec0312c8392b2e96c01cdab9ba65e60caf586e4183360bc44040",
+    "feature": "fira-sans",
+    "iced_icons": "unconditionally loaded by font_system"
+  },
+  "files": [
+    {
+      "crate_relative_path": "fonts/FiraSans-Regular.ttf",
+      "sha256": "3dabf3d48bf4599f95cffd92f99ea426a014d5311f52a5eb5ec3af265e97cd97",
+      "ttf_name_metadata": {
+        "family": "Fira Sans",
+        "version": "4.203",
+        "copyright": "Digitized data copyright 2012-2016, The Mozilla Foundation and Telefonica S.A.",
+        "license_metadata": "Licensed under the Open Font License, version 1.1 or later"
+      }
+    },
+    {
+      "crate_relative_path": "fonts/Iced-Icons.ttf",
+      "sha256": "2289860dbd2201295bf451deb155561abf4b1fb06899d6f1f81eb294bfebb7ec",
+      "ttf_name_metadata": {
+        "family": "Iced-Icons",
+        "version": "1.0",
+        "copyright": "Copyright (C) 2020 by original authors @ fontello.com",
+        "license_metadata": null
+      }
+    }
+  ],
+  "limitations": [
+    "Cache paths are local inspection locations, not portable runtime dependencies. Resolve the declared crate checksum before comparing file hashes.",
+    "IBM Plex first-party selections remain recorded separately in font-provenance.json. Bundled availability does not prove a particular fallback glyph was rendered.",
+    "Iced-Icons origin/license per glyph remains unverified; crate MIT metadata alone is not treated as clearance.",
+    "No new distribution/legal/assistive-technology approval."
+  ]
+}

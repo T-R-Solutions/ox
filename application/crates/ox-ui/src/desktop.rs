@@ -11,8 +11,14 @@ use std::{
     },
 };
 pub type Result = iced::Result;
+mod chrome;
+mod dock;
 mod folder_picker;
+mod hint;
+mod icons;
+mod identity;
 mod project_store;
+mod splitter;
 mod views;
 #[expect(
     clippy::struct_excessive_bools,
@@ -48,7 +54,11 @@ struct Desktop {
     appearance: Appearance,
     density: Density,
     surface: Surface,
+    settings_origin: Option<(Appearance, Density, Surface)>,
     navigation_open: bool,
+    navigation_width: f32,
+    navigation_drag: bool,
+    navigation_grab: f32,
     width: f32,
     command_open: bool,
     command: String,
@@ -57,7 +67,13 @@ struct Desktop {
     draft: String,
     graph_exploratory: bool,
     demo_document: usize,
-    demo_tool: usize,
+    /// Open command menu; while set, traversal is modal to its items.
+    menu: Option<chrome::Menu>,
+    /// Open document tabs in opening order (presentation state only).
+    tabs: Vec<Surface>,
+    dock_open: bool,
+    dock_tool: Surface,
+    recent_filter: String,
 }
 impl Default for Desktop {
     fn default() -> Self {
@@ -97,7 +113,11 @@ impl Default for Desktop {
             appearance: Appearance::default(),
             density: Density::default(),
             surface: Surface::default(),
+            settings_origin: None,
             navigation_open: true,
+            navigation_width: 256.0,
+            navigation_drag: false,
+            navigation_grab: 0.0,
             width: 1280.0,
             command_open: false,
             command: String::new(),
@@ -106,7 +126,11 @@ impl Default for Desktop {
             draft: String::new(),
             graph_exploratory: false,
             demo_document: 0,
-            demo_tool: 0,
+            menu: None,
+            tabs: Vec::new(),
+            dock_open: false,
+            dock_tool: Surface::Problems,
+            recent_filter: String::new(),
         }
     }
 }
@@ -115,7 +139,6 @@ enum Message {
     Path(String),
     Select,
     ChooseFolder,
-    ManualPath,
     ProjectName(String),
     ProjectParent(String),
     CreateProject,
@@ -136,12 +159,18 @@ enum Message {
     InputFocused(usize),
     Scroll(f32),
     Navigate(Surface),
+    SaveSettings,
+    BackSettings,
     Appearance(Appearance),
     CycleAppearance,
     Density(Density),
     CycleDensity,
     Navigation,
     Resize(f32),
+    SidebarStart(f32),
+    SidebarMove(f32),
+    SidebarEnd,
+    SidebarAdjust(f32),
     Command,
     CommandInput(String),
     CommandGo,
@@ -150,7 +179,14 @@ enum Message {
     Draft(String),
     GraphMode(bool),
     DemoDocument(usize),
-    DemoTool(usize),
+    /// Open, toggle (same menu) or close (`None`) a command menu.
+    Menu(Option<chrome::Menu>),
+    /// Execute the menu item with this control id, then close the menu.
+    MenuItem(usize),
+    CloseTab(Surface),
+    Dock,
+    OpenFolder,
+    RecentFilter(String),
     Done(u64, Action, std::result::Result<String, String>),
 }
 #[derive(Clone, Copy, Debug)]
@@ -176,6 +212,7 @@ struct OpenOutcome {
 // Query the actual layout rather than estimating row heights. Full paths and
 // diagnostics may wrap to arbitrary heights at the minimum window size.
 struct RevealControl {
+    scroller: &'static str,
     target: iced::widget::Id,
     bounds: Option<iced::Rectangle>,
     viewport: Option<(iced::Rectangle, iced::Vector)>,
@@ -200,7 +237,7 @@ impl iced::advanced::widget::Operation<Message> for RevealControl {
         translation: iced::Vector,
         _: &mut dyn iced::advanced::widget::operation::Scrollable,
     ) {
-        if id == Some(&iced::widget::Id::new("main")) {
+        if id == Some(&iced::widget::Id::new(self.scroller)) {
             self.viewport = Some((bounds, translation));
         }
     }
@@ -218,7 +255,7 @@ impl iced::advanced::widget::Operation<Message> for RevealControl {
             };
             if delta.abs() > 0.5 {
                 return Outcome::Chain(Box::new(scrollable::scroll_by(
-                    iced::widget::Id::new("main"),
+                    iced::widget::Id::new(self.scroller),
                     scrollable::AbsoluteOffset { x: 0.0, y: delta },
                 )));
             }
@@ -230,11 +267,31 @@ impl Desktop {
     const fn entry(&self) -> bool {
         matches!(self.surface, Surface::Start | Surface::NewProject)
     }
+    /// Recent projects matching the session filter, with their stable list
+    /// index (control ids derive from it). Order remains most-recent first.
+    fn visible_recent(&self) -> Vec<(usize, &PathBuf)> {
+        let filter = self.recent_filter.trim().to_lowercase();
+        self.recent
+            .iter()
+            .enumerate()
+            .filter(|(_, path)| {
+                filter.is_empty() || path.to_string_lossy().to_lowercase().contains(&filter)
+            })
+            .collect()
+    }
     const fn project_available(&self) -> bool {
         !self.busy && !self.history_busy && !self.closing && self.picker.is_none()
     }
-    fn reveal(id: usize) -> Task<Message> {
+    fn reveal_scroller(&self, id: usize) -> &'static str {
+        if self.surface == Surface::Start && matches!(id, 2 | 3 | 273 | 274) {
+            "welcome-sidebar"
+        } else {
+            "main"
+        }
+    }
+    fn reveal(&self, id: usize) -> Task<Message> {
         iced::advanced::widget::operate(RevealControl {
+            scroller: self.reveal_scroller(id),
             target: iced::widget::Id::from(format!("welcome-control-{id}")),
             bounds: None,
             viewport: None,
@@ -369,7 +426,89 @@ impl Desktop {
         )
     }
     // Visual/tab order. Iced 0.14 buttons do not implement native keyboard focus.
+    fn sidebar_max(&self) -> f32 {
+        (self.width - 326.0).clamp(200.0, 420.0)
+    }
+    fn sidebar_width(&self) -> f32 {
+        if self.navigation_open {
+            self.navigation_width.clamp(200.0, self.sidebar_max())
+        } else {
+            52.0
+        }
+    }
+    /// Sidebar destinations. Project entry, preferences and tool windows are
+    /// reached through the menus, the project selector, the bottom dock and Ctrl+K.
+    fn navigation_order() -> Vec<Surface> {
+        ["PROJETO", "TRABALHO", "CAPACIDADES", "BANCADA"]
+            .into_iter()
+            .flat_map(|group| {
+                Surface::ALL
+                    .into_iter()
+                    .filter(move |s| s.group() == group && Self::in_sidebar(*s))
+            })
+            .collect()
+    }
+    const fn in_sidebar(surface: Surface) -> bool {
+        !matches!(
+            surface,
+            Surface::Start
+                | Surface::NewProject
+                | Surface::Settings
+                | Surface::Appearance
+                | Surface::Problems
+                | Surface::Tests
+                | Surface::Trace
+                | Surface::Terminal
+        )
+    }
+    fn reveal_navigation_focus(&self) -> Task<Message> {
+        if self.entry() || self.command_open {
+            return Task::none();
+        }
+        self.focus
+            .filter(|id| (100..127).contains(id))
+            .map_or_else(Task::none, |id| {
+                iced::advanced::widget::operate(RevealControl {
+                    scroller: "navigation",
+                    target: iced::widget::Id::from(format!("navigation-control-{id}")),
+                    bounds: None,
+                    viewport: None,
+                })
+            })
+    }
+    fn focused_label(&self) -> Option<&str> {
+        match self.focus? {
+            272 => None,
+            212 => Some("Recolher / expandir navegação · Ctrl+B"),
+            213 => Some("Ir para… · Ctrl+K"),
+            603 => Some("Projeto atual · abrir a Central de projetos"),
+            644 => Some("Painel de ferramentas · Ctrl+J"),
+            645 => Some("Ocultar painel de ferramentas"),
+            id @ 600..=602 => chrome::Menu::ALL.get(id - 600).map(|m| m.label()),
+            id @ 610..=639 => self.menu.and_then(|m| {
+                self.menu_items(m)
+                    .into_iter()
+                    .find(|item| item.id == id)
+                    .map(|item| item.label)
+            }),
+            id @ 640..=643 => dock::DOCK_TOOLS.get(id - 640).map(|s| s.title()),
+            id @ 500..=553 if id % 2 == 1 => Some("Fechar aba"),
+            id @ 500..=553 => Surface::ALL.get((id - 500) / 2).map(|s| s.title()),
+            id => Surface::ALL
+                .iter()
+                .find(|s| s.id() == id)
+                .map(|s| s.title()),
+        }
+    }
     fn controls(&self) -> Vec<(usize, Message)> {
+        if let Some(menu) = self.menu {
+            return self
+                .menu_items(menu)
+                .into_iter()
+                .filter(|item| item.action.is_some())
+                .map(|item| (item.id, Message::MenuItem(item.id)))
+                .collect();
+        }
         if self.command_open {
             let mut controls = vec![(300, Message::Activate), (301, Message::Escape)];
             controls.extend(
@@ -379,29 +518,48 @@ impl Desktop {
             );
             return controls;
         }
+        if matches!(self.surface, Surface::Settings | Surface::Appearance) {
+            let mut controls: Vec<_> = Appearance::ALL
+                .iter()
+                .enumerate()
+                .map(|(i, a)| (220 + i, Message::Appearance(*a)))
+                .collect();
+            controls.extend([
+                (223, Message::Density(Density::Comfortable)),
+                (224, Message::Density(Density::Compact)),
+                (225, Message::BackSettings),
+                (226, Message::SaveSettings),
+            ]);
+            return controls;
+        }
         if self.entry() {
             return self.entry_controls();
         }
-        let mut controls = vec![
-            (212, Message::Navigation),
+        let mut controls = vec![(212, Message::Navigation)];
+        controls.extend(
+            chrome::Menu::ALL
+                .iter()
+                .map(|m| (m.id(), Message::Menu(Some(*m)))),
+        );
+        controls.extend([
             (213, Message::Command),
-            (210, Message::CycleAppearance),
-            (211, Message::CycleDensity),
-            (0, Message::Toggle),
-            (1, Message::Close),
-        ];
+            (603, Message::Navigate(Surface::Start)),
+            (644, Message::Dock),
+            (272, Message::Navigate(Surface::Settings)),
+        ]);
         if self.busy {
             controls.push((214, Message::Cancel));
         }
-        if self.navigation_open {
-            controls.extend(Surface::ALL.iter().map(|s| (s.id(), Message::Navigate(*s))));
-        }
-        let content_visible = !self.navigation_open || self.width >= 980.0;
-        let workspace = content_visible
-            && matches!(
-                self.surface,
-                Surface::Start | Surface::Project | Surface::Tasks
-            );
+        controls.extend(
+            Self::navigation_order()
+                .iter()
+                .map(|s| (s.id(), Message::Navigate(*s))),
+        );
+        controls.extend(self.tab_controls());
+        let workspace = matches!(
+            self.surface,
+            Surface::Start | Surface::Project | Surface::Tasks
+        );
         if self.project_available() && workspace {
             controls.push((2, Message::Activate));
             if self.surface == Surface::Start && self.picker.is_none() {
@@ -420,44 +578,49 @@ impl Desktop {
                 controls.extend([(9, Message::Verify), (10, Message::Refresh)]);
             }
         }
-        if self.busy && content_visible && self.surface == Surface::Tasks {
+        if self.busy && self.surface == Surface::Tasks {
             controls.push((8, Message::Cancel));
         }
-        if content_visible {
-            match self.surface {
-                Surface::Start => {
-                    if self.selected && !self.closing {
-                        controls.push((270, Message::Navigate(Surface::Tasks)));
-                    }
-                    controls.extend([
-                        (271, Message::Navigate(Surface::Activity)),
-                        (272, Message::Navigate(Surface::Appearance)),
-                    ]);
+        controls.extend(self.surface_controls());
+        controls.extend(self.dock_controls());
+        controls
+    }
+    /// Controls owned by the active document, in rendered order.
+    fn surface_controls(&self) -> Vec<(usize, Message)> {
+        let mut controls = Vec::new();
+
+        match self.surface {
+            Surface::Start => {
+                if self.selected && !self.closing {
+                    controls.push((270, Message::Navigate(Surface::Tasks)));
                 }
-                Surface::Appearance | Surface::Settings => {
-                    controls.extend(
-                        Appearance::ALL
-                            .iter()
-                            .enumerate()
-                            .map(|(i, a)| (220 + i, Message::Appearance(*a))),
-                    );
-                    controls.extend([
-                        (223, Message::Density(Density::Comfortable)),
-                        (224, Message::Density(Density::Compact)),
-                    ]);
-                }
-                Surface::Editor | Surface::Focus => {
-                    controls.extend((0..3).map(|i| (250 + i, Message::DemoDocument(i))));
-                    controls.extend((0..3).map(|i| (253 + i, Message::DemoDocument(i))));
-                    controls.extend((0..3).map(|i| (260 + i, Message::DemoTool(i))));
-                }
-                Surface::NewTask => controls.push((230, Message::Activate)),
-                Surface::Architecture => controls.extend([
-                    (240, Message::GraphMode(false)),
-                    (241, Message::GraphMode(true)),
-                ]),
-                _ => {}
+                controls.extend([
+                    (271, Message::Navigate(Surface::Activity)),
+                    (272, Message::Navigate(Surface::Appearance)),
+                ]);
             }
+            Surface::Appearance | Surface::Settings => {
+                controls.extend(
+                    Appearance::ALL
+                        .iter()
+                        .enumerate()
+                        .map(|(i, a)| (220 + i, Message::Appearance(*a))),
+                );
+                controls.extend([
+                    (223, Message::Density(Density::Comfortable)),
+                    (224, Message::Density(Density::Compact)),
+                ]);
+            }
+            Surface::Editor | Surface::Focus => {
+                controls.extend((0..3).map(|i| (250 + i, Message::DemoDocument(i))));
+                controls.extend((0..3).map(|i| (253 + i, Message::DemoDocument(i))));
+            }
+            Surface::NewTask => controls.push((230, Message::Activate)),
+            Surface::Architecture => controls.extend([
+                (240, Message::GraphMode(false)),
+                (241, Message::GraphMode(true)),
+            ]),
+            _ => {}
         }
         controls
     }
@@ -473,10 +636,9 @@ impl Desktop {
                 ]);
             } else {
                 controls.extend([
-                    (273, Message::ChooseFolder),
                     (274, Message::Navigate(Surface::NewProject)),
+                    (273, Message::ChooseFolder),
                 ]);
-                controls.push((275, Message::ManualPath));
                 if self.manual_path {
                     controls.extend([(2, Message::Activate), (3, Message::Select)]);
                 }
@@ -492,7 +654,10 @@ impl Desktop {
                         ]);
                     }
                 }
-                for (i, path) in self.recent.iter().enumerate() {
+                if !self.recent.is_empty() {
+                    controls.push((284, Message::Activate));
+                }
+                for (i, path) in self.visible_recent() {
                     controls.extend([
                         (400 + i * 2, Message::OpenRecent(path.clone())),
                         (
@@ -509,9 +674,16 @@ impl Desktop {
         if self.surface == Surface::Start && self.selected && !self.closing {
             let position = controls
                 .iter()
-                .position(|(id, _)| *id == 275)
+                .position(|(id, _)| *id == 2 || *id >= 280)
                 .unwrap_or(controls.len());
             controls.insert(position, (270, Message::Navigate(Surface::Tasks)));
+        }
+        if self.surface == Surface::Start {
+            let position = controls
+                .iter()
+                .position(|(id, _)| *id == 270 || *id >= 280)
+                .unwrap_or(controls.len());
+            controls.insert(position, (275, Message::Navigate(Surface::Tools)));
         }
         controls
     }
@@ -532,10 +704,76 @@ impl Desktop {
     ) -> iced::widget::Button<'a, Message> {
         let focused = self.focus == Some(index);
         let p = self.appearance.palette();
-        button(iced::widget::text(label).size(14))
+        let kind = match index {
+            273 | 292 => Some(icons::Kind::Folder),
+            274 => Some(icons::Kind::Plus),
+            272 => Some(icons::Kind::Settings),
+            212 => Some(icons::Kind::Panels),
+            213 => Some(icons::Kind::Search),
+            276 => Some(icons::Kind::Repository),
+            270 => Some(icons::Kind::Activity),
+            _ => None,
+        };
+        let mut content = iced::widget::row![]
+            .spacing(8)
+            .align_y(iced::Alignment::Center);
+        if let Some(kind) = kind {
+            content = content.push(icons::icon(kind));
+        }
+        content = content.push(iced::widget::text(label).size(14));
+        button(content)
             .padding(self.density.control_padding())
             .on_press_maybe(message)
             .style(move |_, status| crate::design::button_style(p, role, focused, status))
+    }
+    fn icon_control<'a>(
+        &self,
+        index: usize,
+        label: &'a str,
+        kind: icons::Kind,
+        message: Message,
+    ) -> Element<'a, Message> {
+        let p = self.appearance.palette();
+        let focused = self.focus == Some(index);
+        let control = iced::widget::tooltip(
+            button(
+                iced::widget::container(icons::icon(kind))
+                    .center_x(32)
+                    .center_y(32),
+            )
+            .padding(0)
+            .on_press(message)
+            .style(move |_, status| {
+                crate::design::button_style(
+                    p,
+                    if index == 645 {
+                        ButtonRole::Tab(false)
+                    } else {
+                        ButtonRole::Chrome
+                    },
+                    focused,
+                    status,
+                )
+            }),
+            iced::widget::container(iced::widget::text(label).size(13))
+                .padding(8)
+                .style(move |_| {
+                    crate::design::panel(p.surface_base, p.text_primary, p.border_interactive)
+                }),
+            iced::widget::tooltip::Position::Bottom,
+        )
+        .gap(6)
+        .into();
+        hint::focus(
+            control,
+            iced::widget::container(iced::widget::text(label).size(13))
+                .padding(8)
+                .style(move |_| {
+                    crate::design::panel(p.surface_base, p.text_primary, p.border_interactive)
+                })
+                .into(),
+            focused && index != 272,
+        )
     }
     fn command_matches(&self) -> Vec<Surface> {
         let query = self.command.trim().to_lowercase();
@@ -552,7 +790,11 @@ impl Desktop {
             .focus
             .is_some_and(|id| !self.controls().iter().any(|(i, _)| *i == id))
         {
-            self.focus = Some(if self.entry() { 272 } else { 212 });
+            self.focus = if matches!(self.surface, Surface::Settings | Surface::Appearance) {
+                None
+            } else {
+                Some(if self.entry() { 272 } else { 212 })
+            };
         }
     }
     fn cancel_picker(&self) {
@@ -591,7 +833,7 @@ impl Desktop {
                 } else {
                     "workspace"
                 }),
-                Self::reveal(id),
+                self.reveal(id),
             ]);
         }
         self.picker = Some(folder_picker::Request {
@@ -662,7 +904,23 @@ impl Desktop {
     )]
     fn update(&mut self, message: Message) -> Task<Message> {
         match message {
+            Message::Navigate(surface) if dock::DOCK_TOOLS.contains(&surface) => {
+                // Tool windows dock below the active document instead of replacing it.
+                self.menu = None;
+                if self.entry() || matches!(self.surface, Surface::Settings | Surface::Appearance) {
+                    let _ = self.update(Message::Navigate(Surface::Project));
+                }
+                self.dock_open = true;
+                self.dock_tool = surface;
+                if self.command_open {
+                    self.command_open = false;
+                    self.command.clear();
+                    self.focus = Some(213);
+                }
+                self.restore_visible_focus();
+            }
             Message::Navigate(surface) => {
+                self.menu = None;
                 self.cancel_picker();
                 if let Some(flag) = &self.project_request {
                     flag.store(true, Ordering::Relaxed);
@@ -676,13 +934,27 @@ impl Desktop {
                     self.picker_error = None;
                 }
 
+                let settings = |s| matches!(s, Surface::Settings | Surface::Appearance);
+                if settings(surface) && !settings(self.surface) {
+                    self.settings_origin = Some((self.appearance, self.density, self.surface));
+                } else if !settings(surface)
+                    && let Some((appearance, density, _)) = self.settings_origin.take()
+                {
+                    self.appearance = appearance;
+                    self.density = density;
+                }
+                // Keep the document being left as a tab even if it was reached
+                // without one (initial state or programmatic selection).
+                self.open_tab(self.surface);
                 self.surface = surface;
+                self.open_tab(surface);
                 if self.command_open {
                     self.command_open = false;
                     self.command.clear();
                     self.focus = Some(213);
                 }
-                if self.width < 980.0 || surface == Surface::Focus {
+                self.navigation_drag = false;
+                if surface == Surface::Focus {
                     self.navigation_open = false;
                 }
                 if self.entry() {
@@ -707,23 +979,59 @@ impl Desktop {
                     iced::widget::scrollable::RelativeOffset::START,
                 );
             }
+            Message::SaveSettings | Message::BackSettings => {
+                if let Some((appearance, density, origin)) = self.settings_origin.take() {
+                    if matches!(message, Message::BackSettings) {
+                        self.appearance = appearance;
+                        self.density = density;
+                    }
+                    return self.update(Message::Navigate(origin));
+                }
+            }
             Message::Appearance(appearance) => self.appearance = appearance,
             Message::CycleAppearance => self.appearance = self.appearance.next(),
             Message::Density(density) => self.density = density,
             Message::CycleDensity => self.density = self.density.next(),
             Message::Navigation => {
                 self.cancel_picker();
+                self.navigation_drag = false;
                 self.navigation_open = !self.navigation_open;
                 self.restore_visible_focus();
+                return self.reveal_navigation_focus();
             }
             Message::Resize(width) => {
-                if width < 980.0 && self.width >= 980.0 {
-                    self.navigation_open = false;
-                }
                 self.width = width;
+                self.navigation_drag = false;
                 self.restore_visible_focus();
+                return self.reveal_navigation_focus();
+            }
+            Message::SidebarStart(offset) => {
+                self.navigation_grab = if offset.is_finite() {
+                    offset.clamp(0.0, 6.0)
+                } else {
+                    0.0
+                };
+                self.navigation_drag = self.navigation_open && !self.entry() && !self.command_open;
+            }
+            Message::SidebarMove(x) => {
+                if self.navigation_drag && x.is_finite() {
+                    self.navigation_width =
+                        (x - self.navigation_grab).clamp(200.0, self.sidebar_max());
+                }
+            }
+            Message::SidebarEnd => self.navigation_drag = false,
+            Message::SidebarAdjust(delta) => {
+                self.navigation_drag = false;
+                self.navigation_open = true;
+                self.navigation_width = (self.navigation_width.clamp(200.0, self.sidebar_max())
+                    + delta)
+                    .clamp(200.0, self.sidebar_max());
+                self.restore_visible_focus();
+                return self.reveal_navigation_focus();
             }
             Message::Command => {
+                self.menu = None;
+                self.navigation_drag = false;
                 self.cancel_picker();
                 self.return_focus = self.focus;
                 self.command_open = true;
@@ -741,6 +1049,19 @@ impl Desktop {
                     return self.update(Message::Navigate(surface));
                 }
             }
+            Message::CommandMove(backwards) if self.menu.is_some() => {
+                let controls = self.controls();
+                if !controls.is_empty() {
+                    let position = controls.iter().position(|(id, _)| Some(*id) == self.focus);
+                    let next = match (position, backwards) {
+                        (Some(p), false) => (p + 1) % controls.len(),
+                        (Some(p), true) => (p + controls.len() - 1) % controls.len(),
+                        (None, false) => 0,
+                        (None, true) => controls.len() - 1,
+                    };
+                    self.focus = Some(controls[next].0);
+                }
+            }
             Message::CommandMove(backwards) if self.command_open => {
                 let count = self.command_matches().len();
                 if count > 0 {
@@ -752,22 +1073,18 @@ impl Desktop {
                 }
             }
             Message::Escape => {
+                self.navigation_drag = false;
+                if self.menu.is_some() {
+                    return self.toggle_menu(None);
+                }
                 if self.command_open {
                     self.command_open = false;
                     self.focus = self.return_focus.take();
                     self.restore_visible_focus();
+                } else if matches!(self.surface, Surface::Settings | Surface::Appearance) {
+                    return self.update(Message::BackSettings);
                 } else if self.surface == Surface::NewProject && !self.busy {
                     return self.update(Message::Navigate(Surface::Start));
-                }
-            }
-            Message::ManualPath if self.project_available() => {
-                self.manual_path = !self.manual_path;
-                if self.manual_path {
-                    self.focus = Some(2);
-                    return Task::batch([
-                        iced::widget::operation::focus("workspace"),
-                        Self::reveal(2),
-                    ]);
                 }
             }
             Message::ProjectName(name) if self.project_available() => {
@@ -841,6 +1158,7 @@ impl Desktop {
                         .expect("canonical UTF-8 validated by store or selection")
                         .into();
                     self.surface = Surface::Tasks;
+                    self.open_tab(Surface::Tasks);
                     self.workspace_error = None;
                 } else {
                     let mut error = outcome
@@ -868,7 +1186,22 @@ impl Desktop {
             }
             Message::Draft(draft) => self.draft = draft,
             Message::DemoDocument(index) if index < 3 => self.demo_document = index,
-            Message::DemoTool(index) if index < 3 => self.demo_tool = index,
+            Message::Menu(menu) => return self.toggle_menu(menu),
+            Message::MenuItem(id) => return self.run_menu_item(id),
+            Message::CloseTab(surface) => return self.close_tab(surface),
+            Message::Dock => {
+                self.menu = None;
+                self.dock_open = !self.dock_open;
+                self.restore_visible_focus();
+            }
+            Message::OpenFolder => {
+                let navigate = self.update(Message::Navigate(Surface::Start));
+                return Task::batch([navigate, self.choose_folder()]);
+            }
+            Message::RecentFilter(filter) => {
+                self.recent_filter = filter;
+                self.focus = Some(284);
+            }
             Message::GraphMode(exploratory) => self.graph_exploratory = exploratory,
             Message::Scroll(y) => {
                 return iced::widget::operation::scroll_by(
@@ -892,11 +1225,12 @@ impl Desktop {
                     Some(300) => "command",
                     Some(290) => "project-name",
                     Some(291) => "project-parent",
+                    Some(284) => "recent-filter",
                     _ => "no-text-input",
                 };
                 let focus = iced::widget::operation::focus(target);
-                if self.entry() {
-                    return Task::batch([focus, Self::reveal(controls[next].0)]);
+                if self.entry() || matches!(self.surface, Surface::Settings | Surface::Appearance) {
+                    return Task::batch([focus, self.reveal(controls[next].0)]);
                 }
                 if self.surface == Surface::Start
                     && self
@@ -915,29 +1249,8 @@ impl Desktop {
                         ),
                     ]);
                 }
-                if let Some(id) = self.focus.filter(|id| (100..127).contains(id)) {
-                    return Task::batch([
-                        focus,
-                        iced::widget::operation::snap_to(
-                            "navigation",
-                            iced::widget::scrollable::RelativeOffset {
-                                x: 0.0,
-                                y: f32::from(
-                                    u16::try_from(id - 100)
-                                        .expect("navigation id bounded by Surface table"),
-                                ) / 26.0,
-                            },
-                        ),
-                    ]);
-                }
-                if self.focus.is_some_and(|id| (260..263).contains(&id)) {
-                    return Task::batch([
-                        focus,
-                        iced::widget::operation::snap_to(
-                            "main",
-                            iced::widget::scrollable::RelativeOffset::END,
-                        ),
-                    ]);
+                if self.focus.is_some_and(|id| (100..127).contains(&id)) {
+                    return Task::batch([focus, self.reveal_navigation_focus()]);
                 }
                 return focus;
             }
@@ -950,7 +1263,7 @@ impl Desktop {
             }
             Message::Activate => {
                 if let Some((_, action)) = self.controls().into_iter().find(|(id, _)| {
-                    Some(*id) == self.focus && ![2, 230, 290, 291, 300].contains(id)
+                    Some(*id) == self.focus && ![2, 230, 284, 290, 291, 300].contains(id)
                 }) {
                     return self.update(action);
                 }
@@ -984,7 +1297,7 @@ impl Desktop {
                         self.focus = Some(293);
                         return Task::batch([
                             iced::widget::operation::focus("no-text-input"),
-                            Self::reveal(293),
+                            self.reveal(293),
                         ]);
                     }
                     Ok(Some(path)) => {
@@ -992,7 +1305,17 @@ impl Desktop {
                         return self.update(Message::Select);
                     }
                     Ok(None) => {}
-                    Err(error) => self.picker_error = Some(error),
+                    Err(error) => {
+                        self.picker_error = Some(error);
+                        if !self.picker_parent {
+                            self.manual_path = true;
+                            self.focus = Some(2);
+                            return Task::batch([
+                                iced::widget::operation::focus("workspace"),
+                                self.reveal(2),
+                            ]);
+                        }
+                    }
                 }
                 let id = if self.picker_parent { 291 } else { 273 };
                 self.focus = Some(id);
@@ -1002,7 +1325,7 @@ impl Desktop {
                     } else {
                         "no-text-input"
                     }),
-                    Self::reveal(id),
+                    self.reveal(id),
                 ]);
             }
             Message::Path(path) if !self.busy && !self.closing => {
@@ -1066,24 +1389,96 @@ impl Desktop {
         Task::none()
     }
 }
+fn map_event(event: iced::Event, status: iced::event::Status, navigation: bool) -> Option<Message> {
+    if let iced::Event::Window(iced::window::Event::Resized(size)) = &event {
+        return Some(Message::Resize(size.width));
+    }
+    match &event {
+        iced::Event::Mouse(
+            iced::mouse::Event::ButtonReleased(iced::mouse::Button::Left)
+            | iced::mouse::Event::CursorLeft,
+        )
+        | iced::Event::Window(iced::window::Event::Unfocused) => {
+            return Some(Message::SidebarEnd);
+        }
+        _ => {}
+    }
+    if let iced::Event::Keyboard(iced::keyboard::Event::KeyPressed { key, modifiers, .. }) = event {
+        use iced::keyboard::{Key, key::Named};
+        return match key {
+            Key::Character(ref ch)
+                if navigation
+                    && status == iced::event::Status::Ignored
+                    && modifiers.control()
+                    && ch.eq_ignore_ascii_case("k") =>
+            {
+                Some(Message::Command)
+            }
+            Key::Named(Named::ArrowUp) => Some(Message::CommandMove(true)),
+            Key::Named(Named::ArrowDown) => Some(Message::CommandMove(false)),
+            Key::Named(Named::Escape) => Some(Message::Escape),
+            Key::Character(ref ch)
+                if navigation
+                    && status == iced::event::Status::Ignored
+                    && modifiers.control()
+                    && ch.eq_ignore_ascii_case("b") =>
+            {
+                Some(Message::Navigation)
+            }
+            Key::Character(ref ch)
+                if navigation
+                    && status == iced::event::Status::Ignored
+                    && modifiers.control()
+                    && ch.eq_ignore_ascii_case("j") =>
+            {
+                Some(Message::Dock)
+            }
+            Key::Named(Named::ArrowLeft)
+                if navigation
+                    && status == iced::event::Status::Ignored
+                    && modifiers.control()
+                    && modifiers.alt() =>
+            {
+                Some(Message::SidebarAdjust(-24.0))
+            }
+            Key::Named(Named::ArrowRight)
+                if navigation
+                    && status == iced::event::Status::Ignored
+                    && modifiers.control()
+                    && modifiers.alt() =>
+            {
+                Some(Message::SidebarAdjust(24.0))
+            }
+            Key::Named(Named::Tab) => Some(Message::Focus(modifiers.shift())),
+            Key::Named(Named::Enter | Named::Space) if status == iced::event::Status::Ignored => {
+                Some(Message::Activate)
+            }
+            Key::Named(Named::PageDown) if status == iced::event::Status::Ignored => {
+                Some(Message::Scroll(240.0))
+            }
+            Key::Named(Named::PageUp) if status == iced::event::Status::Ignored => {
+                Some(Message::Scroll(-240.0))
+            }
+            _ => None,
+        };
+    }
+    None
+}
+
+const fn map_drag(event: &iced::Event) -> Option<Message> {
+    match event {
+        iced::Event::Mouse(iced::mouse::Event::CursorMoved { position }) => {
+            Some(Message::SidebarMove(position.x))
+        }
+        _ => None,
+    }
+}
+
 /// # Errors
 /// Returns the Iced initialization or event-loop error when the native desktop cannot run.
 pub fn run() -> Result {
     iced::application(Desktop::initialize, Desktop::update, Desktop::view)
-        .title(|s: &Desktop| {
-            let title = format!(
-                "Ox — {} — {} — {}{}",
-                s.surface.title(),
-                s.appearance.label(),
-                s.density.label(),
-                if s.details { " • detalhes" } else { "" }
-            );
-            if let Some(label) = &s.validation_label {
-                format!("{title} [{label}]")
-            } else {
-                title
-            }
-        })
+        .title(Desktop::window_title)
         .window_size((1280.0, 820.0))
         .default_font(crate::design::UI_FONT)
         .font(include_bytes!("../assets/fonts/IBMPlexSans-Regular.ttf").as_slice())
@@ -1091,48 +1486,19 @@ pub fn run() -> Result {
         .font(include_bytes!("../assets/fonts/IBMPlexMono-Regular.ttf").as_slice())
         .theme(|s: &Desktop| s.appearance.theme())
         .exit_on_close_request(false)
-        .subscription(|_| {
+        .subscription(|s: &Desktop| {
             iced::Subscription::batch([
                 iced::window::close_requests().map(|_| Message::Close),
-                iced::event::listen_with(|event, status, _| {
-                    if let iced::Event::Window(iced::window::Event::Resized(size)) = &event {
-                        return Some(Message::Resize(size.width));
-                    }
-                    if let iced::Event::Keyboard(iced::keyboard::Event::KeyPressed {
-                        key,
-                        modifiers,
-                        ..
-                    }) = event
-                    {
-                        use iced::keyboard::{Key, key::Named};
-                        return match key {
-                            Key::Character(ref ch)
-                                if modifiers.control() && ch.eq_ignore_ascii_case("k") =>
-                            {
-                                Some(Message::Command)
-                            }
-                            Key::Named(Named::ArrowUp) => Some(Message::CommandMove(true)),
-                            Key::Named(Named::ArrowDown) => Some(Message::CommandMove(false)),
-                            Key::Named(Named::Escape) => Some(Message::Escape),
-                            Key::Named(Named::Tab) => Some(Message::Focus(modifiers.shift())),
-                            Key::Named(Named::Enter | Named::Space)
-                                if status == iced::event::Status::Ignored =>
-                            {
-                                Some(Message::Activate)
-                            }
-                            Key::Named(Named::PageDown)
-                                if status == iced::event::Status::Ignored =>
-                            {
-                                Some(Message::Scroll(240.0))
-                            }
-                            Key::Named(Named::PageUp) if status == iced::event::Status::Ignored => {
-                                Some(Message::Scroll(-240.0))
-                            }
-                            _ => None,
-                        };
-                    }
-                    None
-                }),
+                if s.entry() || matches!(s.surface, Surface::Settings | Surface::Appearance) {
+                    iced::event::listen_with(|event, status, _| map_event(event, status, false))
+                } else {
+                    iced::event::listen_with(|event, status, _| map_event(event, status, true))
+                },
+                if s.navigation_drag {
+                    iced::event::listen_with(|event, _, _| map_drag(&event))
+                } else {
+                    iced::Subscription::none()
+                },
             ])
         })
         .run()
@@ -1160,6 +1526,152 @@ mod tests {
         }
     }
     #[test]
+    fn preferences_save_and_back_restore_the_origin_without_domain_effects() {
+        let mut ui = Desktop::default();
+        let _ = ui.update(Message::Navigate(Surface::Settings));
+        assert_eq!(
+            ui.controls().iter().map(|(id, _)| *id).collect::<Vec<_>>(),
+            vec![220, 221, 222, 223, 224, 225, 226]
+        );
+        let _ = ui.update(Message::Appearance(Appearance::Dark));
+        let _ = ui.update(Message::Density(Density::Compact));
+        let _ = ui.update(Message::BackSettings);
+        assert_eq!(ui.surface, Surface::Start);
+        assert_eq!(ui.appearance, Appearance::Light);
+        assert_eq!(ui.density, Density::Comfortable);
+        let _ = ui.update(Message::Navigate(Surface::Settings));
+        let _ = ui.update(Message::Appearance(Appearance::Dark));
+        let _ = ui.update(Message::SaveSettings);
+        assert_eq!(ui.surface, Surface::Start);
+        assert_eq!(ui.appearance, Appearance::Dark);
+        let _ = ui.update(Message::Navigate(Surface::Appearance));
+        let _ = ui.update(Message::Appearance(Appearance::HighContrast));
+        let _ = ui.update(Message::Escape);
+        assert_eq!(ui.appearance, Appearance::Dark);
+        assert_eq!(ui.surface, Surface::Start);
+        assert_eq!(ui.controller.lock().unwrap().attempt, 0);
+    }
+
+    #[test]
+    fn sidebar_drag_is_bounded_and_stops_without_domain_effects() {
+        let mut ui = Desktop {
+            surface: Surface::Editor,
+            ..Desktop::default()
+        };
+        let _ = ui.update(Message::SidebarMove(400.0));
+        assert_eq!(ui.sidebar_width(), 256.0);
+        let _ = ui.update(Message::SidebarStart(3.0));
+        let _ = ui.update(Message::SidebarMove(259.0));
+        assert_eq!(ui.sidebar_width(), 256.0);
+        let _ = ui.update(Message::SidebarMove(339.0));
+        assert_eq!(ui.sidebar_width(), 336.0);
+        let _ = ui.update(Message::SidebarEnd);
+        let _ = ui.update(Message::SidebarStart(0.0));
+        assert!(ui.navigation_drag);
+        let _ = ui.update(Message::SidebarMove(900.0));
+        assert_eq!(ui.sidebar_width(), 420.0);
+        let _ = ui.update(Message::SidebarMove(-50.0));
+        assert_eq!(ui.sidebar_width(), 200.0);
+        let _ = ui.update(Message::SidebarMove(f32::NAN));
+        assert_eq!(ui.sidebar_width(), 200.0);
+        let _ = ui.update(Message::SidebarEnd);
+        let _ = ui.update(Message::SidebarMove(320.0));
+        assert_eq!(ui.sidebar_width(), 200.0);
+        let _ = ui.update(Message::SidebarStart(0.0));
+        let _ = ui.update(Message::Resize(640.0));
+        assert!(!ui.navigation_drag);
+        let _ = ui.update(Message::SidebarStart(0.0));
+        let _ = ui.update(Message::Escape);
+        assert!(!ui.navigation_drag);
+        assert_eq!(ui.generation, 0);
+        assert!(!ui.busy);
+        assert!(!ui.selected);
+    }
+    #[test]
+    fn rail_restores_width_and_keeps_navigation_keyboard_accessible() {
+        let mut ui = Desktop {
+            surface: Surface::Editor,
+            navigation_width: 340.0,
+            ..Desktop::default()
+        };
+        let _ = ui.update(Message::Navigation);
+        assert_eq!(ui.sidebar_width(), 52.0);
+        assert!(
+            Desktop::navigation_order()
+                .iter()
+                .all(|s| ui.controls().iter().any(|(id, _)| *id == s.id()))
+        );
+        let _ = ui.update(Message::Navigation);
+        assert_eq!(ui.sidebar_width(), 340.0);
+        let _ = ui.update(Message::Resize(640.0));
+        assert_eq!(ui.sidebar_width(), 314.0);
+        let _ = ui.update(Message::Resize(1366.0));
+        assert_eq!(ui.sidebar_width(), 340.0);
+        let _ = ui.update(Message::Navigation);
+        let _ = ui.update(Message::SidebarAdjust(-24.0));
+        assert!(ui.navigation_open);
+        assert_eq!(ui.sidebar_width(), 316.0);
+        ui.focus = Some(Surface::Skills.id());
+        let _ = ui.update(Message::Navigation);
+        assert_eq!(ui.focus, Some(Surface::Skills.id()));
+    }
+    #[test]
+    fn focused_navigation_reveals_after_rail_width_and_window_changes() {
+        let mut ui = Desktop {
+            surface: Surface::Editor,
+            focus: Some(Surface::Skills.id()),
+            ..Desktop::default()
+        };
+        for change in [
+            Message::Navigation,
+            Message::Navigation,
+            Message::SidebarAdjust(-24.0),
+            Message::Resize(640.0),
+        ] {
+            let task = ui.update(change);
+            assert!(
+                task.units() > 0,
+                "geometry changes must schedule actual-bounds reveal"
+            );
+            assert_eq!(ui.focus, Some(Surface::Skills.id()));
+        }
+        ui.focus = Some(212);
+        assert_eq!(ui.update(Message::Navigation).units(), 0);
+        ui.command_open = true;
+        ui.focus = Some(Surface::Skills.id());
+        assert_eq!(ui.update(Message::Resize(1366.0)).units(), 0);
+    }
+    #[test]
+    fn navigation_groups_are_contiguous_without_changing_destination_ids() {
+        let ordered = Desktop::navigation_order();
+        let excluded: Vec<_> = Surface::ALL
+            .into_iter()
+            .filter(|s| !ordered.contains(s))
+            .collect();
+        assert_eq!(
+            excluded,
+            [
+                Surface::Start,
+                Surface::NewProject,
+                Surface::Settings,
+                Surface::Appearance,
+                Surface::Problems,
+                Surface::Tests,
+                Surface::Trace,
+                Surface::Terminal,
+            ]
+        );
+        let mut seen = std::collections::HashSet::new();
+        let mut group = "";
+        for s in ordered {
+            assert_eq!(Surface::ALL[s.id() - 100], s);
+            if s.group() != group {
+                assert!(seen.insert(s.group()));
+                group = s.group();
+            }
+        }
+    }
+    #[test]
     fn folder_cancel_preserves_workspace_evidence_and_rejects_duplicates() {
         let mut ui = pending_ui();
         let _ = ui.update(Message::ChooseFolder);
@@ -1181,12 +1693,99 @@ mod tests {
         let mut ui = pending_ui();
         let _ = ui.update(Message::FolderChosen(5, Err("desktop unavailable".into())));
         assert_eq!(ui.picker_error.as_deref(), Some("desktop unavailable"));
+        assert!(ui.manual_path);
+        assert_eq!(ui.focus, Some(2));
+        assert!(ui.controls().iter().any(|(id, _)| *id == 2));
+        assert_eq!(ui.reveal_scroller(2), "welcome-sidebar");
         assert_eq!(ui.path, "/original");
         assert!(ui.selected);
         assert!(ui.result);
         assert_eq!(ui.status, "prior verification");
         let _ = ui.update(Message::Path("/manual".into()));
         assert!(ui.picker_error.is_none());
+    }
+
+    #[test]
+    fn folder_parent_error_keeps_the_existing_parent_input_available() {
+        let mut ui = pending_ui();
+        ui.surface = Surface::NewProject;
+        ui.picker_parent = true;
+        let _ = ui.update(Message::FolderChosen(5, Err("desktop unavailable".into())));
+        assert!(!ui.manual_path);
+        assert_eq!(ui.focus, Some(291));
+        assert!(ui.controls().iter().any(|(id, _)| *id == 291));
+        assert_eq!(ui.reveal_scroller(291), "main");
+    }
+
+    #[test]
+    fn event_mapping_keeps_pointer_motion_in_the_drag_subscription() {
+        let motion = iced::Event::Mouse(iced::mouse::Event::CursorMoved {
+            position: iced::Point::new(240.0, 100.0),
+        });
+        assert!(map_event(motion.clone(), iced::event::Status::Ignored, true).is_none());
+        assert!(matches!(
+            map_drag(&motion),
+            Some(Message::SidebarMove(240.0))
+        ));
+        for event in [
+            iced::Event::Mouse(iced::mouse::Event::CursorLeft),
+            iced::Event::Mouse(iced::mouse::Event::ButtonReleased(
+                iced::mouse::Button::Left,
+            )),
+            iced::Event::Window(iced::window::Event::Unfocused),
+        ] {
+            assert!(matches!(
+                map_event(event, iced::event::Status::Captured, true),
+                Some(Message::SidebarEnd)
+            ));
+        }
+        assert!(matches!(
+            map_event(
+                iced::Event::Window(iced::window::Event::Resized(iced::Size::new(640.0, 480.0))),
+                iced::event::Status::Ignored,
+                true
+            ),
+            Some(Message::Resize(640.0))
+        ));
+    }
+
+    #[test]
+    fn navigation_shortcuts_respect_capture_and_visible_surface() {
+        use iced::keyboard::{Event, Key, Location, Modifiers, key};
+        for key in [
+            Key::Character("b".into()),
+            Key::Character("k".into()),
+            Key::Named(key::Named::ArrowLeft),
+            Key::Named(key::Named::ArrowRight),
+        ] {
+            let event = iced::Event::Keyboard(Event::KeyPressed {
+                modified_key: key.clone(),
+                key,
+                physical_key: key::Physical::Code(key::Code::KeyB),
+                location: Location::Standard,
+                modifiers: Modifiers::CTRL | Modifiers::ALT,
+                text: None,
+                repeat: false,
+            });
+            assert!(map_event(event.clone(), iced::event::Status::Captured, true).is_none());
+            assert!(map_event(event.clone(), iced::event::Status::Ignored, false).is_none());
+            assert!(map_event(event, iced::event::Status::Ignored, true).is_some());
+        }
+    }
+
+    #[test]
+    fn reveal_selects_the_panel_that_contains_the_focused_control() {
+        let mut ui = Desktop::default();
+        for id in [2, 3, 273, 274] {
+            assert_eq!(ui.reveal_scroller(id), "welcome-sidebar");
+        }
+        for id in [270, 275, 400, 401] {
+            assert_eq!(ui.reveal_scroller(id), "main");
+        }
+        ui.surface = Surface::Settings;
+        for id in 220..=224 {
+            assert_eq!(ui.reveal_scroller(id), "main");
+        }
     }
     #[test]
     fn folder_late_results_after_edit_navigation_or_close_have_no_effect() {
@@ -1244,9 +1843,10 @@ mod tests {
             ..Desktop::default()
         };
         let ids: Vec<_> = ui.controls().into_iter().map(|(id, _)| id).collect();
-        assert_eq!(&ids[..4], &[272, 273, 274, 275]);
+        assert_eq!(&ids[..3], &[272, 274, 273]);
+        assert!(!ids.contains(&276));
         assert!(!ids.contains(&2));
-        let _ = ui.update(Message::ManualPath);
+        ui.manual_path = true; // Automatic fallback after chooser failure.
         let ids: Vec<_> = ui.controls().into_iter().map(|(id, _)| id).collect();
         let input = ids.iter().position(|id| *id == 2).unwrap();
         assert_eq!(&ids[input..input + 2], &[2, 3]);
@@ -1456,6 +2056,7 @@ mod tests {
             fn scroll_by(&mut self, _: AbsoluteOffset, _: iced::Rectangle, _: iced::Rectangle) {}
         }
         let mut reveal = RevealControl {
+            scroller: "main",
             target: iced::widget::Id::new("welcome-control-438"),
             bounds: None,
             viewport: None,
@@ -1548,6 +2149,33 @@ mod tests {
             if id == Some(&self.target) {
                 self.found = Some(bounds);
             }
+        }
+    }
+    #[test]
+    fn welcome_chrome_preserves_work_area_at_desktop_sizes() {
+        use iced::advanced::{layout, widget::Tree};
+        let renderer = iced::Renderer::new(crate::design::UI_FONT, iced::Pixels(16.0));
+        for (width, height) in [(640.0, 480.0), (1440.0, 900.0), (2560.0, 1080.0)] {
+            let ui = Desktop {
+                width,
+                ..Desktop::default()
+            };
+            let mut element = ui.view();
+            let mut tree = Tree::new(element.as_widget());
+            let node = element.as_widget_mut().layout(
+                &mut tree,
+                &renderer,
+                &layout::Limits::new(iced::Size::ZERO, iced::Size::new(width, height)),
+            );
+            let regions = node.children()[0].children();
+            assert!(
+                regions[0].bounds().height <= 60.0,
+                "chrome consumes work area at {width}"
+            );
+            assert!(
+                regions[1].bounds().height >= height - 100.0,
+                "project area compressed at {width}"
+            );
         }
     }
     fn exercise_input_click(
@@ -1674,11 +2302,9 @@ mod tests {
             ..Desktop::default()
         };
         let _ = ui.update(Message::DemoDocument(1));
-        let _ = ui.update(Message::DemoTool(2));
-        assert_eq!((ui.demo_document, ui.demo_tool), (1, 2));
+        assert_eq!(ui.demo_document, 1);
         let _ = ui.update(Message::DemoDocument(99));
-        let _ = ui.update(Message::DemoTool(99));
-        assert_eq!((ui.demo_document, ui.demo_tool), (1, 2));
+        assert_eq!(ui.demo_document, 1);
         assert!(ui.selected);
         assert_eq!(ui.generation, 7);
         assert!(!ui.busy);
@@ -1694,12 +2320,15 @@ mod tests {
             width: 800.0,
             surface: Surface::Tasks,
             navigation_open: true,
+            navigation_width: 256.0,
+            navigation_drag: false,
+            navigation_grab: 0.0,
             busy: true,
             ..Desktop::default()
         };
         assert!(!ui.controls().iter().any(|(id, _)| *id == 2));
         assert!(ui.controls().iter().any(|(id, _)| *id == 214));
-        ui.focus = Some(211);
+        ui.focus = Some(601);
         let _ = ui.update(Message::Command);
         assert!(
             ui.controls()
@@ -1707,7 +2336,7 @@ mod tests {
                 .all(|(_, m)| !matches!(m, Message::Start(_) | Message::Cancel))
         );
         let _ = ui.update(Message::Escape);
-        assert_eq!(ui.focus, Some(211));
+        assert_eq!(ui.focus, Some(601));
         assert!(ui.busy);
         let _ = ui.update(Message::Navigate(Surface::Observability));
         assert!(ui.busy);
@@ -1753,5 +2382,244 @@ mod tests {
         let _ = ui.update(Message::Done(4, Action::Start, Ok("late workspace".into())));
         assert!(!ui.selected);
         assert_eq!(ui.path, "/new");
+    }
+
+    #[test]
+    fn every_destination_stays_reachable_outside_the_sidebar() {
+        let mut ui = Desktop {
+            surface: Surface::Tasks,
+            ..Desktop::default()
+        };
+        let mut targets: Vec<Surface> = Desktop::navigation_order();
+        for menu in chrome::Menu::ALL {
+            for item in ui.menu_items(menu) {
+                if let Some(Message::Navigate(s)) = item.action {
+                    targets.push(s);
+                }
+            }
+        }
+        ui.command_open = true;
+        targets.extend(ui.command_matches());
+        for surface in Surface::ALL {
+            assert!(targets.contains(&surface), "{surface:?} unreachable");
+        }
+    }
+    #[test]
+    fn menus_are_modal_and_escape_or_outside_click_return_focus() {
+        let mut ui = Desktop {
+            surface: Surface::Tasks,
+            selected: true,
+            ..Desktop::default()
+        };
+        let _ = ui.update(Message::Menu(Some(chrome::Menu::View)));
+        assert_eq!(ui.menu, Some(chrome::Menu::View));
+        assert_eq!(ui.focus, Some(620));
+        assert!(
+            ui.controls()
+                .iter()
+                .all(|(id, m)| (610..640).contains(id) && matches!(m, Message::MenuItem(_)))
+        );
+        let _ = ui.update(Message::CommandMove(false));
+        assert_eq!(ui.focus, Some(621));
+        let _ = ui.update(Message::CommandMove(true));
+        let _ = ui.update(Message::CommandMove(true));
+        assert_eq!(ui.focus, Some(627));
+        let _ = ui.update(Message::Escape);
+        assert_eq!((ui.menu, ui.focus), (None, Some(601)));
+        // Outside click closes without executing any item.
+        let _ = ui.update(Message::Menu(Some(chrome::Menu::File)));
+        let _ = ui.update(Message::Menu(None));
+        assert_eq!((ui.menu, ui.focus), (None, Some(600)));
+        assert!(!ui.closing);
+        // Activating an item runs its existing message and closes the menu.
+        let _ = ui.update(Message::Menu(Some(chrome::Menu::View)));
+        ui.focus = Some(624);
+        let _ = ui.update(Message::Activate);
+        assert_eq!(ui.appearance, Appearance::Dark);
+        assert_eq!((ui.menu, ui.focus), (None, Some(601)));
+        // Menus do not open over the command palette or on project entry.
+        ui.command_open = true;
+        let _ = ui.update(Message::Menu(Some(chrome::Menu::File)));
+        assert_eq!(ui.menu, None);
+    }
+    #[test]
+    fn document_tabs_open_activate_and_never_close_the_last_document() {
+        let mut ui = Desktop {
+            surface: Surface::Tasks,
+            ..Desktop::default()
+        };
+        assert_eq!(ui.visible_tabs(), [Surface::Tasks]);
+        assert!(
+            !ui.controls()
+                .iter()
+                .any(|(_, m)| matches!(m, Message::CloseTab(_)))
+        );
+        let _ = ui.update(Message::Navigate(Surface::Agents));
+        let _ = ui.update(Message::Navigate(Surface::Editor));
+        assert_eq!(
+            ui.visible_tabs(),
+            [Surface::Tasks, Surface::Agents, Surface::Editor]
+        );
+        let _ = ui.update(Message::Navigate(Surface::Agents));
+        assert_eq!(ui.visible_tabs().len(), 3);
+        let _ = ui.update(Message::CloseTab(Surface::Agents));
+        assert_eq!(ui.surface, Surface::Editor);
+        assert_eq!(ui.visible_tabs(), [Surface::Tasks, Surface::Editor]);
+        let _ = ui.update(Message::CloseTab(Surface::Editor));
+        let _ = ui.update(Message::CloseTab(Surface::Tasks));
+        assert_eq!(ui.visible_tabs(), [Surface::Tasks]);
+        assert_eq!(ui.surface, Surface::Tasks);
+        for surface in Desktop::navigation_order() {
+            let _ = ui.update(Message::Navigate(surface));
+        }
+        assert!(ui.visible_tabs().len() <= 8);
+        assert!(ui.visible_tabs().contains(&ui.surface));
+    }
+    #[test]
+    fn tool_windows_dock_without_replacing_the_document() {
+        let mut ui = Desktop {
+            surface: Surface::NewTask,
+            busy: true,
+            ..Desktop::default()
+        };
+        assert!(!ui.dock_visible());
+        let _ = ui.update(Message::Navigate(Surface::Trace));
+        assert_eq!(ui.surface, Surface::NewTask);
+        assert!(ui.dock_visible());
+        assert_eq!(ui.dock_tool, Surface::Trace);
+        assert!(ui.busy, "docking never changes execution state");
+        assert!(ui.controls().iter().any(|(id, _)| *id == 642));
+        let _ = ui.update(Message::Dock);
+        assert!(!ui.dock_visible());
+        assert!(
+            !ui.controls()
+                .iter()
+                .any(|(id, _)| matches!(id, 640..=643 | 645))
+        );
+        assert_eq!(
+            map_event(
+                iced::Event::Keyboard(iced::keyboard::Event::KeyPressed {
+                    key: iced::keyboard::Key::Character("j".into()),
+                    modified_key: iced::keyboard::Key::Character("j".into()),
+                    physical_key: iced::keyboard::key::Physical::Unidentified(
+                        iced::keyboard::key::NativeCode::Unidentified
+                    ),
+                    location: iced::keyboard::Location::Standard,
+                    modifiers: iced::keyboard::Modifiers::CTRL,
+                    text: None,
+                    repeat: false,
+                }),
+                iced::event::Status::Ignored,
+                true,
+            )
+            .map(|m| matches!(m, Message::Dock)),
+            Some(true)
+        );
+    }
+    #[test]
+    fn title_and_evidence_badge_carry_only_relevant_context() {
+        let mut ui = Desktop {
+            surface: Surface::Tools,
+            appearance: Appearance::Dark,
+            validation_label: None,
+            ..Desktop::default()
+        };
+        assert_eq!(ui.window_title(), "Ferramentas e plugins — Ox");
+        ui.selected = true;
+        ui.path = "/home/user/meu-projeto".into();
+        assert_eq!(
+            ui.window_title(),
+            "Ferramentas e plugins — meu-projeto — Ox"
+        );
+        ui.surface = Surface::Start;
+        assert_eq!(ui.window_title(), "Central de projetos — Ox");
+        for surface in Surface::ALL {
+            assert_eq!(
+                Desktop::shows_task_evidence(surface),
+                matches!(
+                    surface,
+                    Surface::Project | Surface::Tasks | Surface::Activity | Surface::Recovery
+                )
+            );
+        }
+    }
+    #[test]
+    fn recent_filter_keeps_stable_ids_and_order() {
+        let mut ui = Desktop {
+            recent: vec!["/a/ox".into(), "/b/site".into(), "/c/ox-docs".into()],
+            ..Desktop::default()
+        };
+        let _ = ui.update(Message::RecentFilter("OX".into()));
+        let ids: Vec<_> = ui
+            .controls()
+            .into_iter()
+            .map(|(id, _)| id)
+            .filter(|id| *id >= 400)
+            .collect();
+        assert_eq!(ids, [400, 401, 404, 405]);
+        assert!(ui.controls().iter().any(|(id, _)| *id == 284));
+        assert_eq!(ui.focus, Some(284));
+    }
+    #[test]
+    fn page_reading_width_is_bounded_on_wide_windows() {
+        use iced::advanced::{layout, widget::Tree};
+        #[derive(Default)]
+        struct Canvas {
+            canvas: Option<iced::Rectangle>,
+            content: Option<iced::Rectangle>,
+        }
+        impl iced::advanced::widget::Operation for Canvas {
+            fn traverse(
+                &mut self,
+                operate: &mut dyn FnMut(&mut dyn iced::advanced::widget::Operation),
+            ) {
+                operate(self);
+            }
+            fn container(&mut self, id: Option<&iced::widget::Id>, bounds: iced::Rectangle) {
+                if id == Some(&iced::widget::Id::new("document-canvas")) {
+                    self.canvas = Some(bounds);
+                } else if id == Some(&iced::widget::Id::new("document-content")) {
+                    self.content = Some(bounds);
+                }
+            }
+        }
+        let renderer = iced::Renderer::new(crate::design::UI_FONT, iced::Pixels(16.0));
+        for (surface, bounded) in [(Surface::Tools, true), (Surface::Editor, false)] {
+            let ui = Desktop {
+                surface,
+                width: 2560.0,
+                ..Desktop::default()
+            };
+            let mut element = ui.view();
+            let mut tree = Tree::new(element.as_widget());
+            let node = element.as_widget_mut().layout(
+                &mut tree,
+                &renderer,
+                &layout::Limits::new(iced::Size::ZERO, iced::Size::new(2560.0, 1080.0)),
+            );
+            let mut found = Canvas::default();
+            element.as_widget_mut().operate(
+                &mut tree,
+                iced::advanced::Layout::new(&node),
+                &renderer,
+                &mut found,
+            );
+            let canvas = found.canvas.expect("document canvas present");
+            let content = found.content.expect("document content present");
+            assert!(canvas.width > 1800.0, "{surface:?} canvas {}", canvas.width);
+            if bounded {
+                assert!(
+                    content.width <= 1200.0,
+                    "{surface:?} content {}",
+                    content.width
+                );
+            } else {
+                assert!(
+                    content.width > 1800.0,
+                    "{surface:?} content {}",
+                    content.width
+                );
+            }
+        }
     }
 }
