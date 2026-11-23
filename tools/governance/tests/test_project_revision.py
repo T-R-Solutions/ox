@@ -28,7 +28,10 @@ class ProjectRevisionTests(unittest.TestCase):
         for name in ["README.md", "sdd/project.md"]:
             p = self.root / name
             original = p.read_bytes()
-            p.write_bytes(original + b"unknown")
+            changed = (original.replace(b"## Authorities", b"## Lost authorities", 1)
+                       if name == "sdd/project.md" else original + b"unknown")
+            self.assertNotEqual(changed, original)
+            p.write_bytes(changed)
             self.assertTrue(
                 any(
                     ("current" in e and ("README" in e or "Project succession" in e))

@@ -181,7 +181,9 @@ class InstructionRoutes(unittest.TestCase):
         for name in sorted(names):
             with self.subTest(skill=name):
                 skill_path = f".codex/skills/{name}/SKILL.md"
-                skill = (ROOT / skill_path).read_bytes()
+                # Compare this historical transition after authenticating all
+                # later successors, rather than freezing the live skill forever.
+                skill = IR.predecessor(ROOT, skill_path, (ROOT / skill_path).read_bytes())
                 prior = (BEFORE / f"{skill_path}.bin").read_bytes()
                 if name != "commit-governance":
                     self.assertEqual(skill, prior)
@@ -191,7 +193,7 @@ class InstructionRoutes(unittest.TestCase):
                     for title in before_sections.keys() - {"Commit workflow", "Pre-commit automation choice"}:
                         self.assertEqual(before_sections[title], after_sections[title])
                 bridge_path = f"sdd/chain/{name}.md"
-                bridge = (ROOT / bridge_path).read_text()
+                bridge = IR.predecessor(ROOT, bridge_path, (ROOT / bridge_path).read_bytes()).decode()
                 previous = (BEFORE / f"{bridge_path}.bin").read_text()
                 self.assertEqual(bridge.split("---", 2)[:2], previous.split("---", 2)[:2])
                 before_sections, after_sections = sections(previous), sections(bridge)
@@ -214,6 +216,9 @@ class InstructionRoutes(unittest.TestCase):
                     )
                     new_contribution = new_contribution.replace(
                         "Separate domain lifecycle states (including pending) from SDD verdicts; pending is not an SDD status. Record acceptance with the five states in [evidence](../evidence.md), using UNVERIFIED when required evidence has not been collected.", ""
+                    )
+                    new_contribution = new_contribution.replace(
+                        "Separate states: pending, approved, rejected, inconclusive, justified not applicable.", ""
                     )
                 self.assertEqual(old_contribution, new_contribution)
                 for target in re.findall(r"\]\(([^)]+)\)", bridge):

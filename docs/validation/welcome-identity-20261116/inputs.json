@@ -1,0 +1,61 @@
+{
+  "assets": [
+    {
+      "source": ".local/assets/definitivo/logo-escuro.png",
+      "copy": "application/crates/ox-ui/assets/identity/logo-escuro.png",
+      "sha256": "500d25915909d5255b4c7a48dae749e7b5129ba7ff67c18d9d4e32f973d8943d",
+      "size": [
+        960,
+        300
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "byte_identical": true
+    },
+    {
+      "source": ".local/assets/definitivo/logo-branco.png",
+      "copy": "application/crates/ox-ui/assets/identity/logo-branco.png",
+      "sha256": "9b74c43d7f9c8698cbc87f7916ca39207b7c094ddf025a79b013788de48e9ee9",
+      "size": [
+        960,
+        300
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "byte_identical": true
+    },
+    {
+      "source": ".local/assets/definitivo/mascote-ox.png",
+      "copy": "application/crates/ox-ui/assets/identity/mascote-ox.png",
+      "sha256": "6323b3864bb44259fcb3466f1f6a205661e53d1e2de19a765e8ac5eb09f13db1",
+      "size": [
+        1065,
+        1477
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "byte_identical": true
+    }
+  ],
+  "inputs": {
+    "application/Cargo.toml": "db8cf6cbce0cec0312c8392b2e96c01cdab9ba65e60caf586e4183360bc44040",
+    "application/Cargo.lock": "99d3907a15d227674b420a6cfcede596be840144c3db9ff070547c948bc40ab8",
+    "application/crates/ox-ui/Cargo.toml": "b187b5b88555c4250c0b3e499c2208b35fa1c294785aceaa39d69ac44a306338",
+    "application/crates/ox-ui/src/desktop.rs": "ab53e002485e260843efec2930dbb7b93621958d8f157b0ff0ce34aca197e7d5",
+    "application/crates/ox-ui/src/desktop/views.rs": "024722a0bdcde2d47e09d9f24c7fa5a26c83b9a4e321a688e753e78a21a84dd9",
+    "application/crates/ox-ui/src/desktop/identity.rs": "026bf3f073d5852b568e38869b343f85c35d6668de68b7c69a7a30387dc935d5",
+    "application/crates/ox-ui/assets/fonts/IBMPlexSans-Regular.ttf": "975dcda37d80f038dcd143c22e33ca2d97a0cc5a929aace1c749153b0fe1afa5",
+    "application/crates/ox-ui/assets/fonts/IBMPlexSans-SemiBold.ttf": "a20caf8286023a6a7a85e40b1d2a4ae9fc3e3b1f9eda8f4c542dd4986af67bb1",
+    "application/crates/ox-ui/assets/fonts/IBMPlexMono-Regular.ttf": "7c6fbddca4b700be918f5f6183d9bd4464fa427fe435f0b480d77fe2bb8c5a43",
+    "application/crates/ox-ui/assets/fonts/OFL.txt": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+    ".codex/skills/design-system/SKILL.md": "1594542a3f68eddb6305f786a41be54f3af8afa5c0d9e94b79cb5e9f1c9484d9",
+    ".codex/skills/iced-engineering/SKILL.md": "9b5a50121d4734558963970486a3a030beb78be04b7a13a467290735aaaeac06",
+    ".codex/skills/rust/SKILL.md": "da7b9ada8326b2d2cb4288ac6f67864c7b9defb833641470904c6fe9221d8891"
+  }
+}

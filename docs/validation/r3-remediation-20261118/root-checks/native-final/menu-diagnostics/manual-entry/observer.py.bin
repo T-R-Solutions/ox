@@ -1,0 +1,46 @@
+from pathlib import Path
+import hashlib,importlib.util,json,os,re,subprocess,time,traceback
+ROOT=Path('/home/rodrigo/Projetos/ox');OUT=Path('/tmp/ox-r3-menu-probe-01')
+if OUT.exists():raise SystemExit('Refuse overwrite')
+spec=importlib.util.spec_from_file_location('native',ROOT/'docs/validation/f0-resumption-20261103/native-session.py');native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
+session=None;app=None;log=None;record={'scope':'private native diagnostic of outside menu click; screenshots do not imply pass','script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'cases':[]}
+def chord(mod,key):session.key(mod,True);session.key(key);session.key(mod,False)
+def click(x,y):
+ session.call('RemoteDesktop',session.rd,'NotifyPointerMotionAbsolute','(sdd)',(session.stream,float(x),float(y)));time.sleep(.2)
+ for state in [True,False]:
+  record.setdefault('pointer_calls',[]).append({'time':time.monotonic(),'xy':[x,y],'pressed':state})
+  session.call('RemoteDesktop',session.rd,'NotifyPointerButton','(ib)',(272,state))
+ time.sleep(.2)
+def geometry():
+ pairs=re.findall(r'xdg_toplevel#\d+\.configure\((\d+), (\d+),', (OUT/'wayland.log').read_text())
+ return next(((int(w),int(h)) for w,h in reversed(pairs) if int(w)>0 and int(h)>0),None)
+try:
+ session=native.Session(OUT,'2560x1000',1)
+ session.call('RemoteDesktop',session.rd,'NotifyPointerMotionAbsolute','(sdd)',(session.stream,1.0,1.0))
+ fixture=OUT/'project';fixture.mkdir();state=OUT/'state';state.mkdir();bins=OUT/'fixture-bin';bins.mkdir();marker=OUT/'picker-invoked';provider=bins/'zenity';provider.write_text('#!/bin/sh\nprintf invoked > "$OX_R3_PICKER_MARKER"\nexit 2\n');provider.chmod(0o700)
+ env=dict(session.env,WAYLAND_DEBUG='1',OX_VALIDATION_SESSION='menu-probe',XDG_STATE_HOME=str(state),PATH=str(bins)+':'+session.env.get('PATH',''),OX_R3_PICKER_MARKER=str(marker))
+ binary=ROOT/'application/target/debug/ox';before=hashlib.sha256(binary.read_bytes()).hexdigest();record['binary_before']=before
+ log=(OUT/'wayland.log').open('w');app=subprocess.Popen([str(binary)],cwd=ROOT,env=env,stdout=log,stderr=log);session.children.append(app)
+ session.wait(lambda:'xdg_toplevel' in (OUT/'wayland.log').read_text(),'app toplevel');time.sleep(.6);session.key(0xFFE1);session.wait(lambda:'.enter(' in (OUT/'wayland.log').read_text(),'keyboard focus')
+ if geometry()!=(2560,1000):chord(0xFFE9,0xFFC7)
+ session.wait(lambda:geometry()==(2560,1000),'actual configured2560x1000');record['geometry']=list(geometry())
+ for _ in range(3):session.key(0xFF09)
+ session.key(0xFF0D);session.wait(marker.is_file,'controlled optional provider error');time.sleep(.2)
+ for char in str(fixture):session.key(ord(char))
+ session.key(0xFF0D);session.wait(lambda:'.set_title("Tarefas — project — Ox' in (OUT/'wayland.log').read_text(),'actual project open');time.sleep(.3)
+ for index,point in enumerate([(600,230),(1000,230),(2000,600),(900,900)],1):
+  session.key(0xFF1B);click(220,60);session.shot(f'{index:02d}-open')
+  offset=(OUT/'wayland.log').stat().st_size;click(*point);session.shot(f'{index:02d}-after-short');time.sleep(1);session.shot(f'{index:02d}-after-long')
+  recent=(OUT/'wayland.log').read_text()[offset:]
+  record['cases'].append({'point':list(point),'events':[line for line in recent.splitlines() if 'wl_pointer' in line and any(token in line for token in ['.button(','.motion(','.enter('])],'frame_timestamp':session.latest[0]})
+ assert not list(fixture.glob('.ox-task-*')),'Navigation started task'
+ chord(0xFFE9,0xFFC1);session.wait(lambda:app.poll() is not None,'natural close');record['natural_exit']=app.returncode;assert app.returncode==0
+ record['binary_after']=hashlib.sha256(binary.read_bytes()).hexdigest();assert record['binary_after']==before,'binary changed'
+ record['result']='observed; inspect actual open/after frames before any verdict'
+except Exception as error:
+ record['error']=str(error);traceback.print_exc()
+finally:
+ if session:session.close()
+ if log:log.close()
+ OUT.mkdir(exist_ok=True);(OUT/'observer.py.bin').write_bytes(Path(__file__).read_bytes());(OUT/'result.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps({k:v for k,v in record.items() if k not in ['cases','pointer_calls']}),flush=True)
+raise SystemExit(1 if 'error' in record else 0)

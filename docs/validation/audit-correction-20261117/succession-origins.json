@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "revision": "audit-origins-20261117-001",
+  "previous_registry": {
+    "path": "docs/validation/governance-link-repair-20261115/origins.json",
+    "sha256": "efc3c2288e631619efefb77caa2618b3675b2e435898f13f1eee6b571cfc8fd0"
+  },
+  "records": [
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/DESIGN.md",
+      "origin": "DESIGN.md",
+      "sha256": "7336e4d80b7d5c845162a2843b547c67634cde551c10718d014e72c568211496",
+      "excluded_targets": {
+        "sdd/features/product-visual-workbench/converge.md": "19d05cde61b31160279aa1a2117b94c4d3d7a347359b58f0e3484fba05c5145d",
+        "sdd/features/skill-native-visual-method/spec.md": "a6859b7d14d1c8dc34b687ba0bf124e7932fd26937bd73417629598e48d2154b"
+      }
+    },
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/application/README.md",
+      "origin": "application/README.md",
+      "sha256": "f9397bae0355f349205163f6028d20c878bafabc500aa6de6f9b434fd77094a5",
+      "excluded_targets": {
+        "application/Cargo.toml": "db8cf6cbce0cec0312c8392b2e96c01cdab9ba65e60caf586e4183360bc44040",
+        "application/rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+        "application/Cargo.lock": "99d3907a15d227674b420a6cfcede596be840144c3db9ff070547c948bc40ab8",
+        "docs/validation/product-local-task-ui/reproduce.md": "6afb0651f17a72dd41c1a87c07e5f71f2789719fd6bd023fc61fe07f39f7e88d",
+        "docs/validation/f0-resumption-20261103/report.md": "2673d54e6f9ebf1f64fe3ba23c322766d1f4833d42193453418f62097ce16653"
+      }
+    },
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/application/crates/ox-ui/assets/identity/README.md",
+      "origin": "application/crates/ox-ui/assets/identity/README.md",
+      "sha256": "ffcf06f1c4311695e0bffb515b93897b4f78548ce635140fb6ce8209c1bb6671",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/docs/design/components.md",
+      "origin": "docs/design/components.md",
+      "sha256": "21e412f4e83efdf98ed1d36ea1f7c09252dba5b97f534c4e2d405d3dfc79dd52",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/docs/design/surfaces.md",
+      "origin": "docs/design/surfaces.md",
+      "sha256": "bca77ea9486d8de235ce7f6afc2e67f8bfa5ef591df9c30c9648d3e3259a5e52",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/sdd/features/product-visual-workbench/converge.md",
+      "origin": "sdd/features/product-visual-workbench/converge.md",
+      "sha256": "d21af970fd17214a337be605dc16d367bd87acd013329edca7b4715ae95ab104",
+      "excluded_targets": {
+        "sdd/features/product-visual-workbench/evidence.json": "4ee3550a95595148aa0bd64b5aef9e51f66655c9b492d827e2d9d82fd920525c"
+      }
+    },
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/sdd/features/product-visual-workbench/plan.md",
+      "origin": "sdd/features/product-visual-workbench/plan.md",
+      "sha256": "30055c20cb9170c105c46001d1bb769fd8d748622d58fcd4ca55e2611718c003",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/sdd/features/product-visual-workbench/spec.md",
+      "origin": "sdd/features/product-visual-workbench/spec.md",
+      "sha256": "96469470b0253204886f281045c0f61f6e3764a833491fbdbe93941bc7c38a8c",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/sdd/features/product-visual-workbench/tasks.md",
+      "origin": "sdd/features/product-visual-workbench/tasks.md",
+      "sha256": "13882f5086804e1622e1ea33ef177463aa563fe29c0345a7641cf1128839a07d",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/desktop-navigation-20261117/before/sdd/project.md",
+      "origin": "sdd/project.md",
+      "sha256": "2c97f7f0eacc38c77a1118578a106d4c17403c77ca605e16148c36684f0325b8",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/DESIGN.md",
+      "origin": "DESIGN.md",
+      "sha256": "a79e0e59243937ff5d2393ff32869791886a0715e319439add63dc4233e7fba3",
+      "excluded_targets": {
+        "sdd/features/product-visual-workbench/converge.md": "19d05cde61b31160279aa1a2117b94c4d3d7a347359b58f0e3484fba05c5145d",
+        "sdd/features/skill-native-visual-method/spec.md": "a6859b7d14d1c8dc34b687ba0bf124e7932fd26937bd73417629598e48d2154b"
+      }
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/application/README.md",
+      "origin": "application/README.md",
+      "sha256": "82b0e0213f46c07654798baf6c8e12891283bf22e4a1358cac4842c9803f7114",
+      "excluded_targets": {
+        "application/Cargo.toml": "db8cf6cbce0cec0312c8392b2e96c01cdab9ba65e60caf586e4183360bc44040",
+        "application/rust-toolchain.toml": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33",
+        "application/Cargo.lock": "99d3907a15d227674b420a6cfcede596be840144c3db9ff070547c948bc40ab8",
+        "docs/validation/product-local-task-ui/reproduce.md": "6afb0651f17a72dd41c1a87c07e5f71f2789719fd6bd023fc61fe07f39f7e88d",
+        "docs/validation/f0-resumption-20261103/report.md": "2673d54e6f9ebf1f64fe3ba23c322766d1f4833d42193453418f62097ce16653"
+      }
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/docs/design/components.md",
+      "origin": "docs/design/components.md",
+      "sha256": "a4400668a5ab17d9e8a390bfa18ed5a4b2cbbf258a1384053882025cd85c4093",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/docs/design/reference-coverage.md",
+      "origin": "docs/design/reference-coverage.md",
+      "sha256": "035cde02862bd3504c483a6151d8c1d458087b0ffea8fd038cf21c043258164c",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/docs/design/surfaces.md",
+      "origin": "docs/design/surfaces.md",
+      "sha256": "255610e4ef652d76ecbb700a9428ee909ccba6ec976c66e79e90a4f7347ffbeb",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/sdd/features/product-visual-workbench/converge.md",
+      "origin": "sdd/features/product-visual-workbench/converge.md",
+      "sha256": "4bde3799c81240ba90fcba13ea220256e78dd04b8094a0e90fb030e46b113659",
+      "excluded_targets": {
+        "sdd/features/product-visual-workbench/evidence.json": "4ee3550a95595148aa0bd64b5aef9e51f66655c9b492d827e2d9d82fd920525c"
+      }
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/sdd/features/product-visual-workbench/plan.md",
+      "origin": "sdd/features/product-visual-workbench/plan.md",
+      "sha256": "a4d50eeb07540f7999c9fef3418813db183c166e97ebe3c52ed6b9541bb0db03",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/sdd/features/product-visual-workbench/spec.md",
+      "origin": "sdd/features/product-visual-workbench/spec.md",
+      "sha256": "f76a4eb498845b536f246a467f02234fa45aa9b0cf90021bd148462cba1ccfad",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/sdd/features/product-visual-workbench/tasks.md",
+      "origin": "sdd/features/product-visual-workbench/tasks.md",
+      "sha256": "3ce1f74429b54d260589b9e9d94b2a6d35498b3ec02f8b144900c2d512ff64ea",
+      "excluded_targets": {}
+    },
+    {
+      "source": "docs/validation/enterprise-visual-20261116/before/sdd/project.md",
+      "origin": "sdd/project.md",
+      "sha256": "cd3aa91ebd6cd50aa505f2a4dfd526d1f36a00e4d08a1e2657bf119d9710d0b5",
+      "excluded_targets": {}
+    }
+  ]
+}

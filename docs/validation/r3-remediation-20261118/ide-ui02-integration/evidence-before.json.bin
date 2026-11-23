@@ -1,0 +1,1079 @@
+{
+  "schema_version": 2,
+  "environment": "Linux local checkout (development, dirty tree preserved); Rust offline build; isolated headless Mutter for captures",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "tokens.json and tokens.rs agree (build_design --check exit 0); check_contrast reports 0 failures; design.rs focus/contrast tests pass for Menu and Tab roles in every theme.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-TOKENS",
+        "E-RUST"
+      ],
+      "reason": "Observed by the implementing agent only; independent review/validation not performed in this session, so no criterion is approved here."
+    },
+    {
+      "id": "AC-02",
+      "criterion": "menu traversal is modal; Escape and outside click close and return focus to the trigger without executing an item; items dispatch existing messages; title omits theme/density; captures show the bar at 1024, 1600 and 2560 widths.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-R3-MENU-CONTRACT"
+      ],
+      "reason": "Current Rust state tests and source inspection establish modal traversal, existing-message dispatch and title semantics. WC07 establishes the observed widths and Escape behavior; the independently reviewed recent-project replay establishes outside-click closure and trigger focus at 2560. The contradictory WC07 frame remains preserved with undetermined cause."
+    },
+    {
+      "id": "AC-03",
+      "criterion": "tabs open/activate/close, the last tab is not closable, at most 8; dock navigation keeps the document and execution state; Ctrl+J toggles; every Surface is reachable through sidebar, menus or palette.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-RUST",
+        "E-NATIVE"
+      ],
+      "reason": "Observed by the implementing agent only; independent review/validation not performed in this session, so no criterion is approved here."
+    },
+    {
+      "id": "AC-04",
+      "criterion": "the dependency notice appears once; the badge shows only on task surfaces; the measured page content is ≤ 1200 units at 2560 while the editor uses the full width.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-RUST",
+        "E-NATIVE"
+      ],
+      "reason": "Observed by the implementing agent only; independent review/validation not performed in this session, so no criterion is approved here."
+    },
+    {
+      "id": "AC-05",
+      "criterion": "filtered recents keep MRU order and ids; filter is in traversal only with recents; captures show tiles, \"Em breve\" tag and empty state.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-RUST",
+        "E-NATIVE"
+      ],
+      "reason": "Observed by the implementing agent only; independent review/validation not performed in this session, so no criterion is approved here."
+    },
+    {
+      "id": "AC-06",
+      "criterion": "cargo fmt, default clippy and workspace tests pass; the complete Toolbox run is executed and its result recorded; pre-existing failures are distinguished from new ones.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-RUST",
+        "E-PEDANTIC"
+      ],
+      "reason": "Complete Toolbox run executed (exit 2): governance-tests, scripts-tests, pedantic clippy, deny, audit, osv and geiger did not pass; none of their inputs was changed by this task except clippy, whose findings are in unchanged code. Not approved."
+    },
+    {
+      "id": "AC-07",
+      "criterion": "maintainer visual acceptance of the captures or the running app.",
+      "status": "APPROVED",
+      "evidence_ids": [
+        "E-R3-MAINTAINER-VISUAL-V2"
+      ],
+      "reason": "Maintainer explicitly approved the captured set identified by the immutable visual index. The unchanged decision was reexamined against the current feature contract and stabilized task record. Approval applies only to visual judgment."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-TOKENS",
+      "kind": "test",
+      "command_or_method": "python3 application/tools/build_design.py --check; python3 application/tools/check_contrast.py",
+      "observed_result": "Generated roles match source (exit 0); 114 pairs, 0 failures.",
+      "artifact": "docs/validation/ide-shell-20261118/contrast.json",
+      "sha256": "fa5c449c702b65eacfe7a7e95cca0ba3b85e203f20e77652dd21069266f0b931",
+      "inputs": [
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "dae18b465baf166c0b77c8a72bff1ecb01ca0460328e7c1609306f98b3b28d71",
+          "role": "configuration"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+          "role": "implementation"
+        },
+        {
+          "path": "application/tools/check_contrast.py",
+          "sha256": "7742076d91bc629dfb248288eecd1bc00b251ea9368a98ce26f8ed8e07126063",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/build-design-check.log",
+          "sha256": "442f3bdabe544ad5f518217954e00f7ff9bcf2facdf6c4f40fdde882efd2ad3d",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-RUST",
+      "kind": "test",
+      "command_or_method": "cargo fmt --check; cargo clippy --workspace --all-targets --offline -- -D warnings; cargo test --workspace --offline (application/)",
+      "observed_result": "fmt exit 0; default clippy exit 0; workspace tests 102 passed, 0 failed (ox-ui lib 63 incl. 7 new).",
+      "artifact": "docs/validation/ide-shell-20261118/cargo-test.log",
+      "sha256": "3d1b0ab9cd604ca9d36d2b8db9a3795bbe75a19c1541b926d044a29f593cc7e9",
+      "inputs": [
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "5a16149fdae6d0467ed5b3cc8f8d7f959f41b5f9286cfb1fed7f99931f8b7096",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/chrome.rs",
+          "sha256": "eb613b62ef9aafa023967fbbc0a32401be6d874ff33a040ac72b752788a78f16",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/dock.rs",
+          "sha256": "cca0f6304e96f4ed558f53fc695b27cbea1dda476eb9431969bd48fb2f9ce7c7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/views.rs",
+          "sha256": "3ab8da129df3999e65cba0976e498fc4dbb856b72998c1a473fd9e471d351d10",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/design.rs",
+          "sha256": "4aae433e4cc8ca6a09e731a3a23767613c5625da96cdd3ad5816380e4216b6b9",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/icons.rs",
+          "sha256": "e0dc94d1f5982576c956a1801b176f0f49e694d84fd5a6471875e19f613beb25",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/splitter.rs",
+          "sha256": "a2b2c5ff6dbe6aea4ae566919f2f3188b5579bb2dbb1700ebd2321a71aa9306a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "dae18b465baf166c0b77c8a72bff1ecb01ca0460328e7c1609306f98b3b28d71",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/spec.md",
+          "sha256": "fc7427bc2ceaeb69670fd2699d6a3990245008603fdce3a3748be0b360da1358",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/cargo-fmt.log",
+          "sha256": "28d3b9e880a77975493dc7e359144c0295a4f694cfe0af4f928c22307bc5c320",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/clippy-default.log",
+          "sha256": "e76cfec90ad877cbf90f50c2932db80757bd40ac63ac920f2f11736be45e2f36",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-PEDANTIC",
+      "kind": "test",
+      "command_or_method": "cargo clippy with automation.json flags (-W all/pedantic/nursery/cargo -D warnings)",
+      "observed_result": "exit 101: 11 lint sites in unchanged code (hint.rs same hash as baseline, cog drawing, unreachable arms, map_drag, contrast test helper) plus 2 multiple-crate-version findings; no site in new code.",
+      "artifact": "docs/validation/ide-shell-20261118/clippy-pedantic.log",
+      "sha256": "3520d521c4ac587f21fe0a2aa8cf1692b99323489111b83b3262b29d206f4fee",
+      "inputs": [
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "5a16149fdae6d0467ed5b3cc8f8d7f959f41b5f9286cfb1fed7f99931f8b7096",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/chrome.rs",
+          "sha256": "eb613b62ef9aafa023967fbbc0a32401be6d874ff33a040ac72b752788a78f16",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/dock.rs",
+          "sha256": "cca0f6304e96f4ed558f53fc695b27cbea1dda476eb9431969bd48fb2f9ce7c7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/views.rs",
+          "sha256": "3ab8da129df3999e65cba0976e498fc4dbb856b72998c1a473fd9e471d351d10",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/design.rs",
+          "sha256": "4aae433e4cc8ca6a09e731a3a23767613c5625da96cdd3ad5816380e4216b6b9",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/icons.rs",
+          "sha256": "e0dc94d1f5982576c956a1801b176f0f49e694d84fd5a6471875e19f613beb25",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/splitter.rs",
+          "sha256": "a2b2c5ff6dbe6aea4ae566919f2f3188b5579bb2dbb1700ebd2321a71aa9306a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "dae18b465baf166c0b77c8a72bff1ecb01ca0460328e7c1609306f98b3b28d71",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/spec.md",
+          "sha256": "fc7427bc2ceaeb69670fd2699d6a3990245008603fdce3a3748be0b360da1358",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE",
+      "kind": "inspection",
+      "command_or_method": "Isolated headless Mutter/PipeWire session (capture.py, harness docs/validation/f0-resumption-20261103/native-session.py); keyboard-only journey; 13 captures per size at 1024x700, 1600x1000, 2560x1080; visual inspection by the implementing agent.",
+      "observed_result": "Bar, menus, tabs (one row), dock (30%), info bar, S01 tiles and graphite Dark observed; HC disabled buttons visually close to enabled (pre-existing palette).",
+      "artifact": "docs/validation/ide-shell-20261118/native-r3-1600x1000/record.json",
+      "sha256": "cc3bedb11da6a6f3b27897489d3ff1e017f68f8f1f9728a89acec80bacd99c4d",
+      "inputs": [
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "5a16149fdae6d0467ed5b3cc8f8d7f959f41b5f9286cfb1fed7f99931f8b7096",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/chrome.rs",
+          "sha256": "eb613b62ef9aafa023967fbbc0a32401be6d874ff33a040ac72b752788a78f16",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/dock.rs",
+          "sha256": "cca0f6304e96f4ed558f53fc695b27cbea1dda476eb9431969bd48fb2f9ce7c7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/views.rs",
+          "sha256": "3ab8da129df3999e65cba0976e498fc4dbb856b72998c1a473fd9e471d351d10",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/design.rs",
+          "sha256": "4aae433e4cc8ca6a09e731a3a23767613c5625da96cdd3ad5816380e4216b6b9",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/icons.rs",
+          "sha256": "e0dc94d1f5982576c956a1801b176f0f49e694d84fd5a6471875e19f613beb25",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/splitter.rs",
+          "sha256": "a2b2c5ff6dbe6aea4ae566919f2f3188b5579bb2dbb1700ebd2321a71aa9306a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "dae18b465baf166c0b77c8a72bff1ecb01ca0460328e7c1609306f98b3b28d71",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/spec.md",
+          "sha256": "fc7427bc2ceaeb69670fd2699d6a3990245008603fdce3a3748be0b360da1358",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/capture.py",
+          "sha256": "17f959d2c925df86b60fba5748bd9121739f9e247c9e1728951ae8c0b91c6b86",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/native-r3-1024x700/record.json",
+          "sha256": "d9e364ee94fba1e7f72e14eecc869f7301d4c020755920f1d7e11014c76b6fb6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/native-r3-2560x1080/record.json",
+          "sha256": "fe50a15400d970ea68c63a2ac6be94c067f0f400f06ff70e8a41874ceabdf4bd",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-R3-MAINTAINER-VISUAL-V2",
+      "kind": "inspection",
+      "command_or_method": "Explicit maintainer answer to question item [\"request_user_input_async\",\"call_376a659d277940eca8ec38391d4ad081\",0]: Aprovar visualmente esse conjunto. Independently checked recorded event, immutable index and captured-set identities. Reexamined the unchanged maintainer decision against the current feature contract and stabilized task record; corrected missing schema-2 bindings without renewing the original observation.",
+      "observed_result": "Maintainer approved the indexed visual set on binary 39d517bb89494ba73725c4da2e7e7fd8b326f1abd3c38dce21a88a3593e03f86; WC07 observer 60408be95b92e2c9f73a8a036e2f1a388a856007642b0e1ac003bf00dd3c7ad1. Scope is AC-07 only. This does not establish technical/global acceptance, assistive technology support, publication authorization or license rights. The WC07 2560 outside-click capture remains an inconclusive observation because it shows the menu still open. The original WC07 outside-click frame remains inconclusive; the separate AC-02 decision uses the subsequent reviewed replay. This record itself grants no technical approval.",
+      "artifact": "docs/validation/r3-remediation-20261118/root-checks/native-final/maintainer-visual-acceptance.json",
+      "sha256": "7bfa21392521d9ea9b8af5efccdfcd5d1ae7814129750d1fa9dfcc97538c7420",
+      "inputs": [
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/visual-index.md",
+          "sha256": "c3af6a413d20845572c0822652467b974b7e12d6dac92c88f0fd8b73f5a95e43",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/result.json",
+          "sha256": "04d3d9b74a78e0d791f4015fc179ecce394ab5664ae685f40e4bd3565b701d52",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/result.json",
+          "sha256": "a7d60f71dbf23e4427cf6cce4a482d4a82ddd25d94bfbcfe9aa75851c791dea0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/restart/actual-mru-restarted.png",
+          "sha256": "eed77d8d6bee53d73450b5f26250e538bd46236b356637a240b79b2e6663b25a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/command-bar.png",
+          "sha256": "8867857d75d82d3268eeb9a1a91e835b447f378fb97bcb95e2204b1773c06aa2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/file-menu.png",
+          "sha256": "afbc5db515545391c7d544f9c8365503a8b5beea10169e947a4b1ffe8eba05fb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/menu-escape-focus.png",
+          "sha256": "aeff853fdf731c8eb4c4c040cfc582f1381e34fab62e5e87c21ce6899ed39a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-2560/command-bar.png",
+          "sha256": "b82524baf8012a83b039b983e9f1fa2bcde1413c8c749f1f334226c3c98f3eb7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-2560/full-width-embedded-editor.png",
+          "sha256": "5e571aee93144f117b8e354798cfa8120109ae42146dee90363c90dab28fbe39",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/composition/editor-selected-workbench.png",
+          "sha256": "ab9f01cd6053e7676341cd727445d6d3fdb9d31708c294bb948aa26ffdc53eb1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/composition/editor-tool-tests.png",
+          "sha256": "a3509038f54d79abe6f8d9ce1004fd37d6a2dc90334be4a637dabaa5c88c1d31",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-approved-badge.png",
+          "sha256": "d10cedf66de2f8ccefc524ca5c705129d4d9fc6a56921b630359975e7f7f5971",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/narrow/high-contrast-compact-entry.png",
+          "sha256": "32e24bf9b62fa9d2ea60e01bda33f57829ac00a47f573f01ae35dae550a7406c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/narrow/create-confirmation-keyboard-focus.png",
+          "sha256": "76172614c27434a7194a0fa5bdc3bcfe8e41023acf04f1bdf27a65075020b39b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A01.png",
+          "sha256": "b5ca66c2b4970e50ceee08561055fb996ec049f78a1b61d9ca128b9743f569bb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A02.png",
+          "sha256": "dbe2ca3e047dfd82d147479f9fcc60c27c0b64e117840dbdc42e30f31b1ed906",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A03.png",
+          "sha256": "b79959933ba831ca892a95e80d8b94239744825c99d6f1a759f8037d77071180",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A04.png",
+          "sha256": "40217e97b2ac8a67b0e39f205ba4c3b556e1c29740c18777c17605d25cade85b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A05.png",
+          "sha256": "66e5b31a1976b5b64c030a6cdda1dc2d2aa01a31ee8fadaa15aa20a491455855",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A06.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S01.png",
+          "sha256": "3e88829dd278b8bc2744fe8aeff7debda2d3387ac3a4549353fcdee6a91d8347",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S02.png",
+          "sha256": "848f1ea2d64ff0bd3704b3336f665ec84a2d876365bb26c676517c6347618197",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S03.png",
+          "sha256": "8011c453e96901e191cc44a20fd730f0cbbedd3191eace17a20829e48f2bdbaa",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S04.png",
+          "sha256": "9b285375396ec772a1df70c04e27a13d14981e39a9964889a551376361e17d34",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S05.png",
+          "sha256": "8d9763dd0bbb881a1b649173ab7773cb793ffad7dcc418b9ea0a6e3c991d098d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S06.png",
+          "sha256": "e62f0f57cafdb0c34dd37f494e6d5772ee0923244f815b859946c62ddae48ca3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S07.png",
+          "sha256": "9f38b7f42f2c317f8c8f6ce1f838846c30b5d8e8bc966be3da3155dc4c5ec704",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S08.png",
+          "sha256": "87f1d86be42df14883255229f37c9a39c7eed7ae11f4f26f9023e6d402f05032",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S09.png",
+          "sha256": "eeaa2c0fdcd7412a2f550120531eddeebefa530c4f5cf007ea4d4fd58acf4238",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S10.png",
+          "sha256": "a09b7db608d2346a8d45b25c4c83fce66d70ee7817ef3e8efd1b454d05076f3d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S11.png",
+          "sha256": "73f9fe7000611c26a96818af6764c228f81b7995037102c633c36c4cdd3c3787",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S12.png",
+          "sha256": "e1b3567bd4a096012c26d751d28a7520d1253309ff6db21c4c40bc14b872ac94",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S13.png",
+          "sha256": "5cfc76e261b3fc194a9ef869ecb102e1badd4e82e4d70e79edc8cb2290622e68",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S14.png",
+          "sha256": "5cfc76e261b3fc194a9ef869ecb102e1badd4e82e4d70e79edc8cb2290622e68",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/SDD.png",
+          "sha256": "2f1628bd4ccaee5d9afed27682831673fafc4e1da47ee965da2c5d064db8ca6b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/SKL.png",
+          "sha256": "296cdb3ef0b24ef76344103206efd644b1fb735288bab1f4da1a1fcafb3e83ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/TW01.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/TW02.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/TW03.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/TW04.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/W00.png",
+          "sha256": "ce62f80fe2a880ba8509d5700e6b2950e0ea0119a6c24193b3a816433fd7e380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/command-focus.png",
+          "sha256": "9d2d869d9ae917fe8e41a5186bbf659cf21968f756c40d284e957b0d1833f4b9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/compact-hc.png",
+          "sha256": "88b35a0e863793df927071939e1cfdb0582b6179519d840cca33c6498ee077eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/dark.png",
+          "sha256": "36aa6c2001758f95cc81a9b6e15df537de0867f0a125d200e9347d55839d4b2f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/escape-return.png",
+          "sha256": "fda298142349f5b5f6ed0077b54eb2a3861d8190a714c18a71c3de33677ddcce",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/high-contrast.png",
+          "sha256": "d07bb0ee7c077a96487ced41a440c88c75ea707ff5e4efc2c28d754c1f9c8006",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/initial.png",
+          "sha256": "5fec5dd7b16de223a6d19febdd060715fac8ae780961a76c7e6c530399ddbe48",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/manual-path-recovery.png",
+          "sha256": "7421c6a680dfada36d302a5a8a1fd993c26bd6baf9ff0c449709e84a8da0f574",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-action-1-focused.png",
+          "sha256": "e7b343ee659b2474a1ed1e4666da38ce272a065de584ecf0ebd14254f6f011cb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-action-5-focused.png",
+          "sha256": "c4c352f7441de05373d0141fc59af48eb41d28d618708b079d38c3e7e1b57597",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-executed.png",
+          "sha256": "2878cb62e8e5a1303d8d2e82ed617399a6a46aca3a89efe090c10301920069cf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-verified.png",
+          "sha256": "fb0a4709adc8f44ff51ba06e36b1da2ac0689f9e51fe4eaf83610059d12510b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/workspace-valid.png",
+          "sha256": "ef60472db032a0468b12d5418a5eafdbfc27c7a9f08c8bee0e29c8c19123d336",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/spec.md",
+          "sha256": "fc7427bc2ceaeb69670fd2699d6a3990245008603fdce3a3748be0b360da1358",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/plan.md",
+          "sha256": "62170e8137ddd1aa54a052c6a52810fe74eb4f1d65527b38fac1e4560526ac19",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/tasks.md",
+          "sha256": "4407db306e80f943e66f6f07bf7cf77e40c2a26ab96d88ce29659de3fee34c13",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/traceability.json",
+          "sha256": "048fa6f3f1deed021999e5c25ead6217ec56f2cca47b4dc1145a26d693541fe2",
+          "role": "contract"
+        },
+        {
+          "path": "docs/design/ide-shell.md",
+          "sha256": "a8281427e1da3dede2d32716b3d32c8b617640c9494ed6664502f5745fad0757",
+          "role": "implementation"
+        }
+      ]
+    },
+    {
+      "id": "E-R3-MENU-CONTRACT",
+      "kind": "inspection",
+      "command_or_method": "Independent source/test crosswalk and direct inspection of the retained WC07 captures and menu-recent-probe-01 second-open, outside-after-short, outside-after-region-change and outside-after-long captures. Reused the existing rust-test-02 execution; no new Rust execution is claimed.",
+      "observed_result": "The recent-project replay on binary 39d517bb89494ba73725c4da2e7e7fd8b326f1abd3c38dce21a88a3593e03f86 shows the reopened File menu, then a closed menu with focus on File after a delivered outside click at 2560x1000. Project contents remain unchanged and the application exits naturally with code 0. Existing passing Rust tests cover modal traversal, closing without item execution, activation through existing messages and title semantics. WC07 supplies confirmed 1024/1600/2560 geometry. The three after-images reuse one received sample (183079.303337463, PTS 4191760056); they are not independent later frames or a latency measurement. WC07 counterevidence remains preserved; its cause is undetermined. Scope is AC-02 in the observed local environment, not global product or assistive-technology acceptance.",
+      "artifact": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/result.json",
+      "sha256": "bc7b9094cc4ab79ac90bdd725d652075e6b7b568097b4280e2b7bacce8d604c6",
+      "inputs": [
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/observer.py.bin",
+          "sha256": "cf1e5571018e6016d7c6f1f27ddf8c283f84aca4ba2dd15e5cc2e9d795cf13c3",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/events.json",
+          "sha256": "c87860c06600c07876ba6f104e9ec0fc7ef6ef164e3ebea052c9d6b5301acb50",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/wayland.log",
+          "sha256": "80aedd34403a88c02e79507dbbc684f5bde47e88c902782a4063a432a12a9de5",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/display-applied.json",
+          "sha256": "126ba81c4c53ae2b6869151a6a833e59211d1a40509e01f31532c901c9027a10",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/environment.json",
+          "sha256": "911339503b144a99bbb847bbd6dd3257efc3e0a32569fb1343c0f1af6a22aec3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/first-open.png",
+          "sha256": "343d3b39aed4c295ed5b70183a174415c945c73ce742c2cc1ddeb65de77b151b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/escape-closed.png",
+          "sha256": "20cb0886b6901cad8b4a45cc291d2d3b418f1b710bc863cd4c07847df7368c02",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/second-open.png",
+          "sha256": "343d3b39aed4c295ed5b70183a174415c945c73ce742c2cc1ddeb65de77b151b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/outside-after-short.png",
+          "sha256": "723ff7baf33cda078a69850f43fa79c0301d1114f75aff151fd054968fca725a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/outside-after-region-change.png",
+          "sha256": "723ff7baf33cda078a69850f43fa79c0301d1114f75aff151fd054968fca725a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/menu-diagnostics/recent-entry/outside-after-long.png",
+          "sha256": "723ff7baf33cda078a69850f43fa79c0301d1114f75aff151fd054968fca725a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/actual-history-before-corruption.bin",
+          "sha256": "f358a750856856c78669ad490943a94530c741b2af4d34d560145b621e610dcb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/result.json",
+          "sha256": "04d3d9b74a78e0d791f4015fc179ecce394ab5664ae685f40e4bd3565b701d52",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/wide/opened-existing.png",
+          "sha256": "4e5cd3da8af8a845d40155037b7575e0c9cb4a3dcdd0ddd200a5cb2f55190ac0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/command-bar.png",
+          "sha256": "8867857d75d82d3268eeb9a1a91e835b447f378fb97bcb95e2204b1773c06aa2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/file-menu.png",
+          "sha256": "afbc5db515545391c7d544f9c8365503a8b5beea10169e947a4b1ffe8eba05fb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/menu-escape-focus.png",
+          "sha256": "aeff853fdf731c8eb4c4c040cfc582f1381e34fab62e5e87c21ce6899ed39a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/menu-outside-focus.png",
+          "sha256": "e44b4930979c5da9cf6774a3fd946d887a930a6a846583ddf174b778622ff768",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-2560/command-bar.png",
+          "sha256": "b82524baf8012a83b039b983e9f1fa2bcde1413c8c749f1f334226c3c98f3eb7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-2560/menu-outside-focus.png",
+          "sha256": "926026bf9a8be5420ff01db2446daac2b4290703a1c5b5ad37dfe5e0c62011af",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/application-checks/rust-test-02-result.json",
+          "sha256": "a82e609c70f9cfe908a19b9552c500cb1b4df4e61909321f027116d6cfcfef9b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/application-checks/rust-test-02-inputs.json",
+          "sha256": "e57d646bca4b0925971fc00bb1dbb3af4dd54b6f8424efe384d2a8c499f34ebb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/application-checks/rust-test-02.stdout.log",
+          "sha256": "41175c35dd88c5f6f6c195853f1cfc170802f5006ba792c681ba1cd882c75046",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/application-checks/rust-test-02.stderr.log",
+          "sha256": "fb7e8b6b40822cce6f0fbd970d9d111b931070bdb6a182119bdfbf0ff6767359",
+          "role": "other"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "5a16149fdae6d0467ed5b3cc8f8d7f959f41b5f9286cfb1fed7f99931f8b7096",
+          "role": "oracle"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/chrome.rs",
+          "sha256": "eb613b62ef9aafa023967fbbc0a32401be6d874ff33a040ac72b752788a78f16",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/views.rs",
+          "sha256": "3ab8da129df3999e65cba0976e498fc4dbb856b72998c1a473fd9e471d351d10",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/design.rs",
+          "sha256": "4aae433e4cc8ca6a09e731a3a23767613c5625da96cdd3ad5816380e4216b6b9",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "dae18b465baf166c0b77c8a72bff1ecb01ca0460328e7c1609306f98b3b28d71",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/f0-resumption-20261103/native-session.py",
+          "sha256": "1ab4c178cccf0db8aeec85c927f4f7045fc1a464a54dced77000abe5109f6964",
+          "role": "oracle"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/spec.md",
+          "sha256": "fc7427bc2ceaeb69670fd2699d6a3990245008603fdce3a3748be0b360da1358",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/plan.md",
+          "sha256": "62170e8137ddd1aa54a052c6a52810fe74eb4f1d65527b38fac1e4560526ac19",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/tasks.md",
+          "sha256": "4407db306e80f943e66f6f07bf7cf77e40c2a26ab96d88ce29659de3fee34c13",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/traceability.json",
+          "sha256": "048fa6f3f1deed021999e5c25ead6217ec56f2cca47b4dc1145a26d693541fe2",
+          "role": "contract"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Pinned DESIGN.md/components.md/surfaces.md/features README not updated (exact-byte governance pins).",
+    "No AccessKit bridge; screen-reader behavior unverified.",
+    "Single compositor, scale 1.",
+    "Pedantic clippy failures pre-exist in unchanged code."
+  ],
+  "historical_evidence": [
+    {
+      "id": "E-R3-MAINTAINER-VISUAL",
+      "kind": "inspection",
+      "command_or_method": "Explicit maintainer answer to question item [\"request_user_input_async\",\"call_376a659d277940eca8ec38391d4ad081\",0]: Aprovar visualmente esse conjunto. Independently checked recorded event, immutable index and captured-set identities.",
+      "observed_result": "Maintainer approved the indexed visual set on binary 39d517bb89494ba73725c4da2e7e7fd8b326f1abd3c38dce21a88a3593e03f86; WC07 observer 60408be95b92e2c9f73a8a036e2f1a388a856007642b0e1ac003bf00dd3c7ad1. Scope is AC-07 only. This does not establish technical/global acceptance, assistive technology support, publication authorization or license rights. AC-02 remains INCONCLUSIVE because the WC07 2560 outside-click capture shows the menu still open.",
+      "artifact": "docs/validation/r3-remediation-20261118/root-checks/native-final/maintainer-visual-acceptance.json",
+      "sha256": "7bfa21392521d9ea9b8af5efccdfcd5d1ae7814129750d1fa9dfcc97538c7420",
+      "inputs": [
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/visual-index.md",
+          "sha256": "c3af6a413d20845572c0822652467b974b7e12d6dac92c88f0fd8b73f5a95e43",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/result.json",
+          "sha256": "04d3d9b74a78e0d791f4015fc179ecce394ab5664ae685f40e4bd3565b701d52",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/result.json",
+          "sha256": "a7d60f71dbf23e4427cf6cce4a482d4a82ddd25d94bfbcfe9aa75851c791dea0",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/restart/actual-mru-restarted.png",
+          "sha256": "eed77d8d6bee53d73450b5f26250e538bd46236b356637a240b79b2e6663b25a",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/command-bar.png",
+          "sha256": "8867857d75d82d3268eeb9a1a91e835b447f378fb97bcb95e2204b1773c06aa2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/file-menu.png",
+          "sha256": "afbc5db515545391c7d544f9c8365503a8b5beea10169e947a4b1ffe8eba05fb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-1024/menu-escape-focus.png",
+          "sha256": "aeff853fdf731c8eb4c4c040cfc582f1381e34fab62e5e87c21ce6899ed39a51",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-2560/command-bar.png",
+          "sha256": "b82524baf8012a83b039b983e9f1fa2bcde1413c8c749f1f334226c3c98f3eb7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/width-2560/full-width-embedded-editor.png",
+          "sha256": "5e571aee93144f117b8e354798cfa8120109ae42146dee90363c90dab28fbe39",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/composition/editor-selected-workbench.png",
+          "sha256": "ab9f01cd6053e7676341cd727445d6d3fdb9d31708c294bb948aa26ffdc53eb1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/composition/editor-tool-tests.png",
+          "sha256": "a3509038f54d79abe6f8d9ce1004fd37d6a2dc90334be4a637dabaa5c88c1d31",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-approved-badge.png",
+          "sha256": "d10cedf66de2f8ccefc524ca5c705129d4d9fc6a56921b630359975e7f7f5971",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/narrow/high-contrast-compact-entry.png",
+          "sha256": "32e24bf9b62fa9d2ea60e01bda33f57829ac00a47f573f01ae35dae550a7406c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/narrow/create-confirmation-keyboard-focus.png",
+          "sha256": "76172614c27434a7194a0fa5bdc3bcfe8e41023acf04f1bdf27a65075020b39b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A01.png",
+          "sha256": "b5ca66c2b4970e50ceee08561055fb996ec049f78a1b61d9ca128b9743f569bb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A02.png",
+          "sha256": "dbe2ca3e047dfd82d147479f9fcc60c27c0b64e117840dbdc42e30f31b1ed906",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A03.png",
+          "sha256": "b79959933ba831ca892a95e80d8b94239744825c99d6f1a759f8037d77071180",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A04.png",
+          "sha256": "40217e97b2ac8a67b0e39f205ba4c3b556e1c29740c18777c17605d25cade85b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A05.png",
+          "sha256": "66e5b31a1976b5b64c030a6cdda1dc2d2aa01a31ee8fadaa15aa20a491455855",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/A06.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S01.png",
+          "sha256": "3e88829dd278b8bc2744fe8aeff7debda2d3387ac3a4549353fcdee6a91d8347",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S02.png",
+          "sha256": "848f1ea2d64ff0bd3704b3336f665ec84a2d876365bb26c676517c6347618197",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S03.png",
+          "sha256": "8011c453e96901e191cc44a20fd730f0cbbedd3191eace17a20829e48f2bdbaa",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S04.png",
+          "sha256": "9b285375396ec772a1df70c04e27a13d14981e39a9964889a551376361e17d34",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S05.png",
+          "sha256": "8d9763dd0bbb881a1b649173ab7773cb793ffad7dcc418b9ea0a6e3c991d098d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S06.png",
+          "sha256": "e62f0f57cafdb0c34dd37f494e6d5772ee0923244f815b859946c62ddae48ca3",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S07.png",
+          "sha256": "9f38b7f42f2c317f8c8f6ce1f838846c30b5d8e8bc966be3da3155dc4c5ec704",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S08.png",
+          "sha256": "87f1d86be42df14883255229f37c9a39c7eed7ae11f4f26f9023e6d402f05032",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S09.png",
+          "sha256": "eeaa2c0fdcd7412a2f550120531eddeebefa530c4f5cf007ea4d4fd58acf4238",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S10.png",
+          "sha256": "a09b7db608d2346a8d45b25c4c83fce66d70ee7817ef3e8efd1b454d05076f3d",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S11.png",
+          "sha256": "73f9fe7000611c26a96818af6764c228f81b7995037102c633c36c4cdd3c3787",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S12.png",
+          "sha256": "e1b3567bd4a096012c26d751d28a7520d1253309ff6db21c4c40bc14b872ac94",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S13.png",
+          "sha256": "5cfc76e261b3fc194a9ef869ecb102e1badd4e82e4d70e79edc8cb2290622e68",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/S14.png",
+          "sha256": "5cfc76e261b3fc194a9ef869ecb102e1badd4e82e4d70e79edc8cb2290622e68",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/SDD.png",
+          "sha256": "2f1628bd4ccaee5d9afed27682831673fafc4e1da47ee965da2c5d064db8ca6b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/SKL.png",
+          "sha256": "296cdb3ef0b24ef76344103206efd644b1fb735288bab1f4da1a1fcafb3e83ad",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/TW01.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/TW02.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/TW03.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/TW04.png",
+          "sha256": "90a1d8c1285820c659eb73a801d57473312fdd9c6cc35528cd051f0b48808cdc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/W00.png",
+          "sha256": "ce62f80fe2a880ba8509d5700e6b2950e0ea0119a6c24193b3a816433fd7e380",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/command-focus.png",
+          "sha256": "9d2d869d9ae917fe8e41a5186bbf659cf21968f756c40d284e957b0d1833f4b9",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/compact-hc.png",
+          "sha256": "88b35a0e863793df927071939e1cfdb0582b6179519d840cca33c6498ee077eb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/dark.png",
+          "sha256": "36aa6c2001758f95cc81a9b6e15df537de0867f0a125d200e9347d55839d4b2f",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/escape-return.png",
+          "sha256": "fda298142349f5b5f6ed0077b54eb2a3861d8190a714c18a71c3de33677ddcce",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/high-contrast.png",
+          "sha256": "d07bb0ee7c077a96487ced41a440c88c75ea707ff5e4efc2c28d754c1f9c8006",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/initial.png",
+          "sha256": "5fec5dd7b16de223a6d19febdd060715fac8ae780961a76c7e6c530399ddbe48",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/manual-path-recovery.png",
+          "sha256": "7421c6a680dfada36d302a5a8a1fd993c26bd6baf9ff0c449709e84a8da0f574",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-action-1-focused.png",
+          "sha256": "e7b343ee659b2474a1ed1e4666da38ce272a065de584ecf0ebd14254f6f011cb",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-action-5-focused.png",
+          "sha256": "c4c352f7441de05373d0141fc59af48eb41d28d618708b079d38c3e7e1b57597",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-executed.png",
+          "sha256": "2878cb62e8e5a1303d8d2e82ed617399a6a46aca3a89efe090c10301920069cf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/task-verified.png",
+          "sha256": "fb0a4709adc8f44ff51ba06e36b1da2ac0689f9e51fe4eaf83610059d12510b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/r3-remediation-20261118/root-checks/native-final/wayland/workspace-valid.png",
+          "sha256": "ef60472db032a0468b12d5418a5eafdbfc27c7a9f08c8bee0e29c8c19123d336",
+          "role": "other"
+        }
+      ]
+    }
+  ]
+}

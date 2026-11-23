@@ -1,0 +1,18 @@
+test_cargo_home_utility_is_available_when_absent_from_path (test_capture_status.CaptureStatusTests.test_cargo_home_utility_is_available_when_absent_from_path) ... ok
+test_empty_line_inventory_remains_empty (test_capture_status.CaptureStatusTests.test_empty_line_inventory_remains_empty) ... ok
+test_failed_line_producer_preserves_failure (test_capture_status.CaptureStatusTests.test_failed_line_producer_preserves_failure) ... ok
+test_failed_nul_producer_preserves_failure (test_capture_status.CaptureStatusTests.test_failed_nul_producer_preserves_failure) ... ok
+test_nul_inventory_preserves_newlines_and_empty_fields (test_capture_status.CaptureStatusTests.test_nul_inventory_preserves_newlines_and_empty_fields) ... ok
+test_cancellation_waits_for_cleanup_without_affecting_parallel_run (test_process_lifecycle.ProcessLifecycle.test_cancellation_waits_for_cleanup_without_affecting_parallel_run) ... ok
+test_clock_rollback_refused (test_local_lifecycle.Lifecycle.test_clock_rollback_refused) ... ok
+test_concurrent_publish_serializes_without_loss (test_local_lifecycle.Lifecycle.test_concurrent_publish_serializes_without_loss) ... ok
+test_dry_run_then_prune (test_local_lifecycle.Lifecycle.test_dry_run_then_prune) ... ok
+test_same_day_keeps_both_runs (test_local_lifecycle.Lifecycle.test_same_day_keeps_both_runs) ... ok
+test_symlink_date_refused (test_local_lifecycle.Lifecycle.test_symlink_date_refused) ... ok
+test_symlink_root_refused (test_local_lifecycle.Lifecycle.test_symlink_root_refused) ... ok
+test_third_date_removes_oldest_and_only_logs_survive (test_local_lifecycle.Lifecycle.test_third_date_removes_oldest_and_only_logs_survive) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.747s
+
+OK

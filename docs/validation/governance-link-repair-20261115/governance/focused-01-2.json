@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/governance/tests",
+    "-p",
+    "test_historical_link_resolution.py",
+    "-v"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit": 1,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "02c265ebd9f3eed20a12ef5c896c0424b175cdde5466f073d917400f7700dee6"
+}

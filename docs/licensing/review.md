@@ -53,3 +53,24 @@ atualizar documentação/OPEN-07 e acrescentar à allowlist eventuais avisos adi
 Não inventar titular, ano, licença de origem ou permissões ausentes. A escolha da
 licença própria sozinha não fecha as pendências de terceiros. Até lá, não há
 prontidão declarada para distribuição pública.
+
+## Inventário complementar observado — 2026-11-17
+
+A tabela inicial é histórica a 27/10. O catálogo atual inclui vinte skills de
+adoção e as integrações posteriores `commit-governance` e
+`readme-lifecycle-engineering`, além das nove especializações autorais. A presença
+de 22 entradas oriundas de integrações não resolve sua titularidade ou licença;
+`docs/structure/files.json` conserva a proveniência dessas duas adições.
+
+| Material atual | Registro local inspecionado | Limite |
+| --- | --- | --- |
+| Lucide usado nos diagramas | [LICENSE ISC/MIT](../assets/vendor/lucide/LICENSE), [info.json](../assets/vendor/lucide/info.json) e [inventário visual](../assets/README.md) | Preservar avisos ISC e MIT/Feather; o inventário não cobre uso fora desse subconjunto |
+| IBM Plex Sans/Mono | `application/crates/ox-ui/assets/fonts/OFL.txt` (checkout) e [proveniência](../design/font-provenance.json) | SIL OFL 1.1 e nome reservado Plex; nenhuma atribuição de titularidade ao Ox |
+| Componente de automação | `scripts/security/LICENSE` e `scripts/security/NOTICE`, relativos à raiz | MIT com escopo próprio; não cobre automaticamente ferramentas, regras e bases externas |
+| Fira Sans e Iced-Icons da dependência | [Inventário de fontes transitivas](../design/dependency-fonts.json), iced_graphics 0.14.0, fonte src/text.rs em cache | Fira declara OFL nos metadados; Iced-Icons contém copyright Fontello, sem concessão específica encontrada no arquivo. Licença MIT do crate não fecha a revisão por glifo |
+
+Fontes transitivas foram identificadas no cache já existente, pelo pacote/checksum
+do lockfile, pelos include_bytes e por hashes dos TTFs. Não houve download, mudança
+de dependências, parecer jurídico nem fechamento de OPEN-07. A revisão de dependências
+anterior continua vinculada ao lockfile que observou; mudanças posteriores exigem
+revisão própria antes de qualquer alegação de prontidão para distribuição.

@@ -1,0 +1,83 @@
+{
+  "method": "Compare each new evidence binding to independently retained observed-inputs or real final-wrapper before/after; verify artifact and wrapper raw hashes; inspect three published locators. Historical evidence not promoted.",
+  "records": [
+    {
+      "feature": "configuration-cohesion",
+      "requirements": {
+        "AC-01": "UNVERIFIED",
+        "AC-02": "UNVERIFIED",
+        "AC-03": "UNVERIFIED",
+        "AC-04": "UNVERIFIED",
+        "AC-05": "UNVERIFIED",
+        "AC-06": "UNVERIFIED",
+        "AC-07": "UNVERIFIED",
+        "AC-08": "UNVERIFIED",
+        "AC-09": "UNVERIFIED",
+        "AC-10": "UNVERIFIED",
+        "AC-11": "UNVERIFIED",
+        "AC-12": "UNVERIFIED",
+        "AC-13": "UNVERIFIED",
+        "AC-14": "UNVERIFIED",
+        "AC-15": "UNVERIFIED",
+        "AC-16": "APPROVED"
+      },
+      "new_evidence": [
+        {
+          "id": "E-HISTORICAL-LINK-REPAIR-INDEPENDENT",
+          "input_count": 105,
+          "source_match": true,
+          "artifact": "docs/validation/governance-link-repair-20261115/validation/current/verdict.json"
+        }
+      ]
+    },
+    {
+      "feature": "terminal-progress",
+      "requirements": {
+        "AC-01": "APPROVED",
+        "AC-02": "APPROVED",
+        "AC-03": "APPROVED",
+        "AC-04": "APPROVED",
+        "AC-05": "APPROVED",
+        "AC-06": "APPROVED"
+      },
+      "new_evidence": [
+        {
+          "id": "E-HISTORICAL-LINK-REPAIR-INDEPENDENT",
+          "input_count": 105,
+          "source_match": true,
+          "artifact": "docs/validation/governance-link-repair-20261115/validation/current/verdict.json"
+        },
+        {
+          "id": "E-HISTORICAL-LINK-FINAL-WRAPPER",
+          "input_count": 10,
+          "source_match": true,
+          "artifact": "docs/validation/governance-link-repair-20261115/wrapper-final/receipt.json"
+        }
+      ]
+    },
+    {
+      "feature": "history-scanner-correction",
+      "requirements": {
+        "AC-01": "UNVERIFIED",
+        "AC-02": "UNVERIFIED",
+        "AC-03": "APPROVED"
+      },
+      "new_evidence": [
+        {
+          "id": "E-HISTORICAL-LINK-REPAIR-INDEPENDENT",
+          "input_count": 105,
+          "source_match": true,
+          "artifact": "docs/validation/governance-link-repair-20261115/validation/current/verdict.json"
+        }
+      ]
+    }
+  ],
+  "wrapper_inputs_stable": true,
+  "wrapper_raw_hashes_match": true,
+  "published_references": [
+    "/home/rodrigo/Projetos/ox/.local/logs/2026-11-15/ox-run-r4KmsbJ2--preparation--result.json.log",
+    "/home/rodrigo/Projetos/ox/.local/logs/2026-11-15/ox-run-r4KmsbJ2--ox--stderr.log.log",
+    "/home/rodrigo/Projetos/ox/.local/logs/2026-11-15/ox-run-r4KmsbJ2--results.json.log"
+  ],
+  "functional_wording_occurrences": 3
+}

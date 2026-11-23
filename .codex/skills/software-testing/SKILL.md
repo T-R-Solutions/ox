@@ -51,5 +51,5 @@ Other named skills are optional specialist suggestions. Use them only when avail
 
 ## Adjacent responsibilities
 
-For engine-specific concurrency/migrations, postgresql can supply the mechanism while tests here retain an independent oracle. A simulated schedule does not become a real database integration.
+For engine-specific concurrency/migrations, database-engineering can examine the mechanism while tests here retain an independent oracle. A simulated schedule does not become a real database integration.
 These are optional available capabilities, not dependencies of this folder.

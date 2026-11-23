@@ -6,65 +6,39 @@
       "id": "AC-01",
       "criterion": "Spec criterion",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Current guard and mutation suite pass; later authorized skill changes require explicit comparison against the original bounded transformation."
+      "evidence_ids": [],
+      "reason": "Current guard and mutation suite pass; later authorized skill changes require explicit comparison against the original bounded transformation. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-02",
       "criterion": "Spec criterion",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Independent-copy suite passes; no new measured composition inventory was produced here."
+      "evidence_ids": [],
+      "reason": "Independent-copy suite passes; no new measured composition inventory was produced here. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-03",
       "criterion": "Spec criterion",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Licensing review and ADR preserve own-license decision and unresolved third-party rights; origin-by-origin review was not renewed."
+      "evidence_ids": [],
+      "reason": "Licensing review and ADR preserve own-license decision and unresolved third-party rights; origin-by-origin review was not renewed. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-04",
       "criterion": "Spec criterion",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Recovery passes; historical 36 UNVERIFIED clause needs succession reconciliation."
+      "evidence_ids": [],
+      "reason": "Recovery passes; historical 36 UNVERIFIED clause needs succession reconciliation. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-05",
       "criterion": "Spec criterion",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Third-party permissions remain missing; own GPL decision does not close this criterion."
+      "evidence_ids": [],
+      "reason": "Third-party permissions remain missing; own GPL decision does not close this criterion. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     }
   ],
-  "evidence": [
-    {
-      "id": "E-T011-R2-SOURCE-RETENTION",
-      "kind": "inspection",
-      "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
-      "observed_result": "Raw bytes unchanged, no fabricated missing link target; current index points to README.md.bin. License/source/asset blockers unchanged; T009/T011 OPEN.",
-      "artifact": "docs/validation/persistence-freeze-20261105-r2/retention-review.md",
-      "sha256": "9d4269d5f51cbd23d178b465f0e44336eb6a308437f7d69345e57a6feae62f45",
-      "inputs": [
-        {
-          "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
-          "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
-          "role": "other"
-        }
-      ]
-    }
-  ],
+  "evidence": [],
   "limitations": [
     "Does not validate the application; license decision pending.",
     "maintenance-001 observations are new; previous results are preserved. Actual-package criteria, a new agent trial and unresolved ownership/permissions remain UNVERIFIED.",
@@ -72,7 +46,8 @@
     "2026-11-01 documentary reconciliation: old input digests preserved under explicit snapshot paths; new task/successor inspections do not represent operational reruns. See docs/validation/f0-reconciliation-20261101/dependency-impact.json.",
     "2026-11-04 visual-documentation method successor: exact historical inputs are preserved without digest renewal; a new bounded method/consumer inspection is separate from prior execution observations. Inherited README current-byte guard failure is not waived. See docs/validation/technical-documentation-visuals-20261104/.",
     "Task closure succession: affected historical observations preserved under historical_evidence and exact preimage in docs/validation/scripts-task-closure/before; affected decisions INCONCLUSIVE pending bounded successor review. Unaffected operational observations retained.",
-    "Scanner remediation 2026-11-07: changed-input observations preserved verbatim in historical_evidence; no previous hash renewed. Affected acceptance requires reexecution; see docs/validation/scanner-remediation-20261107/evidence-reconciliation.json."
+    "Scanner remediation 2026-11-07: changed-input observations preserved verbatim in historical_evidence; no previous hash renewed. Affected acceptance requires reexecution; see docs/validation/scanner-remediation-20261107/evidence-reconciliation.json.",
+    "2026-11-17 evidence audit: inappropriate current references and obsolete observations were retired without changing their recorded artifact/input hashes. This correction grants no acceptance; see docs/validation/audit-correction-20261117/governance.md."
   ],
   "historical_evidence": [
     {
@@ -1929,6 +1904,21 @@
         {
           "path": "docs/validation/readme-preservation-20261104/before/tools/governance/tests/test_readme_skill_integration.py.bin",
           "sha256": "f49736dd6888828c8dd337a8140a3893054850165778a949baf0586a452a3ffc",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-T011-R2-SOURCE-RETENTION",
+      "kind": "inspection",
+      "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
+      "observed_result": "Raw bytes unchanged, no fabricated missing link target; current index points to README.md.bin. License/source/asset blockers unchanged; T009/T011 OPEN.",
+      "artifact": "docs/validation/persistence-freeze-20261105-r2/retention-review.md",
+      "sha256": "9d4269d5f51cbd23d178b465f0e44336eb6a308437f7d69345e57a6feae62f45",
+      "inputs": [
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
+          "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
           "role": "other"
         }
       ]

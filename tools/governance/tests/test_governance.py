@@ -594,6 +594,7 @@ class GovernanceTests(unittest.TestCase):
 
     def test_governance_package_not_product_release(self):
         for name in (
+            "task_finalizada.md",
             "AGENTS.md",
             "DESIGN.md",
             "README.md",

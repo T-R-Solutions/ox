@@ -27,11 +27,35 @@ class InstructionCopyTests(unittest.TestCase):
         names.add('docs/validation/governance-audit-20261114/report.md')
         import log_repair_revision
         names = list(names) + log_repair_revision.fixture_paths(ROOT)
+        names += [log_repair_revision.ORIGINS]
+        names += [name for row in log_repair_revision.origin_records(ROOT)
+                  for name in (row['source'], row['origin'])]
+        import visual_skill_revision
+        names += list(visual_skill_revision.records(ROOT))
+        # A declared governance copy excludes live product origins, even when
+        # the source checkout's history fixtures include those origins.
+        names = [name for name in names if not name.startswith('application/')
+                 and not product_record(Path(name))]
         for name in names:
             p = self.root / name
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_bytes((ROOT / name).read_bytes())
         R.write_copy_context(self.root)
+
+    def fixture_errors(self):
+        # Transitive fixture inputs belong to several historical validators.
+        import document_ledger
+        import log_repair_revision
+        import visual_skill_revision
+        try:
+            result = R.errors(self.root) + visual_skill_revision.errors(self.root)
+            log_repair_revision.origin_records(self.root)
+            for name in document_ledger.records(self.root):
+                if not product_record(Path(name)):
+                    document_ledger.predecessor(self.root, name, (self.root / name).read_bytes())
+            return result
+        except (ValueError, OSError) as error:
+            return [str(error)]
 
     def test_explicit_copy_accepts_only_deliberately_excluded_records(self):
         self.assertTrue(R.governance_copy(self.root))
@@ -99,13 +123,22 @@ class InstructionCopyTests(unittest.TestCase):
         names.append(excluded['previous'])
         import log_repair_revision
         names = list(names) + log_repair_revision.fixture_paths(ROOT)
+        names = [name for name in names if not name.startswith('application/')
+                 and not product_record(Path(name))]
+        self.assertEqual(self.fixture_errors(), [])
         for name in names:
             p = self.root / name
             data = p.read_bytes()
-            p.write_bytes(data + b'changed')
-            self.assertTrue(R.errors(self.root))
+            # Authorization prose is mutable; challenge a protected authority
+            # section instead of an allowed contextual append.
+            changed = (data.replace(b'## Authorities', b'## Lost authorities', 1)
+                       if name == 'sdd/project.md' else data + b'changed')
+            p.write_bytes(changed)
+            import historical_link_revision
+            if name != historical_link_revision.DECISION:
+                self.assertTrue(self.fixture_errors(), name)
             p.unlink()
-            self.assertTrue(R.errors(self.root))
+            self.assertTrue(self.fixture_errors(), name)
             p.write_bytes(data)
 
     def test_audit_exception_is_source_destination_and_snapshot_exact(self):

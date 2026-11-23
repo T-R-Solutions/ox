@@ -1,0 +1,54 @@
+{
+  "checks": [
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "application/Cargo.toml",
+        "-p",
+        "ox-ui",
+        "--offline"
+      ],
+      "exit": 0,
+      "log": "final-test.log"
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "application/Cargo.toml",
+        "-p",
+        "ox-ui",
+        "--all-targets",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit": 0,
+      "log": "final-clippy.log"
+    },
+    {
+      "command": [
+        "cargo",
+        "build",
+        "--manifest-path",
+        "application/Cargo.toml",
+        "-p",
+        "ox-app",
+        "--offline"
+      ],
+      "exit": 0,
+      "log": "final-build.log"
+    }
+  ],
+  "sha256": {
+    "application/crates/ox-ui/src/desktop.rs": "8db3b1da274215f23c0e25c253890cf0b57328a71fe7f92cf06d6f1d64e6771f",
+    "application/crates/ox-ui/src/desktop/views.rs": "d4469d5199d957e06cba14ba1e6d58bcdc29a0803fbb493940b988e6c3bf1245",
+    "application/crates/ox-ui/src/desktop/icons.rs": "1189de9fe1374a84737c17d57766b33fedb63aad0b40a9f75453afa87f11677f",
+    "application/crates/ox-ui/src/design.rs": "9326d41f757105f5b84fa3081f27b7d745a5953e86c82184803eebb967d14aed",
+    "application/target/debug/ox": "8773d87f7b0a7b90477533aadef72fb27683352cb9bd9aea7bbc89752eef21fe"
+  }
+}

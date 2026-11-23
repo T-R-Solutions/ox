@@ -1,0 +1,29 @@
+{
+  "source_sha256": "7fb389c0a23066edffa5cc27f7437f84c37b693c4677adc3eb0a6755c2c2688f",
+  "tokens_sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+  "production_prefix_byte_identical": true,
+  "results": [
+    {
+      "command": [
+        "rustc",
+        "--edition",
+        "2024",
+        "/tmp/ox-r3-ui-lint-proposal-hx9k2w90/contrast-characterization.rs",
+        "-o",
+        "/tmp/ox-r3-ui-lint-proposal-hx9k2w90/contrast-characterization"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ox-r3-ui-lint-proposal-hx9k2w90/contrast-characterization"
+      ],
+      "exit": 0,
+      "stdout": "palette_colors=114 pairs=12996 changed=3344 max_abs_delta=0.000002861023\n",
+      "stderr": ""
+    }
+  ],
+  "limitations": "Extracts actual contrast helper and compares all current token RGB pairs and thresholds3/4.5/7. Does not replace real style tests/native rendering."
+}

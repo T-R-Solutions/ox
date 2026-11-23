@@ -1,0 +1,399 @@
+"""Challenge exact origins, documentary succession and the public copied checker."""
+
+import copy
+import hashlib
+import importlib
+import json
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+from urllib.parse import unquote, urlsplit
+
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "tools/governance/scripts"))
+H = importlib.import_module("historical_link_revision")
+R = importlib.import_module("log_repair_revision")
+
+# Independent expected locations and occurrence counts, reviewed from the corpus.
+# Do not obtain this oracle from the candidate registry or helper's PAIRS.
+EXPECTED = (
+    ("docs/validation/terminal-style-20261115/before/terminal-converge.md",
+     "sdd/features/terminal-progress/converge.md", 1),
+    ("docs/validation/terminal-style-20261115/before/scripts-README.md", "scripts/README.md", 10),
+    ("docs/validation/terminal-style-20261115/pre-final-validation/terminal-progress-converge.md",
+     "sdd/features/terminal-progress/converge.md", 1),
+    ("docs/validation/history-correction-20261115/coordinator/terminal-converge-before.md",
+     "sdd/features/terminal-progress/converge.md", 1),
+    ("docs/validation/history-correction-20261115/coordinator/scripts-readme-before.md",
+     "scripts/README.md", 9),
+)
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+class HistoricalLinkTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="ox-historical-links-")
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.old = json.loads((ROOT / R.ORIGINS).read_bytes())["records"]
+        self.doc = json.loads((ROOT / H.ORIGINS).read_bytes())
+        self.successors = json.loads((ROOT / H.SUCCESSORS).read_bytes())
+        names = {R.ORIGINS, H.ORIGINS, H.DECISION, H.SUCCESSORS, H.PREVIOUS_SUCCESSORS}
+        names.update(row["source"] for row in self.old)
+        for source, origin, _ in EXPECTED:
+            names.update((source, origin))
+        for row in self.successors["records"]:
+            names.update((row["previous"], row["destination"]))
+        from osv_acquisition_revision import fixture_paths as osv_paths
+        names.update(osv_paths(ROOT))
+        for name in names:
+            p = self.root / name
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_bytes((ROOT / name).read_bytes())
+
+    def repin(self, doc, registry=H.ORIGINS, constant="ORIGINS_SHA256"):
+        """Test inner schema guards independently of the production outer pin."""
+        data = json.dumps(doc).encode()
+        (self.root / registry).write_bytes(data)
+        return patch.object(H, constant, sha(data))
+
+    def test_all_five_reviewed_locations_and_unlisted_identity(self):
+        for source, origin, _ in EXPECTED:
+            self.assertEqual(R.origin(self.root, source), origin)
+        self.assertEqual(R.origin(self.root, "docs/unregistered.md"), "docs/unregistered.md")
+        rows = R.origin_records(self.root)
+        self.assertEqual(len(rows), 41)  # 21 original + 20 exact audit captures.
+        old_sources = {row["source"] for row in self.old} | {row[0] for row in EXPECTED}
+        original = [row for row in rows if row["source"] in old_sources]
+        self.assertEqual(len(original), 21)
+        self.assertEqual(sum(len(row["excluded_targets"]) for row in original), 12)
+
+    def test_every_one_of_22_targets_exists_at_independently_expected_location(self):
+        total = 0
+        for source, origin, expected_count in EXPECTED:
+            local = []
+            for target in re.findall(r"\[[^\]]*\]\(([^)]+)\)", (ROOT / source).read_text()):
+                parsed = urlsplit(target.strip("<>"))
+                if not parsed.scheme and not parsed.netloc and parsed.path:
+                    local.append(parsed.path)
+            self.assertEqual(len(local), expected_count, source)
+            for target in local:
+                expected = (ROOT / origin).parent / unquote(target)
+                resolved = (ROOT / R.origin(self.root, source)).parent / unquote(target)
+                self.assertEqual(resolved.resolve(), expected.resolve())
+                self.assertTrue(expected.is_file(), str(expected))
+                self.assertTrue(expected.resolve().is_relative_to(ROOT))
+            total += len(local)
+        self.assertEqual(total, 22)
+
+    def test_missing_registry_never_selects_legacy_mode_even_without_old_successors(self):
+        (self.root / H.ORIGINS).unlink()
+        (self.root / H.PREVIOUS_SUCCESSORS).unlink()
+        with self.assertRaisesRegex(ValueError, "Missing, escaping or symlinked"):
+            R.origin(self.root, "ordinary.md")
+
+    def test_registry_tamper_and_locally_recomputed_hash_are_rejected(self):
+        source = self.root / EXPECTED[0][0]
+        source.write_bytes(source.read_bytes() + b"\nchanged")
+        doc = copy.deepcopy(self.doc)
+        doc["records"][0]["sha256"] = sha(source.read_bytes())
+        (self.root / H.ORIGINS).write_text(json.dumps(doc))
+        with self.assertRaisesRegex(ValueError, "registry changed"):
+            R.origin(self.root, EXPECTED[0][0])
+
+    def test_each_missing_mutated_or_symlinked_source_is_rejected(self):
+        for source, _, _ in EXPECTED:
+            p = self.root / source
+            data = p.read_bytes()
+            for mode in ("missing", "changed", "symlink"):
+                with self.subTest(source=source, mode=mode):
+                    p.unlink()
+                    if mode == "changed":
+                        p.write_bytes(data + b"changed")
+                    elif mode == "symlink":
+                        other = self.root / "same-source.bin"
+                        other.write_bytes(data)
+                        p.symlink_to(other)
+                    with self.assertRaises(ValueError):
+                        R.origin(self.root, "ordinary.md")
+                    if p.exists() or p.is_symlink():
+                        p.unlink()
+                    p.write_bytes(data)
+
+    def test_origin_and_registry_symlink_and_lexical_ancestor_are_rejected(self):
+        for name in (H.ORIGINS, "scripts/README.md", "sdd/features/terminal-progress/converge.md"):
+            p = self.root / name
+            data = p.read_bytes()
+            p.unlink()
+            with self.assertRaises(ValueError):
+                R.origin(self.root, "ordinary.md")
+            other = self.root / "same-origin.bin"
+            other.write_bytes(data)
+            p.symlink_to(other)
+            with self.assertRaisesRegex(ValueError, "symlinked"):
+                R.origin(self.root, "ordinary.md")
+            p.unlink()
+            p.write_bytes(data)
+        folder = self.root / "scripts"
+        actual = self.root / "actual-scripts"
+        folder.rename(actual)
+        folder.symlink_to(actual, target_is_directory=True)
+        with self.assertRaisesRegex(ValueError, "symlinked"):
+            R.origin(self.root, "ordinary.md")
+
+    def test_schema_guards_after_independent_pin(self):
+        mutations = []
+        for field, value in (("schema_version", 2), ("schema_version", True),
+                             ("revision", "unknown"), ("decision", "README.md"),
+                             ("records", {}), ("records", [])):
+            doc = copy.deepcopy(self.doc)
+            doc[field] = value
+            mutations.append(doc)
+        doc = copy.deepcopy(self.doc)
+        doc["unexpected"] = True
+        mutations.append(doc)
+        for field, value in (("sha256", None), ("source", 3), ("origin", []),
+                             ("extra", "unexpected"), ("excluded_targets", {"application/new": "0" * 64})):
+            doc = copy.deepcopy(self.doc)
+            doc["records"][0][field] = value
+            mutations.append(doc)
+        for doc in mutations:
+            with self.subTest(document=doc), self.repin(doc), self.assertRaises(ValueError):
+                H.origin_records(self.root, self.old)
+
+    def test_noncanonical_and_escaping_paths_after_independent_pin(self):
+        for name in ("", "/tmp/origin", "../outside", "scripts/../README.md",
+                     "scripts//README.md", "./scripts/README.md", "scripts\\README.md", "scripts/\x00README.md"):
+            for field in ("source", "origin"):
+                doc = copy.deepcopy(self.doc)
+                doc["records"][0][field] = name
+                with self.subTest(name=name, field=field), self.repin(doc), self.assertRaisesRegex(ValueError, "path"):
+                    H.origin_records(self.root, self.old)
+
+    def test_duplicate_sources_conflicts_and_extra_inventory_after_independent_pin(self):
+        for mode in ("duplicate", "conflict", "old-source", "unknown", "wrong-origin"):
+            doc = copy.deepcopy(self.doc)
+            if mode in ("duplicate", "conflict"):
+                row = copy.deepcopy(doc["records"][0])
+                if mode == "conflict":
+                    row["origin"] = "README.md"
+                doc["records"].append(row)
+            elif mode == "old-source":
+                doc["records"][0]["source"] = self.old[0]["source"]
+            elif mode == "unknown":
+                doc["records"][0]["source"] = "docs/unknown.md"
+            else:
+                doc["records"][0]["origin"] = "README.md"
+            with self.subTest(mode=mode), self.repin(doc), self.assertRaises(ValueError):
+                H.origin_records(self.root, self.old)
+
+    def test_duplicate_json_properties_rejected_even_with_matching_test_pin(self):
+        for registry, constant, callback in (
+            (H.ORIGINS, "ORIGINS_SHA256", lambda: H.origin_records(self.root, self.old)),
+            (H.SUCCESSORS, "SUCCESSORS_SHA256", lambda: H.successor_records(self.root)),
+        ):
+            for key in ("schema_version", "source" if registry == H.ORIGINS else "destination"):
+                data = (ROOT / registry).read_bytes()
+                needle = ('"' + key + '":').encode()
+                # Duplicate the original property verbatim at its original nesting level.
+                pattern = needle + rb'\s*(?:"[^"]*"|1)'
+                data = re.sub(pattern, lambda m: m[0] + b"," + m[0], data, count=1)
+                (self.root / registry).write_bytes(data)
+                with self.subTest(registry=registry, key=key), patch.object(H, constant, sha(data)), self.assertRaisesRegex(ValueError, "Duplicate"):
+                    callback()
+
+    def test_old_registry_binding_is_required_and_unchanged(self):
+        for key, value in (("path", "README.md"), ("sha256", "0" * 64)):
+            doc = copy.deepcopy(self.doc)
+            doc["previous_registry"][key] = value
+            with self.subTest(key=key), self.repin(doc), self.assertRaisesRegex(ValueError, "binding changed"):
+                H.origin_records(self.root, self.old)
+        (self.root / H.ORIGINS).write_bytes((ROOT / H.ORIGINS).read_bytes())
+        p = self.root / R.ORIGINS
+        p.write_bytes(p.read_bytes() + b"changed")
+        with self.assertRaisesRegex(ValueError, "registry changed"):
+            H.origin_records(self.root, self.old)
+
+    def test_exact_new_successors_unknown_content_and_live_downgrades(self):
+        for row in self.successors["records"]:
+            name = row["destination"]
+            current = (self.root / name).read_bytes()
+            previous = (self.root / row["previous"]).read_bytes()
+            self.assertEqual(H.predecessor(self.root, name, current), previous)
+            self.assertEqual(H.predecessor(self.root, name, current + b"unknown"), current + b"unknown")
+            (self.root / name).write_bytes(previous)
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, "downgrade"):
+                H.predecessor(self.root, name, previous)
+            (self.root / name).write_bytes(current)
+
+    def test_successor_registry_and_preimages_required_exact_and_not_symlinked(self):
+        for name in (H.SUCCESSORS, H.PREVIOUS_SUCCESSORS,
+                     *[row["previous"] for row in self.successors["records"]]):
+            p = self.root / name
+            data = p.read_bytes()
+            for mode in ("changed", "missing", "symlink"):
+                with self.subTest(name=name, mode=mode):
+                    p.unlink()
+                    if mode == "changed":
+                        p.write_bytes(data + b"changed")
+                    elif mode == "symlink":
+                        other = self.root / "same-preimage.bin"
+                        other.write_bytes(data)
+                        p.symlink_to(other)
+                    with self.assertRaises(ValueError):
+                        H.predecessor(self.root, "ordinary.md", b"ordinary")
+                    if p.exists() or p.is_symlink():
+                        p.unlink()
+                    p.write_bytes(data)
+
+    def test_each_live_successor_requires_exact_current_bytes_and_no_symlink(self):
+        for row in self.successors["records"]:
+            p = self.root / row["destination"]
+            data = p.read_bytes()
+            for mode in ("changed", "missing", "symlink"):
+                with self.subTest(destination=row["destination"], mode=mode):
+                    p.unlink()
+                    if mode == "changed":
+                        p.write_bytes(data + b"\nUnregistered documentary append.\n")
+                    elif mode == "symlink":
+                        other = self.root / "same-current.bin"
+                        other.write_bytes(data)
+                        p.symlink_to(other)
+                    with self.assertRaises(ValueError):
+                        H.predecessor(self.root, "ordinary.md", b"ordinary")
+                    if p.exists() or p.is_symlink():
+                        p.unlink()
+                    p.write_bytes(data)
+
+    def test_successor_schema_scope_duplicates_and_hashes_after_independent_pin(self):
+        mutations = []
+        for field, value in (("schema_version", True), ("records", {}),
+                             ("origins_sha256", "0" * 64), ("records", [])):
+            doc = copy.deepcopy(self.successors)
+            doc[field] = value
+            mutations.append(doc)
+        for field, value in (("destination", "sdd/project.md"), ("previous", "../outside"),
+                             ("previous", "README.md"), ("sha256", None),
+                             ("previous_sha256", "0" * 64), ("extra", True)):
+            doc = copy.deepcopy(self.successors)
+            doc["records"][0][field] = value
+            mutations.append(doc)
+        doc = copy.deepcopy(self.successors)
+        doc["records"].append(copy.deepcopy(doc["records"][0]))
+        mutations.append(doc)
+        for doc in mutations:
+            with self.subTest(document=doc), self.repin(doc, H.SUCCESSORS, "SUCCESSORS_SHA256"), self.assertRaises(ValueError):
+                H.successor_records(self.root)
+
+
+class PublicHistoricalLinkTests(unittest.TestCase):
+    integration = True
+
+    @classmethod
+    def setUpClass(cls):
+        from governance_support import copy_distribution
+
+        cls.temp = tempfile.TemporaryDirectory(prefix="ox-historical-public-")
+        cls.root = Path(cls.temp.name)
+        copy_distribution(ROOT, cls.root)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.temp.cleanup()
+
+    def checker(self, expected=0, diagnostic=None):
+        command = [sys.executable, "tools/governance/scripts/isolated-run.py", str(ROOT),
+                   "tools/governance/scripts/check-ox.py"]
+        result = subprocess.run(command, cwd=self.root, capture_output=True, text=True,
+                                env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1"), timeout=600)
+        if expected == 0:
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        else:
+            self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn(diagnostic, result.stdout + result.stderr)
+        self.assertNotIn("Isolation oracle denied", result.stdout + result.stderr)
+        return result
+
+    def test_public_copy_requires_registry_and_rejects_recalculated_metadata(self):
+        self.checker()
+        p = self.root / H.ORIGINS
+        data = p.read_bytes()
+        try:
+            p.unlink()
+            self.checker(1, "origins.json")
+            doc = json.loads(data)
+            doc["records"][0]["origin"] = "README.md"
+            p.write_text(json.dumps(doc))
+            self.checker(1, "registry changed")
+        finally:
+            p.write_bytes(data)
+        self.checker()
+
+    def test_public_copy_rejects_unregistered_live_readme_append(self):
+        self.checker()
+        p = self.root / "scripts/README.md"
+        data = p.read_bytes()
+        try:
+            p.write_bytes(data + b"\nUnregistered documentary append.\n")
+            self.checker(1, "Historical-link current changed")
+        finally:
+            p.write_bytes(data)
+
+    def test_public_copy_rejects_mutated_and_missing_snapshot(self):
+        p = self.root / EXPECTED[0][0]
+        data = p.read_bytes()
+        try:
+            p.write_bytes(data + b"\n[missing](absent.md)\n")
+            self.checker(1, "Historical source changed")
+            p.unlink()
+            self.checker(1, "symlinked README successor file")
+        finally:
+            p.write_bytes(data)
+
+    def test_public_new_broken_links_outside_and_inside_unregistered_validation(self):
+        for name in ("ordinary-link-probe.md", "docs/validation/unregistered-link-probe.md"):
+            p = self.root / name
+            try:
+                p.write_text("[bad](absent-historical-link-target.md)\n")
+                self.checker(1, "Broken/escaping link: " + name)
+                p.write_text("[escape](%2e%2e/%2e%2e/%2e%2e/absent-historical-link-target.md)\n")
+                self.checker(1, "Broken/escaping link: " + name)
+            finally:
+                p.unlink()
+
+    def test_public_link_targets_and_lexical_symlinks_remain_checked(self):
+        target = self.root / "docs/validation/toolbox-consumer-rules-20261109/report.md"
+        data = target.read_bytes()
+        try:
+            target.unlink()
+            self.checker(1, "Broken/escaping link")
+            target.symlink_to(self.root / "README.md")
+            self.checker(1, "Symlink link")
+        finally:
+            if target.is_symlink():
+                target.unlink()
+            target.write_bytes(data)
+
+    def test_isolation_oracle_is_sensitive_to_original_checkout_access(self):
+        p = self.root / "probe-isolation.py"
+        try:
+            p.write_text("from pathlib import Path\nPath(" + repr(str(ROOT / "README.md")) + ").read_bytes()\n")
+            result = subprocess.run([sys.executable, "tools/governance/scripts/isolated-run.py",
+                                     str(ROOT), p.name], cwd=self.root, capture_output=True,
+                                    text=True, env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1"))
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("Isolation oracle denied open", result.stderr)
+        finally:
+            p.unlink()
+
+
+if __name__ == "__main__":
+    unittest.main()

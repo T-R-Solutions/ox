@@ -1,0 +1,11 @@
+{
+  "reviewer": "/root/r3_orchestrator/review",
+  "source": "tools/governance/tests/test_project_revision.py",
+  "sha256": "13bfb669bdc34bc719df09762f8d9cca45290ba8f00d6e38b9668483219ac679",
+  "baseline": "docs/validation/r3-remediation-20261118/baseline-sources/tools/governance/tests/test_project_revision.py.bin",
+  "method": "Independent inspection of complete source diff and AST subprocess call inventory",
+  "subprocess_calls_before": 0,
+  "subprocess_calls_after": 0,
+  "finding": "Only conditional protected Authorities mutation for project and assertNotEqual; README mutation unchanged. No subprocess, suppression or import added.",
+  "limits": "Current source binding only, no historical scanner renewal or task acceptance. Consolidated from the read-only reviewer response."
+}

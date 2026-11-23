@@ -46,3 +46,16 @@ schemas and empty coverage; missing/corrupt/stale/inconsistent data; prepare/pub
 select/update/recover; concurrent runs, real cancellation/resource cleanup and source
 hash preservation. Define fixture oracles before execution. Internal simulated tests
 cannot substitute for public Ox/Docker execution. All existing gates remain.
+
+## Single OSV acquisition clock successor — 2026-11-16
+
+Current authority: docs/decisions/osv-acquisition-validity.md. Supersede earlier
+OSV 24h/upstream-age and no-central-acquisition clauses: Toolbox reuses a validated
+base for <=12h since the last successful download, and acquires on absence,
+unknown acquisition or >12h. Every successful download records acquisition,
+including manual/idempotent updates; scans never reset it. Identity and acquisition
+publish atomically; failed acquisition blocks the requested scan and preserves
+previous state. Upstream dates are provenance only for OSV. Retain Trivy/Grype
+120h, source/report integrity and advisory exceptions. Existing broad real-Docker
+criteria remain unverified; bounded manual criteria OSV-01..05 and inputs are in
+docs/validation/osv-acquisition-20261116/plan.md and report.md.

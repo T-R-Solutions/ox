@@ -1,0 +1,105 @@
+ M .codex/skills/design-review/SKILL.md
+ M .codex/skills/design-system/SKILL.md
+ M .codex/skills/iced-engineering/SKILL.md
+ M .codex/skills/iced-engineering/references/native-visual-contract.md
+ M AGENTS.md
+ M DESIGN.md
+ M application/Cargo.lock
+ M application/Cargo.toml
+ M application/README.md
+ M application/crates/ox-ui/Cargo.toml
+ M application/crates/ox-ui/src/desktop.rs
+ M application/crates/ox-ui/src/desktop/views.rs
+ M docs/decisions/scanner-toolbox-ownership.md
+ M docs/decisions/scripts-toolbox-native.md
+ M docs/design/components.md
+ M docs/design/reference-coverage.md
+ M docs/design/surfaces.md
+D  erase.md
+D  resume.md
+ M scripts/README.md
+ M scripts/automate.sh
+ M scripts/checks/run.sh
+ M scripts/config/automation.json
+ M scripts/config/native/bandit/bandit-baseline.json
+ M scripts/config/native/gitleaks/gitleaks-history.ignore
+ M scripts/lib/backends.sh
+ M scripts/lib/process.sh
+ M scripts/tests/test_backends.py
+ M scripts/tests/test_database_age.py
+ M sdd/features/configuration-cohesion/converge.md
+ M sdd/features/configuration-cohesion/evidence.json
+ M sdd/features/configuration-cohesion/plan.md
+ M sdd/features/configuration-cohesion/spec.md
+ M sdd/features/configuration-cohesion/tasks.md
+ M sdd/features/configuration-cohesion/traceability.json
+ M sdd/features/product-visual-workbench/converge.md
+ M sdd/features/product-visual-workbench/evidence.json
+ M sdd/features/product-visual-workbench/plan.md
+ M sdd/features/product-visual-workbench/spec.md
+ M sdd/features/product-visual-workbench/tasks.md
+ M sdd/features/scripts-toolbox-native/converge.md
+ M sdd/features/scripts-toolbox-native/plan.md
+ M sdd/features/scripts-toolbox-native/spec.md
+ M sdd/features/scripts-toolbox-native/tasks.md
+ M sdd/features/scripts-toolchain-config/plan.md
+ M sdd/features/scripts-toolchain-config/spec.md
+ M sdd/features/scripts-toolchain-config/tasks.md
+ M sdd/project.md
+ M tools/governance/scripts/check-ox.py
+ M tools/governance/scripts/closure_revision.py
+ M tools/governance/scripts/instruction_revision.py
+ M tools/governance/scripts/log_repair_revision.py
+ M tools/governance/scripts/project_revision.py
+ M tools/governance/scripts/skill_revision.py
+ M tools/governance/tests/test_configuration_succession.py
+ M tools/governance/tests/test_defaults_succession.py
+ M tools/governance/tests/test_instruction_copy.py
+ M tools/governance/tests/test_log_repair_revision.py
+ M tools/governance/tests/test_security_quality.py
+?? .codex/skills/design-review/references/visual-quality.md
+?? .codex/skills/design-system/references/interaction-patterns.md
+?? .codex/skills/design-system/references/visual-composition.md
+?? application/crates/ox-ui/assets/identity/
+?? application/crates/ox-ui/src/desktop/hint.rs
+?? application/crates/ox-ui/src/desktop/icons.rs
+?? application/crates/ox-ui/src/desktop/identity.rs
+?? application/crates/ox-ui/src/desktop/splitter.rs
+?? docs/decisions/governance-historical-links.md
+?? docs/decisions/osv-acquisition-validity.md
+?? docs/decisions/visual-skill-refinement.md
+?? docs/decisions/windows-design-baseline.md
+?? docs/design/windows-apps-analysis.md
+?? docs/validation/bandit-repair-20261115/
+?? docs/validation/desktop-navigation-20261117/
+?? docs/validation/enterprise-visual-20261116/
+?? docs/validation/governance-link-repair-20261115/
+?? docs/validation/governance-link-repair-plan-20261115/
+?? docs/validation/history-correction-20261115/
+?? docs/validation/osv-acquisition-20261116/
+?? docs/validation/project-entry-20261117/
+?? docs/validation/sidebar-settings-20261117/
+?? docs/validation/terminal-progress-20261115/
+?? docs/validation/terminal-publication-repair-20261115/
+?? docs/validation/terminal-style-20261115/
+?? docs/validation/visual-skills-20261116/
+?? docs/validation/welcome-identity-20261116/
+?? docs/validation/windows-design-20261117/
+?? scripts/lib/progress.sh
+?? scripts/tests/fixtures/
+?? scripts/tests/test_governance_diagnostics.py
+?? scripts/tests/test_terminal_progress.py
+?? scripts/tests/test_terminal_publication.py
+?? scripts/tests/test_terminal_style.py
+?? sdd/features/history-scanner-correction/
+?? sdd/features/terminal-progress/
+?? sdd/features/visual-skill-refinement/
+?? sdd/features/windows-design-baseline/
+?? tools/governance/scripts/historical_link_revision.py
+?? tools/governance/scripts/osv_acquisition_revision.py
+?? tools/governance/scripts/visual_skill_revision.py
+?? tools/governance/scripts/windows_design_revision.py
+?? tools/governance/tests/test_historical_link_resolution.py
+?? tools/governance/tests/test_osv_acquisition_revision.py
+?? tools/governance/tests/test_visual_skill_revision.py
+?? tools/governance/tests/test_windows_design_revision.py

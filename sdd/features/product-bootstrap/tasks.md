@@ -29,3 +29,5 @@ Conclusão posterior T010: em Xwayland temporário, a fonte original falhou na r
 ## Estado corrente das notas intermediárias — 2026-11-01
 
 T007 e a nota inicial de T008 inconclusiva são históricas: sucedidas por T008/T010 e pela seção Final acceptance — 2026-10-30 em converge.md. Evidência: docs/validation/product-local-task-ui/acceptance/review.md e graphical-review.json. Wayland tem observação humana/protocolo; os três testes X11 finais incluem o fluxo local integrado em Xwayland temporário. Permanecem as falhas anteriores e a limitação de entrada GNOME. Nenhuma nova execução gráfica nesta reconciliação.
+
+- [x] T013 [AC-02]: reobserve the current native criterion with the maintained harness, bind the new build and independently inspected captures, and preserve all historical results. This does not close the feature or R3 as a whole.

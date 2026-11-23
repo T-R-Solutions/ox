@@ -43,3 +43,12 @@ project-state transition by exact content; unknown current bytes, ambiguous reco
 missing/corrupt preimages and escaping/symlinked paths must fail closed. No path
 allowlist or mere preimage existence grants acceptance. Freeze preparation inputs
 including local-only resources; material license gaps block technical readiness.
+
+## Boundary clarification — audit correction 2026-11-17
+
+The implementation prohibition here concerns general product/task/evidence storage.
+It does not revoke the separately authorized product-visual-workbench WC-02/03
+recent-project metadata snapshot in ox-ui/src/desktop/project_store.rs (at most
+20 canonical recent paths). That convenience store does not select D5/D6 or accept
+the AC-01–07 criteria of this feature. Moving its ownership to ox-storage would be a separate
+architectural change; this correction makes no such migration.

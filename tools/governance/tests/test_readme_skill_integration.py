@@ -131,7 +131,10 @@ class ReadmeImportTests(unittest.TestCase):
             p = self.root / name
             original = p.read_bytes()
             with self.subTest(name=name):
-                p.write_bytes(original + b"\ncorrupt\n")
+                changed = (original.replace(b"## Authorities", b"## Lost authorities", 1)
+                           if name == "sdd/project.md" else original + b"\ncorrupt\n")
+                self.assertNotEqual(changed, original)
+                p.write_bytes(changed)
                 self.assertTrue(errors(self.root))
                 p.unlink()
                 self.assertTrue(errors(self.root))

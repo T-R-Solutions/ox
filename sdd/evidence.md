@@ -102,11 +102,36 @@ Changing a bound input invalidates that observation; changes to unbound files do
 not invalidate others. Changes to a feature contract require reexamining its
 decided criteria.
 
+Stabilize task completion and its documentation disposition before the final
+criterion review and input capture. Record the final observation and verdict in
+evidence.json/converge.md, rather than changing the bound tasks.md afterward.
+If that review requires a task/contract correction, retain the previous observation
+and repeat only the affected review against the corrected inputs. The four-file
+minimum above remains applicable; closing a task does not exempt its content.
+
 In schema 2, input hashes are always checked. --require-fresh requires schema 2,
 including when checking older documents; it is incompatible with --structure-only.
 Combine with --require-approved to also require acceptance. Without features,
 structure checking remains valid; use --require-approved to require a feature.
 There is no automatic migration of schema 1 evidence.
+
+### Historical observations in Ox
+
+Ox envelopes retain retired observation objects in the consumer extension
+`historical_evidence` (a list), preserving their original IDs, methods, artifact
+hashes and input bindings. Current `evidence_ids` refer only to the current
+`evidence` list. When an observation becomes obsolete, move its unchanged object
+to history, remove current references to it and leave dependent criteria undecided
+until new evidence exists. Keep the previous envelope bytes in the task's recovery
+record when changing states or references. Do not renew historical hashes.
+
+The standard validator checks current `evidence` even when a referring criterion
+is UNVERIFIED or INCONCLUSIVE. Changing status alone therefore does not retire an
+observation. `historical_evidence` is retained metadata: its shape, artifact
+availability and old input hashes are not validated by this checker, and its
+contents cannot satisfy current acceptance. History review requires comparison
+with preserved envelopes/observed snapshots; a passing current check establishes
+neither historical integrity nor current product acceptance.
 
 A Git revision may provide context but does not replace content hashes. Uncommitted
 files, untracked files and projects without Git use the same byte-based mechanism.

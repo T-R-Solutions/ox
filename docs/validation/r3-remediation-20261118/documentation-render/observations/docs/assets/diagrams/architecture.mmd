@@ -1,0 +1,20 @@
+flowchart LR
+    accTitle: Fundação local do Ox
+    accDescr: O desktop chama um Controller. Ele usa o Runtime para supervisionar local-task e o Engine para executar task-oracle. Os dois processos usam arquivos da tentativa. O Plugin Host é uma API separada, sem conexão ao desktop.
+    subgraph desktop["APLICAÇÃO · processo Ox"]
+        direction LR
+        UI@{ icon: "lucide:monitor", form: "rounded", label: "Desktop Iced", pos: "b", h: 48 }
+        CT@{ icon: "lucide:workflow", form: "rounded", label: "Controller da tarefa", pos: "b", h: 48 }
+        RT@{ icon: "lucide:cpu", form: "rounded", label: "Agent Runtime", pos: "b", h: 48 }
+        VE@{ icon: "lucide:clipboard-check", form: "rounded", label: "Verification Engine", pos: "b", h: 48 }
+        UI -->|ações e estados| CT
+        CT -->|executar ou cancelar| RT
+        CT -->|verificar ou atualizar| VE
+    end
+    TASK@{ icon: "lucide:terminal", form: "rounded", label: "local-task · filho direto", pos: "b", h: 48 }
+    ORACLE@{ icon: "lucide:scan-search", form: "rounded", label: "task-oracle · filho direto", pos: "b", h: 48 }
+    FS@{ icon: "lucide:folder-open", form: "rounded", label: "Arquivos da tentativa", pos: "b", h: 48 }
+    RT -->|supervisiona| TASK
+    VE -->|executa e observa| ORACLE
+    TASK -->|produz resultado| FS
+    FS -->|pedido e resultado| ORACLE

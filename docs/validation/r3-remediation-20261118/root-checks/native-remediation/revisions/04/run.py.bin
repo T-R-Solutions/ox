@@ -1,0 +1,28 @@
+from pathlib import Path
+import importlib.util,json,os,select,subprocess,sys,time
+root=Path('/home/rodrigo/Projetos/ox');base=Path('/tmp/ox-r3-native-proposal-2fhe00q5')
+attempt=sys.argv[1] if len(sys.argv)>1 else 'x11-attempt-01'
+revision=f'{int(sys.argv[2]):02d}' if len(sys.argv)>2 else '02'
+out=base/attempt
+spec=importlib.util.spec_from_file_location('native',root/'docs/validation/f0-resumption-20261103/native-session.py')
+native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
+session=None;record={'method':'six unmodified scenario identities, new journey driver, copied product binary, dedicated headless Mutter/Xwayland','primary_desktop_input':False,'build_record':str(base/f'build-{revision}.json')}
+try:
+ session=native.Session(out,'2400x1800')
+ rd,wr=os.pipe()
+ with (out/'xwayland.log').open('wb') as serverlog:
+  server=subprocess.Popen(['Xwayland','-displayfd',str(wr),'-geometry','2000x1600','-nolisten','tcp','-shm','-noreset'],pass_fds=(wr,),env=session.env,stdout=serverlog,stderr=serverlog);session.children.append(server);os.close(wr)
+  if not select.select([rd],[],[],10)[0]:raise RuntimeError('Xwayland readiness')
+  display=':'+os.read(rd,32).decode().strip();os.close(rd)
+  env=dict(session.env,DISPLAY=display,OX_DESKTOP_CAPTURE_DIR=str(out));env.pop('WAYLAND_DISPLAY',None)
+  cmd=[str(base/f'native-tests-{revision}'),'--ignored','--nocapture','--test-threads=1']
+  start=time.monotonic()
+  with (out/'stdout.log').open('wb') as stdout,(out/'stderr.log').open('wb') as stderr:
+   run=subprocess.run(cmd,cwd=root/'application',env=env,stdout=stdout,stderr=stderr)
+  record.update(command=cmd,exit_code=run.returncode,seconds=time.monotonic()-start,display=display)
+except Exception as error:
+ record.update(exit_code=2,error=str(error));raise
+finally:
+ if session:session.close()
+ out.mkdir(parents=True,exist_ok=True);(out/'result.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record),flush=True)
+raise SystemExit(record['exit_code'])

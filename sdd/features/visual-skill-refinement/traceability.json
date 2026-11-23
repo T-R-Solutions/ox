@@ -1,0 +1,35 @@
+[
+  {
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001"
+    ],
+    "implementation": "docs/validation/visual-skills-20261116/analysis.md",
+    "oracle": "docs/validation/visual-skills-20261116/sources.json"
+  },
+  {
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T002"
+    ],
+    "implementation": ".codex/skills/design-system/SKILL.md",
+    "oracle": "docs/validation/visual-skills-20261116/scenarios.md"
+  },
+  {
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T003"
+    ],
+    "implementation": "tools/governance/scripts/visual_skill_revision.py",
+    "oracle": "tools/governance/tests/test_visual_skill_revision.py"
+  }
+]

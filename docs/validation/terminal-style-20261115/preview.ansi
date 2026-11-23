@@ -1,0 +1,43 @@
+[1mOX · AUTOMAÇÃO[0m
+  Progresso: fases com peso igual; membros Geiger + validação final quando observáveis. Conclusão não significa aprovação.
+
+[1m[1/3] Preparação (preparation)[0m
+    Atividade:        preparação do ambiente e verificação do toolchain exigido
+[2K[1/3] total: 0% | fase: indisponível | decorrido: 00:00[2K
+[1m[1/3] Preparação (preparation)[0m  [[32mSUCESSO[0m]  | duração: 00:00
+    Executado:        preparação do ambiente e verificação do toolchain exigido.
+    Resultado:        execução concluída sem falha reportada.
+    Log/relatório:    "/tmp/Ox terminal fixture dkh_0w6c/ox-run-dhBI6aI5/preparation/result.json"
+    Limites: saída bruta não reproduzida no terminal; avisos e detalhes permanecem nos logs. A aceitação funcional do produto é avaliada separadamente.
+
+[1m[2/3] ruff (ruff)[0m
+    Atividade:        verificação ruff sobre as entradas selecionadas
+[2K[2/3] total: 33% | fase: indisponível | decorrido: 00:00[2K[2K
+[1m[2/3] ruff (ruff)[0m  [[31mFALHA[0m]  | duração: 00:00
+    Executado:        verificação ruff sobre as entradas selecionadas.
+    Resultado:        achados reportados: 1.
+    [33mWARNING[0m           Avisos ou skips registrados; consulte o relatório.
+    Avisos: 1; skips registrados: 0; limitações registradas: 0 (consulte o relatório).
+    Log/relatório:    "/tmp/Ox terminal fixture dkh_0w6c/ox-run-dhBI6aI5/ruff/assessment.json"
+
+Problemas:
+1. achados reportados: 1
+   Onde: fase ruff.
+   Causa: causa não determinada.
+   Código: 1.
+   Diagnóstico: "/tmp/Ox terminal fixture dkh_0w6c/ox-run-dhBI6aI5/ruff/assessment.json".
+    Limites: saída bruta não reproduzida no terminal; avisos e detalhes permanecem nos logs. A aceitação funcional do produto é avaliada separadamente.
+[2K
+[1m[3/3] Finalização e publicação dos logs (finalization)[0m
+    Atividade:        verificação Finalização e publicação dos logs sobre as entradas selecionadas
+[2K[3/3] total: 66% | fase: indisponível | decorrido: 00:00[2K
+[1m[3/3] Finalização e publicação dos logs (finalization)[0m  [[32mSUCESSO[0m]  | duração: 00:00
+    Executado:        finalização dos resultados e publicação dos logs.
+    Logs publicados:  "/tmp/Ox terminal fixture dkh_0w6c/.local/logs/2026-11-15"
+Referência publicada: "/tmp/Ox terminal fixture dkh_0w6c/.local/logs/2026-11-15/ox-run-dhBI6aI5--preparation--result.json.log"
+Referência publicada: "/tmp/Ox terminal fixture dkh_0w6c/.local/logs/2026-11-15/ox-run-dhBI6aI5--ruff--assessment.json.log"
+Referência publicada: "/tmp/Ox terminal fixture dkh_0w6c/.local/logs/2026-11-15/ox-run-dhBI6aI5--results.json.log"
+
+[1mRESUMO DA EXECUÇÃO[0m
+    [31mFALHA[0m             Uma ou mais fases falharam ou foram bloqueadas; código: 1.
+total: 100% | Resultados registrados; consulte os estados de cada fase. A aceitação funcional do produto é avaliada separadamente.

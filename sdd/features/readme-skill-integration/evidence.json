@@ -6,70 +6,45 @@
       "id": "AC-01",
       "criterion": "Complete portable import and bridge",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "evidence_ids": [],
+      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-02",
       "criterion": "Profile and consumer agreement",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "evidence_ids": [],
+      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-03",
       "criterion": "Exact preservation and denied mutations",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "evidence_ids": [],
+      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-04",
       "criterion": "Current navigation and bounded checks",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "evidence_ids": [],
+      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-05",
       "criterion": "Source-grounded visual documentation with observed renderer and portability gates",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ],
-      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation."
+      "evidence_ids": [],
+      "reason": "Bound inputs changed; prior observations preserved in historical_evidence and repair before/. Current acceptance requires new observation. 2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     }
   ],
-  "evidence": [
-    {
-      "id": "E-T011-R2-SOURCE-RETENTION",
-      "kind": "inspection",
-      "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
-      "observed_result": "Raw bytes unchanged, no fabricated missing link target; current index points to README.md.bin. License/source/asset blockers unchanged; T009/T011 OPEN.",
-      "artifact": "docs/validation/persistence-freeze-20261105-r2/retention-review.md",
-      "sha256": "9d4269d5f51cbd23d178b465f0e44336eb6a308437f7d69345e57a6feae62f45",
-      "inputs": [
-        {
-          "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
-          "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
-          "role": "other"
-        }
-      ]
-    }
-  ],
+  "evidence": [],
   "limitations": [
     "Structural and integration tests do not establish improved reader usability or product runtime behavior.",
     "2026-11-04 application-documentation successor: the old README input is preserved by exact bytes at docs/validation/application-documentation-20261104/before/README.md.bin. AC-04 is UNVERIFIED for the new root README; the bounded skill-integration current-byte guard still requires its registered revision. No historical result or digest was renewed. See application-documentation-20261104/report.md for the independent current documentary review.",
     "2026-11-04 visual-documentation method successor: exact historical inputs are preserved without digest renewal; a new bounded method/consumer inspection is separate from prior execution observations. Inherited README current-byte guard failure is not waived. See docs/validation/technical-documentation-visuals-20261104/.",
-    "Task closure succession: affected historical observations preserved under historical_evidence and exact preimage in docs/validation/scripts-task-closure/before; affected decisions INCONCLUSIVE pending bounded successor review. Unaffected operational observations retained."
+    "Task closure succession: affected historical observations preserved under historical_evidence and exact preimage in docs/validation/scripts-task-closure/before; affected decisions INCONCLUSIVE pending bounded successor review. Unaffected operational observations retained.",
+    "2026-11-17 evidence audit: inappropriate current references and obsolete observations were retired without changing their recorded artifact/input hashes. This correction grants no acceptance; see docs/validation/audit-correction-20261117/governance.md."
   ],
   "historical_evidence": [
     {
@@ -1384,6 +1359,21 @@
           "path": "docs/assets/mermaid.json",
           "sha256": "92d668657c60445321c0ad111e9b6a57155a77c9e809768c64c6871fe3d97d4f",
           "role": "configuration"
+        }
+      ]
+    },
+    {
+      "id": "E-T011-R2-SOURCE-RETENTION",
+      "kind": "inspection",
+      "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
+      "observed_result": "Raw bytes unchanged, no fabricated missing link target; current index points to README.md.bin. License/source/asset blockers unchanged; T009/T011 OPEN.",
+      "artifact": "docs/validation/persistence-freeze-20261105-r2/retention-review.md",
+      "sha256": "9d4269d5f51cbd23d178b465f0e44336eb6a308437f7d69345e57a6feae62f45",
+      "inputs": [
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
+          "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
+          "role": "other"
         }
       ]
     }

@@ -1,6 +1,6 @@
 # Short decision examples
 
-These examples are original illustrations of the decisions in [design](design.md), not copied book listings. Each Rust block is self-contained. From the repository root, check this file with `rustdoc --test skills/rust/references/examples.md --edition=2021`; use `--edition=2024` for the second supported example configuration. They use the standard library only. After copying this skill, substitute the actual path to its `references/examples.md`. Adapting their contracts still requires checking the target project's edition and MSRV.
+These examples are original illustrations of the decisions in [design](design.md), not copied book listings. Each Rust block is self-contained. From the installed skill directory, check this file with `rustdoc --test references/examples.md --edition=2021`; use `--edition=2024` for the second supported example configuration. They use the standard library only. Adapting their contracts still requires checking the target project's edition and MSRV.
 
 ## Borrow the result from the relevant input
 

@@ -1,0 +1,65 @@
+{
+  "immutable_comparison": {
+    "method": "SHA-256 equality with transferred immutable baseline; no source or registry writes",
+    "records": [
+      {
+        "path": "docs/validation/terminal-style-20261115/before/terminal-converge.md",
+        "expected_sha256": "c0ebc63628c6621feb3575e66f4e854e951b6b7466f14da805ef9d0079f2fa19",
+        "observed_sha256": "c0ebc63628c6621feb3575e66f4e854e951b6b7466f14da805ef9d0079f2fa19",
+        "current_sha256": "c0ebc63628c6621feb3575e66f4e854e951b6b7466f14da805ef9d0079f2fa19"
+      },
+      {
+        "path": "docs/validation/terminal-style-20261115/before/scripts-README.md",
+        "expected_sha256": "a3d7dcd18c50776b36ca1332e3ad2f995f4cb1c70545e4387caae28f37770133",
+        "observed_sha256": "a3d7dcd18c50776b36ca1332e3ad2f995f4cb1c70545e4387caae28f37770133",
+        "current_sha256": "a3d7dcd18c50776b36ca1332e3ad2f995f4cb1c70545e4387caae28f37770133"
+      },
+      {
+        "path": "docs/validation/terminal-style-20261115/pre-final-validation/terminal-progress-converge.md",
+        "expected_sha256": "fd2f01a12585ca07139ad29a8bfaa3a02ee75b9981b211d185316c4c602729b4",
+        "observed_sha256": "fd2f01a12585ca07139ad29a8bfaa3a02ee75b9981b211d185316c4c602729b4",
+        "current_sha256": "fd2f01a12585ca07139ad29a8bfaa3a02ee75b9981b211d185316c4c602729b4"
+      },
+      {
+        "path": "docs/validation/history-correction-20261115/coordinator/terminal-converge-before.md",
+        "expected_sha256": "ff2e0bc0fcfbe517467f3ea8d41d2da3ec292db681f80c28c37fdc2703dce92f",
+        "observed_sha256": "ff2e0bc0fcfbe517467f3ea8d41d2da3ec292db681f80c28c37fdc2703dce92f",
+        "current_sha256": "ff2e0bc0fcfbe517467f3ea8d41d2da3ec292db681f80c28c37fdc2703dce92f"
+      },
+      {
+        "path": "docs/validation/history-correction-20261115/coordinator/scripts-readme-before.md",
+        "expected_sha256": "47e8177eeb9d250d4c739619d16a786b695841af82f6dc4fa31c497d3bfe3ed4",
+        "observed_sha256": "47e8177eeb9d250d4c739619d16a786b695841af82f6dc4fa31c497d3bfe3ed4",
+        "current_sha256": "47e8177eeb9d250d4c739619d16a786b695841af82f6dc4fa31c497d3bfe3ed4"
+      },
+      {
+        "path": "docs/validation/log-repair-20261115/governance-origins.json",
+        "expected_sha256": "115729da28c4f28de481fe5db836618ef98fb7e99f17e32be29fa1485e9c3a94",
+        "observed_sha256": "115729da28c4f28de481fe5db836618ef98fb7e99f17e32be29fa1485e9c3a94",
+        "current_sha256": "115729da28c4f28de481fe5db836618ef98fb7e99f17e32be29fa1485e9c3a94"
+      },
+      {
+        "path": "docs/validation/log-repair-20261115/governance-successors.json",
+        "expected_sha256": "caeb0dd6397b93beebaf4e1964ec15ac2bd9e4d409258fb54d89583017626013",
+        "observed_sha256": "caeb0dd6397b93beebaf4e1964ec15ac2bd9e4d409258fb54d89583017626013",
+        "current_sha256": "caeb0dd6397b93beebaf4e1964ec15ac2bd9e4d409258fb54d89583017626013"
+      },
+      {
+        "path": "tools/governance/scripts/check-ox.py",
+        "expected_sha256": "9600d3dfa63dae254e261caf386686970af450ab8fb95a17cc99057f2dfa92ef",
+        "observed_sha256": "9600d3dfa63dae254e261caf386686970af450ab8fb95a17cc99057f2dfa92ef",
+        "current_sha256": "9600d3dfa63dae254e261caf386686970af450ab8fb95a17cc99057f2dfa92ef"
+      }
+    ],
+    "result": "PASS"
+  },
+  "wrapper_raw_hash_matches": true,
+  "published_paths": [
+    "/home/rodrigo/Projetos/ox/.local/logs/2026-11-15/ox-run-irZVY9Ow--preparation--result.json.log",
+    "/home/rodrigo/Projetos/ox/.local/logs/2026-11-15/ox-run-irZVY9Ow--ox--stderr.log.log",
+    "/home/rodrigo/Projetos/ox/.local/logs/2026-11-15/ox-run-irZVY9Ow--results.json.log"
+  ],
+  "all_published_paths_exist": true,
+  "wording_occurrences": 3,
+  "method": "Current immutable files compared to baseline digests; wrapper receipt/raw, both messages and every published path inspected. First manual path probe failed because it stripped single quotes from JSON double-quoted display; corrected by JSON decoding, no implementation failure."
+}

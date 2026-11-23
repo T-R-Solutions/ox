@@ -1,0 +1,28 @@
+import datetime,json,os,signal,subprocess,sys,time
+from pathlib import Path
+root=Path('/home/rodrigo/Projetos/ox')
+out=Path('/tmp/ox-r3-package-final-02');out.mkdir(exist_ok=True)
+if (out/'result.json').exists() or (out/'started.json').exists():raise SystemExit('Refuse overwrite of an earlier observation')
+env=dict(os.environ,TOOLBOX_BIN='/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox',TOOLBOX_SELINUX_LABEL='shared',CARGO_HOME=str(root/'.cache/ox/cargo-home'),PYTHONDONTWRITEBYTECODE='1',TMPDIR='/var/tmp/ox-r3-final-verification-XltM2HKX')
+scratch=Path(env['TMPDIR'])
+if not scratch.is_dir() or scratch.stat().st_uid!=os.getuid():raise SystemExit('Missing/non-owned approved private scratch')
+cmd=[sys.executable,'tools/governance/scripts/package-ox.py']
+start=time.monotonic();child=None;signals=[]
+def observed_signal(number,frame):
+ event={'signal':number,'time_utc':datetime.datetime.now(datetime.UTC).isoformat()}
+ signals.append(event)
+ with (out/'signals.jsonl').open('a') as stream:stream.write(json.dumps(event)+'\n')
+ if child is not None and child.poll() is None:child.send_signal(number)
+ else:raise SystemExit(128+number)
+for number in [signal.SIGTERM,signal.SIGINT,signal.SIGHUP]:signal.signal(number,observed_signal)
+record={'supervisor_pid':os.getpid(),'parent_pid':os.getppid(),'session_id':os.getsid(0),'process_group_id':os.getpgrp(),'stdin_isatty':sys.stdin.isatty(),'command':cmd,'cwd':str(root),'environment':{k:env[k] for k in ['TOOLBOX_BIN','TOOLBOX_SELINUX_LABEL','CARGO_HOME','PYTHONDONTWRITEBYTECODE','TMPDIR']},'time_utc':datetime.datetime.now(datetime.UTC).isoformat(),'supervisor_sha256':__import__('hashlib').sha256(Path(__file__).read_bytes()).hexdigest(),'process_group':'inherited; no detachment or ignored termination signals','streams':'outside checkout for entire execution'}
+(out/'started.json').write_text(json.dumps(record,indent=2)+'\n')
+with (out/'stdout.log').open('wb') as stdout,(out/'stderr.log').open('wb') as stderr:
+ child=subprocess.Popen(cmd,cwd=root,env=env,stdout=stdout,stderr=stderr)
+ record['child_pid']=child.pid
+ (out/'started.json').write_text(json.dumps(record,indent=2)+'\n')
+ code=child.wait()
+record.update(exit_code=code,seconds=time.monotonic()-start,signals=signals,completed_time_utc=datetime.datetime.now(datetime.UTC).isoformat())
+(out/'result.json').write_text(json.dumps(record,indent=2)+'\n')
+print(json.dumps(record),flush=True)
+raise SystemExit(128-code if code<0 else code)

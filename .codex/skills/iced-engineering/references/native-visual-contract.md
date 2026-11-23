@@ -25,3 +25,68 @@ Adapted method from the supplied visual-method package; no prototype policy is i
 A useful handoff records component purpose/consumers, roles/states, sizing/overflow,
 messages, focus entry/exit, backend ownership and evidence. Product-specific values
 belong in the product design reference, not in this reusable method.
+
+## Geometry budget and native adaptation
+
+Before translating a screenshot, identify which task makes each region necessary.
+Write width/height constraints in logical units; account for chrome, tabs, toolbars,
+gutters, splitters, inspector and bottom/composer regions. The remaining primary
+area must fit real text, controls and the tested minimum work area. Define collapse
+order and a way to reopen each auxiliary region. At each threshold verify focus,
+selection and unsaved contents survive; do not hide essential actions to preserve
+a screenshot's column count. Inspect both short and narrow windows, large text
+and display-scale changes. Record actual geometry separately from pixel captures.
+
+For illustration only: a window 1200 units wide with 240 navigation, 280
+inspector and 24 total horizontal gutters leaves 656 units of primary width.
+If the content needs 680, evaluate stacking or collapsing a secondary region.
+Budget vertical chrome separately: a height of 800 with 48 top chrome leaves
+752 before tabs, toolbars and bottom regions. Then observe the real consumer.
+These numbers are a reasoning fixture, not default tokens or evidence of a
+successful native layout.
+
+Map visual intent to the consumer's actual widget/theme resources: sidebar to
+navigation with stable IDs; panes to constrained regions; palette to a control with
+defined open/close and focus behavior; CSS variables to native semantic roles.
+Do not emulate web blur, framework components, ARIA or CSS sizing as if their native
+behavior were available. Verify toolkit support against the installed version and
+use a legible supported treatment where an effect cannot be reproduced. Persist
+layout preferences only if the consumer implements and authorizes that storage.
+
+Compare using a small explicit state fixture: content identity, selection, edited
+state, lifecycle, theme, density, scale and fonts. Include long localized labels,
+paths, missing values and applicable loading/empty/error states. Keep these fixed
+for before/after observations; test keyboard transitions and actual effects in a
+separate replay. Styling and a successful screenshot capture cannot prove a save,
+resize, accessible custom widget or execution result.
+
+This section synthesizes methods informed by the [desktop pack's pane/workspace
+entries](https://github.com/umutc6230/ui-design-skills-pack/tree/4ffc9d638e32f1332fc7ac74e3060e6278743d4b/skills)
+(08, 11, 12 and 15), inspected 2026-11-16. It imports no palette, persistence
+requirement, framework or platform-support claim.
+
+## Windows-to-Iced translation
+
+Use the consumer's adopted design source and actual Iced version as separate
+inputs. Map reference roles to existing theme resources/widgets/messages. WinUI,
+XAML, system materials, Windows UI Automation and shell integration are not Iced
+APIs. An unsupported effect needs an explicit legible fallback; unsupported behavior
+needs an implementation task and unverified state. Do not replace the toolkit to
+match the reference without a separately authorized architecture decision.
+
+For docked IDE composition, model pane visibility, constraints, selection, splitter
+interaction and focus restoration explicitly. Test pointer and keyboard resizing,
+window shrink, scale/text changes and canceled drag; do not infer docking or durable
+layout from a picture. Keep platform window controls compatible with the actual
+window manager. Native target/platform remains the consumer's authorized scope.
+
+Separate base, content, controls and transient surfaces. Use opaque semantic colors
+where Mica/Acrylic-like effects cannot be provided reliably; verify foregrounds
+against rendered output in active/inactive and light/dark states. Font, icon and
+motion substitutions retain intent while respecting local assets and preferences.
+Check accessible names, focus order and relevant assistive technology on the actual
+backend. A Windows guideline or styled widget cannot establish that observation.
+
+Source basis: [Windows materials](https://learn.microsoft.com/en-us/windows/apps/design/signature-experiences/materials)
+and [inclusive design](https://learn.microsoft.com/en-us/windows/apps/design/accessibility/designing-inclusive-software),
+consulted 2026-11-17. Product-specific values stay in the consumer's authority.

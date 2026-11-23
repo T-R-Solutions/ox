@@ -17,6 +17,7 @@ class TemplateInstantiationTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(prefix='ox-template-adoption-')
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+        (self.root / 'task_finalizada.md').write_text('# Destination task log\n')
         (self.root / 'sdd').mkdir()
         for name in ('workflow.md', 'evidence.md'):
             shutil.copyfile(ROOT / 'sdd' / name, self.root / 'sdd' / name)
@@ -55,6 +56,7 @@ class CleanAdoptionTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(prefix='ox-clean-sdd-')
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+        (self.root / 'task_finalizada.md').write_text('# Destination task log\n')
         for folder in ('sdd/templates', 'sdd/tools', 'sdd/chain', 'docs'):
             (self.root / folder).mkdir(parents=True)
         names = ['workflow.md', 'evidence.md', 'tools/validate.py']

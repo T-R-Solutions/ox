@@ -132,7 +132,9 @@ class ClosureTests(unittest.TestCase):
 
         data = (ROOT / "sdd/workflow.md").read_bytes()
         # Current documentary successor normalizes to the authenticated prior policy.
-        previous = R.maintenance_predecessor(ROOT, "sdd/workflow.md", data)
+        import instruction_revision
+        historical = instruction_revision.predecessor(ROOT, "sdd/workflow.md", data)
+        previous = R.maintenance_predecessor(ROOT, "sdd/workflow.md", historical)
         self.assertNotEqual(previous, data)
         self.assertEqual(R.predecessor(ROOT, "sdd/workflow.md", data), previous)
         self.assertIn(b"Choose the route", data)
@@ -191,7 +193,9 @@ class ClosureTests(unittest.TestCase):
                 env=dict(os.environ, PATH="/usr/bin:/bin"),
                 capture_output=True,
             )
-            self.assertEqual(run.returncode, 127)
+            # Runner reports normalized blocked status; native missing-command
+            # status belongs to its preparation record, not the aggregate exit.
+            self.assertEqual(run.returncode, 3)
             reports = [
                 json.loads(p.read_text())
                 for p in (dest / ".local/logs").glob("*/*--results.json.log")

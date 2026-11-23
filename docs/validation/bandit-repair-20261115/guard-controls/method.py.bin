@@ -1,0 +1,21 @@
+from pathlib import Path
+import sys,json,hashlib,subprocess
+ROOT=Path('/home/rodrigo/Projetos/ox')
+sys.path.insert(0,str(ROOT/'scripts/tests'))
+from test_backends import Backends
+OUT=Path('/tmp/ox-bandit-guard-controls');OUT.mkdir(exist_ok=True)
+fixture=Backends();fixture.setUp();results=[]
+try:
+ for label,relative,extra in [('source','scripts/tests/test_governance_diagnostics.py',b'\nsubprocess.run(["/usr/bin/true"])\n'),('policy','scripts/config/native/bandit/bandit-baseline.json',b'\n')]:
+  p=fixture.root/relative;before=p.read_bytes();p.write_bytes(before+extra)
+  run,row=fixture.run_check('bandit')
+  artifacts=list((fixture.root/'.local/logs').glob('*/ox-security-bandit-*--assessment.json.log'));latest=max(artifacts,key=lambda f:f.stat().st_mtime_ns);prefix=latest.name.split('--')[0]
+  raw=list(latest.parent.glob(prefix+'--tool--*'))
+  backend=list(latest.parent.glob(prefix+'--backend_record.json.log'))
+  assert run.returncode==3 and row['state']=='blocked' and 'Reviewed static source changed' in row['reason'],(run.returncode,row)
+  assert not raw and not backend,(raw,backend)
+  (OUT/(label+'-stdout.log')).write_bytes(run.stdout);(OUT/(label+'-stderr.log')).write_bytes(run.stderr);(OUT/(label+'-assessment.json')).write_text(json.dumps(row,indent=2)+'\n')
+  results.append({'case':label,'changed_path':relative,'original_sha256':hashlib.sha256(before).hexdigest(),'mutant_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'exit':run.returncode,'state':row['state'],'reason':row['reason'],'scanner_not_executed':not raw and not backend})
+  p.write_bytes(before)
+finally:fixture.doCleanups()
+(OUT/'results.json').write_text(json.dumps(results,indent=2)+'\n');print(json.dumps(results,indent=2))

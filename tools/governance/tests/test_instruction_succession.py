@@ -40,7 +40,10 @@ class InstructionSuccessionTests(unittest.TestCase):
             self.assertEqual(R.predecessor(self.root, name, data), (self.root / row['previous']).read_bytes())
             self.assertEqual(R.predecessor(self.root, name, data + b'unknown'), data + b'unknown')
         target = self.root / self.row['destination']
-        target.write_bytes(target.read_bytes() + b'unknown')
+        original = target.read_bytes()
+        changed = original.replace(b'## Authorities', b'## Lost authorities', 1)
+        self.assertNotEqual(changed, original)
+        target.write_bytes(changed)
         self.assertTrue(R.errors(self.root))
 
     def test_registry_and_decision_mutation_rejected(self):

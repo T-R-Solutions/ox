@@ -1,0 +1,50 @@
+{
+  "source": "scripts/tests/test_terminal_progress.py",
+  "source_sha256": "665987e42c74b38db9c21d09b26155473c32550ac45d59c6f6cbbf254c99855f",
+  "baseline": "scripts/config/native/bandit/bandit-baseline.json",
+  "baseline_before_sha256": "2a5f58bc4fc5c58f9c2f95d2908267c5e6d8484f85329cc1128b1e6e74d62412",
+  "baseline_after_sha256": "a06355232ae975f5773163c32603e5291e4a0618aadddba3c794c1ada37431f0",
+  "added_occurrences": [
+    {
+      "filename": "/project/scripts/tests/test_terminal_progress.py",
+      "test_id": "B404",
+      "line_number": 15
+    },
+    {
+      "filename": "/project/scripts/tests/test_terminal_progress.py",
+      "test_id": "B603",
+      "line_number": 124
+    },
+    {
+      "filename": "/project/scripts/tests/test_terminal_progress.py",
+      "test_id": "B603",
+      "line_number": 127
+    },
+    {
+      "filename": "/project/scripts/tests/test_terminal_progress.py",
+      "test_id": "B603",
+      "line_number": 198
+    },
+    {
+      "filename": "/project/scripts/tests/test_terminal_progress.py",
+      "test_id": "B603",
+      "line_number": 353
+    },
+    {
+      "filename": "/project/scripts/tests/test_terminal_progress.py",
+      "test_id": "B603",
+      "line_number": 388
+    },
+    {
+      "filename": "/project/scripts/tests/test_terminal_progress.py",
+      "test_id": "B603",
+      "line_number": 503
+    },
+    {
+      "filename": "/project/scripts/tests/test_terminal_progress.py",
+      "test_id": "B603",
+      "line_number": 524
+    }
+  ],
+  "method": "Append exactly the independently reviewed native occurrences; preserve existing records and rule/severity configuration; post-policy scan is required."
+}

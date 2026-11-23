@@ -1,0 +1,22 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "changed_public_observation_inputs": [],
+  "changed_immutable_paths": [],
+  "final_owned_code_sha256": {
+    "tools/governance/scripts/log_repair_revision.py": "e92b03c3f2cb3661743be664f53853a36933ec102d8d05ba526a88521cae4eda",
+    "tools/governance/scripts/historical_link_revision.py": "ddab78d019456d460f4f8fcb9fd9854ed813751ac550d337bcb44ef247dd7d66",
+    "tools/governance/tests/test_log_repair_revision.py": "9ec956b1092ebe862c3f783a96562c9b6997fe3b44d34f80e8217ce800e7e638",
+    "tools/governance/tests/test_historical_link_resolution.py": "d77f0c7ad8c510422776121ab430df82e4c4df032479b9b388f0856c40fd6cc6",
+    "tools/governance/tests/test_instruction_copy.py": "dff0563f7571235868becc12ef379da3d81e57701530c3b582bcc8b05d4a71f0",
+    "tools/governance/tests/test_defaults_succession.py": "f9175012c823780e26db6d0425db1137ec85aa85f849b4d1a735d7f6b649ed7c",
+    "tools/governance/tests/test_configuration_succession.py": "943739f2d356abadeb712680d483766d6c7eafa34870749e31478d4fce9577bc"
+  },
+  "limitations": "No broad-suite/feature acceptance; independent review and validation owned by coordinator."
+}

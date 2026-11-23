@@ -1,0 +1,669 @@
+{
+  "method": "SHA256 final bytes after writers finished; identifies observations, does not independently prove behavior",
+  "inputs": [
+    {
+      "path": "application/Cargo.lock",
+      "sha256": "99d3907a15d227674b420a6cfcede596be840144c3db9ff070547c948bc40ab8"
+    },
+    {
+      "path": "application/crates/ox-ui/examples/audit_focus.rs",
+      "sha256": "a6c1e355445c6375653626aeff3720fd7edb9780bd0b6e051660fde0e2bf637e"
+    },
+    {
+      "path": "application/crates/ox-ui/src/design.rs",
+      "sha256": "6082f502190cfc63c0b742024b9da0339dc46d5fe94ee189a111cc3d88e29cbe"
+    },
+    {
+      "path": "application/crates/ox-ui/src/local_task.rs",
+      "sha256": "97635c67830eab998c5f7b2bf84f67f64befce674b36297a040cfdc0afc5b454"
+    },
+    {
+      "path": "application/crates/ox-ui/tests/local_task.rs",
+      "sha256": "13c46d911cd9732acace44c2bdc98b5a7ca8e585a13b83658b5013ebf64e6e88"
+    },
+    {
+      "path": "docs/design/components.md",
+      "sha256": "6e8714889666c841a3a59dd336d1e41644ddb412bccc9745306dd31dd0164a52"
+    },
+    {
+      "path": "docs/validation/audit-correction-20261117/assessment.md",
+      "sha256": "667459682477137f5d0d58f2f59abbd20317ac5d407f7555842d2f870e0c37d9"
+    },
+    {
+      "path": "docs/validation/audit-correction-20261117/report.md",
+      "sha256": "1eef42e623ee0daf7e5118ad4bb139b708519681974ca882d4801b14292a3266"
+    },
+    {
+      "path": "docs/validation/audit-correction-20261117/validation.md",
+      "sha256": "845a176f3c9ac31332fae24c0e53f818edf35a742d3fc9f17c4d1c77a28b81b0"
+    },
+    {
+      "path": "docs/validation/audit-correction-20261117/visual.md",
+      "sha256": "69cf347bf5ad516fb75d66d91f0efe0f44c595dbd537adf156d3deca65d87c97"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/assessment-index.json",
+      "sha256": "0ba920ad4f1397597d3125137b6d2df3ac0aa726f65416336ba64a2b47655cd0"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/before/docs/design/components.md.bin",
+      "sha256": "885560e3e00ac9543b71fd1ee6a7ce8baf2fe3796d3fa3abee6be0625ec86ffa"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/document-successors.json",
+      "sha256": "673e3c0d73e72f9b1c06e5f3f41878d5aaa52fea9ed9309fbb172b83106ca1c9"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/native-observation.py.bin",
+      "sha256": "69c5440d13d0a793fea5c44aa2bb39765b74b6b114321e5c7ad7846a39c659bd"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/native-session.py.bin",
+      "sha256": "1ab4c178cccf0db8aeec85c927f4f7045fc1a464a54dced77000abe5109f6964"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/application-initial.png",
+      "sha256": "7080a80ae0bbcb53bf0fd179a1da3203ad9ae71d07069b2f3fa1ec388ec4d930"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/application-tab-1.png",
+      "sha256": "0ab43427352d9d95e97202ec31e0199657c6b1d73776fd2e09b09cc487897298"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/application-tab-2.png",
+      "sha256": "8509ad2d616a6e0ec74295f863893749210d5524fad25d243e0fd46049c426cc"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/application-tab-3.png",
+      "sha256": "fe8302eb39c53546771163d585bf1118c20891e7f481061c4fbf3f1787ef80c0"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/application-tab-4.png",
+      "sha256": "b2a39df52393ac3b9f55bf0f577370bdce8049275d8e0ee6c3a0fb493fe95b75"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/application-tab-5.png",
+      "sha256": "0ab43427352d9d95e97202ec31e0199657c6b1d73776fd2e09b09cc487897298"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/application.log.bin",
+      "sha256": "8129275cf56764edaa374ee6b86042e62155d12f814a85ad5f70489815a763b4"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/compositor.log.bin",
+      "sha256": "8283b1ce089bb6530c5783f126ed5315250451d8515cf399f589e10487038541"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/dark.log.bin",
+      "sha256": "74f629d15bc875218b2c611b77ede18ee0bda38ffc2079e57272000a72a2e2ef"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/display-applied.json",
+      "sha256": "ff0ee969f75e0ffb24ec4c92f0c96be4bf3b86c55f80afa2dce2c09ee6a8aae8"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/display-state.json",
+      "sha256": "ff0ee969f75e0ffb24ec4c92f0c96be4bf3b86c55f80afa2dce2c09ee6a8aae8"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/environment.json",
+      "sha256": "2f36d6fd65f37454ea6edcf6c4429840284032960288918fa2ab9f83cc4177aa"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/events.json",
+      "sha256": "40b10f91aec92a9aaa562687de4710943d632740c8a9fa3632320432d5ec08a5"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/hc.log.bin",
+      "sha256": "53fc23159a572437562c21d165a5a272a7dd69aa138ac8197f1e63dd85a98620"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/light.log.bin",
+      "sha256": "449975cc3ba7bfbcbb39e20b4d558e64d76ec6b07173305850a7357d370af3a2"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/matrix-dark.png",
+      "sha256": "d0c305cbc4b8e3595735a9f8c6d6515670e990b6a7ab44f945feb7f5ea22f8e7"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/matrix-hc.png",
+      "sha256": "cc03ee0c6ba2c447c207dba49213c1c85be99d5fd2bf48a1018e12fc36a3f48d"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/matrix-light.png",
+      "sha256": "a4df1549a91dceac85d16078107c1e2d69380b8347fcfe5cba23093f25501bbf"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/observed-native/state/ox/recent-projects.v1.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/probe-session.py.bin",
+      "sha256": "3a3e4c61fc13a9440bb4a4b5f37dd5ea407a960ff30991cbe481184ae12deedd"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/result.json",
+      "sha256": "904f816a16685ffae324d2c090aba72e9d21e5f28db5cdb04a032c18757adabf"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/retained-inputs.json",
+      "sha256": "781b8696325d95f6f5019779c79ab5675f140d8ce825ebad09103e6b690765d7"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/native/sandbox-result.json",
+      "sha256": "100743278948886b091b5159ed456ad7ca3304c313a8a3a2c1b5cb62704dc14f"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/plan.md",
+      "sha256": "8abef459925b65261b6c85707bc09638cc6c656a0d03af792d106c7eeedefb92"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/prior-acceptance/sdd/features/scripts-centralization/converge.md.bin",
+      "sha256": "d87cf5749881d52b6c7a32b285009b89bee56aa0da73b50caa8ba0fe2d34d55e"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/prior-acceptance/sdd/features/scripts-centralization/evidence.json.bin",
+      "sha256": "4ef61bc1cb69303658771d04beb1013f6d8c69200a8459afa9f18e7606763c0e"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/prior-acceptance.json",
+      "sha256": "94eaf1a0cf850cd772398e2adbb83cbca558329f1a1b9f85077f7c1612758bb9"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/report.md",
+      "sha256": "6974aad25b4d8638a223db751d1b19f23be6f4b8e226fd1fba00284d95fa7bf1"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/audit-supplement/assessment.md.bin",
+      "sha256": "905721534a860c8051c51264a8a973b0a0133fdad3540092dd9592a11c67f161"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/audit-supplement/report.md.bin",
+      "sha256": "15a8bdd8c7e5acd0035378939d94cf235ae0775887f532a37a03f20a38a3d7e7"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/audit-supplement/review.md.bin",
+      "sha256": "ec916d775ce3d69d3dc00784c95ef6abbd1605c23d7348d45bd2a89ba3bc00bc"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/audit-supplement/validation.md.bin",
+      "sha256": "a30da619a724e3d63238a6ff82febd428dc59b241226becf6ef111f33ffc94cf"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/audit-supplement/visual.md.bin",
+      "sha256": "95349b30de0701b254c861c55d679fd1e6f64147d6711f6378f9937474cc8195"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/baseline/diff.patch.bin",
+      "sha256": "25c31ab4a27ecf2bf9bef1fbe1e4e5d2db453d40df21917858ef42de3872a038"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/baseline/hashes.json.bin",
+      "sha256": "7ca619f793adb327a0da4ec8b223063a58df987d0000972bb4dc687ab05ea69c"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/baseline/status.txt.bin",
+      "sha256": "0ad00806a571a276fb561bda6df46c17dd8031cbd8c061ac5716ff6316858f54"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/manifest.json.bin",
+      "sha256": "01fd3e180e54ff4a35ed053762228173a4d0ed95ca15746f34289a094b8f15a5"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/evidence.md.bin",
+      "sha256": "bb40a4eb436f4dbbdc73bceebc2e7c3017ab5453fd5ba32504eba6cd7b85c731"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/adoption-governance/converge.md.bin",
+      "sha256": "a5d5a979296b7d137269ca67c79d2b7f551fa79628a55a58d6350be988477e16"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/adoption-governance/evidence.json.bin",
+      "sha256": "fe607baf2d51fc4c71d66e5c3616549e9865ec0addb9b7a6dc203d176bb46338"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/configuration-cohesion/converge.md.bin",
+      "sha256": "dbcc39133221b8c9e0614dea60e49bdca3fcf05e445c0eb045725af8d6bd3704"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/configuration-cohesion/evidence.json.bin",
+      "sha256": "6819fe50c2ee70a653367b53d42ccf307246f8d634d94388a89cc4d70f0eac22"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/dependency-hygiene/converge.md.bin",
+      "sha256": "6c126c2b0ac73dfdd5ce7dcd08688675c5a337e2dc127e9f1c509f69a80c40a0"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/dependency-hygiene/evidence.json.bin",
+      "sha256": "460f70716495602837325563a9b49ca77b155b349fb143da9200af5150f6034a"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/governance-externalization/converge.md.bin",
+      "sha256": "d1e9200864203b290b1e7b0e1085609da8e5f3a7cc55210bcf135f69b6fd65c6"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/governance-externalization/evidence.json.bin",
+      "sha256": "c13bacdabb5fc7c194cbc0fdbd230bcf675ff78f35db27857ba16e78a26849df"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/governance-layout/converge.md.bin",
+      "sha256": "dac9866fddd1be6c79e0c5fe2e3ec6040e3a249d956f1a449d0dde5f9b923e07"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/governance-layout/evidence.json.bin",
+      "sha256": "9a2e6af8b46c17f39ed8729d941740c59403057cf87d73bd02eecf7ab3482e1a"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/governance-reconciliation/converge.md.bin",
+      "sha256": "5dd6cd6d62326d66fe987d716ef109961423362a8e56835151b0c5a8a9c5895f"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/governance-reconciliation/evidence.json.bin",
+      "sha256": "4546b843c6261bd39979721ab001f9d3261aec64aacbcda74e66c837c48a7ac2"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/history-scanner-correction/converge.md.bin",
+      "sha256": "d165316c40ad60e8f262d45f8b1fdb5a6d9ef111993d8d149dc64390637c8aec"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/history-scanner-correction/evidence.json.bin",
+      "sha256": "de61fa899a2ef3d8c7f60e9ec6b96827116b9bdea65f4015a412506b602320bd"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/maintenance-001/converge.md.bin",
+      "sha256": "a968dda482db9da0b52b72683260e62557dceade92a6fc744f06e8c12a42a2e6"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/maintenance-001/evidence.json.bin",
+      "sha256": "af21eab930f80a1099d490be974130f75e848fb2359d66ac6bc3480692f3bbef"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-agent-runtime/converge.md.bin",
+      "sha256": "ca7a54e8bad604312120ba712fe5fa5d2168948ad92a79943c32aeb393b0710e"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-agent-runtime/evidence.json.bin",
+      "sha256": "e7c2662067c7d6eb3b45e0a2f09711734e568e941050696326bd0541e9dac6b4"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-bootstrap/converge.md.bin",
+      "sha256": "bb3d239a77faa83c6e5cdfacc947fe94ceeef465bfed825e3bdea907db8c54b3"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-bootstrap/evidence.json.bin",
+      "sha256": "e8ded92069de62a0fbd011abb7a7507c17202f15f79c4160ec4477f6ed2ab4e1"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-f0-gate/converge.md.bin",
+      "sha256": "35b2edac92faf3cee0b94240bf6b455976953ff3934fd7896c2b27efd41c7fd9"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-f0-gate/evidence.json.bin",
+      "sha256": "e7a6b7a365ad70a43034f1281c2b47b763586218a4929bf46657942744b0754b"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-foundation/converge.md.bin",
+      "sha256": "94cca94bd9d0b7b229eb50c6d4b7b047fd1a6f68a1be584889b3f91133eea20d"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-foundation/evidence.json.bin",
+      "sha256": "e5d9e02d0c26d4fe7919d8a4df80447bf0f8a884a24d6378a6b4906c5a6e3c21"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-local-persistence/converge.md.bin",
+      "sha256": "c744635c477a14bdfa0867a4c0fcc953851bbd91594ad2078a23c8fd97674be2"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-local-persistence/evidence.json.bin",
+      "sha256": "f6a53b38d486f2c079de629616a6d020c3650cc570e2f2990559404ca6b9f4e4"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-local-task-ui/converge.md.bin",
+      "sha256": "43b6fa32e02e5ff213d581fcbaa7bede8e012dbded5b5e1ef3582dbeffd86314"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-local-task-ui/evidence.json.bin",
+      "sha256": "22b87fe7c49aec61729398b4be97b9528328b5d39510e24a0a93bcb92ac90626"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-plugin-host/converge.md.bin",
+      "sha256": "c4321f762d1a0227457081abea56d645899ab419d453623f78c9542083919dcc"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-plugin-host/evidence.json.bin",
+      "sha256": "b24c44ed86d7f82c2fc4643a5e9ad5bf5d3474e3d1f98741aa5e7c691a1cf830"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-verification-engine/converge.md.bin",
+      "sha256": "6f8c64a59e0ede4f5bc280b594879a9253581f9e9c3cdcf2aa80f30a2564a0cd"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-verification-engine/evidence.json.bin",
+      "sha256": "76e2081030f945f1f06598afc110a4319a2e8750a613b01d7c75926961af6d0b"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-visual-workbench/converge.md.bin",
+      "sha256": "19d05cde61b31160279aa1a2117b94c4d3d7a347359b58f0e3484fba05c5145d"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/product-visual-workbench/evidence.json.bin",
+      "sha256": "4ee3550a95595148aa0bd64b5aef9e51f66655c9b492d827e2d9d82fd920525c"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/readme-skill-integration/converge.md.bin",
+      "sha256": "2d635139ee6dde9fb4af368a9f6762506a67423959cf8c6f298f883f14064c06"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/readme-skill-integration/evidence.json.bin",
+      "sha256": "bf302c12b7b29e613c170cb25a91f25fb48319d5054afb828c0daef73331830f"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/repository-maintenance/converge.md.bin",
+      "sha256": "12f4ebb5764f1b648bb32ab945ef4c9409c289fa53d3536a6c8b20bb9fcb4fbe"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/repository-maintenance/evidence.json.bin",
+      "sha256": "9f78dada9cb0ffb8e7246fe22c53c9234008f15f56b33b1923208fdfdb06719c"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-centralization/converge.md.bin",
+      "sha256": "35974f3b057c121b11c032406e8539f6de0bd562a9dd1e167b3be9513bb64403"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-centralization/evidence.json.bin",
+      "sha256": "edc773f02e0ad2881a6aa5fd9ad255bcdda1738a494cf0a50eb62e0985338c99"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-security-preparation/converge.md.bin",
+      "sha256": "55b41597fd2343b701a2e0b7b49125e2f3e14937e5a39dd7e61cd6a826a57781"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-security-preparation/evidence.json.bin",
+      "sha256": "bc42139ab2fff34d466f650047fdc6a1b4d25dd02395ee86975937c7483f73fe"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-security-quality/converge.md.bin",
+      "sha256": "061bb942bf713e9d9b75f9ffe1ca06139ccbb137c6181cec7b31841964af64e3"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-security-quality/evidence.json.bin",
+      "sha256": "878ed25159fa4b5fb8d922e390236da51c22f95a77fafe34f4b775f7320bd28b"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-shell-refactor/converge.md.bin",
+      "sha256": "bb35c236f4bae54f3147af45770685f1d77a120b17c387124b10136dfd4f2a7c"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-shell-refactor/evidence.json.bin",
+      "sha256": "e1c166910e35608e2b3ba46be859f551c0ca33ebb97c05883987e62122897a2e"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-task-closure/converge.md.bin",
+      "sha256": "4c7a6fc18b2d17f8bcb6e16fce765a6157ef44ec06696238074ad776d1135d7e"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-task-closure/evidence.json.bin",
+      "sha256": "f50363b3904949a5ac40b6b82e83537ff9ccf1da10c19d0c9f3b516e2a9ca545"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-task-closure/traceability.json.bin",
+      "sha256": "9452d3d975e02a7924607da6ae01baccc08e163a104c9d49d2e509dee3c225e3"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-toolbox-native/converge.md.bin",
+      "sha256": "f4dfa981311cb1a8e201fbb79f98cb55ebf35cf1ed57aa49fc0e0dec37cc03c5"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-toolbox-native/evidence.json.bin",
+      "sha256": "76d6b06e87b7ef3592c3d79b6c9526fba2a66b57c683db8009debd4da9cba2ff"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-toolchain-config/converge.md.bin",
+      "sha256": "29e4e4f0833dddcaecd7bb7fdd47722f53ba5256f87b9d1f82904f1a36b15cb5"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/scripts-toolchain-config/evidence.json.bin",
+      "sha256": "6606d348de3aed191481d7f3bc83ca2f9eb6ec4dc801102fc6167ca83f1c5ab0"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-agent-runtime-engineering/converge.md.bin",
+      "sha256": "bb70468f36943168a98bf6c08bc72928acea66a2b630829b35bb8f2d2ddede63"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-agent-runtime-engineering/evidence.json.bin",
+      "sha256": "f14da1c0ebd3e50e7cbd4380f6ef2d506b313c7f5d3b0ceb52577305513e0290"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-agent-usage-accounting/converge.md.bin",
+      "sha256": "28b3431dc62e04d95532d2d31724909f1e6a8bcbbec28b65911e674b9e36cfbb"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-agent-usage-accounting/evidence.json.bin",
+      "sha256": "342d916b80c7c134123fa55a0809e0723c26e73037fa3217ad686eb9c17ab1c4"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-autonomous-verification-engineering/converge.md.bin",
+      "sha256": "1d0088775437ce603252cf5009137ae23e166aa9bf2d6334ad08b07c47245469"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-autonomous-verification-engineering/evidence.json.bin",
+      "sha256": "c534dba3660cd80e0351adfb29fdb3ab64abdc7be02251d60d61aea623bbed5d"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-code-context-engineering/converge.md.bin",
+      "sha256": "a0a5c06c76e338cd223970a7862b583a2c042ed68bf6b891225a1ff5dc56ef3f"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-code-context-engineering/evidence.json.bin",
+      "sha256": "478158ef7e8a83c47f637d93149e55e5c73f64293d64a4d224bfd1a22b293ac3"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-code-knowledge-graph-engineering/converge.md.bin",
+      "sha256": "cbdc14e8ba13a2ec7ea68aadb5f584928c620e9fd14460a35345c3bdd70914a6"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-code-knowledge-graph-engineering/evidence.json.bin",
+      "sha256": "4615e1271ea6c3b0dd570b267a53075627487ece711336d8ed1de3ed1d269fb7"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-consumer-validation/converge.md.bin",
+      "sha256": "c1a2e393d0854ce77af985a986383ec874f0922835000274ca80815f057fdaca"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-consumer-validation/evidence.json.bin",
+      "sha256": "a33f33d77c2d64495095ba29ad0e97d52bb0445f16edb36117d0295079b60a8b"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-iced-engineering/converge.md.bin",
+      "sha256": "059ba6d4e7736482f63e6ed35e9024128b5e746476d5c5e3d3c458eed6a8b492"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-iced-engineering/evidence.json.bin",
+      "sha256": "7cee3402a0aea1aa122c8340dfea4bbb2f35c3ceabd812f63d83351229565f62"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-native-visual-method/converge.md.bin",
+      "sha256": "cd40b9ed5c6a474889489f02eb00f3b60373646b0d796715a1fad4fdca43e33c"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-native-visual-method/evidence.json.bin",
+      "sha256": "97d4e65599cccea5f768f62c88e71fa37496b7946202221c7f37b859f73aa4de"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-plugin-protocol-engineering/converge.md.bin",
+      "sha256": "3180bf25cfb2a60de0db8483013695b741aff2f42cc427dab2934b850355a6f1"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-plugin-protocol-engineering/evidence.json.bin",
+      "sha256": "c122bed2791fdf94185be02c92c0c88e9167d09911dd3df07e0bc077adeb1e92"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-tool-output-engineering/converge.md.bin",
+      "sha256": "c364fbbbf8b7b0a339546794ef654f7d645c21851f25c14c390c80aa7eb1ab5c"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-tool-output-engineering/evidence.json.bin",
+      "sha256": "699b315f7f446ccfc12b19f4281bfd964b73646266411bf4d2b823b47ac095da"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-ui-metadata-inventory/converge.md.bin",
+      "sha256": "a0a2b5303488c4bf7bf68aa1f0626d2ca33a69d0e3e61aad503ffbefdc95c055"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-ui-metadata-inventory/evidence.json.bin",
+      "sha256": "2fbdc900ea6a3070bd8767c903d3a43596d153883c6c1e95411daac5130f0d22"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-workspace-integrity-engineering/converge.md.bin",
+      "sha256": "46049b9cbfea5414e63507074da1f98bc7e1c8df6837c46f403baa234307fad2"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/skill-workspace-integrity-engineering/evidence.json.bin",
+      "sha256": "f2cfeff81e99eecdb021328282cd7bfe0d40bd68319703269ac367e289b19c83"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/technical-acceptance/converge.md.bin",
+      "sha256": "5841065b2482ae73871d47a0c0000e5171a2140ca41851f973e9671e9f774fe5"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/technical-acceptance/evidence.json.bin",
+      "sha256": "9836e13534e6d3e281bd7f86d28bb06a1f623560e7ae585a58de70acb99cb837"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/technical-acceptance/traceability.json.bin",
+      "sha256": "380bcf61602a22167120c35d96a702374cbef7a90778f10ff8c112d81b877581"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/technical-documentation-visuals/converge.md.bin",
+      "sha256": "ab36b0840a6c590d799241b4ffc6d120b5207fdb7341b844e3959b1de12af989"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/technical-documentation-visuals/evidence.json.bin",
+      "sha256": "094b280fdcf5cd5281b0ca88359db3a8cdc4b5d62e4b327c7ccacdc4e3ab195a"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/terminal-progress/converge.md.bin",
+      "sha256": "e6803949baaf604ca9383daccf952902dd5a3d77afdd9258d754dc56ddece987"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/terminal-progress/evidence.json.bin",
+      "sha256": "ea5e7f48b688d689b25f8a6ad8b6e1ca7e94ba37a354e6106bb4ce00b2dbe3e3"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/visual-skill-refinement/converge.md.bin",
+      "sha256": "373dc74e5106121e9fff8abf1c0e95c3c759667ba43553bda28d0d3c6e4f0a59"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/visual-skill-refinement/evidence.json.bin",
+      "sha256": "e046f99afd84f2c4970b66f8dfd549cfd8e479a838123086800d65ad8084538a"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/windows-design-baseline/converge.md.bin",
+      "sha256": "6b13cd936d283d18f2d63571303d28624903bb45fa756c9a05c8f92c93e939ef"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/sdd/features/windows-design-baseline/evidence.json.bin",
+      "sha256": "3cd8eb0c3085bb5967fa5a34e9cb9493557902fe184d07f69e5f3376ca147ee5"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/governance-before/validate.txt.bin",
+      "sha256": "42af0f766326ee4bac87d34f830388ed54fd615d0e551829a1ff3b3d019650c4"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/isolated-copy/.ox-governance-copy.json.bin",
+      "sha256": "544c8f64a2095f06383d65200633da7f345903a1e7518ac419c1d0d7d149ae82"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/isolated-copy/docs/validation/audit-correction-20261117/succession.json.bin",
+      "sha256": "fc5127b589f98df748aef6caa01fc392fae8649ccb8378b4a6216a6461085709"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/isolated-copy/ox-audit-final-copy-check-successor.txt.bin",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/isolated-copy/ox-audit-final-copy-check.txt.bin",
+      "sha256": "e6c02f06b289a58f0f526781360392a3bcfba477d7be7fae0ed88d9a7bef087e"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/isolated-copy/tools/governance/scripts/audit_revision.py.bin",
+      "sha256": "330c9f17d54e47389cdcbf67a12f7c28f20b955405268bfe6e0f7f7a97767aef"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/isolated-copy/tools/governance/scripts/log_repair_revision.py.bin",
+      "sha256": "0f20858c3f279da81f7026b6b46e956b447e03b8bad9bfb297cc083673d3d38d"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/isolated-copy/tools/governance/scripts/osv_acquisition_revision.py.bin",
+      "sha256": "a5ed050dfb94f4a00c0b6e70961feaf996eba1fc8704f7d5815ba91a80b74020"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/isolated-copy/tools/governance/scripts/readme_revision.py.bin",
+      "sha256": "257888da876617b8d84f04e1a6f29788948e9c41aaf79c955dbb710c8eff6b16"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/isolated-copy/tools/governance/scripts/windows_design_revision.py.bin",
+      "sha256": "918f504571fa512d2a07d9bd7e1414605680defd1ba492b00a4b7c9f0fd73398"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retained/source/auditoria-ox-20261117.md.bin",
+      "sha256": "5238b9404c8792d12e682254d48db2eb35ecb631fdf28270be23ce088fa25478"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/retention-manifest.json",
+      "sha256": "2710a7c7834e48c5d53df6c35d9b1af7c91b40b5fea32195786bade2dd9f1a7b"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/review.md",
+      "sha256": "f903595d4c60b493ca3a0b080886ebf76740d17b4a659adcb6e716657fce8657"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/ui-before/application/crates/ox-ui/src/design.rs.bin",
+      "sha256": "51e0043cfeb3752660f69800f18d775a109be2e175b8e0221cbc588f48899082"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/ui-before/application/crates/ox-ui/src/local_task.rs.bin",
+      "sha256": "1f968748d048695e8723609274299847b5f12f8029adf2ee6e4b1801a094999e"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/ui-before/application/crates/ox-ui/tests/local_task.rs.bin",
+      "sha256": "ab6ef094246d9778b5cbd4d0ef33e82dc7d7ca4f7232bdc49e123e1294ed61fc"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/ui-before.json",
+      "sha256": "fd84a5cdc48bd0906426698cf16adf55ebbd7054279bea678bffea71cd007ce9"
+    },
+    {
+      "path": "docs/validation/audit-followup-20261117/validation.md",
+      "sha256": "5fd229f17fa9d555b3016760a1c948fdd1f662a87803ad52751af0ba1791aea1"
+    },
+    {
+      "path": "sdd/features/product-visual-workbench/plan.md",
+      "sha256": "79443a2c95c4b2a26bd9ea680cff90c133c8c9d63a474a8f8aae105ab9a4ed92"
+    },
+    {
+      "path": "sdd/features/product-visual-workbench/tasks.md",
+      "sha256": "b0e99101fc14b17470ba01bba3254f2185ebac343efe9f1c4fa796329988c782"
+    },
+    {
+      "path": "sdd/features/scripts-centralization/converge.md",
+      "sha256": "96203c4aa0b0f0c399e3a4e08f57641187a7227ecbdcaa891afc5283c3ff838e"
+    },
+    {
+      "path": "sdd/features/scripts-centralization/evidence.json",
+      "sha256": "68e77edb9b4635aef7ea5903b0408e68d31750b21d13274c5b36c9a8c5cfd178"
+    },
+    {
+      "path": "tools/governance/scripts/audit_followup_revision.py",
+      "sha256": "4c1ac7b74e1ab022d30279d5811e6c1923e401244f7a92bb95458666850c31ba"
+    },
+    {
+      "path": "tools/governance/scripts/claude_analysis_revision.py",
+      "sha256": "ce30090d78986096f332f1441c002f20191f6f90b8788d4234ae02f24870ea92"
+    },
+    {
+      "path": "tools/governance/tests/test_audit_followup_revision.py",
+      "sha256": "daac8fc64d3a2d3e417177cccbe9f19f3e826d8560ee0004d774365901335b52"
+    }
+  ]
+}

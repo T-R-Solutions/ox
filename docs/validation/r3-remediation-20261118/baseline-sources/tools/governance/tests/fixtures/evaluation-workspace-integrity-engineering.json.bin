@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "workspace-integrity-engineering-positive",
+      "kind": "selection",
+      "prompt": "Projetar gravação concorrente entre editor e agentes, com snapshots, watcher e recuperação de arquivos."
+    },
+    {
+      "id": "workspace-integrity-engineering-negative",
+      "kind": "selection",
+      "prompt": "Planejar migração de uma coluna SQLite local após crash, sem escritores externos no filesystem."
+    },
+    {
+      "id": "workspace-integrity-engineering-failure",
+      "kind": "behavior",
+      "skill": "workspace-integrity-engineering",
+      "prompt": "Dois escritores leram H0; A publicou H1; B tenta gravar H2. Um destino usa symlink para fora da raiz, e houve crash entre staging e rename com watcher perdido. Explique operações permitidas e recuperação; não escreva fora do diretório de avaliação."
+    }
+  ],
+  "oracle": {
+    "primary": "workspace-integrity-engineering",
+    "negative": "database-engineering",
+    "failure": "conflict; reject escape; read actual contents; no blind rollback or TOCTOU claim"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "scope": "bounded historical-link/terminal repair; no global feature acceptance",
+  "criteria": {
+    "GL-01": "APPROVED",
+    "GL-02": "APPROVED",
+    "GL-03": "APPROVED",
+    "GL-04": "APPROVED",
+    "GL-05": "APPROVED",
+    "GL-06": "APPROVED",
+    "GL-07": "INCONCLUSIVE",
+    "configuration-cohesion/AC-16": "APPROVED",
+    "terminal-progress/AC-01": "APPROVED",
+    "terminal-progress/AC-02": "APPROVED",
+    "terminal-progress/AC-03": "APPROVED",
+    "terminal-progress/AC-04": "APPROVED",
+    "terminal-progress/AC-05": "APPROVED",
+    "terminal-progress/AC-06": "APPROVED",
+    "history-scanner-correction/AC-03": "APPROVED"
+  },
+  "unchanged_pending": [
+    "configuration-cohesion/AC-01..15",
+    "history-scanner-correction/AC-01..02"
+  ],
+  "resumption": "Integrate new schema2 envelopes/projections; selected complete-feature gate and freshness/convergence review; broad interrupted regression remains incomplete, not reclassified as passed.",
+  "input_manifest": "observed-inputs.json",
+  "methods": "verdict.txt; readme-mutation.json; helpers stdout/stderr; previous unchanged terminal observation probe-3 and verified receipts",
+  "limitations": [
+    "Controlled fixtures and Python audit isolation, not OS sandbox or product/scanner approval",
+    "Broad200 interrupted exit130 on prior candidate; final full suite not executed",
+    "Final evidence and converge edits deliberately not bound before coordinator integration"
+  ]
+}

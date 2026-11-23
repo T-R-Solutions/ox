@@ -57,6 +57,7 @@ class GitBoundaryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             allowed = [
+                "task_finalizada.md",
                 "scripts/automate.sh",
                 "scripts/README.md",
                 "AGENTS.md",

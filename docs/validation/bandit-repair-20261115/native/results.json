@@ -1,0 +1,36 @@
+[
+  {
+    "tool": "bandit",
+    "run": "ox-security-bandit-cSbse9pL",
+    "state": "passed",
+    "exit_code": 0,
+    "finding_count": 0,
+    "version": "1.9.4",
+    "image": "sha256:4017dbc3a35b7687b748de5444823dad6339f09e6e7fb8c8b84a6b8f351bae8c",
+    "assessment": "docs/validation/bandit-repair-20261115/native/bandit/ox-security-bandit-cSbse9pL--assessment.json.log",
+    "selected_python": 71,
+    "metrics_python": 71,
+    "errors": [],
+    "skipped_tests": 0
+  },
+  {
+    "tool": "ruff",
+    "run": "ox-security-ruff-UFZh5sSG",
+    "state": "passed",
+    "exit_code": 0,
+    "finding_count": 0,
+    "version": "0.11.13",
+    "image": "sha256:8cf322da34f777cef86f18f99266bfc1a7b545d6badbb8b365dd5885b7a8992c",
+    "assessment": "docs/validation/bandit-repair-20261115/native/ruff/ox-security-ruff-UFZh5sSG--assessment.json.log"
+  },
+  {
+    "tool": "shellcheck",
+    "run": "ox-security-shellcheck-DmfWz8L1",
+    "state": "passed",
+    "exit_code": 0,
+    "finding_count": 0,
+    "version": "0.11.0",
+    "image": "sha256:e5ec894b4a505c67cc576bd715789cf6e01a22298191fce1331a1df41bc01750",
+    "assessment": "docs/validation/bandit-repair-20261115/native/shellcheck/ox-security-shellcheck-DmfWz8L1--assessment.json.log"
+  }
+]

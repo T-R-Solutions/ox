@@ -42,9 +42,21 @@
     "risk": "R-04",
     "tasks": [
       "T004",
-      "T006"
+      "T006",
+      "T008"
     ],
     "implementation": "application/Cargo.lock",
     "oracle": "sdd/features/dependency-hygiene/spec.md"
+  },
+  {
+    "acceptance": "AC-05",
+    "requirement": "REQ-05",
+    "decision": "D-05",
+    "risk": "R-05",
+    "tasks": [
+      "T007"
+    ],
+    "implementation": "application/vendor/cryoglyph-0.1.0/src/lib.rs",
+    "oracle": "application/tools/test_vendor_layout.py"
   }
 ]

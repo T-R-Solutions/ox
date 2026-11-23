@@ -7,7 +7,7 @@ is not a new observation or product acceptance.
 | Criterion | Status |
 | --- | --- |
 | AC-01 | INCONCLUSIVE |
-| AC-02 | INCONCLUSIVE |
+| AC-02 | APPROVED |
 | AC-03 | INCONCLUSIVE |
 | AC-04 | INCONCLUSIVE |
 | AC-05 | INCONCLUSIVE |

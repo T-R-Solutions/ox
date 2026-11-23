@@ -1,0 +1,23 @@
+{
+  "inputs_manifest_sha256": "e0bc0a046c769e508a64fbfcf2470fea5f370eeb02d17827a7b16f3f306c827c",
+  "checks": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 0,
+      "artifact": "docs/validation/audit-followup-20261117/final-check-ox.txt",
+      "artifact_sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --require-fresh --check-convergence",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "limitations": [
+    "No global product acceptance; selected whole-feature approval rejects14preexisting/currentINCONCLUSIVE criteria.",
+    "Independent validator confirmed166frozen input identities before this final check receipt was recorded."
+  ]
+}

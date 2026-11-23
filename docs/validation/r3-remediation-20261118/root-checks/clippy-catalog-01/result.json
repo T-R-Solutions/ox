@@ -1,0 +1,32 @@
+{
+  "command": [
+    "env",
+    "CLIPPY_CONF_DIR=/home/rodrigo/Projetos/ox/scripts/config/native/clippy",
+    "cargo",
+    "clippy",
+    "--workspace",
+    "--all-targets",
+    "--all-features",
+    "--locked",
+    "--offline",
+    "--keep-going",
+    "--",
+    "-W",
+    "clippy::all",
+    "-W",
+    "clippy::pedantic",
+    "-W",
+    "clippy::nursery",
+    "-W",
+    "clippy::cargo",
+    "-D",
+    "warnings"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox/application",
+  "CARGO_HOME": "/home/rodrigo/Projetos/ox/.cache/ox/cargo-home",
+  "time_utc": "2026-11-19T02:20:54.890256+00:00",
+  "seconds": 3.9752829789940733,
+  "exit_code": 101,
+  "input_changes": [],
+  "method": "exact registry.sh rust-clippy argv from current automation flags/policy; no --fix or policy modification"
+}

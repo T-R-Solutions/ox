@@ -43,6 +43,6 @@ Deliver the schema/query/migration change, rationale, invariant-to-mechanism map
 observed checks, recovery path and unverified assumptions. Keep a small change small.
 PostgreSQL specifics, release orchestration, domain semantics and distributed
 coordination may warrant available specialists only for unresolved questions.
-No other skill or SDD is required. This does not authorize production mutation or
+No other skill is a prerequisite; the consumer project’s required workflow and acceptance contracts still apply. This does not authorize production mutation or
 create an analytics/data-lake/training pipeline mandate. Local tests establish only
 the tested engine, schedules and data, not universal integrity or performance.

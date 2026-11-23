@@ -1,0 +1,14 @@
+flowchart TD
+    accTitle: Da autorização à evidência da mudança
+    accDescr: Inspecionar pedido, autoridades e arquivos precede a escolha da rota. A rota local atende correções delimitadas; decisões materiais usam a rota completa. Ambas preservam versões, verificam critérios e registram resultados e limites. Falhas retornam à correção, sem promover ausência de evidência a aprovação.
+    A["Pedido + autoridades + arquivos reais"] --> B{"Decisão material ou risco incerto?"}
+    B -->|não| L["Rota local · registro proporcional"]
+    B -->|sim| F["Rota completa · spec / plan / tasks"]
+    L --> I["Implementar e preservar versões anteriores"]
+    F --> I
+    I --> V["Verificar critérios nos inputs observados"]
+    V --> R{"A evidência sustenta o critério?"}
+    R -->|sim| OK["Registrar resultado e limites"]
+    R -->|não ou insuficiente| GAP["Falha ou lacuna explícita"]
+    GAP --> I
+    OK --> H["Retomada vinculada aos mesmos bytes"]

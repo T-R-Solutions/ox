@@ -1,0 +1,190 @@
+# Verification inventory and observations — in progress
+
+This is a live execution matrix, not an acceptance declaration. Unless stated otherwise,
+commands run from the Ox root with Python 3 and PYTHONDONTWRITEBYTECODE=1. Historical
+logs remain observations of their original inputs. Original source identities are in
+baseline-inputs.json; exact retained preimages and their release are recorded in
+baseline-release.json. Current root-checks entries each retain command, prerequisites,
+environment, before/after input hashes, exit and raw streams. Source freeze during
+`governance-final-01` covers coordinator-owned implementation; external UI changes are
+recorded separately in root-checks/external-input-changes.json.
+
+| Command / purpose | Prerequisites and environment | Observed inputs | Result / exit | Logs |
+| --- | --- | --- | --- | --- |
+| `python3 -m unittest discover -s tools/governance/tests -v` — original baseline | Independent tree, Python, writable temporary filesystem | Original 20,923-file manifest; first source directly under /tmp was invalid for extraction-parent isolation | Attempt 1 interrupted 130 after demonstrated environment flaw; attempts 2/3 completed 1, with quota errors | governance-baseline.log, governance-baseline-02.log, governance-baseline-03.log, baseline-failure-catalog.json |
+| Same integral command — final candidate 1 | Root checkout; writable fixtures; no source edits during observation | Coordinator candidate; before latest reviewer fix | 1; 257 tests in 7802.957s, 16 failures, no errors/quota: nine contextual negatives and seven product-ide-shell copy failures | governance-final-01.log |
+| `python3 -m unittest test_instruction_copy -v` (cwd tools/governance/tests) | Declared-copy fixtures and temporary storage | Current copy fixture implementation | Attempts 1–10 failed (contracts/fixtures then quota); attempt 11 never executed after aborted approval wait; attempt 12: 0, six tests in 2872.624s | copy-02.log through copy-12.log; collected-exit-statuses.json |
+| `python3 -m unittest discover -s scripts/tests -v` | Python and mocked Toolbox tests | Source window recorded during candidate development; catalog bindings subsequently reviewed/updated | 0, 139 tests, one opt-in skip; skip is not integration acceptance | scripts-suite-01.log |
+| Named R3-2 regressions and succession focused suites | Python; hermetic fixtures | Candidate before follow-up reviewer fix | focused-01: 1; focused-02: 1; focused-03: 0, 25 tests | focused-01.log, focused-02.log, focused-03.log |
+| `python3 tools/governance/scripts/check-ox.py` | All governed sources, historical evidence and local profiles present | Candidate windows 1/2 | 0 both, no global feature approval | check-ox-01.log, check-ox-02.log |
+| `python3 sdd/tools/validate.py --root . --structure-only` | SDD structure | Candidate | 0; structure only | sdd-structure-01.log |
+| `python3 sdd/tools/validate.py --root .` | Schema/envelopes/bindings | Candidate during integral source freeze | 0; does not demand approval | sdd-normal-01.log |
+| Same with `--require-fresh` | Schema 2, existing observation identities | Same | 0; no approval implied | sdd-fresh-01.log |
+| Same with `--link-scope project` | Project Markdown links | Same | 0 | sdd-project-links-01.log |
+| `python3 tools/governance/scripts/verify-maintenance.py` | Retained baselines/archives and restoration inputs | Same | 0 | maintenance-01.log |
+| Selected nine complete features `--require-approved --require-fresh --check-convergence` | Whole-feature schema-2 gates | Validator-captured candidate | 1; 57 ACs UNVERIFIED/INCONCLUSIVE | validation.md (command and interpretation) |
+| Cargo build/check/test/fmt/Clippy/doc and design checks | application cwd; root CARGO_HOME; locked/offline; compiled tools | Original snapshots then current-ui manifests after external changes | 0; ordinary tests do not satisfy ignored native scenarios | root-checks/report.md and per-command JSON/logs |
+| Six ignored desktop scenarios | Dedicated Mutter/Xwayland; compiled binary; explicit ignored selection | Original application inputs | 101; six executed, five failed, one passed | root-checks/native-x11/result.json and streams |
+| `application/tools/native_review.py` and `native_composition_review.py` | Dedicated Wayland, fresh output dirs | Original application inputs | 1 each; timeout task artifact | root-checks/report.md and native directories |
+| OX_REAL_SECURITY=1 real backend test | Explicit Toolbox/shared SELinux; host receipt writes; user-authorized OSV refresh | Root captured scanner window | First omitted flag skipped; restricted run1 EROFS; escalated run0 and 11 subchecks executed. Ruff15 diagnostics subsequently fixed; OSV finding1 remains | root-checks/report.md, real-scanner-receipts.json |
+| Real Ruff after source fixes | Selected central Toolbox backend | Candidate before follow-up tests | 0, JSON empty diagnostics | ruff-after-fixes.log |
+| Complete automation from root with exact AGENTS environment | Toolbox installation, root Cargo cache, datasets; may require host receipt access | NOT YET OBSERVED | Pending; plan only executed0 (26 checks) | full-plan.json |
+| `python3 tools/governance/scripts/package-ox.py` | dist output; external extraction; full suite/checks and hashes in copy | Candidate 1 distribution: 17,322 members, 3,750,490,162 expanded bytes | 1; archive inspection limit exceeded before extraction; no command inside package executed | package-01.log, package-01-result.json |
+| `python3 tools/governance/scripts/export-clean.py /tmp/ox-r3-share-review` | New external target, distribution space | NOT YET OBSERVED | Pending; package also exercises independent copy | — |
+| `python3 tools/governance/scripts/run-checks.py` | Python, records under docs/validation/runs, complete distribution | NOT YET OBSERVED | Pending; aggregates normal/structure/check-ox/maintenance/run-tests | — |
+| `python3 tools/governance/scripts/run-tests.py --group all --timings /tmp/ox-r3-times-new.json` | New timings path; both Python suites | NOT YET OBSERVED | Pending; also used by complete/run-checks | — |
+| Consumer `run_base.py … --isolation` and `gui_test.py …` | See current tools/governance/consumers/README.md; Rust1.99.1, bwrap, Xwayland/XTEST and observed binary hashes | Root captured source/binary manifests | 0; 16 model +7 operations +4 isolation cases; GUI1 scenario and both screenshots inspected | root-checks/report.md |
+| Manual rule-corpus detection, scripts/tests/rules/README.md | Actual Opengrep/YARA; materialize supplied txt/hex into disposable target; compare complete sets | Frozen rules/corpus hashes before/after equal | 0 all9 invocations; exact12 Opengrep rule line sets and6 YARA expected rule sets passed | rule-corpus/commands.json, rule-corpus/oracle-result.json |
+
+The complete plan covers sdd-structure, ox, governance-tests, scripts-syntax,
+shellcheck, ruff, scripts-tests, rust-fmt/check/build/test/clippy, machete, deny,
+audit, geiger, coverage, gitleaks, history, opengrep, osv, trivy, grype, bandit,
+sbom and malware. Results must include internal findings, not just runner exit.
+
+`isolated-run.py` is an extraction oracle used with cwd outside ORIGIN.parent;
+`isolation_test.py` is a consumer helper. Test-group fast/integration are partitions,
+not extra omitted suites. `summarize.sh` is a report helper. Toolbox doctor/list/status
+are diagnostics. Dataset preparation, cargo fetch, local --apply and docs/assets
+rendering are maintenance/generation, not indiscriminately required tests. Retired
+verify-boundary and historical validation scripts are not supported entry points.
+
+## Follow-up observations after final candidate 1
+
+The seven contextual test modules now challenge a protected Authorities section;
+unknown supplied buffers and historical corruption/downgrade checks remain. Focal
+04 ran 67 tests, exit 1 with one transitive source-pin failure. The actual source
+review and schema-2 succession record resolve that source freeze without another
+Python hash constant. Ledger versioned suite: 21 tests, exit 0. Independent reviewer:
+21 tests plus 16 missing/symlink negative observations, all expected. Focal 05 ran
+52 consumer tests in 322.940s, exit 0. check-ox-03 exited 0; real Ruff final-01 exited
+0 with an empty diagnostic array. None of these partial observations replaces the
+complete mandatory matrix. Exact exits are retained in collected-exit-statuses.json.
+
+Root was assigned complete automation after source freeze, with current input
+manifestos and separate streams under root-checks/full-final-01.*. The active registry,
+ADR, authority documents, code, tests and static bindings must remain unchanged
+during that observation. Later unbound execution reports are not source edits.
+
+## Disposable consumer demonstration
+
+consumer-demonstration/result.json records seven real observations on a compact
+physical fixture (331 files, 2474898 bytes): valid baseline; legitimate new
+authorization section accepted; append-only task log accepted; protected heading
+removal, historical evidence corruption and project downgrade rejected; restored
+fixture accepted. instruction_revision.errors, audit_revision.errors and all three
+authority ledger gates ran on each state. Every expected oracle was satisfied,
+command exit0. This is consumer-level evidence, not a governance export/package
+or global feature acceptance. The live project and task log were never mutated.
+
+## Disposição corrente sucessora (tentativas anteriores preservadas)
+
+| Entrada | Inputs/ambiente/método | Resultado observado | Evidência |
+| --- | --- | --- | --- |
+| Full exato01 | envAGENTS/host;1057inputs0diferenças; streams originalmente dentrocheckout |143abrupto; semsummary/semcausaatribuída; não cobre restantes | root-checks/full-final-01-result.json e partial-run |
+| Pacote/ledger focais integrados | Python/fixtures;34apósfixtureversionamento e42apósobservação03 |0; namedR3-2incluídos | package-integration/checks.json; observation-integration |
+| Calibração checker histórico02/03 |17250pathsestáveis;600stetoexperimental |02baseline0/negativoassertobsoleto1;03baseline0/negativo2esperado/restauração0; clean140.051/142.141/140.736s | historical-budget-integration/calibration-* |
+| Vendor-layout integrado | CARGO_HOMEraiz;rustup1.99.1;Cargooffline/locked;iced/wgpu-bare;4libtests/2negativos |0;4pass0ignored/filtered,2rejeiçõesconfirmadas;inputs_unchangedtrue | /tmp/ox-r3-vendor-integrated-01/result.json, retenção pendente |
+| RustSec preparação | commit472a4c9a...,importexatodecloneoficial,CLIemraizdescartável | primeira126arquivo nãotinha+x; bashdocumentado02exit0,probe0vuln/2avisos;promoção0preservapredecessor | /tmp/ox-r3-rustsec-renewal-proposal,retençãopendente |
+| Docs ferramentas | Bunoffline,ignore-scripts,nobrowser;quatroversõesdocs/assets/tooling | normal1EROFS;hostabortsem instalação;hostretry0instalou131pacotesdocache | browser/renderaindapendentes |
+
+A linha inicial full“NOT YET OBSERVED” descreve o estado anterior; full01 acima é o sucessor real incompleto. Pacote128MiB/IDE antigos não descrevem a implementação nova; sua validação integral permanece pendente. Nenhum resultado futuro foi pressuposto.
+
+## Observações correntes após a quinta transição
+
+| Comando/entrada | Ambiente e inputs observados | Resultado e exit | Logs/limites |
+| --- | --- | --- | --- |
+| Demonstração03 de consumidores reais | Fixture física de 342 arquivos; 59 módulos/executores com hashes antes/depois iguais | 0; sete oráculos satisfeitos, incluindo três rejeições específicas | post-anchor-observations; não substitui exportação/ZIP/full |
+| `check-ox.py` final05 | Checkout após a quinta transição, antes da nova composição AC07 | 0 | final-integration-observations; sem aceite de produto |
+| Focal `unittest discover -s tools/governance/tests -p test_instruction_*.py -v` | Checkout e fixtures descartáveis; processo pipe | 143 inesperado; cinco métodos OK, sexto incompleto; sem causa estabelecida | post-anchor-observations; não constitui suíte aprovada |
+| Full02 exato | TTY, streams externos, TMPDIR privado aprovado; 1196 inputs iguais | 130 por SIGINT deliberado após bloqueio real de guarda estática; execução incompleta | root-checks/full-final-02; distinto dos 143 desconhecidos |
+| Ruff final02 antes do reparo de bindings | Toolbox selecionado/shared; fontes observadas | 3 INPUT_INVALID; scanner não executado | post-anchor-observations/ruff-blocked-native-records |
+| Dois negativos `test_backends` da guarda | Configuração final bb93abbf; executor simulado | 0; duas rejeições de fonte/política/registro corretas | static-native-binding-integration; não homologa scanner |
+| Ruff e Bandit reais após bindings | Toolbox selecionado/shared; 139 inputs estáveis; reports nativos | 0 ambos; native/runtime/runner 0, zero achados finais | static-native-binding-integration/preflight-real-01; baseline inalterada, métricas Bandit brutas não são zero |
+| `check-ox.py` final06 | Envelope AC07 ainda incompleto | 1; faltavam cinco bindings obrigatórios e a projeção de convergência | ide-criteria-integration; falha preservada e composição documental corrigida |
+| Validação IDE schema 2 `--require-fresh --check-convergence` | AC02/AC07, tasks e contratos estabilizados | 0 | ide-criteria-integration; histórico preservado |
+| Gate IDE completo com `--require-approved --require-fresh --check-convergence` | Mesma feature completa, sem seleção por AC | 1; outros cinco ACs INCONCLUSIVE | ide-criteria-integration; aceite global continua impedido |
+
+Nenhuma interrupção, omissão ou skip acima foi promovido a aprovação. A próxima
+full mantém a seleção integral. Os testes negativos têm oráculos próprios; os
+gates de aceite recusados são pendências reais, não negativos destinados a passar.
+
+`check-ox.py` final07 executou depois da composição completa de AC02/AC07: exit 0, PASS e stderr vazio; streams e resultado em `ide-criteria-integration/`. Esse resultado sucede a falha final06, preservada, e não substitui os gates de aceite nem a full integral.
+
+## Preflight do comando Clippy do catálogo
+
+A execução exata do catálogo, incluindo `--all-targets --all-features --keep-going`, os grupos `all/pedantic/nursery/cargo` e `-D warnings`, terminou com **exit 101** em 3,98 s. `CLIPPY_CONF_DIR` apontou para `scripts/config/native/clippy` e `CARGO_HOME` para o cache da raiz. Inputs antes/depois permaneceram iguais. Logs e comando integral: `/tmp/ox-r3-clippy-catalog-01/result.json` e `stderr.log`, aguardando retenção pelo executor raiz. O Clippy padrão anterior não comprova esta entrada distinta.
+
+As 15 emissões incluem quatro nomes de parâmetros em hint.rs, diagnósticos de pintura/contraste/empréstimo e duas famílias duplicadas (hashbrown e miniz_oxide); não equivalem a 15 defeitos independentes. Revisão independente confirmou que as duplicatas já existiam no Cargo.lock inicial autenticado e que hint.rs é byte a byte igual ao baseline. LRU já usa o backend std sem dependências; não é causa dessas duplicações. Nenhuma exceção, supressão ou seleção foi ampliada. A próxima full integral continua pendente enquanto se avaliam reparos proporcionais.
+
+## Reparo limitado de dependência PNG e composição UI
+
+| Comando / finalidade | Ambiente e inputs | Resultado / exit | Logs e limites |
+| --- | --- | --- | --- |
+| `cargo test -p ox-ui --test png_assets --locked --offline` no original | Cópia original, cache raiz, quatro oráculos públicos e fixture independente | 0; 4 pass, zero ignored/filtered, inputs iguais | png-integration/proposal/png-original-final.*; não é suíte upstream |
+| Mesmo comando no patch PNG | Cópia com somente dependência morta retirada, mesmo código codec | 0; 4 pass, zero ignored/filtered, inputs iguais | png-integration/proposal/png-patched-final.* |
+| `cargo check --workspace --all-targets --all-features --locked --offline` | Candidato PNG antes da proposta UI | 0, inputs iguais | png-all-features.*; não habilita automaticamente features opcionais transitivas |
+| `cargo check -p ox-ui --features iced/wgpu-bare --locked --offline` | Candidato PNG com caminho opcional explicitamente selecionado | 0, inputs iguais | png-wgpu-bare.*; sem alegação GPU runtime |
+| Clippy catálogo, candidato UI01+PNG | Configuração estrita mantida, cópia isolada | 101: hashbrown e novo `missing_const_for_fn` | combined-candidate/combined-clippy.*; falha preservada |
+| `cargo test -p ox-ui --locked --offline`, candidato UI02+PNG | Quatro fontes UI finais propostas, PNG e lock candidato | 0; 63 unitários, 4 local-task, 4 PNG, 1 shell; helper subprocess invocado duas vezes | combined-candidate/combined02-ui-tests.*; único ignored é helper interno executado pelos pais |
+| Clippy catálogo, candidato UI02+PNG | Mesmo comando e configuração estritos | 101: permanece hashbrown 0.16.1/0.17.1 | combined-candidate/combined02-clippy.*; falha da biblioteca impede afirmar checagem de todos os consumidores posteriores |
+
+O mantenedor recusou a aquisição de indexmap com “Manter sem download”. A
+revisão independente concordou em manter esse impedimento, sem fork arriscado,
+exceção ou supressão. As execuções acima são da proposta identificada; a
+instalação integrada ainda requer suas verificações finais.
+
+Integrated vendor-layout02 ran after PNG and UI02 integration: maintained command
+`CARGO_HOME="$PWD/.cache/ox/cargo-home" PYTHONDONTWRITEBYTECODE=1 python3 application/tools/test_vendor_layout.py --output /tmp/ox-r3-vendor-integrated-02`, exit 0. The four tests, two typed negative oracles, optional build and 167 input/nine binary identities were independently validated. Exact retained files and limits: `vendor-integrated-final-02/`. This is current layout/build evidence, not approval of missing scanners or the complete feature.
+
+### Adendo de precisão e preflight UI02 — 2026-11-19
+
+A linha histórica do candidato que contou duas invocações do helper subprocess subcontou processos: são quatro modos, busy/record com dois rodapés normais do harness e exit-before-rename/exit-after-rename com duas saídas process::exit(0) esperadas. Os quatro processos são chamados pelos testes pais; o helper isolado sem inputs privados não é cenário obrigatório omitido. Os logs anteriores permanecem intactos.
+
+Freshness/convergência sem require-approved passou (exit 0); 35 regressões do ledger passaram (exit 0). Check-ox retornou 1 por três links relativos do snapshot relocate converge-after.md; seus bytes foram preservados como .md.bin, sem alterar a fonte ou o checker. Logs e mapping estão em final-integration-observations/ui02 e ide-ui02-integration.
+
+O renderer Firefox local, sem rede, concluiu em 9,24 s (exit 0; 39 inputs idênticos antes/depois): nove diagramas referenciados, onze observações de figuras e 49 capturas de documentos. Somente as 42 capturas de viewport possuem métricas de overflow/imagens, sem achados; as sete capturas CSS 200% requerem inspeção visual. O checker de assets passou com 263 alvos/âncoras locais e 11 SVGs. Retenção exata em documentation-render/png-successor; não confundir estas contagens.
+
+Check-ox UI03, após a representação correta do snapshot, terminou exit 0, sem stderr: perfil, catálogo, pontes, cópias, SDD, IDs normativos, links e inspeção de conteúdo aprovados; não comprova aceite do produto. Streams e limite do launcher em final-integration-observations/ui03. O gate atual de 19 features retornou 1 com 118 estados pendentes e sem erro de binding/freshness; comando, inputs e parecer independente em gates-19-ui02.
+
+
+## Checkpoint de interrupção solicitada — 2026-11-19
+
+Estado **INCOMPLETO**: o usuário informou desligamento do computador em30min; a
+execução foi encerrada controladamente para preservar resultados. Não é timeout
+técnico nem conclusão da tarefa. Full03 foi interrompida para o desligamento informado pelo usuário: SIGINT2 recebido em2026-11-19T18:43:40.550436Z, término18:43:40.776806Z, exit130,31793.396s. Os1428inputs observados antes/depois não diferiram; supervisor/helper mantiveram SHA. A governança ficou parcial, sem resumo agregado; nenhuma fase posterior ou suíte integral foi aprovada por essa tentativa.
+
+[Checkpoint e retomada](shutdown-checkpoint-20261119/checkpoint.md) registram os
+lançadores preservados, inputs, processos e etapas pendentes. [Observações nativas
+atuais](root-checks/native-ui03/report.md) continuam vinculadas aos próprios inputs.
+O último gate ANTES deste checkpoint/anexação terminou1 com118estados pendentes
+em19features, sem erro de bindings/freshness; freshness após append não observada.
+Clippy do catálogo101/hashbrown, direitosAC05 e demais critérios pendentes não foram
+dispensados. GUIconsumer final, quickskills, opt-in real final, pacote/export/demo,
+discovergovernança explícito da raiz emS1 e guardasS2 continuam não executados.
+O registro append-only de atividade documenta trabalho/interrupção, não aceite.
+Nenhuma tarefa T003/T004/T005 é marcada concluída por este checkpoint.
+
+
+### Adendo factual após a retenção inicial
+
+Os logs internos foram publicados pelo finalizador e encontrados:18arquivos exatos
+retidos em root-checks/full-final-03/published, com publication-retention.json.
+partial-governance-observation.json registra268linhas de execuções nomeadas OK,
+0linhas FAIL/ERROR e AUSÊNCIA de resumo final da suíte. Há IDs duplicados do loader;
+não são268testes únicos nem aprovação integral. O caso efetivamente interrompido
+foi test_ui_metadata_inventory.MetadataInventoryTests.test_corruption_and_deletion_fail_for_new_and_existing_metadata.
+Os dois testes nominais R3-2 e o longo teste de snapshots terminaram OK nessa tentativa
+parcial; o restante não foi aprovado por inferência. Não houve perda desses raws.
+
+Revisão e validação independentes conferiram o checkpoint inicial integrado:
+28retenções,4adendos documentais e prefixo38189+append5486=43675bytes do log, links
+e ausência de placeholders. Pareceres limitados à preservação/coerência do checkpoint,
+sem aceite técnico R3. SuíteS1 e guardas terminaisS2 NÃO foram executadas.
+
+
+- Complemento dos resultados publicados da full03: sdd-structure e ox terminaram
+  passed/exit0. governance-tests ficou failed/cancelled=true/signalINT,exit130,
+  child_exit_code143. Esse143interno ocorreu sob cancelamentoINT conhecido e não
+  se confunde com as tentativas históricas143 de causa desconhecida.
+  product_acceptance=false. omitted[] não comprova execução das fases posteriores;
+  o stderr declara restantes não executadas. Mantém-se INCOMPLETO, sem resumo da suíte.

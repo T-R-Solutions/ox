@@ -1,0 +1,101 @@
+[
+  {
+    "cell": null,
+    "code": "UP012",
+    "end_location": {
+      "column": 49,
+      "row": 194
+    },
+    "filename": "/project/scripts/tests/test_terminal_progress.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "b\"prepara\"",
+          "end_location": {
+            "column": 49,
+            "row": 194
+          },
+          "location": {
+            "column": 31,
+            "row": 194
+          }
+        }
+      ],
+      "message": "Rewrite as bytes literal"
+    },
+    "location": {
+      "column": 31,
+      "row": 194
+    },
+    "message": "Unnecessary call to `encode` as UTF-8",
+    "noqa_row": 194,
+    "url": "https://docs.astral.sh/ruff/rules/unnecessary-encode-utf8"
+  },
+  {
+    "cell": null,
+    "code": "UP012",
+    "end_location": {
+      "column": 49,
+      "row": 195
+    },
+    "filename": "/project/scripts/tests/test_terminal_progress.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "b\"publica\"",
+          "end_location": {
+            "column": 49,
+            "row": 195
+          },
+          "location": {
+            "column": 31,
+            "row": 195
+          }
+        }
+      ],
+      "message": "Rewrite as bytes literal"
+    },
+    "location": {
+      "column": 31,
+      "row": 195
+    },
+    "message": "Unnecessary call to `encode` as UTF-8",
+    "noqa_row": 195,
+    "url": "https://docs.astral.sh/ruff/rules/unnecessary-encode-utf8"
+  },
+  {
+    "cell": null,
+    "code": "UP012",
+    "end_location": {
+      "column": 41,
+      "row": 328
+    },
+    "filename": "/project/scripts/tests/test_terminal_progress.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "b\"publica\"",
+          "end_location": {
+            "column": 41,
+            "row": 328
+          },
+          "location": {
+            "column": 23,
+            "row": 328
+          }
+        }
+      ],
+      "message": "Rewrite as bytes literal"
+    },
+    "location": {
+      "column": 23,
+      "row": 328
+    },
+    "message": "Unnecessary call to `encode` as UTF-8",
+    "noqa_row": 328,
+    "url": "https://docs.astral.sh/ruff/rules/unnecessary-encode-utf8"
+  }
+]

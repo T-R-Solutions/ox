@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "agent-usage-accounting-positive",
+      "kind": "selection",
+      "prompt": "Modelar ledger de tokens/cache/custo por sessão e dia com idempotência entre provedores."
+    },
+    {
+      "id": "agent-usage-accounting-negative",
+      "kind": "selection",
+      "prompt": "Instrumentar CPU/RAM e latência de processo, sem tokens ou cobrança."
+    },
+    {
+      "id": "agent-usage-accounting-failure",
+      "kind": "behavior",
+      "skill": "agent-usage-accounting",
+      "prompt": "Evento r1/e1: input_total=100 incluindo cached=30, output=20, repetido duas vezes. Preço ausente. Outro request informa snapshots cumulativos 10 e 15. Evento chega após meia-noite mas ocorreu antes. Defina totais e incertezas, sem consultar preços."
+    }
+  ],
+  "oracle": {
+    "primary": "agent-usage-accounting",
+    "negative": "observability-and-diagnostics",
+    "failure": "120 not 150/240; cumulative15; missing cost unknown; event timezone; context separate"
+  }
+}

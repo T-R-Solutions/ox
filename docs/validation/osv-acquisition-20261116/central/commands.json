@@ -1,0 +1,62 @@
+[
+  {
+    "name": "focused",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_osv_refresh.py",
+      "-v"
+    ],
+    "cwd": "/tmp/ox-osv-acquisition-20261116/after",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit": 0,
+    "log": "focused.log"
+  },
+  {
+    "name": "configuration",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_configuration.py",
+      "-v"
+    ],
+    "cwd": "/tmp/ox-osv-acquisition-20261116/after",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit": 0,
+    "log": "configuration.log"
+  },
+  {
+    "name": "native",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_native.py",
+      "-v"
+    ],
+    "cwd": "/tmp/ox-osv-acquisition-20261116/after",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit": 0,
+    "log": "native.log"
+  }
+]

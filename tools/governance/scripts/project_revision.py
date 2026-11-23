@@ -97,10 +97,12 @@ def errors(root, expected):
         except ValueError as error:
             return [str(error)]
         from closure_revision import predecessor as closure_predecessor
+        from osv_acquisition_revision import CurrentContentError
 
-        if (
-            digest(closure_predecessor(root, "sdd/project.md", current))
-            != rows[-1]["sha256"]
-        ):
+        try:
+            normalized = closure_predecessor(root, "sdd/project.md", current)
+        except CurrentContentError:
+            return ["Project succession current digest mismatch"]
+        if digest(normalized) != rows[-1]["sha256"]:
             return ["Project succession current digest mismatch"]
     return []

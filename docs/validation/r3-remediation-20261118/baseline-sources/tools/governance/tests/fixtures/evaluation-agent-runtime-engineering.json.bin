@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "agent-runtime-engineering-positive",
+      "kind": "selection",
+      "prompt": "Projetar adaptador CLI com streaming, cancelamento, reconexão e supervisão de processos."
+    },
+    {
+      "id": "agent-runtime-engineering-negative",
+      "kind": "selection",
+      "prompt": "Comparar qualidade de respostas de dois modelos sem ferramentas nem processos."
+    },
+    {
+      "id": "agent-runtime-engineering-failure",
+      "kind": "behavior",
+      "skill": "agent-runtime-engineering",
+      "prompt": "Execução A declarou concluído, encerrou sem testes, e seu evento atrasado chegou depois do início de B. B produz stdout/stderr intensamente e ignora cancelamento cooperativo. Descreva transições, controle e evidência; não execute processos."
+    }
+  ],
+  "oracle": {
+    "primary": "agent-runtime-engineering",
+    "negative": "ai-engineering",
+    "failure": "generation isolation; done not accepted; bounded drain and observed cleanup"
+  }
+}

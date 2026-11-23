@@ -1,0 +1,35 @@
+[
+  {
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T001"
+    ],
+    "implementation": "docs/design/windows-apps-analysis.md",
+    "oracle": "sdd/features/windows-design-baseline/spec.md"
+  },
+  {
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T002"
+    ],
+    "implementation": "DESIGN.md",
+    "oracle": "sdd/features/windows-design-baseline/spec.md"
+  },
+  {
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T003"
+    ],
+    "implementation": ".codex/skills/design-system/SKILL.md",
+    "oracle": "tools/governance/tests/test_windows_design_revision.py"
+  }
+]

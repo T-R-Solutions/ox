@@ -12,4 +12,4 @@ Analyzed physical PDF ranges (1-based): []. Visual pages: []. Book examples exec
 
 ## Extraction and interpretation limits
 
-Only the listed sections were analyzed. All other content remains unanalyzed. Diagrams and images were not visually inspected, except the GC copyright page explicitly recorded above; EPUB figures were not inspected. Error-free text extraction does not establish full fidelity.
+This partial historical extraction record substantiates only the listed sections. Additional citations elsewhere in the skill are not proof that those sections were read in this recorded extraction; their reading coverage remains unverified here. Diagrams and images were not visually inspected; EPUB figures were not inspected. Error-free text extraction does not establish full fidelity.

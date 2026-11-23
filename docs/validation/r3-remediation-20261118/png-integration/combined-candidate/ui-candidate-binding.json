@@ -1,0 +1,55 @@
+{
+  "status": "proposal-only-outside-checkout",
+  "ownership": "root assigned four UI source paths by high coordinator; not integrated pending independent review",
+  "files": [
+    {
+      "path": "application/crates/ox-ui/src/design.rs",
+      "before_sha256": "4aae433e4cc8ca6a09e731a3a23767613c5625da96cdd3ad5816380e4216b6b9",
+      "after_sha256": "261e33137aff4957669c5bd6bf7da52d4852a5a75c85af8ff09df5bb72ee0026",
+      "bytes_before": 16561,
+      "bytes_after": 16628,
+      "live_still_preimage": true
+    },
+    {
+      "path": "application/crates/ox-ui/src/desktop/hint.rs",
+      "before_sha256": "e6985401ddc26c21e85b725472702503c6402a7283fcf2b14b1b7b320fadf632",
+      "after_sha256": "f48ad97678aa2a94f929ee3825a733457d91bb9e4c5941d8bad389927a98fa08",
+      "bytes_before": 4190,
+      "bytes_after": 4993,
+      "live_still_preimage": true
+    },
+    {
+      "path": "application/crates/ox-ui/src/desktop/icons.rs",
+      "before_sha256": "e0dc94d1f5982576c956a1801b176f0f49e694d84fd5a6471875e19f613beb25",
+      "after_sha256": "61156f2e306a7115846a0f78310482cbc196b5c1794af7dd8eea88ba5a17996a",
+      "bytes_before": 14018,
+      "bytes_after": 12991,
+      "live_still_preimage": true
+    },
+    {
+      "path": "application/crates/ox-ui/src/desktop.rs",
+      "before_sha256": "5a16149fdae6d0467ed5b3cc8f8d7f959f41b5f9286cfb1fed7f99931f8b7096",
+      "after_sha256": "721d7e2289f69e51656b20def1d5d9325d7ba7ccbb0835dd4b1caaed76d7b02b",
+      "bytes_before": 102615,
+      "bytes_after": 102618,
+      "live_still_preimage": true
+    }
+  ],
+  "verification": [
+    "characterization.json",
+    "negative-oracles.json",
+    "contrast-characterization.json"
+  ],
+  "changes": {
+    "hint": "Descriptive parameter identifiers only; original lifetime names preserved.",
+    "desktop": "Borrow map_drag event and exactly two callers; no other changes.",
+    "design": "Only cfg(test) contrast helper uses left-associated fused multiply-add; production prefix byte-identical; assertions/thresholds unchanged.",
+    "icons": "Extract existing cog and exhaustive Kind/Surface dispatch; extract12longest glyph primitive groups to satisfy existing100-line limit, preserve exact ordered commands; merge identical alreadyguarded unreachable arms; exactu8conversion; bounded FMA displacement in cog x/y."
+  },
+  "limitations": [
+    "No actual Iced build/native verification of candidate yet.",
+    "Recording renderer shim compares emitted fields/order, not all real iced defaults or pixels.",
+    "Catalog multiple_crate_versions hashbrown remains blocked after user refused package download; no policy exception.",
+    "Human visual acceptance remains bound to old39dproduct, not this candidate."
+  ]
+}

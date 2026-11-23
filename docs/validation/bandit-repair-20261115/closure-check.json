@@ -1,0 +1,14 @@
+{
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+  "exit_code": 0,
+  "artifact": "docs/validation/bandit-repair-20261115/check-ox-final.log.bin",
+  "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935",
+  "prior_attempt": {
+    "exit_code": 1,
+    "reason": "Instruction current changed: sdd/features/scripts-toolbox-native/converge.md",
+    "disposition": "Removed only this task documentary append using exact preimage prefix/content preconditions; restored authenticated predecessor bytes. No source/config/evidence accepted input changed. Scope/result remain in feature plan/tasks and task report.",
+    "artifact": "docs/validation/bandit-repair-20261115/check-ox-before-documentary-restoration.log.bin"
+  },
+  "independent_acceptance": "validation/verdict-current.json and gate-receipt.json remain unchanged",
+  "remaining_blocker": "BS-04 native new-file positive control; see blocked-control.json"
+}

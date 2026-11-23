@@ -1,0 +1,83 @@
+"""Private supplemental diagnostic: exact recent-reopen/menu sequence, pixels and buffer times."""
+from pathlib import Path
+import hashlib,importlib.util,json,os,re,struct,subprocess,sys,time,traceback
+sys.dont_write_bytecode=True
+from PIL import Image
+ROOT=Path('/home/rodrigo/Projetos/ox');OUT=Path('/tmp/ox-r3-menu-recent-probe-02')
+if OUT.exists():raise SystemExit('Refuse overwrite')
+spec=importlib.util.spec_from_file_location('native',ROOT/'docs/validation/f0-resumption-20261103/native-session.py');native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
+class ObservedSession(native.Session):
+ def sample(self,sink):
+  sample=sink.emit('pull-sample');buffer=sample.get_buffer();caps=sample.get_caps().get_structure(0);w=caps.get_value('width');h=caps.get_value('height');raw=buffer.extract_dup(0,buffer.get_size());received=time.monotonic()
+  self.latest=(received,w,h,raw);self.frames.append(received)
+  clock=self.pipeline.get_clock() if self.pipeline is not None else None
+  metadata={'received_monotonic':received,'pts_ns':int(buffer.pts),'dts_ns':int(buffer.dts),'duration_ns':int(buffer.duration),'pipeline_base_ns':int(self.pipeline.get_base_time()) if self.pipeline is not None else None,'clock_now_ns':int(clock.get_time()) if clock is not None else None,'note':'receipt time alone does not prove production/presentation after an input'}
+  self.capture_state=((received,w,h,raw),metadata)
+  return native.Gst.FlowReturn.OK
+source_before=hashlib.sha256(Path(__file__).read_bytes()).hexdigest();session_before=hashlib.sha256(Path(spec.origin).read_bytes()).hexdigest()
+session=None;app=None;log=None
+record={'scope':'same recent-reopen and double-menu sequence as WC07, no product edits','observer_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'session_mechanism_sha256':hashlib.sha256(Path(spec.origin).read_bytes()).hexdigest(),'events':[],'dont_write_bytecode':sys.dont_write_bytecode,'PYTHONDONTWRITEBYTECODE':os.environ.get('PYTHONDONTWRITEBYTECODE')}
+def chord(mod,key):session.key(mod,True);session.key(key);session.key(mod,False)
+def click(x,y):
+ session.call('RemoteDesktop',session.rd,'NotifyPointerMotionAbsolute','(sdd)',(session.stream,float(x),float(y)));time.sleep(.15)
+ for pressed in [True,False]:
+  record['events'].append({'time':time.monotonic(),'xy':[x,y],'pressed':pressed})
+  session.call('RemoteDesktop',session.rd,'NotifyPointerButton','(ib)',(272,pressed))
+ time.sleep(.2)
+def roi():
+ (stamp,w,h,raw),metadata=session.capture_state
+ return Image.frombytes('RGB',(w,h),raw,'raw','RGB',len(raw)//h).crop((180,80,508,224)).tobytes()
+def shot(name):
+ time.sleep(.15);(stamp,w,h,raw),metadata=session.capture_state
+ picture=Image.frombytes('RGB',(w,h),raw,'raw','RGB',len(raw)//h);target=OUT/(name+'.png');picture.save(target)
+ session.events.append({'time':time.monotonic(),'capture':name,'frame_time':stamp,'size':[w,h]})
+ record.setdefault('captures',[]).append({'name':name,'path':str(target),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'capture_monotonic':time.monotonic(),'buffer':dict(metadata),'roi_pixel_sha256':hashlib.sha256(picture.crop((180,80,508,224)).tobytes()).hexdigest()})
+def changed(previous,label):session.wait(lambda:roi()!=previous,label,timeout=5)
+def geometry():
+ pairs=re.findall(r'xdg_toplevel#\d+\.configure\((\d+), (\d+),',(OUT/'wayland.log').read_text())
+ return next(((int(w),int(h)) for w,h in reversed(pairs) if int(w)>0 and int(h)>0),None)
+try:
+ session=ObservedSession(OUT,'2560x1000',1)
+ source=ROOT/'docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/actual-history-before-corruption.bin';data=source.read_bytes();state=OUT/'state';(state/'ox').mkdir(parents=True);(state/'ox/recent-projects.v1').write_bytes(data)
+ if data[:8]!=b'OXRECENT' or struct.unpack_from('<II',data,8)!=(1,1):raise RuntimeError('Unexpected observed snapshot envelope')
+ length,=struct.unpack_from('<I',data,16)
+ if len(data)!=20+length:raise RuntimeError('Unexpected observed snapshot framing')
+ project=Path(data[20:].decode('utf8'))
+ if project.is_symlink() or not project.is_dir() or not project.is_relative_to(Path('/tmp/ox-r3-wc-07/projects')):raise RuntimeError('Unexpected actual predecessor project')
+ def project_inventory():
+  return [{'path':str(p.relative_to(project)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest() if p.is_file() else None,'is_directory':p.is_dir()} for p in sorted(project.rglob('*'))]
+ project_before=project_inventory();record['project_before']=project_before
+ record['fixture']={'source':str(source),'sha256':hashlib.sha256(data).hexdigest(),'method':'exact snapshot really published by final app in WC07; actual private project still exists, no synthetic project/history','private_state':str(state)}
+ session.call('RemoteDesktop',session.rd,'NotifyPointerMotionAbsolute','(sdd)',(session.stream,1.0,1.0))
+ env=dict(session.env,WAYLAND_DEBUG='1',OX_VALIDATION_SESSION='recent-menu-probe',XDG_STATE_HOME=str(state),XDG_DATA_HOME=str(OUT/'data'),XDG_CONFIG_HOME=str(OUT/'config'),XDG_CACHE_HOME=str(OUT/'cache'))
+ binary=ROOT/'application/target/debug/ox';before=hashlib.sha256(binary.read_bytes()).hexdigest();record['binary_before']=before
+ log=(OUT/'wayland.log').open('w');app=subprocess.Popen([str(binary)],cwd=ROOT,env=env,stdout=log,stderr=log);session.children.append(app)
+ session.wait(lambda:'xdg_toplevel' in (OUT/'wayland.log').read_text(),'native toplevel');time.sleep(.6);session.key(0xFFE1);session.wait(lambda:'.enter(' in (OUT/'wayland.log').read_text(),'keyboard focus')
+ if geometry()!=(2560,1000):chord(0xFFE9,0xFFC7)
+ session.wait(lambda:geometry()==(2560,1000),'actual2560x1000');record['geometry']=list(geometry())
+ for _ in range(6):session.key(0xFF09)
+ session.key(0xFF0D);session.wait(lambda:'.set_title("Tarefas — new — Ox' in (OUT/'wayland.log').read_text(),'actual recent reopen');time.sleep(.3);shot('initial-tasks')
+ baseline=roi();click(220,60);changed(baseline,'actual first menu region change');shot('first-open')
+ opened=roi();session.key(0xFF1B);changed(opened,'actual Escape region change');shot('escape-closed')
+ closed=roi();click(220,60);changed(closed,'actual second menu region change');shot('second-open')
+ opened=roi();offset=(OUT/'wayland.log').stat().st_size;click(1000,230);shot('outside-after-short');changed(opened,'actual outside-click menu region change');shot('outside-after-region-change');time.sleep(1);shot('outside-after-long')
+ record['pointer_protocol']=[line for line in (OUT/'wayland.log').read_text()[offset:].splitlines() if 'wl_pointer' in line and any(t in line for t in ['.motion(','.button('])]
+ chord(0xFFE9,0xFFC1);session.wait(lambda:app.poll() is not None,'natural close');record['natural_exit']=app.returncode
+ if app.returncode!=0:raise RuntimeError('Nonzero natural exit')
+ record['binary_after']=hashlib.sha256(binary.read_bytes()).hexdigest()
+ if before!=record['binary_after']:raise RuntimeError('Binary drift')
+ record['project_after']=project_inventory()
+ if record['project_after']!=project_before or list(project.glob('.ox-task-*')):raise RuntimeError('Project changed/task started by navigation')
+ record['result']='observed; actual open/close/focus frames require independent visual review; region difference is only synchronization'
+except Exception as error:
+ record['error']=str(error);traceback.print_exc()
+ if session:
+  try:shot('failure')
+  except Exception:pass
+finally:
+ if session:session.close()
+ if log:log.close()
+ record['source_after_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest();record['session_after_sha256']=hashlib.sha256(Path(spec.origin).read_bytes()).hexdigest()
+ if record['source_after_sha256']!=source_before or record['session_after_sha256']!=session_before:record['error']='observing source/session drift';record['result']='INCONCLUSIVE due to source drift'
+ OUT.mkdir(exist_ok=True);(OUT/'observer.py.bin').write_bytes(Path(__file__).read_bytes());(OUT/'result.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps({k:v for k,v in record.items() if k not in ['events','captures','pointer_protocol']}),flush=True)
+raise SystemExit(1 if 'error' in record else 0)

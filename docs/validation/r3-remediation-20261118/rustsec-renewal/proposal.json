@@ -1,0 +1,27 @@
+{
+  "status": "proposal-not-executed",
+  "observed_remote_head": "472a4c9a785030434f15d7da84964d60fbe789ab",
+  "read_only_probe": "git ls-remote https://github.com/RustSec/advisory-db.git HEAD (exit0; no repository objects fetched)",
+  "current_registry_sha256": "ed77fa460e45783356f5b0175b034b6aa8ceeb15e94d3ce0301b8f40c19a38d9",
+  "current": {
+    "path": ".cache/ox/security/generations/prepared-lsFIXBlk/rustsec",
+    "sha256": "26ec0e2d5a913e867668eef3051d2e7476b1bf49830450928c9768cecd54ac68",
+    "valid_until": "2026-11-18",
+    "source": "https://github.com/RustSec/advisory-db.git",
+    "license": "CC0-1.0 AND CC-BY-4.0 (retain upstream record attribution)"
+  },
+  "requested_scope": "Acquire only the official RustSec advisory-db at the observed immutable commit, inspect provenance/licenses/fsck and actual cargo-audit compatibility, then publish one fresh local generation without modifying scanners, policy limits, existing validity dates or central Toolbox. Preserve old generation and registry/provenance bytes. No other dependency acquisition.",
+  "sequence": [
+    "After explicit authorization, clone into an owned disposable preparation root with a copy of final application/Cargo.lock and current scripts/config inputs, using the supported prepare-datasets interface.",
+    "Derive dataset_date from actual immutable commit and valid_until within existing maximum five-day contract; do not extend old observation.",
+    "Run origin/HEAD/date/fsck/license and cargo-audit --no-fetch compatibility checks, retain failures/raw outputs.",
+    "Prepare generation without placing old generations under its cleanup loop; preserve all old operational generation bytes.",
+    "Promote only the validated new generation into the actual local dataset directory with a new name and content precondition on datasets.json; atomically update registry to its actual relative path.",
+    "Repeat affected native audit/full verification; unknown findings remain failures."
+  ],
+  "limitations": [
+    "No download/preparation/promotion has been executed.",
+    "Observed HEAD may move; the named commit remains the proposed input, not an assertion of future latest.",
+    "Review expiry is not assigned until actual source metadata is inspected."
+  ]
+}

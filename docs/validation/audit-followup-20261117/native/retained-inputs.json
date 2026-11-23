@@ -1,0 +1,65 @@
+{
+  "records": [
+    {
+      "origin": "/tmp/ox-audit-focus-native.py",
+      "retained": "docs/validation/audit-followup-20261117/native/native-observation.py.bin",
+      "sha256": "69c5440d13d0a793fea5c44aa2bb39765b74b6b114321e5c7ad7846a39c659bd"
+    },
+    {
+      "origin": "/home/rodrigo/Projetos/ox/docs/validation/f0-resumption-20261103/native-session.py",
+      "retained": "docs/validation/audit-followup-20261117/native/native-session.py.bin",
+      "sha256": "1ab4c178cccf0db8aeec85c927f4f7045fc1a464a54dced77000abe5109f6964"
+    },
+    {
+      "origin": "/home/rodrigo/Projetos/ox/docs/validation/f0-resumption-20261103/probe-session.py",
+      "retained": "docs/validation/audit-followup-20261117/native/probe-session.py.bin",
+      "sha256": "3a3e4c61fc13a9440bb4a4b5f37dd5ea407a960ff30991cbe481184ae12deedd"
+    },
+    {
+      "origin": "docs/validation/audit-followup-20261117/native/observed-native/compositor.log",
+      "retained": "docs/validation/audit-followup-20261117/native/observed-native/compositor.log.bin",
+      "sha256": "8283b1ce089bb6530c5783f126ed5315250451d8515cf399f589e10487038541"
+    },
+    {
+      "origin": "docs/validation/audit-followup-20261117/native/observed-native/light.log",
+      "retained": "docs/validation/audit-followup-20261117/native/observed-native/light.log.bin",
+      "sha256": "449975cc3ba7bfbcbb39e20b4d558e64d76ec6b07173305850a7357d370af3a2"
+    },
+    {
+      "origin": "docs/validation/audit-followup-20261117/native/observed-native/dark.log",
+      "retained": "docs/validation/audit-followup-20261117/native/observed-native/dark.log.bin",
+      "sha256": "74f629d15bc875218b2c611b77ede18ee0bda38ffc2079e57272000a72a2e2ef"
+    },
+    {
+      "origin": "docs/validation/audit-followup-20261117/native/observed-native/hc.log",
+      "retained": "docs/validation/audit-followup-20261117/native/observed-native/hc.log.bin",
+      "sha256": "53fc23159a572437562c21d165a5a272a7dd69aa138ac8197f1e63dd85a98620"
+    },
+    {
+      "origin": "docs/validation/audit-followup-20261117/native/observed-native/application.log",
+      "retained": "docs/validation/audit-followup-20261117/native/observed-native/application.log.bin",
+      "sha256": "8129275cf56764edaa374ee6b86042e62155d12f814a85ad5f70489815a763b4"
+    },
+    {
+      "observed": "application/crates/ox-ui/src/design.rs",
+      "sha256": "6082f502190cfc63c0b742024b9da0339dc46d5fe94ee189a111cc3d88e29cbe"
+    },
+    {
+      "observed": "application/crates/ox-ui/src/local_task.rs",
+      "sha256": "97635c67830eab998c5f7b2bf84f67f64befce674b36297a040cfdc0afc5b454"
+    },
+    {
+      "observed": "application/crates/ox-ui/tests/local_task.rs",
+      "sha256": "13c46d911cd9732acace44c2bdc98b5a7ca8e585a13b83658b5013ebf64e6e88"
+    },
+    {
+      "observed": "application/crates/ox-ui/examples/audit_focus.rs",
+      "sha256": "a6c1e355445c6375653626aeff3720fd7edb9780bd0b6e051660fde0e2bf637e"
+    }
+  ],
+  "visual_review": "Viewed matrix light/dark/high-contrast and actual application tab1/2/5 captures. Role fills and labels persist under focus; primary/chrome hover stays distinct; selected navigation remains selected; disabled controls unchanged. Actual Tab1/5 focuses cog Chrome, Tab2 focuses New Project Primary. Fixture states forced, app focus uses real keyboard delivery.",
+  "limitations": [
+    "Pixel captures demonstrate native rendering at1280x800 scale1; no accessibility semantics or domain task execution acceptance.",
+    "Primary light focus uses an inset light border contrasting with its blue fill; no requirement claimed for border against every external background."
+  ]
+}

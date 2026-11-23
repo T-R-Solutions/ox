@@ -1,0 +1,38 @@
+{
+  "time_utc": "2026-11-18T18:40:02.855558+00:00",
+  "method": "compare cargo-test-inputs.json captured before execution with current file bytes",
+  "changed_inputs": [
+    {
+      "path": "application/crates/ox-ui/src/desktop.rs",
+      "observed_test_sha256": "3cc1fda7c9762cb6cf7b2a388ef64dd1eaefaa83c88b7453dce4629f27b0cf8b",
+      "current_sha256": "5a16149fdae6d0467ed5b3cc8f8d7f959f41b5f9286cfb1fed7f99931f8b7096"
+    },
+    {
+      "path": "application/crates/ox-ui/src/design.rs",
+      "observed_test_sha256": "754b103ffc3a1c06c99c8e25c1b7ac092cbca3b089f41268620b6607accd714f",
+      "current_sha256": "4aae433e4cc8ca6a09e731a3a23767613c5625da96cdd3ad5816380e4216b6b9"
+    },
+    {
+      "path": "application/crates/ox-ui/src/tokens.rs",
+      "observed_test_sha256": "7da9492b92a332568e495ba48569ef4a471f2cbbd0755cc8066580c144787431",
+      "current_sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036"
+    },
+    {
+      "path": "application/crates/ox-ui/src/desktop/views.rs",
+      "observed_test_sha256": "4808f4e41808f8e0dda2e820deb623733df55b92ac9388d8e0c09d09cb56d9b0",
+      "current_sha256": "3ab8da129df3999e65cba0976e498fc4dbb856b72998c1a473fd9e471d351d10"
+    },
+    {
+      "path": "application/crates/ox-ui/src/desktop/icons.rs",
+      "observed_test_sha256": "b0cbd8adcec35ceb6bff5b6f6efa784b147948abe19fd606cf241a5f5566ca84",
+      "current_sha256": "e0dc94d1f5982576c956a1801b176f0f49e694d84fd5a6471875e19f613beb25"
+    },
+    {
+      "path": "application/crates/ox-ui/src/desktop/splitter.rs",
+      "observed_test_sha256": "75c33a9192d5afb6905872614fee3ea9a044e8a12dcdd68b13a650d98dc5796a",
+      "current_sha256": "a2b2c5ff6dbe6aea4ae566919f2f3188b5579bb2dbb1700ebd2321a71aa9306a"
+    }
+  ],
+  "source_identity_limit": "Does not identify the author or detect transient changes between observations",
+  "new_evidence_directory_exists": true
+}

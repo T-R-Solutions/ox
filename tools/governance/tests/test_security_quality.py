@@ -147,7 +147,7 @@ sys.exit(code)""",
         self.assertIsNone(row["tool_exit_code"])
         self.assertIn("Executor infrastructure", row["reason"])
 
-    def test_osv_central_fixture_still_requires_age_evidence(self):
+    def test_osv_central_fixture_still_requires_provenance(self):
         marker = self.root / "native-osv-executed"
         self.fake("osv-scanner", "Path(" + repr(str(marker)) + ").touch()")
         run = self.call("osv")
@@ -174,16 +174,16 @@ sys.exit(code)""",
         }
         reg = base / "datasets.json"
         reg.write_text(json.dumps({"osv": row}))
-        with self.assertRaisesRegex(ValueError, "expired"):
+        with S.rejected(self, message="expired"):
             S.dataset(self.root, "osv")
         row["valid_until"] = "2999-01-01"
         row["sha256"] = "0" * 64
         reg.write_text(json.dumps({"osv": row}))
-        with self.assertRaisesRegex(ValueError, "digest"):
+        with S.rejected(self, message="digest"):
             S.dataset(self.root, "osv")
         row["path"] = "../outside"
         reg.write_text(json.dumps({"osv": row}))
-        with self.assertRaisesRegex(ValueError, "relative"):
+        with S.rejected(self, message="relative"):
             S.dataset(self.root, "osv")
 
     def test_partial_and_suppressed_sast_never_passes(self):
@@ -199,7 +199,7 @@ sys.exit(code)""",
             else:
                 value["paths"]["scanned"] = []
             p.write_text(json.dumps(value))
-            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+            with self.subTest(mutation=mutation), S.rejected(self):
                 S.assess("opengrep", 0, p)
 
     def test_tool_error_keeps_raw_exit_and_output(self):
@@ -229,7 +229,7 @@ sys.exit(code)""",
         (self.root / "application/link.rs").symlink_to("/etc/passwd")
         d2 = self.root / "out2"
         d2.mkdir()
-        with self.assertRaisesRegex(ValueError, "source symlink"):
+        with S.rejected(self, message="source symlink"):
             S.source_copy(self.root, d2, True)
 
     def test_coverage_and_sbom_are_measurements_not_gates(self):
@@ -237,7 +237,7 @@ sys.exit(code)""",
         report.write_text("SF:src/main.rs\nDA:1,1\nend_of_record\n")
         self.assertEqual(S.assess("coverage", 0, report)[0], "recorded")
         report.write_text("")
-        with self.assertRaises(ValueError):
+        with S.rejected(self):
             S.assess("coverage", 0, report)
         report.write_text(
             json.dumps({"artifacts": [{"name": "fixture"}], "descriptor": {}})
@@ -249,7 +249,7 @@ sys.exit(code)""",
 
         p = self.root / "duplicate.json"
         p.write_text('{"results":[],"results":[]}')
-        with self.assertRaises(ValueError):
+        with S.rejected(self, returncode=5, message="duplicate JSON key"):
             read_json(p)
         row = {
             k: "fixture"
@@ -264,7 +264,7 @@ sys.exit(code)""",
             )
         }
         row.update(reviewed="2000-01-01", expires="2000-01-02")
-        with self.assertRaises(ValueError):
+        with S.rejected(self, returncode=2):
             exceptions([row])
         self.assertFalse(exceptions([])["applied"])
 
@@ -288,18 +288,27 @@ sys.exit(code)""",
             self.assertTrue(json.loads(run.stdout))
         self.assertFalse((self.root / ".local").exists())
 
-    def test_geiger_covers_virtual_workspace_members_and_rejects_escape(self):
-        manifests = S.member_manifests(ROOT / "application")
+    def test_geiger_member_guard_accepts_current_crates_and_rejects_escape(self):
+        manifests = sorted((ROOT / "application/crates").glob("*/Cargo.toml"))
         self.assertEqual(len(manifests), 16)
-        self.assertEqual(
-            {p.parent.name for p in manifests},
-            {p.parent.name for p in (ROOT / "application/crates").glob("*/Cargo.toml")},
+        S.shell(
+            'ROOT=$OX_TEST_ROOT; for manifest in "$@"; do validate_member_manifest "$manifest" || exit 1; done',
+            *manifests,
+            root=ROOT,
         )
-        workspace = self.root / "escape-workspace"
-        workspace.mkdir()
-        (workspace / "Cargo.toml").write_text('[workspace]\nmembers=["../outside"]\n')
-        with self.assertRaises(ValueError):
-            S.member_manifests(workspace)
+        outside = self.root / "outside/Cargo.toml"
+        outside.parent.mkdir()
+        outside.write_text("[package]\nname='outside'\n", encoding="utf-8")
+        alias = self.root / "application/alias"
+        alias.symlink_to(outside.parent, target_is_directory=True)
+        for manifest in (outside, self.root / "application/../outside/Cargo.toml",
+                         alias / "Cargo.toml", self.root / "application/missing/Cargo.toml"):
+            with self.subTest(manifest=manifest), S.rejected(self):
+                S.shell(
+                    'ROOT=$OX_TEST_ROOT; validate_member_manifest "$1"',
+                    manifest,
+                    root=self.root,
+                )
 
     def test_sast_zero_exit_with_unscanned_sources_is_error(self):
         self.fake(
@@ -377,7 +386,7 @@ sys.exit(code)""",
     def test_grype_has_no_inherited_severity_threshold_or_error_suppression(self):
         argv = json.loads(
             S.shell(
-                'ROOT=$OX_TEST_ROOT; name=grype; check_properties "$name"; native_command "{source}"; json_args "${NATIVE[@]}"',
+                'ROOT=$OX_TEST_ROOT; name=grype; check_properties "$name"; native_command "$name" "{output}" true; json_args "${NATIVE[@]}"',
                 root=self.root,
             )
         )

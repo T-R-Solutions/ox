@@ -1,0 +1,4 @@
+#[repr(C)]
+#[derive(Clone, Copy, bytemuck::Pod, bytemuck::Zeroable)]
+struct Invalid { a: u8, b: u32 }
+fn main() {}

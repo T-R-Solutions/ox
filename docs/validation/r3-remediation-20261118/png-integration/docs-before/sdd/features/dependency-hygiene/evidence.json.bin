@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "environment": "Linux x86_64; Rust 1.99.1; explicit maintainer Toolbox/shared selection for native tools; offline/locked Cargo; prepared .cache/ox Cargo/RustSec/tool inputs. Observations 2026-11-13.",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "REQ-01",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [],
+      "reason": "Composite bound inputs changed during Ec Cargo discovery/portable evidence refactoring. Original observation preserved in docs/validation/ec-cargo-parity-20261113/prior; no operational reacceptance is claimed."
+    },
+    {
+      "id": "AC-02",
+      "criterion": "REQ-02",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [],
+      "reason": "Composite bound inputs changed during Ec Cargo discovery/portable evidence refactoring. Original observation preserved in docs/validation/ec-cargo-parity-20261113/prior; no operational reacceptance is claimed."
+    },
+    {
+      "id": "AC-03",
+      "criterion": "REQ-03",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [],
+      "reason": "Composite bound inputs changed during Ec Cargo discovery/portable evidence refactoring. Original observation preserved in docs/validation/ec-cargo-parity-20261113/prior; no operational reacceptance is claimed."
+    },
+    {
+      "id": "AC-04",
+      "criterion": "REQ-04",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [],
+      "reason": "Composite bound inputs changed during Ec Cargo discovery/portable evidence refactoring. Original observation preserved in docs/validation/ec-cargo-parity-20261113/prior; no operational reacceptance is claimed."
+    },
+    {
+      "id": "AC-05",
+      "criterion": "REQ-05",
+      "status": "UNVERIFIED",
+      "evidence_ids": [],
+      "reason": "The proposed patch/runner passed bounded disposable-copy checks and independent review; final checkout execution and required native security results are pending. Historical observations are not refreshed."
+    }
+  ],
+  "evidence": [],
+  "limitations": [
+    "Current bounded repair acceptance only; prior observations retained in docs/validation/complete-repair-20261113/prior and earlier reports.",
+    "No new complete-scope/coverage/graphical run or publication approval. The raw combined suite had four problems, all resolved by targeted reevaluation; no single later full-suite exit-zero claim.",
+    "Source-bound style/status/duplicate dispositions are explicit; remaining incompatible generations were not removed.",
+    "Dependency distribution notice gaps remain, including clipboard-win standalone notice; observed RustSec review expires 2026-11-18.",
+    "2026-11-13 successor: affected composite observations preserved byte-for-byte under docs/validation/ec-cargo-parity-20261113/prior; current refactoring does not reapprove earlier native/product/dependency results.",
+    "2026-11-18: bounded cryoglyph/lru patch integrated under R3. Separate layout-test entry is required because vendor is outside workspace members. No GPU runtime or upstream bench/example execution is claimed."
+  ],
+  "historical_evidence": [
+    {
+      "id": "E-REVIEW",
+      "kind": "inspection",
+      "command_or_method": "Review native Audit/Deny/OSV diagnostics, exact policy IDs and license controls; compare dependency lock and source identities. Methods/results in artifact.",
+      "observed_result": "Exact Toolbox rule recorded; reviewed license component and final native Deny pass; exact maintenance IDs filtered; three duplicate families removed; maintainer retains Iced 0.14 with nine exact-version exceptions. OSV gate rejects expired data; no full-suite approval.",
+      "artifact": "docs/validation/dependency-hygiene-20261109/report.md",
+      "sha256": "43c1a6186ca3d844d1eadf54c5b0bb87986ddcb555b25c8155bf4a6b1c450ddf",
+      "inputs": [
+        {
+          "path": "sdd/features/dependency-hygiene/spec.md",
+          "sha256": "8e7d54c0d43a149db2a2bdc062bedd065f37d4ff598a312c0674b2f8edfe7470",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/dependency-hygiene/plan.md",
+          "sha256": "587dd634c43f59bb8b9a9aef0234bf6ceb138617a1df3083cfac16e226f363be",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/dependency-hygiene/tasks.md",
+          "sha256": "c77704ace4ca50ab618d1a075b0b75325cce3cd15303a24c859ca761d1f88ffe",
+          "role": "contract"
+        },
+        {
+          "path": "sdd/features/dependency-hygiene/traceability.json",
+          "sha256": "b39340364162182b9f3ccb5f01b822e80e05e61a6aeadaae3fceced918a71c5b",
+          "role": "contract"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "463ecf300a35e5a310631253176b8f8cf0f8df71f59da1ac5404307914ee0c91",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/deny.toml",
+          "sha256": "c105d1a552d0abf969943ca8bc34b812261aa9d805d29c931fc3ba6b2720f1d1",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/audit.toml",
+          "sha256": "28147fe7d3b59b8cd6eaad27d87edecf4b47d4d702e832bde0d73880ff42dd83",
+          "role": "configuration"
+        },
+        {
+          "path": "scripts/config/osv-scanner.toml",
+          "sha256": "4ff7c0c2aa0eb183a286ac59666302ab3fe62a6122bffdde3bd390119f2903c9",
+          "role": "configuration"
+        },
+        {
+          "path": "application/Cargo.lock",
+          "sha256": "04ef2b57aca9674f5f72888773a633fdff21c839c447b777f8b746e8347f7b26",
+          "role": "configuration"
+        },
+        {
+          "path": "docs/validation/dependency-hygiene-20261109/license-review.json",
+          "sha256": "2f2991288e65d17a802abb77eed3b87e937058c660534b6b0a7bb9992e2a257b",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/dependency-hygiene-20261109/observations.json",
+          "sha256": "29c48d1617b90c76cbf9a2d219da3a06df904c6db0401dcf3197770a60e840f1",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/dependency-hygiene-20261109/duplicate-resolution.json",
+          "sha256": "b6cb90c4507fb30f10cd39832ddf415c9155cea5cf18299a2e4b4c164151ded6",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/licensing/dependency-policy-20261109.md",
+          "sha256": "92fae87fd9436cbc0760d29533715ddc90fe53fb482e26d5bf12cbfa8c07d2b0",
+          "role": "contract"
+        }
+      ]
+    }
+  ]
+}

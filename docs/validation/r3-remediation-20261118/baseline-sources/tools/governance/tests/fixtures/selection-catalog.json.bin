@@ -1,0 +1,118 @@
+[
+  {
+    "name": "agent-runtime-engineering",
+    "description": "Engineer CLI agent supervision, session state, event ordering, cancellation and recovery. Use for process adapters and execution lifecycles; skip prompt writing and model-quality evaluation without process effects."
+  },
+  {
+    "name": "agent-usage-accounting",
+    "description": "Model and reconcile agent token, cache and cost usage with provenance, idempotency and explicit uncertainty. Use for multi-session usage ledgers; skip generic CPU metrics and task-progress scoring."
+  },
+  {
+    "name": "ai-engineering",
+    "description": "Build, evaluate, and diagnose applications using foundation models, including retrieval, tool-using agents, model adaptation, and inference trade-offs. Use for implementation or evaluation of an AI application; skip prompt-only writing, ordinary deterministic software, and training a foundation model from scratch."
+  },
+  {
+    "name": "api-testing",
+    "description": "Design, implement, or diagnose tests of API contracts, authorization, consumer/provider compatibility, and boundary effects. Use when those boundary guarantees need verification; ordinary calculations behind an API and unrelated API implementation do not alone require this skill."
+  },
+  {
+    "name": "application-security",
+    "description": "Implement or assess application security boundaries and controls, investigate vulnerabilities, or model concrete threats. Use for security decisions involving identity, permissions, untrusted data, secrets, dependencies, or configuration; their mere presence in ordinary code does not require a specialized review."
+  },
+  {
+    "name": "autonomous-verification-engineering",
+    "description": "Design criterion-based acceptance gates for autonomous work, binding verdicts to observed inputs and independent oracles. Use for evidence and approval engines; skip ordinary unit-test authoring without acceptance orchestration."
+  },
+  {
+    "name": "code-context-engineering",
+    "description": "Engineer incremental code indexing and retrieval with snapshot-bound symbols, ranges, invalidation and semantic fallback. Use for repository context engines; skip generic document RAG and graph visualization alone."
+  },
+  {
+    "name": "code-knowledge-graph-engineering",
+    "description": "Design typed code knowledge graphs with evidence-backed edges, incremental invalidation and bounded impact queries. Use for code relationship semantics; skip static diagrams and embedding similarity presented as resolved calls."
+  },
+  {
+    "name": "database-engineering",
+    "description": "Design and change application persistence, relational schemas, transactional invariants, query access paths, and data migrations. Use for substantive database decisions across engines; skip analytical platforms, routine field mapping, and edits without persistence consequences."
+  },
+  {
+    "name": "design-review",
+    "description": "Review user journeys, interface behavior, hierarchy and usability; explain design trade-offs and respond to stakeholder feedback using evidence. Use for UX critiques, design decision presentations and review follow-up. Do not use for backend code design, generic meeting advice, unsupported aesthetic judgments or routine implementation of an already agreed component contract."
+  },
+  {
+    "name": "design-system",
+    "description": "Create or evolve shared UI tokens, components, variants, states, and usage contracts. Use when implementing reusable interfaces, resolving component inconsistency, or maintaining a design system. Do not use for unrelated backend work or a purely aesthetic opinion; use design-review for evidence-based journey evaluation."
+  },
+  {
+    "name": "distributed-systems",
+    "description": "Analyze and implement guarantees across independently failing processes, stores, replicas, or regions. Use for consistency, concurrent updates, replication, partitioning, ordering, messaging, distributed transactions, and recovery; skip local changes with no distributed guarantee question and do not introduce distribution by default."
+  },
+  {
+    "name": "domain-modeling",
+    "description": "Model business rules, domain language, valid states, invariants, and transactional boundaries when implementing or changing behavior whose meaning or consistency is uncertain. Use for domain modeling and proportional DDD; do not activate for routine persistence mapping or purely mechanical code edits."
+  },
+  {
+    "name": "engineering-productivity",
+    "description": "Evaluate engineering tools, workflows, and process changes through actionable questions, appropriate evidence, and explicit decision criteria. Use for developer experience and team workflow decisions; skip runtime profiling, product analytics, individual rankings, and routine code edits."
+  },
+  {
+    "name": "iced-engineering",
+    "description": "Implement and review Iced desktop interfaces using explicit state, messages, tasks, subscriptions and widget contracts. Use for Iced-specific rendering and interaction; skip non-Iced UIs and visual strategy alone."
+  },
+  {
+    "name": "observability-and-diagnostics",
+    "description": "Design telemetry or investigate operational symptoms using correlated signals and discriminating observations. Use for missing diagnostic context, instrumentation correctness, or an evidence-led runtime investigation; skip routine logging edits, straightforward local defects, and tuning or recovery policy with no diagnostic question."
+  },
+  {
+    "name": "performance-engineering",
+    "description": "Investigate software latency, throughput, resource consumption, capacity, and performance regressions using representative workloads, measurements, profiling, and controlled comparisons. Use for explicit performance objectives or evidence of a bottleneck; avoid speculative optimization during ordinary feature work."
+  },
+  {
+    "name": "plugin-protocol-engineering",
+    "description": "Design and verify versioned host-plugin protocols, capability negotiation and lifecycle failure boundaries. Use for plugin hosts or compatibility changes; skip clients of an unchanged SDK."
+  },
+  {
+    "name": "prompt",
+    "description": "Create, rewrite, or refine prompts from user input, translating intent into technical requirements and verifiable criteria, with clarifying questions when needed. Use when the user asks to write, build, improve, or refine a prompt; do not execute the task described in it unless explicitly requested."
+  },
+  {
+    "name": "reliability-engineering",
+    "description": "Design or verify failure containment, bounded retries and resources, degradation, service objectives, and recovery. Use when behavior under dependency failure, overload, restart, or rollout needs a reliability decision; ordinary errors, background code, telemetry plumbing, or measured tuning alone do not trigger this workflow."
+  },
+  {
+    "name": "rust",
+    "description": "Implement, refactor, debug, or review Rust code with idiomatic ownership, explicit invariants, appropriate error handling, and validation compatible with the project's edition, MSRV, and tooling. Use for Rust crates, libraries, applications, and Rust API design."
+  },
+  {
+    "name": "software-architecture",
+    "description": "Choose or review system boundaries, ownership, integration styles, and quality-attribute trade-offs. Use for structural decisions and migrations that change them; local interfaces belong to code design, and coexistence or cutover without an unresolved structural choice does not alone require architecture work."
+  },
+  {
+    "name": "software-delivery",
+    "description": "Build, verify, package, promote, and release software through controlled inputs, dependency trust, pipelines, and recovery-aware rollouts. Use for build or release changes and diagnosis; skip ordinary code edits, team-productivity studies, and runtime incidents without a delivery question."
+  },
+  {
+    "name": "software-design",
+    "description": "Implement, refactor, or review code by examining responsibilities, cohesion, coupling, interfaces, information hiding, and maintenance costs. Use for concrete code-level design decisions and behavior-preserving changes. Do not use for cosmetic edits alone or to choose system architecture without architectural requirements."
+  },
+  {
+    "name": "software-evolution",
+    "description": "Change existing systems through characterized behavior, compatibility, mixed-version transitions, and incremental modernization. Use for consequential replacement, data/contract migration, or coexistence; skip cosmetic changes and local behavior-preserving refactors without a transition problem."
+  },
+  {
+    "name": "software-testing",
+    "description": "Plan, implement, or review risk-based software tests; diagnose weak or flaky suites and preserve behavior during changes. Use for test strategy, case design, test doubles, or meaningful regression coverage, rather than unrelated edits or a requirement to add tests to every change."
+  },
+  {
+    "name": "technical-documentation",
+    "description": "Create or maintain technical tutorials, how-to guides, API references, and conceptual documentation as the main deliverable, grounded in a versioned implementation or contract. Skip routine inline comments, standalone ADR decisions, binary document layout, and prompt-only writing."
+  },
+  {
+    "name": "tool-output-engineering",
+    "description": "Transform CLI output conservatively while preserving raw bytes, exit status, failure signals and explicit loss metadata. Use for tool parsers and token-budget summaries; skip destructive audit-log rewriting."
+  },
+  {
+    "name": "workspace-integrity-engineering",
+    "description": "Protect multiauthor workspaces through content preconditions, path boundaries, conflict detection and crash recovery. Use for concurrent file edits, watchers and Git worktrees; skip ordinary schema migrations."
+  }
+]

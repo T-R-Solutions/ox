@@ -1,0 +1,5407 @@
+{
+  "renderer": "Mermaid 11.12.2",
+  "browser": "142.0.1",
+  "playwright": "1.56.1",
+  "markdownIt": "14.1.0",
+  "iconPack": "@iconify-json/lucide 1.2.74, selected offline subset",
+  "config": "docs/assets/mermaid.json",
+  "diagrams": [
+    {
+      "source": "docs/assets/diagrams/architecture.mmd",
+      "asset": "docs/assets/architecture-mermaid.svg"
+    },
+    {
+      "source": "docs/assets/diagrams/documentation.mmd",
+      "asset": "docs/assets/documentation.svg"
+    },
+    {
+      "source": "docs/assets/diagrams/execution.mmd",
+      "asset": "docs/assets/execution.svg"
+    },
+    {
+      "source": "docs/assets/diagrams/first-run.mmd",
+      "asset": "docs/assets/first-run.svg"
+    },
+    {
+      "source": "docs/assets/diagrams/governance.mmd",
+      "asset": "docs/assets/governance.svg"
+    },
+    {
+      "source": "docs/assets/diagrams/plugin-protocol.mmd",
+      "asset": "docs/assets/plugin-protocol.svg"
+    },
+    {
+      "source": "docs/assets/diagrams/runtime-states.mmd",
+      "asset": "docs/assets/runtime-states.svg"
+    },
+    {
+      "source": "docs/assets/diagrams/sharing.mmd",
+      "asset": "docs/assets/sharing.svg"
+    },
+    {
+      "source": "docs/assets/diagrams/task-cycle.mmd",
+      "asset": "docs/assets/task-cycle.svg"
+    }
+  ],
+  "figureMetrics": [
+    {
+      "asset": "docs/assets/architecture-mermaid.svg",
+      "capture": "figure-architecture-mermaid.png",
+      "viewBox": "0 0 1935.0419921875 314",
+      "display": {
+        "width": 1100,
+        "height": 178.5
+      },
+      "text": [
+        {
+          "text": "APLICAÇÃO · processoOx",
+          "font": "18px",
+          "color": "rgb(7, 5, 3)",
+          "box": {
+            "x": 189.53334045410156,
+            "y": 3.76666259765625,
+            "width": 111.29998779296875,
+            "height": 26.283340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "ações e estados",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 88.26666259765625,
+            "y": 81.64999389648438,
+            "width": 76.65000915527344,
+            "height": 15.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "executar ou cancelar",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 277.683349609375,
+            "y": 121.14999389648438,
+            "width": 97.11666870117188,
+            "height": 15.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "verificar ou atualizar",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 279.3999938964844,
+            "y": 42.133331298828125,
+            "width": 93.65000915527344,
+            "height": 15.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "supervisiona",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 496.1166687011719,
+            "y": 121.14999389648438,
+            "width": 59.5,
+            "height": 15.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "executa e observa",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 680.933349609375,
+            "y": 42.133331298828125,
+            "width": 85.75,
+            "height": 15.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "produz resultado",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 684.9000244140625,
+            "y": 121.14999389648438,
+            "width": 78.33334350585938,
+            "height": 15.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "pedido e resultado",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 887.9666748046875,
+            "y": 121.14999389648438,
+            "width": 86.31668090820312,
+            "height": 15.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Desktop Iced",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 15.916671752929688,
+            "y": 102.03334045410156,
+            "width": 62.01666259765625,
+            "height": 17.616653442382812
+          },
+          "outside": false
+        },
+        {
+          "text": "Controller da tarefa",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 177.4499969482422,
+            "y": 102.03334045410156,
+            "width": 89.90000915527344,
+            "height": 17.616653442382812
+          },
+          "outside": false
+        },
+        {
+          "text": "Agent Runtime",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 395.8833312988281,
+            "y": 141.5500030517578,
+            "width": 69.98333740234375,
+            "height": 17.616668701171875
+          },
+          "outside": false
+        },
+        {
+          "text": "Verification Engine",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 387.3500061035156,
+            "y": 62.53334045410156,
+            "width": 87.06666564941406,
+            "height": 17.616653442382812
+          },
+          "outside": false
+        },
+        {
+          "text": "local-task · filho direto",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 568.7666625976562,
+            "y": 141.5500030517578,
+            "width": 101.83334350585938,
+            "height": 17.616668701171875
+          },
+          "outside": false
+        },
+        {
+          "text": "task-oracle · filho direto",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 986.8333129882812,
+            "y": 102.03334045410156,
+            "width": 108.66667175292969,
+            "height": 17.616653442382812
+          },
+          "outside": false
+        },
+        {
+          "text": "Arquivos da tentativa",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 779.7666625976562,
+            "y": 141.5500030517578,
+            "width": 97.86666870117188,
+            "height": 17.616668701171875
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Fundação local do Ox",
+      "description": "O desktop chama um Controller. Ele usa o Runtime para supervisionar local-task e o Engine para executar task-oracle. Os dois processos usam arquivos da tentativa. O Plugin Host é uma API separada, sem conexão ao desktop."
+    },
+    {
+      "asset": "docs/assets/documentation.svg",
+      "capture": "figure-documentation.png",
+      "viewBox": "0 0 920 512",
+      "display": {
+        "width": 920,
+        "height": 512
+      },
+      "text": [
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "README · conhecer o Ox",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 204,
+            "y": 28,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Aplicação · executar e testar",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 48,
+            "y": 162,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "docs/ · navegar pelos guias",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 360,
+            "y": 162,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Arquitetura · componentes",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 48,
+            "y": 296,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Contratos · estados e protocolo",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 360,
+            "y": 296,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Desenvolvimento · governança e cópia",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 672,
+            "y": 296,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "SDD e decisões · escopo e evidências",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 672,
+            "y": 430,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Encontre a entrada certa para cada tarefa",
+      "description": "O README apresenta o produto. O guia de aplicação ensina primeiro uso e testes. Arquitetura explica componentes, contratos descrevem estados e protocolos e governança orienta o trabalho. SDD e decisões contêm escopo e aceitação."
+    },
+    {
+      "asset": "docs/assets/execution.svg",
+      "capture": "figure-execution.png",
+      "viewBox": "-50 -10 809 1423",
+      "display": {
+        "width": 809,
+        "height": 1423
+      },
+      "text": [
+        {
+          "text": "Engine /",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 652.63330078125,
+            "y": 1361,
+            "width": 60.75,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "task-oracle",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 642.8333129882812,
+            "y": 1377,
+            "width": 80.30000305175781,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Runtime /",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 461.75,
+            "y": 1361,
+            "width": 70.5,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "local-task",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 462.20001220703125,
+            "y": 1377,
+            "width": 69.61666870117188,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Controller",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 275.2833251953125,
+            "y": 1369,
+            "width": 71.43331909179688,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Engine /",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 652.63330078125,
+            "y": 24,
+            "width": 60.75,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "task-oracle",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 642.8333129882812,
+            "y": 40,
+            "width": 80.30000305175781,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Runtime /",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 461.75,
+            "y": 24,
+            "width": 70.5,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "local-task",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 462.20001220703125,
+            "y": 40,
+            "width": 69.61666870117188,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Controller",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 275.2833251953125,
+            "y": 32,
+            "width": 71.43331909179688,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "alt",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 315.51666259765625,
+            "y": 690.2333374023438,
+            "width": 18.933334350585938,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "[Observação estável e oráculo aceita]",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 387.1166687011719,
+            "y": 691,
+            "width": 269.76666259765625,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "[Resultado estável e incorreto]",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 387.8833312988281,
+            "y": 789,
+            "width": 218.1999969482422,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "[Interrupção ou inputs instáveis]",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 383,
+            "y": 882,
+            "width": 228,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "opt",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 126.86666870117188,
+            "y": 1052.2166748046875,
+            "width": 24.26666259765625,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "[Edição posterior dos arquivos]",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 318.1166687011719,
+            "y": 1053,
+            "width": 221.76666259765625,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Cancelamento e timeout",
+          "font": "16px",
+          "color": "rgb(19, 78, 74)",
+          "box": {
+            "x": 502.25,
+            "y": 1259.2166748046875,
+            "width": 175.5,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "exigem observar saída e",
+          "font": "16px",
+          "color": "rgb(19, 78, 74)",
+          "box": {
+            "x": 501.3666687011719,
+            "y": 1278.2166748046875,
+            "width": 177.26666259765625,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "não aprovam.",
+          "font": "16px",
+          "color": "rgb(19, 78, 74)",
+          "box": {
+            "x": 540.0499877929688,
+            "y": 1297.2166748046875,
+            "width": 99.89999389648438,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Usuário",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 96.43333435058594,
+            "y": 67,
+            "width": 57.16667175292969,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Executar correto ou",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 146.13333129882812,
+            "y": 94.21665954589844,
+            "width": 141.73333740234375,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Executar incorreto",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 151.0500030517578,
+            "y": 113.21665954589844,
+            "width": 131.91665649414062,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Criar tentativa e",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 254.5,
+            "y": 161.23333740234375,
+            "width": 115,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "request.txt",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 273.6166687011719,
+            "y": 180.23333740234375,
+            "width": 76.76666259765625,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "exclusivos",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 274.1000061035156,
+            "y": 199.23333740234375,
+            "width": 75.83332824707031,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Lançar produtor no diretório",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 303.23333740234375,
+            "y": 277.23333740234375,
+            "width": 199.5333251953125,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "da tentativa",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 360.6166687011719,
+            "y": 296.23333740234375,
+            "width": 84.76666259765625,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Saída observada e possível",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 306.25,
+            "y": 344.23333740234375,
+            "width": 199.5,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "result.txt",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 374.75,
+            "y": 363.23333740234375,
+            "width": 62.5,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Término do processo ·",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 138.93333435058594,
+            "y": 411.23333740234375,
+            "width": 162.13333129882812,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "UNVERIFIED",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 170.5500030517578,
+            "y": 430.23333740234375,
+            "width": 98.91665649414062,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Verificar resultado",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 151.93333435058594,
+            "y": 478.23333740234375,
+            "width": 130.11666870117188,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Check com identidade e inputs",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 385.58331298828125,
+            "y": 526.2333374023438,
+            "width": 220.86666870117188,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Capturar antes /",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 625.5833129882812,
+            "y": 574.2333374023438,
+            "width": 116.80000305175781,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "executar / capturar",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 616.25,
+            "y": 593.2333374023438,
+            "width": 135.5,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "depois",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 659.4166870117188,
+            "y": 612.2333374023438,
+            "width": 49.18333435058594,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "APPROVED se não houver contradição aplicável",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 323.6499938964844,
+            "y": 743.2333374023438,
+            "width": 350.683349609375,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "REJECTED",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 455.76666259765625,
+            "y": 836.2333374023438,
+            "width": 86.4666748046875,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "INCONCLUSIVE",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 438,
+            "y": 929.2333374023438,
+            "width": 122,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Verdict, inputs e histórico",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 130.0500030517578,
+            "y": 987.2333374023438,
+            "width": 179.91665649414062,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "em memória",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 174.5,
+            "y": 1006.2333374023438,
+            "width": 91,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Atualizar inputs",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 161.3000030517578,
+            "y": 1105.2166748046875,
+            "width": 111.43333435058594,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Recapturar e reavaliar sem executar oráculo",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 337.1000061035156,
+            "y": 1153.2166748046875,
+            "width": 317.816650390625,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Evidência anterior pode perder aplicabilidade",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 244.86666870117188,
+            "y": 1201.2166748046875,
+            "width": 322.26666259765625,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Usuário",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 96.43333435058594,
+            "y": 1404,
+            "width": 57.16667175292969,
+            "height": 21
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Produção e verificação são operações distintas",
+      "description": "O Controller lança o produtor pelo Runtime. O exit code do produtor não aprova o artefato. Sob ação explícita o Engine captura inputs, executa o oráculo, recaptura e avalia atualidade. Cancelamento aguarda saída observada."
+    },
+    {
+      "asset": "docs/assets/first-run.svg",
+      "capture": "figure-first-run.png",
+      "viewBox": "0 0 921.0167236328125 1410.2833251953125",
+      "display": {
+        "width": 921.0166625976562,
+        "height": 1410.2833251953125
+      },
+      "text": [
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "não",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 335.2166748046875,
+            "y": 360.1000061035156,
+            "width": 32.116668701171875,
+            "height": 23.066665649414062
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "sim",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 453.98333740234375,
+            "y": 360.1000061035156,
+            "width": 30.066665649414062,
+            "height": 23.066665649414062
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "estável e aceita",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 82.41667175292969,
+            "y": 1049.25,
+            "width": 127.18333435058594,
+            "height": 23.066665649414062
+          },
+          "outside": false
+        },
+        {
+          "text": "estável e contradiz",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 279.3999938964844,
+            "y": 1049.25,
+            "width": 152.20001220703125,
+            "height": 23.066665649414062
+          },
+          "outside": false
+        },
+        {
+          "text": "interrompida ou instável",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 485.8833312988281,
+            "y": 1049.25,
+            "width": 193.25,
+            "height": 23.066665649414062
+          },
+          "outside": false
+        },
+        {
+          "text": "ausente ou ilegível",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 740.4000244140625,
+            "y": 1049.25,
+            "width": 152.23333740234375,
+            "height": 23.066665649414062
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "1 · Validar workspace",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 231.56666564941406,
+            "y": 28,
+            "width": 171.8000030517578,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Diretório acessível?",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 365.433349609375,
+            "y": 214.06666564941406,
+            "width": 158.11666870117188,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Corrigir caminho ou acesso",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 63.93333435058594,
+            "y": 425.1166687011719,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "2 · Executar tarefa local",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 375.933349609375,
+            "y": 438.6166687011719,
+            "width": 190.14999389648438,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Artefato candidato · UNVERIFIED",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 371,
+            "y": 559.11669921875,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "3 · Verificar resultado",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 385.933349609375,
+            "y": 693.11669921875,
+            "width": 170.14999389648438,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Observação aplicável?",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 379.91668701171875,
+            "y": 891.2000122070312,
+            "width": 182.16665649414062,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "APPROVED",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 98,
+            "y": 1114.2833251953125,
+            "width": 100,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "REJECTED",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 310,
+            "y": 1114.2833251953125,
+            "width": 95,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "INCONCLUSIVE",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 517,
+            "y": 1114.2833251953125,
+            "width": 135.01666259765625,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "UNVERIFIED",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 764.0166625976562,
+            "y": 1114.2833251953125,
+            "width": 109,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Editou um input?",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 80.43333435058594,
+            "y": 1221.2833251953125,
+            "width": 135.13333129882812,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Atualizar inputs · reavaliar atualidade",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 48,
+            "y": 1328.2833251953125,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Da seleção do workspace ao resultado verificado",
+      "description": "Validar o diretório habilita a tarefa. Executar produz um candidato ainda não verificado. Verificar exige observação estável do oráculo. Resultado incorreto é rejeitado; interrupção ou instabilidade não aprova. Após editar inputs, atualizar a observação de atualidade."
+    },
+    {
+      "asset": "docs/assets/governance.svg",
+      "capture": "figure-governance.png",
+      "viewBox": "0 0 608 1523",
+      "display": {
+        "width": 608,
+        "height": 1523
+      },
+      "text": [
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "não",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 129.96665954589844,
+            "y": 456,
+            "width": 32.066680908203125,
+            "height": 23.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "sim",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 443,
+            "y": 456,
+            "width": 30,
+            "height": 23.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "sim",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 131.21665954589844,
+            "y": 1243,
+            "width": 30.016677856445312,
+            "height": 23.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "não ou insuficiente",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 282.45001220703125,
+            "y": 1243,
+            "width": 152.1999969482422,
+            "height": 23.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "Pedido + autoridades + arquivos reais",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 204,
+            "y": 28,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Decisão material ou risco incerto?",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 204,
+            "y": 262,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Rota local · registro proporcional",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 48,
+            "y": 520,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Rota completa · spec / plan / tasks",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 360,
+            "y": 520,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Implementar e preservar versões anteriores",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 204,
+            "y": 654,
+            "width": 200,
+            "height": 81
+          },
+          "outside": false
+        },
+        {
+          "text": "Verificar critérios nos inputs observados",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 104.75,
+            "y": 815,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "A evidência sustenta o critério?",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 104.75,
+            "y": 1049,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Registrar resultado e limites",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 48.21665954589844,
+            "y": 1307,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Falha ou lacuna explícita",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 360.2166748046875,
+            "y": 1320.5,
+            "width": 199.20001220703125,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Retomada vinculada aos mesmos bytes",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 48.21665954589844,
+            "y": 1441,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Da autorização à evidência da mudança",
+      "description": "Inspecionar pedido, autoridades e arquivos precede a escolha da rota. A rota local atende correções delimitadas; decisões materiais usam a rota completa. Ambas preservam versões, verificam critérios e registram resultados e limites. Falhas retornam à correção, sem promover ausência de evidência a aprovação."
+    },
+    {
+      "asset": "docs/assets/plugin-protocol.svg",
+      "capture": "figure-plugin-protocol.png",
+      "viewBox": "-60 -10 446 816",
+      "display": {
+        "width": 446,
+        "height": 816
+      },
+      "text": [
+        {
+          "text": "Fixture",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 295.5333251953125,
+            "y": 754,
+            "width": 50.94999694824219,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "local-plugin",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 279.51666259765625,
+            "y": 770,
+            "width": 82.98333740234375,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Plugin Host",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 93.06666564941406,
+            "y": 762,
+            "width": 83.86666870117188,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Fixture",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 295.5333251953125,
+            "y": 24,
+            "width": 50.94999694824219,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "local-plugin",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 279.51666259765625,
+            "y": 40,
+            "width": 82.98333740234375,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Plugin Host",
+          "font": "16px",
+          "color": "rgb(238, 242, 255)",
+          "box": {
+            "x": 93.06666564941406,
+            "y": 32,
+            "width": 83.86666870117188,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Identidade e token devem",
+          "font": "16px",
+          "color": "rgb(19, 78, 74)",
+          "box": {
+            "x": 134.88333129882812,
+            "y": 329.23333740234375,
+            "width": 186.23333740234375,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "coincidir.",
+          "font": "16px",
+          "color": "rgb(19, 78, 74)",
+          "box": {
+            "x": 195.86666870117188,
+            "y": 346.23333740234375,
+            "width": 64.26666259765625,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Recusar echo",
+          "font": "16px",
+          "color": "rgb(19, 78, 74)",
+          "box": {
+            "x": 84.61666870117188,
+            "y": 496.23333740234375,
+            "width": 100.76666259765625,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "antes da troca.",
+          "font": "16px",
+          "color": "rgb(19, 78, 74)",
+          "box": {
+            "x": 81.05000305175781,
+            "y": 513.2333374023438,
+            "width": 107.89999389648438,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "alt",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 65.55000305175781,
+            "y": 130.21665954589844,
+            "width": 18.916656494140625,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "[Oferta e grant permitem",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 136.3000030517578,
+            "y": 131,
+            "width": 176.41665649414062,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "echo]",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 203.9166717529297,
+            "y": 148,
+            "width": 41.18333435058594,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "[Echo não autorizado ou não",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 96.16667175292969,
+            "y": 391,
+            "width": 206.68333435058594,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "oferecido]",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 163.35000610351562,
+            "y": 408,
+            "width": 72.29998779296875,
+            "height": 21
+          },
+          "outside": false
+        },
+        {
+          "text": "Falha de transporte, prazo",
+          "font": "16px",
+          "color": "rgb(19, 78, 74)",
+          "box": {
+            "x": 133.11666870117188,
+            "y": 675.2333374023438,
+            "width": 189.76666259765625,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "ou frame recolhe o filho.",
+          "font": "16px",
+          "color": "rgb(19, 78, 74)",
+          "box": {
+            "x": 141.13333129882812,
+            "y": 692.2333374023438,
+            "width": 173.73333740234375,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "HELLO 1 0 echo",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 169.8333282470703,
+            "y": 94.21665954589844,
+            "width": 120.35000610351562,
+            "height": 21.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "READY echo",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 178.86666870117188,
+            "y": 197.23333740234375,
+            "width": 96.26666259765625,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "CALL 1 echo token123",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 144.5833282470703,
+            "y": 241.23333740234375,
+            "width": 164.83334350585938,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "OK 1 token123",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 175.61666870117188,
+            "y": 285.23333740234375,
+            "width": 108.7833251953125,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "READY -",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 193.5500030517578,
+            "y": 452.23333740234375,
+            "width": 66.91665649414062,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "STOP",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 204.36666870117188,
+            "y": 570.2333374023438,
+            "width": 45.2833251953125,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "Saída bem-sucedida",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 155.60000610351562,
+            "y": 614.2333374023438,
+            "width": 148.79998779296875,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        },
+        {
+          "text": "observada",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 191.61666870117188,
+            "y": 631.2333374023438,
+            "width": 76.76666259765625,
+            "height": 21.01666259765625
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Handshake e chamada echo do fixture local",
+      "description": "O plugin anuncia HELLO 1 0 echo. O host só responde READY echo se a oferta e o grant do chamador permitirem. A chamada e resposta compartilham identidade e token; STOP encerra. Não existe integração dessa API com a UI."
+    },
+    {
+      "asset": "docs/assets/runtime-states.svg",
+      "capture": "figure-runtime-states.png",
+      "viewBox": "-2 0 568.12890625 653.6000366210938",
+      "display": {
+        "width": 568.13330078125,
+        "height": 653.5999755859375
+      },
+      "text": [
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "Started",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 220.3000030517578,
+            "y": 124.94999694824219,
+            "width": 60.116668701171875,
+            "height": 23.083343505859375
+          },
+          "outside": false
+        },
+        {
+          "text": "Exited · Success ouFailed",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 8.98333740234375,
+            "y": 275.95001220703125,
+            "width": 161.16665649414062,
+            "height": 42.883331298828125
+          },
+          "outside": false
+        },
+        {
+          "text": "CancelRequested",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 256.54998779296875,
+            "y": 231.9499969482422,
+            "width": 145.21665954589844,
+            "height": 23.083343505859375
+          },
+          "outside": false
+        },
+        {
+          "text": "Exited · Cancelled ouTimedOut",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 135.53334045410156,
+            "y": 339.75,
+            "width": 173.21665954589844,
+            "height": 42.883331298828125
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "Idle",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 237.8333282470703,
+            "y": 70,
+            "width": 29.033340454101562,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Running",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 218.81666564941406,
+            "y": 177,
+            "width": 67.08332824707031,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Finished",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 111.30000305175781,
+            "y": 484.1000061035156,
+            "width": 68.06666564941406,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Cancelling",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 289.1000061035156,
+            "y": 284.3999938964844,
+            "width": 84.08332824707031,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Solicitar parada não basta.É preciso observar a saída.",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 314.1333312988281,
+            "y": 443.6000061035156,
+            "width": 200,
+            "height": 108
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Estados do supervisor de filho direto",
+      "description": "Idle passa a Running após Started. Running termina ao observar Success ou Failed, ou passa a Cancelling após pedido. Cancelling só termina quando a saída Cancelled ou TimedOut é observada. Finished é terminal."
+    },
+    {
+      "asset": "docs/assets/sharing.svg",
+      "capture": "figure-sharing.png",
+      "viewBox": "0 0 891.234375 485",
+      "display": {
+        "width": 891.2333374023438,
+        "height": 485
+      },
+      "text": [
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "Repositório Ox",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 398.1499938964844,
+            "y": 28,
+            "width": 119.08334350585938,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Governança elegível",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 227.85000610351562,
+            "y": 148.5,
+            "width": 165.16665649414062,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "application/ · produto Rust/Iced",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 643.2333374023438,
+            "y": 135,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Cópia independente · export-clean",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 48,
+            "y": 269,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "ox-governance.zip",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 379.6333312988281,
+            "y": 282.5,
+            "width": 147.15000915527344,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "product_included=false",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 370.3666687011719,
+            "y": 416.5,
+            "width": 185.71665954589844,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Build, testes e distribuição próprios",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 643.2333374023438,
+            "y": 269,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Inspeção, checks e recuperação",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 58,
+            "y": 403,
+            "width": 200,
+            "height": 54
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Escopos distintos para produto e governança",
+      "description": "O repositório contém o aplicativo e a governança. A exportação elegível copia apenas governança. O ZIP de governança declara product_included=false. O aplicativo exige pipeline próprio; gerar pacote local não publica nada."
+    },
+    {
+      "asset": "docs/assets/task-cycle.svg",
+      "capture": "figure-task-cycle.png",
+      "viewBox": "0 0 972.203125 110",
+      "display": {
+        "width": 972.2000122070312,
+        "height": 110
+      },
+      "text": [
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "outside": false
+        },
+        {
+          "text": "Validarworkspace",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 48,
+            "y": 28,
+            "width": 86.06666564941406,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Executartarefa",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 254.0500030517578,
+            "y": 28,
+            "width": 71.05000305175781,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "ArtefatoUNVERIFIED",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 445.1000061035156,
+            "y": 28,
+            "width": 109,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Verifyresult",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 674.0999755859375,
+            "y": 28,
+            "width": 45.0333251953125,
+            "height": 54
+          },
+          "outside": false
+        },
+        {
+          "text": "Verdict eevidências",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 839.13330078125,
+            "y": 28,
+            "width": 85.08332824707031,
+            "height": 54
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Cinco passos do primeiro uso",
+      "description": "Validar workspace, executar uma tarefa controlada, observar um candidato ainda não verificado, verificar explicitamente e avaliar o resultado com evidência."
+    },
+    {
+      "asset": "docs/assets/ox-overview.svg",
+      "capture": "figure-ox-overview.png",
+      "viewBox": "0 0 1100 370",
+      "display": {
+        "width": 1100,
+        "height": 900
+      },
+      "text": [
+        {
+          "text": "Ox",
+          "font": "56px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 39,
+            "y": 295,
+            "width": 76.73333740234375,
+            "height": 65
+          },
+          "outside": false
+        },
+        {
+          "text": "Trabalho local. Resultados verificáveis.",
+          "font": "30px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 39,
+            "y": 366,
+            "width": 521.0999755859375,
+            "height": 37
+          },
+          "outside": false
+        },
+        {
+          "text": "Fundação desktop em Rust / Iced · versão interna 0.1.0",
+          "font": "22px",
+          "color": "rgb(71, 85, 105)",
+          "box": {
+            "x": 39,
+            "y": 410,
+            "width": 545,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Workspace local",
+          "font": "22px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 59,
+            "y": 532,
+            "width": 175.21665954589844,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Arquivos no diretório escolhido",
+          "font": "17px",
+          "color": "rgb(71, 85, 105)",
+          "box": {
+            "x": 59,
+            "y": 562,
+            "width": 234.4499969482422,
+            "height": 22
+          },
+          "outside": false
+        },
+        {
+          "text": "Execução supervisionada",
+          "font": "22px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 405,
+            "y": 532,
+            "width": 273.75,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Processo, prazo e cancelamento",
+          "font": "17px",
+          "color": "rgb(71, 85, 105)",
+          "box": {
+            "x": 405,
+            "y": 562,
+            "width": 249.5,
+            "height": 22
+          },
+          "outside": false
+        },
+        {
+          "text": "Verificação explícita",
+          "font": "22px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 751,
+            "y": 532,
+            "width": 213.9166717529297,
+            "height": 27
+          },
+          "outside": false
+        },
+        {
+          "text": "Resultado ligado aos inputs",
+          "font": "17px",
+          "color": "rgb(71, 85, 105)",
+          "box": {
+            "x": 751,
+            "y": 562,
+            "width": 210.81666564941406,
+            "height": 22
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Ox — fundação desktop local",
+      "description": "Rust e Iced. Um workspace local, um processo supervisionado e uma verificação independente. Versão interna 0.1.0, sem integração com agentes reais."
+    },
+    {
+      "asset": "docs/assets/architecture.svg",
+      "capture": "figure-architecture.png",
+      "viewBox": "0 0 960 744",
+      "display": {
+        "width": 1100,
+        "height": 900
+      },
+      "text": [
+        {
+          "text": "PROCESSO OX · coordenação e estado em memória",
+          "font": "20px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 53.98333740234375,
+            "y": 70.46665954589844,
+            "width": 575.75,
+            "height": 28.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "PROCESSOS FILHOS",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 400.01666259765625,
+            "y": 523.933349609375,
+            "width": 214.18333435058594,
+            "height": 26.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "Desktop Iced",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 159.39999389648438,
+            "y": 159.56666564941406,
+            "width": 130.5,
+            "height": 26.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Ações e estados da UI",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 111.26666259765625,
+            "y": 212.98333740234375,
+            "width": 175.15000915527344,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "Controller",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 480.23333740234375,
+            "y": 159.56666564941406,
+            "width": 100.63333129882812,
+            "height": 26.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Uma tentativa por vez",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 432.1000061035156,
+            "y": 212.98333740234375,
+            "width": 169.34999084472656,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "Agent Runtime",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 159.39999389648438,
+            "y": 352.066650390625,
+            "width": 148.7666778564453,
+            "height": 26.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Supervisão do filho direto",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 111.26666259765625,
+            "y": 414.6499938964844,
+            "width": 196.13333129882812,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "Verification Engine",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 823.9833374023438,
+            "y": 352.066650390625,
+            "width": 187.81666564941406,
+            "height": 26.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Snapshots e observações",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 775.8499755859375,
+            "y": 414.6499938964844,
+            "width": 199.9833221435547,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "local-task",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 159.39999389648438,
+            "y": 599.566650390625,
+            "width": 97.25,
+            "height": 26.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Produtor controlado",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 111.26666259765625,
+            "y": 648.4000244140625,
+            "width": 153.10000610351562,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "task-oracle",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 823.9833374023438,
+            "y": 599.566650390625,
+            "width": 111.05000305175781,
+            "height": 26.033340454101562
+          },
+          "outside": false
+        },
+        {
+          "text": "Verificador independente",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 775.8499755859375,
+            "y": 648.4000244140625,
+            "width": 192.3333282470703,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "Arquivos da tentativa",
+          "font": "18px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 450.433349609375,
+            "y": 762.2666625976562,
+            "width": 211.89999389648438,
+            "height": 26.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "request.txt · result.txt",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 400.01666259765625,
+            "y": 803.2166748046875,
+            "width": 173.28334045410156,
+            "height": 23.066680908203125
+          },
+          "outside": false
+        },
+        {
+          "text": "ações",
+          "font": "16px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 353.04998779296875,
+            "y": 156.96665954589844,
+            "width": 50.98333740234375,
+            "height": 23.066680908203125
+          },
+          "outside": false
+        },
+        {
+          "text": "executar / cancelar",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 279.7166748046875,
+            "y": 290.8999938964844,
+            "width": 147.36666870117188,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "verificar / atualizar",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 571.9000244140625,
+            "y": 290.8999938964844,
+            "width": 141.58334350585938,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "supervisiona",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 244.18333435058594,
+            "y": 485.683349609375,
+            "width": 98.60000610351562,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "executa e observa",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 704.816650390625,
+            "y": 485.683349609375,
+            "width": 142.61666870117188,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "produz resultado",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 86.06666564941406,
+            "y": 746.933349609375,
+            "width": 130.1666717529297,
+            "height": 22.050003051757812
+          },
+          "outside": false
+        },
+        {
+          "text": "lê inputs",
+          "font": "15px",
+          "color": "rgb(23, 37, 84)",
+          "box": {
+            "x": 904.183349609375,
+            "y": 728.5999755859375,
+            "width": 66.11666870117188,
+            "height": 22.04998779296875
+          },
+          "outside": false
+        }
+      ],
+      "externalRefs": [],
+      "title": "Arquitetura executável da fundação local",
+      "description": "Desktop Iced chama Controller. O Controller coordena Agent Runtime e Verification Engine no processo Ox. Runtime supervisiona o produtor local-task. Engine executa o oráculo task-oracle. O produtor escreve os arquivos da tentativa, lidos pelo oráculo. Plugin Host permanece uma API independente da UI."
+    }
+  ],
+  "matrix": [
+    {
+      "document": "README.md",
+      "theme": "light",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "docs/assets/ox-overview.svg",
+          "width": 320,
+          "height": 108,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/ox-approved.png",
+          "width": 320,
+          "height": 240,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/task-cycle.svg",
+          "width": 320,
+          "height": 36,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/architecture.svg",
+          "width": 320,
+          "height": 248,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Conheça o projeto"
+        },
+        {
+          "level": "H3",
+          "text": "Aplicação em imagens"
+        },
+        {
+          "level": "H3",
+          "text": "O que está disponível"
+        },
+        {
+          "level": "H2",
+          "text": "Primeiro uso"
+        },
+        {
+          "level": "H3",
+          "text": "1. Compile e abra"
+        },
+        {
+          "level": "H3",
+          "text": "2. Execute e verifique"
+        },
+        {
+          "level": "H2",
+          "text": "Como a fundação se conecta"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolvimento"
+        },
+        {
+          "level": "H2",
+          "text": "Documentação"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento e licença"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "README-360-light.png"
+    },
+    {
+      "document": "README.md",
+      "theme": "dark",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "docs/assets/ox-overview.svg",
+          "width": 320,
+          "height": 108,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/ox-approved.png",
+          "width": 320,
+          "height": 240,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/task-cycle.svg",
+          "width": 320,
+          "height": 36,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/architecture.svg",
+          "width": 320,
+          "height": 248,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Conheça o projeto"
+        },
+        {
+          "level": "H3",
+          "text": "Aplicação em imagens"
+        },
+        {
+          "level": "H3",
+          "text": "O que está disponível"
+        },
+        {
+          "level": "H2",
+          "text": "Primeiro uso"
+        },
+        {
+          "level": "H3",
+          "text": "1. Compile e abra"
+        },
+        {
+          "level": "H3",
+          "text": "2. Execute e verifique"
+        },
+        {
+          "level": "H2",
+          "text": "Como a fundação se conecta"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolvimento"
+        },
+        {
+          "level": "H2",
+          "text": "Documentação"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento e licença"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "README-360-dark.png"
+    },
+    {
+      "document": "README.md",
+      "theme": "light",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "docs/assets/ox-overview.svg",
+          "width": 704,
+          "height": 237,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/ox-approved.png",
+          "width": 704,
+          "height": 528,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/task-cycle.svg",
+          "width": 704,
+          "height": 80,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/architecture.svg",
+          "width": 704,
+          "height": 546,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Conheça o projeto"
+        },
+        {
+          "level": "H3",
+          "text": "Aplicação em imagens"
+        },
+        {
+          "level": "H3",
+          "text": "O que está disponível"
+        },
+        {
+          "level": "H2",
+          "text": "Primeiro uso"
+        },
+        {
+          "level": "H3",
+          "text": "1. Compile e abra"
+        },
+        {
+          "level": "H3",
+          "text": "2. Execute e verifique"
+        },
+        {
+          "level": "H2",
+          "text": "Como a fundação se conecta"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolvimento"
+        },
+        {
+          "level": "H2",
+          "text": "Documentação"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento e licença"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "README-768-light.png"
+    },
+    {
+      "document": "README.md",
+      "theme": "dark",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "docs/assets/ox-overview.svg",
+          "width": 704,
+          "height": 237,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/ox-approved.png",
+          "width": 704,
+          "height": 528,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/task-cycle.svg",
+          "width": 704,
+          "height": 80,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/architecture.svg",
+          "width": 704,
+          "height": 546,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Conheça o projeto"
+        },
+        {
+          "level": "H3",
+          "text": "Aplicação em imagens"
+        },
+        {
+          "level": "H3",
+          "text": "O que está disponível"
+        },
+        {
+          "level": "H2",
+          "text": "Primeiro uso"
+        },
+        {
+          "level": "H3",
+          "text": "1. Compile e abra"
+        },
+        {
+          "level": "H3",
+          "text": "2. Execute e verifique"
+        },
+        {
+          "level": "H2",
+          "text": "Como a fundação se conecta"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolvimento"
+        },
+        {
+          "level": "H2",
+          "text": "Documentação"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento e licença"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "README-768-dark.png"
+    },
+    {
+      "document": "README.md",
+      "theme": "light",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "docs/assets/ox-overview.svg",
+          "width": 960,
+          "height": 323,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/ox-approved.png",
+          "width": 960,
+          "height": 720,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/task-cycle.svg",
+          "width": 960,
+          "height": 109,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/architecture.svg",
+          "width": 960,
+          "height": 744,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Conheça o projeto"
+        },
+        {
+          "level": "H3",
+          "text": "Aplicação em imagens"
+        },
+        {
+          "level": "H3",
+          "text": "O que está disponível"
+        },
+        {
+          "level": "H2",
+          "text": "Primeiro uso"
+        },
+        {
+          "level": "H3",
+          "text": "1. Compile e abra"
+        },
+        {
+          "level": "H3",
+          "text": "2. Execute e verifique"
+        },
+        {
+          "level": "H2",
+          "text": "Como a fundação se conecta"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolvimento"
+        },
+        {
+          "level": "H2",
+          "text": "Documentação"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento e licença"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "README-1280-light.png"
+    },
+    {
+      "document": "README.md",
+      "theme": "dark",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "docs/assets/ox-overview.svg",
+          "width": 960,
+          "height": 323,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/ox-approved.png",
+          "width": 960,
+          "height": 720,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/task-cycle.svg",
+          "width": 960,
+          "height": 109,
+          "loaded": true
+        },
+        {
+          "src": "docs/assets/architecture.svg",
+          "width": 960,
+          "height": 744,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Conheça o projeto"
+        },
+        {
+          "level": "H3",
+          "text": "Aplicação em imagens"
+        },
+        {
+          "level": "H3",
+          "text": "O que está disponível"
+        },
+        {
+          "level": "H2",
+          "text": "Primeiro uso"
+        },
+        {
+          "level": "H3",
+          "text": "1. Compile e abra"
+        },
+        {
+          "level": "H3",
+          "text": "2. Execute e verifique"
+        },
+        {
+          "level": "H2",
+          "text": "Como a fundação se conecta"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolvimento"
+        },
+        {
+          "level": "H2",
+          "text": "Documentação"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento e licença"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "README-1280-dark.png"
+    },
+    {
+      "document": "README.md",
+      "theme": "light",
+      "zoom": "200% complete document CSS zoom, equivalent layout inspection rather than browser UI zoom",
+      "capture": "README-zoom200.png"
+    },
+    {
+      "document": "application/README.md",
+      "theme": "light",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../docs/assets/ox-approved.png",
+          "width": 320,
+          "height": 240,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/first-run.svg",
+          "width": 320,
+          "height": 490,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/ox-rejected.png",
+          "width": 320,
+          "height": 240,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação Ox"
+        },
+        {
+          "level": "H2",
+          "text": "A demonstração em duas observações"
+        },
+        {
+          "level": "H2",
+          "text": "Preparar e executar"
+        },
+        {
+          "level": "H2",
+          "text": "Usar a demonstração"
+        },
+        {
+          "level": "H3",
+          "text": "Resultado incorreto também é um cenário esperado"
+        },
+        {
+          "level": "H2",
+          "text": "Resolver problemas de primeiro uso"
+        },
+        {
+          "level": "H2",
+          "text": "Testes e referência Rust"
+        },
+        {
+          "level": "H2",
+          "text": "Navegar no código"
+        },
+        {
+          "level": "H2",
+          "text": "Encerramento de alterações"
+        },
+        {
+          "level": "H2",
+          "text": "Visual workbench"
+        },
+        {
+          "level": "H3",
+          "text": "Current native composition"
+        },
+        {
+          "level": "H2",
+          "text": "Tela inicial: começar ou retomar um projeto"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "application_README-360-light.png"
+    },
+    {
+      "document": "application/README.md",
+      "theme": "dark",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../docs/assets/ox-approved.png",
+          "width": 320,
+          "height": 240,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/first-run.svg",
+          "width": 320,
+          "height": 490,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/ox-rejected.png",
+          "width": 320,
+          "height": 240,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação Ox"
+        },
+        {
+          "level": "H2",
+          "text": "A demonstração em duas observações"
+        },
+        {
+          "level": "H2",
+          "text": "Preparar e executar"
+        },
+        {
+          "level": "H2",
+          "text": "Usar a demonstração"
+        },
+        {
+          "level": "H3",
+          "text": "Resultado incorreto também é um cenário esperado"
+        },
+        {
+          "level": "H2",
+          "text": "Resolver problemas de primeiro uso"
+        },
+        {
+          "level": "H2",
+          "text": "Testes e referência Rust"
+        },
+        {
+          "level": "H2",
+          "text": "Navegar no código"
+        },
+        {
+          "level": "H2",
+          "text": "Encerramento de alterações"
+        },
+        {
+          "level": "H2",
+          "text": "Visual workbench"
+        },
+        {
+          "level": "H3",
+          "text": "Current native composition"
+        },
+        {
+          "level": "H2",
+          "text": "Tela inicial: começar ou retomar um projeto"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "application_README-360-dark.png"
+    },
+    {
+      "document": "application/README.md",
+      "theme": "light",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../docs/assets/ox-approved.png",
+          "width": 704,
+          "height": 528,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/first-run.svg",
+          "width": 704,
+          "height": 1078,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/ox-rejected.png",
+          "width": 704,
+          "height": 528,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação Ox"
+        },
+        {
+          "level": "H2",
+          "text": "A demonstração em duas observações"
+        },
+        {
+          "level": "H2",
+          "text": "Preparar e executar"
+        },
+        {
+          "level": "H2",
+          "text": "Usar a demonstração"
+        },
+        {
+          "level": "H3",
+          "text": "Resultado incorreto também é um cenário esperado"
+        },
+        {
+          "level": "H2",
+          "text": "Resolver problemas de primeiro uso"
+        },
+        {
+          "level": "H2",
+          "text": "Testes e referência Rust"
+        },
+        {
+          "level": "H2",
+          "text": "Navegar no código"
+        },
+        {
+          "level": "H2",
+          "text": "Encerramento de alterações"
+        },
+        {
+          "level": "H2",
+          "text": "Visual workbench"
+        },
+        {
+          "level": "H3",
+          "text": "Current native composition"
+        },
+        {
+          "level": "H2",
+          "text": "Tela inicial: começar ou retomar um projeto"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "application_README-768-light.png"
+    },
+    {
+      "document": "application/README.md",
+      "theme": "dark",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../docs/assets/ox-approved.png",
+          "width": 704,
+          "height": 528,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/first-run.svg",
+          "width": 704,
+          "height": 1078,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/ox-rejected.png",
+          "width": 704,
+          "height": 528,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação Ox"
+        },
+        {
+          "level": "H2",
+          "text": "A demonstração em duas observações"
+        },
+        {
+          "level": "H2",
+          "text": "Preparar e executar"
+        },
+        {
+          "level": "H2",
+          "text": "Usar a demonstração"
+        },
+        {
+          "level": "H3",
+          "text": "Resultado incorreto também é um cenário esperado"
+        },
+        {
+          "level": "H2",
+          "text": "Resolver problemas de primeiro uso"
+        },
+        {
+          "level": "H2",
+          "text": "Testes e referência Rust"
+        },
+        {
+          "level": "H2",
+          "text": "Navegar no código"
+        },
+        {
+          "level": "H2",
+          "text": "Encerramento de alterações"
+        },
+        {
+          "level": "H2",
+          "text": "Visual workbench"
+        },
+        {
+          "level": "H3",
+          "text": "Current native composition"
+        },
+        {
+          "level": "H2",
+          "text": "Tela inicial: começar ou retomar um projeto"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "application_README-768-dark.png"
+    },
+    {
+      "document": "application/README.md",
+      "theme": "light",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../docs/assets/ox-approved.png",
+          "width": 960,
+          "height": 720,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/first-run.svg",
+          "width": 960,
+          "height": 1470,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/ox-rejected.png",
+          "width": 960,
+          "height": 720,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação Ox"
+        },
+        {
+          "level": "H2",
+          "text": "A demonstração em duas observações"
+        },
+        {
+          "level": "H2",
+          "text": "Preparar e executar"
+        },
+        {
+          "level": "H2",
+          "text": "Usar a demonstração"
+        },
+        {
+          "level": "H3",
+          "text": "Resultado incorreto também é um cenário esperado"
+        },
+        {
+          "level": "H2",
+          "text": "Resolver problemas de primeiro uso"
+        },
+        {
+          "level": "H2",
+          "text": "Testes e referência Rust"
+        },
+        {
+          "level": "H2",
+          "text": "Navegar no código"
+        },
+        {
+          "level": "H2",
+          "text": "Encerramento de alterações"
+        },
+        {
+          "level": "H2",
+          "text": "Visual workbench"
+        },
+        {
+          "level": "H3",
+          "text": "Current native composition"
+        },
+        {
+          "level": "H2",
+          "text": "Tela inicial: começar ou retomar um projeto"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "application_README-1280-light.png"
+    },
+    {
+      "document": "application/README.md",
+      "theme": "dark",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../docs/assets/ox-approved.png",
+          "width": 960,
+          "height": 720,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/first-run.svg",
+          "width": 960,
+          "height": 1470,
+          "loaded": true
+        },
+        {
+          "src": "../docs/assets/ox-rejected.png",
+          "width": 960,
+          "height": 720,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação Ox"
+        },
+        {
+          "level": "H2",
+          "text": "A demonstração em duas observações"
+        },
+        {
+          "level": "H2",
+          "text": "Preparar e executar"
+        },
+        {
+          "level": "H2",
+          "text": "Usar a demonstração"
+        },
+        {
+          "level": "H3",
+          "text": "Resultado incorreto também é um cenário esperado"
+        },
+        {
+          "level": "H2",
+          "text": "Resolver problemas de primeiro uso"
+        },
+        {
+          "level": "H2",
+          "text": "Testes e referência Rust"
+        },
+        {
+          "level": "H2",
+          "text": "Navegar no código"
+        },
+        {
+          "level": "H2",
+          "text": "Encerramento de alterações"
+        },
+        {
+          "level": "H2",
+          "text": "Visual workbench"
+        },
+        {
+          "level": "H3",
+          "text": "Current native composition"
+        },
+        {
+          "level": "H2",
+          "text": "Tela inicial: começar ou retomar um projeto"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "application_README-1280-dark.png"
+    },
+    {
+      "document": "application/README.md",
+      "theme": "light",
+      "zoom": "200% complete document CSS zoom, equivalent layout inspection rather than browser UI zoom",
+      "capture": "application_README-zoom200.png"
+    },
+    {
+      "document": "docs/README.md",
+      "theme": "light",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "assets/documentation.svg",
+          "width": 320,
+          "height": 178,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Documentação do Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Galeria de explicações"
+        },
+        {
+          "level": "H2",
+          "text": "Entender a aplicação"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolver e verificar"
+        },
+        {
+          "level": "H2",
+          "text": "Consultar decisões"
+        },
+        {
+          "level": "H2",
+          "text": "Interpretar as evidências"
+        },
+        {
+          "level": "H2",
+          "text": "Manutenção do workspace"
+        },
+        {
+          "level": "H2",
+          "text": "Proveniência e instruções históricas"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_README-360-light.png"
+    },
+    {
+      "document": "docs/README.md",
+      "theme": "dark",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "assets/documentation.svg",
+          "width": 320,
+          "height": 178,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Documentação do Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Galeria de explicações"
+        },
+        {
+          "level": "H2",
+          "text": "Entender a aplicação"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolver e verificar"
+        },
+        {
+          "level": "H2",
+          "text": "Consultar decisões"
+        },
+        {
+          "level": "H2",
+          "text": "Interpretar as evidências"
+        },
+        {
+          "level": "H2",
+          "text": "Manutenção do workspace"
+        },
+        {
+          "level": "H2",
+          "text": "Proveniência e instruções históricas"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_README-360-dark.png"
+    },
+    {
+      "document": "docs/README.md",
+      "theme": "light",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "assets/documentation.svg",
+          "width": 704,
+          "height": 392,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Documentação do Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Galeria de explicações"
+        },
+        {
+          "level": "H2",
+          "text": "Entender a aplicação"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolver e verificar"
+        },
+        {
+          "level": "H2",
+          "text": "Consultar decisões"
+        },
+        {
+          "level": "H2",
+          "text": "Interpretar as evidências"
+        },
+        {
+          "level": "H2",
+          "text": "Manutenção do workspace"
+        },
+        {
+          "level": "H2",
+          "text": "Proveniência e instruções históricas"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_README-768-light.png"
+    },
+    {
+      "document": "docs/README.md",
+      "theme": "dark",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "assets/documentation.svg",
+          "width": 704,
+          "height": 392,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Documentação do Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Galeria de explicações"
+        },
+        {
+          "level": "H2",
+          "text": "Entender a aplicação"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolver e verificar"
+        },
+        {
+          "level": "H2",
+          "text": "Consultar decisões"
+        },
+        {
+          "level": "H2",
+          "text": "Interpretar as evidências"
+        },
+        {
+          "level": "H2",
+          "text": "Manutenção do workspace"
+        },
+        {
+          "level": "H2",
+          "text": "Proveniência e instruções históricas"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_README-768-dark.png"
+    },
+    {
+      "document": "docs/README.md",
+      "theme": "light",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "assets/documentation.svg",
+          "width": 960,
+          "height": 534,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Documentação do Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Galeria de explicações"
+        },
+        {
+          "level": "H2",
+          "text": "Entender a aplicação"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolver e verificar"
+        },
+        {
+          "level": "H2",
+          "text": "Consultar decisões"
+        },
+        {
+          "level": "H2",
+          "text": "Interpretar as evidências"
+        },
+        {
+          "level": "H2",
+          "text": "Manutenção do workspace"
+        },
+        {
+          "level": "H2",
+          "text": "Proveniência e instruções históricas"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_README-1280-light.png"
+    },
+    {
+      "document": "docs/README.md",
+      "theme": "dark",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "assets/documentation.svg",
+          "width": 960,
+          "height": 534,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Documentação do Ox"
+        },
+        {
+          "level": "H2",
+          "text": "Galeria de explicações"
+        },
+        {
+          "level": "H2",
+          "text": "Entender a aplicação"
+        },
+        {
+          "level": "H2",
+          "text": "Desenvolver e verificar"
+        },
+        {
+          "level": "H2",
+          "text": "Consultar decisões"
+        },
+        {
+          "level": "H2",
+          "text": "Interpretar as evidências"
+        },
+        {
+          "level": "H2",
+          "text": "Manutenção do workspace"
+        },
+        {
+          "level": "H2",
+          "text": "Proveniência e instruções históricas"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_README-1280-dark.png"
+    },
+    {
+      "document": "docs/README.md",
+      "theme": "light",
+      "zoom": "200% complete document CSS zoom, equivalent layout inspection rather than browser UI zoom",
+      "capture": "docs_README-zoom200.png"
+    },
+    {
+      "document": "docs/architecture/application.md",
+      "theme": "light",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../assets/architecture.svg",
+          "width": 320,
+          "height": 248,
+          "loaded": true
+        },
+        {
+          "src": "../assets/execution.svg",
+          "width": 320,
+          "height": 563,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação: funcionamento e implementações"
+        },
+        {
+          "level": "H2",
+          "text": "Propósito e estado"
+        },
+        {
+          "level": "H2",
+          "text": "Visão dos componentes"
+        },
+        {
+          "level": "H2",
+          "text": "Caminho executado pelo desktop"
+        },
+        {
+          "level": "H2",
+          "text": "Mapa dos 16 crates"
+        },
+        {
+          "level": "H2",
+          "text": "Sequência de uma tentativa"
+        },
+        {
+          "level": "H2",
+          "text": "Tecnologia e decisões"
+        },
+        {
+          "level": "H2",
+          "text": "O que ainda não foi entregue"
+        },
+        {
+          "level": "H2",
+          "text": "Fontes, evidências e manutenção"
+        },
+        {
+          "level": "H2",
+          "text": "Current presentation integration"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_application-360-light.png"
+    },
+    {
+      "document": "docs/architecture/application.md",
+      "theme": "dark",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../assets/architecture.svg",
+          "width": 320,
+          "height": 248,
+          "loaded": true
+        },
+        {
+          "src": "../assets/execution.svg",
+          "width": 320,
+          "height": 563,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação: funcionamento e implementações"
+        },
+        {
+          "level": "H2",
+          "text": "Propósito e estado"
+        },
+        {
+          "level": "H2",
+          "text": "Visão dos componentes"
+        },
+        {
+          "level": "H2",
+          "text": "Caminho executado pelo desktop"
+        },
+        {
+          "level": "H2",
+          "text": "Mapa dos 16 crates"
+        },
+        {
+          "level": "H2",
+          "text": "Sequência de uma tentativa"
+        },
+        {
+          "level": "H2",
+          "text": "Tecnologia e decisões"
+        },
+        {
+          "level": "H2",
+          "text": "O que ainda não foi entregue"
+        },
+        {
+          "level": "H2",
+          "text": "Fontes, evidências e manutenção"
+        },
+        {
+          "level": "H2",
+          "text": "Current presentation integration"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_application-360-dark.png"
+    },
+    {
+      "document": "docs/architecture/application.md",
+      "theme": "light",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../assets/architecture.svg",
+          "width": 704,
+          "height": 546,
+          "loaded": true
+        },
+        {
+          "src": "../assets/execution.svg",
+          "width": 704,
+          "height": 1238,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação: funcionamento e implementações"
+        },
+        {
+          "level": "H2",
+          "text": "Propósito e estado"
+        },
+        {
+          "level": "H2",
+          "text": "Visão dos componentes"
+        },
+        {
+          "level": "H2",
+          "text": "Caminho executado pelo desktop"
+        },
+        {
+          "level": "H2",
+          "text": "Mapa dos 16 crates"
+        },
+        {
+          "level": "H2",
+          "text": "Sequência de uma tentativa"
+        },
+        {
+          "level": "H2",
+          "text": "Tecnologia e decisões"
+        },
+        {
+          "level": "H2",
+          "text": "O que ainda não foi entregue"
+        },
+        {
+          "level": "H2",
+          "text": "Fontes, evidências e manutenção"
+        },
+        {
+          "level": "H2",
+          "text": "Current presentation integration"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_application-768-light.png"
+    },
+    {
+      "document": "docs/architecture/application.md",
+      "theme": "dark",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../assets/architecture.svg",
+          "width": 704,
+          "height": 546,
+          "loaded": true
+        },
+        {
+          "src": "../assets/execution.svg",
+          "width": 704,
+          "height": 1238,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação: funcionamento e implementações"
+        },
+        {
+          "level": "H2",
+          "text": "Propósito e estado"
+        },
+        {
+          "level": "H2",
+          "text": "Visão dos componentes"
+        },
+        {
+          "level": "H2",
+          "text": "Caminho executado pelo desktop"
+        },
+        {
+          "level": "H2",
+          "text": "Mapa dos 16 crates"
+        },
+        {
+          "level": "H2",
+          "text": "Sequência de uma tentativa"
+        },
+        {
+          "level": "H2",
+          "text": "Tecnologia e decisões"
+        },
+        {
+          "level": "H2",
+          "text": "O que ainda não foi entregue"
+        },
+        {
+          "level": "H2",
+          "text": "Fontes, evidências e manutenção"
+        },
+        {
+          "level": "H2",
+          "text": "Current presentation integration"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_application-768-dark.png"
+    },
+    {
+      "document": "docs/architecture/application.md",
+      "theme": "light",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../assets/architecture.svg",
+          "width": 960,
+          "height": 744,
+          "loaded": true
+        },
+        {
+          "src": "../assets/execution.svg",
+          "width": 960,
+          "height": 1689,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação: funcionamento e implementações"
+        },
+        {
+          "level": "H2",
+          "text": "Propósito e estado"
+        },
+        {
+          "level": "H2",
+          "text": "Visão dos componentes"
+        },
+        {
+          "level": "H2",
+          "text": "Caminho executado pelo desktop"
+        },
+        {
+          "level": "H2",
+          "text": "Mapa dos 16 crates"
+        },
+        {
+          "level": "H2",
+          "text": "Sequência de uma tentativa"
+        },
+        {
+          "level": "H2",
+          "text": "Tecnologia e decisões"
+        },
+        {
+          "level": "H2",
+          "text": "O que ainda não foi entregue"
+        },
+        {
+          "level": "H2",
+          "text": "Fontes, evidências e manutenção"
+        },
+        {
+          "level": "H2",
+          "text": "Current presentation integration"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_application-1280-light.png"
+    },
+    {
+      "document": "docs/architecture/application.md",
+      "theme": "dark",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../assets/architecture.svg",
+          "width": 960,
+          "height": 744,
+          "loaded": true
+        },
+        {
+          "src": "../assets/execution.svg",
+          "width": 960,
+          "height": 1689,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Aplicação: funcionamento e implementações"
+        },
+        {
+          "level": "H2",
+          "text": "Propósito e estado"
+        },
+        {
+          "level": "H2",
+          "text": "Visão dos componentes"
+        },
+        {
+          "level": "H2",
+          "text": "Caminho executado pelo desktop"
+        },
+        {
+          "level": "H2",
+          "text": "Mapa dos 16 crates"
+        },
+        {
+          "level": "H2",
+          "text": "Sequência de uma tentativa"
+        },
+        {
+          "level": "H2",
+          "text": "Tecnologia e decisões"
+        },
+        {
+          "level": "H2",
+          "text": "O que ainda não foi entregue"
+        },
+        {
+          "level": "H2",
+          "text": "Fontes, evidências e manutenção"
+        },
+        {
+          "level": "H2",
+          "text": "Current presentation integration"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_application-1280-dark.png"
+    },
+    {
+      "document": "docs/architecture/application.md",
+      "theme": "light",
+      "zoom": "200% complete document CSS zoom, equivalent layout inspection rather than browser UI zoom",
+      "capture": "docs_architecture_application-zoom200.png"
+    },
+    {
+      "document": "docs/architecture/contracts.md",
+      "theme": "light",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../assets/runtime-states.svg",
+          "width": 320,
+          "height": 368,
+          "loaded": true
+        },
+        {
+          "src": "../assets/plugin-protocol.svg",
+          "width": 320,
+          "height": 585,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Contratos da fundação"
+        },
+        {
+          "level": "H2",
+          "text": "Índice dos contratos"
+        },
+        {
+          "level": "H2",
+          "text": "Composição e UI"
+        },
+        {
+          "level": "H2",
+          "text": "Pedido e resultado da tarefa controlada"
+        },
+        {
+          "level": "H2",
+          "text": "Agent Runtime"
+        },
+        {
+          "level": "H3",
+          "text": "Estados do supervisor"
+        },
+        {
+          "level": "H2",
+          "text": "Plugin Host e protocolo local"
+        },
+        {
+          "level": "H3",
+          "text": "Sequência do protocolo"
+        },
+        {
+          "level": "H2",
+          "text": "Verification Engine"
+        },
+        {
+          "level": "H2",
+          "text": "Demais contratos de domínio"
+        },
+        {
+          "level": "H2",
+          "text": "Contratos operacionais e manutenção"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_contracts-360-light.png"
+    },
+    {
+      "document": "docs/architecture/contracts.md",
+      "theme": "dark",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../assets/runtime-states.svg",
+          "width": 320,
+          "height": 368,
+          "loaded": true
+        },
+        {
+          "src": "../assets/plugin-protocol.svg",
+          "width": 320,
+          "height": 585,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Contratos da fundação"
+        },
+        {
+          "level": "H2",
+          "text": "Índice dos contratos"
+        },
+        {
+          "level": "H2",
+          "text": "Composição e UI"
+        },
+        {
+          "level": "H2",
+          "text": "Pedido e resultado da tarefa controlada"
+        },
+        {
+          "level": "H2",
+          "text": "Agent Runtime"
+        },
+        {
+          "level": "H3",
+          "text": "Estados do supervisor"
+        },
+        {
+          "level": "H2",
+          "text": "Plugin Host e protocolo local"
+        },
+        {
+          "level": "H3",
+          "text": "Sequência do protocolo"
+        },
+        {
+          "level": "H2",
+          "text": "Verification Engine"
+        },
+        {
+          "level": "H2",
+          "text": "Demais contratos de domínio"
+        },
+        {
+          "level": "H2",
+          "text": "Contratos operacionais e manutenção"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_contracts-360-dark.png"
+    },
+    {
+      "document": "docs/architecture/contracts.md",
+      "theme": "light",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../assets/runtime-states.svg",
+          "width": 704,
+          "height": 810,
+          "loaded": true
+        },
+        {
+          "src": "../assets/plugin-protocol.svg",
+          "width": 704,
+          "height": 1288,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Contratos da fundação"
+        },
+        {
+          "level": "H2",
+          "text": "Índice dos contratos"
+        },
+        {
+          "level": "H2",
+          "text": "Composição e UI"
+        },
+        {
+          "level": "H2",
+          "text": "Pedido e resultado da tarefa controlada"
+        },
+        {
+          "level": "H2",
+          "text": "Agent Runtime"
+        },
+        {
+          "level": "H3",
+          "text": "Estados do supervisor"
+        },
+        {
+          "level": "H2",
+          "text": "Plugin Host e protocolo local"
+        },
+        {
+          "level": "H3",
+          "text": "Sequência do protocolo"
+        },
+        {
+          "level": "H2",
+          "text": "Verification Engine"
+        },
+        {
+          "level": "H2",
+          "text": "Demais contratos de domínio"
+        },
+        {
+          "level": "H2",
+          "text": "Contratos operacionais e manutenção"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_contracts-768-light.png"
+    },
+    {
+      "document": "docs/architecture/contracts.md",
+      "theme": "dark",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../assets/runtime-states.svg",
+          "width": 704,
+          "height": 810,
+          "loaded": true
+        },
+        {
+          "src": "../assets/plugin-protocol.svg",
+          "width": 704,
+          "height": 1288,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Contratos da fundação"
+        },
+        {
+          "level": "H2",
+          "text": "Índice dos contratos"
+        },
+        {
+          "level": "H2",
+          "text": "Composição e UI"
+        },
+        {
+          "level": "H2",
+          "text": "Pedido e resultado da tarefa controlada"
+        },
+        {
+          "level": "H2",
+          "text": "Agent Runtime"
+        },
+        {
+          "level": "H3",
+          "text": "Estados do supervisor"
+        },
+        {
+          "level": "H2",
+          "text": "Plugin Host e protocolo local"
+        },
+        {
+          "level": "H3",
+          "text": "Sequência do protocolo"
+        },
+        {
+          "level": "H2",
+          "text": "Verification Engine"
+        },
+        {
+          "level": "H2",
+          "text": "Demais contratos de domínio"
+        },
+        {
+          "level": "H2",
+          "text": "Contratos operacionais e manutenção"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_contracts-768-dark.png"
+    },
+    {
+      "document": "docs/architecture/contracts.md",
+      "theme": "light",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../assets/runtime-states.svg",
+          "width": 960,
+          "height": 1104,
+          "loaded": true
+        },
+        {
+          "src": "../assets/plugin-protocol.svg",
+          "width": 960,
+          "height": 1756,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Contratos da fundação"
+        },
+        {
+          "level": "H2",
+          "text": "Índice dos contratos"
+        },
+        {
+          "level": "H2",
+          "text": "Composição e UI"
+        },
+        {
+          "level": "H2",
+          "text": "Pedido e resultado da tarefa controlada"
+        },
+        {
+          "level": "H2",
+          "text": "Agent Runtime"
+        },
+        {
+          "level": "H3",
+          "text": "Estados do supervisor"
+        },
+        {
+          "level": "H2",
+          "text": "Plugin Host e protocolo local"
+        },
+        {
+          "level": "H3",
+          "text": "Sequência do protocolo"
+        },
+        {
+          "level": "H2",
+          "text": "Verification Engine"
+        },
+        {
+          "level": "H2",
+          "text": "Demais contratos de domínio"
+        },
+        {
+          "level": "H2",
+          "text": "Contratos operacionais e manutenção"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_contracts-1280-light.png"
+    },
+    {
+      "document": "docs/architecture/contracts.md",
+      "theme": "dark",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../assets/runtime-states.svg",
+          "width": 960,
+          "height": 1104,
+          "loaded": true
+        },
+        {
+          "src": "../assets/plugin-protocol.svg",
+          "width": 960,
+          "height": 1756,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Contratos da fundação"
+        },
+        {
+          "level": "H2",
+          "text": "Índice dos contratos"
+        },
+        {
+          "level": "H2",
+          "text": "Composição e UI"
+        },
+        {
+          "level": "H2",
+          "text": "Pedido e resultado da tarefa controlada"
+        },
+        {
+          "level": "H2",
+          "text": "Agent Runtime"
+        },
+        {
+          "level": "H3",
+          "text": "Estados do supervisor"
+        },
+        {
+          "level": "H2",
+          "text": "Plugin Host e protocolo local"
+        },
+        {
+          "level": "H3",
+          "text": "Sequência do protocolo"
+        },
+        {
+          "level": "H2",
+          "text": "Verification Engine"
+        },
+        {
+          "level": "H2",
+          "text": "Demais contratos de domínio"
+        },
+        {
+          "level": "H2",
+          "text": "Contratos operacionais e manutenção"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_architecture_contracts-1280-dark.png"
+    },
+    {
+      "document": "docs/architecture/contracts.md",
+      "theme": "light",
+      "zoom": "200% complete document CSS zoom, equivalent layout inspection rather than browser UI zoom",
+      "capture": "docs_architecture_contracts-zoom200.png"
+    },
+    {
+      "document": "docs/development/governance.md",
+      "theme": "light",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../assets/governance.svg",
+          "width": 320,
+          "height": 802,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Desenvolvimento e verificação da governança"
+        },
+        {
+          "level": "H2",
+          "text": "Fluxo de uma mudança"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação da governança e skills"
+        },
+        {
+          "level": "H2",
+          "text": "Histórico e limites"
+        },
+        {
+          "level": "H2",
+          "text": "Pacote de governança"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento limpo e licenciamento"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação rápida e completa"
+        },
+        {
+          "level": "H2",
+          "text": "Preservação das revisões do README"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_governance-360-light.png"
+    },
+    {
+      "document": "docs/development/governance.md",
+      "theme": "dark",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../assets/governance.svg",
+          "width": 320,
+          "height": 802,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Desenvolvimento e verificação da governança"
+        },
+        {
+          "level": "H2",
+          "text": "Fluxo de uma mudança"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação da governança e skills"
+        },
+        {
+          "level": "H2",
+          "text": "Histórico e limites"
+        },
+        {
+          "level": "H2",
+          "text": "Pacote de governança"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento limpo e licenciamento"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação rápida e completa"
+        },
+        {
+          "level": "H2",
+          "text": "Preservação das revisões do README"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_governance-360-dark.png"
+    },
+    {
+      "document": "docs/development/governance.md",
+      "theme": "light",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../assets/governance.svg",
+          "width": 704,
+          "height": 1763,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Desenvolvimento e verificação da governança"
+        },
+        {
+          "level": "H2",
+          "text": "Fluxo de uma mudança"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação da governança e skills"
+        },
+        {
+          "level": "H2",
+          "text": "Histórico e limites"
+        },
+        {
+          "level": "H2",
+          "text": "Pacote de governança"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento limpo e licenciamento"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação rápida e completa"
+        },
+        {
+          "level": "H2",
+          "text": "Preservação das revisões do README"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_governance-768-light.png"
+    },
+    {
+      "document": "docs/development/governance.md",
+      "theme": "dark",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../assets/governance.svg",
+          "width": 704,
+          "height": 1763,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Desenvolvimento e verificação da governança"
+        },
+        {
+          "level": "H2",
+          "text": "Fluxo de uma mudança"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação da governança e skills"
+        },
+        {
+          "level": "H2",
+          "text": "Histórico e limites"
+        },
+        {
+          "level": "H2",
+          "text": "Pacote de governança"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento limpo e licenciamento"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação rápida e completa"
+        },
+        {
+          "level": "H2",
+          "text": "Preservação das revisões do README"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_governance-768-dark.png"
+    },
+    {
+      "document": "docs/development/governance.md",
+      "theme": "light",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../assets/governance.svg",
+          "width": 960,
+          "height": 2405,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Desenvolvimento e verificação da governança"
+        },
+        {
+          "level": "H2",
+          "text": "Fluxo de uma mudança"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação da governança e skills"
+        },
+        {
+          "level": "H2",
+          "text": "Histórico e limites"
+        },
+        {
+          "level": "H2",
+          "text": "Pacote de governança"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento limpo e licenciamento"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação rápida e completa"
+        },
+        {
+          "level": "H2",
+          "text": "Preservação das revisões do README"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_governance-1280-light.png"
+    },
+    {
+      "document": "docs/development/governance.md",
+      "theme": "dark",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../assets/governance.svg",
+          "width": 960,
+          "height": 2405,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Desenvolvimento e verificação da governança"
+        },
+        {
+          "level": "H2",
+          "text": "Fluxo de uma mudança"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação da governança e skills"
+        },
+        {
+          "level": "H2",
+          "text": "Histórico e limites"
+        },
+        {
+          "level": "H2",
+          "text": "Pacote de governança"
+        },
+        {
+          "level": "H2",
+          "text": "Compartilhamento limpo e licenciamento"
+        },
+        {
+          "level": "H2",
+          "text": "Verificação rápida e completa"
+        },
+        {
+          "level": "H2",
+          "text": "Preservação das revisões do README"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_governance-1280-dark.png"
+    },
+    {
+      "document": "docs/development/governance.md",
+      "theme": "light",
+      "zoom": "200% complete document CSS zoom, equivalent layout inspection rather than browser UI zoom",
+      "capture": "docs_development_governance-zoom200.png"
+    },
+    {
+      "document": "docs/development/sharing.md",
+      "theme": "light",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../assets/sharing.svg",
+          "width": 320,
+          "height": 174,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Organização, compartilhamento e recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Fronteira de compartilhamento"
+        },
+        {
+          "level": "H2",
+          "text": "Composição histórica da árvore"
+        },
+        {
+          "level": "H2",
+          "text": "Procedimento sem compactação"
+        },
+        {
+          "level": "H2",
+          "text": "Recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Reconciliação de 29/10/2026"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_sharing-360-light.png"
+    },
+    {
+      "document": "docs/development/sharing.md",
+      "theme": "dark",
+      "width": 360,
+      "scrollWidth": 360,
+      "images": [
+        {
+          "src": "../assets/sharing.svg",
+          "width": 320,
+          "height": 174,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Organização, compartilhamento e recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Fronteira de compartilhamento"
+        },
+        {
+          "level": "H2",
+          "text": "Composição histórica da árvore"
+        },
+        {
+          "level": "H2",
+          "text": "Procedimento sem compactação"
+        },
+        {
+          "level": "H2",
+          "text": "Recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Reconciliação de 29/10/2026"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_sharing-360-dark.png"
+    },
+    {
+      "document": "docs/development/sharing.md",
+      "theme": "light",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../assets/sharing.svg",
+          "width": 704,
+          "height": 383,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Organização, compartilhamento e recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Fronteira de compartilhamento"
+        },
+        {
+          "level": "H2",
+          "text": "Composição histórica da árvore"
+        },
+        {
+          "level": "H2",
+          "text": "Procedimento sem compactação"
+        },
+        {
+          "level": "H2",
+          "text": "Recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Reconciliação de 29/10/2026"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_sharing-768-light.png"
+    },
+    {
+      "document": "docs/development/sharing.md",
+      "theme": "dark",
+      "width": 768,
+      "scrollWidth": 768,
+      "images": [
+        {
+          "src": "../assets/sharing.svg",
+          "width": 704,
+          "height": 383,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Organização, compartilhamento e recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Fronteira de compartilhamento"
+        },
+        {
+          "level": "H2",
+          "text": "Composição histórica da árvore"
+        },
+        {
+          "level": "H2",
+          "text": "Procedimento sem compactação"
+        },
+        {
+          "level": "H2",
+          "text": "Recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Reconciliação de 29/10/2026"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_sharing-768-dark.png"
+    },
+    {
+      "document": "docs/development/sharing.md",
+      "theme": "light",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../assets/sharing.svg",
+          "width": 960,
+          "height": 522,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Organização, compartilhamento e recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Fronteira de compartilhamento"
+        },
+        {
+          "level": "H2",
+          "text": "Composição histórica da árvore"
+        },
+        {
+          "level": "H2",
+          "text": "Procedimento sem compactação"
+        },
+        {
+          "level": "H2",
+          "text": "Recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Reconciliação de 29/10/2026"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_sharing-1280-light.png"
+    },
+    {
+      "document": "docs/development/sharing.md",
+      "theme": "dark",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "images": [
+        {
+          "src": "../assets/sharing.svg",
+          "width": 960,
+          "height": 522,
+          "loaded": true
+        }
+      ],
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Organização, compartilhamento e recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Fronteira de compartilhamento"
+        },
+        {
+          "level": "H2",
+          "text": "Composição histórica da árvore"
+        },
+        {
+          "level": "H2",
+          "text": "Procedimento sem compactação"
+        },
+        {
+          "level": "H2",
+          "text": "Recuperação"
+        },
+        {
+          "level": "H2",
+          "text": "Reconciliação de 29/10/2026"
+        }
+      ],
+      "fonts": "Arial, sans-serif",
+      "capture": "docs_development_sharing-1280-dark.png"
+    },
+    {
+      "document": "docs/development/sharing.md",
+      "theme": "light",
+      "zoom": "200% complete document CSS zoom, equivalent layout inspection rather than browser UI zoom",
+      "capture": "docs_development_sharing-zoom200.png"
+    }
+  ],
+  "limits": "Delivered SVG bytes restored exactly before this preview; generation was separately observed in the retained first run. Local Markdown preview with declared CSS, not the actual VS Code webview. SVG exports are primary delivery; native Mermaid source uses renderer-dependent theme. Zoom inspection uses CSS zoom:2 for the complete document, not browser UI zoom or physical display scaling."
+}

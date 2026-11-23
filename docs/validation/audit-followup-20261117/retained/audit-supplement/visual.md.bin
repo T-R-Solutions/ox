@@ -1,0 +1,97 @@
+# Visual and first-use audit correction — 2026-11-17
+
+Scope: D-01, D-13 and V-01–20 from the supplied audit. Owner: visual_docs
+implementer. Existing uncommitted work was preserved; pre-edit bytes are retained
+under `/tmp/ox-audit-visual-before` (local recovery, not portable evidence).
+The Visual Studio 2026 Enterprise baseline remains a target, without a native
+parity or assistive-technology approval in this correction.
+
+Skills actually read: `.codex/skills/iced-engineering/SKILL.md` (Iced 0.14 widget,
+focus and platform boundaries) and `.codex/skills/rust/SKILL.md` (safe API changes
+and focused Cargo verification). Manifests: edition 2024, Rust 1.99 floor,
+Iced =0.14.0; no dependency or toolchain change.
+
+## Disposition by finding
+
+| Finding | Assessment | Correction / remaining limit |
+| --- | --- | --- |
+| D-01 | Confirmed | First-use READMEs now enter through Boas-vindas/Abrir pastas…/Tarefas and use actual pt-BR actions; current workbench/recents included. Sequence/first-run text and SVG text updated. Historical screenshots remain identified as 03 November. SVG geometry was preserved and XML parsed; rendering not reobserved. |
+| D-13 | Confirmed | Consolidated first-use project-entry and Settings descriptions; removed obsolete manual-menu and Details claims; toolbar shortcut semantics explicit. |
+| V-01 | Confirmed | Removed unreachable Settings specimen block, its unused helper and duplicate unreachable match arms. Corrected DESIGN/components/surfaces claims. |
+| V-02 | Confirmed | 27 destinations/26 geometries with shared S09/S13 cog stated consistently. |
+| V-03 | Confirmed | Removed obsolete 1100/368 geometry claims; source inventory now names 900/1200/1400 and S01 280/210. Header changes from V-18 are documented as 56 workbench/52 welcome logical units (source geometry). |
+| V-04 | Confirmed | Fixed-sidebar successor explicitly supersedes old narrow stacking claims; S01 remains side by side at 210 units below 900. |
+| V-05 | Confirmed | Current runtime signatures distinguished from retained historical mascot artwork; reference coverage records the successor. |
+| V-06 | Partly confirmed | Every tracked native input now shares palette boundary/focus and radius 4, including the five previously unstyled fields. Target-versus-current panel radii documented; generic panel radius 6 versus target editor/chip radii remains a design gap, not silently revised target. |
+| V-07 | Confirmed documentary overclaim | DESIGN now limits generation agreement to theme color roles. Scales/type/proposals are metadata and not generated. Current geometry is documented. Extending generation and changing density/navigation design remain separate work. |
+| V-08 | Partly confirmed | Removed the claim that every legacy reference value has a native token. Unused role availability alone is not a runtime bug; roles were not deleted. |
+| V-09 | Confirmed metadata ambiguity | Proposed direction-B duplicates and metadata-version mismatch remain outside the implemented theme map; consolidation requires a chosen proposal/schema and is left unresolved, not approved. No operational palette change. |
+| V-10 | Partly refuted / corrected | Equal focus/selection hue alone does not violate the documented distinct-marker requirement: persistent side marker and focus perimeter differ in geometry. Pressed now has a two-unit border versus hover one-unit. No claim that this establishes native accessibility. |
+| V-11 | Confirmed | Focused buttons now use opaque surface_base/text_primary/focus in every role, so the border has contrast against its inside surface even on branded chrome. Added all-role/all-theme style contrast regression and expanded palette background checks; no offset/raster claim. |
+| V-12 | Confirmed platform gap | DESIGN/components explicitly state no AccessKit integration in this Iced build and unimplemented AT names/announcements. Settings hover-only label is an explicit user choice, preserved rather than overridden by the audit. Wayland CSD composition remains unobserved. |
+| V-13 | Partly confirmed | Analysis clarifies unknown installed build and same-theme comparison limitation. Public source-image hashes remain source identity, not installed Enterprise evidence. Historical temporary path is identified as unavailable reproduction metadata. No fabricated version/build. |
+| V-14 | Confirmed omission; coordinator handoff | Fira Sans/Iced Icons bundled by the selected dependency features require provenance inventory outside this writer's assigned font-provenance file. Coordinator notified. |
+| V-15 | Confirmed | S01 flow/backend corrected to project entry; S13 title Configurações and NotApplicable badge state documented. Domain workflow states and five evidence verdicts describe different dimensions, so no false one-to-one mapping was added. S13/S14 share settings canvas. |
+| V-16 | Partly confirmed | Documented direct session toolbar theme/density shortcuts versus explicit preview/Save/Back in Settings; added Sair inventory. Two access paths alone do not prove competing or broken preference state. |
+| V-17 | Confirmed | Synthetic diff uses demonstracao: cor=ambar/azul instead of real oracle result=41/42. Existing demonstration label retained. |
+| V-18 | Confirmed | Both signatures now use 128×40 logical units, matching the supplied minimum at scale 1; header dimensions updated. Native resize/scaling/brand legibility remains pending. |
+| V-19 | Confirmed | Joined geometry numbers repaired in assigned DESIGN/component/surface prose and internal IDs labelled as control IDs. |
+| V-20 | Confirmed authority ambiguity | Header now distinguishes reusable §1–16 requirements, dated observations and current inventory. Old conflicting geometry descriptions corrected in place; no file/anchor migration or broad history rewrite. Structural history extraction is a suggestion, not implemented. |
+
+## Checks actually observed
+
+All commands ran from the Ox root unless the application directory is specified.
+No full scanner suite, downloads, commit, publication or graphical session ran.
+
+| Method | Observed result | Limit |
+| --- | --- | --- |
+| `CARGO_HOME="$PWD/../.cache/ox/cargo-home" cargo test --locked --offline -p ox-ui` in application | exit 0; 48 unit tests passed, 1 subprocess helper ignored at top level (exercised by parent tests); 4 local_task integration + 1 shell contract passed | No native interaction or rendering evidence |
+| same Cargo environment, `cargo clippy --locked --offline -p ox-ui --all-targets -- -D warnings` | exit 0 after final input/style changes | Static lint/compile only |
+| same Cargo environment, `cargo fmt --all -- --check` | exit 0 | Formatting only |
+| `python3 application/tools/build_design.py --check` | exit 0; generated roles match controlled source | Themes only, not scales/geometry |
+| `python3 application/tools/check_contrast.py` and in-process summary | exit 0; 114/114 role pairs passed; focus pairs minimum 5.006:1 | Opaque palette calculation, not raster or AT conformance |
+| Python ElementTree parse of first-run.svg/execution.svg | both parse | SVG text labels changed without geometry regeneration; browser layout unobserved |
+| `git diff --check` on assigned paths | exit 0 | Whitespace only |
+
+The configured historical documentation renderer cannot run with its declared
+`/tmp/ox-doc-visual-tools` installation: playwright, Mermaid and browser paths are
+absent; no `mmdc` executable was found. Its script would also rewrite unrelated
+figures and the old 04 November report, so it was not executed. SVG replacements
+are bounded text changes with unchanged layout, preserving both diagram structure
+and earlier reports; text fit still needs a new renderer observation.
+
+Documentation reviewed/updated: DESIGN, components, surfaces, coverage, Windows
+analysis, both READMEs, architecture/application and diagram sources/exports.
+Affected feature spec/plan/tasks/evidence disposition belongs to the coordinator:
+product-visual-workbench and windows-design-baseline inputs changed. Earlier
+native observations cannot approve this revision. In particular PE/SS header and
+Settings observations require fresh native checks. No hashes were renewed to
+reuse old native evidence.
+
+## Observed input bytes
+
+Hashes identify the implementation and documentation after the checks above;
+they do not renew earlier observations or constitute automated acceptance.
+
+| Path | SHA-256 |
+| --- | --- |
+| `DESIGN.md` | `3803e79f94e2f4e375e3ca5a837f662cb2675c9355780646981b83afe00a3c9d` |
+| `docs/design/components.md` | `c94892dbf85628ef7e70e94e6ea9c8b956d240e126a447371ee3b02f7ce60766` |
+| `docs/design/surfaces.md` | `736b90fec22dbcbde53c6ead1401c3f988efd42d15e9cebf8799fc1058e3771d` |
+| `docs/design/reference-coverage.md` | `289d412e6cb8bb1a93bc0863842bc7a0e09e4dd019022bfe4827d86f0a5426ec` |
+| `docs/design/windows-apps-analysis.md` | `b88c2d5e2c593bbb6bf7c68e07b8f1ab7d279775701f22e657f1a1c7dfd1d3ed` |
+| `README.md` | `4fd56b9dc57c498347611bcad2509fabcd9ec30a709857febe1f2c9389a8ab7c` |
+| `application/README.md` | `94246d0eae8673e33635f217205952466171bba5104e7e1035926a11b3437cb2` |
+| `docs/architecture/application.md` | `a95f1fab710d3665a7b890e45f2fd4589833d52b04527269d4f32dc754f84a4c` |
+| `docs/assets/diagrams/execution.mmd` | `df4aeb24a9262d1596eb369f641b66264400c46da61a809964ad3c49b1b7b0cb` |
+| `docs/assets/diagrams/first-run.mmd` | `14e7e5900c079e5447f1091e598723a75d328017aec9edf226aa938181cf4635` |
+| `docs/assets/first-run.svg` | `5252ad09599b2e941f982042ab42eeb2249309f8c3596fd4a804d03123fd3ac0` |
+| `docs/assets/execution.svg` | `406437dd0c8c81d968e2b757ee794c6957bc1118e260c55e3711c18053db10bd` |
+| `application/crates/ox-ui/src/design.rs` | `817b8c0526c9835dc2f2b35a0a85e7d21d897a8d9ab2505285f55f3a7c7e885b` |
+| `application/crates/ox-ui/src/desktop/views.rs` | `a2ae0dcf3462e80c70ad64f8b10ed3e7485c175c04e0f3c092c230301e395244` |
+| `application/crates/ox-ui/src/local_task.rs` | `88553bcfba911ee664ff8ff59de492197ebae1b199367be08bfd239759052098` |
+| `application/tools/check_contrast.py` | `7742076d91bc629dfb248288eecd1bc00b251ea9368a98ce26f8ed8e07126063` |
+| `application/Cargo.toml` | `db8cf6cbce0cec0312c8392b2e96c01cdab9ba65e60caf586e4183360bc44040` |
+| `application/crates/ox-ui/Cargo.toml` | `b187b5b88555c4250c0b3e499c2208b35fa1c294785aceaa39d69ac44a306338` |
+| `application/Cargo.lock` | `99d3907a15d227674b420a6cfcede596be840144c3db9ff070547c948bc40ab8` |
+| `docs/design/tokens.json` | `d61656b016362545c87a3991ed7414f4c237a4378e7faf698609bd44bf47f371` |

@@ -46,6 +46,14 @@ class ConfigurationSuccessionTests(unittest.TestCase):
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_bytes((ROOT / row["previous"]).read_bytes())
 
+        # The current consumer requires explicit repair inputs even in a partial fixture.
+        import instruction_revision as I
+        import log_repair_revision as L
+        for name in (I.REGISTRY, I.DECISION, *L.fixture_paths(ROOT)):
+            p = self.root / name
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_bytes((ROOT / name).read_bytes())
+
     def test_exact_transition_and_unknown_mutation(self):
         self.assertEqual(R.configuration_predecessor(self.root, self.relative, self.current), self.previous.read_bytes())
         self.assertEqual(R.configuration_predecessor(self.root, self.relative, self.current + b'unknown'), self.current + b'unknown')

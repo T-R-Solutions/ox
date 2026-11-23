@@ -82,3 +82,85 @@ Its neutral project entry, concise introduction and action grouping inform organ
 version and interactions are not established by the screenshot. .inputs/design
 remains organizational inspiration. No pixel-level reproduction is claimed.
 These scoped criteria do not replace the broader AC-01–06 gates.
+
+## Welcome identity/layout successor — 2026-11-16
+
+The maintainer requests S01 layout integration of the supplied definitive identity.
+WC-01 retains the existing project-entry/actions/real-history contract and now uses
+the Catalisador/Valência signature and tagged cotton mascot. Wide identity column,
+narrow stacked strip, readable controls, themes and wrapping paths follow DESIGN.
+WC-02–05 effects and persistence/confirmation contracts are unchanged. Focused
+local observations are recorded in welcome-identity-20261116; they do not replace
+WC-06's full independent review/validation matrix or reapprove historical criteria.
+
+## Enterprise desktop successor — 2026-11-16
+
+The maintainer explicitly supersedes the centered 1080-unit welcome card and
+240-unit mascot column. S01 adopts window-filling desktop composition: context
+chrome, docked project/actions navigation, real recents and a neutral primary
+canvas. S02, workbench and preferences share the visual component language.
+This changes WC-01's composition clause only; no task effects or persistence
+semantics change. The extensive workbench destination list remains unnecessary
+on S01. Definitive identity stays intact and subordinate to operations.
+
+Scoped manual criteria EV-01–04 supplement existing gates without replacing them:
+
+- EV-01: Actual native wide and narrow captures show a window-filling project
+  shell, readable actions/recents, bounded identity, and reachable overflow.
+- EV-02: Shared chrome/navigation/section styling reaches workbench and settings;
+  source/captures preserve IBM Plex, semantic palettes and truthful unavailable data.
+- EV-03: Focused Rust regressions and native keyboard open/navigation/theme flows
+  preserve existing effect boundaries; opening does not execute a task.
+- EV-04: Independent review and validation inspect current source, observed inputs,
+  documentation and limitations. Broad historical AC/WC acceptance is not renewed
+  without its complete scenario matrix.
+
+## Desktop navigation successor — 2026-11-17
+
+User rejects remaining web-like chrome, repeated sidebar icons and mascot.
+Preserve DESIGN palette/IBM Plex and signature, existing domain effects and IDs.
+Scoped manual criteria DN-01–05 supplement previous criteria without replacing
+broad AC/WC matrices or inheriting prior binary acceptance.
+
+- DN-01: Settings at upper right is icon-only with real hover tooltip and a
+  visible keyboard focus border; its text appears only on hover as requested.
+  Other icon commands/rail provide focus labels. Compact toolbar targets preserve
+  readable content at wide and640×480, including Dark/HC. No mascot is rendered.
+- DN-02: Each of27 destinations has its own semantic icon; grouping appears once
+  per category with stable destination IDs and visual/keyboard order aligned.
+- DN-03: A real horizontal divider changes sidebar width by pointer drag within
+  safe bounds. Release/outside/focus-loss stops drag; window resize clamps width.
+  Narrow windows preserve a usable primary area. Keyboard provides equivalent resize.
+- DN-04: Collapse preserves a usable labelled-on-hover/focus icon rail; expand
+  restores last width, selected destination and reachable focus. Navigation has
+  no domain effects or implicit project/task execution.
+- DN-05: Rust tests, real native pointer/keyboard observations, source-bound
+  independent review/validation and updated documentation substantiate the slice.
+
+## Project-entry presentation correction — 2026-11-17
+
+User supersedes S01's left-side recents and manual-path menu action. Scoped local
+criteria PE-01: every settings entry uses a cog. PE-02: actions follow Novo projeto
+→ Abrir pastas… → Clonar repositório, without a manual-path menu action; Clone is
+disabled and explicitly unavailable until backend implementation. PE-03: actual
+recents and session resumption occupy the primary area beside the actions. The
+fixed-sidebar successor supersedes stacking below 900 units: sidebar width is
+210 logical units below 900 and 280 otherwise. PE-04: keyboard traversal matches actionable order; chooser-failure
+recovery and existing project effects remain unchanged. Broad AC/WC and historical
+DN acceptance are not renewed by this bounded local observation.
+
+## Visual baseline successor — 2026-11-17
+
+Future visual changes must follow DESIGN revision 5.0: VISUAL STUDIO 2026 ENTERPRISE
+is the primary visual base, with Windows/Fluent guidance adapted to Ox. Documentary
+integration is accepted separately in windows-design-baseline. Existing native AC/WC,
+DN and PE observations are not reexecuted or renewed by this requirement.
+
+## Fixed-sidebar/settings local successor — 2026-11-17
+
+SS-01: S01 sidebar fills available content height, independently of recent-list
+length, with Plugins fixed at the bottom, including narrow windows.
+SS-02: Settings/Appearance omit general navigation and unrelated commands.
+SS-03: Voltar/Salvar stay at bottom right outside scrolling content. Save retains
+preview values for the session and returns to origin; Back/Escape restore the
+previous theme/density and return. No plugin backend or durable settings scope.

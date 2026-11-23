@@ -23,6 +23,7 @@ verification; current criteria are UNVERIFIED in evidence.json.
 | AC-13 | UNVERIFIED |
 | AC-14 | UNVERIFIED |
 | AC-15 | UNVERIFIED |
+| AC-16 | UNVERIFIED |
 <!-- /sdd:current-status -->
 
 ## Historical convergence — before 2026-11-14 correction
@@ -55,3 +56,36 @@ with current skill/configuration inputs, not by renewing old hashes.
 Current states above supersede historical approval prose only for changed inputs.
 Prior observations retain their original hashes; scoped verification and independent
 review/validation are recorded in docs/validation/log-repair-20261115/report.md.
+
+## Historical-link repair current observation
+
+The previous envelope/projection is preserved as .bin under
+`docs/validation/governance-link-repair-20261115/before/`. Current successor
+inputs await independent evidence; earlier approval prose remains historical.
+
+Independent current-input validation approved the bounded historical-link repair
+criteria identified by the current envelope. The subsequent broad regression passed
+207 executions (198 distinct IDs), with no skips/failures/errors and 19,006 unchanged
+inputs. GL-07 is APPROVED for bounded integration by
+`docs/validation/governance-link-repair-20261115/validation/broad-completion/verdict.json`.
+The earlier exit-130 attempt and inconclusive verdict remain historical; the 17
+unrelated prior UNVERIFIED criteria are not promoted.
+
+## Bandit repair current-input transition
+
+Changed source/configuration bindings were archived without renewing hashes.
+The earlier conclusions above are historical; the projection follows the current
+envelope. Independent observations are recorded in
+`docs/validation/bandit-repair-20261115/`; broad undecided gates remain unchanged.
+
+Current independent reexamination supports the affected terminal/governance
+criteria on current bytes. The three focused native scanners passed; the separate
+new-file native positive control remains INCONCLUSIVE after aborted host approval.
+See the new verdict and final gate receipts in the Bandit repair report.
+
+## OSV acquisition successor — 2026-11-16
+
+Changed policy/configuration/test inputs invalidate the previously bound observation.
+The predecessor envelope/projection is retained in docs/validation/osv-acquisition-20261116/prior/.
+Earlier approval prose above is historical; current states follow evidence.json.
+No historical hashes were renewed and no broader feature acceptance is claimed.

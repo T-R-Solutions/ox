@@ -1,0 +1,26 @@
+{
+  "supervisor_pid": 1653394,
+  "parent_pid": 2226351,
+  "session_id": 1653394,
+  "process_group_id": 1653394,
+  "stdin_isatty": true,
+  "command": [
+    "./scripts/automate.sh",
+    "run",
+    "--scope",
+    "complete"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "environment": {
+    "TOOLBOX_BIN": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox",
+    "TOOLBOX_SELINUX_LABEL": "shared",
+    "CARGO_HOME": "/home/rodrigo/Projetos/ox/.cache/ox/cargo-home",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/var/tmp/ox-r3-final-verification-XltM2HKX"
+  },
+  "time_utc": "2026-11-19T00:56:51.113928+00:00",
+  "supervisor_sha256": "b628fda870ea5db7fa6f19c18d15e1427dc946d54db8208d461fbbf4e55d282e",
+  "process_group": "inherited; no detachment or ignored termination signals",
+  "streams": "outside checkout for entire execution",
+  "child_pid": 1653404
+}

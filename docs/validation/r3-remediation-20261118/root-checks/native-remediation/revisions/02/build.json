@@ -1,0 +1,56 @@
+{
+  "sources": {
+    "/tmp/ox-r3-native-proposal-2fhe00q5/after/application/crates/ox-app/tests/desktop.rs": "0f8079d5ee92a69b771e98f0396aefba3b15de31e4291ff344ef5e07159c9fb9"
+  },
+  "dependencies": {
+    "ox_ui": {
+      "path": "/home/rodrigo/Projetos/ox/application/target/debug/deps/libox_ui-a731b7ff5fc953a6.rlib",
+      "sha256": "d2e0f66da4d9f8fc34ca90c89c8fe2193f92118b1485725079828a13a70f4ed0"
+    },
+    "x11rb": {
+      "path": "/home/rodrigo/Projetos/ox/application/target/debug/deps/libx11rb-7cb7ffa5f5c28e8c.rlib",
+      "sha256": "3a7e588a7a478acb2553f561b9933c363fb21bbab1196ab50afe7bfca7b928d8"
+    }
+  },
+  "commands": [
+    {
+      "command": [
+        "rustc",
+        "+1.99.1",
+        "--edition=2024",
+        "--test",
+        "-Dwarnings",
+        "-L",
+        "dependency=/home/rodrigo/Projetos/ox/application/target/debug/deps",
+        "/tmp/ox-r3-native-proposal-2fhe00q5/after/application/crates/ox-app/tests/desktop.rs",
+        "-o",
+        "/tmp/ox-r3-native-proposal-2fhe00q5/native-tests-02",
+        "--extern",
+        "ox_ui=/home/rodrigo/Projetos/ox/application/target/debug/deps/libox_ui-a731b7ff5fc953a6.rlib",
+        "--extern",
+        "x11rb=/home/rodrigo/Projetos/ox/application/target/debug/deps/libx11rb-7cb7ffa5f5c28e8c.rlib"
+      ],
+      "exit_code": 0,
+      "CARGO_BIN_EXE_ox": "/tmp/ox-r3-native-proposal-2fhe00q5/binaries/ox"
+    }
+  ],
+  "binaries": {
+    "ox": {
+      "path": "/tmp/ox-r3-native-proposal-2fhe00q5/binaries/ox",
+      "sha256": "103f0a8d1ccb52930365817a8e183480ed4ba009726562d68a4fd43155866873"
+    },
+    "local-task": {
+      "path": "/tmp/ox-r3-native-proposal-2fhe00q5/binaries/local-task",
+      "sha256": "d6c1f570c89e2d86c3650565e208c30dc1f0f45fa3d411fdcf6407224695b25c"
+    },
+    "task-oracle": {
+      "path": "/tmp/ox-r3-native-proposal-2fhe00q5/binaries/task-oracle",
+      "sha256": "accb78da034da4407924c8dce48635dba33bf6342539e03351784811df533cea"
+    },
+    "held-task-oracle": {
+      "path": "/tmp/ox-r3-native-proposal-2fhe00q5/binaries/held-task-oracle",
+      "sha256": "b9382ed4933395712d6b0df20f02a9ecf318fd6fef015f33c3660166fb77bad1"
+    }
+  },
+  "native_test_binary_sha256": "3690ad677ce7f7a02926ab6bca34a05291ed5e3f59baa0bbf858581c8896d600"
+}

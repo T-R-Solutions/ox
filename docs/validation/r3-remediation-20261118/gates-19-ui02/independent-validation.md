@@ -1,0 +1,9 @@
+# Independent validation — current whole-feature gates
+
+The independent validator rechecked the integrated IDE envelope against the accepted proposal: V2 human observation intact, 58 bindings without drift, four old observations preserved. AC02/AC07 remain APPROVED; five other IDE criteria remain INCONCLUSIVE.
+
+The actual selected 19-feature gate returned 1 with unchanged inputs. All 118 diagnostics are INCONCLUSIVE/UNVERIFIED states; none reports broken bindings or freshness. Maintaining whole-feature selection does not turn each historical state into a new executable test. Reuse requires unchanged relevant inputs and a criterion-specific oracle; no global promotion follows from a runner exit.
+
+Pertinence: configuration-cohesion covers typed succession/integrity; externalization, layout and reconciliation cover package, paths and independent copies; maintenance covers inventory/preservation and unresolved rights AC05; foundation covers live context and product/governance boundary; README integration covers successor documents and rendering; repository maintenance and task closure cover retained observations and append-only log; scripts centralization/security/toolchain cover public consumers, modified bindings, locks and real catalog; windows design covers reference/current context consistency; bootstrap/local-task/IDE/workbench cover changed harness and UI observations; dependency hygiene covers vendors, layouts and remaining duplication; native visual method covers its changed concrete consumer/provenance.
+
+Old skill inventories, migrations, unchanged methods and preserved historical inputs need traceable reuse analysis, not rerunning all past activity merely because a document is shared. Do not broaden to unrelated product features by transitive dependency alone. Full03/package remain pending; exact catalog Clippy hashbrown and maintenance AC05 remain blockers.

@@ -80,5 +80,16 @@
     ],
     "implementation": "tools/governance/scripts/governance_support.py",
     "oracle": "tools/governance/tests/test_governance.py"
+  },
+  {
+    "acceptance": "AC-08",
+    "requirement": "REQ-03",
+    "decision": "D-10",
+    "risk": "R-10",
+    "tasks": [
+      "T008"
+    ],
+    "implementation": "scripts/automate.sh",
+    "oracle": "scripts/tests/test_claude_regressions.py"
   }
 ]

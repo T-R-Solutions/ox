@@ -1,0 +1,23 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_historical_link_resolution.HistoricalLinkTests",
+    "test_log_repair_revision",
+    "test_instruction_copy",
+    "test_defaults_succession",
+    "test_configuration_succession",
+    "test_instruction_succession",
+    "test_native_exec_succession"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "tools/governance/tests"
+  },
+  "exit": 0,
+  "elapsed_seconds": 6.413080262995209,
+  "inputs": "current-guard-focused-01-inputs.json"
+}

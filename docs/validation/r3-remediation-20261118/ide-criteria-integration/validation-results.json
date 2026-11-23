@@ -1,0 +1,11 @@
+{
+  "schema2_fresh_convergence": {
+    "exit_code": 0,
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --features sdd/features --feature product-ide-shell --require-fresh --check-convergence"
+  },
+  "whole_feature_acceptance": {
+    "exit_code": 1,
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --features sdd/features --feature product-ide-shell --require-approved --require-fresh --check-convergence",
+    "meaning": "Remaining five INCONCLUSIVE criteria prevent whole-feature acceptance; not waived or reduced."
+  }
+}

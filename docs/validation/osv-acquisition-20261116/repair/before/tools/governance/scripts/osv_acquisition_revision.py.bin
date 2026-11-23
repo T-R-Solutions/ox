@@ -1,0 +1,69 @@
+"""Authenticate the two documents superseding the OSV upstream-age policy."""
+
+import hashlib
+import json
+import re
+
+BASE = "docs/validation/osv-acquisition-20261116"
+REGISTRY = BASE + "/document-successors.json"
+REVIEWED = "72103f35d7c9271ca551d2114a2e82b13adcfe7d7809af4c10306e0813c24720"
+DECISION = "docs/decisions/osv-acquisition-validity.md"
+DESTINATIONS = frozenset({"scripts/README.md", "sdd/project.md"})
+
+
+def records(root):
+    from readme_revision import file, unique
+
+    data = file(root, REGISTRY).read_bytes()
+    if hashlib.sha256(data).hexdigest() != REVIEWED:
+        raise ValueError("OSV documentary successor registry changed")
+    doc = json.loads(data, object_pairs_hook=unique)
+    if (not isinstance(doc, dict)
+            or set(doc) != {"schema_version", "revision", "decision", "records"}
+            or type(doc["schema_version"]) is not int or doc["schema_version"] != 1
+            or doc["revision"] != "osv-acquisition-documents-001"
+            or doc["decision"] != DECISION or not isinstance(doc["records"], list)):
+        raise ValueError("Unexpected OSV documentary successor schema")
+    file(root, DECISION)
+    seen = set()
+    for row in doc["records"]:
+        if (not isinstance(row, dict)
+                or set(row) != {"destination", "sha256", "previous", "previous_sha256"}
+                or not isinstance(row["destination"], str)
+                or row["destination"] not in DESTINATIONS
+                or row["destination"] in seen
+                or row["previous"] != BASE + "/before/" + row["destination"] + ".bin"
+                or any(not isinstance(row[key], str)
+                       or not re.fullmatch("[a-f0-9]{64}", row[key])
+                       for key in ("sha256", "previous_sha256"))
+                or row["sha256"] == row["previous_sha256"]):
+            raise ValueError("Unexpected OSV documentary successor inventory")
+        seen.add(row["destination"])
+        if hashlib.sha256(file(root, row["previous"]).read_bytes()).hexdigest() != row["previous_sha256"]:
+            raise ValueError("OSV documentary predecessor changed: " + row["destination"])
+    if seen != DESTINATIONS:
+        raise ValueError("Unexpected OSV documentary successor inventory")
+    return doc["records"]
+
+
+def predecessor(root, relative, data):
+    from readme_revision import file
+
+    if relative not in DESTINATIONS:
+        return data
+    for row in records(root):
+        if row["destination"] != relative:
+            continue
+        current = hashlib.sha256(file(root, relative).read_bytes()).hexdigest()
+        if current == row["previous_sha256"]:
+            raise ValueError("OSV documentary predecessor downgrade: " + relative)
+        if current != row["sha256"]:
+            raise ValueError("Historical-link current changed (unknown content or predecessor downgrade): " + relative)
+        if hashlib.sha256(data).hexdigest() == row["sha256"]:
+            return file(root, row["previous"]).read_bytes()
+    return data
+
+
+def fixture_paths(root):
+    return [REGISTRY, DECISION,
+            *[name for row in records(root) for name in (row["destination"], row["previous"])]]

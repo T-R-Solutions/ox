@@ -1,0 +1,317 @@
+{
+  "schema_version": 2,
+  "environment": "Linux local checkout (development, dirty tree preserved); Rust offline build; isolated headless Mutter for captures",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "tokens.json and tokens.rs agree (build_design --check exit 0); check_contrast reports 0 failures; design.rs focus/contrast tests pass for Menu and Tab roles in every theme.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-TOKENS",
+        "E-RUST"
+      ],
+      "reason": "Observed by the implementing agent only; independent review/validation not performed in this session, so no criterion is approved here."
+    },
+    {
+      "id": "AC-02",
+      "criterion": "menu traversal is modal; Escape and outside click close and return focus to the trigger without executing an item; items dispatch existing messages; title omits theme/density; captures show the bar at 1024, 1600 and 2560 widths.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-RUST",
+        "E-NATIVE"
+      ],
+      "reason": "Observed by the implementing agent only; independent review/validation not performed in this session, so no criterion is approved here."
+    },
+    {
+      "id": "AC-03",
+      "criterion": "tabs open/activate/close, the last tab is not closable, at most 8; dock navigation keeps the document and execution state; Ctrl+J toggles; every Surface is reachable through sidebar, menus or palette.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-RUST",
+        "E-NATIVE"
+      ],
+      "reason": "Observed by the implementing agent only; independent review/validation not performed in this session, so no criterion is approved here."
+    },
+    {
+      "id": "AC-04",
+      "criterion": "the dependency notice appears once; the badge shows only on task surfaces; the measured page content is ≤ 1200 units at 2560 while the editor uses the full width.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-RUST",
+        "E-NATIVE"
+      ],
+      "reason": "Observed by the implementing agent only; independent review/validation not performed in this session, so no criterion is approved here."
+    },
+    {
+      "id": "AC-05",
+      "criterion": "filtered recents keep MRU order and ids; filter is in traversal only with recents; captures show tiles, \"Em breve\" tag and empty state.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-RUST",
+        "E-NATIVE"
+      ],
+      "reason": "Observed by the implementing agent only; independent review/validation not performed in this session, so no criterion is approved here."
+    },
+    {
+      "id": "AC-06",
+      "criterion": "cargo fmt, default clippy and workspace tests pass; the complete Toolbox run is executed and its result recorded; pre-existing failures are distinguished from new ones.",
+      "status": "INCONCLUSIVE",
+      "evidence_ids": [
+        "E-RUST",
+        "E-PEDANTIC"
+      ],
+      "reason": "Complete Toolbox run executed (exit 2): governance-tests, scripts-tests, pedantic clippy, deny, audit, osv and geiger did not pass; none of their inputs was changed by this task except clippy, whose findings are in unchanged code. Not approved."
+    },
+    {
+      "id": "AC-07",
+      "criterion": "maintainer visual acceptance of the captures or the running app.",
+      "status": "UNVERIFIED",
+      "evidence_ids": [],
+      "reason": "Maintainer visual acceptance not yet given."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-TOKENS",
+      "kind": "test",
+      "command_or_method": "python3 application/tools/build_design.py --check; python3 application/tools/check_contrast.py",
+      "observed_result": "Generated roles match source (exit 0); 114 pairs, 0 failures.",
+      "artifact": "docs/validation/ide-shell-20261118/contrast.json",
+      "sha256": "fa5c449c702b65eacfe7a7e95cca0ba3b85e203f20e77652dd21069266f0b931",
+      "inputs": [
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "dae18b465baf166c0b77c8a72bff1ecb01ca0460328e7c1609306f98b3b28d71",
+          "role": "configuration"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+          "role": "implementation"
+        },
+        {
+          "path": "application/tools/check_contrast.py",
+          "sha256": "7742076d91bc629dfb248288eecd1bc00b251ea9368a98ce26f8ed8e07126063",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/build-design-check.log",
+          "sha256": "442f3bdabe544ad5f518217954e00f7ff9bcf2facdf6c4f40fdde882efd2ad3d",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-RUST",
+      "kind": "test",
+      "command_or_method": "cargo fmt --check; cargo clippy --workspace --all-targets --offline -- -D warnings; cargo test --workspace --offline (application/)",
+      "observed_result": "fmt exit 0; default clippy exit 0; workspace tests 102 passed, 0 failed (ox-ui lib 63 incl. 7 new).",
+      "artifact": "docs/validation/ide-shell-20261118/cargo-test.log",
+      "sha256": "3d1b0ab9cd604ca9d36d2b8db9a3795bbe75a19c1541b926d044a29f593cc7e9",
+      "inputs": [
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "5a16149fdae6d0467ed5b3cc8f8d7f959f41b5f9286cfb1fed7f99931f8b7096",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/chrome.rs",
+          "sha256": "eb613b62ef9aafa023967fbbc0a32401be6d874ff33a040ac72b752788a78f16",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/dock.rs",
+          "sha256": "cca0f6304e96f4ed558f53fc695b27cbea1dda476eb9431969bd48fb2f9ce7c7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/views.rs",
+          "sha256": "3ab8da129df3999e65cba0976e498fc4dbb856b72998c1a473fd9e471d351d10",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/design.rs",
+          "sha256": "4aae433e4cc8ca6a09e731a3a23767613c5625da96cdd3ad5816380e4216b6b9",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/icons.rs",
+          "sha256": "e0dc94d1f5982576c956a1801b176f0f49e694d84fd5a6471875e19f613beb25",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/splitter.rs",
+          "sha256": "a2b2c5ff6dbe6aea4ae566919f2f3188b5579bb2dbb1700ebd2321a71aa9306a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "dae18b465baf166c0b77c8a72bff1ecb01ca0460328e7c1609306f98b3b28d71",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/spec.md",
+          "sha256": "fc7427bc2ceaeb69670fd2699d6a3990245008603fdce3a3748be0b360da1358",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/cargo-fmt.log",
+          "sha256": "28d3b9e880a77975493dc7e359144c0295a4f694cfe0af4f928c22307bc5c320",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/clippy-default.log",
+          "sha256": "e76cfec90ad877cbf90f50c2932db80757bd40ac63ac920f2f11736be45e2f36",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-PEDANTIC",
+      "kind": "test",
+      "command_or_method": "cargo clippy with automation.json flags (-W all/pedantic/nursery/cargo -D warnings)",
+      "observed_result": "exit 101: 11 lint sites in unchanged code (hint.rs same hash as baseline, cog drawing, unreachable arms, map_drag, contrast test helper) plus 2 multiple-crate-version findings; no site in new code.",
+      "artifact": "docs/validation/ide-shell-20261118/clippy-pedantic.log",
+      "sha256": "3520d521c4ac587f21fe0a2aa8cf1692b99323489111b83b3262b29d206f4fee",
+      "inputs": [
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "5a16149fdae6d0467ed5b3cc8f8d7f959f41b5f9286cfb1fed7f99931f8b7096",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/chrome.rs",
+          "sha256": "eb613b62ef9aafa023967fbbc0a32401be6d874ff33a040ac72b752788a78f16",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/dock.rs",
+          "sha256": "cca0f6304e96f4ed558f53fc695b27cbea1dda476eb9431969bd48fb2f9ce7c7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/views.rs",
+          "sha256": "3ab8da129df3999e65cba0976e498fc4dbb856b72998c1a473fd9e471d351d10",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/design.rs",
+          "sha256": "4aae433e4cc8ca6a09e731a3a23767613c5625da96cdd3ad5816380e4216b6b9",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/icons.rs",
+          "sha256": "e0dc94d1f5982576c956a1801b176f0f49e694d84fd5a6471875e19f613beb25",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/splitter.rs",
+          "sha256": "a2b2c5ff6dbe6aea4ae566919f2f3188b5579bb2dbb1700ebd2321a71aa9306a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "dae18b465baf166c0b77c8a72bff1ecb01ca0460328e7c1609306f98b3b28d71",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/spec.md",
+          "sha256": "fc7427bc2ceaeb69670fd2699d6a3990245008603fdce3a3748be0b360da1358",
+          "role": "contract"
+        }
+      ]
+    },
+    {
+      "id": "E-NATIVE",
+      "kind": "inspection",
+      "command_or_method": "Isolated headless Mutter/PipeWire session (capture.py, harness docs/validation/f0-resumption-20261103/native-session.py); keyboard-only journey; 13 captures per size at 1024x700, 1600x1000, 2560x1080; visual inspection by the implementing agent.",
+      "observed_result": "Bar, menus, tabs (one row), dock (30%), info bar, S01 tiles and graphite Dark observed; HC disabled buttons visually close to enabled (pre-existing palette).",
+      "artifact": "docs/validation/ide-shell-20261118/native-r3-1600x1000/record.json",
+      "sha256": "cc3bedb11da6a6f3b27897489d3ff1e017f68f8f1f9728a89acec80bacd99c4d",
+      "inputs": [
+        {
+          "path": "application/crates/ox-ui/src/desktop.rs",
+          "sha256": "5a16149fdae6d0467ed5b3cc8f8d7f959f41b5f9286cfb1fed7f99931f8b7096",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/chrome.rs",
+          "sha256": "eb613b62ef9aafa023967fbbc0a32401be6d874ff33a040ac72b752788a78f16",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/dock.rs",
+          "sha256": "cca0f6304e96f4ed558f53fc695b27cbea1dda476eb9431969bd48fb2f9ce7c7",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/views.rs",
+          "sha256": "3ab8da129df3999e65cba0976e498fc4dbb856b72998c1a473fd9e471d351d10",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/design.rs",
+          "sha256": "4aae433e4cc8ca6a09e731a3a23767613c5625da96cdd3ad5816380e4216b6b9",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/icons.rs",
+          "sha256": "e0dc94d1f5982576c956a1801b176f0f49e694d84fd5a6471875e19f613beb25",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/desktop/splitter.rs",
+          "sha256": "a2b2c5ff6dbe6aea4ae566919f2f3188b5579bb2dbb1700ebd2321a71aa9306a",
+          "role": "implementation"
+        },
+        {
+          "path": "application/crates/ox-ui/src/tokens.rs",
+          "sha256": "2ae54f0826055f6ca828523f108e0c540a3bef96f93fc30d5cea69093fa8f036",
+          "role": "implementation"
+        },
+        {
+          "path": "docs/design/tokens.json",
+          "sha256": "dae18b465baf166c0b77c8a72bff1ecb01ca0460328e7c1609306f98b3b28d71",
+          "role": "configuration"
+        },
+        {
+          "path": "sdd/features/product-ide-shell/spec.md",
+          "sha256": "fc7427bc2ceaeb69670fd2699d6a3990245008603fdce3a3748be0b360da1358",
+          "role": "contract"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/capture.py",
+          "sha256": "17f959d2c925df86b60fba5748bd9121739f9e247c9e1728951ae8c0b91c6b86",
+          "role": "oracle"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/native-r3-1024x700/record.json",
+          "sha256": "d9e364ee94fba1e7f72e14eecc869f7301d4c020755920f1d7e11014c76b6fb6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/ide-shell-20261118/native-r3-2560x1080/record.json",
+          "sha256": "fe50a15400d970ea68c63a2ac6be94c067f0f400f06ff70e8a41874ceabdf4bd",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Pinned DESIGN.md/components.md/surfaces.md/features README not updated (exact-byte governance pins).",
+    "No AccessKit bridge; screen-reader behavior unverified.",
+    "Single compositor, scale 1.",
+    "Pedantic clippy failures pre-exist in unchanged code."
+  ],
+  "historical_evidence": []
+}

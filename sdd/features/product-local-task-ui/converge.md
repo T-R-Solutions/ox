@@ -10,7 +10,7 @@ is not a new observation or product acceptance.
 | AC-02 | INCONCLUSIVE |
 | AC-03 | INCONCLUSIVE |
 | AC-04 | INCONCLUSIVE |
-| AC-05 | INCONCLUSIVE |
+| AC-05 | APPROVED |
 | AC-06 | INCONCLUSIVE |
 | AC-07 | INCONCLUSIVE |
 | AC-08 | INCONCLUSIVE |

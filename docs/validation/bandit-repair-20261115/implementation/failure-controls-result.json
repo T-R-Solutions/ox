@@ -1,0 +1,40 @@
+{
+  "cases": [
+    {
+      "case": "none",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "raw_result_assessment_unchanged": true
+    },
+    {
+      "case": "head_initial",
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "raw_result_assessment_unchanged": true
+    },
+    {
+      "case": "head_bounded",
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "raw_result_assessment_unchanged": true
+    },
+    {
+      "case": "mv",
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "raw_result_assessment_unchanged": true
+    },
+    {
+      "case": "sha256sum",
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "raw_result_assessment_unchanged": true
+    },
+    {
+      "case": "jq",
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "raw_result_assessment_unchanged": true
+    }
+  ]
+}

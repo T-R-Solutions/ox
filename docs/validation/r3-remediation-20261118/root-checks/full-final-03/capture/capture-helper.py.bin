@@ -1,0 +1,30 @@
+from pathlib import Path
+import hashlib,json,sys,datetime
+root=Path('/home/rodrigo/Projetos/ox');base=Path('/tmp/ox-r3-complete-final-03');base.mkdir(exist_ok=True)
+phase=sys.argv[1]
+roots=['application/crates','application/tools','application/vendor','scripts','tools/governance','sdd','.codex/skills','.codex/agents','docs/decisions','docs/development','docs/architecture','docs/design','docs/security','config']
+files={}
+for name in roots:
+ for p in (root/name).rglob('*'):
+  if p.is_file() and not p.is_symlink():files[str(p.relative_to(root))]=p
+for rel in ['AGENTS.md','README.md','DESIGN.md','NOTICE','LICENSE','.codex/config.toml','application/Cargo.toml','application/Cargo.lock','docs/constitution.md']:
+ p=root/rel
+ if p.is_file():files[rel]=p
+# Include versioned registry/preimages for the new protocol, but not mutable run logs.
+for p in (root/'docs/validation/r3-remediation-20261118').rglob('*'):
+ if p.is_file() and not p.is_symlink() and ('historical-terminals' in p.parts or p.suffix=='.bin' or 'oracle' in p.name or p.name.endswith('registry.json')):
+  files[str(p.relative_to(root))]=p
+rows={}
+for rel,p in sorted(files.items()):
+ h=hashlib.sha256()
+ with p.open('rb') as src:
+  for chunk in iter(lambda:src.read(1024*1024),b''):h.update(chunk)
+ rows[rel]=h.hexdigest()
+record={'time_utc':datetime.datetime.now(datetime.UTC).isoformat(),'inputs':rows,'scope':'source/configuration/contracts plus new protocol registry/preimages; per-check runner manifests identify actual scanned inputs; historical validation corpora are not exhaustively captured here'}
+(base/('full-final-03.'+phase+'-inputs.json')).write_text(json.dumps(record,indent=2)+'\n')
+if phase=='after':
+ before=json.loads((base/'full-final-03.before-inputs.json').read_text())['inputs']
+ diff=[{'path':k,'before':before.get(k),'after':rows.get(k)} for k in sorted(before.keys()|rows.keys()) if before.get(k)!=rows.get(k)]
+ (base/'full-final-03.input-differences.json').write_text(json.dumps(diff,indent=2)+'\n')
+ print(json.dumps({'phase':phase,'inputs':len(rows),'differences':diff}))
+else:print(json.dumps({'phase':phase,'inputs':len(rows)}))

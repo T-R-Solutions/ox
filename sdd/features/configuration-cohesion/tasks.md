@@ -73,3 +73,14 @@ rejeição de mutação/downgrade/links escapando. Dono governance_repair; revis
 validação independentes pendentes. Disposição documental e comandos em
 docs/validation/log-repair-20261115/governance.md. Evidências antigas preservadas;
 estados afetados aguardam novas observações.
+
+## Sucessor de links históricos — 15/11/2026
+
+T019 — autorizado pelo pedido “implemente”: confirmar inventário/proveniência,
+implementar registro adicional e sucessão exata, executar positivos/negativos e
+cópia independente, revisar/validar em contextos próprios e atualizar documentação.
+AC-16/REQ-16/D-15/R-15; dependências e donos por caminho são T001–T008 do plano
+governance-link-repair-plan-20261115. Os 15 critérios anteriores continuam exigidos
+pelo gate completo; sua condição inicial UNVERIFIED não é convertida em aceite.
+Resultados, disposição documental e pendências pertencem ao relatório
+docs/validation/governance-link-repair-20261115/report.md e ao envelope atual.

@@ -52,5 +52,5 @@ Other named skills are optional specialist suggestions. Use them only when avail
 
 ## Adjacent responsibilities
 
-Postgresql can resolve a concrete PostgreSQL plan/statistics mechanism; observability-and-diagnostics a missing telemetry path. Keep quantitative workload comparison here and do not infer improvement from instrumentation alone.
+Database-engineering can resolve a concrete database plan/statistics mechanism; observability-and-diagnostics a missing telemetry path. Keep quantitative workload comparison here and do not infer improvement from instrumentation alone.
 These are optional available capabilities, not dependencies of this folder.

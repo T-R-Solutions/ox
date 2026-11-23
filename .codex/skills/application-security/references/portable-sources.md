@@ -20,6 +20,6 @@ Analyzed physical PDF ranges (1-based): [[195, 197], [222, 224], [256, 260]]. Vi
 
 ## Extraction and interpretation limits
 
-Only the listed sections were analyzed. All other content remains unanalyzed. Diagrams and images were not visually inspected, except the GC copyright page explicitly recorded above; EPUB figures were not inspected. Error-free text extraction does not establish full fidelity.
+This partial historical extraction record substantiates only the listed sections. Additional citations elsewhere in the skill are not proof that those sections were read in this recorded extraction; their reading coverage remains unverified here. Diagrams and images were not visually inspected, except the GC copyright page explicitly recorded above; EPUB figures were not inspected. Error-free text extraction does not establish full fidelity.
 
 B02: fullwidth text and OCR errors required temporary NFKC normalization. The inspected copyright page confirms the 2012 source; this is not the 2023 second edition. Use the material for fundamentals, not current API or universal statistical rules.

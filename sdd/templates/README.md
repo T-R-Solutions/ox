@@ -25,3 +25,12 @@ For a custom destination, compute each authority path relative to that directory
 local links including any newly supplied content. Do not copy authorities into a
 feature to satisfy links. Copying and link validation do not fill placeholders or
 create observations; spec/plan/tasks and optional automation still need real inputs.
+
+## Optional current-state projection
+
+Manual consumers use the convergence table directly. For an Ox automated feature,
+add the delimited current-status table specified in [evidence](../evidence.md)
+and populate it from the actual evidence.json states before `--check-convergence`.
+The plain converge template intentionally does not imply automated enrollment.
+JSON examples and required schema-2 bindings live in evidence.md; copying a Markdown
+template alone does not produce a checker-ready feature.

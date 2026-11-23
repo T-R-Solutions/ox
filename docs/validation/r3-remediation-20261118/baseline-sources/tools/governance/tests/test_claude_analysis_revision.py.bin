@@ -1,0 +1,111 @@
+"""Challenge the bounded document successor independently of historical acceptance."""
+
+import hashlib
+import importlib
+import json
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "tools/governance/scripts"))
+REVISION = importlib.import_module("claude_analysis_revision")
+
+
+class ClaudeAnalysisSuccessorTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory(prefix="ox-claude-documents-")
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        for name in REVISION.fixture_paths(ROOT):
+            target = self.root / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes((ROOT / name).read_bytes())
+
+    def test_exact_documents_reverse_only_to_captured_preimages(self):
+        rows = REVISION.records(self.root)
+        self.assertEqual(set(rows), {"scripts/README.md", "sdd/project.md"})
+        for name, row in rows.items():
+            data = (self.root / name).read_bytes()
+            expected = (self.root / row["previous"]).read_bytes()
+            self.assertEqual(REVISION.predecessor(self.root, name, data), expected)
+            unknown = data + b"unknown input"
+            self.assertEqual(REVISION.predecessor(self.root, name, unknown), unknown)
+        self.assertEqual(REVISION.predecessor(self.root, "ordinary.md", b"x"), b"x")
+
+    def test_unknown_terminal_and_downgrade_reject(self):
+        for name, row in REVISION.records(self.root).items():
+            target = self.root / name
+            original = target.read_bytes()
+            for changed in (original + b"unreviewed", (self.root / row["previous"]).read_bytes()):
+                target.write_bytes(changed)
+                with self.subTest(name=name), self.assertRaises(ValueError):
+                    REVISION.predecessor(self.root, name, changed)
+            target.write_bytes(original)
+
+    def test_missing_mutated_and_symlinked_metadata_reject(self):
+        names = [REVISION.REGISTRY, *[row["previous"]
+                                     for row in REVISION.records(self.root).values()]]
+        for name in names:
+            target = self.root / name
+            original = target.read_bytes()
+            alias = self.root / "alias.bin"
+            alias.write_bytes(original)
+            for mode in ("missing", "mutated", "symlink"):
+                target.unlink()
+                if mode == "mutated":
+                    target.write_bytes(original + b"changed")
+                elif mode == "symlink":
+                    target.symlink_to(alias)
+                with self.subTest(name=name, mode=mode), self.assertRaises(ValueError):
+                    REVISION.records(self.root)
+                if target.exists() or target.is_symlink():
+                    target.unlink()
+                target.write_bytes(original)
+
+    def test_live_symlink_rejects_even_with_exact_bytes(self):
+        name = "scripts/README.md"
+        target = self.root / name
+        original = target.read_bytes()
+        alias = self.root / "alias.bin"
+        alias.write_bytes(original)
+        target.unlink()
+        target.symlink_to(alias)
+        with self.assertRaises(ValueError):
+            REVISION.predecessor(self.root, name, original)
+
+    def test_rehashing_registry_cannot_authorize_unknown_terminal(self):
+        target = self.root / "scripts/README.md"
+        target.write_bytes(target.read_bytes() + b"unreviewed")
+        registry = self.root / REVISION.REGISTRY
+        doc = json.loads(registry.read_bytes())
+        doc["records"][0]["sha256"] = hashlib.sha256(target.read_bytes()).hexdigest()
+        registry.write_text(json.dumps(doc), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "registry changed"):
+            REVISION.predecessor(self.root, "scripts/README.md", target.read_bytes())
+
+    def test_scope_schema_and_escape_reject_even_with_test_pin(self):
+        registry = self.root / REVISION.REGISTRY
+        original = registry.read_bytes()
+        for mode in ("duplicate", "escape", "extra", "missing", "bool-schema", "digest"):
+            doc = json.loads(original)
+            if mode == "duplicate":
+                doc["records"].append(doc["records"][0])
+            elif mode == "escape":
+                doc["records"][0]["previous"] = "../outside"
+            elif mode == "extra":
+                doc["records"][0]["destination"] = "README.md"
+            elif mode == "missing":
+                doc["records"].pop()
+            elif mode == "bool-schema":
+                doc["schema_version"] = True
+            else:
+                doc["records"][0]["sha256"] = "bad"
+            data = json.dumps(doc).encode()
+            registry.write_bytes(data)
+            with self.subTest(mode=mode), patch.object(
+                REVISION, "REVIEWED", hashlib.sha256(data).hexdigest()
+            ), self.assertRaises(ValueError):
+                REVISION.records(self.root)

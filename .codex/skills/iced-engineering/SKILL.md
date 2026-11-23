@@ -31,7 +31,7 @@ Inspect actual contracts, resources and versions; consult documentation for miss
 
 5. Prefer composition of existing widgets. For custom widgets verify the selected version's layout, event propagation, focus, accessibility, operation and drawing contracts. Define pane IDs and layout persistence separately from content, with safe restoration on smaller screens.
 
-6. Test slow work with a UI heartbeat, keyboard focus across collapse/expand, extreme window sizes, loading/error/empty states and hidden-view work counters. Report platform/hardware and measurement limits; no universal latency or accessibility guarantee follows from Iced.
+6. Inspect actual keyboard and assistive-technology support before claiming accessibility. Verify whether the selected Iced version, features and platform provide keyboard focus and an assistive-technology bridge; visual labels and application-managed focus alone do not establish screen-reader names or announcements. Record unavailable assistive-technology behavior as unverified, and recheck this limitation when the consumer version/features change. Test slow work with a UI heartbeat, keyboard focus across collapse/expand, extreme window sizes, loading/error/empty states and hidden-view work counters. Report platform/hardware and measurement limits; no universal latency or accessibility guarantee follows from Iced.
 
 ## Deliverables and acceptance
 
@@ -46,6 +46,10 @@ Bind conclusions to inputs, method, result and limits. Exercise relevant [normal
 Consult another available skill only for a distinct unresolved question, with scope, criteria, facts and evidence needs. Mentions never trigger installation, delegation or recursive activation; the consumer contract owns behavior.
 
 ## Specialized references
+
+For a Windows/Fluent or IDE visual source, apply
+[Windows-to-Iced translation](references/native-visual-contract.md#windows-to-iced-translation)
+without assuming Windows-only APIs or accessibility support exist in Iced.
 
 - [message-update-state](references/message-update-state.md): consult for Message, update, effects.
 - [layout-and-custom-widgets](references/layout-and-custom-widgets.md): consult for Layout, panes and custom widgets.
@@ -70,3 +74,5 @@ Adjacent methods are optional; consult only for an unresolved responsibility.
 For prototype-to-native migration, shared geometry and paired visual/state review,
 consult [native visual contract](references/native-visual-contract.md). It complements
 the widget procedure without adopting prototype constants, quotas or product policy.
+Use its geometry budget and adaptation procedure when a reference layout does not
+fit the native window; preserve content and control behavior before matching effects.

@@ -1,0 +1,31 @@
+{
+  "status": "REJECTED",
+  "criterion": "BS-03",
+  "kind": "independent source review and actual projection probe",
+  "reviewer": "ec_revisor fresh context, no implementation edits",
+  "finding": {
+    "severity": "P2",
+    "path": "scripts/lib/progress.sh",
+    "line": 260,
+    "observed_sha256": "57565e6c9a8bfbfe462067e04e254fc1bbdfa1684a9abe8aac06423d00c69732",
+    "description": "sha256sum with named file escapes filename containing backslash/newline; first 64 characters then contain prefix backslash and omit final digest hex. Real three-directory probe exited zero in all cases, identity wrong in two.",
+    "expected": "7964454730bd025aa67ed35c7cf91b7f260e92bd4418a6fa02cad83607600864",
+    "actual": "\\7964454730bd025aa67ed35c7cf91b7f260e92bd4418a6fa02cad8360760086",
+    "repair": "Read sample through stdin redirection, preserving individual status check."
+  },
+  "other_observations": [
+    "109 prior baseline objects plus eight native current objects preserved exactly.",
+    "Only reviews.static changed in automation.json; source and baseline hashes match.",
+    "No severity/rule/scope changes.",
+    "Ruff changes are imports only.",
+    "Native baseline equality does not compare line or code; full source hash gate is required."
+  ],
+  "limitations": [
+    "Final native checks and independent validation pending.",
+    "Review execution was performed by independent reviewer and is transcribed by coordinator; no fabricated raw logs."
+  ],
+  "sources": [
+    "https://raw.githubusercontent.com/PyCQA/bandit/1.9.4/bandit/core/issue.py",
+    "https://raw.githubusercontent.com/PyCQA/bandit/1.9.4/bandit/core/manager.py"
+  ]
+}

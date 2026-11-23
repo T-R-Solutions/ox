@@ -32,8 +32,53 @@
   duas fixtures restantes da rodada integral. Scanners padrão e seis opcionais
   passaram nas observações registradas; o comando integral não foi repetido após
   os retestes. Limite operacional e inputs estão no relatório.
-- T029 pendente: obter métricas completas do Geiger para ox-app/ox-ui, incluindo
-  Rust gerado, sem dispensar arquivos omitidos. O erro original de cache foi
-  corrigido; AC-03 e a aceitação do escopo complete permanecem abertos.
+- T029 — Observação histórica de completude em 15/11/2026: a execução do adaptador
+  Geiger registrou os 16 membros, incluindo ox-app/ox-ui, com exit/tool_exit zero
+  e relatórios completos aceitos pelo parser. O registro e seus inputs permanecem
+  em docs/validation/geiger-selection-20261115/report.md. Essa observação sucede
+  a pendência anterior de métricas incompletas, sem renovar seus hashes nem provar
+  completude sobre fontes posteriores. AC-03 e aceite complete permanecem abertos.
 
 Revisão de 13/11/2026: catálogo e políticas migrados por scripts-centralization. Evidências dependentes arquivadas e marcadas UNVERIFIED, sem renovar hashes. Revisados scripts/README.md, caminhos e contratos; resultados atuais no relatório scripts-centralization-20261113.
+
+- T030 implementado/verificado no reparo; controle positivo pendente [REQ-01/02, D-30/R-30]: analisar o corpus completo
+  ox-run-OQzMt04y; corrigir achados demonstrados de Bandit/Ruff/ShellCheck sem
+  retirar testes do escopo; executar controles positivos/negativos e revisão e
+  validação independentes. Plano, critérios manuais BS-01..04, inputs e disposição
+  documental: docs/validation/bandit-repair-20261115/plan.md e report.md.
+
+Disposição documental T030: scripts/README.md, README.md, sdd/project.md,
+arquitetura e ADRs de scanners revistos sem mudança de comandos/escopo/produto;
+plan/tasks desta feature e evidências/projeções de terminal-progress,
+configuration-cohesion e history-scanner-correction atualizados, com precedentes
+preservados. Bandit/Ruff/ShellCheck reais passaram; 61 testes focados foram
+reconciliados por 59 sucessos iniciais e repetição bem-sucedida dos dois casos
+com bindings antigos; regressão de diagnóstico15 e controles6+2 passaram.
+BS-01/02/03 aprovados independentemente; BS-04 INCONCLUSIVE porque a aprovação
+de host do controle nativo com arquivo novo foi interrompida antes da execução.
+Condição exata de retomada em bandit-repair-20261115/blocked-control.json.
+Os três ACs amplos desta feature continuam UNVERIFIED; não houve complete run.
+
+- T031 concluída no escopo offline delimitado [REQ-01/02, D-31/R-31]: unificar validade OSV no último download
+  bem-sucedido; retirar veto Ox de 24h upstream; corrigir aquisição manual/concorrente
+  em patch central revisável; testar offline e submeter revisão/validação independentes.
+  Critérios OSV-01..05, responsáveis e disposição documental em
+  docs/validation/osv-acquisition-20261116/plan.md e report.md. Preservar 120h de
+  Trivy/Grype, exceções de advisories e evidências históricas. Sem complete run.
+
+Disposição documental T031: políticas/scripts/testes e os documentos citados no
+relatório osv-acquisition-20261116 foram revisados/atualizados, incluindo sucessão
+autenticada de README/project. OSV-01..05 têm aceite manual independente no
+relatório/validation.md, sem renovar os três ACs amplos desta feature. A instalação
+central corresponde aos seis inputs revisados v3; testes offline e governança
+passaram. Trivy/Grype e advisories preservados; sem download real/full/commit.
+
+- T032 correção da entrega T031: preservar sucessão original, autenticar convergência
+  final, restaurar diagnóstico de mutações nos consumidores legados e corrigir E741.
+  Critérios RC-01..04, responsáveis, disposição documental e resultados atuais:
+  docs/validation/osv-acquisition-20261116/repair/plan.md e report.md. O estado final
+  pertence ao relatório/veredito, sem editar esta tarefa após o congelamento.
+
+Disposição documental da auditoria — 17/11/2026: revisados plan.md (identidades
+D-30/R-30 e D-32/R-32), esta tarefa e o relatório Geiger de 15/11. Corrigidos IDs
+ambíguos e pendência superada; nenhum scanner executado nem critério promovido.

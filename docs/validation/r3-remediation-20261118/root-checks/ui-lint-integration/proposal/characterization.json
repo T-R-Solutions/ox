@@ -1,0 +1,27 @@
+{
+  "source_sha256": "b9478667a15ae8c69f43cbdf9d5d065d60193955c600960628494eb16099268a",
+  "results": [
+    {
+      "command": [
+        "rustc",
+        "--edition",
+        "2024",
+        "/tmp/ox-r3-ui-lint-proposal-hx9k2w90/icons-characterization.rs",
+        "-o",
+        "/tmp/ox-r3-ui-lint-proposal-hx9k2w90/icons-characterization"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/ox-r3-ui-lint-proposal-hx9k2w90/icons-characterization"
+      ],
+      "exit": 0,
+      "stdout": "cases=36000 quads=185400 changed_cog_coordinates=1440 max_abs_delta=0.0000019073486\n",
+      "stderr": ""
+    }
+  ],
+  "limitations": "Standalone recording renderer tests source-emitted quad commands, not Iced rendering, default internals, pixels or native interactions. Exact non-cog bit identity; bounded FMA displacement only cog x/y."
+}

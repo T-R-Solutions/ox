@@ -1,5 +1,9 @@
 # Toolbox database ownership — 2026-11-07
 
+Current OSV policy: [single acquisition clock](osv-acquisition-validity.md)
+(2026-11-16) supersedes the historical OSV 24h clauses below. Trivy/Grype are
+unchanged; historical permissions/observations below do not grant new effects.
+
 Maintainer explicitly assigns preparation/versioning and execution of Trivy, OSV
 and Grype to Docker (dev_audit), owned by another agent. Ox owns scan targets,
 native configurations, selected snapshot identity and maximum age. This supersedes

@@ -128,6 +128,7 @@ def predecessor(root, relative, data):
 
 def errors(root):
     from closure_revision import predecessor as closure_predecessor
+    from osv_acquisition_revision import CurrentContentError
 
     registered = records(root)
     result = (
@@ -139,23 +140,16 @@ def errors(root):
         result.extend(project_errors(root, registered["sdd/project.md"]["sha256"]))
     for name, row in registered.items():
         target = root / name
-        if (
-            not target.is_file()
-            or target.is_symlink()
-            or hashlib.sha256(
-                readme_predecessor(
-                    root,
-                    name,
-                    project_predecessor(
-                        root,
-                        name,
-                        closure_predecessor(root, name, target.read_bytes()),
-                        row["sha256"],
-                    ),
-                    row["sha256"],
-                )
-            ).hexdigest()
-            != row["sha256"]
-        ):
+        if not target.is_file() or target.is_symlink():
+            result.append("README integration current changed/missing: " + name)
+            continue
+        try:
+            normalized = closure_predecessor(root, name, target.read_bytes())
+        except CurrentContentError:
+            result.append("README integration current changed/missing: " + name)
+            continue
+        normalized = project_predecessor(root, name, normalized, row["sha256"])
+        normalized = readme_predecessor(root, name, normalized, row["sha256"])
+        if hashlib.sha256(normalized).hexdigest() != row["sha256"]:
             result.append("README integration current changed/missing: " + name)
     return result

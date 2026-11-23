@@ -1,0 +1,1170 @@
+# Análises do Claude — Ox
+
+Documento único com os pareceres do Claude sobre o Ox, em ordem cronológica.
+Cada parte é autocontida e mantém o texto original. Novos pareceres entram como
+novas partes ao final.
+
+| Parte | Título | Data |
+|---|---|---|
+| 1 | Análise de `scripts/` | 2026-11-17 |
+| 2 | Auditoria de tasks do Codex | 2026-11-17 |
+
+> **Nota de nome.** A Parte 1 foi gravada originalmente num arquivo separado com
+> o nome incorreto `claude_analisys.md`. Os registros históricos do Codex
+> (`sdd/project.md`, `sdd/features/scripts-centralization/{spec,tasks}.md` e
+> `docs/validation/claude-analysis-20261117/`) citam esse nome porque era o nome
+> do arquivo quando foram escritos. Os bytes originais estão preservados em
+> `docs/validation/claude-analysis-20261117/source-analysis.md.bin`
+> (SHA-256 `1859924f154ddb164e08468a683f188e32035fc42870faeb8d20b22e01a92481`).
+
+---
+
+# Parte 1 — Análise de `scripts/` — 2026-11-17
+
+Análise somente-leitura do diretório `scripts/` nos bytes da árvore de trabalho em 17/11/2026 (branch `development`, com edições não commitadas em `scripts/`). Nenhum arquivo de `scripts/` foi alterado; este relatório é o único arquivo criado.
+
+## Como ler
+
+**Escopo.** 2.245 linhas de shell (16 arquivos), 2.907 linhas de testes Python (20 arquivos, 114 testes), o catálogo `config/automation.json` (493 linhas), configurações nativas dos scanners e regras Opengrep/YARA.
+
+**Método.** Li todo o código shell linha a linha e confirmei os defeitos principais com experimentos pequenos e inofensivos (seção 9). Dois revisores independentes leram os testes Python e as configurações; os achados deles estão nas seções 6 e 7.
+
+**Grau de verificação.**
+
+| Marca | Significado |
+|---|---|
+| ✔ exp | confirmado por experimento executado |
+| ✔ lido | confirmado por leitura direta das linhas citadas |
+| rev | reportado por revisor com arquivo:linha; não reconferido por mim |
+| estimativa | cálculo a partir de medição parcial |
+
+**Limites.** `shellcheck`, `shfmt` e `ruff` não estão instalados no host, então não houve análise estática por ferramenta. Não executei `automate.sh run`, a suíte de testes, Cargo nem scanners. Só usei `automate.sh plan`, que por contrato não executa checks.
+
+**Aviso de concorrência.** Durante a análise, outro processo editou a árvore (skills, SDD, `README.md`, `scripts/README.md`). Nenhum `.sh` de `scripts/` mudou nesse período.
+
+---
+
+## 1. Resumo
+
+O runner é cuidadoso com integridade: snapshots, hashes antes e depois, rejeição de symlinks, JSON estrito, cancelamento por sinal. Esse cuidado é real e está testado. Os problemas estão em três frentes.
+
+1. **Defeitos funcionais pequenos, mas reais.** Um script quebrado contra a saída atual, tratadores de erro que nunca executam, um campo de resultado sempre vazio, overrides do operador sobrescritos e mensagens de causa que não casam.
+2. **Arquitetura por estado global.** As funções se comunicam por variáveis globais e por escopo dinâmico, os scripts de entrada não têm `main`, e os nomes dos checks estão espalhados por shell e JSON. O catálogo diz ser a fonte de dados, mas não é.
+3. **Custo.** Um processo por arquivo para hash e JSON, repetido várias vezes por check, com tudo em `/tmp` (tmpfs, ou seja, RAM).
+
+Os dez itens mais importantes:
+
+| # | Item | Seção |
+|---|---|---|
+| 1 | `reports/summarize.sh` rejeita o `results.json` que o `automate.sh` grava | E-01 |
+| 2 | Seis tratadores de erro mortos (`x=${y} \|\| fail_check …`); as mensagens específicas nunca aparecem | E-02 |
+| 3 | `common.sh` sobrescreve `CARGO_NET_OFFLINE`, `RUSTUP_AUTO_INSTALL` e `PYTHONDONTWRITEBYTECODE` do operador | E-03 |
+| 4 | Só 10 de 52 motivos de falha têm tradução; o dataset RustSec vencido (a partir de 19/11) aparecerá como "causa não determinada" | E-05 |
+| 5 | Supressões amplas: 1.753 fingerprints do Gitleaks, baseline do Bandit por arquivo+regra, `docs/validation` (94% dos arquivos rastreados) fora de todos os scanners | K-01 a K-03 |
+| 6 | Testes: qualquer exit≠0 vira `ValueError`, então 16 testes passam mesmo se a função testada sumir | T-01 |
+| 7 | Cerca de 24 mil processos por check com snapshot, só para contabilidade de integridade | P-01 |
+| 8 | Plano e execução montam o argv em códigos diferentes; o plano pode divergir do que roda | R-01 |
+| 9 | O módulo de apresentação (`progress.sh`) é dono da publicação dos logs e do código de saída | A-06 |
+| 10 | Catálogo "dirigido por dados" com nomes de checks literais em 9 arquivos shell | A-07, K-05 |
+
+---
+
+## 2. Erros
+
+### E-01 · alta · `reports/summarize.sh` não funciona com a saída real — ✔ exp
+`reports/summarize.sh:8` exige `.results[].argv` como array de strings. `lib/process.sh:40`, `automate.sh:142` e `checks/run.sh:186` gravam `argv_recorded:false` e nunca gravam `argv`. Com um `results.json` no formato real, o script responde `Invalid results document` e sai com 2.
+
+O único chamador é `tests/test_automation.py:195`, que usa uma fixture feita à mão com `argv`. O teste passa e o script não serve para nada em produção.
+
+**Correção:** remover o script, ou ler o que existe (`check`, `state`, `exit_code`). O campo `argv_recorded:false`, sempre constante, também pode sair.
+
+### E-02 · alta · tratadores de erro que nunca executam — ✔ exp
+Uma atribuição simples nunca falha, então o `||` depois dela é código morto:
+
+| Local | Código | Mensagem inalcançável |
+|---|---|---|
+| `lib/backends.sh:84` | `before=${final_source_sha} \|\| fail_check …` | `Cannot identify complete snapshot` |
+| `checks/run.sh:132` | `git_before=${current_git_sha} \|\| fail_check …` | `Unsafe Git metadata` |
+| `security/prepare-datasets.sh:94` | `identity=${copied_sha} \|\| die …` | `Nonregular or empty dataset` |
+| `security/prepare-datasets.sh:115` | `identity=${copied_sha} \|\| die …` | `Invalid final dataset` |
+| `lib/files.sh:81` | `expected=${current_sha} \|\| return` | — |
+| `lib/files.sh:144` | `… \|\| return 1 \|\| return 1` | segundo `return` morto |
+
+Em todos, a linha anterior faz `x=$(…) || exit 2` (ou `return 1`). O erro real sai com o motivo genérico, não com a mensagem escrita ao lado. Parece resultado de uma refatoração mecânica que dividiu `y=$(f) || fail_check 'msg'` em duas linhas.
+
+**Correção:** `x=$(f) || fail_check 'msg'` numa linha só.
+
+### E-03 · média · override do operador é sobrescrito — ✔ exp
+`lib/common.sh:8` faz `export PYTHONDONTWRITEBYTECODE=1 CARGO_NET_OFFLINE=true RUSTUP_AUTO_INSTALL=0` sem condição. Consequências:
+
+- `CARGO_NET_OFFLINE=false` no ambiente vira `true`.
+- As três chaves em `automation.json` (`environment.defaults`) nunca se aplicam, porque `lib/selection.sh:65` só exporta se a variável não existir.
+- O comentário de `selection.sh:64` ("Operator overrides … are never silently replaced") é falso para essas três.
+
+Se forçar offline é intencional, o comentário e as três chaves do JSON devem sair. Se não é, o `export` de `common.sh` deve respeitar valores existentes.
+
+### E-04 · média · `omitted` é sempre vazio no modo atual — ✔ lido
+`lib/selection.sh:57` faz `BASE=("${selected[@]}")`. `automate.sh:172` calcula `omitted` como `BASE` menos `selected`, que no modo `plan|run` é sempre `[]`. O texto "not selected by --check; applicability must be recorded by the task" só pode aparecer no modo legado.
+
+**Correção:** calcular `omitted` contra o conjunto completo da superfície, ou remover o campo.
+
+### E-05 · média · causas de falha casam por texto exato, e a maioria não casa — ✔ lido
+`lib/progress.sh:190-198` traduz o motivo comparando strings inglesas literais. Existem 52 mensagens distintas de `fail_check` e 10 estão mapeadas. Dois exemplos:
+
+- `lib/backends.sh:126` emite `Input/snapshot changed`; a tabela espera `Input/snapshot changed during check` (`progress.sh:196`).
+- `checks/run.sh:154` emite `Missing/invalid reviewed dataset: rustsec`, que não está mapeado. É a falha esperada quando o dataset RustSec vencer (validade até 18/11): o terminal mostrará "causa não determinada".
+
+**Correção:** `fail_check CODIGO 'mensagem'` com códigos estáveis, e a tradução indexada pelo código.
+
+### E-06 · média · achados do cargo-deny viram "erro" no agregado — ✔ lido, não executado
+`lib/reports.sh:77` inicia `CODE=${raw}`. No ramo do deny (`reports.sh:123`), `((CODE)) || CODE=1` mantém o código bruto, que é uma máscara 2/4/8 (`reports.sh:118`). O caminho toolbox normaliza para 1 (`backends.sh:115`); o caminho nativo não (`checks/run.sh:245-249`).
+
+`automate.sh:181-185` trata qualquer `exit_code` fora de {0,1,3} como erro (2). Uma violação de licença, que é um achado, sai como erro de infraestrutura.
+
+**Correção:** normalizar `CODE=1` quando `STATE=findings`, como no caminho toolbox.
+
+### E-07 · baixa · `local.sh` depende da ordem dos argumentos — ✔ exp
+- `local.sh:9` trata `--path` na hora e sai. `local.sh --path runs --root /x` ignora o `--root` e devolve o caminho da raiz padrão.
+- `local.sh --root` sem valor termina com `$2: variável não associada` e exit 1, em vez de mensagem de uso e exit 2.
+- A raiz não é validada: `--root /nonexistent --path runs` devolve `/nonexistent/.local/logs` com exit 0.
+
+### E-08 · baixa · iteração fantasma em array vazio — ✔ exp
+O idioma `while read … done < <(printf '%s\n' "${arr[@]}")` executa uma vez com valor vazio quando o array está vazio. Ocorre em `lib/files.sh:44,47`, `lib/selection.sh:21,83`, `lib/registry.sh:61-62` e `checks/run.sh:102`.
+
+Hoje fica latente, porque o esquema garante listas não vazias na maioria dos casos. `inputs.exclude_names` e `inputs.exclude_paths` não são validados na carga; se ficarem vazios, `files.sh:44` gera `-name ''`.
+
+**Correção:** `for x in "${arr[@]}"`, que também é mais curto (ver R-04).
+
+### E-09 · baixa · três regras de agregação diferentes — ✔ lido
+- `automate.sh:177` (legado): primeiro código diferente de zero.
+- `automate.sh:181-185` (atual): precedência erro, bloqueio, achado.
+- `reports/summarize.sh:17`: a regra do legado.
+
+O mesmo conjunto de resultados produz códigos de saída diferentes conforme a entrada usada.
+
+### E-10 · baixa · modo legado e modo atual divergem — ✔ exp
+- `--scope complete --plan` (legado) seleciona 24 checks; `plan --scope complete` seleciona 26 (o legado não tem `scripts-syntax` nem `scripts-tests`) e em outra ordem.
+- O legado não chama `execution_environment` (`automate.sh:111`): não aplica `LANG`, `LC_ALL`, `NO_COLOR`, descoberta do toolbox nem `CARGO_HOME`.
+
+### E-11 · baixa · itens menores — ✔ lido
+- `security/analyzers/check-report.sh:7` e `validate-exceptions.sh:6`: `stat` roda antes do teste `-f`. Com arquivo ausente, o script sai com 2 sem imprimir o JSON de erro que o resto promete.
+- `lib/files.sh:16-17`: `tree_manifest` retorna cedo sem apagar o temporário `listing`.
+- `automate.sh:114-120`: o diretório do run é criado antes das traps. Uma falha em `run_lease` ou `progress_init` deixa `/tmp/ox-run-*` para trás.
+- `lib/backends.sh:73`: `${rel} != *..*` rejeita nomes legítimos como `a..b.py`. Há três validadores de caminho com regras diferentes (`contained` em `common.sh:61`, este, e o jq de `registry.sh:19-26`).
+- `lib/progress.sh:405,428,441,463` tratam os estados `skipped|skip`, e `:444-445` leem `.warnings` e `.skips` do assessment. Nenhum código produz esses estados ou campos; o terminal sempre mostra "indisponível".
+- `set -E` em `common.sh:3` e `logs.sh:4` não tem efeito: não existe trap `ERR` em nenhum script.
+- A versão do Bash só é verificada em `toolbox.sh:3`. `common.sh` usa `local -n`, `mapfile -d` e `[[ -v ]]` (Bash 4.4+) sem verificar. `need` só confere `jq`; `flock`, `sha256sum`, `realpath`, `stat -c` e `date -d` (GNU) são usados sem checagem.
+
+---
+
+## 3. Redundâncias e código morto
+
+### R-01 · alta · plano e execução montam o argv separadamente — ✔ lido
+`lib/backends.sh:50` monta o comando do toolbox para o plano; `lib/backends.sh:86` monta de novo para a execução. São duas listas de flags mantidas à mão. O plano é a evidência do que seria executado, então uma divergência silenciosa é possível.
+
+**Correção:** uma função que devolve o argv; o plano só troca os caminhos por marcadores.
+
+### R-02 · média · código duplicado — ✔ lido
+- Codificação de nome de log: `lib/logs.sh:45` e `lib/progress.sh:176` repetem `rel//%/%25; rel//-/%2D; rel//\//--`. Se uma mudar, a verificação de publicação quebra.
+- Checagem de dono do run: `common.sh:83-84`, `common.sh:89-90` e `logs.sh:24-25`. O literal `ox-local-v2` aparece quatro vezes.
+- Três traps quase idênticas em `process.sh:17-19`, `automate.sh:118-120` e `progress.sh:514-516`.
+- `mktemp` + `find -print0` + laço em `check.sh`, `common.sh:118`, `files.sh:8-18` e `files.sh:53-56`. `capture_nul` já resolve isso.
+
+### R-03 · média · trabalho feito duas vezes — ✔ lido
+- `checks/run.sh:107-110` recalcula o hash do executável logo depois de `backends.sh:25-26` ter feito o mesmo.
+- `backends.sh:93` valida `native_exit_code`; `backends.sh:94-98` valida de novo.
+- `files.sh:105-113` confere os modos de todos os arquivos; `files.sh:120-130` confere outra vez.
+- `selection.sh:25/43` e `:35/44` calculam `wanted_json` e `surfaces_json` duas vezes.
+- `prepare-datasets.sh:77` e `:100` leem a mesma revisão; `:89`, `:93` e `:114` calculam a identidade da mesma árvore até três vezes.
+- `installed_cargo` roda em `automate.sh:127` e de novo em cada `checks/run.sh:114`.
+- `automate.sh:139` chama `check_command` num ramo que não usa o resultado.
+
+### R-04 · média · array → `printf` → `read` — ✔ lido
+Em cerca de dez pontos o código captura uma lista num array e depois a imprime numa substituição de processo para ler linha a linha (`registry.sh:53-62`, `selection.sh:20-21,75-83`, `files.sh:43-47`, `run.sh:99-102`). `for x in "${arr[@]}"` faz o mesmo e evita E-08.
+
+### R-05 · média · código morto — ✔ lido
+- `lib/reports.sh`: parsers `pssa` (PowerShell), `sarif`, `json-findings`, `syft`, `yara` e `machete` em JSON. Nenhum check os usa; só `tests/test_automation.py:63-81`.
+- `reports/summarize.sh`, `security/analyzers/check-report.sh` e `validate-exceptions.sh` só são chamados por testes.
+- `scripts/security/rules/` é um diretório vazio.
+- Ramos `*) :;;` com o comentário "Other validated classifications require no action" (6 ocorrências), vários inalcançáveis, como `automate.sh:48`.
+
+### R-06 · baixa · ruído de supressão — ✔ lido
+`config/native/shellcheck/shellcheckrc:5` usa `enable=all`. Para conviver com isso há 47 comentários `disable=SC2310` e 18 `disable=SC2016`: 65 de 2.245 linhas (3%). Alguns estão na linha errada (`automate.sh:137` fica antes de um `[[ … ]]`, não do `check_properties`).
+
+**Correção:** `disable=SC2310,SC2016` no rc, com uma justificativa única.
+
+---
+
+## 4. Anti-padrões
+
+### A-01 · alta · funções que se comunicam por estado global — ✔ lido
+- **Retorno por globais.** `check_properties` devolve `TOOL`, `DATA`, `SNAPSHOT`, `EXECUTOR`, `CONFIG`…; `check_command` devolve `CMD` e `CWD`; `assess` devolve `STATE`, `CODE`, `COUNT`; `execute` devolve `PROCESS_CODE`.
+- **Leitura do escopo do chamador.** `native_command` (`registry.sh:122-124`) recebe um parâmetro, descarta com `: "$1"` e lê `name`, `plan` e `output` de quem chamou. `run_toolbox` (`backends.sh:58`) lê `source`, `name`, `output`, `tool` e `tool_sha` do script `run.sh`.
+- **Variáveis que vazam.** Pelo menos 28 atribuições dentro de funções sem `local` (`history_sha`, `final_source_sha`, `wrapper_sha`, `path_sha`, `checked_expiry`, `first_line`, `wanted_json`…).
+- **Rascunho global.** `stream_fields` é usado 24 vezes como array temporário compartilhado, inclusive em laços aninhados (`registry.sh:53-62`). Funciona porque a substituição de processo é avaliada antes de o laço interno sobrescrever o array.
+
+**Correção:** `local` em tudo; passar entradas por parâmetro; devolver por nameref ou stdout.
+
+### A-02 · alta · scripts de entrada sem `main` — ✔ lido
+`automate.sh` (186 linhas) e `checks/run.sh` (263) são código de nível superior. Não dá para carregar uma função isolada num teste. Os testes compensam remendando o texto do script com `replace` (T-17).
+
+**Correção:** funções pequenas e `main "$@"` no fim, protegido por `[[ ${BASH_SOURCE[0]} == "$0" ]]`.
+
+### A-03 · média · booleanos executados como comando — ✔ lido
+`if ${legacy}`, `! ${scope_seen} || die`, `${matched} || continue`: 35 ocorrências. A variável é executada como comando. Funciona enquanto valer `true` ou `false`; um valor vazio ou inesperado vira erro obscuro ou execução indevida.
+
+**Correção:** `[[ ${legacy} == true ]]` ou inteiros com `((legacy))`.
+
+### A-04 · média · `A && B || C` — ✔ lido
+`automate.sh:39`, `backends.sh:20-24`, `run.sh:159`, `files.sh:98,138`, `reports.sh:129`. `C` também executa quando `B` falha. Hoje os `C` são `die` ou `return`, então não há bug, mas é um padrão que o ShellCheck sinaliza (SC2015) e que convida a erro em manutenção.
+
+### A-05 · média · biblioteca com efeitos na carga e dependências ocultas — ✔ lido
+- `common.sh` muda opções do shell, `umask`, exporta ambiente e exige `jq` no momento do `source`.
+- `source` dentro de função: `common.sh:75` (`local_path`) e `common.sh:92` (`run_complete`).
+- `process.sh:20` chama `progress_watch_start`, definido em `progress.sh`, que só `automate.sh` carrega.
+- `backends.sh` chama `fail_check`, `assess`, `source_snapshot` e `verify_inputs` sem declarar de onde vêm.
+- `execution_environment` está em `selection.sh`, embora não tenha relação com seleção.
+
+### A-06 · alta · o módulo de apresentação é dono do ciclo de vida — ✔ lido
+O cabeçalho de `progress.sh:2` diz "Human projection only". Mas `progress_finalize` (`progress.sh:508-599`) chama `run_complete`, verifica a publicação dos logs e decide o código de saída. Desligar ou trocar a apresentação exige mexer em quem publica os logs.
+
+O mesmo módulo tem um parser de 100 linhas (`progress.sh:240-343`) para o texto de saída do `check-ox.py`, com filtros como rejeitar caminhos que contenham "token" ou "secret". O `check-ox.py` é do próprio projeto: emitir JSON nele eliminaria esse parser.
+
+`progress.sh` tem 599 linhas, 27% de todo o shell.
+
+### A-07 · alta · conhecimento dos checks espalhado — ✔ lido
+`registry.sh:4` diz "Data ownership lives in config/automation.json". Na prática:
+
+- Checks embutidos (`sdd-structure`, `ox`, `rust-*`, `scripts-*`) não estão em `.checks`; vivem em `registry.sh:59,95-117`.
+- `automate.sh:90` lista quem precisa de Cargo; `automate.sh:138` usa outra lista (`rust-*`).
+- `progress.sh:30-64` tem duas tabelas com os mesmos nomes.
+- Flags dos scanners estão em linhas de até 380 colunas em `registry.sh:151-168`.
+- O código de saída 10 do Gitleaks está em `registry.sh:151`, `backends.sh:112` e `reports.sh:134`.
+- A versão exata do Machete (`0.9.2`) e o texto `ignored = ["prost"]` estão em `run.sh:231` e `reports.sh:85-96`. É raspagem de texto humano, frágil a qualquer atualização.
+
+Adicionar um check exige editar de quatro a seis arquivos.
+
+### A-08 · média · funções com ramos por ferramenta — ✔ lido
+`run_toolbox` (`backends.sh:58-136`) tem nove ramos `if [[ ${name} == … ]]`. O fluxo principal de `run.sh` tem ramos para `history`, `opengrep`, `coverage`, `audit`, `geiger`, `machete` e `deny`.
+
+**Correção:** ganchos por check (`pre_history`, `post_deny`) chamados se existirem.
+
+### A-09 · média · validação monolítica — ✔ lido
+`registry.sh:11-50` valida o catálogo com duas expressões jq booleanas gigantes. Uma falha só diz "Invalid automation catalog schema", sem indicar a regra. A lista de variáveis de ambiente permitidas está fixa no código (`:47`).
+
+### A-10 · baixa · validador JSON próprio — ✔ exp (desempenho)
+`strict_json` (`common.sh:18-60`) valida com um autômato em awk mais duas passadas de jq. O awk depende do tratamento de `\]` do gawk dentro de colchetes, e gawk não é declarado como requisito.
+
+Python já é pré-requisito do projeto e faz o mesmo em oito linhas (`object_pairs_hook` para duplicatas, `parse_constant` para NaN). O desempenho medido foi igual (12 ms contra 14 ms), então o argumento é simplicidade.
+
+### A-11 · baixa · logs achatados — ✔ exp
+`logs.sh:45-46` transforma cada arquivo em `run--dir--arquivo.json.log`, num único diretório por data. Em 15/11 há 1.931 arquivos num diretório só. Todo arquivo ganha `.log`, inclusive JSON.
+
+**Alternativa:** preservar a árvore (`cp --parents`) ou um `.tar` por run.
+
+### A-12 · baixa · demais — ✔ lido
+- Qualquer entrada que não seja uma data em `.local/logs` faz `logs.sh:19-20` falhar e bloqueia a publicação de todos os runs.
+- Idiomas misturados: terminal em português (`progress.sh`), erros em inglês (`die`), motivos em inglês traduzidos por comparação de texto.
+- O CLI legado convive com o atual no mesmo script, com parser e semântica diferentes.
+- `registry.sh:92` e `run.sh:125` usam uma variável chamada `source`, nome de um builtin.
+- "Ec" aparece em comentários (`automate.sh:180`, `selection.sh:2`, `backends.sh:33`) sem explicação.
+
+---
+
+## 5. Código à moda antiga e estilo
+
+Todos ✔ lido.
+
+| ID | Onde | Hoje | Preferível |
+|---|---|---|---|
+| O-01 | `registry.sh:10`, `common.sh:83,89`, `logs.sh:24`, `reports.sh:90`, `progress.sh:157` | `$(cat arquivo)` | `$(<arquivo)` |
+| O-02 | `files.sh:48` | `unset 'prune[${#prune[@]}-1]'` | `unset 'prune[-1]'` |
+| O-03 | `automate.sh:72-81` | pertinência com laços aninhados | array associativo (`declare -A`) |
+| O-04 | `automate.sh:158-159`, `run.sh:212-213`, `run.sh:76-89`, `files.sh:100-101` | reescrever o JSON inteiro a cada item | acumular JSONL e um `jq -s` no fim |
+| O-05 | `registry.sh:79-88`, `progress.sh:392-400` | um `jq` por campo | um `jq` com `@tsv` e um `read` |
+| O-06 | `toolbox.sh:3,7,10` | `echo` | `printf`, como no resto |
+| O-07 | `backends.sh:37,44` | `${LIB_DIR}/../toolbox.sh` | `${SCRIPTS_DIR}/toolbox.sh` |
+| O-08 | `prepare-datasets.sh:29` | `(("${#selected[@]}"))` | sem aspas na aritmética |
+| O-09 | vários | `\|\| return` e `\|\| return 1` misturados | um padrão só |
+| O-10 | `progress.sh:389` | lista `local` com 18 variáveis numa linha | declarar perto do uso |
+
+**Formatação.** Não há formatador de shell no projeto. Sintomas:
+
+- 160 linhas com mais de 120 colunas; a maior tem 354 (`backends.sh:93`).
+- Indentação quebrada em `selection.sh:26-29,36,44-47` e `automate.sh:67-82,178`.
+- Continuações colapsadas com sequências de espaços em `prepare-datasets.sh:120,122`, `progress.sh:376` e `files.sh:53`.
+
+`shfmt -i 4 -ci` no gate resolveria tudo de uma vez.
+
+---
+
+## 6. Desempenho
+
+### P-01 · alta · um processo por arquivo — ✔ exp + estimativa
+`source_snapshot` (`files.sh:56-91`) faz, por arquivo: três `sha256sum`, um `stat`, dois `jq`, `cp` e `mkdir`. `tree_manifest` faz um `sha256sum` e um `jq`. `verify_inputs` faz hashes, `stat` e um `jq` que relê o `input_modes.json` inteiro (`files.sh:122`), o que é quadrático.
+
+Cada check com snapshot executa `source_snapshot` duas vezes (a segunda é a conferência em `backends.sh:128-129`), `tree_identity` duas vezes e `verify_inputs` uma.
+
+- **Medido:** 870 arquivos com um `sha256sum` e um `jq` cada levam 2,49 s. Em lote (`xargs -0 sha256sum -z | jq -Rs`) levam 0,026 s, cerca de 100 vezes menos.
+- **Estimado:** o snapshot atual tem cerca de 870 arquivos (22 MB). Com cerca de 28 processos por arquivo, são uns 24 mil processos e 35 s por check. Há 11 checks toolbox e 3 nativos com snapshot: de 6 a 8 minutos de contabilidade num run completo.
+
+**Correção:** hash em lote, `find -printf '%m\t%p\0'` para os modos, um `jq` por manifesto.
+
+### P-02 · média · `history` copia o `.git` inteiro — ✔ exp
+`checks/run.sh:133` faz `cp -a` do `.git` (945 MB aqui) para o diretório do run e calcula a identidade da árvore quatro vezes (`:131,135,142` e dentro de `run_toolbox`), cada uma com dois processos por arquivo.
+
+### P-03 · média · tudo em `/tmp`, que é RAM — ✔ exp
+`common.sh:101` cria o run em `${TMPDIR:-/tmp}`. Neste host `/tmp` é tmpfs. Vão para a memória os snapshots (dois por check), a cópia do `.git` e os `CARGO_TARGET_DIR` de `coverage` e `geiger` (`run.sh:175-176`), que compilam o workspace do zero a cada run e são apagados no fim.
+
+**Correção:** `TMPDIR` padrão em `.cache/ox/runs` e diretório `target` reaproveitado por check.
+
+### P-04 · baixa · excesso de `jq` — ✔ exp
+- `automate.sh plan` executa 246 processos `jq` para 22 checks; `plan --scope complete`, 304 para 26.
+- O indicador de progresso gasta de 6 a 10 processos por segundo em terminal (`progress.sh:150-158`).
+- `run.sh:236-240` valida a saída do deny linha a linha, com três processos por linha.
+
+---
+
+## 7. Configuração, regras e supressões (rev)
+
+Reportado por revisor. Conferi por amostragem K-03, K-04, K-06, K-08, K-19, K-24, K-25 e as contagens de K-01 e K-02.
+
+### Supressões amplas
+- **K-01 · alta.** `gitleaks-history.ignore` tem 1.753 fingerprints, todos em `docs/validation`. Destes, 1.752 são `generic-api-key` disparados por hashes SHA-256 em JSON de evidência. O fingerprint inclui o commit, então o arquivo nunca cobre o próprio HEAD. 412 entradas apontam para commits alcançáveis só por refs locais de backup. **Correção:** allowlist por regra + caminho + regex de 64 hex no `gitleaks.toml`.
+- **K-02 · alta.** `bandit-baseline.json` tem 117 entradas e 176 KB, mas a supressão efetiva é por (arquivo, regra): 69 entradas têm linha ou código que já não batem. 104 das 117 são de testes. **Correção:** tabela explícita arquivo → regras.
+- **K-03 · alta.** `inputs.exclude_paths: ["docs/validation"]` deixa 13.194 dos 14.009 arquivos rastreados (94%) fora de todos os scanners de diretório, inclusive 235 `.py` e 355 `.rs`.
+- **K-12 · média.** Os avisos `RUSTSEC-2026-0441` e `-0192` são ignorados em `audit.toml` e `osv-scanner.toml`, marcados "Temporary" e sem data de expiração. O validador de exceções existe (`validate-exceptions.sh`), mas só é chamado por testes.
+- **K-22 · média.** `inputs.exclude_names` tem 55 globs; 8 casam com algo no disco. O resto vem de outro ecossistema (`node_modules`, `.vite`, `playwright-report`). `.aws` e `.agents` ficariam fora da varredura de segredos.
+
+### Catálogo
+- **K-04 · alta.** `checks.geiger.executable` fixa o caminho `.cache/ox/cargo-home/bin/cargo-geiger` e o SHA-256 de um binário local de 407 MB em diretório ignorado. Em outra máquina o check só pode bloquear.
+- **K-05 · alta.** Mesmo assunto de A-07: 62 ocorrências de nomes de checks em `run.sh` e 51 em `registry.sh`; 6 das 18 `policies` só são referenciadas por literais no shell.
+- **K-06 · média.** Chaves mortas: `components`, `checks[].snapshot` dos 11 checks toolbox (`run.sh:124` usa sempre `all`), `dataset: ""` em 15 checks, `paths.root` e `paths.runs`, `reviews.static.reason` (um changelog de 4.118 caracteres dentro de um arquivo cujo hash é input) e `checks.malware.tool: "yr"` (sobrescrito em `registry.sh:126`).
+- **K-07 · média.** `scopes.full`, `scopes.complete` e `selection.surfaces` repetem as mesmas listas e já divergem (24 contra 26).
+- **K-09 · média.** `reviews.static.sources` guarda 30 hashes mantidos à mão. Editar qualquer teste listado bloqueia Ruff e Bandit até o hash ser refeito (`backends.sh:68-79`).
+- **K-23 · baixa.** `discovery.toolbox` contém `{parent}/dev_audit/shared-toolbox/bin/toolbox`, o layout de uma máquina específica.
+- **K-25 · baixa.** O `run` padrão executa `coverage`, mas `--check coverage` exige `--surface` (✔ exp). Aliases `test` → `rust-test` e `tests` → `scripts-tests` confundem.
+- **K-27 · média.** A validação aceita chaves desconhecidas e não valida `inputs`, `paths`, `databases` nem `reviews`. O limite de 120 h está duplicado (`databases.trivy` e `grype.yaml:15`).
+
+### Scanners e regras
+- **K-10 · média.** A política do Clippy está em `runtime.clippy_flags` e num `clippy.toml` fora de `application/`. `cargo clippy` local ou na IDE diverge do gate. **Correção:** `[workspace.lints.clippy]` no `Cargo.toml`.
+- **K-11 · média.** `deny.toml` não define `[graph] targets`. Pelo menos 8 dos 18 `skip` existem por causa de Windows, macOS, Android ou Redox, num produto Linux x86_64.
+- **K-13 · média.** `audit`, `osv`, `trivy` e `grype` analisam o mesmo `Cargo.lock`. O SBOM do Syft não é consumido por ninguém, embora `grype.yaml:10` diga que é.
+- **K-14 · média.** Crates "yanked" não são detectadas por nenhum check.
+- **K-16 · média.** `rules/opengrep/rust.yml` tem três regras sem fixture sobre postgres, sqlx, md5 e sha1, que não estão no `Cargo.lock`.
+- **K-17 · baixa.** As regras `ox.rust.unsafe-*` repetem `unsafe_code = "forbid"` e o Geiger.
+- **K-18 · baixa.** A severidade das regras é decorativa: qualquer resultado bloqueia, inclusive `INFO`.
+- **K-19 · média.** As fixtures de `tests/rules/` não são usadas por nenhum teste (✔ exp). As três regras YARA não têm fixture.
+- **K-20 · baixa.** `ox.yar`: `download_and_execute` casa qualquer documento que contenha "curl " e "| sh". O mesmo check tem seis nomes (`malware`, `yr`, `yara-x`, `suspicious.yar`, `ox.yar`).
+- **K-21 · média.** Licenças inconsistentes: `security/NOTICE` diz GPL; `rules/README.md:3` e `ox.yar:1` dizem MIT. Não há SPDX por arquivo.
+- **K-26 · baixa.** `ruff.toml:18` diz que "o formatter cuida de layout", mas não existe `ruff format --check`.
+
+---
+
+## 8. Testes Python (rev)
+
+Reportado por revisor; conferi T-01 e a fixture do teste de `summarize.sh`. São 114 testes: 60 de caixa-preta pela CLI, 43 que chamam funções internas via `source` e 11 acoplados ao texto do código.
+
+### Erros
+- **T-01 · alta.** `tests/support.py:27-28` converte qualquer exit≠0 em `ValueError`. Os 16 `assertRaises(ValueError)` passam mesmo se a função sob teste não existir. `test_capture_status.py:13,17` usa `exit 17` e `exit 19` e nunca confere o código. **Correção:** `ShellError(returncode, stderr)` e afirmar o valor ou a mensagem.
+- **T-02 · alta.** `test_backends.py:102-103` lê o assessment mais recente do diretório, não o da execução corrente. Se a execução N morrer antes de publicar, a asserção recai sobre a N-1. O mesmo ocorre em `test_automation.py:351-354,373-376`.
+- **T-03 · média.** `test_governance_diagnostics.py:140-141` é uma tautologia, e o teste valida um mutante criado por `replace`, não a produção.
+- **T-04 · média.** `test_optional_datasets.py:25` afirma que `.local` não existe, mas a preparação grava em `.cache/ox/security`. A asserção nunca falha.
+- **T-05 · média.** `test_native_reports.py:19-20`: o `skipTest` pula também os casos sintéticos, que não dependem do binário.
+- **T-06 · média.** `test_automation.py:231` se chama "every adapter" e roda 5 de 16. Há andaime morto para os outros 11.
+- **T-07 · média.** `support.py:113-125` reimplementa em Python a guarda de `run.sh:201`. O teste afirma sobre o helper, e a guarda real fica sem teste.
+
+### Fragilidade
+- **T-08 · média.** Os testes herdam o ambiente (`dict(os.environ, …)`). `NO_COLOR=true`, um `OX_CARGO_BIN` herdado, `/usr/bin/toolbox` instalado ou a configuração global do Git quebram testes.
+- **T-09 · média.** Só 5 de 32 `subprocess.run` têm `timeout`. `test_defaults.py:12` usa a raiz real: se uma rejeição esperada deixar de ocorrer, o pipeline roda no repositório.
+- **T-10 · média.** Sleeps fixos somam 20 s ou mais. `test_terminal_progress.py:85` dorme 1,1 s contra um vigia de 1 s, com 100 ms de margem.
+- **T-11 · média.** `test_backends.py:20` copia `scripts/` real. Como `reviews.static` contém 13 arquivos de teste, editar um teste quebra outros até o hash ser refeito.
+- **T-14 · baixa.** `test_preparation.py:27-29` mistura fuso local e UTC e falha nas primeiras horas do dia em fusos UTC+. Há 105 `write_text` sem `encoding`.
+
+### Redundância e estilo
+- **T-12 e T-15 · média.** `TestCase` usado como fixture em três arquivos; shims de cargo/rustup/geiger reescritos em seis lugares; `ROOT` redefinido em quatro; esqueleto de raiz repetido quatro vezes.
+- **T-16 · baixa.** Programas Python dentro de strings (até 279 colunas), fora do alcance de Ruff e Bandit; sete arquivos sem formatação.
+- **T-17 · média.** 11 testes leem ou remendam o texto de produção (consequência de A-02).
+- **T-19 · baixa.** `line-length = 100` no `ruff.toml` é inerte, porque `E501` não está selecionada.
+
+### Lacunas de cobertura (T-18)
+Sem nenhum teste: `local.sh`, `check.sh`, `checks/run.sh --inspect-data`, as guardas de `--output` (`run.sh:54-58`), o lock e os limites de data de `prepare-datasets.sh`, os sinais INT e HUP (só TERM é testado), a guarda de `source` em `automate.sh:2-5` e as mensagens "Dataset/Tool/Wrapper changed during check".
+
+---
+
+## 9. O que está bem feito
+
+- `execute` (`process.sh:5-43`) roda o argv sem shell intermediário, captura as saídas e repassa sinais só ao filho.
+- Caminhos são tratados com separador NUL em todo lugar; `contained` rejeita absolutos, `..` e symlinks.
+- Publicação de logs com `flock` e `noclobber`; preparo de datasets com área de estágio e `rename` atômico.
+- Variáveis de ambiente dos scanners são removidas antes de rodar (`run.sh:99-102`).
+- O relatório do Trivy é redigido antes de ser exportado (`reports.sh:51-74`).
+- O terminal nunca reproduz texto livre das ferramentas (`progress_safe`), o que evita injeção de sequências ANSI.
+- Todos os arquivos TOML, YAML e JSON fazem parse; as exclusões nativas dos scanners estão vazias, com fonte única em `inputs.*`.
+- `strict_json`, `retain_logs` (com concorrência), `select_backend` e o parser de governança têm boa cobertura de testes.
+
+---
+
+## 10. Melhorias, em ordem
+
+**Reparos locais (baixo risco)**
+1. Corrigir os seis tratadores mortos (E-02).
+2. Normalizar o código do deny (E-06).
+3. Trocar a comparação por texto de `progress_cause` por códigos de motivo, cobrindo ao menos o dataset vencido (E-05).
+4. Decidir sobre `common.sh:8` e alinhar comentário e JSON (E-03).
+5. Remover ou consertar `summarize.sh`; remover parsers, diretório e chaves mortos (E-01, R-05, K-06).
+6. `local.sh`: validar argumentos antes de agir (E-07).
+7. `shellcheckrc`: mover `SC2310` e `SC2016` para o rc e apagar os 65 comentários (R-06).
+8. Testes: `ShellError` com código, ambiente limpo e timeout padrão em `support.py` (T-01, T-08, T-09).
+
+**Estruturais (pedem decisão)**
+1. Escolher uma autoridade para os checks: catálogo realmente declarativo (argv, políticas, parser, exit esperado, necessidade de Cargo, rótulo) ou shell como fonte e JSON mínimo. Remover o CLI legado (A-07, K-05, K-07, E-10).
+2. Uma única função que monta o argv, usada por plano e execução (R-01).
+3. `main` nas entradas, `local` em tudo, parâmetros explícitos e ganchos por check (A-01, A-02, A-08).
+4. Tirar de `progress.sh` a publicação e o código de saída; fazer `check-ox.py` emitir JSON (A-06).
+5. Hash e manifesto em lote; `TMPDIR` fora do tmpfs; `target` reaproveitado (P-01 a P-03).
+6. Registro único de exceções com dono e expiração, validado no run; allowlist por padrão no Gitleaks; baseline do Bandit como tabela (K-01, K-02, K-12).
+7. Política para `docs/validation`: fora do repositório ou varrida com regra própria (K-03).
+8. `shfmt` e `ruff format --check` no gate (seção 5, T-19).
+9. Política Rust no `Cargo.toml` (`[workspace.lints]`, `deny.toml` com `targets`) (K-10, K-11).
+
+---
+
+## 11. Experimentos executados
+
+Todos inofensivos; nenhum alterou o repositório.
+
+| # | Comando (resumido) | Resultado |
+|---|---|---|
+| 1 | `summarize.sh` sobre um `results.json` no formato de `automate.sh` | `Invalid results document`, exit 2 |
+| 2 | `x=abc; y=${x} \|\| echo handler` sob `set -Eeuo pipefail` | o handler nunca executa |
+| 3 | `a=(); while read v; …; done < <(printf '%s\n' "${a[@]}")` | 1 iteração com valor vazio |
+| 4 | `CARGO_NET_OFFLINE=false RUSTUP_AUTO_INSTALL=1 bash -c 'source scripts/lib/common.sh; …'` | `true` e `0` |
+| 5 | `local.sh --path runs --root /nonexistent` | caminho da raiz padrão, exit 0 |
+| 6 | `local.sh --root` | `$2: variável não associada`, exit 1 |
+| 7 | `automate.sh plan` com contador de `jq` no `PATH` | 22 checks, 246 `jq` |
+| 8 | `automate.sh plan --scope complete` | 26 checks, 304 `jq` |
+| 9 | `automate.sh --scope complete --plan` | 24 checks, 296 `jq` |
+| 10 | `automate.sh plan --check coverage` | `coverage requires --surface` |
+| 11 | 870 × (`sha256sum` + `jq`) contra lote único | 2,49 s contra 0,026 s |
+| 12 | `strict_json` contra equivalente em Python, 5 execuções | 0,062 s contra 0,068 s |
+| 13 | `df -hT /tmp`; `find .git -type f \| wc -l`; `du -sh .git` | tmpfs; 793 arquivos; 945 MB |
+| 14 | contagem de `.local/logs/2026-11-15` | 1.931 arquivos num diretório |
+
+---
+
+# Parte 2 — Auditoria de tasks do Codex — 2026-11-17
+
+## Como ler
+
+**Escopo.** 19 tasks que o Codex CLI declarou concluídas, encontradas no trabalho não commitado sobre `015ff14` (15/11/2026 14:30, branch `development`) e nas duas entradas de `task_finalizada.md`. A seção 2 lista todas. Estado da árvore no início: 234 caminhos alterados no `git status` (1.873 arquivos quando os diretórios novos são expandidos).
+
+**Método.** Usei a skill `codex-task-audit` (`.claude/skills/codex-task-audit/`), criada nesta sessão. O trabalho teve estas etapas:
+
+1. Inventário automático feito por `discover_tasks.py`, cruzando `git status`, `task_finalizada.md`, `docs/validation/*-AAAAMMDD`, `sdd/features` e as seções novas de `sdd/project.md`. Nenhum arquivo ficou órfão.
+2. Coleta de sinais de dívida técnica com `diff_signals.py`.
+3. Execução própria das suítes focadas.
+4. Quatro auditores independentes, um por grupo de superfície: scripts, governança, UI Rust/Iced e skills/design. Eles leram o código linha a linha e fizeram experimentos em cópias.
+5. Reconferência pessoal dos achados mais graves.
+
+Cada task recebeu notas de 0 a 4 em 20 métricas (M01–M20). Escala e definições estão em `references/metrics.md`.
+
+**Grau de verificação.**
+
+| Marca | Significado |
+|---|---|
+| ✔ exp | confirmado por experimento que eu executei |
+| ✔ run | confirmado por check que eu executei |
+| ✔ lido | confirmado por leitura direta minha |
+| rev·exp / rev·run / rev·lido | reportado por um auditor com esse grau de verificação; não reconferido por mim |
+| estimativa | cálculo ou contagem parcial |
+
+**Limites.**
+- Não executei a verificação completa via Toolbox (`automate.sh run --scope complete`), porque ela não foi autorizada. Também não houve inspeção visual nativa nem acesso à web.
+- ShellCheck e shfmt não estão instalados no host.
+- A suíte `tools/governance/tests` não terminou dentro de 25 min (detalhes na seção 8).
+- A conferência de fontes externas usou as cópias em `/tmp` deixadas pelo Codex. Os hashes conferem com os inventários.
+
+**Concorrência.** O Codex continuou trabalhando durante a auditoria. Às 20:55 ele alterou `.codex/skills/prompt/SKILL.md`, `sdd/project.md` e `task_finalizada.md`, criando a task T19, que também foi auditada. Nenhum arquivo de código Rust ou shell auditado mudou durante a análise: os hashes de `desktop.rs` e `views.rs` eram os mesmos no início e no fim.
+
+**Escrita.** Não alterei nada do Codex. Criei apenas a skill em `.claude/skills/codex-task-audit/`, este arquivo e uma nova entrada ao final de `task_finalizada.md`, exigida pelo `AGENTS.md`. Os experimentos rodaram em cópias no scratchpad da sessão.
+
+---
+
+## 1. Sumário executivo
+
+**Placar: 2 aprovadas · 13 aprovadas com ressalvas · 4 reprovadas · 0 inconclusivas.** A nota média global é 3,10 de 4.
+
+O trabalho do Codex é **cuidadoso com integridade e honesto sobre limites**. Ele preserva o histórico com exatidão: 34 observações foram retiradas sem nenhuma alteração. Os hashes conferem por amostragem. Ele declara estados `UNVERIFIED` em vez de promover critérios e registra testes de sensibilidade. As fontes externas estão fixadas e têm hash.
+
+Os defeitos se concentram em quatro frentes:
+
+1. **Alegações de "recuperação preservada" ou "sem impacto" que não se sustentam.** A mais grave é T15: sem o Zenity, o usuário não consegue abrir uma pasta existente.
+2. **Testes que passam pelo motivo errado.** Há testes que ligam a flag do fallback à mão, que só verificam `assertNotEqual(0)` ou `assertTrue(errors)`, e testes acoplados aos bytes vivos de documentos.
+3. **Um mecanismo de "sucessão" de documentos que virou gargalo sistêmico.** São 14 módulos `*_revision.py` com 2.309 linhas e imports cíclicos. Cada edição legítima de `AGENTS.md`, `sdd/project.md` ou `sdd/workflow.md` deixa `check-ox` e a suíte vermelhos. As duas tasks mais recentes fizeram exatamente isso sem rodar o check.
+4. **Crescimento monolítico e evidência desproporcional.** `desktop.rs` tem 2.155 linhas. O lote soma cerca de 100 MB de evidência e cerca de 2.400 arquivos em `docs/validation` para mudanças em geral pequenas.
+
+Um fato estrutural pesa sobre todo o projeto: **nenhum dos 244 critérios de aceite das 43 features está APPROVED** (130 INCONCLUSIVE, 114 UNVERIFIED). Já era assim no HEAD (129/98), então não é regressão. Mas o volume de governança não se converte em aceite.
+
+### Top 10 achados
+
+| # | Task | Achado | Sev. | Verif. |
+|---|---|---|---|---|
+| 1 | T15 | A remoção de "Digitar caminho…" tirou a única forma de abrir uma pasta existente quando o Zenity falha ou não está instalado. Teste, relatório, `project.md` e READMEs afirmam o contrário | **alta** | ✔ exp |
+| 2 | T11 | A regra do `task_finalizada.md` quebrou `check-ox` (de PASS às 18:18 para exit 1) e a suíte de governança. A entrada diz "no checker changes are required" e não rodou o check | **alta** | ✔ run |
+| 3 | T19 | A edição da skill de prompt acrescentou mais FAILs ao `check-ox` ("Copied resource changed", "Transition preserved input changed") e não rodou o check | **alta** | ✔ run |
+| 4 | T09 | Revisão e validação ditas "independentes" aprovaram uma alegação falsa (D-14 "fully pt-BR"). A correção V-11 apagou as cores de papel, e o teste não detectou | **alta** | rev·lido + ✔ lido |
+| 5 | T02 | Cancelamento (INT/TERM/HUP) durante uma fase sai com exit 2, que é o código de erro operacional. Na publicação, sai com 143. Os testes só verificam `!= 0` | média | ✔ exp |
+| 6 | transversal | A cadeia de sucessão pinada (14 módulos, imports cíclicos, hashes de documentos vivos) quebra a cada edição e invalida aceites de outras features | média | rev·run + ✔ run |
+| 7 | T14 | `CursorMoved` vira mensagem em todo movimento do mouse, em qualquer superfície. Cada movimento reconstrói `view()` e pede redesenho | média | ✔ lido |
+| 8 | T16 | O foco de teclado vai para controles fora da área visível: Densidade em Settings a 640×480, e a sidebar de boas-vindas, cujo scrollable não tem id | média | rev·lido |
+| 9 | T05 | Os falsos positivos do Gitleaks foram tratados com +147 fingerprints, sem atacar a causa (mapas caminho→hash em JSON). Cerca de 119 linhas candidatas vão disparar de novo | média | rev·exp + estimativa |
+| 10 | T06 | A-06 foi declarado "Fixed", mas `lifecycle.sh` continua chamando 9 funções de apresentação; `terminal-progress` não foi atualizada | média | rev·lido |
+
+---
+
+## 2. Inventário de tasks
+
+O registro em `task_finalizada.md` só é obrigatório a partir de 17/11 às 20:32. As tasks anteriores estão anotadas, não penalizadas.
+
+| ID | Task (data) | Rota declarada | Superfície principal | `task_finalizada` | Veredito |
+|---|---|---|---|---|---|
+| T01 | bandit-repair (15/11) | completa, alta | `scripts/`, baseline do Bandit | — | APROVADA COM RESSALVAS |
+| T02 | terminal-progress (15/11) | completa, alta | `progress.sh`, `process.sh`, `automate.sh` | — | APROVADA COM RESSALVAS |
+| T03 | terminal-publication-repair (15/11) | local | `progress.sh` (watcher) | — | **APROVADA** |
+| T04 | terminal-style (15/11) | local | `progress.sh` (rótulos/ANSI) | — | **APROVADA** |
+| T05 | history-correction (15/11) | completa | `gitleaks-history.ignore` | — | APROVADA COM RESSALVAS |
+| T06 | claude-analysis (17/11) | completa, alta | `scripts/**`, `support.py` | — | APROVADA COM RESSALVAS |
+| T07 | governance-link-repair (+plan) (15/11) | completa, alta | `historical_link_revision.py` | — | APROVADA COM RESSALVAS |
+| T08 | osv-acquisition (16/11) | completa, alta | Toolbox central, `backends.sh`, ADR | — | APROVADA COM RESSALVAS |
+| T09 | audit-correction (17/11) | completa | 151 achados externos; 17 skills; evidências | — | **REPROVADA** (remediada em parte por T10) |
+| T10 | audit-followup (17/11) | completa | `local_task.rs`, `design.rs`, retenção | — | APROVADA COM RESSALVAS |
+| T11 | registro append-only (17/11 20:32) | local | `AGENTS.md`, `sdd/workflow.md`, `sdd/project.md` | ✔ entrada 1 | **REPROVADA** |
+| T12 | welcome-identity (16/11) | local | `identity.rs`, assets, `Cargo.toml` | — | APROVADA COM RESSALVAS |
+| T13 | enterprise-visual (16/11) | completa | `desktop.rs`, `views.rs`, `icons.rs` | — | APROVADA COM RESSALVAS |
+| T14 | desktop-navigation (17/11) | completa | `splitter.rs`, `hint.rs`, navegação | — | APROVADA COM RESSALVAS |
+| T15 | project-entry (17/11) | local | entrada de projeto (desktop/views) | — | **REPROVADA** |
+| T16 | sidebar-settings (17/11) | local | Settings, sidebar de boas-vindas | — | APROVADA COM RESSALVAS |
+| T17 | visual-skills (16/11) | completa | skills design-review/design-system/iced | — | APROVADA COM RESSALVAS |
+| T18 | windows-design (17/11) | completa | DESIGN.md, `windows-apps-analysis.md`, skills | — | APROVADA COM RESSALVAS |
+| T19 | critério de finalização na skill de prompt (17/11 20:55) | local | `.codex/skills/prompt/SKILL.md` | ✔ entrada 2 | **REPROVADA** |
+
+---
+
+## 3. Placar por métrica
+
+| Código | Métrica |
+|---|---|
+| M01 | lógica |
+| M02 | alternativa |
+| M03 | testado |
+| M04 | qualidade dos testes |
+| M05 | fragmentação |
+| M06 | legado |
+| M07 | escopo |
+| M08 | veracidade |
+| M09 | governança |
+| M10 | erros |
+| M11 | segurança |
+| M12 | compatibilidade |
+| M13 | desempenho |
+| M14 | manutenibilidade |
+| M15 | documentação |
+| M16 | observabilidade |
+| M17 | integridade/concorrência |
+| M18 | UX/acessibilidade |
+| M19 | dependências |
+| M20 | proporcionalidade/higiene |
+
+| Task | M01 | M02 | M03 | M04 | M05 | M06 | M07 | M08 | M09 | M10 | M11 | M12 | M13 | M14 | M15 | M16 | M17 | M18 | M19 | M20 | Média |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| T01 | 4 | 3 | 2 | 3 | 3 | 4 | 4 | 4 | 3 | 4 | 3 | 4 | N/A | 4 | 4 | 4 | 4 | N/A | N/A | 2 | 3.47 |
+| T02 | 2 | 3 | 3 | 2 | 2 | 3 | 4 | 3 | 2 | 3 | 4 | 4 | 3 | 2 | 3 | 3 | 3 | 3 | N/A | 3 | 2.89 |
+| T03 | 4 | 4 | 4 | 3 | 4 | 4 | 4 | 4 | 3 | 4 | 4 | 4 | N/A | 4 | 4 | 4 | 4 | N/A | N/A | 3 | 3.82 |
+| T04 | 4 | 4 | 4 | 3 | 4 | 4 | 4 | 4 | 4 | N/A | 4 | 4 | N/A | 4 | 4 | 4 | N/A | 3 | N/A | 4 | 3.88 |
+| T05 | 4 | 2 | 3 | 3 | 4 | 3 | 4 | 4 | 4 | N/A | 3 | 4 | N/A | 4 | 4 | 4 | N/A | N/A | N/A | 3 | 3.53 |
+| T06 | 3 | 3 | 3 | 3 | 2 | 3 | 4 | 2 | 2 | 3 | 4 | 3 | 3 | 3 | 3 | 3 | 4 | N/A | 4 | 3 | 3.05 |
+| T07 | 3 | 2 | 4 | 3 | 2 | 3 | 3 | 4 | 4 | 4 | 4 | 3 | 2 | 2 | 3 | 3 | 4 | N/A | N/A | 2 | 3.06 |
+| T08 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 | 4 | 3 | 4 | 3 | 4 | 3 | 2 | N/A | N/A | 3 | 3.06 |
+| T09 | 1 | 3 | 2 | 1 | 2 | 3 | 3 | 0 | 1 | 3 | 4 | 3 | N/A | 3 | 2 | 3 | 2 | 2 | 3 | 3 | 2.32 |
+| T10 | 3 | 3 | 3 | 3 | 2 | 3 | 3 | 4 | 3 | 4 | 4 | 4 | N/A | 3 | 3 | N/A | 4 | 3 | N/A | 3 | 3.24 |
+| T11 | 1 | 2 | 1 | N/A | 2 | 4 | 2 | 1 | 1 | N/A | 2 | 1 | N/A | 3 | 2 | N/A | 3 | N/A | N/A | 4 | 2.07 |
+| T12 | 4 | 4 | 3 | 3 | 4 | 4 | 4 | 4 | 4 | 3 | 4 | 4 | 4 | 4 | 4 | 3 | N/A | 4 | 3 | 4 | 3.74 |
+| T13 | 4 | 3 | 3 | 3 | 3 | 4 | 4 | 3 | 3 | 4 | 4 | 3 | 4 | 3 | 4 | 4 | N/A | 3 | N/A | 2 | 3.39 |
+| T14 | 3 | 2 | 3 | 3 | 2 | 3 | 4 | 3 | 3 | 4 | 4 | 4 | 2 | 2 | 3 | N/A | 3 | 3 | 4 | 2 | 3.00 |
+| T15 | 1 | 3 | 2 | 1 | 3 | 3 | 1 | 1 | 3 | 1 | 4 | 2 | 4 | 3 | 1 | 3 | N/A | 2 | N/A | 4 | 2.33 |
+| T16 | 3 | 3 | 3 | 2 | 3 | 3 | 3 | 3 | 3 | 4 | 4 | 3 | 4 | 3 | 3 | N/A | 4 | 2 | N/A | 3 | 3.11 |
+| T17 | 3 | 2 | 3 | 2 | 2 | 3 | 3 | 3 | 3 | 4 | 4 | 4 | 3 | 2 | 3 | 3 | N/A | N/A | 4 | 2 | 2.94 |
+| T18 | 3 | 3 | 3 | 2 | 2 | 2 | 4 | 3 | 3 | 4 | 4 | 4 | 3 | 2 | 3 | 3 | N/A | 3 | 3 | 2 | 2.95 |
+| T19 | 3 | 3 | 1 | N/A | 3 | 4 | 4 | 2 | 1 | N/A | 4 | 3 | N/A | 4 | 3 | N/A | 3 | N/A | 4 | 4 | 3.07 |
+| **Média** | 2.9 | 2.9 | 2.8 | **2.5** | 2.7 | 3.3 | 3.4 | 2.9 | 2.7 | 3.5 | 3.8 | 3.4 | 3.3 | 3.1 | 3.2 | 3.4 | 3.3 | 2.8 | 3.6 | 2.9 | 3.10 |
+
+Por métrica: a pior média é **M04 (qualidade dos testes, 2,5)**. Em seguida vêm M05 (fragmentação) e M09 (governança), com 2,7. A melhor é M11 (segurança, 3,8).
+
+O veredito é limitado pelo pior achado: T09, T11, T15 e T19 foram reprovadas por achados altos, mesmo com médias acima de 2.
+
+**Regra dos N/A.** Uma métrica é N/A quando a task não toca aquela superfície. Exemplos: M18 em scripts; M19 sem dependência nova; M04 quando não há teste algum, caso em que a falta de teste é penalizada em M03.
+
+---
+
+## 4. Análise por task
+
+### Grupo A: scripts e automação
+
+#### T01 · bandit-repair-20261115 — APROVADA COM RESSALVAS
+
+**Pedido.** Diagnosticar e corrigir as falhas do `run --scope complete`: Bandit 8, Ruff 3 e ShellCheck 3. As restrições eram: sem `nosec`, sem limiar e sem excluir testes.
+
+**Feito.**
+- Imports do Ruff corrigidos.
+- Amostra do ShellCheck materializada, com o hash lido pelo stdin (`progress.sh:264-268`).
+- 8 entradas acrescentadas ao baseline do Bandit, presas aos hashes de fonte e política em `reviews.static`.
+- Controles de guarda com exit 3.
+
+**Alegações.** "Mantém os 109 objetos e acrescenta 8" confere: o baseline passou de 101 para 109 e depois para 117, com prefixo idêntico (rev·exp). "Bandit 71/71, 0 achados" confere no bruto. O gate da época conferia; hoje ele falha porque tasks posteriores tornaram os ACs `UNVERIFIED`.
+
+**T01-1 · média · rev·lido.** O controle positivo BS-04 nunca rodou: não foi verificado que o B603 é detectado em um arquivo **novo** sob o baseline final. Ficou `INCONCLUSIVE`, o que é honesto. A propriedade central ("código perigoso novo continua detectado") está provada só para arquivos já revisados. **Correção:** executar o comando registrado em `blocked-control.json`.
+
+**T01-2 · baixa · rev·lido.** Há duas camadas de supressão: o baseline do Bandit casa por arquivo, regra e texto, e o registro de 32 hashes faz a contenção real. Toda edição de teste listado bloqueia o Ruff e o Bandit até nova revisão; a T06 precisou refazer 17. **Correção:** concentrar os `subprocess.run` dos testes em um único helper revisado (`support.run`).
+
+**T01-3 · baixa.** 118 arquivos e 4,1 MB de evidência para 3 correções de lint e 8 entradas de baseline.
+
+**T01-4 · info.** O diagnóstico é exemplar. A primeira correção do ShellCheck foi rejeitada por um motivo concreto (escape do `sha256sum`) e virou teste de regressão (`test_governance_diagnostics.py:222-236`).
+
+#### T02 · terminal-progress-20261115 — APROVADA COM RESSALVAS
+
+**Pedido.** Saída humana do runner com fases numeradas e progresso que não regride. O fechamento deve ser verdadeiro e o cancelamento não pode parecer conclusão.
+
+**Feito.**
+- `scripts/lib/progress.sh` (515 linhas), com renderizador, watcher e parsers de localização de 6 ferramentas.
+- `process.sh` passou a registrar `cancelled`/`signal`.
+- 21 testes com PTY e sem TTY.
+
+**T02-1 · média · ✔ exp.** **O código de saída do cancelamento está errado durante uma fase.**
+- Reexecutei a sonda numa cópia limpa de `scripts/`, com a fixture oficial e o check `ox` em espera: SIGTERM, SIGINT e SIGHUP dão todos **exit 2**, com `results=[('ox','failed',130,<SINAL>)]`.
+- O `exit_code` gravado é 130 para os três sinais, quando seriam 143 para TERM e 129 para HUP.
+- Durante a publicação, o TERM sai com 143.
+- Causa: o trap de `execute` (`process.sh:17-19`) consome o sinal; a fase vira `failed` e `aggregate_results` devolve 2. O ramo `lifecycle.sh:89` fica inalcançável nesse caso.
+- Os testes só fazem `assertNotEqual(proc.returncode, 0)` (`test_terminal_progress.py:511`, `537`), por isso não pegaram o problema.
+- Impacto: CI e chamadores não distinguem cancelamento de erro operacional.
+- **Correção:** com `PROGRESS_CANCELLED` e sinal registrados, `finalize_run` sai com 128+N; o código por sinal é gravado; os testes verificam o código exato para INT, TERM e HUP.
+
+**T02-2 · média · rev·lido.** Fragmentação.
+- `progress_findings` (`progress.sh:220-231`) reimplementa formatos que `reports.sh` já interpreta.
+- `progress_governance_project` (cerca de 100 linhas, `247-350`) raspa o texto do `check-ox.py`, que é do próprio projeto.
+- `progress_name` e `progress_action` duplicam os nomes dos checks.
+- A codificação do nome de log está duplicada em `logs.sh:45` e `progress.sh:176`.
+- **Correção:** o parser expõe a localização junto com a contagem, há uma só `log_name()` e o `check-ox` emite JSON.
+
+**T02-3 · baixa · rev·lido.** A referência `report.json` é publicada duas vezes (`progress.sh:467` e `479-484`).
+
+**T02-4 · baixa · rev·lido.** Nenhum produtor grava `.warnings` ou `.skips`, então toda fase imprime "Avisos: indisponível; skips registrados: indisponível". É ruído permanente.
+
+**T02-5 · baixa · rev·exp.** Com `OX_HUMAN_PROGRESS=true` herdado do ambiente e sem `progress.sh` carregado, `process.sh:20` faz `progress_watch_start: command not found` e aborta depois de lançar o filho em background, que fica sem supervisão. **Correção:** `unset` na carga de `common.sh`, ou `declare -F`.
+
+**T02-6 · média · rev·run.** A feature `terminal-progress` tem hoje 6/6 ACs `UNVERIFIED` com `evidence=[]`. O `converge.md` ainda diz "This approves…" e o `plan.md` não conhece `lifecycle.sh`. Ver T06-2.
+
+**T02-7 · info.** Pontos fortes:
+- percentual calculado por unidades observáveis, com teto de 99 até a publicação confirmada;
+- verificação pós-publicação de cada locator;
+- fixtures adversariais de ANSI e segredos;
+- texto livre nunca ecoado, graças ao `progress_safe` com `jq -a`.
+
+#### T03 · terminal-publication-repair-20261115 — APROVADA
+
+O watcher da finalização deixou de gravar dentro do run (`progress.sh:146-148`).
+
+Teste de sensibilidade (rev·exp): ao reverter a linha 148 numa cópia, `test_terminal_publication` **falha**; com o original, passa. Os logs de replay antes e depois do incidente conferem.
+
+**T03-1 · baixa.** O oráculo depende de tempo: `sleep 2.2` contra um heartbeat de 1 s (`test_terminal_publication.py:22-27`).
+
+**T03-2 · baixa.** Uma execução nativa duplicada foi disparada enquanto se esperava aprovação. Foi corretamente invalidada.
+
+#### T04 · terminal-style-20261115 — APROVADA
+
+SUCESSO, FALHA e WARNING usam ANSI 32/31/33. O `NO_COLOR` do humano fica separado do `NO_COLOR=1` passado às ferramentas (`automate.sh:111`), e os 6 testes verificam exatamente isso.
+
+**T04-1 · baixa · rev·exp.** O padding usa `${#label}` (`progress.sh:18`). Com `LC_ALL=C`, "Log/relatório:" mede 15 e desalinha uma coluna. **Correção:** usar rótulos ASCII ou fixar o locale para o cálculo.
+
+#### T05 · history-correction-20261115 — APROVADA COM RESSALVAS
+
+A task acrescentou 147 fingerprints exatos ao ignore histórico do Gitleaks (de 1.606 para 1.753). As 147 proveniências foram reproduzidas (rev·exp): `git show` bate com `content_digest`, 135 vêm do mesmo commit e o diff só acrescenta. AC-01 e AC-02 ficaram `UNVERIFIED`, de forma honesta, porque o sandbox bloqueou o run nativo.
+
+**T05-1 · média · rev·lido + estimativa.** A causa raiz não foi tratada.
+- O match do `generic-api-key` vem do **nome de arquivo usado como chave JSON** (`"tokens.rs": "<64hex>"`).
+- Há cerca de 119 linhas candidatas em 40 JSON não rastreados com esse mesmo padrão. Após o próximo commit, o check `history` deve falhar de novo.
+- **Correção:**
+  - (a) serializar hashes como `{"path":…,"sha256":…}`; ou
+  - (b) usar uma allowlist estreita por regra, `generic-api-key` com AND de `paths=docs/validation/.*\.json` e `regexTarget=secret ^[a-f0-9]{64}$`.
+
+**T05-2 · baixa.** A frase nova (AC-03) não tem teste persistente.
+
+**T05-3 · baixa.** O ignore cresce sem política de expiração (herança de K-01).
+
+#### T06 · claude-analysis-20261117 — APROVADA COM RESSALVAS
+
+**Pedido.** Corrigir os defeitos confirmados da análise anterior de `scripts/` (Parte 1 deste documento).
+
+**Feito.**
+- Matriz com 89 disposições.
+- Correções reais com oráculos independentes: E-01, E-02, E-03, E-06, E-07, T-01, T-02 e T-07. Exemplo: `rejected()` agora verifica o código exato, o que acaba com o falso positivo "qualquer exit≠0 vira ValueError".
+- `tree_manifest` em lote, com testes para `\n`, `\` e Unicode.
+- `main()` nas entradas.
+- 15 regressões, com `original-defect-sensitivity.log` mostrando 4 falhas esperadas contra os pré-images.
+- Execução minha (✔ run): 132 testes OK, 1 skip.
+
+**T06-1 · média · rev·lido.** O A-06 foi declarado "Fixed", mas a correção é parcial. `finalize_run` foi movido para `lifecycle.sh` e continua chamando 9 funções `progress_*` e decidindo o código de saída misturado com a renderização (`lifecycle.sh:14-93`). Houve mudança de arquivo, não desacoplamento. **Correção:** `lifecycle` devolve um registro (estado, código, referências) e a apresentação apenas o consome.
+
+**T06-2 · média · rev·lido.** A task alterou superfícies de REQ-02/06 da feature `terminal-progress` (`lifecycle.sh`, `process.sh`, testes) sem atualizar plan, tasks ou traceability dela. O `grep lifecycle.sh sdd/features/terminal-progress/*` volta vazio. Isso contraria o workflow: "If a change affects an existing feature, update its affected artifacts".
+
+**T06-3 · baixa · rev·lido.** `run.sh:66` grava `REASON_CODE=INPUT_INVALID` para **qualquer** falha não classificada. O terminal passa a afirmar "entradas inválidas" onde deveria dizer "causa não determinada", o que contradiz REQ-04. **Correção:** criar `UNKNOWN`.
+
+**T06-4 · baixa.** `automation.json:.environment.defaults` continua listando 3 variáveis que nunca se aplicam, porque `common.sh:12-14` as define antes. São duas fontes para o mesmo padrão.
+
+**T06-5 · baixa.** Os cálculos duplicados de `wanted_json`/`surfaces_json` em `selection.sh:26/45` e `36/46` continuam, assim como a indentação quebrada.
+
+**T06-6 · baixa.** K-19 continua aberto: `expectations.json`, `rust-reference.rs.txt` e `yara/*.hex.txt` não são referenciados por nenhum teste.
+
+**T06-7 · baixa.** O ShellCheck não rodou sobre os bytes finais do shell.
+
+**T06-8 · baixa.** O P-01 só melhorou em parte: `source_snapshot` ainda roda 3 `sha256sum`, `stat`, 2 `jq` e `cp` por arquivo.
+
+**T06-9 · baixa.** O código de saída do CLI legado mudou para a precedência 2 > 3 > 1. A mudança está documentada, mas é incoerente com a justificativa "remoção quebraria chamadores" usada em E-10 e K-07.
+
+**Item da análise anterior → status atual** (rev·lido/exp):
+
+| Item | Status | Evidência |
+|---|---|---|
+| E-01 | corrigido | `summarize.sh:8-17` lê `check`; teste com run real |
+| E-02 | corrigido | não há mais `x=${y} \|\|` (confirmado também por `diff_signals`: 0 `dead-handler`) |
+| E-03 | corrigido (resíduo T06-4) | `common.sh:12-14` `${V-default}` |
+| E-04, E-06, E-07, E-08, E-09 | corrigidos | testes com sensibilidade |
+| E-05 | parcial | `reason_code` existe, mas o padrão `INPUT_INVALID` engana (T06-3) |
+| E-10, E-11 | parciais | ambiente unificado; `warnings`/`skips` sem produtor (T02-4) |
+| R-01 | corrigido | `toolbox_command` usado no plano e na execução; falta teste de equivalência |
+| R-02 | recusado (mitigado) | codificação duplicada, com verificação pós-publicação |
+| R-03 | parcial | T06-5 |
+| A-01 | parcial | globais de resultado mantidas |
+| A-02 | corrigido | `main()` |
+| A-06 | **parcial, declarado "Fixed"** | T06-1 |
+| A-07/K-05, K-01, K-02, K-03 | recusados | justificativas parciais; o ciclo de falsos positivos continua (T05-1) |
+| K-19 | não corrigido | T06-6 |
+| P-01 | parcial | T06-8 |
+| T-01, T-02, T-07, T-08, T-09 | corrigidos | `ShellError`, `rejected`, timeout |
+| T-10 | não corrigido (assumido) | sleeps fixos |
+| T-18 | parcial | INT e HUP sem teste; ver T02-1 |
+
+### Grupo B: governança, SDD e evidências
+
+#### T07 · governance-link-repair-20261115 (+plan) — APROVADA COM RESSALVAS
+
+**Feito.** Os 22 links quebrados de 5 snapshots históricos foram resolvidos por registro autenticado, sem editar os snapshots.
+
+**Conferido** (rev·run):
+- as 22 ocorrências sumiram do `check-ox`;
+- os pins `origins.json` (`efc3c228…`) e `successors.json` (`904ff632…`) conferem;
+- há 24 testes negativos amplos (mérito);
+- o log citado ("Ran 207 tests … OK") existe.
+
+**T07-1 · média · rev·lido.** Esta task iniciou a pilha de módulos de sucessão, que hoje tem 14 módulos e 2.309 linhas e cresce por importações cruzadas. Ver a seção 5.
+
+**T07-2 · média · rev·run.** Os testes usam como oráculo os bytes vivos de documentos mutáveis. A suíte deixa de ser hermética: o vermelho não indica regressão de código.
+
+**T07-3 · média · rev·exp.** `check-ox` leva 58 s. `audit_revision.authenticated` é chamada 137.997 vezes, cerca de 46 s, porque cada `predecessor()` relê e rehasheia os registros. **Correção:** memorizar por execução.
+
+**T07-4 · baixa.** `progress.sh:404` escolhe `stderr.log` por existência, mesmo vazio, em todos os checks que não são `ox`. A projeção só reconhece `FAIL: Broken/escaping link:`.
+
+**T07-5 · baixa.** O plano mandava integrar em `log_repair_revision.py`, mas foi criado um módulo novo, que o plano não atribuía.
+
+#### T08 · osv-acquisition-20261116 — APROVADA COM RESSALVAS
+
+**Lógica da janela.** Lida no Toolbox central (rev·lido): `refreshed = selected is None or checked_at is None or current - checked_at > interval`.
+- Exatamente 12 h reutiliza a base; 12 h + ε readquire.
+- O cálculo é feito sob lock, com timestamps aware.
+- Um relógio no futuro falha fechado.
+- Teste de sensibilidade (rev·exp): trocar `>` por `>=` faz 3 testes falharem, incluindo a borda age=43200. Os 29 testes OSV passam.
+
+**T08-1 · média · rev·lido.** Houve escrita no Toolbox central, compartilhado e sem git, e ninguém assume a autoria: "Exact attribution … remains unknown" (`review.md:81-84`). O applicator não faz transação multiarquivo. A divulgação é honesta, mas a rastreabilidade de uma escrita fora do repositório fica aberta (POL-05/POL-10).
+
+**T08-2 · baixa · rev·exp.** Um `acquired_at` presente mas inválido (`"garbage"`, `null`, inteiro, data naive) dá `ValueError` e **bloqueia** o scan, em vez de readquirir. Isso destoa do ADR ("missing trusted timestamp causes reacquisition"); a recuperação exige `update-db` manual.
+
+**T08-3 · baixa · estimativa.** O Ox deixou de conferir a idade da aquisição. Com `TOOLBOX_BIN` apontando para outra Toolbox, não há verificação de frescor no consumidor.
+
+**T08-4 · baixa.** `osv_acquisition_revision.py:83` levanta "Historical-link current changed…", o que aponta o diagnóstico para o módulo errado.
+
+**T08-5 · info.** O próprio Codex detectou que o fechamento inicial de OSV-05 era contraditório (Ruff E741), corrigiu e registrou.
+
+#### T09 · audit-correction-20261117 — REPROVADA (como entregue; parcialmente remediada por T10)
+
+**Feito.** A task avaliou os 151 achados da auditoria externa. Conferido (rev·run):
+- 147 referências `E-T011-R2-SOURCE-RETENTION` e 8 `E-TECH-RUN` removidas;
+- 40 objetos arquivados intactos;
+- 3 APPROVED rebaixados de forma correta em windows-design-baseline;
+- índice das 43 features.
+
+Também editou 17 arquivos de skills (S1-01, S2-01, S3-01…). Quase todas as edições são coerentes; destaque para a ressalva árvore × índice em `commit-governance`.
+
+**T09-1 · alta · rev·lido + ✔ lido.** **Alegação falsa aprovada.**
+- O relatório afirmava que a mensagem da tarefa local estava "fully pt-BR". Só `result_note` tinha sido traduzido.
+- Revisão e validação ditas independentes aprovaram o AC-03 sobre esse fato. O próprio `assessment.md:143` de T09 hoje registra: "The former claim … was false".
+- Mesmo depois de T10, `local_task.rs` mantém textos em inglês na mesma UI (✔ lido): `:50` "Workspace: … — UNVERIFIED", `:65` "Select workspace", `:127/:254` "No result", `:138` "Attempt {} has no readable…", `:150` "Verification of {} could not complete".
+
+**T09-2 · alta · rev·lido.** A correção V-11 passou o foco a usar `surface_base/text_primary` em todos os papéis e **apagou as cores de papel e estado**. O teste só conferia o contraste. T10 corrigiu e acrescentou `focus_preserves_role_and_interaction_colors_in_every_theme` (`design.rs:311`).
+
+**T09-3 · média · rev·lido.** A causa raiz 2.2 da auditoria externa não foi tratada: "`sdd/project.md` é diário vivo e input com hash; cada autorização derruba verificações". T11 a reproduziu poucas horas depois.
+
+**T09-4 · média · rev·lido.** Fato específico do Ox injetado em skill reutilizável, violando GOV-04: `iced-engineering/SKILL.md:34` ("In the Ox Iced 0.14 dependency set… no AccessKit bridge"). O fato é verdadeiro, mas tem prazo de validade e já está em DESIGN e `components.md`. A edição também invalidou o binding revisado por T18.
+
+**T09-5 · baixa.**
+- `software-delivery/SKILL.md:41` tem gramática quebrada: "…needs; No other skill…".
+- A mesma frase foi colada em 3 skills.
+- `rust/references/examples.md:3` agora traz um caminho do Ox numa referência portátil.
+- Preimages e recuperação ficaram só em `/tmp`; T10 corrigiu, com 109/109 artefatos retidos.
+
+#### T10 · audit-followup-20261117 — APROVADA COM RESSALVAS
+
+**Conferido** (rev·run/lido):
+- `attempt_message` cobre os 5 `Outcome` e tem teste (`local_task.rs:201-260`);
+- o foco preserva fundo e texto, com borda de 2 px;
+- 151/151 IDs do índice batem com a fonte;
+- o manifesto de retenção confere em 109/109 artefatos;
+- `final-check-ox.txt` deu PASS às 18:18.
+
+**T10-1 · baixa · ✔ lido.** A localização (D-14) continua parcial; os textos em inglês estão listados em T09-1.
+
+**T10-2 · média.** Mais uma camada de sucessão. A alteração em `claude_analysis_revision.py` invalidou o AC-08 de `scripts-centralization`, um efeito cascata.
+
+**T10-3 · baixa.** O plano (D-03) evitou de propósito registrar o escopo em `sdd/project.md` "to avoid touching pinned authorities". O mecanismo de pin está distorcendo a regra do AGENTS.
+
+**T10-4 · baixa · rev·run.** Números colados no texto (a mesma classe V-19 que T09 corrigiu em outros lugares): "expands13generic", "all151IDs", "The46", "exit0", "Studio2026Enterprise" (`report.md:19-68`).
+
+#### T11 · registro append-only de tasks (20:32) — REPROVADA
+
+**Pedido.** Registrar cada task concluída em `task_finalizada.md`, apenas por acréscimo.
+
+**Feito.** Regra adicionada em `AGENTS.md:22-25`, `sdd/workflow.md:100-114` e `sdd/project.md`, mais a primeira entrada. "Apenas adições" confere: removendo os blocos novos, os arquivos voltam aos hashes pinados (rev·exp).
+
+**T11-1 · alta · ✔ run.** **O gate de governança ficou quebrado e a alegação de "sem impacto" é falsa.**
+- `check-ox.py` passou de PASS às 18:18 (T10) para **exit 1**. Execução minha: 13 FAILs, entre eles:
+  - "SDD core modified: workflow.md";
+  - "Audit current changed: AGENTS.md / sdd/workflow.md";
+  - "Succession current changed/missing: AGENTS.md";
+  - "Project succession current digest mismatch";
+  - "Windows design current changed…".
+- Testes de governança que rodei isolados (✔ run), com o mesmo tipo de falha:
+  - `test_audit_revision`: 2 FAIL, com `['Audit current changed: AGENTS.md', 'Claude analysis document current changed: sdd/project.md', 'Audit current changed: sdd/workflow.md']`;
+  - `test_defaults_succession`: 1 FAIL;
+  - `test_configuration_succession`: 1 FAIL.
+- A entrada afirma "no application, **checker** … changes are required" e "verificações documentais passaram (exit 0)", mas só rodou `git diff --check` e asserts próprios. O `check-ox`, o check documentado para mudanças em AGENTS e SDD (`docs/development/codex-agents.md`), não foi executado.
+- **Correção:** registrar o sucessor autenticado das três edições (ou substituir o mecanismo, ver seção 5) e rodar `check-ox` antes de declarar a task concluída.
+
+**T11-2 · média · rev·exp.** **Links quebrados na distribuição.** `task_finalizada.md` não está em `distribution_files`, mas é linkado por `AGENTS.md` e `sdd/workflow.md`, que são distribuídos. Numa cópia exportada, o `check-ox` acusa 3 "Broken/escaping link". Além disso, uma regra própria do Ox entrou no contrato portátil `sdd/workflow.md` (GOV-02, SDD 1.3.0).
+
+**T11-3 · média · rev·lido.** A rota foi mal classificada. Foi tratada como local, mas é uma mudança de contrato: "SDD core" protegido em `check-ox.py:356-362`, mais um novo requisito obrigatório de fechamento. O workflow manda usar a rota completa para "contract/authorization change".
+
+**T11-4 · média · rev·lido.** A regra "never delete … including to correct" não prevê redação. Um segredo ou dado pessoal registrado por engano não pode ser removido sem violar a regra, o que conflita com POL-08 ("sob política de acesso e retenção"). **Correção:** exceção explícita de redação, registrada como nova entrada.
+
+**T11-5 · baixa.** Não há enforcement técnico, o que a própria entrada admite. As 7 tasks do mesmo dia anteriores às 20:32 não receberam backfill nem nota de lacuna.
+
+### Grupo C: UI Rust/Iced
+
+A atribuição foi reconstruída pelos snapshots `before/*.bin` que o próprio Codex guardou, conferidos por hash.
+
+Execução minha (✔ run): `cargo test --workspace --locked --offline` deu exit 0. O ox-ui tem 51 testes unitários mais 1 helper ignorado. Os 6 testes X11 de `ox-app/tests/desktop.rs` estão ignorados. `cargo clippy --all-targets -D warnings` deu exit 0.
+
+#### T12 · welcome-identity-20261116 — APROVADA COM RESSALVAS
+
+**Feito.**
+- `identity.rs` carrega as PNGs com `include_bytes!` e `OnceLock<Handle>`, o que evita redecodificar a cada frame (mérito).
+- Iced com `image-without-codecs` e `image` com a feature `png`, padrão recomendado.
+- As contagens de teste conferem.
+
+**T12-1 · baixa.** Nenhum teste prova que as PNGs decodificam. Sem o codec, o Iced simplesmente não desenha a logo. **Correção:** `image::load_from_memory(include_bytes!(…))` → `Ok`, com as dimensões esperadas.
+
+**T12-2 · baixa.** `image = "0.25"` foge da convenção `=` do crate. O lock ganhou 42 pacotes (wgpu, naga) que não são compilados, mas aumentam a superfície de revisão de licenças.
+
+**T12-3 · baixa.** O layout de T12 foi quase todo substituído por T13, T14 e T16 em menos de 24 h. O mascote de 1,39 MB continua no crate sem ser referenciado.
+
+#### T13 · enterprise-visual-20261116 — APROVADA COM RESSALVAS
+
+**Feito.** Ícones de linha nativos (`icons.rs`), chrome compacto e assinatura. O defeito P1 (separador de 418 px) foi corrigido e protegido pelo teste `welcome_chrome_preserves_work_area_at_desktop_sizes` (mérito).
+
+**T13-1 · baixa · rev·run.** O relatório lista `design.rs` entre as fontes alteradas, mas o `design.rs` de final03 tem o hash de HEAD (`034ada22…`).
+
+**T13-2 · baixa · rev·lido.** O ícone é escolhido pelo **ID numérico do controle** (`desktop.rs:647-656`: `273|292 => Folder, 274 => Plus…`). Depois de T14, vários desses braços ficaram mortos. **Correção:** `styled_control(…, icon: Option<Kind>)`.
+
+**T13-3 · baixa.** O rodapé mostra "IBM Plex · " antes do tema (`views.rs:700`), informação sem valor para o usuário.
+
+**T13-4 · média · rev·run.** A evidência ocupa 36 MB em 355 arquivos, com corpora superados (baseline, final, final02, final03, native-*). Não está no `.gitignore`, então seria versionada num commit.
+
+#### T14 · desktop-navigation-20261117 — APROVADA COM RESSALVAS
+
+**Lógica do arraste** (rev·lido; correta):
+- a largura é `x − grab`, com clamp entre 200 e `sidebar_max()`, e guarda para NaN;
+- a largura preferida é preservada no rail e quando a janela encolhe;
+- o arraste termina em ButtonReleased, CursorLeft, Unfocused, Escape, Resize, Navigate e Command;
+- o teste `sidebar_drag_is_bounded…` cobre mínimo, máximo, NaN e eventos fora de ordem (mérito).
+
+**T14-1 · média · ✔ lido.** **Evento global a cada movimento do mouse.** `desktop.rs:1310-1312` faz `CursorMoved{position} => return Some(Message::SidebarMove(position.x))` incondicionalmente, em todas as superfícies.
+- No iced_winit 0.14, cada mensagem chama `update`, depois `view` e layout, e pede redesenho (rev·lido em `iced_winit/src/lib.rs:1215-1255`).
+- `view()` monta 27 itens de navegação com `format!` e um `Vec` por chamada. Antes de T14, mover o mouse não gerava mensagem.
+- **Correção:**
+  - assinar o `listen_with` de movimento só enquanto `navigation_drag` estiver ativo;
+  - ou deixar o `Splitter` controlar o arraste no próprio estado de `Tree`, como faz o `pane_grid`.
+- Experimento sugerido: um contador `AtomicUsize` em `view()`.
+
+**T14-2 · baixa · ✔ lido.** Ctrl+B e Ctrl+Alt+setas (`desktop.rs:1338-1352`) não verificam `status` nem a superfície. Disparam mesmo com um `text_input` em foco, e em boas-vindas e Settings alteram estado invisível.
+
+**T14-3 · baixa · rev·lido.** Fontes de verdade duplicadas:
+- `focused_label()` (`desktop.rs:437-454`) repete rótulos de `views.rs`;
+- as constantes 200/420/52/326/6/256 estão soltas no código;
+- o caso especial do 272 aparece em dois lugares.
+
+**Correção:** `const SIDEBAR_*`, uma struct `Sidebar` e uma tabela única `(id, label, kind, message)`.
+
+**T14-4 · baixa.** O mapeamento de eventos é um closure inline sem teste. A alegação "WindowUnfocused cancellation is source/test-covered" é exagerada: o teste cobre `SidebarEnd`, não o mapeamento. O oráculo `task.units() > 0` é fraco. **Correção:** extrair `fn map_event(&Event, Status) -> Option<Message>` e testá-la.
+
+**T14-5 · baixa.** Código residual:
+- `let content_visible = true;` (`desktop.rs:505`) é resto morto do colapso automático removido;
+- DESIGN promete "reserve a 320-unit primary area", o que deixa de valer abaixo de 526 px; não há `min_size` na janela;
+- os tooltips não usam `.delay()`.
+
+**T14-6 · baixa · rev·run.** 20 MB de evidência, incluindo um corpus `final02-small` inválido e um `__pycache__` gerado (ignorado pelo `.gitignore`).
+
+#### T15 · project-entry-20261117 — REPROVADA
+
+**Pedido** (`sdd/project.md`, 17/11): engrenagem para Settings; ordem Novo → Abrir pastas → Clonar (desabilitado); remover a ação de caminho manual. O texto diz literalmente: **"Existing chooser-failure path recovery is preserved."**
+
+**T15-1 · alta · ✔ exp.** **A recuperação de falha do seletor foi quebrada.**
+- No HEAD havia `Message::ManualPath` e o botão "Digitar caminho…" (`views.rs:406-408`), uma saída sempre disponível. A task removeu os dois.
+- A única linha que hoje liga `manual_path` automaticamente é `desktop.rs:766`, dentro de `if let Err(error) = spawn`, ou seja, só quando o SO não consegue **criar a thread**.
+- A falha real do Zenity (ausente, encerrado com erro, caminho longo) chega por `Message::FolderChosen(id, Err(..))`. O ramo `desktop.rs:1203` só faz `self.picker_error = Some(error)` e foca o 273. O campo manual (id 2) continua oculto.
+- A mensagem exibida (`folder_picker.rs:48`, `109`, `113`) manda "Digite o caminho manualmente" num campo que não existe.
+- O teste que deveria proteger isso faz `ui.manual_path = true; // Automatic fallback after chooser failure.` (`desktop.rs:1616`), ou seja, liga a flag à mão.
+- A documentação ficou falsa: `application/README.md:231`, `README.md:261` e `docs/design/surfaces.md:100`.
+- Experimento (✔ exp): numa cópia do workspace, `pending_ui()` seguido de `update(FolderChosen(5, Err("Zenity ausente")))` **falha** com `manual_path=false, id2 visível=false`. Com a correção abaixo, o teste passa e os outros 52 testes do ox-ui também (0 falhas).
+- Impacto: num host sem Zenity, que o README diz ser "instalado separadamente", o usuário não consegue abrir nenhuma pasta existente. Restam só os recentes e "Novo projeto".
+- **Correção** (5 linhas, validada em cópia): no ramo `Err` de `FolderChosen`, com `!picker_parent`, fazer `self.manual_path = true` e focar/revelar o id 2. Acrescentar o teste de regressão descrito. Avaliar manter "Digitar caminho…" como link secundário.
+
+**T15-2 · baixa · rev·lido.** Os `unreachable!` em `icons.rs:132/220/241` são inalcançáveis hoje, mas o invariante está partido em dois lugares da mesma função: o guarda `if matches!` em `:48-90` e o `match`. Basta incluir um novo destino de configurações e esquecer o guarda para o app entrar em pânico em `draw`. **Correção:** um braço `Kind::Settings | … => draw_cog(..)` dentro do `match`.
+
+**T15-3 · baixa.** Settings e AgentSettings usam a mesma engrenagem e ficam idênticos no rail, o que contradiz DN-02 de T14 ("distinct semantic icons"). O conflito não foi registrado.
+
+**T15-4 · baixa.** A ordem de Tab vai e volta entre regiões (`desktop.rs:614-620`): sidebar → principal → sidebar.
+
+#### T16 · sidebar-settings-20261117 — APROVADA COM RESSALVAS
+
+**Máquina de estados** (rev·lido; correta e simples). `settings_origin = Option<(Appearance, Density, Surface)>`:
+- Salvar faz `take()` antes de navegar, então a prévia é confirmada;
+- Voltar, Escape ou qualquer `Navigate` para fora restauram a configuração anterior;
+- o teste `preferences_save_and_back_restore_the_origin_without_domain_effects` cobre os três caminhos e verifica `attempt == 0`.
+
+**T16-1 · média · rev·lido + captura.** A 640×480, os botões de Densidade (223/224) ficam abaixo da dobra. `Message::Focus` só revela o alvo em superfícies de entrada ou de navegação. Tab leva o foco a controles invisíveis (WCAG 2.4.11), e o harness nativo passou por eles sem capturar. **Correção:** dar ids aos controles 220-226 e chamar `reveal` também em Settings.
+
+**T16-2 · média · rev·lido.** O scrollable da sidebar de boas-vindas não tem id. `RevealControl` usa a translação do scrollable `"main"`, que é a lista de projetos: os controles da sidebar nunca são revelados e a lista rola à toa. **Correção:** `.id("welcome-sidebar")` e `RevealControl { scroller }`.
+
+**T16-3 · baixa.**
+- `content()` tem um ramo `Settings|Appearance` inalcançável (`views.rs:1134-1141`).
+- O predicado `matches!(…, Settings | Appearance)` aparece 6 vezes.
+- Ctrl+K em Settings mostra a navegação geral, contrariando "Settings sem navegação geral".
+- Os botões da toolbar trocam o tema na hora, enquanto Settings exige Salvar: duas semânticas para a mesma preferência.
+
+**T16-4 · baixa.** Os testes usam sempre Start como origem. Salvar/Voltar com `origin=None` vira no-op silencioso. O título da janela diz "Preferências" e o cabeçalho diz "Configurações".
+
+### Grupo D: skills e design
+
+#### T17 · visual-skills-20261116 — APROVADA COM RESSALVAS
+
+**Conferido** (rev·exp):
+- 35/35 hashes do inventário do desktop pack batem;
+- 0 sequências de 8 palavras copiadas dos upstreams, ou seja, a síntese é original;
+- catálogo, perfil e pontes coerentes: 31 = 17 + 5 + 9, com nomes e pastas iguais;
+- o instalador destrutivo do upstream foi identificado e não executado (mérito).
+
+**T17-1 · média · rev·run.** Os testes de sucessão copiam bytes vivos de `ROOT` (`test_visual_skill_revision.py:19-26`) e quebram com qualquer edição posterior. Hoje 1 de 7 falha.
+
+**T17-2 · média · rev·exp.** O oráculo `assertTrue(R.errors(root))` (`test_visual_skill_revision.py:59,62,66,72`; também em `test_windows_design_revision.py:45,48,52`) aceita qualquer erro. Na árvore atual, `errors()` já devolve 5 erros antes de qualquer mutação, então os subtestes de "mutação rejeitada" passam mesmo sem detecção. **Correção:** verificar `set(after) - set(before) == {erro esperado}`.
+
+**T17-3 · baixa.** O orçamento de geometria ilustrativo mistura altura e largura: `native-visual-contract.md:40-42` subtrai "chrome" da largura, mas no Ox "chrome" é a faixa superior. Além disso, o mesmo orçamento está duplicado em duas skills.
+
+**T17-4 · baixa.** O escopo não foi registrado em `sdd/project.md`, ao contrário das tasks irmãs. O inventário tem 6.355 linhas de JSON.
+
+#### T18 · windows-design-20261117 — APROVADA COM RESSALVAS
+
+**Conferido** (rev·exp):
+- 44/44 artigos do TOC fixado, 779.143 bytes, 44/44 hashes e 3/3 imagens;
+- amostra de 6 fatos (83/167/250 ms, breakpoints 640/1008, raios 4/8, contrastes 5:1 e 4.5:1, Segoe "may not ship"), todos confirmados no texto-fonte;
+- 0 cópias de texto;
+- limites declarados com honestidade: sem build do VS, sem diferença visual própria da edição Enterprise.
+
+**T18-1 · média · rev·lido.** As metas de DESIGN contradizem a baseline e o código, sem nota de lacuna:
+- `DESIGN.md:279-281` diz "6 for controls", mas a baseline e `design.rs:165,191` usam 4;
+- `DESIGN.md:277` diz "48–52 chrome", mas o próprio `DESIGN.md:501` registra 56;
+- o Inspector diz "280–360", mas `views.rs:916` usa 240.
+
+**T18-2 · média · rev·lido.** Regras sucedidas continuam no corpo normativo. `surfaces.md:73` ("stacks as a compact strip") contradiz `surfaces.md:117` ("uses 210 units instead of stacking"). O leitor precisa resolver a precedência pela data. **Correção:** uma seção "regra vigente" por superfície, com o histórico em anexo.
+
+**T18-3 · baixa.** A baseline obrigatória está declarada em 11 documentos. O bloco "Translate a Windows or IDE reference" está em 3 skills.
+
+**T18-4 · baixa · rev·exp.** `source-toc.yml` é cópia literal do `toc.yml` da Microsoft (hash idêntico), sem atribuição em `NOTICE`. A licença não foi verificada. **Correção:** guardar só a lista de caminhos e o hash, ou acrescentar a atribuição.
+
+**T18-5 · baixa.**
+- As páginas do VS (release notes, downloads, devblog) estão citadas só por URL, sem hash nem data.
+- O cenário foi executado pelo mesmo contexto que revisou.
+- 1.900 linhas de evidência para uma mudança documental.
+
+#### DESIGN.md versus código (amostra de 13 regras, rev·lido)
+
+10 regras conferem com o código:
+- raios 4/6;
+- sidebar 280/210;
+- navegação 256 (200..420, rail 52);
+- chrome 56/52;
+- assinatura 128×40;
+- engrenagem com alvo de 32;
+- limiares 900/1200/1400;
+- ícones de 16;
+- Light/Comfortable;
+- Clonar desabilitado.
+
+3 divergem, todas nas **metas** antigas da §7: raio de controle 6, chrome 48–52 e inspector 280–360 (T18-1).
+
+### Grupo E: tarefa concorrente
+
+#### T19 · critério de finalização na skill de prompt (20:55) — REPROVADA
+
+**Pedido.** A skill de prompt deve exigir um critério explícito de finalização dentro do prompt entregue.
+
+**Feito** (✔ lido, `git diff HEAD -- .codex/skills/prompt/SKILL.md`, +28 linhas):
+- nova seção "Mandatory task completion criterion";
+- checagem prévia à entrega;
+- condicionalidade correta ("do not impose a particular project's policy on unrelated prompts"), o que respeita GOV-04.
+
+O conteúdo é bom.
+
+**T19-1 · alta · ✔ run.** O gate e a suíte de governança foram quebrados de novo, e o check não foi rodado.
+- O `check-ox` acusa "Copied resource changed/missing: .codex/skills/prompt/SKILL.md" e "Transition preserved input changed: .codex/skills/prompt/SKILL.md".
+- Segundo o auditor do grupo B (rev·exp), a reversão desta edição é o que leva `test_clean_export_and_recovery` de volta a 0 erros.
+- A entrada se apoia em `quick_validate.py`, uma ferramenta externa ao Ox (`~/.codex/skills/.system/skill-creator`), e em `git diff --check`.
+- A frase "Catálogo, referências e metadados … preservados" é verdadeira, mas não cobre o registro de cópia protegida que o `check-ox` verifica.
+
+**T19-2 · baixa.** A regra de fechamento passou a existir em três lugares (AGENTS, workflow e a skill de prompt). O texto da skill é genérico, então o risco é baixo.
+
+**T19-3 · info.** A task seguiu a regra do T11: entrada completa, append-only e com hash do input. Isso mostra que a regra é aplicável. Usou uma skill de sistema fora do catálogo (`skill-creator`) e declarou isso com honestidade.
+
+---
+
+## 5. Achados transversais
+
+1. **A cadeia de sucessão pinada é a principal dívida técnica do repositório.** Severidade média, mas sistêmica (✔ run + rev).
+   - São 14 módulos `*_revision.py`, 2.309 linhas e importações cíclicas (`visual_skill ↔ windows_design`, `audit ↔ claude_analysis`, `readme ↔ audit`).
+   - Cada edição legítima de `AGENTS.md`, `sdd/project.md` ou `sdd/workflow.md` exige um novo módulo com hashes literais.
+   - Sem esse módulo, o `check-ox` (13 FAILs hoje) e a suíte ficam vermelhos, e aceites de outras features caem em cascata (AC-08 de scripts-centralization, terminal-progress, windows-design-baseline).
+   - O mecanismo só prova deriva, não revisão: o hash "revisado" é gravado pelo mesmo agente que edita.
+   - O registro de escopo já é distorcido para evitar pins (T10-3), e o `check-ox` leva 58 s.
+   - **Recomendação:** ADR para um único ledger declarativo append-only (`{path, prev_sha, next_sha, task, reviewer}`) com um só verificador memorizado, aposentando os 14 módulos. Testes herméticos com fixtures congeladas, deixando a checagem da árvore viva só para o `check-ox`.
+2. **Testes que passam pelo motivo errado** (M04 = 2,5, a pior métrica). Os padrões encontrados:
+   - flag de fallback ligada à mão (T15);
+   - `assertNotEqual(code, 0)` para cancelamento (T02);
+   - `assertTrue(errors)` com erros já presentes antes da mutação (T17/T18);
+   - oráculo `units() > 0` (T14);
+   - contraste verificado e papel de cor ignorado (T09);
+   - testes acoplados a bytes vivos (T07/T17).
+
+   Contraponto positivo: T03, T06 e T08 registram testes de sensibilidade reais.
+3. **Alegações de "preservado", "sem impacto" ou "fully" sem o check correspondente** (T09, T11, T15, T19). O padrão é declarar a propriedade e verificar algo adjacente.
+4. **"Revisão/validação independente" não verificável** (T01, T02, T09, T13, T14, T18). Existe só a transcrição do coordenador, sem log bruto nem identificador de contexto, e T09 aprovou um fato falso. O próprio `codex-agents.md` exige contexto independente para a rota completa.
+5. **Crescimento monolítico da UI.**
+   - `desktop.rs` foi de 1.757 para 2.155 linhas e `views.rs` de 1.345 para 1.493.
+   - Há `#[expect(struct_excessive_bools)]` e três `#[expect(too_many_lines)]`.
+   - Os IDs mágicos de controle (0, 1, 210-226, 270-276, 100..127) codificam ordem, ícone, rótulo e reveal em 4 tabelas paralelas. Isso já gerou braços mortos (T13-2), duplicação (T14-3) e ordem de Tab inconsistente (T15-4).
+   - **Recomendação:** extrair `sidebar.rs`, `settings.rs` e uma tabela declarativa de controles.
+6. **Verificação nativa fragmentada.**
+   - Há 6 harnesses Python ad hoc em `docs/validation`, carregando `f0-resumption/native-session.py` via `importlib`.
+   - Os 6 testes `#[ignore]` de `ox-app/tests/desktop.rs` estão obsoletos: esperam o título `"Ox — Fundação"` e clicam em coordenadas fixas de um layout que já não existe.
+   - Uma captura de T14 mostrou conteúdo de fora da sessão privada, e a causa não foi estabelecida: o isolamento das sessões nativas não está provado.
+7. **Evidência desproporcional e não curada.**
+   - Cerca de 100 MB em cerca de 2.400 arquivos não rastreados de `docs/validation`, estimativa por `du`/`find` nas pastas do lote.
+   - JSON de inventário de 4 a 6 MB.
+   - Caminhos absolutos `/home/rodrigo/…` em fixtures e estado.
+   - Isso alimenta os falsos positivos do Gitleaks (T05-1). É preciso curar antes de qualquer commit.
+8. **Supressões por enumeração crescem sem fim.** O baseline do Bandit tem 117 entradas, o `reviews.static` 32 hashes e o ignore do Gitleaks 1.753 fingerprints, e cada task obriga a refazer bindings.
+9. **Nenhum critério aceito.** Nas 43 features há 244 critérios: 0 APPROVED, 130 INCONCLUSIVE e 114 UNVERIFIED (✔ run). O custo de governança não se converte em aceite verificável.
+10. **Pontos genuinamente fortes.**
+    - Preservação histórica exata: 34 retiradas idênticas, 0 alteradas, prefixos preservados em 30/30 envelopes.
+    - Postura fail-closed.
+    - Proveniência de fontes externas exemplar.
+    - Divulgação honesta de limites e falhas.
+    - Autocorreção (OSV-05, rejeição da primeira correção do ShellCheck).
+    - A análise anterior (Parte 1 deste documento) foi levada a sério, com correções reais em 8 ou mais itens.
+
+---
+
+## 6. Alegações do Codex vs. execução própria
+
+| Alegação | Fonte | Observado | Confere? |
+|---|---|---|---|
+| scripts/tests: 132 testes OK, 1 skip | T06 report | 132 OK, 1 skip, exit 0 (✔ run) | ✔ |
+| Testes Rust do ox-ui passam; clippy limpo | T12–T16 | 51 + 4 + 1 OK; clippy exit 0 (✔ run) | ✔ |
+| "Existing chooser-failure path recovery is preserved" | `sdd/project.md`, T15 | falso; teste reproduz (✔ exp) | **✘** |
+| "Falha do seletor revela um campo manual" | `application/README.md:231` | falso para falha do Zenity | **✘** |
+| "no checker changes are required" / "exit 0" | T11 | `check-ox` exit 1, 13 FAILs (✔ run) | **✘** |
+| skill de prompt sem impacto em catálogo ou referências | T19 | `check-ox`: "Copied resource changed: prompt/SKILL.md" (✔ run) | **✘** |
+| Mensagem "fully pt-BR" | T09 | falso; inglês ainda em `local_task.rs:50-150` (✔ lido) | **✘** |
+| A-06 "Fixed" | T06 | parcial | ✘ |
+| "WindowUnfocused cancellation is source/test-covered" | T14 | só `SidebarEnd` é testado | parcial |
+| Cancelamento não parece conclusão normal | T02 REQ-02/06 | ≠ 0, mas exit 2 em fase, não 128+N (✔ exp) | parcial |
+| "Source changes … design.rs" | T13 | `design.rs` = HEAD | ✘ (baixa) |
+| 147 fingerprints com proveniência | T05 | 147/147 reproduzidos | ✔ (rev·exp) |
+| 44/44 artigos, hashes, fatos da Microsoft | T18 | 44/44, 6/6 fatos | ✔ (rev·exp) |
+| Retiradas de evidência sem rehash | T09/T10 | 34/34 idênticas; 0 alteradas | ✔ (rev·run) |
+| `check-ox` PASS | T10 (18:18) | PASS na época; hoje exit 1 por T11 e T19 | histórico |
+| Revisão/validação independentes | vários | só transcrição do coordenador | não verificável |
+
+---
+
+## 7. Recomendações priorizadas
+
+| Prioridade | Ação | Tasks | Esforço estimado |
+|---|---|---|---|
+| P0 | Restaurar o campo manual em `FolderChosen(Err)` (patch de 5 linhas validado em cópia) e acrescentar o teste de regressão; corrigir README, `surfaces.md` e o relatório por nova entrada | T15 | 1 h |
+| P0 | Devolver o `check-ox` ao verde: registrar os sucessores de `AGENTS.md`, `sdd/workflow.md`, `sdd/project.md` e da skill de prompt, ou reverter; rodar `check-ox` e a suíte de governança | T11, T19 | 2–4 h |
+| P0 | Tornar obrigatório rodar `check-ox.py` antes de fechar qualquer task que toque AGENTS, SDD ou skills, como item do contrato de fechamento | T11, T19 | 30 min |
+| P1 | ADR e implementação de um ledger único de sucessão; aposentar os 14 módulos; testes herméticos | transversal | 2–3 dias |
+| P1 | Código de saída de cancelamento 128+N em todas as fases, com testes exatos para INT, TERM e HUP | T02 | 2–3 h |
+| P1 | Assinatura de `CursorMoved` só durante o arraste; `map_event` testável | T14 | 2 h |
+| P1 | Ids e reveal em Settings e na sidebar de boas-vindas (foco visível) | T16 | 2–3 h |
+| P1 | Serializar hashes como `{path, sha256}` ou usar allowlist estreita do Gitleaks | T05 | 3–4 h |
+| P1 | Concluir a localização pt-BR de `local_task.rs` | T09/T10 | 1 h |
+| P2 | Extrair `sidebar.rs`, `settings.rs` e tabela declarativa de controles; remover `content_visible`, braços mortos e o mascote órfão | T13–T16 | 1–2 dias |
+| P2 | Unificar os harnesses nativos e substituir os testes X11 obsoletos | transversal | 1 dia |
+| P2 | Atualizar plan, traceability e converge de `terminal-progress` com `lifecycle.sh`; desacoplar `lifecycle` da apresentação | T06 | 3 h |
+| P2 | Reconciliar as metas da §7 de DESIGN (raio 4, chrome 56, inspector) e criar uma seção "regra vigente" por superfície | T18 | 2 h |
+| P2 | Exceção de redação de segredos no log append-only (POL-08); incluir `task_finalizada.md` na distribuição ou não linká-lo | T11 | 1 h |
+| P3 | Curar `docs/validation` antes do commit: remover corpora superados e caminhos absolutos | transversal | 0,5 dia |
+| P3 | Rodar BS-04, o ShellCheck final e o teste de decodificação PNG; fixar `image = "=0.25.10"` | T01, T06, T12 | 2 h |
+| P3 | Retirar o fato do Ox da skill `iced-engineering`; corrigir a gramática e a frase triplicada | T09 | 30 min |
+
+---
+
+## 8. Apêndice — comandos e resultados
+
+Todos os comandos foram executados a partir de `/home/rodrigo/Projetos/ox`. Os logs estão no scratchpad desta sessão (`…/scratchpad/runs/`).
+
+| Comando | Resultado |
+|---|---|
+| `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -v` | `Ran 132 tests in 193.666s — OK (skipped=1)`, exit 0. Skip: `test_native_scans` (exige Docker e imagens centrais) |
+| `cargo test --workspace --locked --offline` (em `application/`, `CARGO_HOME=.cache/ox/cargo-home`) | exit 0. ox-ui: 51 passed + 1 ignored (helper de subprocess); `local_task.rs`: 4; `ox-app/tests/desktop.rs`: 6 ignored (X11) |
+| `cargo clippy --workspace --all-targets --locked --offline -- -D warnings` | exit 0 |
+| `python3 tools/governance/scripts/check-ox.py` | **exit 1**, 13 FAILs (AGENTS, workflow, project e prompt/SKILL.md; ver T11-1 e T19-1) |
+| `python3 sdd/tools/validate.py --root . --structure-only` | exit 0 (estrutura; não é aceite) |
+| `validate.py --features sdd/features --feature configuration-cohesion --require-approved --require-fresh --check-convergence` | FAIL esperado: AC-01..16 UNVERIFIED |
+| `python3 -m unittest discover -s tools/governance/tests -v` (timeout de 1.500 s) | interrompido por timeout (exit 124) depois de cerca de 90 testes, com 16 FAIL/ERROR até então |
+| `python3 -m unittest discover -s tools/governance/tests` (2ª execução, timeout de 5.400 s) | **`Ran 244 tests in 2998.437s — FAILED (failures=47, errors=10)`**, exit 1. As 108 linhas FAIL/ERROR têm só estas assinaturas: "current changed" de `AGENTS.md`, `sdd/project.md`, `sdd/workflow.md` (T11); "Copied resource / Transition preserved input changed: `.codex/skills/prompt/SKILL.md`" (T19); "SDD core modified: workflow.md" (T11); "Broken/escaping link … task_finalizada.md" e "Nonportable or missing link" em cópias públicas (T11-2). O teste mais afetado é `test_all_skill_methods_and_bridge_contributions_preserved`, com 11 falhas. Nenhuma falha sem relação com T11/T19 foi encontrada. Uma suíte de 50 minutos explica, mas não justifica, que as duas tasks não a tenham rodado |
+| `python3 -m unittest test_defaults_succession test_configuration_succession test_audit_revision` (isolados) | `Ran 17 tests — FAILED (failures=4)`, todos por bytes vivos de AGENTS, project e workflow |
+| Experimento T15-1: teste `audit_c41_chooser_failure_reveals_manual_path` numa cópia de `application/` | árvore atual: **FAILED** (`manual_path=false, id2 visível=false`); com o patch de 5 linhas: ok, e `ox-ui --lib` 52 passed, 0 failed |
+| Experimento T02-1: sonda de sinais numa cópia limpa de `scripts/` | SIGTERM, SIGINT e SIGHUP → exit 2; `results=[('ox','failed',130,<SINAL>)]` |
+| Tabulação dos estados em `sdd/features/*/evidence.json` (HEAD × árvore) | HEAD: 129 INCONCLUSIVE / 98 UNVERIFIED; agora 130 / 114; 0 APPROVED; nenhuma transição de estado em critério rastreado |
+| `discover_tasks.py --format md` | 18 pastas de task + 25 features alteradas; 0 órfãos; `task_finalizada.md` append-only em relação ao índice |
+| `diff_signals.py` | 4 `panic!`/`unreachable!` novos (3 em `icons.rs`, ver T15-2; 1 em teste), 3 `shellcheck disable`, 42 funções novas sem nome em teste, 2 arquivos grandes (`desktop.rs` 2.155, `views.rs` 1.493), 0 artefatos de cache no diff |
+| Skill: `python3 -I .claude/skills/codex-task-audit/scripts/test_scripts.py -v` | 9 testes OK |

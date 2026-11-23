@@ -1,6 +1,24 @@
 # Ox project context
+<!-- ox:project-contract=2 -->
 
-## Current summary — 2026-11-14
+## Current summary — 2026-11-19
+
+Current request: install per-request prompt generation, append-only planning and
+post-validation completion records. Authorized local governance scope and criteria:
+[task specification](../docs/validation/prompt-workflow-20261119/spec.md).
+The original request remains the permission boundary. Full route with independent
+review/validation; no product changes, downloads, full scanner run or publication.
+
+The following R3 scope is the preceding request, retained for context:
+
+Current request: correct R3-1, R3-2 and R3-3 from Part 3 of claude_analysis.md.
+Scope, ownership, checks and unresolved findings are in
+[the R3 remediation](../docs/validation/r3-remediation-20261118/spec.md).
+The request authorizes complete verification and local package checks, with
+separately approved OSV database refresh. It grants no commit, publication,
+other central maintenance or revival of older permissions. Current visual
+baseline is Visual Studio 2026 Enterprise under DESIGN.md; recent project-entry
+and settings changes require their own current evidence.
 
 Current phase: `implementation-foundation`.
 Application state: `bootstrap-implemented`.
@@ -46,6 +64,17 @@ Authorization-history index: foundation and local slices (October), F0 and stora
 preparation (early November), scripts and retention successors, visual workbench,
 configuration cohesion and script defaults. The dated sections below retain their
 anchors and earlier facts. Review the applicable feature before resuming any scope.
+
+## Authorized welcome identity/layout — 2026-11-16
+
+The maintainer requests a native home-page layout refactor using the mascot,
+symbol and composition supplied in `.local/assets`. The definitive identity is
+`definitivo/README.md`: cotton mascot with Ferris tag, Catalisador v2 symbol and
+Valência lettering. Authorized scope is local presentation/assets, necessary
+PNG rendering support and focused Rust/native checks. Existing project-open,
+creation, history and task-effect contracts remain in force. No commit/publication
+or complete scanner run is requested. Local-route scope, inputs, checks and
+documentation disposition: [identity report](../docs/validation/welcome-identity-20261116/report.md).
 
 ## Authorized log repair — 2026-11-15
 
@@ -563,3 +592,120 @@ validation after Rust/filesystem/widget tests and final real Wayland wide/small/
 recovery journeys. Recent history survives restart; exclusive empty-project creation
 is real; corrected input-focus behavior was reobserved. Broad visual-workbench
 ACs remain INCONCLUSIVE and general persistence acceptance remains unchanged.
+
+## Authorized single OSV acquisition clock — 2026-11-16
+
+The maintainer requests implementation and contradiction audit of one OSV temporal
+rule: absent data or >12h since successful download acquires a new validated base;
+<=12h reuses it; scans never reset the timestamp. This explicitly supersedes earlier
+OSV 24h requirements in this document and the scanner ownership/native ADRs.
+Trivy/Grype 120h and advisory exceptions remain unchanged. Continue full route
+scripts-toolbox-native T031 with high coordination and independent review/validation.
+Central source changes require actual host write approval; prepare a reviewable
+patch locally first. No commits, publication, real downloads or complete run.
+Authority: docs/decisions/osv-acquisition-validity.md. Scoped criteria and results:
+docs/validation/osv-acquisition-20261116/plan.md and report.md. Historical scanner
+observations retain their original input bindings and are not renewed.
+
+## Authorized enterprise desktop composition — 2026-11-16
+
+The maintainer rejects the floating welcome card and requests a comprehensive
+visual/layout/design-system reformulation using the supplied IntelliJ Home captures,
+DESIGN colors/IBM Plex typography and `.local/assets/definitivo`. Authorized local
+work covers native presentation, shared components, navigation, welcome/creation,
+workbench/settings and focused Rust/native observations. Domain effects/history
+formats stay under existing contracts. No commit/publication, full scanner run or
+dependency acquisition is requested. Full-route continuation is recorded under
+product-visual-workbench and enterprise-visual-20261116/report.md.
+
+## Authorized desktop navigation refinement — 2026-11-17
+
+User feedback authorizes compact icon-only chrome with real tooltips, removal
+of the mascot from UI, distinct semantic destination icons and uniquely grouped
+navigation. Sidebar must resize by horizontal pointer drag, collapse to a usable
+rail and restore width, with keyboard alternatives. Local presentation state only;
+no new persistence, backend effects, dependencies, commits or full scanner run.
+Scope/evidence: desktop-navigation-20261117 report and product-visual-workbench successor.
+
+## Project-entry presentation correction — 2026-11-17
+
+User authorizes a bounded local correction: settings always use a cog; entry
+actions are New project → Open folders → Clone repository; remove the manual-path
+action and place recent/open-project controls in the primary area. Clone is a
+disabled, explicitly unavailable entry; no Git/network implementation is implied.
+Existing chooser-failure path recovery is preserved. Root owns the three UI sources
+and affected documentation. Local route: clear reversible presentation with known
+consumers/oracles, no domain/persistence/dependency change. Scope, observations and
+limits: [entry report](../docs/validation/project-entry-20261117/report.md).
+
+## Authorized Windows design and Visual Studio baseline — 2026-11-17
+
+The maintainer requests comprehensive analysis of Microsoft's Windows app design
+portal and incorporation into existing skills, SDD, AGENTS.md and DESIGN.md, with
+**VISUAL STUDIO 2026 ENTERPRISE** as the mandatory visual base. Authorized scope is
+source research, documentary contracts, reusable skill methods and bounded
+preservation integration with focused verification and independent review/validation.
+Full-route feature: [windows-design-baseline](features/windows-design-baseline/spec.md).
+The request does not itself implement a new UI, change Rust/Iced/platform scope,
+copy Microsoft assets, run full scanners, commit or publish. Prior native acceptance
+remains bound to its original inputs.
+
+## Fixed welcome sidebar and isolated settings — 2026-11-17
+
+Maintainer authorizes a full-height project-entry sidebar, Plugins as its first
+bottom destination, and Settings without general navigation, with Save/Back at
+bottom right. Local recoverable presentation route; no persisted preferences or
+plugin integration. Root owns desktop.rs, desktop/views.rs and affected records.
+Save confirms the preview for the session and returns to the originating surface;
+Back/Escape discard preview. Focused tests and private native checks are in
+[the local report](../docs/validation/sidebar-settings-20261117/report.md).
+
+## Authorized scripts analysis corrections — 2026-11-17
+
+The maintainer requests analysis and correction of claude_analisys.md. Full-route
+high coordination continues scripts-centralization T008, with independent review
+and validation. Scope is confirmed local defects and bounded maintainability/test
+repairs, preserving existing changes and documented scanner/compatibility policies.
+No full scanner run, downloads, central maintenance, commit or publication. Record:
+[analysis corrections](../docs/validation/claude-analysis-20261117/report.md).
+
+## Append-only task completion record — 2026-11-17
+
+The maintainer requests that every completed task be recorded in the root
+task_finalizada.md without deleting or overwriting any existing information.
+Authorized local documentary scope: AGENTS.md entry guidance, the workflow closure
+contract, this scope record and the first appended task entry. Root owns these
+four files and preserves existing changes. Focused inspection verifies the added
+instructions and byte preservation; no application, checker, acceptance-state,
+skill-catalog or automation changes are required. Closure details and observed
+results are appended to [the task log](../task_finalizada.md).
+
+## Explicit completion criterion in prompts — 2026-11-17
+
+The maintainer requests an explicit task completion criterion in the prompt skill.
+Local documentary scope, owned by root: `.codex/skills/prompt/SKILL.md`, this scope
+record and an appended entry in task_finalizada.md. Prompts must state deliverables,
+observable completion conditions, relevant verification and applicable consumer
+closure requirements, including append-only logs when required by that project.
+The final skill review checks that the criterion is inside the delivered prompt.
+Existing project gates, skill identity and execution permissions are preserved;
+focused skill validation and semantic inspection support this bounded change.
+
+## Claude combined analysis remediation — 2026-11-17
+
+The maintainer requests a prompt and execution of substantiated corrections from
+both parts of claude_analysis.md. Full-route high coordination owns documentary
+gate recovery, runner cancellation and UI recovery/focus defects, with independent
+review and validation. Scope and decisions: [remediation specification](../docs/validation/claude-remediation-20261117/spec.md)
+and [plan](../docs/validation/claude-remediation-20261117/plan.md). Existing dirty
+changes and evidence history are preserved. No full scanner run, downloads,
+central maintenance, cleanup, commit or publication is authorized by this request.
+
+## Authorized Part 3 remediation — 2026-11-18
+
+The maintainer authorizes correction of R3-1/R3-2/R3-3 in claude_analysis.md,
+complete verification including native/opt-in tests and local package checks,
+and explicit disposition of R3-4. Material governance changes require independent
+review and validation. No commit, publication, implicit download or central
+maintenance is authorized. Scope, criteria, ownership and observations are in
+[the remediation record](../docs/validation/r3-remediation-20261118/spec.md).

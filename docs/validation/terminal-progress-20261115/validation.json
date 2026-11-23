@@ -1,0 +1,324 @@
+{
+  "kind": "independent_criterion_validation",
+  "observed_at_utc": "2026-11-15T18:37:40.196447+00:00",
+  "scope": "terminal-progress only; read-only repository validation; report written only under /tmp",
+  "verdict": "APPROVED_SEMANTIC_CRITERIA_PENDING_AUTOMATED_FEATURE_GATE",
+  "criteria": [
+    {
+      "id": "AC-01",
+      "status": "APPROVED",
+      "method": "Manual source/oracle/evidence comparison with current content hashes; executed suite receipts inspected independently",
+      "observed_result": "The dynamic-plan fixture independently compares selected plan JSON to requested one/three checks, checks N+2 phase identifiers and Portuguese preparation/publication. Selection executes before presentation and plan exits before loading it.",
+      "limitations": [
+        "Controlled counts are representative; real scanner execution is outside scope."
+      ],
+      "command_exit": "Final terminal unittest discover:0 (21 tests); current regression modules:0 (49 tests)."
+    },
+    {
+      "id": "AC-02",
+      "status": "APPROVED",
+      "method": "Manual source/oracle/evidence comparison with current content hashes; executed suite receipts inspected independently",
+      "observed_result": "Known member events 1,0,2 and stale closure assert monotonic phase/total values against equal-phase and member-plus-final-assessment units. Opaque delayed phase remains unavailable at 33%; publication failure and cancellation exclude100. Real adapter with controlled Cargo/Geiger emits completion events only after member assessment.",
+      "limitations": [
+        "No estimated time/bytes/line progress; fixture scheduling is bounded, not a universal race proof."
+      ],
+      "command_exit": "Final terminal unittest discover:0 (21 tests); current regression modules:0 (49 tests)."
+    },
+    {
+      "id": "AC-03",
+      "status": "APPROVED",
+      "method": "Manual source/oracle/evidence comparison with current content hashes; executed suite receipts inspected independently",
+      "observed_result": "State fixtures cover passed/findings/failed/error/blocked/skipped/recorded; aggregation distinguishes operational failure precedence. Unknown warning/skip counts remain unavailable and known empty arrays become zero. TERM before next selection and during publication produces CANCELADA. Permanent blocks contain action, duration, limits and diagnostic references.",
+      "limitations": [
+        "Detailed arbitrary warnings are retained in raw reports rather than echoed; fixed summaries and counts are the intended projection."
+      ],
+      "command_exit": "Final terminal unittest discover:0 (21 tests); current regression modules:0 (49 tests)."
+    },
+    {
+      "id": "AC-04",
+      "status": "APPROVED",
+      "method": "Manual source/oracle/evidence comparison with current content hashes; executed suite receipts inspected independently",
+      "observed_result": "Structured Ruff metadata yields numbered source-backed locations/rules; identical rows group with counts and unlocated remainder is explicit. Findings plus operational failure retain both diagnostics. Raw and structured control injections are not replayed, arbitrary message/reason text is omitted, exact adapter reasons alone supply causal explanations. Retained tool/stdout locator is asserted to exist after publication.",
+      "limitations": [
+        "Metadata paths/rules are allowed display data. These cases do not constitute universal secret classification or qualification of every external report schema."
+      ],
+      "command_exit": "Final terminal unittest discover:0 (21 tests); current regression modules:0 (49 tests)."
+    },
+    {
+      "id": "AC-05",
+      "status": "APPROVED",
+      "method": "Manual source/oracle/evidence comparison with current content hashes; executed suite receipts inspected independently",
+      "observed_result": "Tests compare captured binary stdout/stderr bytes including NUL/nonUTF8/escape content, preserve nested Geiger streams and process exit23, require empty plan stderr and valid JSON, reject CR/ESC in redirected presentation and verify PTY NO_COLOR permanent blocks and elapsed updates. Source inspection confirms no color SGR generation.",
+      "limitations": [
+        "PTY with NO_COLOR is the executed terminal case; other terminal implementations and rendering widths are not qualified."
+      ],
+      "command_exit": "Final terminal unittest discover:0 (21 tests); current regression modules:0 (49 tests)."
+    },
+    {
+      "id": "AC-06",
+      "status": "APPROVED",
+      "method": "Manual source/oracle/evidence comparison with current content hashes; executed suite receipts inspected independently",
+      "observed_result": "Current 49-regression log covers source/policy drift rejection, executable pinning, selection/defaults, raw status, malformed native reports and cancellation cleanup isolated from parallel execution. Publication barrier waits for pipe EOF, retained results and removed temporary run; emergency capture failure still attempts publication and returns2. Independent review resolved/reobserved three defects; independent validator inspected current implementation and oracles. Baseline comparison preserves101 existing records and all other keys, adds exactly8 reviewed occurrences; catalog changes limited to static-review source/policy identity/reason.",
+      "limitations": [
+        "Real full pipeline, Docker cleanup under arbitrary external failures, SIGKILL/host death and broad product acceptance not observed; automated feature gate remains administrative pending."
+      ],
+      "command_exit": "Final terminal unittest discover:0 (21 tests); current regression modules:0 (49 tests)."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "scripts/automate.sh",
+      "sha256": "5c95561ac8d19b6d351d1f597e743ab52bba1d19b321122fd38d79058e2f3c2c"
+    },
+    {
+      "path": "scripts/lib/backends.sh",
+      "sha256": "e0a464af986e5726ce13fdd3ee7fae19b4547b23728fdce957e887064b4c373b"
+    },
+    {
+      "path": "scripts/lib/common.sh",
+      "sha256": "c4f7c9b3d9d0b94076dc87564dde18cb6ca6b7bac6037c373a8a04426632c7af"
+    },
+    {
+      "path": "scripts/lib/files.sh",
+      "sha256": "8934361cd7ff8e0e0b33cae8de61f8dcd977ab21aff5d1fb6318d58d8116f2ab"
+    },
+    {
+      "path": "scripts/lib/logs.sh",
+      "sha256": "52390e2804a487f649570bd029a48cfa3db328977117bae1b4c9770590c2fca5"
+    },
+    {
+      "path": "scripts/lib/process.sh",
+      "sha256": "9dea81c958c8417028b9184ba15d6aabb5e7238bfcbd24eb6ae6c7996d1c9ff9"
+    },
+    {
+      "path": "scripts/lib/progress.sh",
+      "sha256": "33d8ff393a8eb9cf86c06ac4ef7a0e52f03963ef073f24bf185bf926d8070953"
+    },
+    {
+      "path": "scripts/lib/registry.sh",
+      "sha256": "cf38493c9b8261128daabad81ac4316cfc4888995aa440e417351f986fa59e26"
+    },
+    {
+      "path": "scripts/lib/reports.sh",
+      "sha256": "803ab3e64f6d576fb91027e0e50725f34c759066d42d6ed8522fdc5dad1f8fd7"
+    },
+    {
+      "path": "scripts/lib/selection.sh",
+      "sha256": "c2771632b9191685ab4b6352ba858d08cff7d98b0b817f22529c6f43e8737bac"
+    },
+    {
+      "path": "scripts/checks/run.sh",
+      "sha256": "b33b2f0981ffd350dafaf50aabebcdb756b3ffbe1a9880f5d3550cb490f23152"
+    },
+    {
+      "path": "scripts/config/automation.json",
+      "sha256": "e0707f6bb8c246d8fa30af1bce138e2a729e13de8e730d63b9338dace574e794"
+    },
+    {
+      "path": "scripts/config/native/bandit/bandit-baseline.json",
+      "sha256": "a06355232ae975f5773163c32603e5291e4a0618aadddba3c794c1ada37431f0"
+    },
+    {
+      "path": "scripts/config/native/bandit/bandit.ini",
+      "sha256": "67677eb188e0d174372f885a5bdad9a0e3543b83fdf592e730a2502511d8b88e"
+    },
+    {
+      "path": "scripts/config/native/bandit/bandit.yaml",
+      "sha256": "6e8208e442237c5fe77b1907e8839aa741b6c37dc1c53404b4f135cb3cf781be"
+    },
+    {
+      "path": "scripts/config/native/cargo-audit/audit.toml",
+      "sha256": "28147fe7d3b59b8cd6eaad27d87edecf4b47d4d702e832bde0d73880ff42dd83"
+    },
+    {
+      "path": "scripts/config/native/cargo-deny/deny.toml",
+      "sha256": "3b397f5f93a510e2bfc8414beff0eff9c636274e6df8ca9559aad67535cc3298"
+    },
+    {
+      "path": "scripts/config/native/clippy/clippy.toml",
+      "sha256": "2aa44e81428dac0d5dc058d15713ef5b616bd5f39950bd084ef8946d137641f1"
+    },
+    {
+      "path": "scripts/config/native/gitleaks/gitleaks-history.ignore",
+      "sha256": "9b22293e830940fe9f16d9ea3c330ed3e6a14304f2e9d4aa5a50a676bc125ff4"
+    },
+    {
+      "path": "scripts/config/native/gitleaks/gitleaks.toml",
+      "sha256": "e06be24706b2f3ef7940b82986754198d35afb5aeb31480d702346231b767777"
+    },
+    {
+      "path": "scripts/config/native/grype/grype.yaml",
+      "sha256": "c05d01661f6256034a37d0518b2ac167dc56a00c02356eb1776d235e1dbd7020"
+    },
+    {
+      "path": "scripts/config/native/osv-scanner/osv-scanner.toml",
+      "sha256": "4ff7c0c2aa0eb183a286ac59666302ab3fe62a6122bffdde3bd390119f2903c9"
+    },
+    {
+      "path": "scripts/config/native/ruff/ruff.toml",
+      "sha256": "eb3d3cbfc78ef2b897e75870ade7c26917d5e4b98d7fcd4a719311d1962cc4a0"
+    },
+    {
+      "path": "scripts/config/native/shellcheck/shellcheckrc",
+      "sha256": "47908de5b3ad03b88a7a9af23f45a58748585768ae959a7e73b18a519232c25f"
+    },
+    {
+      "path": "scripts/config/native/syft/syft.yaml",
+      "sha256": "d7572074a858a2f16cdea29a9de12ae5e00048c1ea69979d6a2559faf69d896a"
+    },
+    {
+      "path": "scripts/config/native/trivy/trivy.yaml",
+      "sha256": "b713175dbb70162c0934d09b499fd2792b53c6b01ea15b15d180af59b38d4637"
+    },
+    {
+      "path": "scripts/config/native/trivy/trivyignore",
+      "sha256": "534119fe5ef9d0667b9a0fdc34ec5cf49c3a2b8634abfd4a6a2b9b7afdd27a34"
+    },
+    {
+      "path": "scripts/tests/support.py",
+      "sha256": "4e20b3fcf40835b2c63e828f339e2d9226035cffd9b4c7a085df4e5e3c9fda5e"
+    },
+    {
+      "path": "scripts/tests/test_terminal_progress.py",
+      "sha256": "665987e42c74b38db9c21d09b26155473c32550ac45d59c6f6cbbf254c99855f"
+    },
+    {
+      "path": "sdd/features/terminal-progress/spec.md",
+      "sha256": "fcfe71a837369fc4ca129d72d8be4df67d71706469b214e84e31e314186af788"
+    },
+    {
+      "path": "sdd/features/terminal-progress/plan.md",
+      "sha256": "7ceec641e0a5b78698ddeca6f1d8969906c0108991c46eac3602cce70e748a4a"
+    },
+    {
+      "path": "sdd/features/terminal-progress/tasks.md",
+      "sha256": "ff2055c2ef4cb2a94ba6492d3a63dee3ac48acf6434e0b9804aa09ddf28458f0"
+    },
+    {
+      "path": "sdd/features/terminal-progress/traceability.json",
+      "sha256": "238c15dd97816e53b2ba22e0546337c37acf1eca309f18af21a2584836fb93b1"
+    },
+    {
+      "path": "scripts/README.md",
+      "sha256": "47e8177eeb9d250d4c739619d16a786b695841af82f6dc4fa31c497d3bfe3ed4"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/report.md",
+      "sha256": "bd0165f64c4ceaa4289fffaf2924dfc38149f0dda33a5b9d130d0102c19f14bf"
+    },
+    {
+      "path": ".codex/skills/software-testing/SKILL.md",
+      "sha256": "2d2fbc0b44e19a2d4428eb98b8602fc7dc58884294a9f6902606423959f34aba"
+    },
+    {
+      "path": ".codex/skills/software-testing/references/case-design.md",
+      "sha256": "d13fe4d628689203be043b568eab997b16ecf1a387e3c779775bd8737ae3eb4b"
+    },
+    {
+      "path": ".codex/skills/software-testing/references/boundary-evidence.md",
+      "sha256": "32a79b7001cfb8b0a7b76d7c89afe55fb8468ebcdee24f8426e199f56f30e15c"
+    }
+  ],
+  "evidence_artifacts": [
+    {
+      "path": "docs/validation/terminal-progress-20261115/final-02.txt",
+      "sha256": "0287ea30168943967aa1954db14bc06d31e12fab82a347061fb4292176ad9246"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/final-02-inputs.json",
+      "sha256": "009c99daf66bede2c15e85aa18191570018a9c2ed925a61b4c0c3dcca38c541e"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/regressions-02/stderr.txt",
+      "sha256": "b9836c66ba6adde7b3943a8ad8d13d606e99be0fc89d6e0fb5db1685b2814ddc"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/regressions-02/inputs.json",
+      "sha256": "988a5ebe1cde4f607e3cd01a35b940a99e9dcf564c1b6728b27733370c98bf6b"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/regressions-02/result.json",
+      "sha256": "a61086b256eb4d7685a7562cc2d1fd4479a1058177f25adabad3f3a7a1e583a1"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/review.json",
+      "sha256": "46aed4381aebd6f2275120e36754dbcf15674265697edbd9fb14266bf2526441"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/review-security.json",
+      "sha256": "4d1a67430d910fd353d7506872ded56fadd069f3d7d6acabfc2d6da9a8552a96"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/static-integration.json",
+      "sha256": "8ca6f2fdd950bcced46fe93ef4c0e27c1a023601c748b8f8097ece73a6abe355"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/bandit-after/exit.json",
+      "sha256": "85d9affa1420e41093d76738b8b4047145dbe5a9150033a0007cb3c031d999c9"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/bandit-after/stdout.txt",
+      "sha256": "fbef585980e83b3b8fd65dc68650a0b8c750e0990f90c26caf443341d0548217"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/shellcheck-02/exit.json",
+      "sha256": "85d9affa1420e41093d76738b8b4047145dbe5a9150033a0007cb3c031d999c9"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/ruff-02/exit.json",
+      "sha256": "85d9affa1420e41093d76738b8b4047145dbe5a9150033a0007cb3c031d999c9"
+    },
+    {
+      "path": "docs/validation/terminal-progress-20261115/log-preservation.json",
+      "sha256": "d90afaf706f55009ff53b7a11958f90b4d72c696ae10951be8700aaba33f19ed"
+    }
+  ],
+  "methods": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -p test_terminal_progress.py -v",
+      "exit_code": 0,
+      "executed_by": "coordinator; stdout/stderr and before/after hashes independently inspected by validator",
+      "result": "21/21,24.006 seconds; current bound implementation/oracle/configuration unchanged"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts/tests python3 -m unittest -v test_process_lifecycle test_capture_status test_backends test_geiger_selection test_defaults test_automation test_native_reports",
+      "exit_code": 0,
+      "executed_by": "root; current receipt and test oracles independently inspected by validator",
+      "result": "49/49,135.533 seconds; report/retention manifest drift excluded from runtime claims"
+    },
+    {
+      "method": "Native focused ShellCheck/Ruff/Bandit receipts and exact command arrays inspected",
+      "exit_codes": [
+        0,
+        0,
+        0
+      ],
+      "result": "Parser exits all0; earlier ShellCheck broad snapshot test/catalog/baseline drift and Ruff catalog/baseline drift do not affect their actually consumed targets/configuration. Bandit-after snapshot matches current bytes."
+    },
+    {
+      "method": "Independent JSON comparison of git HEAD baseline/catalog with current files",
+      "exit_code": 0,
+      "result": "101 existing baseline records preserved as exact prefix;8 additions matching independent occurrence review; other baseline keys unchanged; catalog only static-review additions/hash/reason."
+    },
+    {
+      "command": "python3 sdd/tools/validate.py --help",
+      "exit_code": 0,
+      "executed_by": "validator",
+      "result": "Explicit whole-feature selection and required approval/freshness/convergence flags available."
+    }
+  ],
+  "automated_gate": {
+    "status": "UNVERIFIED",
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --features sdd/features --feature terminal-progress --require-approved --require-fresh --check-convergence",
+    "reason": "Await coordinator evidence integration and administrative T005 closure; no global feature acceptance required."
+  },
+  "documentation_disposition": "Read AGENTS, canonical agents procedure, constitution, architecture/project/workflow/evidence, relevant scripts/retention ADRs, feature contracts and current scripts README/report. Updated semantics match inspected production and observed limitations. No repository file changed by validator. T005 remains pending final receipt integration and selected gate.",
+  "limitations": [
+    "No full pipeline/scanner/product acceptance, downloads, commits or central maintenance performed.",
+    "Validator independently inspected evidence and source/oracles, but did not rerun the full21/49 suites; execution receipts remain attributed to their executors.",
+    "No repository mutations or original-log manipulation by validator; coordinator log-preservation receipt reports743 unchanged logs.",
+    "Historical final-01 and regressions-01 were not treated as fresh observations."
+  ],
+  "resumption_condition": "Integrate this receipt, finalize T005 without altering runtime/contracts, run selected feature approval/freshness/convergence gate and supply exact exit/output for independent final addendum. Any substantive changed input requires reexamination of affected criteria.",
+  "consulted_skill": ".codex/skills/software-testing/SKILL.md"
+}

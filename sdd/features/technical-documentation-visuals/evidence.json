@@ -6,57 +6,38 @@
       "id": "AC-01",
       "criterion": "Preserved grounded documentation and renderer-aware Mermaid method",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-02",
       "criterion": "Measurable visual quality gates and honest defaults",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-03",
       "criterion": "Assets/data guidance and adverse-input behavior",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-04",
       "criterion": "Bounded exact preservation with negative controls",
       "status": "INCONCLUSIVE",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     }
   ],
-  "evidence": [
-    {
-      "id": "E-T011-R2-SOURCE-RETENTION",
-      "kind": "inspection",
-      "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
-      "observed_result": "Raw bytes unchanged, no fabricated missing link target; current index points to README.md.bin. License/source/asset blockers unchanged; T009/T011 OPEN.",
-      "artifact": "docs/validation/persistence-freeze-20261105-r2/retention-review.md",
-      "sha256": "9d4269d5f51cbd23d178b465f0e44336eb6a308437f7d69345e57a6feae62f45",
-      "inputs": [
-        {
-          "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
-          "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
-          "role": "other"
-        }
-      ]
-    }
-  ],
+  "evidence": [],
   "limitations": [
     "Acceptance is for skill authoring/method and bounded preservation, not completed rendering, general aesthetic effectiveness, WCAG conformance or product behavior.",
     "The inherited README current-byte guard failure is separate and not waived.",
     "Actual Mermaid parse/render, professional icon assets, screenshot checks and responsive/theme/export inspection were not executed; the skill requires them when producing real visual deliverables.",
-    "Task closure succession: affected historical observations preserved under historical_evidence and exact preimage in docs/validation/scripts-task-closure/before; affected decisions INCONCLUSIVE pending bounded successor review. Unaffected operational observations retained."
+    "Task closure succession: affected historical observations preserved under historical_evidence and exact preimage in docs/validation/scripts-task-closure/before; affected decisions INCONCLUSIVE pending bounded successor review. Unaffected operational observations retained.",
+    "2026-11-17 evidence audit: inappropriate current references and obsolete observations were retired without changing their recorded artifact/input hashes. This correction grants no acceptance; see docs/validation/audit-correction-20261117/governance.md."
   ],
   "historical_evidence": [
     {
@@ -1051,6 +1032,21 @@
         "tools/governance/tests/test_governance.py"
       ],
       "reason": "Affected copy fixtures updated for the explicitly reviewed two-file boundary."
+    },
+    {
+      "id": "E-T011-R2-SOURCE-RETENTION",
+      "kind": "inspection",
+      "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
+      "observed_result": "Raw bytes unchanged, no fabricated missing link target; current index points to README.md.bin. License/source/asset blockers unchanged; T009/T011 OPEN.",
+      "artifact": "docs/validation/persistence-freeze-20261105-r2/retention-review.md",
+      "sha256": "9d4269d5f51cbd23d178b465f0e44336eb6a308437f7d69345e57a6feae62f45",
+      "inputs": [
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
+          "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
+          "role": "other"
+        }
+      ]
     }
   ]
 }

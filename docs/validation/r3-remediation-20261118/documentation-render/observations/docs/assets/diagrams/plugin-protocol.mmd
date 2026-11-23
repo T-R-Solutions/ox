@@ -1,0 +1,18 @@
+sequenceDiagram
+    accTitle: Handshake e chamada echo do fixture local
+    accDescr: O plugin anuncia HELLO 1 0 echo. O host só responde READY echo se a oferta e o grant do chamador permitirem. A chamada e resposta compartilham identidade e token; STOP encerra. Não existe integração dessa API com a UI.
+    participant H as Plugin Host
+    participant P as Fixture local-plugin
+    P->>H: HELLO 1 0 echo
+    alt Oferta e grant permitem echo
+        H->>P: READY echo
+        H->>P: CALL 1 echo token123
+        P-->>H: OK 1 token123
+        Note over H,P: Identidade e token devem coincidir.
+    else Echo não autorizado ou não oferecido
+        H->>P: READY -
+        Note over H: Recusar echo antes da troca.
+    end
+    H->>P: STOP
+    P-->>H: Saída bem-sucedida observada
+    Note over H,P: Falha de transporte, prazo ou frame recolhe o filho.

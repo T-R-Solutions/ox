@@ -16,3 +16,5 @@ T903 executada parcialmente; permanece aberta. Sucessor: docs/validation/t903-20
 
 
 Sucessor de encerramento T903: docs/validation/t903-memory-20261105/report.md. O registro anterior de pendência é histórico. Correção de compartilhamento imutável e captura por blocos preserva orçamento lógico; matriz12 com32 observações, jornadas/FIFO/worker/processos e corpora separados reobservados. Critérios e checks atuais sustentam encerramento no envelope adotado; sem expansão/persistência/commit.
+
+- [x] T904 [AC-05]: reobserve the current native criterion with the maintained harness, bind the new build and independently inspected captures, and preserve all historical results. This does not close the feature or R3 as a whole.

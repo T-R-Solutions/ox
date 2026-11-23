@@ -18,6 +18,7 @@ EXTERNAL_DOCUMENTS = frozenset(
     }
 )
 ROOT_FILES = (
+    "task_finalizada.md",
     "AGENTS.md",
     "DESIGN.md",
     "README.md",
@@ -163,6 +164,13 @@ def preservation_bytes(root, relative):
     mutation is compared as-is and must still fail the original preservation gate.
     Historical archives and their hashes remain untouched.
     """
+    from document_ledger import observation
+
+    with observation(root):
+        return _preservation_bytes(root, relative)
+
+
+def _preservation_bytes(root, relative):
     path = root / relative
     from closure_revision import predecessor as closure_predecessor
     from documentation_revision import predecessor as visual_predecessor
@@ -293,8 +301,10 @@ def transient(path):
 
 def product_record(path):
     """Product evidence depends on sources deliberately absent from governance exports."""
-    return path.as_posix().startswith(
+    return path.as_posix() == "docs/design/ide-shell.md" or path.as_posix().startswith(
         (
+            "sdd/features/product-ide-shell/",
+            "docs/validation/ide-shell-20261118/",
             "sdd/features/dependency-hygiene/",
             "sdd/features/product-visual-workbench/",
             "sdd/features/skill-native-visual-method/",

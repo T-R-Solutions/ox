@@ -1,5 +1,9 @@
 # Native executor ownership successor — 2026-11-08
 
+Current OSV policy: [single acquisition clock](osv-acquisition-validity.md)
+(2026-11-16) supersedes the historical OSV 24h clauses below. Trivy/Grype are
+unchanged; historical permissions/observations below do not grant new effects.
+
 The user explicitly authorizes Ox implementation and tests, with no central or
 Ec changes, host maintenance, commits or implicit downloads. Full workflow:
 `sdd/features/scripts-toolbox-native/`.
@@ -48,4 +52,15 @@ Details and limitations: docs/validation/ox-operational-repair-20261109/.
 Governance-only copies omit dependency-hygiene because its acceptance needs the
 Cargo workspace, which that package deliberately excludes. It remains at the
 same path and is checked in the full checkout. The local stable Cargo cache is
-.local/cargo-home; preparation is explicit and checks remain offline.
+.cache/ox/cargo-home; preparation is explicit and checks remain offline.
+
+## Runner defaults clarification — audit correction 2026-11-17
+
+The 13 November default-parity successor in scripts-centralization introduced
+runner-level environment/discovery defaults, including shared SELinux labels and
+the sibling Toolbox layout. The earlier no-implicit-relabel clause above remains
+the public wrapper contract when called directly. It does not describe plan/run,
+which applies automation.json before invoking that wrapper. AGENTS.md still
+requires explicit maintainer Toolbox selection for complete runs in this checkout.
+This clarification records existing scoped authorization; it grants no new relabel,
+central maintenance or full execution permission.

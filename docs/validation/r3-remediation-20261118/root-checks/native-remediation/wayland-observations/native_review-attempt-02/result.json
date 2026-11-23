@@ -1,0 +1,4761 @@
+{
+  "method": "isolated native Wayland via Mutter RemoteDesktop and PipeWire",
+  "baseline": false,
+  "binary_sha256": "103f0a8d1ccb52930365817a8e183480ed4ba009726562d68a4fd43155866873",
+  "observer": {
+    "path": "/tmp/ox-r3-native-proposal-2fhe00q5/revisions/python-04/native_review.py",
+    "sha256": "8cc3b7c49d32a323ae7b8b03ba96d8317393e5a4ad125eb9a463309c95835ae0",
+    "arguments": {
+      "baseline": false,
+      "output": "native_review-attempt-02",
+      "binary": "/tmp/ox-r3-native-proposal-2fhe00q5/binaries/ox",
+      "monitor": "1600x1000",
+      "scale": 1,
+      "capture_only": false
+    },
+    "session_sha256": "1ab4c178cccf0db8aeec85c927f4f7045fc1a464a54dced77000abe5109f6964"
+  },
+  "fixture": {
+    "workspace": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_review-attempt-02/workspace",
+    "XDG_STATE_HOME": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_review-attempt-02/state",
+    "dialog_provider": "controlled exit-2 fixture; real portal/dialog not claimed"
+  },
+  "artifacts": [
+    {
+      "path": "workspace/sentinel",
+      "sha256": "3e816ea9bd09f62766b241e8b894df2900d457224d05587e6955c427d0d72618"
+    },
+    {
+      "path": "workspace/.ox-task-1795045597856998966-1/result.txt",
+      "sha256": "a71efbd419595e97f228d4194b0fb1493bf70232aeef00b002f79a99b81a6821"
+    },
+    {
+      "path": "workspace/.ox-task-1795045597856998966-1/request.txt",
+      "sha256": "f9e05c874d96486ecb5202170d7cbbb850d97307656b8678c4079ec0ea2281ea"
+    }
+  ],
+  "events": [
+    {
+      "time": 175248.925721761,
+      "keysym": 65505,
+      "pressed": true
+    },
+    {
+      "time": 175248.966351619,
+      "keysym": 65505,
+      "pressed": false
+    },
+    {
+      "time": 175249.007095666,
+      "keysym": 65513,
+      "pressed": true
+    },
+    {
+      "time": 175249.047567574,
+      "keysym": 65479,
+      "pressed": true
+    },
+    {
+      "time": 175249.088084151,
+      "keysym": 65479,
+      "pressed": false
+    },
+    {
+      "time": 175249.128589678,
+      "keysym": 65513,
+      "pressed": false
+    },
+    {
+      "time": 175249.84457308,
+      "capture": "initial",
+      "frame_time": 175249.323185011,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175249.844747461,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175249.885339668,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175249.925848006,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175249.966290612,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175250.00679674,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175250.047256077,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175250.087781644,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175250.128257231,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175250.49063422,
+      "capture": "manual-path-recovery",
+      "frame_time": 175250.191910186,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175250.4906393,
+      "keysym": 47,
+      "pressed": true
+    },
+    {
+      "time": 175250.531323678,
+      "keysym": 47,
+      "pressed": false
+    },
+    {
+      "time": 175250.571785495,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175250.612256202,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175250.652764529,
+      "keysym": 109,
+      "pressed": true
+    },
+    {
+      "time": 175250.693424357,
+      "keysym": 109,
+      "pressed": false
+    },
+    {
+      "time": 175250.734110505,
+      "keysym": 112,
+      "pressed": true
+    },
+    {
+      "time": 175250.774611592,
+      "keysym": 112,
+      "pressed": false
+    },
+    {
+      "time": 175250.815196559,
+      "keysym": 47,
+      "pressed": true
+    },
+    {
+      "time": 175250.855607786,
+      "keysym": 47,
+      "pressed": false
+    },
+    {
+      "time": 175250.896146364,
+      "keysym": 111,
+      "pressed": true
+    },
+    {
+      "time": 175250.936727541,
+      "keysym": 111,
+      "pressed": false
+    },
+    {
+      "time": 175250.977264328,
+      "keysym": 120,
+      "pressed": true
+    },
+    {
+      "time": 175251.017681476,
+      "keysym": 120,
+      "pressed": false
+    },
+    {
+      "time": 175251.058239633,
+      "keysym": 45,
+      "pressed": true
+    },
+    {
+      "time": 175251.09878297,
+      "keysym": 45,
+      "pressed": false
+    },
+    {
+      "time": 175251.139370968,
+      "keysym": 114,
+      "pressed": true
+    },
+    {
+      "time": 175251.180012835,
+      "keysym": 114,
+      "pressed": false
+    },
+    {
+      "time": 175251.220652023,
+      "keysym": 51,
+      "pressed": true
+    },
+    {
+      "time": 175251.261012109,
+      "keysym": 51,
+      "pressed": false
+    },
+    {
+      "time": 175251.301476357,
+      "keysym": 45,
+      "pressed": true
+    },
+    {
+      "time": 175251.342012114,
+      "keysym": 45,
+      "pressed": false
+    },
+    {
+      "time": 175251.382516672,
+      "keysym": 110,
+      "pressed": true
+    },
+    {
+      "time": 175251.423019319,
+      "keysym": 110,
+      "pressed": false
+    },
+    {
+      "time": 175251.463661496,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175251.504089413,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175251.54455711,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175251.585023837,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175251.625570155,
+      "keysym": 105,
+      "pressed": true
+    },
+    {
+      "time": 175251.665932972,
+      "keysym": 105,
+      "pressed": false
+    },
+    {
+      "time": 175251.706529919,
+      "keysym": 118,
+      "pressed": true
+    },
+    {
+      "time": 175251.747014106,
+      "keysym": 118,
+      "pressed": false
+    },
+    {
+      "time": 175251.787552054,
+      "keysym": 101,
+      "pressed": true
+    },
+    {
+      "time": 175251.827979101,
+      "keysym": 101,
+      "pressed": false
+    },
+    {
+      "time": 175251.868501788,
+      "keysym": 45,
+      "pressed": true
+    },
+    {
+      "time": 175251.908941635,
+      "keysym": 45,
+      "pressed": false
+    },
+    {
+      "time": 175251.949461942,
+      "keysym": 112,
+      "pressed": true
+    },
+    {
+      "time": 175251.989888879,
+      "keysym": 112,
+      "pressed": false
+    },
+    {
+      "time": 175252.030494927,
+      "keysym": 114,
+      "pressed": true
+    },
+    {
+      "time": 175252.070940264,
+      "keysym": 114,
+      "pressed": false
+    },
+    {
+      "time": 175252.111583472,
+      "keysym": 111,
+      "pressed": true
+    },
+    {
+      "time": 175252.152198679,
+      "keysym": 111,
+      "pressed": false
+    },
+    {
+      "time": 175252.192815987,
+      "keysym": 112,
+      "pressed": true
+    },
+    {
+      "time": 175252.233285314,
+      "keysym": 112,
+      "pressed": false
+    },
+    {
+      "time": 175252.273807021,
+      "keysym": 111,
+      "pressed": true
+    },
+    {
+      "time": 175252.314202648,
+      "keysym": 111,
+      "pressed": false
+    },
+    {
+      "time": 175252.354725675,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175252.395119472,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175252.435705219,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175252.476012436,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175252.516495733,
+      "keysym": 108,
+      "pressed": true
+    },
+    {
+      "time": 175252.55691738,
+      "keysym": 108,
+      "pressed": false
+    },
+    {
+      "time": 175252.597461128,
+      "keysym": 45,
+      "pressed": true
+    },
+    {
+      "time": 175252.637952155,
+      "keysym": 45,
+      "pressed": false
+    },
+    {
+      "time": 175252.678436062,
+      "keysym": 50,
+      "pressed": true
+    },
+    {
+      "time": 175252.718850429,
+      "keysym": 50,
+      "pressed": false
+    },
+    {
+      "time": 175252.759344456,
+      "keysym": 102,
+      "pressed": true
+    },
+    {
+      "time": 175252.799731083,
+      "keysym": 102,
+      "pressed": false
+    },
+    {
+      "time": 175252.84024862,
+      "keysym": 104,
+      "pressed": true
+    },
+    {
+      "time": 175252.880638347,
+      "keysym": 104,
+      "pressed": false
+    },
+    {
+      "time": 175252.921206395,
+      "keysym": 101,
+      "pressed": true
+    },
+    {
+      "time": 175252.961639152,
+      "keysym": 101,
+      "pressed": false
+    },
+    {
+      "time": 175253.002212429,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175253.042626436,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175253.083101773,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175253.12345159,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175253.163932447,
+      "keysym": 113,
+      "pressed": true
+    },
+    {
+      "time": 175253.204375264,
+      "keysym": 113,
+      "pressed": false
+    },
+    {
+      "time": 175253.244915052,
+      "keysym": 53,
+      "pressed": true
+    },
+    {
+      "time": 175253.285274298,
+      "keysym": 53,
+      "pressed": false
+    },
+    {
+      "time": 175253.325769016,
+      "keysym": 47,
+      "pressed": true
+    },
+    {
+      "time": 175253.366276213,
+      "keysym": 47,
+      "pressed": false
+    },
+    {
+      "time": 175253.40676608,
+      "keysym": 119,
+      "pressed": true
+    },
+    {
+      "time": 175253.447234787,
+      "keysym": 119,
+      "pressed": false
+    },
+    {
+      "time": 175253.487753085,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175253.528235772,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175253.568751969,
+      "keysym": 121,
+      "pressed": true
+    },
+    {
+      "time": 175253.609294916,
+      "keysym": 121,
+      "pressed": false
+    },
+    {
+      "time": 175253.649940044,
+      "keysym": 108,
+      "pressed": true
+    },
+    {
+      "time": 175253.690945162,
+      "keysym": 108,
+      "pressed": false
+    },
+    {
+      "time": 175253.73165363,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175253.772464088,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175253.814988482,
+      "keysym": 110,
+      "pressed": true
+    },
+    {
+      "time": 175253.855706009,
+      "keysym": 110,
+      "pressed": false
+    },
+    {
+      "time": 175253.896270227,
+      "keysym": 100,
+      "pressed": true
+    },
+    {
+      "time": 175253.936689354,
+      "keysym": 100,
+      "pressed": false
+    },
+    {
+      "time": 175253.977299441,
+      "keysym": 45,
+      "pressed": true
+    },
+    {
+      "time": 175254.017874799,
+      "keysym": 45,
+      "pressed": false
+    },
+    {
+      "time": 175254.058368976,
+      "keysym": 111,
+      "pressed": true
+    },
+    {
+      "time": 175254.098879373,
+      "keysym": 111,
+      "pressed": false
+    },
+    {
+      "time": 175254.139480201,
+      "keysym": 98,
+      "pressed": true
+    },
+    {
+      "time": 175254.180426829,
+      "keysym": 98,
+      "pressed": false
+    },
+    {
+      "time": 175254.220880586,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175254.261282073,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175254.301797821,
+      "keysym": 101,
+      "pressed": true
+    },
+    {
+      "time": 175254.342285508,
+      "keysym": 101,
+      "pressed": false
+    },
+    {
+      "time": 175254.382745545,
+      "keysym": 114,
+      "pressed": true
+    },
+    {
+      "time": 175254.423157022,
+      "keysym": 114,
+      "pressed": false
+    },
+    {
+      "time": 175254.463519779,
+      "keysym": 118,
+      "pressed": true
+    },
+    {
+      "time": 175254.503999826,
+      "keysym": 118,
+      "pressed": false
+    },
+    {
+      "time": 175254.544418773,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175254.58479148,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175254.625277237,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175254.665637453,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175254.70597365,
+      "keysym": 105,
+      "pressed": true
+    },
+    {
+      "time": 175254.746284177,
+      "keysym": 105,
+      "pressed": false
+    },
+    {
+      "time": 175254.786653724,
+      "keysym": 111,
+      "pressed": true
+    },
+    {
+      "time": 175254.82696543,
+      "keysym": 111,
+      "pressed": false
+    },
+    {
+      "time": 175254.867535818,
+      "keysym": 110,
+      "pressed": true
+    },
+    {
+      "time": 175254.908086925,
+      "keysym": 110,
+      "pressed": false
+    },
+    {
+      "time": 175254.948566842,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175254.988912239,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175255.029415826,
+      "keysym": 47,
+      "pressed": true
+    },
+    {
+      "time": 175255.069778393,
+      "keysym": 47,
+      "pressed": false
+    },
+    {
+      "time": 175255.11017012,
+      "keysym": 110,
+      "pressed": true
+    },
+    {
+      "time": 175255.150509377,
+      "keysym": 110,
+      "pressed": false
+    },
+    {
+      "time": 175255.190895614,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175255.231275691,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175255.271697568,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175255.312020944,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175255.352502991,
+      "keysym": 105,
+      "pressed": true
+    },
+    {
+      "time": 175255.392913258,
+      "keysym": 105,
+      "pressed": false
+    },
+    {
+      "time": 175255.433412746,
+      "keysym": 118,
+      "pressed": true
+    },
+    {
+      "time": 175255.473893403,
+      "keysym": 118,
+      "pressed": false
+    },
+    {
+      "time": 175255.51439741,
+      "keysym": 101,
+      "pressed": true
+    },
+    {
+      "time": 175255.554828217,
+      "keysym": 101,
+      "pressed": false
+    },
+    {
+      "time": 175255.595323594,
+      "keysym": 95,
+      "pressed": true
+    },
+    {
+      "time": 175255.635819161,
+      "keysym": 95,
+      "pressed": false
+    },
+    {
+      "time": 175255.676317949,
+      "keysym": 114,
+      "pressed": true
+    },
+    {
+      "time": 175255.716779726,
+      "keysym": 114,
+      "pressed": false
+    },
+    {
+      "time": 175255.757283423,
+      "keysym": 101,
+      "pressed": true
+    },
+    {
+      "time": 175255.79776453,
+      "keysym": 101,
+      "pressed": false
+    },
+    {
+      "time": 175255.838270847,
+      "keysym": 118,
+      "pressed": true
+    },
+    {
+      "time": 175255.878671784,
+      "keysym": 118,
+      "pressed": false
+    },
+    {
+      "time": 175255.919151382,
+      "keysym": 105,
+      "pressed": true
+    },
+    {
+      "time": 175255.959648289,
+      "keysym": 105,
+      "pressed": false
+    },
+    {
+      "time": 175256.000183256,
+      "keysym": 101,
+      "pressed": true
+    },
+    {
+      "time": 175256.040634443,
+      "keysym": 101,
+      "pressed": false
+    },
+    {
+      "time": 175256.08115149,
+      "keysym": 119,
+      "pressed": true
+    },
+    {
+      "time": 175256.121669948,
+      "keysym": 119,
+      "pressed": false
+    },
+    {
+      "time": 175256.162131855,
+      "keysym": 45,
+      "pressed": true
+    },
+    {
+      "time": 175256.202530212,
+      "keysym": 45,
+      "pressed": false
+    },
+    {
+      "time": 175256.243016859,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175256.283408746,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175256.323936243,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175256.36444443,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175256.404934367,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175256.445416075,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175256.485908202,
+      "keysym": 101,
+      "pressed": true
+    },
+    {
+      "time": 175256.526358419,
+      "keysym": 101,
+      "pressed": false
+    },
+    {
+      "time": 175256.566850186,
+      "keysym": 109,
+      "pressed": true
+    },
+    {
+      "time": 175256.607246623,
+      "keysym": 109,
+      "pressed": false
+    },
+    {
+      "time": 175256.64771238,
+      "keysym": 112,
+      "pressed": true
+    },
+    {
+      "time": 175256.688160327,
+      "keysym": 112,
+      "pressed": false
+    },
+    {
+      "time": 175256.728643944,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175256.769070681,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175256.809620629,
+      "keysym": 45,
+      "pressed": true
+    },
+    {
+      "time": 175256.850012246,
+      "keysym": 45,
+      "pressed": false
+    },
+    {
+      "time": 175256.890471423,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175256.93093119,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175256.971435977,
+      "keysym": 50,
+      "pressed": true
+    },
+    {
+      "time": 175257.011850884,
+      "keysym": 50,
+      "pressed": false
+    },
+    {
+      "time": 175257.052351311,
+      "keysym": 47,
+      "pressed": true
+    },
+    {
+      "time": 175257.092744608,
+      "keysym": 47,
+      "pressed": false
+    },
+    {
+      "time": 175257.133190235,
+      "keysym": 119,
+      "pressed": true
+    },
+    {
+      "time": 175257.173560732,
+      "keysym": 119,
+      "pressed": false
+    },
+    {
+      "time": 175257.214021859,
+      "keysym": 111,
+      "pressed": true
+    },
+    {
+      "time": 175257.254443426,
+      "keysym": 111,
+      "pressed": false
+    },
+    {
+      "time": 175257.294959593,
+      "keysym": 114,
+      "pressed": true
+    },
+    {
+      "time": 175257.335509301,
+      "keysym": 114,
+      "pressed": false
+    },
+    {
+      "time": 175257.375976898,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175257.416411435,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175257.456903412,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175257.497461569,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175257.537980447,
+      "keysym": 112,
+      "pressed": true
+    },
+    {
+      "time": 175257.578480184,
+      "keysym": 112,
+      "pressed": false
+    },
+    {
+      "time": 175257.618976941,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175257.659428808,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175257.699907125,
+      "keysym": 99,
+      "pressed": true
+    },
+    {
+      "time": 175257.740332212,
+      "keysym": 99,
+      "pressed": false
+    },
+    {
+      "time": 175257.78079538,
+      "keysym": 101,
+      "pressed": true
+    },
+    {
+      "time": 175257.821218086,
+      "keysym": 101,
+      "pressed": false
+    },
+    {
+      "time": 175257.861698394,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175257.902154761,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175258.319052727,
+      "capture": "workspace-valid",
+      "frame_time": 175258.144497142,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175258.319188478,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175258.359649635,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175258.400161752,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175258.440676069,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175258.481223167,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175258.521692154,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175258.562326651,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175258.602901439,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175258.643538096,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175258.683975674,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175258.724583371,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175258.765104658,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175258.805762836,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175258.846367884,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175259.256498241,
+      "capture": "S01",
+      "frame_time": 175258.978590996,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175259.256600721,
+      "keysym": 65505,
+      "pressed": true
+    },
+    {
+      "time": 175259.297110548,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175259.337562525,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175259.378123012,
+      "keysym": 65505,
+      "pressed": false
+    },
+    {
+      "time": 175259.41869619,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175259.459278127,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175259.669509746,
+      "capture": "S02",
+      "frame_time": 175259.540456262,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175259.669634156,
+      "keysym": 65307,
+      "pressed": true
+    },
+    {
+      "time": 175259.710095023,
+      "keysym": 65307,
+      "pressed": false
+    },
+    {
+      "time": 175259.750827641,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175259.791304488,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175259.831844816,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175259.872323863,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175259.91280657,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175259.953257137,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175259.994105695,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175260.034555912,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175260.075703202,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175260.116219319,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175260.156641716,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175260.197101053,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175260.237612,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175260.278233648,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175260.318684885,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175260.359085072,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175260.399529949,
+      "keysym": 51,
+      "pressed": true
+    },
+    {
+      "time": 175260.439977276,
+      "keysym": 51,
+      "pressed": false
+    },
+    {
+      "time": 175260.480441193,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175260.52079482,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175260.936608793,
+      "capture": "S03",
+      "frame_time": 175260.759769481,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175260.936727463,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175260.97718221,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175261.017653098,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175261.058098725,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175261.098510972,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175261.139017559,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175261.179478216,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175261.219951173,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175261.260475441,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175261.300957737,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175261.341732546,
+      "keysym": 52,
+      "pressed": true
+    },
+    {
+      "time": 175261.382202762,
+      "keysym": 52,
+      "pressed": false
+    },
+    {
+      "time": 175261.42266629,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175261.463192637,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175261.881136607,
+      "capture": "S04",
+      "frame_time": 175261.662689304,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175261.881302887,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175261.921781404,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175261.962294031,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175262.002772129,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175262.043257806,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175262.083740943,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175262.1242157,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175262.164724598,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175262.205185035,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175262.245642662,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175262.286094799,
+      "keysym": 53,
+      "pressed": true
+    },
+    {
+      "time": 175262.326534856,
+      "keysym": 53,
+      "pressed": false
+    },
+    {
+      "time": 175262.367025433,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175262.40754224,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175262.822278621,
+      "capture": "S05",
+      "frame_time": 175262.718806071,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175262.822400211,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175262.862829268,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175262.903350335,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175262.943815112,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175262.984141689,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175263.024543096,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175263.064971843,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175263.1054468,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175263.145908367,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175263.186383265,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175263.226848482,
+      "keysym": 54,
+      "pressed": true
+    },
+    {
+      "time": 175263.267341869,
+      "keysym": 54,
+      "pressed": false
+    },
+    {
+      "time": 175263.307819186,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175263.348323243,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175263.763956156,
+      "capture": "S06",
+      "frame_time": 175263.528387564,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175263.764088306,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175263.804552293,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175263.845019151,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175263.885434128,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175263.925894995,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175263.966568953,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175264.00708651,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175264.047516857,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175264.087970484,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175264.128411981,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175264.168987388,
+      "keysym": 55,
+      "pressed": true
+    },
+    {
+      "time": 175264.209407885,
+      "keysym": 55,
+      "pressed": false
+    },
+    {
+      "time": 175264.249815072,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175264.290342389,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175264.705629772,
+      "capture": "S07",
+      "frame_time": 175264.448585437,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175264.705774362,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175264.746262959,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175264.786729676,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175264.827223163,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175264.86763234,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175264.908129928,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175264.948582645,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175264.988855151,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175265.029289198,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175265.069744685,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175265.110208132,
+      "keysym": 56,
+      "pressed": true
+    },
+    {
+      "time": 175265.150684479,
+      "keysym": 56,
+      "pressed": false
+    },
+    {
+      "time": 175265.192629631,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175265.233129118,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175265.650615636,
+      "capture": "S08",
+      "frame_time": 175265.360489227,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175265.650768477,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175265.691247344,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175265.731724581,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175265.772230808,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175265.812708596,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175265.853220973,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175265.89382264,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175265.934309228,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175265.974785715,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175266.015257222,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175266.055774009,
+      "keysym": 57,
+      "pressed": true
+    },
+    {
+      "time": 175266.096283776,
+      "keysym": 57,
+      "pressed": false
+    },
+    {
+      "time": 175266.136892104,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175266.177363111,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175266.59501674,
+      "capture": "S09",
+      "frame_time": 175266.302483203,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175266.59516509,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175266.635631247,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175266.676094485,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175266.716551542,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175266.757053129,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175266.797507016,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175266.837952423,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175266.87843663,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175266.918950377,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175266.959439655,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175266.999938822,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175267.040496499,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175267.081320407,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175267.121796764,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175267.537473987,
+      "capture": "S10",
+      "frame_time": 175267.288698568,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175267.537629018,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175267.578112485,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175267.618642342,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175267.659091899,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175267.699526556,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175267.740018484,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175267.780536411,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175267.821018488,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175267.861650766,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175267.902175503,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175267.94273511,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175267.983268718,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175268.023756175,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175268.064304592,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175268.479490744,
+      "capture": "S11",
+      "frame_time": 175268.229746821,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175268.479639204,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175268.520111511,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175268.560551788,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175268.601008456,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175268.641530453,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175268.68202025,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175268.722528787,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175268.763015654,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175268.803558692,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175268.844011099,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175268.884471546,
+      "keysym": 50,
+      "pressed": true
+    },
+    {
+      "time": 175268.925010803,
+      "keysym": 50,
+      "pressed": false
+    },
+    {
+      "time": 175268.9654845,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175269.005929517,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175269.42146295,
+      "capture": "S12",
+      "frame_time": 175269.173494602,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175269.421623891,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175269.462079638,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175269.502549735,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175269.543022992,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175269.583530109,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175269.624017946,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175269.664550924,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175269.705115281,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175269.745638578,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175269.786184666,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175269.826730553,
+      "keysym": 51,
+      "pressed": true
+    },
+    {
+      "time": 175269.867742002,
+      "keysym": 51,
+      "pressed": false
+    },
+    {
+      "time": 175269.908260339,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175269.948781736,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175270.358194271,
+      "capture": "S13",
+      "frame_time": 175269.96029562,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175270.358355322,
+      "keysym": 65307,
+      "pressed": true
+    },
+    {
+      "time": 175270.398893389,
+      "keysym": 65307,
+      "pressed": false
+    },
+    {
+      "time": 175270.439700107,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175270.480173944,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175270.520643751,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175270.561134689,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175270.601612996,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175270.642099113,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175270.68257838,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175270.723111907,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175270.763645145,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175270.804183262,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175270.844653789,
+      "keysym": 52,
+      "pressed": true
+    },
+    {
+      "time": 175270.885149196,
+      "keysym": 52,
+      "pressed": false
+    },
+    {
+      "time": 175270.925634514,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175270.966151851,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175271.374389312,
+      "capture": "S14",
+      "frame_time": 175270.977217563,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175271.374548263,
+      "keysym": 65307,
+      "pressed": true
+    },
+    {
+      "time": 175271.41501008,
+      "keysym": 65307,
+      "pressed": false
+    },
+    {
+      "time": 175271.455820308,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175271.496300915,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175271.536749782,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175271.577217459,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175271.617676036,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175271.658181704,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175271.698686571,
+      "keysym": 119,
+      "pressed": true
+    },
+    {
+      "time": 175271.739179568,
+      "keysym": 119,
+      "pressed": false
+    },
+    {
+      "time": 175271.779626375,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175271.820176013,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175271.861786783,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175271.90228364,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175271.942821117,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175271.983304725,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175272.401414585,
+      "capture": "W00",
+      "frame_time": 175272.180373925,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175272.401597865,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175272.442104763,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175272.482551069,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175272.522975787,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175272.563389573,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175272.603841801,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175272.644337778,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175272.684735795,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175272.725152652,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175272.765627589,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175272.806048386,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175272.846448393,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175272.88692324,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175272.927403017,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175273.344244903,
+      "capture": "A01",
+      "frame_time": 175273.123600205,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175273.344404034,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175273.384889271,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175273.425360118,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175273.465812055,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175273.506336573,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175273.54677059,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175273.587486178,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175273.627970635,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175273.668545162,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175273.708984519,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175273.749461856,
+      "keysym": 50,
+      "pressed": true
+    },
+    {
+      "time": 175273.789905233,
+      "keysym": 50,
+      "pressed": false
+    },
+    {
+      "time": 175273.83037478,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175273.870820577,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175274.287733504,
+      "capture": "A02",
+      "frame_time": 175273.991224406,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175274.287902934,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175274.328538372,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175274.369024709,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175274.409510027,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175274.449980564,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175274.490441241,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175274.530836338,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175274.571324735,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175274.611826262,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175274.652327119,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175274.692802106,
+      "keysym": 51,
+      "pressed": true
+    },
+    {
+      "time": 175274.733211563,
+      "keysym": 51,
+      "pressed": false
+    },
+    {
+      "time": 175274.77363997,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175274.814012437,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175275.228588847,
+      "capture": "A03",
+      "frame_time": 175274.927273745,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175275.228720218,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175275.269256615,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175275.309698602,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175275.350026328,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175275.390486006,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175275.430976063,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175275.47144257,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175275.511920137,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175275.552423955,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175275.592891022,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175275.633368689,
+      "keysym": 52,
+      "pressed": true
+    },
+    {
+      "time": 175275.673872986,
+      "keysym": 52,
+      "pressed": false
+    },
+    {
+      "time": 175275.714331183,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175275.7547395,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175276.171386426,
+      "capture": "A04",
+      "frame_time": 175275.959829623,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175276.171534746,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175276.212020223,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175276.25238172,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175276.292730027,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175276.333085404,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175276.373483671,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175276.414026358,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175276.454510355,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175276.495039433,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175276.53549785,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175276.575993817,
+      "keysym": 53,
+      "pressed": true
+    },
+    {
+      "time": 175276.616426004,
+      "keysym": 53,
+      "pressed": false
+    },
+    {
+      "time": 175276.656802541,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175276.697268418,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175277.113805613,
+      "capture": "A05",
+      "frame_time": 175276.888989583,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175277.113978994,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175277.154435981,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175277.194922328,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175277.235370215,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175277.275821493,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175277.31639404,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175277.357033917,
+      "keysym": 97,
+      "pressed": true
+    },
+    {
+      "time": 175277.397582095,
+      "keysym": 97,
+      "pressed": false
+    },
+    {
+      "time": 175277.438089112,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175277.478463339,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175277.518959216,
+      "keysym": 54,
+      "pressed": true
+    },
+    {
+      "time": 175277.559603364,
+      "keysym": 54,
+      "pressed": false
+    },
+    {
+      "time": 175277.600099671,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175277.642344083,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175278.059734821,
+      "capture": "A06",
+      "frame_time": 175277.771378377,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175278.059922692,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175278.100409799,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175278.140884416,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175278.181360183,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175278.22187461,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175278.262382048,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175278.302854215,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175278.343368982,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175278.383874539,
+      "keysym": 119,
+      "pressed": true
+    },
+    {
+      "time": 175278.425299969,
+      "keysym": 119,
+      "pressed": false
+    },
+    {
+      "time": 175278.465788726,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175278.506272454,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175278.546754001,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175278.587208988,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175278.627698615,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175278.668122982,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175279.084177396,
+      "capture": "TW01",
+      "frame_time": 175278.770447268,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175279.084385677,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175279.124853744,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175279.165305671,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175279.205793348,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175279.247128328,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175279.287613005,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175279.328109432,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175279.368555309,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175279.408930746,
+      "keysym": 119,
+      "pressed": true
+    },
+    {
+      "time": 175279.451128198,
+      "keysym": 119,
+      "pressed": false
+    },
+    {
+      "time": 175279.491563295,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175279.531960512,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175279.572367949,
+      "keysym": 50,
+      "pressed": true
+    },
+    {
+      "time": 175279.612807866,
+      "keysym": 50,
+      "pressed": false
+    },
+    {
+      "time": 175279.653197363,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175279.69364373,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175280.109229303,
+      "capture": "TW02",
+      "frame_time": 175279.793008318,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175280.109407333,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175280.149893711,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175280.190442848,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175280.230881495,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175280.271267722,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175280.311783429,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175280.352223026,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175280.392682573,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175280.43315249,
+      "keysym": 119,
+      "pressed": true
+    },
+    {
+      "time": 175280.473649628,
+      "keysym": 119,
+      "pressed": false
+    },
+    {
+      "time": 175280.514118175,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175280.554452142,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175280.594904639,
+      "keysym": 51,
+      "pressed": true
+    },
+    {
+      "time": 175280.635498696,
+      "keysym": 51,
+      "pressed": false
+    },
+    {
+      "time": 175280.676008133,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175280.71632157,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175281.131595642,
+      "capture": "TW03",
+      "frame_time": 175280.82003108,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175281.131754352,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175281.17225142,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175281.212617286,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175281.253009403,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175281.293673681,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175281.334222968,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175281.374635475,
+      "keysym": 116,
+      "pressed": true
+    },
+    {
+      "time": 175281.415132523,
+      "keysym": 116,
+      "pressed": false
+    },
+    {
+      "time": 175281.45565633,
+      "keysym": 119,
+      "pressed": true
+    },
+    {
+      "time": 175281.496336058,
+      "keysym": 119,
+      "pressed": false
+    },
+    {
+      "time": 175281.536805685,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175281.577311302,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175281.617781309,
+      "keysym": 52,
+      "pressed": true
+    },
+    {
+      "time": 175281.658247076,
+      "keysym": 52,
+      "pressed": false
+    },
+    {
+      "time": 175281.698774253,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175281.739504011,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175282.154499982,
+      "capture": "TW04",
+      "frame_time": 175281.841199876,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175282.154692543,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175282.19519792,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175282.235679117,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175282.276177614,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175282.316828452,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175282.3573724,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175282.397830787,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175282.438284134,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175282.478645271,
+      "keysym": 100,
+      "pressed": true
+    },
+    {
+      "time": 175282.519320868,
+      "keysym": 100,
+      "pressed": false
+    },
+    {
+      "time": 175282.559782235,
+      "keysym": 100,
+      "pressed": true
+    },
+    {
+      "time": 175282.600200942,
+      "keysym": 100,
+      "pressed": false
+    },
+    {
+      "time": 175282.640600599,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175282.681091317,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175283.097323331,
+      "capture": "SDD",
+      "frame_time": 175282.860317935,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175283.097516872,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175283.138000409,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175283.178316575,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175283.218687712,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175283.259065229,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175283.299391766,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175283.339785723,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175283.380127979,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175283.420476546,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175283.460903643,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175283.50141541,
+      "keysym": 108,
+      "pressed": true
+    },
+    {
+      "time": 175283.541752927,
+      "keysym": 108,
+      "pressed": false
+    },
+    {
+      "time": 175283.582029824,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175283.622852152,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175284.038374655,
+      "capture": "SKL",
+      "frame_time": 175283.778178942,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175284.038539195,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175284.078978652,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175284.119484099,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175284.159866646,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175284.200340703,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175284.240852981,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175284.281257218,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175284.321661525,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175284.362492753,
+      "keysym": 49,
+      "pressed": true
+    },
+    {
+      "time": 175284.40308836,
+      "keysym": 49,
+      "pressed": false
+    },
+    {
+      "time": 175284.443645457,
+      "keysym": 52,
+      "pressed": true
+    },
+    {
+      "time": 175284.484145165,
+      "keysym": 52,
+      "pressed": false
+    },
+    {
+      "time": 175284.524629812,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175284.565067529,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175284.805834906,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175284.846451283,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175284.886941101,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175284.927431128,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175284.967856245,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175285.008307712,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175285.215804532,
+      "capture": "dark",
+      "frame_time": 175285.015031901,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175285.215809622,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175285.256322439,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175285.296774297,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175285.337218974,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175285.544728844,
+      "capture": "high-contrast",
+      "frame_time": 175285.325177819,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175285.544733814,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175285.585235702,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175285.625693279,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175285.666079045,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175285.706566663,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175285.746926829,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175285.955253953,
+      "capture": "compact-hc",
+      "frame_time": 175285.745759576,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175285.955420323,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175285.996097431,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175286.036647898,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175286.077034575,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175286.117507712,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175286.157821919,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175286.198662407,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175286.239003484,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175286.279388981,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175286.319764158,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175286.533030915,
+      "capture": "command-focus",
+      "frame_time": 175286.416921839,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175286.533035875,
+      "keysym": 65307,
+      "pressed": true
+    },
+    {
+      "time": 175286.573521542,
+      "keysym": 65307,
+      "pressed": false
+    },
+    {
+      "time": 175286.788231054,
+      "capture": "escape-return",
+      "frame_time": 175286.736208353,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175286.788522994,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175286.829062492,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175286.869419608,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175286.909816055,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175286.950163732,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175286.990572589,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175287.031097376,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175287.071524243,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175287.11184072,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175287.152193247,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175287.192673034,
+      "keysym": 51,
+      "pressed": true
+    },
+    {
+      "time": 175287.233021521,
+      "keysym": 51,
+      "pressed": false
+    },
+    {
+      "time": 175287.273420058,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175287.313943525,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175287.555079213,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175287.59556305,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175287.636008047,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175287.676451084,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175287.719204528,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175287.759706755,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175287.800138392,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175287.840472829,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175287.880925236,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175287.921328573,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175287.96168385,
+      "keysym": 52,
+      "pressed": true
+    },
+    {
+      "time": 175288.002009606,
+      "keysym": 52,
+      "pressed": false
+    },
+    {
+      "time": 175288.042493363,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175288.083078101,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175288.323889248,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175288.364441655,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175288.404880872,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175288.44546064,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175288.487252931,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175288.527830368,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175288.568318195,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175288.608740992,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175288.64927074,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175288.689707657,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175288.730222084,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175288.770777001,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175288.811265718,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175288.851939566,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175288.892450543,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175288.932974481,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175288.973487298,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.013987995,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.054483892,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.09498222,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.135473107,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.175877634,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.216387871,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.256805158,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.297318985,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.337738942,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.378264179,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.418723487,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.459221554,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.499731501,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.540234868,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.580726055,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.621227223,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.66169806,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.702183057,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.742686744,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.783203812,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.823629098,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.864126516,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.904622713,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175289.94516218,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175289.985642367,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.026121785,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.066590262,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.107138009,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.147603846,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.188106284,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.228730501,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.269196098,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.309664185,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.350214533,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.390624829,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.431126697,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.471652014,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.512205761,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.552636738,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.593128276,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.633565333,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.6740156,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.714423007,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.754894884,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.795396491,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.835876148,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.876313735,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.916842542,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175290.95724681,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175290.997727947,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175291.038198204,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175291.078718351,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175291.119161258,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175291.159696705,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175291.200133592,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175291.24059134,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175291.280976526,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175291.321487054,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175291.361950091,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175291.402440908,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175291.442949705,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175291.483450932,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175291.5239098,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175291.564368927,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175291.604877304,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175291.820697689,
+      "capture": "task-action-1-focused",
+      "frame_time": 175291.585919599,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175291.820702819,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175291.861192286,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175292.377765721,
+      "capture": "task-executed",
+      "frame_time": 175292.099288545,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175292.378211882,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175292.418672519,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175292.459226216,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175292.499760584,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175292.540227111,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175292.580681258,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175292.621184465,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175292.661698263,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175292.70229308,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175292.742780337,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175292.783328314,
+      "keysym": 51,
+      "pressed": true
+    },
+    {
+      "time": 175292.823822122,
+      "keysym": 51,
+      "pressed": false
+    },
+    {
+      "time": 175292.864348039,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175292.904838176,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175293.145974314,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175293.186459251,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175293.227096709,
+      "keysym": 65507,
+      "pressed": true
+    },
+    {
+      "time": 175293.267573806,
+      "keysym": 107,
+      "pressed": true
+    },
+    {
+      "time": 175293.308160204,
+      "keysym": 107,
+      "pressed": false
+    },
+    {
+      "time": 175293.348623141,
+      "keysym": 65507,
+      "pressed": false
+    },
+    {
+      "time": 175293.389094448,
+      "keysym": 115,
+      "pressed": true
+    },
+    {
+      "time": 175293.429564655,
+      "keysym": 115,
+      "pressed": false
+    },
+    {
+      "time": 175293.470020782,
+      "keysym": 48,
+      "pressed": true
+    },
+    {
+      "time": 175293.510499609,
+      "keysym": 48,
+      "pressed": false
+    },
+    {
+      "time": 175293.550995776,
+      "keysym": 52,
+      "pressed": true
+    },
+    {
+      "time": 175293.591512664,
+      "keysym": 52,
+      "pressed": false
+    },
+    {
+      "time": 175293.631988371,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175293.672461458,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175293.913381905,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175293.953895733,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175293.9944315,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.035323438,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.075800605,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.116275992,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.15674071,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.197157546,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.237634984,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.278077631,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.318558928,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.358948235,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.399481812,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.439950299,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.480518327,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.520980094,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.561465251,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.601829618,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.642360205,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.682799302,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.723307049,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.763689846,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.804181923,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.84461345,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.885163588,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175294.925689515,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175294.966202142,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.006730129,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.047269567,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.087646984,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.128102511,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.168750248,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.209979078,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.250727346,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.291270893,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.33163424,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.372099077,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.412564094,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.453017311,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.493495178,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.534018716,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.574433732,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.61502651,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.655353737,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.695885424,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.736354821,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.776835379,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.817332026,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.857824113,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.89821019,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175295.938733377,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175295.979011493,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.019544551,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.059995818,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.100481175,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.140974292,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.18168349,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.222069337,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.262594274,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.302957091,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.343465028,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.383816825,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.424317752,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.46484855,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.505318897,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.545746444,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.586321881,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.626777828,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.667259115,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.707714153,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.74824758,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.788757617,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.829371065,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.869776772,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.910361299,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175296.950829366,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175296.991286813,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175297.03184507,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175297.072386628,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175297.112913425,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175297.153425922,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175297.19392032,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175297.234684848,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175297.275288405,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175297.315913523,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175297.35645693,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175297.396975768,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175297.437382275,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175297.478036392,
+      "keysym": 65289,
+      "pressed": true
+    },
+    {
+      "time": 175297.518453229,
+      "keysym": 65289,
+      "pressed": false
+    },
+    {
+      "time": 175297.735163726,
+      "capture": "task-action-5-focused",
+      "frame_time": 175297.49821326,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175297.735169016,
+      "keysym": 65293,
+      "pressed": true
+    },
+    {
+      "time": 175297.775745284,
+      "keysym": 65293,
+      "pressed": false
+    },
+    {
+      "time": 175298.392757619,
+      "capture": "task-approved-badge",
+      "frame_time": 175298.015445647,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175298.392763859,
+      "keysym": 65366,
+      "pressed": true
+    },
+    {
+      "time": 175298.433318067,
+      "keysym": 65366,
+      "pressed": false
+    },
+    {
+      "time": 175298.473789484,
+      "keysym": 65366,
+      "pressed": true
+    },
+    {
+      "time": 175298.514278161,
+      "keysym": 65366,
+      "pressed": false
+    },
+    {
+      "time": 175298.554731318,
+      "keysym": 65366,
+      "pressed": true
+    },
+    {
+      "time": 175298.595242716,
+      "keysym": 65366,
+      "pressed": false
+    },
+    {
+      "time": 175298.812163563,
+      "capture": "task-verified",
+      "frame_time": 175298.664401145,
+      "size": [
+        1600,
+        1000
+      ]
+    },
+    {
+      "time": 175298.812264764,
+      "keysym": 65513,
+      "pressed": true
+    },
+    {
+      "time": 175298.852728951,
+      "keysym": 65473,
+      "pressed": true
+    },
+    {
+      "time": 175298.893188258,
+      "keysym": 65473,
+      "pressed": false
+    },
+    {
+      "time": 175298.933809365,
+      "keysym": 65513,
+      "pressed": false
+    }
+  ],
+  "result": "observed",
+  "natural_exit": 0
+}

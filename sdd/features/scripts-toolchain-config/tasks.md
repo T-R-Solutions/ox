@@ -31,3 +31,8 @@ sem inferir aceitação dos testes simulados.
 - T022: Atualizar RustSec oficialmente, verificar commit/data/integridade e consumidores offline.
 - T023: Executar matriz isolada real de scanners/relatórios/bases/concorrência/cancelamento, conferir hashes e limpeza; qualificar e ativar revisões.
 - T024: Executar comandos públicos e checks afetados, registrar evidências sucessoras por critério. Depende de T021..T023.
+
+- T014 sucessão documental de 16/11/2026: a regra OSV de 24h upstream foi substituída
+  pela regra central única de 12h desde download bem-sucedido. Implementação e
+  verificação delimitadas em scripts-toolbox-native T031 e
+  docs/validation/osv-acquisition-20261116/plan.md; gates Docker amplos não renovados.

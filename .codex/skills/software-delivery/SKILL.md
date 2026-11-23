@@ -38,4 +38,5 @@ or deploy from this skill; follow the user's actual scope.
 Language tools concretize this workflow; no Gradle, cloud, containers or orchestrator
 is required. Reliability owns broader recovery goals, security owns threat/control
 assessment and evolution owns long-lived coexistence. Use available specialists only
-for unresolved needs; this folder works independently without any skill or SDD.
+for unresolved needs. No other skill is a prerequisite; the consumer project’s required
+workflow and acceptance contracts still apply.

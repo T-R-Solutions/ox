@@ -9,3 +9,7 @@ REQ-04: Remove resolvable duplicate versions without deleting required dependenc
 - AC-02 → REQ-02: License inventory matches source identities and the native license check accepts the selected graph.
 - AC-03 → REQ-03: Two exact IDs are ignored by native policy while unknown/security findings remain failures.
 - AC-04 → REQ-04: Duplicate reduction is measured; any irreducible constraints have an explicit maintainer disposition and no false claim of elimination.
+
+REQ-05: The bounded cryoglyph/lru remediation preserves the selected renderer graph and byte layouts without new advisory or static-analysis suppression.
+
+- AC-05 → REQ-05: Locked/offline workspace and optional iced/wgpu-bare builds succeed; all four real vendor layout tests execute without ignored/filtered cases, invalid Pod layouts reject with their expected compiler diagnostics, observed inputs remain stable, and native security checks report no new blocking findings. Upstream notices and patch provenance remain present.

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "plugin-protocol-engineering-positive",
+    "kind": "selection",
+    "prompt": "Criar um protocolo host/plugin para um provedor LSP com negociação de versão e permissões."
+  },
+  {
+    "id": "plugin-protocol-engineering-negative",
+    "kind": "selection",
+    "prompt": "Adicionar uma regra de lint usando um SDK de plugins já estável, sem alterar protocolo ou permissões."
+  },
+  {
+    "id": "plugin-protocol-engineering-failure",
+    "kind": "behavior",
+    "skill": "plugin-protocol-engineering",
+    "prompt": "Host oferece read/search; plugin pede read/write; grant é read na raiz A. O plugin em processo separado diz que pode ler a raiz B diretamente e cai após gravar mas antes de responder. Proponha contrato e verificações; não execute processos."
+  },
+  {
+    "id": "agent-runtime-engineering-positive",
+    "kind": "selection",
+    "prompt": "Projetar adaptador CLI com streaming, cancelamento, reconexão e supervisão de processos."
+  },
+  {
+    "id": "agent-runtime-engineering-negative",
+    "kind": "selection",
+    "prompt": "Comparar qualidade de respostas de dois modelos sem ferramentas nem processos."
+  },
+  {
+    "id": "agent-runtime-engineering-failure",
+    "kind": "behavior",
+    "skill": "agent-runtime-engineering",
+    "prompt": "Execução A declarou concluído, encerrou sem testes, e seu evento atrasado chegou depois do início de B. B produz stdout/stderr intensamente e ignora cancelamento cooperativo. Descreva transições, controle e evidência; não execute processos."
+  },
+  {
+    "id": "autonomous-verification-engineering-positive",
+    "kind": "selection",
+    "prompt": "Projetar motor que atribui veredictos por critério a entregas de agentes, vinculando evidências ao snapshot."
+  },
+  {
+    "id": "autonomous-verification-engineering-negative",
+    "kind": "selection",
+    "prompt": "Criar testes unitários de uma função de soma e diagnosticar um teste flaky, sem motor de aceitação."
+  },
+  {
+    "id": "autonomous-verification-engineering-failure",
+    "kind": "behavior",
+    "skill": "autonomous-verification-engineering",
+    "prompt": "Critério A tinha teste passando sobre arquivo X; X mudou. Critério B testa arquivo Y inalterado. O teste de C está ausente. Há uma verificação de build aprovada, mas nenhum grant de publicação. Classifique e proponha retomada; não publique."
+  }
+]

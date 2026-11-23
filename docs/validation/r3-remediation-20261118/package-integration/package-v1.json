@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "role": "independent-review",
+  "reviewer": "/root/r3_orchestrator/review",
+  "verdict": "accepted",
+  "path": "tools/governance/scripts/package-ox.py",
+  "before_sha256": "8f06fa93a506ba8037e1708bd5530c456d6fe001885f036e250917d6cd077de0",
+  "after_sha256": "0f3f2491fb8a41b2d488b1364ba0b87f6b0f7299793c83801b11e97d6ec465e6",
+  "decision_sha256": "85b6251bc60270f6dc0e55a255ff57ac134b1b37cdd340d0f25ab8f714ce19b3",
+  "scope": "Independent semantic review of canonical package construction, independent bounded extraction and Windows drive rejection. External source names, hashes, sizes and normalized modes govern serialization and comparison; recursive payload limits and the five established commands remain. Eleven focused tests passed independently on revision04. Revision05 changes only the unsafe-name assertion to require its specific rejection reason. The affected test passed independently with the real guard; disabling only the drive guard in memory produced exactly the two expected C:/absolute and C:relative subtest failures, with zero errors. This resolves the previously reported oracle gap. Package source bytes remain unchanged from revision04. The subprocess call AST remains one existing shell-free invocation, and the before identity matches the authenticated log-repair terminal.",
+  "limitations": [
+    "This accepts the bounded implementation under trusted stable sources and the identified Python/zlib environment; it does not accept the R3 task, arbitrary archives or complete Windows portability.",
+    "The full-size package build, all extracted commands, stability over that complete execution and final checkout feature gates remain unverified by this review.",
+    "Main-only archive identity checks were inspected but not exercised through the real package entry point. The outer budget unit changes deliberately; the previous aggregate 128 MiB limit is not retained.",
+    "No hostile-writer concurrency or OS sandbox guarantee is claimed.",
+    "The coordinating agent may consolidate this exact response with attribution because the reviewer role is read-only; this record does not cryptographically authenticate authorization or identity."
+  ]
+}

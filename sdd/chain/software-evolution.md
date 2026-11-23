@@ -29,7 +29,7 @@ Keep unknowns explicit and preserve the destination project's authorities.
 
 ## Conditional handoff
 
-Consult postgresql for an unresolved engine-specific migration or software-delivery for artifact/rollout mechanics only when available and needed. Supply IDs, observations, constraints
+Consult database-engineering for an unresolved engine-specific migration or software-delivery for artifact/rollout mechanics only when available and needed. Supply IDs, observations, constraints
 and existing permission scope. Absence is an explicit gap, not a completed consultation.
 The bridge maps contributions; the skill owns its technical procedure.
 

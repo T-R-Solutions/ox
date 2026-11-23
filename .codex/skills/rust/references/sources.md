@@ -2,6 +2,8 @@
 
 ## Research scope and completion
 
+Historical source-library snapshot, not verification of the current consumer checkout. Paths, counts and toolchain below describe that source library.
+
 Research date: **2026-10-17**. All four PDFs found in `docs/languages/rust` were inventoried before synthesis. **The full extracted text of all 1,255 PDF pages was read**, including front matter, chapters, code, diagnostics, footnotes, exercises and back matter. Blank pages contribute to the PDF count but contain no text. The entire official Rust Book print view was read: **111 nonempty section units**, covering its front matter, chapters 1–21 and appendices A–G. Retrieval/extraction alone was not counted as reading. Truncated inspection output was reread in smaller or overlapping chunks.
 
 This revision replaces the earlier selective-reading analysis. The primary agent read all of ER, RFR, SP and ZTP PDF pages 1–450. After explicit user authorization, a second reader read ZTP PDF pages 451–601, and two readers read Rust Book section units 1–60 and 61–111 respectively. Their complete-coverage reports and findings were consolidated into the decision references and conflict register. No required text range remains pending.

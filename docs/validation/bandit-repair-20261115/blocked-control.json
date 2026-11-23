@@ -1,0 +1,14 @@
+{
+  "criterion": "BS-04",
+  "status": "INCONCLUSIVE",
+  "completed": [
+    "Current Bandit/Ruff/ShellCheck real clean runs.",
+    "Exact source and baseline mutation guards exit3 before scanner.",
+    "Independent review and focused regressions, with current evidence reconciliation in progress."
+  ],
+  "unexecuted": "Native detection of B603 in new file under final baseline.",
+  "command": "TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox TOOLBOX_SELINUX_LABEL=shared CARGO_HOME=\"$PWD/.cache/ox/cargo-home\" bash scripts/checks/run.sh --root /tmp/ox-bandit-positive-fwtpnlsv --check bandit",
+  "cause": "Host escalation request aborted before execution; fixture has no .local/logs and no run output. Controller instructed not to retry or work around this approval.",
+  "impact": "Cannot claim full BS-04 positive-detection proof or complete/product acceptance. Code correction and clean native regressions remain independently observed.",
+  "resume": "Reinspect fixture/source identities or recreate a disposable copy of the71 selected Python sources plus tools/bandit-new-file-probe.py. With host execution permission, run the focused public adapter and require exit1/findings containing B603 for the new file, metrics for all72 Python files and errors[]. Do not weaken the reviewed-source guard or execute the synthetic Python code."
+}

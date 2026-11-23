@@ -32,14 +32,15 @@ corpus F0 de 03/11/2026, reutilizado sem edição; não é mockup nem nova execu
 
 | Área | Entrega atual | Limite |
 | --- | --- | --- |
-| Desktop | Janela Iced, teclado, workspace e estados | Uma operação por vez |
+| Desktop | Janela Iced, workbench com 27 destinos e estados explícitos | Uma operação por vez; capacidades planejadas identificadas |
+| Projetos | Boas-vindas, criação de pasta vazia e até 20 projetos recentes | Metadados locais; sem persistência de tarefas ou preferências |
 | Tarefa local | Correta, incorreta, falha, timeout e cancelamento | Fixture determinística, sem agente de IA |
 | Supervisão | Processo filho direto e eventos por tentativa | Sem sandbox ou captura de stdout/stderr |
 | Verificação | Oráculo, snapshots, histórico e invalidação | Histórico em memória; atualização manual |
 | Plugins | Host Unix com protocolo textual 1.0 e grant de echo | API independente da interface |
 | Fundação | Workspace com 16 crates e contratos de domínio | Contratos não são motores completos |
 
-Agentes reais, persistência durável, indexação, motores de grafo, compactação de
+Agentes reais, persistência durável de tarefas/evidências, indexação, motores de grafo, compactação de
 output, LSP por plugins e distribuição pública continuam planejados. Consulte a
 [arquitetura](docs/architecture/application.md) para distinguir implementação e direção.
 
@@ -66,12 +67,14 @@ pacotes Linux. O [guia de execução](application/README.md) trata cache e probl
 
 ### 2. Execute e verifique
 
-1. Escolha um diretório de demonstração existente e gravável; clique em
-   **Validate workspace**.
-2. Clique em **Run correct**. O artefato produzido ainda fica `UNVERIFIED`.
-3. Clique em **Verify result**. Identidade, resultado 42 e observação aplicável
+1. Em Boas-vindas, use **Abrir pastas…** para selecionar um diretório de
+   demonstração existente e gravável. A abertura valida o diretório e apresenta
+   o projeto. Entre em **Tarefas** para acessar os cenários; **Validar diretório**
+   permite repetir a validação do caminho exibido.
+2. Clique em **Executar correto**. O artefato produzido ainda fica `UNVERIFIED`.
+3. Clique em **Verificar resultado**. Identidade, resultado 42 e observação aplicável
    podem sustentar `APPROVED`.
-4. Compare com **Run incorrect** e depois **Verify result**: o produtor pode sair
+4. Compare com **Executar incorreto** e depois **Verificar resultado**: o produtor pode sair
    com sucesso, mas o artefato incorreto é `REJECTED`.
 
 [![Cinco passos: workspace, execução, candidato, verificação explícita e resultado com evidências](docs/assets/task-cycle.svg)](docs/assets/task-cycle.svg)
@@ -97,7 +100,7 @@ flowchart LR
 
 Cada tentativa cria `.ox-task-<sessão>-<tentativa>/` com pedido e eventual resultado.
 Os arquivos permanecem após sair. O histórico e as aprovações em memória se perdem
-ao reiniciar. Após editar inputs, use **Refresh inputs**; não há watcher automático.
+ao reiniciar. Após editar inputs, use **Atualizar inputs**; não há watcher automático.
 
 ## Como a fundação se conecta
 
@@ -130,7 +133,8 @@ detalham interação e limites. Os checks Python verificam
 Cada tarefa termina com a revisão e atualização da documentação afetada, conforme
 [o workflow](sdd/workflow.md#documentation-before-task-closure). Consulte
 [artefatos locais](docs/development/local-artifacts.md) para caminhos, retenção e
-limpeza com simulação; dados antigos não são apagados por idade ou tamanho.
+limpeza com simulação. Logs operacionais conservam duas datas e removem a mais
+antiga antes de criar a terceira; isso não remove fontes nem alterações do checkout.
 
 Antes de contribuir, leia [AGENTS.md](AGENTS.md), a [constituição](docs/constitution.md),
 o [contexto autorizado](sdd/project.md) e o [workflow SDD](sdd/workflow.md).

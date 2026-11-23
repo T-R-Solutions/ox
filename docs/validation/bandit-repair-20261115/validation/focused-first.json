@@ -1,0 +1,57 @@
+{
+  "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts/tests:tools/governance/scripts:tools/governance/tests python3 -m unittest test_terminal_progress test_terminal_style test_terminal_publication test_historical_link_resolution test_log_repair_revision -v",
+  "exit_code": 1,
+  "tests": 61,
+  "passed": 59,
+  "failed": 2,
+  "failure_classification": "Stale evidence inputs in copied feature envelopes; both failures occur on initial clean-copy self.checker before adversarial mutation.",
+  "failed_tests": [
+    "test_historical_link_resolution.PublicHistoricalLinkTests.test_public_copy_rejects_unregistered_live_readme_append",
+    "test_historical_link_resolution.PublicHistoricalLinkTests.test_public_copy_requires_registry_and_rejects_recalculated_metadata"
+  ],
+  "artifact": "/tmp/ox-bandit-acceptance-tests.log",
+  "sha256": "a6347e409bae69c000fd547c3237bea5ba829f1e34b53c1205e59b8c6a51421b",
+  "inputs": [
+    {
+      "path": "scripts/lib/progress.sh",
+      "sha256": "e6fcbff7fd7331a7b79328862c8164a675a8c87527c9f1df9e56e86ff1e79a1b"
+    },
+    {
+      "path": "scripts/config/automation.json",
+      "sha256": "40cb2b62c7a2b36d890b8ef969b653fb41716bf452a107ae5714ea87f3391919"
+    },
+    {
+      "path": "scripts/config/native/bandit/bandit-baseline.json",
+      "sha256": "b2456e9e072de702ef2c8c41dd2d23829470be48066a2c4e44ae4f5948dc32a7"
+    },
+    {
+      "path": "scripts/tests/test_governance_diagnostics.py",
+      "sha256": "dacaaf252325e47835ad13c1a269e4036fc321414d28801fe12f2aedfa07e032"
+    },
+    {
+      "path": "tools/governance/scripts/log_repair_revision.py",
+      "sha256": "d59a01f8f25e82aa9620d0dbd07b2949e026654b280d25a5ef63d695d048331d"
+    },
+    {
+      "path": "scripts/tests/test_terminal_progress.py",
+      "sha256": "665987e42c74b38db9c21d09b26155473c32550ac45d59c6f6cbbf254c99855f"
+    },
+    {
+      "path": "scripts/tests/test_terminal_style.py",
+      "sha256": "b86bd183e67d7947917940cc9de87494a1f464d2e978a27ffe7c744e9531de36"
+    },
+    {
+      "path": "scripts/tests/test_terminal_publication.py",
+      "sha256": "79aa40faedda0de16d7cfa51295b5eed0707b104530e8ceff6320238b70a89a9"
+    },
+    {
+      "path": "tools/governance/tests/test_historical_link_resolution.py",
+      "sha256": "d77f0c7ad8c510422776121ab430df82e4c4df032479b9b388f0856c40fd6cc6"
+    },
+    {
+      "path": "tools/governance/tests/test_log_repair_revision.py",
+      "sha256": "9ec956b1092ebe862c3f783a96562c9b6997fe3b44d34f80e8217ce800e7e638"
+    }
+  ],
+  "current_source_drift": []
+}

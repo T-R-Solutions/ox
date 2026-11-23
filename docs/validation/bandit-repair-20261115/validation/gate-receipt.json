@@ -1,0 +1,115 @@
+{
+  "checks": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --features sdd/features --feature terminal-progress --require-approved --require-fresh --check-convergence",
+      "exit_code": 0,
+      "artifact": "docs/validation/bandit-repair-20261115/validation/terminal-approved.log.bin",
+      "sha256": "efbe05d250c1f0cdd8d4db2ca485685e887899b8f2012fb0a8ef0773ae6c10ca"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --features sdd/features --feature terminal-progress --feature history-scanner-correction --feature configuration-cohesion --require-fresh --check-convergence",
+      "exit_code": 0,
+      "artifact": "docs/validation/bandit-repair-20261115/validation/three-features-fresh.log.bin",
+      "sha256": "ea5f2ebba760e48ba6502d01e35b1c2b511e77876e577c579a3e4d018d52fceb"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "docs/validation/bandit-repair-20261115/validation/verdict-current.json",
+      "sha256": "ef24302e0265d915c915b6c63e39429ca9381300c645e184a9e2dec4b4dcaafb"
+    },
+    {
+      "path": "sdd/tools/validate.py",
+      "sha256": "3b1e99d6152dbf7e6ac27dba534798baa66b57a63ba6f943c40de151f243922c"
+    },
+    {
+      "path": "sdd/evidence.md",
+      "sha256": "bb40a4eb436f4dbbdc73bceebc2e7c3017ab5453fd5ba32504eba6cd7b85c731"
+    },
+    {
+      "path": "sdd/features/terminal-progress/spec.md",
+      "sha256": "4b3a79c6fd11611f38f11ada3fd67e35abe252b27300872bc525365a919be70c"
+    },
+    {
+      "path": "sdd/features/terminal-progress/plan.md",
+      "sha256": "789ea272b191321f39a3d44b7cd39259fb48a0ca01199a70abc158ed55600371"
+    },
+    {
+      "path": "sdd/features/terminal-progress/tasks.md",
+      "sha256": "cc056cf4343ec84763872e4602e5bf0be9817532417e234d7b60e88257a07ecf"
+    },
+    {
+      "path": "sdd/features/terminal-progress/traceability.json",
+      "sha256": "d81d10d77212e55fd6ca6133f33f4e6477f8b01ad28e6e483b68803517fbcda4"
+    },
+    {
+      "path": "sdd/features/terminal-progress/evidence.json",
+      "sha256": "c1f699bfb3a8e8bda91de77fe7b1380c44ccf89f723c0f6284c01b59c5f46de5"
+    },
+    {
+      "path": "sdd/features/terminal-progress/converge.md",
+      "sha256": "413464f57e4a6212573053dca6cf49dd1f5616f6a47a3a6e53f8d13c86d161bf"
+    },
+    {
+      "path": "sdd/features/history-scanner-correction/spec.md",
+      "sha256": "7c2dbb3e3f470a7fc7e89fee83ab41690231ac1c9e77bdca042b99b66af4f7a2"
+    },
+    {
+      "path": "sdd/features/history-scanner-correction/plan.md",
+      "sha256": "918226979317f394f3275a423223209c815a410bd82d4484f504feee7b1120b4"
+    },
+    {
+      "path": "sdd/features/history-scanner-correction/tasks.md",
+      "sha256": "4eb6979680e89a0b69e25e5bb002021406cfb5a2abfb1eef3ae5ef99065b2202"
+    },
+    {
+      "path": "sdd/features/history-scanner-correction/traceability.json",
+      "sha256": "b6271839d85e786db5941d30794bbd3b64e30b682056d7dc02c135f9d9792e07"
+    },
+    {
+      "path": "sdd/features/history-scanner-correction/evidence.json",
+      "sha256": "42a0fb133a4ab433db8adfba351390800a7a3ce861fd122438df67baff39fc8a"
+    },
+    {
+      "path": "sdd/features/history-scanner-correction/converge.md",
+      "sha256": "e5df186d74b745ba291785794ae8dc8ad8ae6abd4f941ff7f6ebe5f65f181788"
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/spec.md",
+      "sha256": "6e71f7d00d2d258ae16c1a2093e03c3781445b7aec778bd7eaa92ca7d48ff1b2"
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/plan.md",
+      "sha256": "04021e177af41509f49b37da5d8360d6e3621cfd2614e1569949a910f32d0ed9"
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/tasks.md",
+      "sha256": "5b0bde6b2d08dc6c3714305a6df39a7c5c7396d2eadf72e2ae9ce1fb9e066792"
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/traceability.json",
+      "sha256": "25b29dcbe9bf032d10e6aba4b2f0be70e08e8d91683c24b7b274dd029fcdf638"
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/evidence.json",
+      "sha256": "70d01d3fd3c76f3e52f6f5526bbe8ffb40c0f55c9858b85877b0fb73ed9f674b"
+    },
+    {
+      "path": "sdd/features/configuration-cohesion/converge.md",
+      "sha256": "3052e69a989a317ab6b084076dadae146540669b14d3a7aad34a0ae0857c737f"
+    }
+  ],
+  "semantic_binding_review": "151 new evidence input hashes all match observed native inputs or current independent execution/manual-inspection inputs. New evidence references immutable verdict ef24302e0265d915c915b6c63e39429ca9381300c645e184a9e2dec4b4dcaafb, not relabeled old execution. Prior failures/history preserved.",
+  "accepted_features": [
+    "terminal-progress AC-01..06"
+  ],
+  "other_scoped_decisions": [
+    "history-scanner-correction AC-03 APPROVED",
+    "configuration-cohesion AC-16 APPROVED"
+  ],
+  "limitations": [
+    "Three-feature freshness/convergence success is not three-feature approval: other17 criteria remain UNVERIFIED.",
+    "BS-04 remains INCONCLUSIVE solely for native new-file positive control not executed; follow blocked-control.json for authorized resumption.",
+    "No complete pipeline or product acceptance."
+  ]
+}

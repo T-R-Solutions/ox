@@ -1,0 +1,590 @@
+# Ox project context
+
+## Current summary — 2026-11-14
+
+Current phase: `implementation-foundation`.
+Application state: `bootstrap-implemented`.
+Current requested successor: the IDE welcome page, bounded persistent recent-project
+metadata and exclusive empty-directory creation are implemented and independently
+validated within product-visual-workbench WC-01–06 on 2026-11-15 for those inputs.
+The current log repairs change bound sources; affected acceptance requires fresh
+verification. Historical Rust/native evidence remains in the welcome-projects report.
+This limited metadata scope does not select general storage D5/D6 or persist tasks.
+The Rust/Iced workspace in `application/` has 16 crates. Local task execution,
+verification and the visual workbench are implemented within their feature scopes;
+planned destinations do not implement persistence, real agent providers or graph
+engines. See [architecture](../docs/architecture/context.md) and
+[visual surfaces](../docs/design/surfaces.md).
+
+Acceptance is distinct from implementation: current states live in each
+`features/*/evidence.json` and its current converge projection. Historical F0
+observations remain in `docs/validation/f0-resumption-20261103/`, bound to their
+original inputs; they do not approve the later UI. Product-local-persistence's
+AC-01–07 remain UNVERIFIED; storage technology/integration and broader platforms
+remain pending in [open questions](../docs/decisions/open-questions.md).
+
+The preceding request authorized the complete governance correction plan A01–A10
+under [configuration-cohesion](features/configuration-cohesion/spec.md), including
+local implementation, focused/integration tests and independent review. Its new
+criteria remain UNVERIFIED until observed; existing acceptance is not inherited.
+The preceding planning-only supplement is historical. No product implementation,
+commit/publication, downloads, central maintenance or complete scanner run belongs
+to this scope. Earlier authorizations below are dated records, not renewed grants.
+
+The preceding request authorized the initial native screen under product-visual-workbench:
+reference analysis, planning, local implementation and focused/native validation.
+See the dated start-screen scope below and its report for current evidence and limits.
+
+Operational authorities: [AGENTS](../AGENTS.md), [constitution](../docs/constitution.md),
+[workflow](workflow.md), [evidence](evidence.md), [SDD usage](README.md),
+[scripts usage](../scripts/README.md) and [governance commands](../docs/development/governance.md).
+Use these maintained command references and actual `--help`; do not execute old
+examples merely because they occur in history. Governance is Python stdlib;
+its checks do not validate Rust product behavior. Catalog/profile retain 31 skills.
+
+Authorization-history index: foundation and local slices (October), F0 and storage
+preparation (early November), scripts and retention successors, visual workbench,
+configuration cohesion and script defaults. The dated sections below retain their
+anchors and earlier facts. Review the applicable feature before resuming any scope.
+
+## Authorized welcome identity/layout — 2026-11-16
+
+The maintainer requests a native home-page layout refactor using the mascot,
+symbol and composition supplied in `.local/assets`. The definitive identity is
+`definitivo/README.md`: cotton mascot with Ferris tag, Catalisador v2 symbol and
+Valência lettering. Authorized scope is local presentation/assets, necessary
+PNG rendering support and focused Rust/native checks. Existing project-open,
+creation, history and task-effect contracts remain in force. No commit/publication
+or complete scanner run is requested. Local-route scope, inputs, checks and
+documentation disposition: [identity report](../docs/validation/welcome-identity-20261116/report.md).
+
+## Authorized log repair — 2026-11-15
+
+The maintainer requests diagnosis and correction of proven failures in the local
+15 November logs, preserving original logs and existing edits. Authorized work:
+bounded source/configuration repairs, focused offline checks, exact documentary
+succession and affected evidence updates. Material integrity/gate changes require
+high-profile coordination and independent review/validation. No full scanner run,
+log rotation/cleanup, dependency downloads, central maintenance, commits or
+publication are authorized. Scope and observations: docs/validation/log-repair-20261115/report.md.
+
+## Historical project context and authorization records
+
+All sections below preserve dated observations and requests. “Current” or “active”
+in an old record refers to its date, not automatically to today's input bytes.
+The exact predecessor is preserved in governance-corrections-20261114/before.
+
+
+## Identity and phase
+
+Project: Ox — an agent-first, local-first, extensible desktop application.
+Current phase: `implementation-foundation`.
+Application state: `bootstrap-implemented`.
+Status: product implementation is authorized through bounded SDD features;
+no product component is considered implemented or validated without concrete evidence.
+
+Governance and library work was recorded as a preparatory stage with historical
+observations preserved. The governance transition is handled by
+`sdd/features/product-foundation/` and does not implement application code.
+Future deliveries use independent `product-*` features with authorized scope.
+Local corrections follow the proportionate route defined in the workflow. This
+does not automatically authorize deployment, external access, spending, policy
+changes or destructive actions.
+
+## Authorities
+
+- `docs/constitution.md`: permanent Ox policies.
+- `AGENTS.md`: operational entry point and references.
+- `sdd/constitution.md`: pointer to the constitution, not a second policy.
+- `sdd/workflow.md`: route selection and development lifecycle.
+- `sdd/evidence.md`: states, evidence and acceptance.
+- `docs/architecture/context.md`: planned components and milestones.
+- `docs/decisions/*.md`: current, historical and pending decisions.
+
+## Features and methods
+
+`adoption-governance` and `governance-externalization` are historical.
+The nine `skill-*` features validate library authoring and selection, not the
+operation of product modules.
+
+Application features use the `product-*` prefix, remain directly under
+`sdd/features/`, and have requirements, oracles, evidence and states independent
+of skill SDDs. The local route follows `sdd/workflow.md`; do not open a full
+feature merely for formality.
+
+The 31 skills and 31 bridges remain available according to the versioned profile.
+Select a primary capability only when relevant; supporting skills require distinct
+technical questions. Availability, indication, selection, consultation and use are
+not equivalent. `docs/development/sdd-skills.md` explains bridge interchange
+without modifying skills' technical procedures.
+
+## Stack and technical state
+
+Adopted for first-party product code: Rust and Iced, prohibiting first-party
+`unsafe` according to `POL-01`. Ox-controlled storage will be local in the MVP;
+LSP and advanced capabilities will be integrated through plugins.
+
+**Historical baseline in the base package of 2026-10-26:** no product Cargo.toml,
+lockfile or crate was present. This statement describes the baseline; the current
+state is described below.
+Historical bootstrap state (2026-10-29): workspace in `application/`, 16 crates and a minimal window.
+Authorized scope: `product-bootstrap`, execution of prompt v2.0. Linux x86_64
+was confirmed by the maintainer. The toolchain is now pinned to 1.99.1
+under docs/decisions/governance-reconciliation.md. Iced 0.14.0, edition
+2024 and Rust 1.99 floor according to `docs/decisions/product-bootstrap.md`.
+Acceptance is in `sdd/features/product-bootstrap/`; this structure alone does
+not complete F0.
+
+Current governance tools: Python 3.11+ and stdlib. SDD 1.3.0 and its original
+validator remain preserved in historical baselines; English documentation is a
+language-only adaptation. These tools are not the application's Rust code.
+
+Current organization: tools and tests in `tools/governance/`, evaluation data in
+`tools/governance/tests/fixtures/`, profile and normative coverage in
+`config/governance/`; `application/` contains the virtual Rust workspace,
+separate from governance. Sources and tests belong in
+`application/crates/<crate>/src/` and `application/crates/<crate>/tests/`;
+the workspace root has no src/ or tests/.
+The ADR `docs/decisions/governance-layout.md` supersedes only previous location
+and allowlist decisions, preserving their records.
+
+## Available commands — governance
+
+From the Ox root, while these scripts exist:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .
+PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -v
+PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/run-checks.py
+```
+
+Product commands: `cd application`, `cargo check --workspace`,
+`cargo test --workspace`, `cargo test --workspace -- --list`,
+`cargo fmt --all -- --check`, `cargo clippy --workspace --all-targets -- -D warnings`
+and `cargo run -p ox-app --bin ox`.
+No Python command output validates the Rust/Iced application.
+
+## Pending decisions and limits
+
+Consult `docs/decisions/open-questions.md` before selecting platforms, versions,
+runtime, IPC, database, sandbox, agents or distribution.
+Feature authorization does not replace risk policy and effective permissions.
+Do not request global --require-approved while technical criteria are intentionally
+UNVERIFIED.
+
+## Library history
+
+The active catalog is in `.codex/skills/`. All 31 bridges use this location.
+Historical records in `docs/validation/` preserve earlier paths, hashes and limits;
+they are not sources for the application's current state. The three external
+studies are not part of distribution or validation.
+
+## Authorized reconciliation — 2026-10-29
+
+The maintainer authorized local profile, recovery, acceptance, toolchain, test-group
+and package corrections in governance-reconciliation and product-bootstrap. No
+commit, publication or historical deletion is authorized. Decisions and limits are
+in docs/decisions/governance-reconciliation.md. New commands, when present:
+`python3 tools/governance/scripts/run-tests.py --group fast` (small fixtures),
+`--group integration` (full-copy integrity), and `--group all` (complete suite).
+
+## Authorized sequential deliveries — 2026-10-29
+
+The maintainer authorizes local implementation, tests and full-route SDD updates
+for native Wayland bootstrap acceptance, then minimal Plugin Host, Agent Runtime
+and Verification Engine slices, each gated by acceptance of its predecessor.
+Record each new feature scope before code. Native Wayland is now an explicit
+validation target on Linux x86_64; existing X11 obligations remain. No commits,
+publication, global installation, destructive operations, remote providers,
+credentials or transmission are authorized. Context/graphs, marketplace, full
+orchestration and platform expansion are excluded. F0 is not thereby complete.
+
+<a id="active-authorized-slice-product-plugin-host"></a>
+
+### Historical authorized slice (2026-10-29): product-plugin-host
+
+Predecessor acceptance consolidated before this scope entry. Local implementation
+and tests in application/crates/ox-plugin/src/host.rs; full SDD in sdd/features/product-plugin-host.
+No remote services, sandbox claim, publication or UI integration.
+
+<a id="active-authorized-slice-product-agent-runtime"></a>
+
+### Historical authorized slice (2026-10-29): product-agent-runtime
+
+Predecessor acceptance consolidated before this scope entry. Local implementation
+and tests in application/crates/ox-agent/src/runtime.rs; full SDD in sdd/features/product-agent-runtime.
+No remote services, sandbox claim, publication or UI integration.
+
+<a id="active-authorized-slice-product-verification-engine"></a>
+
+### Historical authorized slice (2026-10-29): product-verification-engine
+
+Predecessor acceptance consolidated before this scope entry. Local implementation
+and tests in application/crates/ox-verification/src/engine.rs; full SDD in sdd/features/product-verification-engine.
+No remote services, sandbox claim, publication or UI integration.
+
+## Sequential delivery outcome — 2026-10-29
+
+Bootstrap accepted before host implementation: 13 criteria supported, including
+native Wayland human observation and explicit X11 tests on temporary Xwayland.
+Minimal product-plugin-host, product-agent-runtime and product-verification-engine
+slices are implemented and accepted in their own features. These are local library
+APIs and controlled fixtures, not desktop integration, real-agent support or F0
+completion. Bootstrap's former absence-of-IPC clause is superseded only by the
+explicitly authorized host delivery; the prior accepted envelope is preserved.
+No further roadmap expansion is authorized by these outcomes.
+
+## Authorized local task UI delivery — 2026-10-29
+
+The maintainer authorizes the full SDD route for product-local-task-ui: one
+controlled local task in the existing Iced application, existing-workspace
+validation, supervised execution/cancellation, explicit independent verification
+of a task-produced artifact, evidence history and stale-acceptance detection.
+Minimal Agent Runtime and Verification Engine extensions, local tests, new local
+validation destinations and affected governance corrections are authorized.
+Reconcile governance-reconciliation AC-01..04 before product implementation;
+stabilize this scope as an input to that review. Preserve all existing changes
+and historical evidence. No commits, publication, global installation, destructive
+operations, remote agents, credentials or code transmission. No general persistence,
+marketplace, Context Engine, graphs, orchestration or platform expansion; F0 is
+not completed by this slice. Graphical acceptance requires real interaction and
+observed backend/process exit; existing X11 obligations remain separate.
+
+## Authorized documentary reconciliation — 2026-11-01
+
+The maintainer authorizes documentary reconciliation, an operationally verifiable F0 gate proposal and persistence decision preparation. Full route: product-f0-gate; product-local-persistence is specification/design only. No storage implementation or technology adoption is authorized. The 36 skill scenarios have recorded approval for bounded consumers; nine T004 tasks are reconciled in docs/validation/f0-reconciliation-20261101/. This does not accept product engines.
+
+The inherited 25-criterion review (21 INCONCLUSIVE, four UNVERIFIED) remains the starting record, not an independent audit of its tests or matrices. Changed document inputs receive only scoped documentary reexamination. F0 closure requires an explicitly adopted boundary and sufficient current operational evidence for every applicable criterion. See docs/validation/foundation-current-20261101/f0.md. POL-02 requires local persistence at MVP, not explicitly at F0. Inclusion/deferral at F0 and implementation of product-local-persistence remain maintainer decisions.
+
+## Authorized F0 execution — 2026-11-02
+
+The maintainer authorizes local inventory, measurement, instrumentation, tests,
+bounded foundation corrections and affected SDD updates. F0-D1..D5 are expressly
+adopted in docs/decisions/f0-boundary-20261102.md. Linux x86_64 X11 and Wayland
+are separate targets; controlled local processes imply no sandbox. Persistence
+is an independent delivery after F0 and before F3/MVP; implementation remains
+unauthorized. No commits/publication/global installation/destructive actions,
+remote agents, transmission or roadmap expansion. Acceptance remains open, with
+current work in docs/validation/f0-execution-20261102 and product-f0-gate.
+
+## F0 closure successor — 2026-11-03 resumption
+
+F0 is accepted within the existing local Linux x86_64 foundation boundary. The
+maintainer explicitly adopted the GUI/frame/CPU contract and the twelve-cell
+X11/native-Wayland scale/size matrix. Current clause-level acceptance, observed
+inputs, failures, controlled-session limitations and checks are in
+`docs/validation/f0-resumption-20261103/` and `sdd/features/product-f0-gate/`.
+This supersedes the open-F0 statements in the historical delivery sections above.
+Product sources/dependencies are unchanged. No new feature or roadmap phase is
+authorized by closure; persistence remains a separate delivery before F3/MVP, with
+implementation still unauthorized. No commit, publication or global installation.
+
+### Counterevidence discovered during final corpus review
+
+The provisional closure above is superseded: F0 remains OPEN. Full-journey client
+draw logs exceed the adopted 125 ms bound, reaching 429.99 ms with history at
+200% native Wayland. Toggle-only measurements are insufficient for Q08. See
+docs/validation/f0-resumption-20261103/history-counterevidence.json. Investigate
+bounded rendering corrections without relaxing the contract.
+
+### Final optimized-profile successor
+
+The full-history blocker is now resolved by the package-only tiny-skia dev-profile
+override, with first-party source/dependency versions unchanged. The new 12-cell
+corpus includes full-history client drawing, actual focus/navigation, cancellation
+and owned-process exit; all adopted limits pass. F0 is APPROVED within the existing
+boundary. See E-F0-RASTER-CLOSURE and the current resumption report/checks. Earlier
+provisional and open statements are historical, preserved with their exact inputs.
+No new roadmap phase, persistence implementation or publication is authorized.
+
+## Authorized README skill integration — 2026-11-04
+
+The maintainer authorizes local import/adaptation of the supplied README lifecycle
+skill, its configured SDD bridge and affected governance/documentation consumers.
+The current profile is 31 entries: 17 general, 5 conditional and 9 specializations.
+See docs/decisions/readme-skill-integration.md and
+sdd/features/readme-skill-integration/. This is library/documentation integration,
+not new application implementation, roadmap work, Git publication or a new release.
+Existing F0 operational observations remain scoped to their exact product inputs;
+shared documentary/tool changes require selective successor review.
+
+## Local persistence preparation successor — 2026-11-05
+
+Maintainer adopted D2 common contract and D4 parameters and conditionally authorized
+D3 paired disposable comparison and D4-deps isolated resolution/review. Authority:
+`docs/decisions/local-persistence-experiment-20261105.md`. Current authorized work is T009 review preparation only; no candidate
+encoders/trials now. D1 remains post-F0/pre-F3/MVP; F0 guarantees are unchanged.
+D5 technology and D6 product integration remain open; product AC-01..07 UNVERIFIED.
+No product Cargo changes, commit or publication. Network acquisition was separately
+authorized only for the isolated dependency package.
+
+## Authorized succession and pre-execution review — 2026-11-05
+
+Explicit maintainer request authorizes full-route T011 governance succession repair,
+regression/adversarial tests, isolated Linux dependency/license review and content
+freeze only. No candidates, encoders, effect harness, trials, product Cargo changes,
+commits or publication. D1/D2/D4 retained, D3/D4-deps conditional, D5/D6 pending.
+T009 stays open; AC-01..07 UNVERIFIED; F0 accepted envelope unchanged.
+
+## Authorized task closure integration — 2026-11-05
+
+Maintainer authorizes scripts-task-closure, a full-route governance feature:
+inventory and recoverable retirement of unused imported scripts, offline native
+checks and proportional closure contract in local authorities. No product changes,
+commits, publication, global installs, image pulls or hooks. Existing dirty/untracked
+work is preserved. Only the resulting entry and README join governance copies after independent-copy
+consumer review (docs/decisions/scripts-task-closure.md D-05). No package is
+generated; catalog/profile unchanged.
+
+## Authorized security and quality correction — 2026-11-05
+
+Maintainer clarification supersedes the removal rationale of scripts-task-closure:
+retain applicable Rust/Python/security checks even when prerequisites are not yet
+configured. Full route: scripts-security-quality. Restore/adapt Gitleaks, OSV,
+Opengrep, RustSec, cargo-deny/Machete/Geiger/coverage, generic artifact/malware
+analysis and Python quality; foreign stacks remain excluded. No product source,
+Cargo dependency, installation, hooks, network acquisition or publication changes.
+Missing scanner execution remains UNVERIFIED.
+The maintained scripts subtree explicitly joins governance copies so wrappers,
+modules and local rules remain resolvable. Runtime data and erase.md stay excluded.
+No catalog/profile change or distribution package generation is authorized.
+
+## Authorized shell automation refactor — 2026-11-06
+
+The maintainer authorizes conversion of scripts/ operational code to .sh, Python
+only for testing those scripts, logical folders and removal of duplication. Full
+route: scripts-shell-refactor. Affected callers, tests, documentation and evidence
+are included; preserve unrelated workspace work. Existing governance Python tools
+outside scripts remain authorities. No product edits, installs, database refresh,
+commits or publication. Real missing scanner prerequisites remain explicit.
+
+## Authorized scanner configuration — 2026-11-06
+
+The maintainer requests scripts-toolchain-config: adapt native globally installed
+Cargo scanners and external tools according to .local/usage.md; consult official
+documentation and version Ox configurations, with strict security checks. Full
+route includes scripts, focused tests and affected evidence/authority succession.
+No product source/dependency changes, shared-toolbox edits, implicit installation,
+database refresh, commit or publication. A missing external adapter/image/data
+remains a blocking prerequisite, not successful execution.
+
+## Commit validation preference successor — 2026-11-06
+
+The maintainer supersedes the automatic task-closure invocation policy from
+scripts-task-closure. Execution instructions for the optional pre-commit gate
+belong exclusively to the commit skill. General SDD acceptance and evidence
+requirements remain in force. Historical script records and technical command
+reference are retained as observations and capabilities, not execution mandates.
+This request authorizes bounded documentation/skill edits only, without creating
+commits, hooks or changing application/scanner behavior. The affected feature
+records the successor decision and documentary evidence.
+
+## Authorized security preparation — 2026-11-06
+
+Maintainer authorizes scripts-security-preparation: explicit official dataset
+acquisition or reviewed import, atomic publication, offline denial tests, refined
+Opengrep rules with real detection tests and portable toolbox discovery. This
+supersedes the no-database-refresh restriction only for the separate explicit
+preparation command. No product changes, shared-toolbox changes or commits.
+
+## Authorized toolbox database ownership — 2026-11-07
+
+Maintainer supersedes native preference for Trivy, OSV and Grype only. Toolbox
+(Docker/dev_audit) prepares versioned snapshots and executes; Ox supplies targets,
+native configuration, explicit snapshot selection and age policies. Changes are
+limited to Ox; the other agent owns dev_audit. No Docker preparation, update,
+external writes or commits. Remove redundant Ox databases for these three after
+consumer contract verification; retain RustSec for native cargo-audit and raw
+historical reports. Full route extends scripts-toolchain-config; decision and
+evidence: docs/decisions/scanner-toolbox-ownership.md and
+docs/validation/scanner-toolbox-ownership/.
+
+## Authorized native Toolbox migration — 2026-11-08
+
+User authorizes complete local scripts exec migration, documentation and tests;
+full workflow in sdd/features/scripts-toolbox-native. No Ec/Toolbox changes,
+commits, host changes or implicit downloads. Supersedes consumer lock/snapshot
+selection and native-first dispatch for central scanners only. Operational
+acceptance remains UNVERIFIED pending active central images and public DB age
+information; RustSec needs real maintenance. See scripts/README.md.
+
+## Operational completion authorization successor — 2026-11-08
+
+The current explicit user request supersedes historical Ox-only/no-acquisition/
+no-central-maintenance/no-database-update restrictions solely for completion of
+scripts-toolbox-native AC-03 and scripts-toolchain-config AC-05/06/07. Authorized:
+bounded Ox and Shared Toolbox corrections, official explicit acquisition/builds,
+RustSec refresh, isolated real qualification, central activation and recovery.
+Effective filesystem/network permissions still apply. No commits, pushes, global
+installs, private code transmission, historical evidence deletion or global SELinux/
+permission changes. OSV 24h and Trivy/Grype 120h remain mandatory. Scans stay offline.
+
+## Authorized dependency hygiene — 2026-11-09
+
+The maintainer requests the exact local Toolbox environment rule, review and
+correction of dependency license policy, removal of duplicate versions, and
+temporary acceptance of the two identified maintenance advisories. Full route:
+sdd/features/dependency-hygiene. Permit isolated/offline Cargo resolution, bounded
+lockfile corrections, native policy checks and associated documentation. Preserve
+GPL-3.0-only for first-party material and historical observations. No publication
+or central maintenance. The maintainer selected retention of Iced 0.14 with
+explicit package/version dispositions for the remaining incompatible generations;
+no blanket duplicate exception is adopted.
+
+## Mandatory consumer integration rules — 2026-11-09
+
+The maintainer requires scripts/ to conform to the actual
+`/home/rodrigo/Projetos/dev_audit/shared-toolbox/docs/consumer-integration.md`
+and authorizes removal of conflicting, deprecated and obsolete configuration.
+Full route extends scripts-toolbox-native. Native exec remains mandatory; central
+OSV automatically acquires/validates absent data or data acquired more than 12h
+ago before scans. This supersedes earlier promises of no gate acquisition solely
+for that documented central behavior. Scanner offline flags, Ox 24h advisory age,
+Trivy/Grype 120h, native policy and the explicit full-verification environment
+remain. Remove unreachable local scanner argv and ineffective host-only scanner
+exports. No central writes, commits, product changes or full verification required
+by this configuration task; use focused consumer checks and preserve preimages.
+
+## Operational repair — 2026-11-09
+
+Maintainer explicitly requests restoring Ox checks using Ec as read-only reference.
+Bounded scripts/test/succession and evidence repairs, dedicated Cargo cache
+preparation and real verification are authorized. Full route extends
+scripts-toolbox-native. Use explicit shared SELinux mounts for dedicated check
+snapshots; no Ec or central source edits, global policy changes or product edits.
+Historical observations remain immutable; changed inputs require new observations
+or INCONCLUSIVE status. Previous commit request and affirmative full-gate choice
+remain pending successful verification.
+
+## Authorized repository maintenance — 2026-11-09
+
+Maintainer explicitly requests sequential proven-safe cleanup, per-task documentation
+closure in SDD/skill integration, shared .local paths and lifecycle retention/migration,
+then final documentation and evidence. Full route: sdd/features/repository-maintenance/.
+Only confirmed redundant/obsolete local material may be removed. Historical evidence,
+unique data, pinned legacy artifacts and unrelated work remain protected. No product
+features, commits, publication, global installation or other-repository edits.
+
+## Authorized visual workbench — 2026-11-11
+
+The maintainer authorizes local Rust/Iced visual development across current and
+planned surfaces, reference reconciliation, useful skill adaptation and proportional
+verification. Full routes: product-visual-workbench and skill-native-visual-method.
+`DESIGN.md` is the maintained visual contract, subordinate to the
+constitution and functional contracts. Planned UI does not authorize new backend
+engines, persistence or remote effects. No commits or publication. Historical F0
+observations do not validate changed UI inputs.
+
+## Authorized configuration cohesion — 2026-11-11
+
+Maintainer requests review/refactoring of skills, SDD and AGENTS for duplicate,
+obsolete and misplaced instructions. Full route: configuration-cohesion. Preserve
+unique methods, the 31-entry profile, permissions and historical observations.
+Local configuration/documentation and proportional checks only; no commits,
+publication or product changes. Current acceptance is recorded by the feature,
+not inferred from preceding historical authorizations.
+
+## Authorized local retention replacement — 2026-11-11
+
+The maintainer requests inventory and removal of local backups and retention of
+only tool logs under `.local/logs/YYYY-MM-DD/`, with at most two dates. This
+supersedes the retained-copy prerequisite in repository-maintenance. No commits
+or publication. Temporary scanner inputs are discarded after execution; sources
+and unrelated working changes remain intact. Implementation and verification are
+recorded in repository-maintenance tasks and the local-artifacts guide.
+
+## Authorized local complete scope — 2026-11-11
+
+Local route: the maintainer requests one automation scope combining the standard
+checks and all optional checks. Add `--scope complete`, preserve `full` and
+`--check` filtering, and verify selection through plans without running scanners.
+Documentation disposition and focused results follow below.
+
+Focused result: APPROVED for scope selection. Public `--plan` invocations on
+2026-11-11 observed 16 unchanged full commands and 24 unique complete commands;
+complete adds history/coverage/geiger/trivy/sbom/grype/malware/shellcheck in order.
+The governance command selects group all; filtering to coverage/shellcheck works.
+`bash -n scripts/automate.sh scripts/lib/registry.sh` passed. Observed inputs:
+current scripts/automate.sh, scripts/lib/registry.sh and installed Cargo metadata,
+with the maintainer's Toolbox and Cargo environment. No scanners were executed.
+Documentation reviewed: scripts/README.md updated with complete, filtering and
+graphical limits; README.md delegates script usage and needs no new command.
+The historical scripts-task-closure ADR remains unchanged; this additive local
+successor preserves full and execution permissions. No product acceptance claim.
+
+## Authorized complete-run repair — 2026-11-11
+
+The maintainer requests exhaustive diagnosis of the recent complete-scope logs
+and implementation of corrections. Extend scripts-toolbox-native for bounded
+automation, test-consumer and documentary succession repairs, with focused and
+real verification. Preserve existing edits, raw observations and offline scanner
+contracts. No commits, publication, central source edits or product expansion.
+The investigation and documentation disposition are recorded in
+docs/validation/complete-repair-20261111/report.md.
+
+
+## Authorized Ec defaults alignment — 2026-11-13
+
+The maintainer requests matching Ec script defaults, including
+`./scripts/automate.sh run --scope complete`. Continue scripts-centralization
+through T004: public CLI, catalog selection and execution defaults, appropriate
+native configurations and affected documentation. Ec is read-only; unrelated
+working changes are preserved. No commit or publication is requested.
+
+## Authorized start screen — 2026-11-14
+
+The maintainer requests analysis of supplied design screens and DESIGN.md, planning,
+implementation, tests and validation of the application's initial screen. Continue
+product-visual-workbench for Surface::Start: existing directory validation, actual
+session context and task resumption, adaptive native layout and keyboard access.
+Existing Controller effects remain authoritative. No new persistence, project creation,
+remote provider, commit/publication or complete scanner run is part of this slice.
+The extensive preexisting working tree is preserved. Scope and observations are in
+[the start-screen report](../docs/validation/start-screen-20261114/report.md).
+
+## Folder-picker continuation — 2026-11-14
+
+The current request authorizes a graphical existing-directory chooser on S01, its
+asynchronous lifecycle, focused tests, native replay and independent review/validation.
+Keep manual entry, existing Controller validation and task effects. No persistence,
+project creation, provider integration, commits or publication. Dependency downloads
+and effects outside the workspace remain subject to effective permissions.
+See product-visual-workbench and docs/validation/folder-picker-20261114/report.md.
+
+Folder-picker outcome: implemented with supervised optional Zenity helper and manual
+fallback; FP-01–04 approved by independent scoped validation. Real GTK Wayland replay
+and focused Rust evidence are in the dated report. Default portal behavior, X11,
+assistive technology and broad visual-workbench ACs are not approved by this slice.
+
+## Welcome/projects authorization — 2026-11-14
+
+The current explicit request authorizes redesign of S01 as a project-centered IDE
+welcome page, durable recent-project metadata, and real bounded empty-directory
+project creation. This supersedes the earlier session-only restriction solely for
+recent-project history. General task/evidence/application persistence and D5/D6
+remain open. No commits, publication, installations or central maintenance are
+authorized. Full route/high coordination, independent review and validation apply.
+Contracts and current observations: docs/validation/welcome-projects-20261114/report.md
+and product-visual-workbench successor. Existing dirty/untracked changes are retained.
+
+Welcome/projects outcome — 2026-11-15: WC-01–06 APPROVED by independent scoped
+validation after Rust/filesystem/widget tests and final real Wayland wide/small/
+recovery journeys. Recent history survives restart; exclusive empty-project creation
+is real; corrected input-focus behavior was reobserved. Broad visual-workbench
+ACs remain INCONCLUSIVE and general persistence acceptance remains unchanged.
+
+## Authorized single OSV acquisition clock — 2026-11-16
+
+The maintainer requests implementation and contradiction audit of one OSV temporal
+rule: absent data or >12h since successful download acquires a new validated base;
+<=12h reuses it; scans never reset the timestamp. This explicitly supersedes earlier
+OSV 24h requirements in this document and the scanner ownership/native ADRs.
+Trivy/Grype 120h and advisory exceptions remain unchanged. Continue full route
+scripts-toolbox-native T031 with high coordination and independent review/validation.
+Central source changes require actual host write approval; prepare a reviewable
+patch locally first. No commits, publication, real downloads or complete run.
+Authority: docs/decisions/osv-acquisition-validity.md. Scoped criteria and results:
+docs/validation/osv-acquisition-20261116/plan.md and report.md. Historical scanner
+observations retain their original input bindings and are not renewed.

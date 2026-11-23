@@ -109,3 +109,85 @@ amplos anteriores INCONCLUSIVE. Documentos revisados/atualizados enumerados no
 report; DESIGN e tokens/fontes preservados com justificativa concreta. Transcrição
 final altera apenas estado/documentos de fechamento, com recheck dos hashes afetados.
 Sem commits, publicação, instalações ou scanners completos.
+
+## Identidade da página inicial — 16/11/2026
+
+- [x] T022 — Integrar a identidade definitiva, refatorar S01 com adaptação de largura,
+  preservar fluxos/IDs existentes e executar verificações Rust/nativas focadas.
+  Dono: raiz, UI/assets/manifests e documentação. Critérios, comandos/inputs/resultados
+  e disposição documental em welcome-identity-20261116/report.md. Não renova o aceite
+  amplo WC-06 nem os estados históricos da feature.
+
+## Reformulação desktop enterprise — 16/11/2026
+
+- [x] T023 — Registrar escopo, critérios EV-01–04, decisão, riscos, skills e donos; preservar baseline atual.
+- [x] T024 — Reformular shell/componentes e S01/S02/workbench/preferências; dono ec_implementador, fontes ox-ui e assets.
+- [x] T025 — Executar Rust/capturas/jornadas focadas e revisão independente; corrigir achados afetados.
+- [x] T026 — Atualizar documentação, registrar inputs/limites e validar independentemente a entrega delimitada.
+
+T024 implementada: composição ocupando janela, seções/menus/chrome compartilhados,
+ícones nativos e footer compacto. Captura preliminar encontrou header expansível;
+correção e regressão de geometria passaram. Logs finais: enterprise-visual-20261116/
+final-implementation-checks.json (42 unitários,4 integração,1 shell,Clippy/build0).
+Documentos DESIGN/surfaces/reference-coverage/components/application README foram
+atualizados para contratos efetivos. T025/T026 aguardam observação nativa final
+e pareceres independentes; resultados históricos não são renovados.
+
+T025/T026 concluídas em17/11 após final03: testes42+4+1,Clippy/build0 e ensaios
+nativos estáveis em640×480,1440×900,2560×1080; abertura real sem tarefa, temas,
+densidade Compacta e foco/rolagem observados. Revisão independente sem achados
+pendentes e validador independente aprovou EV-01–04 delimitados. Documentação
+final revisada enumerada no report; preferências exibem tema/densidade e Details
+opcionais. ACs amplos continuam INCONCLUSIVE, WC UNVERIFIED; limites AT/X11,
+escalas/matriz integral e replay Details permanecem explícitos. Sem commit.
+
+## Navegação desktop — 17/11/2026
+
+- [x] T027 — Registrar feedback, escopo DN-01–05, riscos/capacidades, donos e preservar baseline.
+- [x] T028 — Implementar chrome compacto, ícones semânticos e sidebar arrastável/recolhível com teclado; dono implementador, fontes ox-ui.
+- [x] T029 — Observar pointer drag/hover/rail/foco nativos, executar regressões e corrigir revisão independente.
+- [x] T030 — Atualizar contratos/documentação e validar independentemente os inputs finais.
+
+T028–T030 concluídas: chrome compacto/hoverSettings,27ícones, ausência mascote e
+sidebar arrastável/rail implementados.46unit+4integration+1shell/testbuild0;Clippy
+final02 precede remoção literal do rodapé272. Final03 nativo1366×768/640×480
+observou dragminmax/soltura/Escape/resize/teclado/rail/foco e temas; review sem
+achados, validador independente DN01–05 APPROVED delimitados. Docs revisados e
+limites/corpus anômalo excluído em desktop-navigation-20261117/report.md.
+Estados amplos AC/WC e históricos preservados. Sem commit.
+
+## Correção da entrada de projetos — 17/11/2026
+
+- [x] T031 — Ajustar engrenagem compartilhada, ordem das ações e área principal
+  de projetos; dono raiz, desktop.rs/views.rs/icons.rs. Verificar foco/clique,
+  layout nativo largo/estreito e regressões Rust; atualizar documentação afetada.
+  Critérios PE-01–04, inputs observados, resultados e limites registrados em
+  project-entry-20261117/report.md. Sem clonagem real, commit ou scanner completo.
+
+Direção visual 2026-11-17: especificação/plano revisados para VISUAL STUDIO 2026
+ENTERPRISE. Nenhuma tarefa nativa foi executada por esta sucessão documental;
+critérios anteriores exigem os próprios inputs e observações.
+
+## Continuação local: barra lateral e configurações — 2026-11-17
+
+Dono: raiz, desktop.rs/views.rs e documentação afetada. Objetivo SS-01–03:
+fixar barra/Plugins, isolar Configurações e implementar Salvar/Voltar na sessão.
+Dependências: composição Iced existente e mensagens de navegação; sem efeito
+persistente novo. Verificações e disposição documental no relatório
+../../../docs/validation/sidebar-settings-20261117/report.md.
+
+Concluído no escopo SS-01–03: implementação, testes focados, Clippy, build e
+observação nativa em 1366×768 e 640×480. Relatório registra inputs, resultados,
+limitações e documentação revisada/atualizada; não renova os gates amplos.
+
+## Correção da auditoria — 17/11/2026
+
+AF-T01/AF-T03: mensagem de término local em pt-BR e foco preservando papéis/estados; contratos, regressões e observação nativa em docs/validation/audit-followup-20261117/. Aceite amplo dos ACs permanece INCONCLUSIVE; fechamento delimitado depende da validação independente desse registro.
+
+Fechamento AF-T01/AF-T03: regressões Rust e observação nativa delimitada concluídas; revisão/validação AF01–05 APPROVED no suplemento. Critérios amplos continuam INCONCLUSIVE.
+
+## Correções da análise combinada — 2026-11-17
+
+- T090: corrigir defeitos confirmados e atualizar evidência afetada conforme
+  [relatório](../../../docs/validation/claude-remediation-20261117/report.md).
+  Verificações focadas e limites constam no relatório; aceite amplo não renovado.

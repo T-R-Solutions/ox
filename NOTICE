@@ -1,4 +1,4 @@
-Ox — escopo do licenciamento e pendências (2026-10-27)
+Ox — escopo do licenciamento e pendências (decisão 2026-10-27; inventário 2026-11-17)
 
 Copyright (C) 2026 Rodrigo Batista
 
@@ -12,7 +12,8 @@ autoradas no Ox, nove especializações listadas em config/governance/profile.js
 e contribuições próprias à documentação, configuração e features do Ox.
 Não se reivindica titularidade sobre materiais copiados ou derivados de terceiros.
 
-As vinte skills copiadas, o SDD de origem (incluindo templates e validador),
+As vinte skills copiadas na adoção, as integrações posteriores commit-governance
+e readme-lifecycle-engineering, o SDD de origem (incluindo templates e validador),
 recursos importados e tools/governance/scripts/skill-quick-validate.py não são
 relicenciados por este aviso. Suas origens e bytes constam em docs/structure/files.json;
 seus termos de redistribuição permanecem a confirmar. Referências a livros e seus
@@ -25,3 +26,17 @@ FSF no arquivo LICENSE refere-se ao texto da licença, não à titularidade do O
 Consultar docs/licensing/review.md e docs/decisions/licensing.md.
 Distribuição pública ainda não está pronta; OPEN-07 permanece parcialmente pendente.
 Este aviso descreve o escopo, não acrescenta restrições à GPL sobre material coberto.
+
+Inventário complementar de materiais observados (17/11/2026):
+- Lucide em docs/assets/vendor/lucide: LICENSE preserva ISC e MIT para partes
+  derivadas de Feather; info.json identifica o pacote. Ver docs/assets/README.md.
+- IBM Plex Sans/Mono em application/crates/ox-ui/assets/fonts: OFL.txt preserva
+  SIL Open Font License 1.1; identidades em docs/design/font-provenance.json.
+- Componente de automação adaptado: scripts/security/LICENSE e NOTICE preservam
+  a concessão MIT e seu escopo; não se aplica automaticamente a scanners/bases.
+- Fontes embarcadas pela dependência iced_graphics 0.14.0: Fira Sans Regular
+  (metadados internos OFL 1.1 ou posterior) e Iced-Icons. Inventário por bytes em
+  docs/design/dependency-fonts.json. O texto MIT do crate não comprova sozinho
+  a origem/licença de cada glifo de Iced-Icons; essa revisão permanece pendente.
+Os avisos e termos de terceiros continuam próprios e não são substituídos pela
+GPL do material autoral. Este inventário factual não aprova distribuição pública.

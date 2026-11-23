@@ -1,0 +1,22 @@
+[
+  "/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox",
+  "exec",
+  "--tool",
+  "ruff",
+  "--project-root",
+  "/tmp/ox-terminal-progress-python-lint-38404xyn/source",
+  "--timeout",
+  "120",
+  "--diagnostic-file",
+  "/tmp/ox-terminal-progress-python-lint-38404xyn/ruff/diagnostic.json",
+  "--",
+  "check",
+  "--config",
+  "/project/scripts/config/native/ruff/ruff.toml",
+  "--ignore-noqa",
+  "--no-fix",
+  "--no-cache",
+  "--output-format",
+  "json",
+  "/project/scripts/tests/test_terminal_progress.py"
+]

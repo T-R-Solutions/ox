@@ -115,13 +115,24 @@ def excluded_product_reference(root, source, target):
     if source == "DESIGN.md":
         # These two product-dependent criteria are absent from governance exports.
         # Bind the exception to the reviewed document and exact destinations.
+        targets = {
+            "sdd/features/product-visual-workbench/converge.md",
+            "sdd/features/skill-native-visual-method/spec.md",
+        }
+        from audit_revision import records as audit_records
+        from instruction_revision import governance_copy
+
+        # The audited successor retains exactly the same two targets. Absence of
+        # product sources alone never opts a consumer into this new branch.
+        if governance_copy(root) and target.relative_to(root).as_posix() in targets:
+            row = audit_records(root)[source]
+            from document_ledger import predecessor as ledger_predecessor
+            if hashlib.sha256(ledger_predecessor(root, source, file(root, source).read_bytes(), strict=False)).hexdigest() == row["sha256"]:
+                return True
         return (
             hashlib.sha256(file(root, source).read_bytes()).hexdigest()
             == "864f769ee9c4a35ec60801f986e997d93a8a6de45580e215c0e77dca27c4ef9a"
-            and target.relative_to(root).as_posix() in {
-                "sdd/features/product-visual-workbench/converge.md",
-                "sdd/features/skill-native-visual-method/spec.md",
-            }
+            and target.relative_to(root).as_posix() in targets
         )
     visual = (root / VISUAL_BASE).exists()
     registry = (VISUAL_BASE if visual else BASE) + "/product-references.json"

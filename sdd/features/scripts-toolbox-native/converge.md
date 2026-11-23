@@ -95,3 +95,18 @@ performed on all current inputs. AC-03 remains UNVERIFIED: no real Docker scanne
 or OSV acquisition observed here. Historical evidence.json/logs are unchanged.
 Current inputs, source bytes, patches and test output:
 consumer rules report (`docs/validation/toolbox-consumer-rules-20261109/report.md`).
+
+## Single OSV acquisition successor — 2026-11-16
+
+The initial bounded manual review recorded OSV-01..05 approval in
+[the scoped report](../../../docs/validation/osv-acquisition-20261116/report.md).
+A later authorized run exposed a missing authenticated successor for this closure
+paragraph, legacy diagnostic exceptions and a Ruff finding in the new test.
+The initial OSV-05 closure conclusion is superseded by
+[the correction record](../../../docs/validation/osv-acquisition-20261116/repair/report.md).
+Prior observed bytes/results remain historical; no hashes are renewed to imply
+reexecution. Central v3 acquisition behavior is unchanged by this repair.
+
+The broad AC projection above remains unchanged: focused acquisition, consumer
+and governance checks do not qualify the complete real Docker/scanner matrix.
+The correction record owns the current scoped results and independent validation.

@@ -1,0 +1,107 @@
+{
+  "fixture": "/tmp/ox-instruction-succession-ls74aydm",
+  "kind": "compact physical consumer fixture; not a governance export/package",
+  "files": 342,
+  "bytes": 2553432,
+  "oracles": [
+    "instruction_revision.errors",
+    "audit_revision.errors",
+    "document_ledger.predecessor (three authorities)"
+  ],
+  "results": [
+    {
+      "name": "baseline",
+      "expected": "valid",
+      "observed": "valid",
+      "oracle_satisfied": true,
+      "expected_diagnostic": null,
+      "duration": 35.67916965484619,
+      "diagnostics": [],
+      "project_sha256": "7fc42e1b97526855dd1a77748a0b1c48f9d4c52ae8b9b30482c9649be3abdd6d",
+      "log_sha256": "eca97cf4085335c752773639d403b0510bb09a31a7eedae4dad2d4eb3951f375"
+    },
+    {
+      "name": "legitimate-authorization-section",
+      "expected": "valid",
+      "observed": "valid",
+      "oracle_satisfied": true,
+      "expected_diagnostic": null,
+      "duration": 35.775691509246826,
+      "diagnostics": [],
+      "project_sha256": "5554a7b7fb5ad9d3441d968e7a1339ce6b00bc2005da2fe105c5168856bde445",
+      "log_sha256": "eca97cf4085335c752773639d403b0510bb09a31a7eedae4dad2d4eb3951f375"
+    },
+    {
+      "name": "append-only-log-entry",
+      "expected": "valid",
+      "observed": "valid",
+      "oracle_satisfied": true,
+      "expected_diagnostic": null,
+      "duration": 35.47586154937744,
+      "diagnostics": [],
+      "project_sha256": "5554a7b7fb5ad9d3441d968e7a1339ce6b00bc2005da2fe105c5168856bde445",
+      "log_sha256": "bbf8a1fffb63f5a90efe8ebd2f1659500b60032dd0eb93d8e27283b8c70e1c5c"
+    },
+    {
+      "name": "protected-authority-removal",
+      "expected": "rejected",
+      "observed": "rejected",
+      "oracle_satisfied": true,
+      "expected_diagnostic": "Authority protected section changed/missing: sdd/project.md: Authorities",
+      "duration": 27.480834484100342,
+      "diagnostics": [
+        "OSV acquisition current changed (unknown content or predecessor downgrade): sdd/project.md",
+        "Authority protected section changed/missing: sdd/project.md: Authorities",
+        "Authority protected section changed/missing: sdd/project.md: Authorities"
+      ],
+      "project_sha256": "1d74be3706d3995ffdfa5a18951617d555d14d40eae3d8868c19d37262b7ca89",
+      "log_sha256": "bbf8a1fffb63f5a90efe8ebd2f1659500b60032dd0eb93d8e27283b8c70e1c5c"
+    },
+    {
+      "name": "historical-evidence-corruption",
+      "expected": "rejected",
+      "observed": "rejected",
+      "oracle_satisfied": true,
+      "expected_diagnostic": "Authority historical terminal changed: sdd/project.md",
+      "duration": 27.008275747299194,
+      "diagnostics": [
+        "Authority historical terminal changed: sdd/project.md",
+        "Authority historical terminal changed: sdd/project.md",
+        "Authority historical terminal changed: sdd/project.md"
+      ],
+      "project_sha256": "5554a7b7fb5ad9d3441d968e7a1339ce6b00bc2005da2fe105c5168856bde445",
+      "log_sha256": "bbf8a1fffb63f5a90efe8ebd2f1659500b60032dd0eb93d8e27283b8c70e1c5c"
+    },
+    {
+      "name": "historical-project-downgrade",
+      "expected": "rejected",
+      "observed": "rejected",
+      "oracle_satisfied": true,
+      "expected_diagnostic": "Document ledger predecessor downgrade: sdd/project.md",
+      "duration": 26.685343980789185,
+      "diagnostics": [
+        "Document ledger predecessor downgrade: sdd/project.md",
+        "Document ledger predecessor downgrade: sdd/project.md",
+        "Document ledger predecessor downgrade: sdd/project.md"
+      ],
+      "project_sha256": "b9495febf610d37db3c8225bc3e46bac88e33ac9715eb70e4f562b5fd7db5e61",
+      "log_sha256": "bbf8a1fffb63f5a90efe8ebd2f1659500b60032dd0eb93d8e27283b8c70e1c5c"
+    },
+    {
+      "name": "restored-valid-copy",
+      "expected": "valid",
+      "observed": "valid",
+      "oracle_satisfied": true,
+      "expected_diagnostic": null,
+      "duration": 35.48880624771118,
+      "diagnostics": [],
+      "project_sha256": "5554a7b7fb5ad9d3441d968e7a1339ce6b00bc2005da2fe105c5168856bde445",
+      "log_sha256": "bbf8a1fffb63f5a90efe8ebd2f1659500b60032dd0eb93d8e27283b8c70e1c5c"
+    }
+  ],
+  "all_oracles_satisfied": true,
+  "limitations": [
+    "Does not replace full check-ox, distribution, package extraction or feature acceptance.",
+    "Only disposable copies were edited; live authorization and task log were not changed."
+  ]
+}

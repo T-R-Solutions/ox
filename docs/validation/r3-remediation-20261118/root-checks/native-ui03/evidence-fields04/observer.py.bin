@@ -1,0 +1,217 @@
+"""Isolated native Wayland workbench review; never drives the primary desktop.
+
+Reuses the preserved Mutter/RemoteDesktop/PipeWire session mechanism. Dependencies:
+Mutter, PyGObject/GStreamer, Pillow and the current local Cargo build.
+"""
+import argparse
+import hashlib
+import importlib.util
+import json
+import re
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+ROOT = Path('/home/rodrigo/Projetos/ox')
+BASE = Path('/tmp')
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--baseline", action="store_true")
+    parser.add_argument("--output", default="native-review")
+    parser.add_argument("--binary", type=Path)
+    parser.add_argument("--monitor", default="1600x1000")
+    parser.add_argument("--scale", type=float, default=1)
+    parser.add_argument("--capture-only", action="store_true")
+    args = parser.parse_args()
+    spec = importlib.util.spec_from_file_location(
+        "ox_native_session", ROOT / "docs/validation/f0-resumption-20261103/native-session.py"
+    )
+    native = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(native)
+    output = BASE / args.output
+    if output.exists():
+        raise SystemExit("Output already exists; preserve observations and choose a new name")
+    session = None
+    record = {"method": "isolated native Wayland via Mutter RemoteDesktop and PipeWire", "baseline": args.baseline, "scope": "AC11 supplemental Tasks-only pointer actions and evidence scrolling; not an integral rerun or replacement of maintained native review", "method_origin_sha256": "8cc3b7c49d32a323ae7b8b03ba96d8317393e5a4ad125eb9a463309c95835ae0"}
+    log = None
+    app = None
+    try:
+        session = native.Session(output, args.monitor, args.scale)
+        session.call('RemoteDesktop', session.rd, 'NotifyPointerMotionAbsolute', '(sdd)', (session.stream, 1.0, 1.0))
+        binary = args.binary or ROOT / "application/target/debug/ox"
+        record["binary_sha256"] = hashlib.sha256(binary.read_bytes()).hexdigest()
+        before_sources = {str(p): hashlib.sha256(p.read_bytes()).hexdigest()
+                          for p in (ROOT / "application/crates").rglob("*")
+                          if p.is_file() and not p.is_symlink()}
+        before_sources[str(Path(__file__))] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+        before_sources[str(Path(spec.origin))] = hashlib.sha256(Path(spec.origin).read_bytes()).hexdigest()
+        record["inputs_before"] = before_sources
+        record["observer"] = {"path": str(Path(__file__).resolve()),
+                              "sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                              "arguments": vars(args) | {"binary": str(args.binary) if args.binary else None},
+                              "session_sha256": hashlib.sha256(Path(spec.origin).read_bytes()).hexdigest()}
+        log = (output / "wayland.log").open("w")
+        fixture = output / "workspace"
+        fixture.mkdir()
+        (fixture / "sentinel").write_text("preserve native fixture\n")
+        state = output / "state"
+        state.mkdir()
+        fixture_bin = output / "fixture-bin"
+        fixture_bin.mkdir()
+        picker_marker = output / "picker-invoked"
+        picker = fixture_bin / "zenity"
+        picker.write_text('#!/bin/sh\nprintf invoked > "$OX_NATIVE_PICKER_MARKER"\nexit 2\n')
+        picker.chmod(0o700)
+        env = dict(session.env, WAYLAND_DEBUG="1", OX_VALIDATION_SESSION=args.output,
+                   XDG_STATE_HOME=str(state), PATH=str(fixture_bin) + ":" + session.env.get("PATH", ""),
+                   OX_NATIVE_PICKER_MARKER=str(picker_marker))
+        record["fixture"] = {"workspace": str(fixture), "XDG_STATE_HOME": str(state),
+                             "dialog_provider": "controlled exit-2 fixture; real portal/dialog not claimed"}
+        app = subprocess.Popen([str(binary)], env=env, cwd=ROOT, stdout=log, stderr=log)
+        session.children.append(app)
+        session.wait(lambda: "xdg_toplevel" in (output / "wayland.log").read_text(), "native toplevel")
+        time.sleep(0.7)
+        session.key(0xFFE1)
+        session.wait(lambda: ".enter(" in (output / "wayland.log").read_text(), "keyboard focus")
+        # Pointer coordinates are valid only in the observed1600x1400/scale1 form.
+        if args.monitor != "1600x1400" or args.scale != 1:
+            raise RuntimeError("Tasks pointer supplement requires1600x1400 scale1")
+        def geometry():
+            pairs = re.findall(r'xdg_toplevel#\d+\.configure\((\d+), (\d+),', (output / "wayland.log").read_text())
+            return next(((int(w), int(h)) for w, h in reversed(pairs) if int(w) > 0 and int(h) > 0), None)
+        session.wait(lambda: geometry() is not None, "initial configured geometry")
+        if geometry() != (1600, 1400):
+            session.key(0xFFE9, True)
+            session.key(0xFFC7)  # F10, only when not already maximized.
+            session.key(0xFFE9, False)
+        session.wait(lambda: geometry() == (1600, 1400), "actual configured1600x1400")
+        record["configured_geometry"] = list(geometry())
+        session.shot("initial")
+        if args.capture_only:
+            record["capture_only"] = True
+        elif args.baseline:
+            session.key(0xFF09)
+            session.key(0xFF0D)
+            time.sleep(0.2)
+            session.shot("details")
+            session.key(0xFF09)
+            session.key(0xFF0D)
+            session.wait(lambda: app.poll() is not None, "supervised exit")
+            if app.returncode != 0:
+                raise RuntimeError("Baseline did not exit successfully")
+        else:
+            def chord(mod, key):
+                session.key(mod, True)
+                session.key(key)
+                session.key(mod, False)
+            def tabs(count, backwards=False):
+                for _ in range(count):
+                    if backwards:
+                        chord(0xFFE1, 0xFF09)
+                    else:
+                        session.key(0xFF09)
+
+            def task_action(offset):
+                # Tasks-only evidence observation. These are the actual visible
+                # Execute-correct / Verify-result buttons at1600x1400, confirmed
+                # by the retained workspace-valid image. Native navigation and
+                # keyboard focus are exercised by the maintained full entries.
+                if app.poll() is not None or geometry() != (1600, 1400):
+                    raise RuntimeError("Native form process/geometry changed before pointer action")
+                titles = re.findall(r'xdg_toplevel#\d+\.set_title\("([^"\n]*)', (output / "wayland.log").read_text())
+                if not titles or not titles[-1].startswith("Tarefas — workspace — Ox"):
+                    raise RuntimeError("Current native document is not the observed Tasks form")
+                targets = {1: (340.0, 723.0), 5: (496.0, 779.0)}
+                x, y = targets[offset]
+                session.call('RemoteDesktop', session.rd, 'NotifyPointerMotionAbsolute',
+                             '(sdd)', (session.stream, x, y))
+                time.sleep(.2)
+                session.shot('task-action-' + str(offset) + '-pointer-target')
+                record.setdefault('pointer_actions', []).append({
+                    'offset': offset, 'xy': [x, y],
+                    'meaning': 'Execute correct' if offset == 1 else 'Verify result',
+                    'monotonic': time.monotonic(),
+                })
+                session.call('RemoteDesktop', session.rd, 'NotifyPointerButton', '(ib)', (272, True))
+                time.sleep(.15)
+                session.call('RemoteDesktop', session.rd, 'NotifyPointerButton', '(ib)', (272, False))
+                time.sleep(.2)
+
+            # Exercise actual chooser failure -> focused manual recovery -> project open.
+            tabs(3)
+            session.key(0xFF0D)
+            session.wait(lambda: picker_marker.is_file(), "optional chooser failure")
+            time.sleep(.15)
+            session.shot("manual-path-recovery")
+            for char in str(fixture):
+                session.key(ord(char))
+            session.key(0xFF0D)
+            session.wait(lambda: '.set_title("Tarefas — ' + fixture.name + ' — Ox' in (output / "wayland.log").read_text(), "validated fixture project")
+            time.sleep(.2)
+            session.shot("workspace-valid")
+            # Supplemental observation only: keep current Tasks and real producer/oracle flow.
+            task_action(1)  # Execute correct: real Controller and local producer.
+            session.wait(lambda: bool(list(fixture.glob(".ox-task-*/result.txt"))), "task artifact")
+            attempts = list(fixture.glob(".ox-task-*"))
+            if len(attempts) != 1:
+                raise RuntimeError("Expected one exclusive attempt")
+            attempt = attempts[0]
+            if (attempt / "result.txt").read_bytes() != (attempt / "request.txt").read_bytes() + b"result=42\n":
+                raise RuntimeError("Producer result/identity mismatch")
+            time.sleep(.3)
+            session.shot("task-executed")
+            record["artifacts"] = [{"path": str(p.relative_to(output)), "sha256": hashlib.sha256(p.read_bytes()).hexdigest()}
+                                   for p in fixture.rglob("*") if p.is_file()]
+            task_action(5)  # Verify result using the independent actual oracle.
+            time.sleep(.4)
+            session.shot("task-approved-badge")
+            for _ in range(3):
+                session.key(0xFF56)
+            session.shot("task-verified")
+            for index in range(1, 7):
+                session.key(0xFF56)
+                session.shot("evidence-scroll-" + str(index))
+            if (fixture / "sentinel").read_text() != "preserve native fixture\n":
+                raise RuntimeError("Fixture user-content sentinel changed")
+            chord(0xFFE9,0xFFC1) # Alt+F4, supervised close
+            session.wait(lambda:app.poll() is not None,"supervised exit")
+            if app.returncode != 0:
+                raise RuntimeError(f"Candidate did not exit successfully: {app.returncode}")
+            record["events"]=session.events
+        record["result"] = "observed"
+    except Exception as error:
+        record["error"] = str(error)
+        if session:
+            try:
+                session.shot("failure-observation")
+            except Exception:
+                pass
+        raise
+    finally:
+        if app is not None:
+            record["natural_exit"] = app.poll()
+        if session is not None:
+            session.close()
+        if log is not None:
+            log.close()
+        output.mkdir(exist_ok=True)
+        if "inputs_before" in record:
+            record["input_changes"] = [path for path, digest in before_sources.items()
+                                       if not Path(path).is_file() or hashlib.sha256(Path(path).read_bytes()).hexdigest() != digest]
+            record["binary_after_sha256"] = hashlib.sha256(binary.read_bytes()).hexdigest()
+            if record["input_changes"] or record["binary_after_sha256"] != record["binary_sha256"]:
+                record["error"] = "Observed source or binary drift"
+                record["result"] = "INCONCLUSIVE"
+        (output / "observer.py.bin").write_bytes(Path(__file__).read_bytes())
+        (output / "result.json").write_text(json.dumps(record, indent=2) + "\n")
+        print(json.dumps({k: v for k, v in record.items() if k not in {"events", "inputs_before"}}), flush=True)
+        if record.get("input_changes") or record.get("binary_after_sha256", record.get("binary_sha256")) != record.get("binary_sha256"):
+            raise RuntimeError("Observed source/binary drift; not acceptance")
+
+
+if __name__ == "__main__":
+    main()

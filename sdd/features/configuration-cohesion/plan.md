@@ -81,3 +81,27 @@ input bindings, historical observation preservation and mutation rejection.
 Historical approval is not renewed; current decided observations affected by
 changed implementation/oracle/contract inputs are retained as history.
 Independent review and validation are required for this integrity change.
+
+## Historical-link repair implementation — 2026-11-15
+
+The maintainer's subsequent instruction to implement adopts the bounded
+[repair plan](../../../docs/validation/governance-link-repair-plan-20261115/plan.md).
+Its planning-only observation remains historical. D-15 / R-15 applies to REQ-16
+and AC-16: use an additional pinned registry for exactly five semantically reviewed
+origins, preserve the previous registry and snapshots, reject missing/tampered
+metadata and unsafe paths, and retain checkout/copy distinctions. Heuristics,
+validation-directory exclusions and silent legacy fallbacks are rejected.
+
+The coordinator owns documentation, exact successor records and evidence;
+governance_repair owns the origin/succession implementation and governance tests;
+terminal_repair owns terminal projection and its tests. Their paths are disjoint;
+independent review and validation follow stabilization. T019 implements this
+successor; current implementation observations, input bindings and limitations are
+in docs/validation/governance-link-repair-20261115/. All 15 earlier criteria were
+UNVERIFIED at resumption; passing the new criterion does not approve them.
+
+Primary autonomous-verification-engineering and auxiliary tool-output-engineering
+were actually consulted through version-1 bridges; exact paths/editorial hashes
+and contributions are retained in the reviewed plan and its planning-inputs.json.
+The first defines independent current-input gates; the second preserves raw stream
+identity, failure codes, conservative projection and recoverable locators.

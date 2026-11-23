@@ -10,6 +10,7 @@ is not a new observation or product acceptance.
 | AC-02 | INCONCLUSIVE |
 | AC-03 | INCONCLUSIVE |
 | AC-04 | INCONCLUSIVE |
+| AC-05 | UNVERIFIED |
 <!-- /sdd:current-status -->
 
 ## Historical convergence — before 2026-11-14 correction

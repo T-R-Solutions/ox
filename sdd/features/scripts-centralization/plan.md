@@ -79,3 +79,34 @@ explicit build inputs, negative selection tests and bounded native validation.
 High-complexity coordination is required for the selection/gate contract;
 implementation, review and validation use independent contexts. Owners, exact
 inputs, commands and results are in docs/validation/geiger-selection-20261115/.
+
+## Analysis corrections successor — 2026-11-17
+
+D-10 / R-10: Separate observable defects from policy changes and unmeasured design
+proposals. Preserve legacy selection compatibility, narrow reviewed exceptions,
+system temporary runs and strict snapshot validation. Repair report contracts and
+error propagation, unify Toolbox argv construction, strengthen tests and catalogue
+validation. Scope/owners/acceptance: docs/validation/claude-analysis-20261117/report.md.
+
+Selected/read primary software-delivery, .codex/skills/software-delivery/SKILL.md
+(unversioned), bridge sdd/chain/software-delivery.md version 1; consulted
+references/build-inputs-and-trust.md for explicit inputs and pipeline boundaries.
+Supporting software-testing, .codex/skills/software-testing/SKILL.md (unversioned),
+bridge sdd/chain/software-testing.md version 1, addresses negative-test sensitivity,
+isolated fixtures and current-run identity. High coordinator, implementer, independent
+reviewer and high validator use separate contexts; host capability observations and
+file ownership are recorded in the report.
+
+Independent reviewer additionally consulted software-design at
+.codex/skills/software-design/SKILL.md (unversioned) for interfaces, responsibility
+and lifecycle ownership; the reviewer contribution is separate from implementation.
+The root consults autonomous-verification-engineering for a bounded documentary
+successor of scripts/README.md and sdd/project.md, preserving authenticated prior
+registries and rejecting unknown/downgraded bytes. This is a gate integration,
+not renewal of historical evidence.
+
+## Combined Claude remediation — 2026-11-17
+
+Changed implementation and focused regressions are tracked in
+[the remediation report](../../../docs/validation/claude-remediation-20261117/report.md).
+Historical observations remain unchanged; current broad acceptance is not renewed.

@@ -1,0 +1,81 @@
+   Compiling ox-ui v0.1.0 (/home/rodrigo/Projetos/ox/application/crates/ox-ui)
+    Finished `test` profile [unoptimized] target(s) in 0.47s
+     Running unittests src/lib.rs (application/target/debug/deps/ox_ui-25cf31b40d8295bf)
+
+running 57 tests
+test design::tests::focus_preserves_selection_and_disabled_inputs_remain_distinct ... ok
+test design::tests::focus_preserves_role_and_interaction_colors_in_every_theme ... ok
+test design::tests::focused_button_boundary_and_label_remain_visible_in_every_role_and_theme ... ok
+test design::tests::historical_approval_never_approves_current_stale_or_missing_inputs ... ok
+test desktop::folder_picker::tests::selection_preserves_spaces_unicode_and_filename_newline ... ok
+test desktop::project_store::tests::create_collision_including_dangling_symlink_preserves_target ... ok
+test desktop::project_store::tests::invalid_project_names_reject_traversal_and_leave_parent_unchanged ... ok
+test desktop::project_store::tests::every_truncation_and_malformed_bound_is_rejected ... ok
+test desktop::project_store::tests::create_produces_only_empty_directory_and_rejects_collisions_without_mutation ... ok
+test desktop::project_store::tests::canonical_alias_dedup_and_non_utf8_rejection ... ok
+test desktop::project_store::tests::subprocess_store_child ... ignored, subprocess helper, launched by parent tests with isolated paths
+test desktop::project_store::tests::state_location_requires_absolute_root_and_preserves_precedence ... ok
+test desktop::project_store::tests::invalid_record_has_no_history_mutation ... ok
+test desktop::project_store::tests::simultaneous_project_creators_have_exactly_one_winner ... ok
+test desktop::tests::busy_and_stale_events_do_not_change_identity_or_workspace ... ok
+test desktop::project_store::tests::corrupt_history_requires_explicit_reset_with_exact_retained_backups ... ok
+test desktop::tests::creation_requires_confirmation_and_reports_preserved_destination_on_failure ... ok
+test desktop::tests::event_mapping_keeps_pointer_motion_in_the_drag_subscription ... ok
+test desktop::tests::demo_selection_is_bounded_and_has_no_domain_effect ... ok
+test desktop::tests::failed_workspace_selection_stays_at_entry_with_recoverable_error ... ok
+test desktop::tests::folder_cancel_preserves_workspace_evidence_and_rejects_duplicates ... ok
+test desktop::project_store::tests::symlink_and_special_snapshot_lock_and_state_directory_are_rejected ... ok
+test desktop::tests::focused_navigation_reveals_after_rail_width_and_window_changes ... ok
+test desktop::tests::folder_confirmation_enters_validation_without_executing_task ... ok
+test desktop::tests::folder_controls_match_visibility_busy_and_keyboard_order ... ok
+test desktop::tests::folder_error_is_recoverable_without_mutating_prior_selection ... ok
+test desktop::project_store::tests::unknown_version_is_never_overwritten_even_by_reset ... ok
+test desktop::tests::folder_late_results_after_edit_navigation_or_close_have_no_effect ... ok
+test desktop::tests::folder_parent_error_keeps_the_existing_parent_input_available ... ok
+test desktop::project_store::tests::restart_mru_dedup_and_missing_removal_preserve_project_content ... ok
+test desktop::tests::navigating_during_open_prevents_a_late_automatic_navigation ... ok
+test desktop::tests::history_load_serializes_project_actions_and_rejects_old_completions ... ok
+test desktop::tests::navigation_shortcuts_respect_capture_and_visible_surface ... ok
+test desktop::tests::hidden_controls_and_modal_focus_preserve_domain_state ... ok
+test desktop::tests::navigation_groups_are_contiguous_without_changing_destination_ids ... ok
+test desktop::tests::parent_picker_only_edits_the_creation_destination_and_never_creates ... ok
+test desktop::tests::preferences_save_and_back_restore_the_origin_without_domain_effects ... ok
+test desktop::tests::reveal_selects_the_panel_that_contains_the_focused_control ... ok
+test desktop::tests::reveal_uses_the_focused_controls_actual_bounds_including_scroll_translation ... ok
+test desktop::tests::sidebar_drag_is_bounded_and_stops_without_domain_effects ... ok
+test desktop::tests::recent_controls_follow_each_item_and_creation_has_no_implicit_submit ... ok
+test desktop::project_store::tests::two_instances_read_fresh_and_contention_never_loses_successful_writes ... ok
+test desktop::tests::start_resume_is_available_only_for_a_validated_visible_session ... ok
+test desktop::tests::successful_open_survives_history_failure_without_starting_a_task ... ok
+test shell::tests::toggle_roundtrip ... ok
+test local_task::tests::attempt_messages_translate_every_outcome_without_claiming_verification ... ok
+test desktop::tests::rail_restores_width_and_keeps_navigation_keyboard_accessible ... ok
+test workbench::tests::every_surface_has_unique_identity_and_explicit_integration_boundary ... ok
+test desktop::project_store::tests::oversized_corruption_is_bounded_and_reset_preserves_original_without_copy ... ok
+
+running 1 test
+
+running 1 test
+test desktop::project_store::tests::subprocess_store_child ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 56 filtered out; finished in 0.00s
+
+test desktop::project_store::tests::metadata_cap_evicts_only_oldest_reference ... ok
+
+running 1 test
+
+running 1 test
+test desktop::project_store::tests::subprocess_store_child ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 56 filtered out; finished in 0.00s
+
+test desktop::project_store::tests::stable_os_lock_blocks_all_operations_and_releases_on_close ... ok
+test desktop::project_store::tests::process_exit_before_and_after_rename_preserves_committed_snapshot ... ok
+test desktop::identity::tests::embedded_signatures_decode_with_the_enabled_png_codec ... ok
+test desktop::folder_picker::tests::missing_program_and_nonzero_exit_are_errors ... ok
+test desktop::tests::welcome_chrome_preserves_work_area_at_desktop_sizes ... ok
+test desktop::folder_picker::tests::cancelled_supervised_child_is_reaped ... ok
+test desktop::tests::captured_input_click_replaces_stale_button_focus_and_enter_never_confirms_creation ... ok
+
+test result: ok. 56 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.15s
+

@@ -1,0 +1,55 @@
+{
+  "inputs": [
+    {
+      "path": "scripts/lib/progress.sh",
+      "sha256": "e6fcbff7fd7331a7b79328862c8164a675a8c87527c9f1df9e56e86ff1e79a1b"
+    },
+    {
+      "path": "scripts/tests/test_governance_diagnostics.py",
+      "sha256": "dacaaf252325e47835ad13c1a269e4036fc321414d28801fe12f2aedfa07e032"
+    },
+    {
+      "path": "scripts/config/automation.json",
+      "sha256": "40cb2b62c7a2b36d890b8ef969b653fb41716bf452a107ae5714ea87f3391919"
+    }
+  ],
+  "checks": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts/tests python3 -m unittest test_governance_diagnostics.ProjectionTests.test_sample_hashes_ignore_directory_filename_escaping -v",
+      "input_state": "rejected progress.sh; new regression added before repair",
+      "exit_code": 1,
+      "observed_result": "ordinary passed; backslash and newline each failed hash equality",
+      "artifact": "p2-before-regression.log.bin"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -p test_governance_diagnostics.py -v",
+      "input_state": "repaired progress.sh and persistent regression",
+      "exit_code": 0,
+      "observed_result": "15 tests passed",
+      "artifact": "p2-diagnostics.log.bin"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 docs/validation/bandit-repair-20261115/implementation/failure-controls.py.bin",
+      "exit_code": 0,
+      "observed_result": "six cases passed; authority bytes unchanged",
+      "artifact": "p2-failure-controls-result.json"
+    },
+    {
+      "command": "bash -n scripts/lib/progress.sh",
+      "exit_code": 0,
+      "observed_result": "syntax accepted"
+    },
+    {
+      "method": "native post-Ruff context/line comparison against updated test and baseline SHA-256 equality",
+      "observed_result": "all four results and their candidates retain exact code/lines; baseline unchanged"
+    },
+    {
+      "method": "JSON equality after resetting one reviewed source hash to predecessor",
+      "observed_result": "automation changed only the reviewed diagnostics test source hash"
+    }
+  ],
+  "limitations": [
+    "No scanner run by implementation agent. New native observations and independent approval remain with coordinator.",
+    "Prior implementation report and before/after identities are historical; this P2 successor records new inputs without renewing previous observations."
+  ]
+}

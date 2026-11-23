@@ -1,0 +1,789 @@
+{
+  "schema_version": 2,
+  "environment": "Local Linux checkout; pinned external source inspection; fresh independent reviewer and validator contexts; Python stdlib focused preservation tests",
+  "requirements": [
+    {
+      "id": "AC-01",
+      "criterion": "REQ-01",
+      "status": "UNVERIFIED",
+      "evidence_ids": [
+        "E-01"
+      ]
+    },
+    {
+      "id": "AC-02",
+      "criterion": "REQ-02",
+      "status": "UNVERIFIED",
+      "evidence_ids": [
+        "E-02"
+      ]
+    },
+    {
+      "id": "AC-03",
+      "criterion": "REQ-03",
+      "status": "UNVERIFIED",
+      "evidence_ids": [
+        "E-03"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-01",
+      "kind": "inspection",
+      "command_or_method": "Pinned source inventory and semantic comparison, independently assessed against scoped AC-01",
+      "observed_result": "All 26 unique entries and both tracked source trees accounted for; capability/data/mechanism families and inspection limits documented.",
+      "artifact": "docs/validation/visual-skills-20261116/analysis.md",
+      "sha256": "fc033f3d1d7aefd99b9b69045d42edf7dc817e8eb1b6de334d60cfd4c84fbcd1",
+      "inputs": [
+        {
+          "path": ".codex/skills/design-review/SKILL.md",
+          "sha256": "88e7c4e6cc9c52e3d2610cf38fadc0d100cef1c44d98c0ff6ce8ca9d90c0a8f5",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/agents/openai.yaml",
+          "sha256": "910d8b636b7cfefdfde51abe38c17ca13df3d44df2569a24bf30eb30d1ee2085",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/references/decision-communication.md",
+          "sha256": "85f7a961c743a78a20bd032fdba58babc75c0bf05011c5f98ed3c9a219314edf",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/references/review-method.md",
+          "sha256": "b7a4c4eb9ab146065153c7893865d573f351517ee1c7dff9284697fa28284bdf",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/references/visual-quality.md",
+          "sha256": "a8b63d036f82b81a3f06c42a7fa8c9afbfd18e584cde484c3ee6b81d75bf2399",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/SKILL.md",
+          "sha256": "1594542a3f68eddb6305f786a41be54f3af8afa5c0d9e94b79cb5e9f1c9484d9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/agents/openai.yaml",
+          "sha256": "244440a0047dcc4a00e1784de92aa7fbeeef6d6ce514fb30590f4b4b290f9ae7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/accessibility.md",
+          "sha256": "54c2064005c5bf560a7010cb21cc7189c9862759b55e789b2ffc331a6278885b",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/interaction-patterns.md",
+          "sha256": "85f8717c9601821d97de18526818512c458cf00e3ebb13603d2172c1e6fb53ea",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/pattern-decisions.md",
+          "sha256": "bb5635228031250d5383a8d551669f4c2b91b342fbfd0fcaecca889f193a1a9e",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/visual-composition.md",
+          "sha256": "4929bdd47ab502dbf669ea64aa2295a98ff07b540e5749295bfa90c5cbd0abfb",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "9b5a50121d4734558963970486a3a030beb78be04b7a13a467290735aaaeac06",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/agents/openai.yaml",
+          "sha256": "57b174e0c0f88f5e5f8d2b35a8c87eb4ca109f4c3bd737e3d3259e73dd8e9728",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/desktop-performance-and-accessibility.md",
+          "sha256": "d9f04bbb1b1443eb8a786b0503e800e2111f81e9c50f565f09be8151b51ebc12",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/evaluation-cases.md",
+          "sha256": "4f9328f318b66b6181a9362c20d3128faa567d96866d229f78779140efec8614",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/layout-and-custom-widgets.md",
+          "sha256": "a2a797e843b93904f00c46c191a6cfade6d3d7325fb23f7d1e5f466437c44a31",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/message-update-state.md",
+          "sha256": "7f839c26a57da34de2728202a27fdc23d0249e5765db5548b03d39221d25ac9c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/native-visual-contract.md",
+          "sha256": "d0746c5a09b2a90e17759a8f891f23f1746c8eaaa35e8dc0452a8e494b80ed06",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/visual-skill-refinement.md",
+          "sha256": "33bc23cff104d50dde92ad0deadcdfa69896ad77b14b9e3d3d5d410d6de0fa40",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/analysis.md",
+          "sha256": "fc033f3d1d7aefd99b9b69045d42edf7dc817e8eb1b6de334d60cfd4c84fbcd1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/consulted-inputs.json",
+          "sha256": "97e41ad4ade1a97ef638f50f81dafbccf39bb5030fb49585a6038edc85238eba",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/desktop-pack-analysis.md",
+          "sha256": "4ef71d53dc101935189782d6900f77da0b7414c14742a59b56beab745ff259b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/desktop-pack-entries.json",
+          "sha256": "621704a5e8215a140868d5ba735c8fdfb74f89bd8ba17761dd96d26238268711",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/desktop-pack-inventory.json",
+          "sha256": "1d31e3d52344f403b15ce66c571a8e196b91cb3d76fa51dd22bb7a8badfbd5c7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/final-method-inputs.json",
+          "sha256": "543b005c7cf776ac8f11f8a7a6cb3218913fa3a3d587a1fd25671f1f2a396788",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/review.md",
+          "sha256": "aea0626bac12e51e50272f3f0efe8b721c17ce1cb27653664a62ca6b62f45bbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/scenario-outputs.md",
+          "sha256": "a94e367ec26aa444b42b998c0a8f35a5bcd6f43e290bd5a0d3c81a7c8a3504cc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/scenarios.md",
+          "sha256": "90b37b2d40d1807a6cf60f46d35a08b244daa52d7cb84e6a63483d78b416d94b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/sources.json",
+          "sha256": "30d6adc3bbe024eab7b7a3eb10b855d79d45f23d749ec0061ef2f7b323d7a146",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/succession-verification.md",
+          "sha256": "1891d726c84b590d84e5d0a96560843bb156357a73a929e500e08ff519651fed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/succession.json",
+          "sha256": "8d758bb831971529df7af2adb580faf48d2496c172c800977797852acb1d7208",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/ui-ux-pro-max-analysis.md",
+          "sha256": "3f77fd5b25c44e4fd41b93e183ad952de5cf3c2e0becc5d6f115a65710de52c2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/ui-ux-pro-max-inventory.json",
+          "sha256": "08ba505c88524e4b65e6c4ed32e1c93cd7d9a2c722cad492a43c54436a7fd07c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/validation.md",
+          "sha256": "5f168d322dd7e47abebbc599d309ecd81346468f3d4d4fef0d63343c9d09b734",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/verification.md",
+          "sha256": "6a54c6e80d26c60b64a9d271714ee2fa7641df7563376a23a3b850872430fac7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/plan.md",
+          "sha256": "3e8218bf093c46bbdc2e9ef1f2e305370c0784f576f3d855bd2d546f397c5912",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/spec.md",
+          "sha256": "11bd4a61a5c7e6dcf3365d95a9d436a1740a0f912289d4c5a5d7fc145283c705",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/tasks.md",
+          "sha256": "07016a74c8f16368958952a6188c69e8d1ef9f3f70330c17391c5c0d2e87abee",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/traceability.json",
+          "sha256": "8ec5e6dcdb95138566bea3a775ee3ea16f3d80ed978c2a5329c89e1c756df74a",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "c96d0282397f28d379ebf9ac3f8237a9ef80364036a2c81f6bea36320ce3479c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "9097b9855da73257b7526630c1829f641a502554224dba9245b0126c695963da",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/instruction_revision.py",
+          "sha256": "8a7f79bc60427bb66624c20c9e3cdc60628c9c469e132f0d0b3d5422dc405a7f",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/log_repair_revision.py",
+          "sha256": "62e66b040f5600613a7ef756cd9ea7e4f1c45f1643d773afcc68a7f46fb9ff81",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/visual_skill_revision.py",
+          "sha256": "51508921469a29e3cf149952fe53b6d56c8ce9de31976bfd6f5603ca50747ca2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_instruction_copy.py",
+          "sha256": "dff0563f7571235868becc12ef379da3d81e57701530c3b582bcc8b05d4a71f0",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_readme_skill_integration.py",
+          "sha256": "ff232b80d7b6c21656b6a43a03eb0e611626cb481c5e1639e902cdd40e8fea97",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_visual_skill_revision.py",
+          "sha256": "6b6bfa9f9453c1ed9a3801c6ab32215bbafb076c1b197b13865fed1516b49cb5",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_visual_succession.py",
+          "sha256": "4a2b6aa9aefcadbf21fbcb296dc19835d7932c8c54396b0a7c184f5f930e9bb5",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-02",
+      "kind": "inspection",
+      "command_or_method": "Fresh independent textual S1/S2/S3 applications followed by review and separate validator assessment",
+      "observed_result": "Composition/review/native handoff outputs preserve supplied constraints and distinguish proposals from observed product behavior.",
+      "artifact": "docs/validation/visual-skills-20261116/scenario-outputs.md",
+      "sha256": "a94e367ec26aa444b42b998c0a8f35a5bcd6f43e290bd5a0d3c81a7c8a3504cc",
+      "inputs": [
+        {
+          "path": ".codex/skills/design-review/SKILL.md",
+          "sha256": "88e7c4e6cc9c52e3d2610cf38fadc0d100cef1c44d98c0ff6ce8ca9d90c0a8f5",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/agents/openai.yaml",
+          "sha256": "910d8b636b7cfefdfde51abe38c17ca13df3d44df2569a24bf30eb30d1ee2085",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/references/decision-communication.md",
+          "sha256": "85f7a961c743a78a20bd032fdba58babc75c0bf05011c5f98ed3c9a219314edf",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/references/review-method.md",
+          "sha256": "b7a4c4eb9ab146065153c7893865d573f351517ee1c7dff9284697fa28284bdf",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/references/visual-quality.md",
+          "sha256": "a8b63d036f82b81a3f06c42a7fa8c9afbfd18e584cde484c3ee6b81d75bf2399",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/SKILL.md",
+          "sha256": "1594542a3f68eddb6305f786a41be54f3af8afa5c0d9e94b79cb5e9f1c9484d9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/agents/openai.yaml",
+          "sha256": "244440a0047dcc4a00e1784de92aa7fbeeef6d6ce514fb30590f4b4b290f9ae7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/accessibility.md",
+          "sha256": "54c2064005c5bf560a7010cb21cc7189c9862759b55e789b2ffc331a6278885b",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/interaction-patterns.md",
+          "sha256": "85f8717c9601821d97de18526818512c458cf00e3ebb13603d2172c1e6fb53ea",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/pattern-decisions.md",
+          "sha256": "bb5635228031250d5383a8d551669f4c2b91b342fbfd0fcaecca889f193a1a9e",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/visual-composition.md",
+          "sha256": "4929bdd47ab502dbf669ea64aa2295a98ff07b540e5749295bfa90c5cbd0abfb",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "9b5a50121d4734558963970486a3a030beb78be04b7a13a467290735aaaeac06",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/agents/openai.yaml",
+          "sha256": "57b174e0c0f88f5e5f8d2b35a8c87eb4ca109f4c3bd737e3d3259e73dd8e9728",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/desktop-performance-and-accessibility.md",
+          "sha256": "d9f04bbb1b1443eb8a786b0503e800e2111f81e9c50f565f09be8151b51ebc12",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/evaluation-cases.md",
+          "sha256": "4f9328f318b66b6181a9362c20d3128faa567d96866d229f78779140efec8614",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/layout-and-custom-widgets.md",
+          "sha256": "a2a797e843b93904f00c46c191a6cfade6d3d7325fb23f7d1e5f466437c44a31",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/message-update-state.md",
+          "sha256": "7f839c26a57da34de2728202a27fdc23d0249e5765db5548b03d39221d25ac9c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/native-visual-contract.md",
+          "sha256": "d0746c5a09b2a90e17759a8f891f23f1746c8eaaa35e8dc0452a8e494b80ed06",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/visual-skill-refinement.md",
+          "sha256": "33bc23cff104d50dde92ad0deadcdfa69896ad77b14b9e3d3d5d410d6de0fa40",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/analysis.md",
+          "sha256": "fc033f3d1d7aefd99b9b69045d42edf7dc817e8eb1b6de334d60cfd4c84fbcd1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/consulted-inputs.json",
+          "sha256": "97e41ad4ade1a97ef638f50f81dafbccf39bb5030fb49585a6038edc85238eba",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/desktop-pack-analysis.md",
+          "sha256": "4ef71d53dc101935189782d6900f77da0b7414c14742a59b56beab745ff259b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/desktop-pack-entries.json",
+          "sha256": "621704a5e8215a140868d5ba735c8fdfb74f89bd8ba17761dd96d26238268711",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/desktop-pack-inventory.json",
+          "sha256": "1d31e3d52344f403b15ce66c571a8e196b91cb3d76fa51dd22bb7a8badfbd5c7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/final-method-inputs.json",
+          "sha256": "543b005c7cf776ac8f11f8a7a6cb3218913fa3a3d587a1fd25671f1f2a396788",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/review.md",
+          "sha256": "aea0626bac12e51e50272f3f0efe8b721c17ce1cb27653664a62ca6b62f45bbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/scenario-outputs.md",
+          "sha256": "a94e367ec26aa444b42b998c0a8f35a5bcd6f43e290bd5a0d3c81a7c8a3504cc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/scenarios.md",
+          "sha256": "90b37b2d40d1807a6cf60f46d35a08b244daa52d7cb84e6a63483d78b416d94b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/sources.json",
+          "sha256": "30d6adc3bbe024eab7b7a3eb10b855d79d45f23d749ec0061ef2f7b323d7a146",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/succession-verification.md",
+          "sha256": "1891d726c84b590d84e5d0a96560843bb156357a73a929e500e08ff519651fed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/succession.json",
+          "sha256": "8d758bb831971529df7af2adb580faf48d2496c172c800977797852acb1d7208",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/ui-ux-pro-max-analysis.md",
+          "sha256": "3f77fd5b25c44e4fd41b93e183ad952de5cf3c2e0becc5d6f115a65710de52c2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/ui-ux-pro-max-inventory.json",
+          "sha256": "08ba505c88524e4b65e6c4ed32e1c93cd7d9a2c722cad492a43c54436a7fd07c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/validation.md",
+          "sha256": "5f168d322dd7e47abebbc599d309ecd81346468f3d4d4fef0d63343c9d09b734",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/verification.md",
+          "sha256": "6a54c6e80d26c60b64a9d271714ee2fa7641df7563376a23a3b850872430fac7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/plan.md",
+          "sha256": "3e8218bf093c46bbdc2e9ef1f2e305370c0784f576f3d855bd2d546f397c5912",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/spec.md",
+          "sha256": "11bd4a61a5c7e6dcf3365d95a9d436a1740a0f912289d4c5a5d7fc145283c705",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/tasks.md",
+          "sha256": "07016a74c8f16368958952a6188c69e8d1ef9f3f70330c17391c5c0d2e87abee",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/traceability.json",
+          "sha256": "8ec5e6dcdb95138566bea3a775ee3ea16f3d80ed978c2a5329c89e1c756df74a",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "c96d0282397f28d379ebf9ac3f8237a9ef80364036a2c81f6bea36320ce3479c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "9097b9855da73257b7526630c1829f641a502554224dba9245b0126c695963da",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/instruction_revision.py",
+          "sha256": "8a7f79bc60427bb66624c20c9e3cdc60628c9c469e132f0d0b3d5422dc405a7f",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/log_repair_revision.py",
+          "sha256": "62e66b040f5600613a7ef756cd9ea7e4f1c45f1643d773afcc68a7f46fb9ff81",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/visual_skill_revision.py",
+          "sha256": "51508921469a29e3cf149952fe53b6d56c8ce9de31976bfd6f5603ca50747ca2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_instruction_copy.py",
+          "sha256": "dff0563f7571235868becc12ef379da3d81e57701530c3b582bcc8b05d4a71f0",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_readme_skill_integration.py",
+          "sha256": "ff232b80d7b6c21656b6a43a03eb0e611626cb481c5e1639e902cdd40e8fea97",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_visual_skill_revision.py",
+          "sha256": "6b6bfa9f9453c1ed9a3801c6ab32215bbafb076c1b197b13865fed1516b49cb5",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_visual_succession.py",
+          "sha256": "4a2b6aa9aefcadbf21fbcb296dc19835d7932c8c54396b0a7c184f5f930e9bb5",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-03",
+      "kind": "inspection",
+      "command_or_method": "Independent implementation review, 29 focused tests, independent repeated seven rejection tests and root check-ox, separate validator assessment",
+      "observed_result": "Closed content succession, source discovery, current metadata/links and rejection contracts supported by observed checks; no product acceptance.",
+      "artifact": "docs/validation/visual-skills-20261116/review.md",
+      "sha256": "aea0626bac12e51e50272f3f0efe8b721c17ce1cb27653664a62ca6b62f45bbf",
+      "inputs": [
+        {
+          "path": ".codex/skills/design-review/SKILL.md",
+          "sha256": "88e7c4e6cc9c52e3d2610cf38fadc0d100cef1c44d98c0ff6ce8ca9d90c0a8f5",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/agents/openai.yaml",
+          "sha256": "910d8b636b7cfefdfde51abe38c17ca13df3d44df2569a24bf30eb30d1ee2085",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/references/decision-communication.md",
+          "sha256": "85f7a961c743a78a20bd032fdba58babc75c0bf05011c5f98ed3c9a219314edf",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/references/review-method.md",
+          "sha256": "b7a4c4eb9ab146065153c7893865d573f351517ee1c7dff9284697fa28284bdf",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-review/references/visual-quality.md",
+          "sha256": "a8b63d036f82b81a3f06c42a7fa8c9afbfd18e584cde484c3ee6b81d75bf2399",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/SKILL.md",
+          "sha256": "1594542a3f68eddb6305f786a41be54f3af8afa5c0d9e94b79cb5e9f1c9484d9",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/agents/openai.yaml",
+          "sha256": "244440a0047dcc4a00e1784de92aa7fbeeef6d6ce514fb30590f4b4b290f9ae7",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/accessibility.md",
+          "sha256": "54c2064005c5bf560a7010cb21cc7189c9862759b55e789b2ffc331a6278885b",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/interaction-patterns.md",
+          "sha256": "85f8717c9601821d97de18526818512c458cf00e3ebb13603d2172c1e6fb53ea",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/pattern-decisions.md",
+          "sha256": "bb5635228031250d5383a8d551669f4c2b91b342fbfd0fcaecca889f193a1a9e",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/design-system/references/visual-composition.md",
+          "sha256": "4929bdd47ab502dbf669ea64aa2295a98ff07b540e5749295bfa90c5cbd0abfb",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/SKILL.md",
+          "sha256": "9b5a50121d4734558963970486a3a030beb78be04b7a13a467290735aaaeac06",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/agents/openai.yaml",
+          "sha256": "57b174e0c0f88f5e5f8d2b35a8c87eb4ca109f4c3bd737e3d3259e73dd8e9728",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/desktop-performance-and-accessibility.md",
+          "sha256": "d9f04bbb1b1443eb8a786b0503e800e2111f81e9c50f565f09be8151b51ebc12",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/evaluation-cases.md",
+          "sha256": "4f9328f318b66b6181a9362c20d3128faa567d96866d229f78779140efec8614",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/layout-and-custom-widgets.md",
+          "sha256": "a2a797e843b93904f00c46c191a6cfade6d3d7325fb23f7d1e5f466437c44a31",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/message-update-state.md",
+          "sha256": "7f839c26a57da34de2728202a27fdc23d0249e5765db5548b03d39221d25ac9c",
+          "role": "other"
+        },
+        {
+          "path": ".codex/skills/iced-engineering/references/native-visual-contract.md",
+          "sha256": "d0746c5a09b2a90e17759a8f891f23f1746c8eaaa35e8dc0452a8e494b80ed06",
+          "role": "other"
+        },
+        {
+          "path": "docs/decisions/visual-skill-refinement.md",
+          "sha256": "33bc23cff104d50dde92ad0deadcdfa69896ad77b14b9e3d3d5d410d6de0fa40",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/analysis.md",
+          "sha256": "fc033f3d1d7aefd99b9b69045d42edf7dc817e8eb1b6de334d60cfd4c84fbcd1",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/consulted-inputs.json",
+          "sha256": "97e41ad4ade1a97ef638f50f81dafbccf39bb5030fb49585a6038edc85238eba",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/desktop-pack-analysis.md",
+          "sha256": "4ef71d53dc101935189782d6900f77da0b7414c14742a59b56beab745ff259b6",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/desktop-pack-entries.json",
+          "sha256": "621704a5e8215a140868d5ba735c8fdfb74f89bd8ba17761dd96d26238268711",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/desktop-pack-inventory.json",
+          "sha256": "1d31e3d52344f403b15ce66c571a8e196b91cb3d76fa51dd22bb7a8badfbd5c7",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/final-method-inputs.json",
+          "sha256": "543b005c7cf776ac8f11f8a7a6cb3218913fa3a3d587a1fd25671f1f2a396788",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/review.md",
+          "sha256": "aea0626bac12e51e50272f3f0efe8b721c17ce1cb27653664a62ca6b62f45bbf",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/scenario-outputs.md",
+          "sha256": "a94e367ec26aa444b42b998c0a8f35a5bcd6f43e290bd5a0d3c81a7c8a3504cc",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/scenarios.md",
+          "sha256": "90b37b2d40d1807a6cf60f46d35a08b244daa52d7cb84e6a63483d78b416d94b",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/sources.json",
+          "sha256": "30d6adc3bbe024eab7b7a3eb10b855d79d45f23d749ec0061ef2f7b323d7a146",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/succession-verification.md",
+          "sha256": "1891d726c84b590d84e5d0a96560843bb156357a73a929e500e08ff519651fed",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/succession.json",
+          "sha256": "8d758bb831971529df7af2adb580faf48d2496c172c800977797852acb1d7208",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/ui-ux-pro-max-analysis.md",
+          "sha256": "3f77fd5b25c44e4fd41b93e183ad952de5cf3c2e0becc5d6f115a65710de52c2",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/ui-ux-pro-max-inventory.json",
+          "sha256": "08ba505c88524e4b65e6c4ed32e1c93cd7d9a2c722cad492a43c54436a7fd07c",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/validation.md",
+          "sha256": "5f168d322dd7e47abebbc599d309ecd81346468f3d4d4fef0d63343c9d09b734",
+          "role": "other"
+        },
+        {
+          "path": "docs/validation/visual-skills-20261116/verification.md",
+          "sha256": "6a54c6e80d26c60b64a9d271714ee2fa7641df7563376a23a3b850872430fac7",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/plan.md",
+          "sha256": "3e8218bf093c46bbdc2e9ef1f2e305370c0784f576f3d855bd2d546f397c5912",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/spec.md",
+          "sha256": "11bd4a61a5c7e6dcf3365d95a9d436a1740a0f912289d4c5a5d7fc145283c705",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/tasks.md",
+          "sha256": "07016a74c8f16368958952a6188c69e8d1ef9f3f70330c17391c5c0d2e87abee",
+          "role": "other"
+        },
+        {
+          "path": "sdd/features/visual-skill-refinement/traceability.json",
+          "sha256": "8ec5e6dcdb95138566bea3a775ee3ea16f3d80ed978c2a5329c89e1c756df74a",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/check-ox.py",
+          "sha256": "c96d0282397f28d379ebf9ac3f8237a9ef80364036a2c81f6bea36320ce3479c",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/closure_revision.py",
+          "sha256": "9097b9855da73257b7526630c1829f641a502554224dba9245b0126c695963da",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/instruction_revision.py",
+          "sha256": "8a7f79bc60427bb66624c20c9e3cdc60628c9c469e132f0d0b3d5422dc405a7f",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/log_repair_revision.py",
+          "sha256": "62e66b040f5600613a7ef756cd9ea7e4f1c45f1643d773afcc68a7f46fb9ff81",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/scripts/visual_skill_revision.py",
+          "sha256": "51508921469a29e3cf149952fe53b6d56c8ce9de31976bfd6f5603ca50747ca2",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_instruction_copy.py",
+          "sha256": "dff0563f7571235868becc12ef379da3d81e57701530c3b582bcc8b05d4a71f0",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_readme_skill_integration.py",
+          "sha256": "ff232b80d7b6c21656b6a43a03eb0e611626cb481c5e1639e902cdd40e8fea97",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_visual_skill_revision.py",
+          "sha256": "6b6bfa9f9453c1ed9a3801c6ab32215bbafb076c1b197b13865fed1516b49cb5",
+          "role": "other"
+        },
+        {
+          "path": "tools/governance/tests/test_visual_succession.py",
+          "sha256": "4a2b6aa9aefcadbf21fbcb296dc19835d7932c8c54396b0a7c184f5f930e9bb5",
+          "role": "other"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Approval covers authoring/source-comparison/preservation criteria only, not native product behavior or measured UX improvement.",
+    "All 26 unique entrypoints received semantic review; other tracked files have explicitly varied inspection depth. Dataset rows were censused, not individually factual-verified.",
+    "No upstream code/installers/tests/font APIs were executed. Textual forward scenarios supplied selected skills; no blind discovery or comparative effectiveness benchmark.",
+    "Existing skill-native-visual-method and product acceptance states are unchanged.",
+    "2026-11-17 Windows/Visual Studio method successor changes bound skill/checker inputs. Prior approval observations and original hashes are preserved as history; current criteria require their own renewed observation. New documentary scope is windows-design-baseline."
+  ]
+}

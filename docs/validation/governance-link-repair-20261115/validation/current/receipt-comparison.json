@@ -1,0 +1,93 @@
+[
+  {
+    "receipt": "terminal/terminal-regressions.json",
+    "exit": 0,
+    "drift": [
+      "scripts/tests/test_governance_diagnostics.py"
+    ],
+    "raw_matches": [
+      [
+        "stdout",
+        true,
+        true
+      ],
+      [
+        "stderr",
+        true,
+        true
+      ]
+    ]
+  },
+  {
+    "receipt": "terminal/lifecycle-regressions.json",
+    "exit": 0,
+    "drift": [
+      "scripts/tests/test_governance_diagnostics.py"
+    ],
+    "raw_matches": [
+      [
+        "stdout",
+        true,
+        true
+      ],
+      [
+        "stderr",
+        true,
+        true
+      ]
+    ]
+  },
+  {
+    "receipt": "terminal/governance-diagnostics-mutation-02.json",
+    "exit": 0,
+    "drift": [],
+    "raw_matches": [
+      [
+        "stdout",
+        true,
+        true
+      ],
+      [
+        "stderr",
+        true,
+        true
+      ]
+    ]
+  },
+  {
+    "receipt": "terminal/real-source-projection.json",
+    "exit": 0,
+    "drift": [
+      "scripts/tests/test_governance_diagnostics.py"
+    ],
+    "raw_matches": [
+      [
+        "stdout",
+        true,
+        true
+      ],
+      [
+        "stderr",
+        true,
+        true
+      ]
+    ]
+  },
+  {
+    "receipt": "terminal/projection-mutation-02.json",
+    "exit": 0,
+    "drift": [],
+    "raw_matches": [
+      [
+        "stdout",
+        true,
+        true
+      ],
+      [
+        "stderr",
+        true,
+        true
+      ]
+    ]
+  }
+]

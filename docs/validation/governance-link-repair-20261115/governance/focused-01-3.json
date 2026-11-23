@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/governance/tests",
+    "-p",
+    "test_instruction_copy.py",
+    "-v"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "041f441fff75a4ab1b6fff1546d8867f23f3c4c13dc172fa39efda30639824dd"
+}

@@ -1,0 +1,269 @@
+{
+  "scope": "real sidebar press/move/release and post-release move; private desktop, no product hooks",
+  "observer_sha256": "70dee34ab8a8cec2794b6d8f3390c0ed9224fb235ce20024ad162ecd1ac6b618",
+  "session_mechanism_sha256": "1ab4c178cccf0db8aeec85c927f4f7045fc1a464a54dced77000abe5109f6964",
+  "events": [
+    {
+      "kind": "pointer_motion",
+      "time": 186578.045628814,
+      "xy": [
+        1000,
+        230
+      ]
+    },
+    {
+      "kind": "pointer_motion",
+      "time": 186579.47028663,
+      "xy": [
+        259,
+        400
+      ]
+    },
+    {
+      "kind": "pointer_button",
+      "time": 186579.670818273,
+      "button": 272,
+      "pressed": true
+    },
+    {
+      "kind": "pointer_motion",
+      "time": 186579.871383877,
+      "xy": [
+        279,
+        400
+      ]
+    },
+    {
+      "kind": "pointer_motion",
+      "time": 186580.071899169,
+      "xy": [
+        299,
+        400
+      ]
+    },
+    {
+      "kind": "pointer_motion",
+      "time": 186580.272445322,
+      "xy": [
+        319,
+        400
+      ]
+    },
+    {
+      "kind": "pointer_motion",
+      "time": 186580.472934555,
+      "xy": [
+        339,
+        400
+      ]
+    },
+    {
+      "kind": "pointer_button",
+      "time": 186580.862599512,
+      "button": 272,
+      "pressed": false
+    },
+    {
+      "kind": "pointer_motion",
+      "time": 186581.063097245,
+      "xy": [
+        1000,
+        230
+      ]
+    },
+    {
+      "kind": "pointer_motion",
+      "time": 186583.126603714,
+      "xy": [
+        419,
+        400
+      ]
+    },
+    {
+      "kind": "pointer_motion",
+      "time": 186583.327116297,
+      "xy": [
+        420,
+        548
+      ]
+    }
+  ],
+  "dont_write_bytecode": true,
+  "PYTHONDONTWRITEBYTECODE": "1",
+  "project_before": [],
+  "fixture": {
+    "source": "/home/rodrigo/Projetos/ox/docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/actual-history-before-corruption.bin",
+    "sha256": "f358a750856856c78669ad490943a94530c741b2af4d34d560145b621e610dcb",
+    "method": "exact snapshot really published by final app in WC07; actual private project still exists, no synthetic project/history",
+    "private_state": "/tmp/ox-r3-drag-probe-01/state"
+  },
+  "binary_before": "58a91a46a462afae671a97ebc81d6d906b57fad1ba981dc8209fb3648e15f0dd",
+  "geometry": [
+    2560,
+    1000
+  ],
+  "captures": [
+    {
+      "name": "initial-tasks",
+      "path": "/tmp/ox-r3-drag-probe-01/initial-tasks.png",
+      "sha256": "ecccf3da535714a6262d42b17c6a6f6f6510ab90c2397ca08aa8f4755ec8c99f",
+      "capture_monotonic": 186578.045367583,
+      "buffer": {
+        "received_monotonic": 186577.652229271,
+        "pts_ns": 1592029350,
+        "dts_ns": 1592029350,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 177801,
+        "clock_now_ns": 1595574579,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "0475cf86096f9f32256ca680777893b780d043fd61e47f2df7a857d273993b7c"
+    },
+    {
+      "name": "drag-before",
+      "path": "/tmp/ox-r3-drag-probe-01/drag-before.png",
+      "sha256": "ecccf3da535714a6262d42b17c6a6f6f6510ab90c2397ca08aa8f4755ec8c99f",
+      "capture_monotonic": 186578.736106945,
+      "buffer": {
+        "received_monotonic": 186578.174551514,
+        "pts_ns": 2114271350,
+        "dts_ns": 2114271350,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 177801,
+        "clock_now_ns": 2117902762,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "0475cf86096f9f32256ca680777893b780d043fd61e47f2df7a857d273993b7c"
+    },
+    {
+      "name": "drag-held",
+      "path": "/tmp/ox-r3-drag-probe-01/drag-held.png",
+      "sha256": "a96e69d59be8c4df3014a81333764448e780bbc764e5dd6c1b018ed5b1fb2f2b",
+      "capture_monotonic": 186580.862478732,
+      "buffer": {
+        "received_monotonic": 186580.649939578,
+        "pts_ns": 4589717350,
+        "dts_ns": 4589717350,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 177801,
+        "clock_now_ns": 4593286936,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "c8a0ec7780b4a208552bc6d974bd0eaf9fc905a5da11348e9e5063ae07f876a4"
+    },
+    {
+      "name": "drag-after-release",
+      "path": "/tmp/ox-r3-drag-probe-01/drag-after-release.png",
+      "sha256": "bdb8d03a41740cd8d6d692898f0aae22a62ec61b618f8e84e9d24ff2b2ed02fc",
+      "capture_monotonic": 186582.185930675,
+      "buffer": {
+        "received_monotonic": 186581.11852941,
+        "pts_ns": 5058387350,
+        "dts_ns": 5058387350,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 177801,
+        "clock_now_ns": 5061875148,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "7200aaad69262479e6779f6b74e2c2357c9aee86a4cac62791c12457c22fc7c4"
+    },
+    {
+      "name": "before-unpressed-hover-witness",
+      "path": "/tmp/ox-r3-drag-probe-01/before-unpressed-hover-witness.png",
+      "sha256": "bdb8d03a41740cd8d6d692898f0aae22a62ec61b618f8e84e9d24ff2b2ed02fc",
+      "capture_monotonic": 186583.126481904,
+      "buffer": {
+        "received_monotonic": 186581.11852941,
+        "pts_ns": 5058387350,
+        "dts_ns": 5058387350,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 177801,
+        "clock_now_ns": 5061875148,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "7200aaad69262479e6779f6b74e2c2357c9aee86a4cac62791c12457c22fc7c4"
+    },
+    {
+      "name": "drag-after-unpressed-motion",
+      "path": "/tmp/ox-r3-drag-probe-01/drag-after-unpressed-motion.png",
+      "sha256": "caefc00ce33ed35726aa218d91265b3c70ae3789e7eac87c9163b7a21584e0ba",
+      "capture_monotonic": 186583.719898659,
+      "buffer": {
+        "received_monotonic": 186583.383017463,
+        "pts_ns": 7322510350,
+        "dts_ns": 7322510350,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 177801,
+        "clock_now_ns": 7326374421,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "7200aaad69262479e6779f6b74e2c2357c9aee86a4cac62791c12457c22fc7c4"
+    }
+  ],
+  "divider_positions": [
+    {
+      "stage": "before",
+      "x": 256
+    },
+    {
+      "stage": "after_release",
+      "x": 336
+    },
+    {
+      "stage": "after_unpressed_motion",
+      "x": 336
+    }
+  ],
+  "redraw_witness": {
+    "kind": "public Validate-directory button hover, without click",
+    "box": [
+      356,
+      528,
+      495,
+      570
+    ],
+    "pre_hover_received_monotonic": 186581.11852941,
+    "captured_buffer": {
+      "received_monotonic": 186583.383017463,
+      "pts_ns": 7322510350,
+      "dts_ns": 7322510350,
+      "duration_ns": 16666666,
+      "pipeline_base_ns": 177801,
+      "clock_now_ns": 7326374421,
+      "note": "receipt time alone does not prove production/presentation after an input"
+    },
+    "before_crop_sha256": "e3862d62771c5df6c1915b3917900eaf788c36289805518558ce3757d0df29ef",
+    "after_crop_sha256": "cc4f143b00cf811c1f51077b4d615ad0b72e46bfdf5eefca2d9ecb671f7ca7c7",
+    "limitations": "Receipt alone does not prove production/presentation; independently inspect hover appearance, pointer protocol and divider in saved frame."
+  },
+  "pointer_protocol": [
+    "[02:55:27.693965] wl_pointer#51.motion(186578045, 1000.00000000, 195.00000000)",
+    "[02:55:27.693991] wl_pointer#21.motion(186578045, 1000.00000000, 195.00000000)",
+    "[02:55:29.118567] wl_pointer#51.motion(186579470, 259.00000000, 365.00000000)",
+    "[02:55:29.118595] wl_pointer#21.motion(186579470, 259.00000000, 365.00000000)",
+    "[02:55:29.319216] wl_pointer#51.button(26, 186579671, 272, 1)",
+    "[02:55:29.319230] wl_pointer#21.button(26, 186579671, 272, 1)",
+    "[02:55:29.519660] wl_pointer#51.motion(186579871, 279.00000000, 365.00000000)",
+    "[02:55:29.519690] wl_pointer#21.motion(186579871, 279.00000000, 365.00000000)",
+    "[02:55:29.720218] wl_pointer#51.motion(186580072, 299.00000000, 365.00000000)",
+    "[02:55:29.720230] wl_pointer#21.motion(186580072, 299.00000000, 365.00000000)",
+    "[02:55:29.920704] wl_pointer#51.motion(186580272, 319.00000000, 365.00000000)",
+    "[02:55:29.920735] wl_pointer#21.motion(186580272, 319.00000000, 365.00000000)",
+    "[02:55:30.121216] wl_pointer#51.motion(186580473, 339.00000000, 365.00000000)",
+    "[02:55:30.121232] wl_pointer#21.motion(186580473, 339.00000000, 365.00000000)",
+    "[02:55:30.510817] wl_pointer#21.button(27, 186580862, 272, 0)",
+    "[02:55:30.510832] wl_pointer#51.button(27, 186580862, 272, 0)",
+    "[02:55:30.711392] wl_pointer#51.motion(186581063, 1000.00000000, 195.00000000)",
+    "[02:55:30.711418] wl_pointer#21.motion(186581063, 1000.00000000, 195.00000000)",
+    "[02:55:32.774944] wl_pointer#51.motion(186583126, 419.00000000, 365.00000000)",
+    "[02:55:32.774971] wl_pointer#21.motion(186583126, 419.00000000, 365.00000000)",
+    "[02:55:32.975414] wl_pointer#51.motion(186583327, 420.00000000, 513.00000000)",
+    "[02:55:32.975443] wl_pointer#21.motion(186583327, 420.00000000, 513.00000000)"
+  ],
+  "natural_exit": 0,
+  "binary_after": "58a91a46a462afae671a97ebc81d6d906b57fad1ba981dc8209fb3648e15f0dd",
+  "project_after": [],
+  "result": "observed: real-pointer drag moved splitter256to336 and unpressed motion preserved336; independent image inspection required",
+  "source_after_sha256": "70dee34ab8a8cec2794b6d8f3390c0ed9224fb235ce20024ad162ecd1ac6b618",
+  "session_after_sha256": "1ab4c178cccf0db8aeec85c927f4f7045fc1a464a54dced77000abe5109f6964"
+}

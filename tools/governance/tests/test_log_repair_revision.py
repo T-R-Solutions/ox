@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / 'tools/governance/scripts'))
 R = importlib.import_module('log_repair_revision')
+H = importlib.import_module('historical_link_revision')
 
 
 class HistoricalOriginTests(unittest.TestCase):
@@ -17,7 +18,12 @@ class HistoricalOriginTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         self.rows = json.loads((ROOT / R.ORIGINS).read_text())['records']
-        for name in [R.ORIGINS, *[row['source'] for row in self.rows]]:
+        extra = json.loads((ROOT / H.ORIGINS).read_text())['records']
+        names = [R.ORIGINS, *[row['source'] for row in self.rows], H.ORIGINS, H.DECISION]
+        names += [name for row in extra for name in (row['source'], row['origin'])]
+        from audit_revision import fixture_paths as audit_paths
+        names += audit_paths(ROOT)
+        for name in names:
             path = self.root / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes((ROOT / name).read_bytes())
@@ -116,12 +122,8 @@ class LogSuccessorTests(unittest.TestCase):
             path = self.root / relative
             original = path.read_bytes()
             path.unlink()
-            if relative == R.REGISTRY:
-                self.assertEqual(R.predecessor(self.root, name, data), data)
-                self.assertFalse(R.original_branch(self.root, name, data))
-            else:
-                with self.assertRaises(ValueError):
-                    R.predecessor(self.root, name, data)
+            with self.assertRaises(ValueError):
+                R.predecessor(self.root, name, data)
             replacement = self.root / 'replacement.bin'
             replacement.write_bytes(original)
             path.symlink_to(replacement)
@@ -144,7 +146,18 @@ class LogSuccessorTests(unittest.TestCase):
 
 
 class CopyHistoricalReferenceTests(unittest.TestCase):
-    setUp = HistoricalOriginTests.setUp
+    def setUp(self):
+        HistoricalOriginTests.setUp(self)
+        from governance_support import product_record
+        # Model the declared governance-only copy in this owned disposable tree.
+        for target in sorted(self.root.rglob("*"), key=lambda p: len(p.parts), reverse=True):
+            relative = target.relative_to(self.root)
+            if relative.parts[0] == "application" or product_record(relative):
+                if target.is_file() or target.is_symlink():
+                    target.unlink()
+                elif target.is_dir():
+                    target.rmdir()
+
 
     def test_only_twelve_exact_absent_pairs_in_declared_copy(self):
         instruction = importlib.import_module('instruction_revision')
@@ -192,7 +205,8 @@ class CopyHistoricalReferenceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'registry changed'):
             R.excluded_reference(self.root, row['source'], target)
         metadata.unlink()
-        self.assertFalse(R.excluded_reference(self.root, row['source'], target))
+        with self.assertRaisesRegex(ValueError, 'Missing historical origin registry'):
+            R.excluded_reference(self.root, row['source'], target)
         (self.root / R.REGISTRY).write_text('fixture-presence-only')
         with self.assertRaisesRegex(ValueError, 'Missing historical origin registry'):
             R.excluded_reference(self.root, row['source'], target)

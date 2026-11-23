@@ -1,0 +1,11 @@
+{
+  "command": "TOOLBOX_BIN=/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox TOOLBOX_SELINUX_LABEL=shared CARGO_HOME=\"$PWD/.cache/ox/cargo-home\" PYTHONDONTWRITEBYTECODE=1 bash scripts/checks/run.sh --check ruff",
+  "exit_code": 3,
+  "assessment": ".local/logs/2026-11-18/ox-security-ruff-u6vb9eZJ--assessment.json.log",
+  "state": "blocked",
+  "reason": "Reviewed static source changed; review required",
+  "scanner_executed": false,
+  "input_changes": [],
+  "input_count": 339,
+  "limitation": "No Ruff findings/clean verdict can be inferred because pre-execution gate rejected old native harness bindings."
+}

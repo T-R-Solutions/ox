@@ -1,0 +1,33 @@
+Independent validation — corrective iteration, 2026-11-15
+
+This is a new observation superseding only the initial integrity rejection for the repaired candidate. Initial raw and preliminary-verdict.txt remain unchanged. No production, requirements or evidence envelopes were edited by the validator; all new captures remain in /tmp pending coordinator transfer/freeze.
+
+Observed production: historical_link_revision.py ddab78d019456d460f4f8fcb9fd9854ed813751ac550d337bcb44ef247dd7d66; log_repair_revision.py e92b03c3f2cb3661743be664f53853a36933ec102d8d05ba526a88521cae4eda; progress.sh d013c0ee871b28edc2b1f22a2d6c78fe885a889f652e29d130a0bbf7f684b14c. Current historical-link test d77f0c7ad8c510422776121ab430df82e4c4df032479b9b388f0856c40fd6cc6. Inputs-before/after are identical for six critical replay inputs.
+
+Actual source inspection confirms successor_records authenticates all five live terminals after schema/scope/preimage checks, explicitly rejects predecessor digest/unknown digest, and obtains every file via symlink-safe file(). fixture_paths declares the newly required live destinations. Normalization continues to return authenticated preimages. The helper pass-through on arbitrary supplied data no longer waives the independent live-file check.
+
+Own execution, Ox root, PYTHONDONTWRITEBYTECODE=1, PYTHONPATH=tools/governance/scripts:tools/governance/tests:
+python3 -m unittest -v test_historical_link_resolution.HistoricalLinkTests: exit0,15 tests (helpers.stdout/stderr).
+Disposable copy_distribution followed by python3 tools/governance/scripts/isolated-run.py /home/rodrigo/Projetos/ox tools/governance/scripts/check-ox.py: baseline exit0; same harmless README append previously accepted now exit2 with FAIL: Historical-link current changed (unknown content or predecessor downgrade): scripts/README.md; restore original README exit0. readme-mutation.json identifies commands/digests/exits and raw streams. Mutant README digest fe5176589740b54632bc59e618403f661eb71493061089435ef1188b6badf881 is identical to the rejected first candidate probe. Isolation is Python audit read observation, not an OS sandbox claim.
+Additional current receipt examined: governance/current-guard-focused-01,52 tests exit0, all100 recorded inputs match current bytes (focused-receipt-comparison.json). The broad200 attempt is explicitly partial/interrupted exit130,32 completed lines and one export error; it is NOT a successful broad regression. The changed report honestly preserves that limitation.
+
+Criterion verdicts for this bounded correction:
+GL-01 APPROVED — original five pairs/22 references, own current helper test plus eight baseline/current immutable equalities; no origin or snapshot edits.
+GL-02 APPROVED — old schema/source/path/symlink/registry controls plus new15-helper corpus and public baseline/mutation/recovery distinguish allowed and unknown successor content. Previous rejected counterexample is resolved, not erased.
+GL-03 APPROVED — own public independent copy succeeds on current guard; explicit receipt/origin inventory and twelve old exclusions remain unchanged, negative old fixtures included in current52. No OS isolation or product-distribution claim.
+GL-04 APPROVED — own14 diagnostic tests from previous observation remain applicable: production/test/corpus unchanged;22 occurrences/five sources, source identity, grouping and mutant conservation checked.
+GL-05 APPROVED — same current terminal observation covers raw/code preservation and explicit unknown/empty/truncated/parser-failure paths. Conservative ASCII/source-backed metadata only; arbitrary formats are not recognized.
+GL-06 APPROVED — same current diagnostics and examined28terminal/13lifecycle receipts support retained byte-identical locators, partial publication rejection, escaped names, TTY/plain/dumb/NO_COLOR and cancellation. The three real wrapper locators were independently observed to exist; two-date retention is unchanged.
+GL-07 INCONCLUSIVE — material counterexample repaired and independent review/validation now support bounded implementation, but broad regression and final evidence bindings/gate inspection are not complete at this observation. Full feature approval is not claimed.
+configuration-cohesion AC-16 APPROVED for exact origin/integrity/copied-consumer requirements. AC-01..15 retain preexisting UNVERIFIED states and resumption obligations.
+terminal-progress AC-01 APPROVED: dynamic phase count and actual selected N fixtures.
+terminal-progress AC-02 APPROVED: monotonic measured totals, opaque progress unavailable, no false100 during failed publication/cancellation.
+terminal-progress AC-03 APPROVED: truthful states/aggregate precedence/permanent summaries and limits.
+terminal-progress AC-04 APPROVED: current adversarial diagnostics/source-backed fields and projection mutation with unchanged raw.
+terminal-progress AC-05 APPROVED: color/hierarchy and plain/dumb/NO_COLOR behavior, unchanged raw/env/plan in controlled fixtures.
+terminal-progress AC-06 APPROVED bounded terminal change: current production lifecycle/code/publication regressions and independent source review plus this validation. The independent reviewer reexamined the final governance guard separately; no unresolved production finding reported, and our public counterexample was independently rerun successfully.
+history-scanner-correction AC-03 APPROVED: both explicit functional-acceptance messages observed in hash-matching wrapper raw and code, terminal regressions retain state/code contracts. AC-01/02 remain preexisting UNVERIFIED native scanner work.
+
+Traceability/limits: initial whole-feature command selected configuration-cohesion,terminal-progress,history-scanner-correction with --features sdd/features --require-approved --require-fresh --check-convergence, exit1 on25 then-UNVERIFIED criteria; that observation remains historical. After coordinator writes genuinely new bindings/projections, re-run exact selected whole-feature command and inspect all errors. Expected pending17 gates must not become approved implicitly. Also inspect feature freshness without requiring approval to distinguish data-binding defects from intentionally unfinished work. No full pipeline, download, central maintenance, commit/publication or native history scan was performed.
+
+Document disposition: report.md corrective iteration inspected; historical failure and partial regression honestly preserved. Common documentation/evidence updates remain coordinator-owned. Final acceptance observation must identify final schema2 bindings and residual integration condition. This report authorizes no historical hash refresh.

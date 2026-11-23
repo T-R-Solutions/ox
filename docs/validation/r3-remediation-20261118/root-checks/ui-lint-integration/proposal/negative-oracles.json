@@ -1,0 +1,26 @@
+[
+  {
+    "scenario": "primitive-width",
+    "mutation": {
+      "old": "shape(1.0, 4.0, 14.0, 10.0, true);",
+      "new": "shape(1.0, 4.0, 14.5, 10.0, true);"
+    },
+    "source_sha256": "d3761125e9efca08b6dc8c828c5dfc8cf4db1ac6a436ccba742ffe5b502774f6",
+    "compile_exit": 0,
+    "oracle_exit": 101,
+    "expected": "nonzero assertion failure",
+    "result": "rejected"
+  },
+  {
+    "scenario": "cog-coordinate",
+    "mutation": {
+      "old": "angle.cos().mul_add(5.6, origin.x + 6.8)",
+      "new": "angle.cos().mul_add(5.6, origin.x + 7.8)"
+    },
+    "source_sha256": "9eb2a37a32303531b0a3d2b909effa1a8d6cdf4db14a2354ec6d0a4147fb29bf",
+    "compile_exit": 0,
+    "oracle_exit": 101,
+    "expected": "nonzero assertion failure",
+    "result": "rejected"
+  }
+]

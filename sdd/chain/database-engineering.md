@@ -30,7 +30,7 @@ Keep unknowns explicit and preserve the destination project's authorities.
 
 ## Conditional handoff
 
-Consult postgresql for an unresolved PostgreSQL-specific mechanism only when available and needed. Supply IDs, observations, constraints
+Consult an installed engine-specific capability for an unresolved PostgreSQL mechanism only when available and needed; this profile does not install a postgresql skill. Supply IDs, observations, constraints
 and existing permission scope. Absence is an explicit gap, not a completed consultation.
 The bridge maps contributions; the skill owns its technical procedure.
 

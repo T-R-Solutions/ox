@@ -1,0 +1,95 @@
+"""Hermetic exact-document gate tests; no mutable checkout fixture inputs."""
+import hashlib
+import json
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import document_ledger as ledger
+
+
+class DocumentLedgerTests(unittest.TestCase):
+    def setUp(self):
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.root = Path(temp.name)
+        patcher = patch.object(ledger, "DESTINATIONS", frozenset({"AGENTS.md"}))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.name = "AGENTS.md"
+        self.old = b"old exact contract\n"
+        self.new = b"new reviewed contract\n"
+        self.previous = ledger.BASE + "/predecessors/AGENTS.md.bin"
+        row = dict(path=self.name, prev_sha=ledger.sha(self.old),
+                   next_sha=ledger.sha(self.new), previous=self.previous,
+                   task="claude-remediation-20261117")
+        for name, data in ((self.name, self.new), (self.previous, self.old)):
+            p = self.root / name
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_bytes(data)
+        self.document = dict(schema_version=1, records=[row])
+        self.install(self.document)
+
+    def install(self, doc):
+        data = json.dumps(doc).encode()
+        (self.root / ledger.REGISTRY).write_bytes(data)
+        patcher = patch.object(ledger, "REVIEWED", ledger.sha(data))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def test_exact_buffer_maps_and_unknown_buffer_never_maps(self):
+        self.assertEqual(ledger.predecessor(self.root, self.name, self.new), self.old)
+        other = self.new + b"unknown"
+        self.assertEqual(ledger.predecessor(self.root, self.name, other), other)
+
+    def test_mutation_and_downgrade_reject_with_specific_reason(self):
+        p = self.root / self.name
+        for data, reason in ((self.new + b"mutation", "current changed"),
+                             (self.old, "predecessor downgrade")):
+            p.write_bytes(data)
+            with self.subTest(reason=reason), self.assertRaisesRegex(ValueError, reason):
+                ledger.predecessor(self.root, self.name, data)
+        p.write_bytes(self.new)
+        self.assertEqual(ledger.predecessor(self.root, self.name, self.new), self.old)
+
+    def test_registry_rehash_cannot_hide_source_mutation(self):
+        (self.root / self.name).write_bytes(b"unknown")
+        doc = json.loads(json.dumps(self.document))
+        doc["records"][0]["next_sha"] = ledger.sha(b"unknown")
+        (self.root / ledger.REGISTRY).write_text(json.dumps(doc))
+        with self.assertRaisesRegex(ValueError, "ledger changed"):
+            ledger.predecessor(self.root, self.name, b"unknown")
+
+    def test_preimage_mutation_rejected(self):
+        (self.root / self.previous).write_bytes(b"unknown")
+        with self.assertRaisesRegex(ValueError, "predecessor changed"):
+            ledger.records(self.root)
+
+    def test_live_and_metadata_symlinks_rejected(self):
+        for name in (self.name, self.previous, ledger.REGISTRY):
+            target = self.root / name
+            original = target.read_bytes()
+            alias = self.root / "alias"
+            alias.write_bytes(original)
+            target.unlink()
+            target.symlink_to(alias)
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, "symlinked"):
+                ledger.predecessor(self.root, self.name, self.new)
+            target.unlink()
+            target.write_bytes(original)
+
+    def test_authenticated_malformed_rows_still_reject(self):
+        for mode in ("duplicate", "escape", "extra", "bool", "digest", "missing"):
+            doc = json.loads(json.dumps(self.document))
+            if mode == "duplicate": doc["records"].append(doc["records"][0])
+            elif mode == "escape": doc["records"][0]["previous"] = "../outside"
+            elif mode == "extra": doc["records"][0]["path"] = "unreviewed.md"
+            elif mode == "bool": doc["schema_version"] = True
+            elif mode == "missing": doc["records"] = []
+            else: doc["records"][0]["next_sha"] = "bad"
+            self.install(doc)
+            with self.subTest(mode=mode), self.assertRaisesRegex(ValueError, "Invalid document ledger"):
+                ledger.records(self.root)

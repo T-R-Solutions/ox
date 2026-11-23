@@ -137,3 +137,14 @@ Primary software-delivery, .codex/skills/software-delivery/SKILL.md (no declared
 version), consulted with references/build-inputs-and-trust.md and
 references/release-and-state.md for immutable preparation/promotion/recovery.
 No supporting skills or delegation used in this successor.
+
+## Single OSV acquisition clock successor — 2026-11-16
+
+D-31/R-31: the explicit request supersedes all earlier OSV 24h clauses in this
+plan. Implement one central 12h clock since successful download, independent of
+scan time or upstream publication age; preserve Trivy/Grype and advisory policies.
+Full route, ownership, selected software-delivery entry/bridge and manual criteria
+are in docs/validation/osv-acquisition-20261116/plan.md. The actual skill was read
+and applied, not merely indicated. Independent review/validation are required;
+central changes are prepared locally and need effective write permission to apply.
+No real downloads, complete run, commits or publication in this successor.

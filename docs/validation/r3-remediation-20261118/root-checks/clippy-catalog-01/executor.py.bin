@@ -1,0 +1,22 @@
+from pathlib import Path
+import datetime,hashlib,json,os,subprocess,time
+root=Path('/home/rodrigo/Projetos/ox');out=Path('/tmp/ox-r3-clippy-catalog-01')
+if out.exists():raise SystemExit('Refuse overwrite')
+out.mkdir();catalog=root/'scripts/config/automation.json';document=json.loads(catalog.read_text());policy=root/document['policies']['clippy.toml'];flags=document['runtime']['clippy_flags']
+cmd=['env','CLIPPY_CONF_DIR='+str(policy.parent),os.environ.get('CARGO') or 'cargo','clippy','--workspace','--all-targets','--all-features','--locked','--offline','--keep-going','--',*flags]
+def observed():
+ rows={}
+ for name in ['application/crates','application/vendor']:
+  for p in (root/name).rglob('*'):
+   if p.is_file() and not p.is_symlink():rows[str(p.relative_to(root))]=hashlib.sha256(p.read_bytes()).hexdigest()
+ for p in [root/'application/Cargo.toml',root/'application/Cargo.lock',root/'application/rust-toolchain.toml',catalog,root/'scripts/lib/registry.sh',policy,Path(__file__)]:
+  rows[str(p)]=hashlib.sha256(p.read_bytes()).hexdigest()
+ return rows
+before=observed();(out/'inputs-before.json').write_text(json.dumps(before,indent=2)+'\n');(out/'executor.py.bin').write_bytes(Path(__file__).read_bytes())
+env=dict(os.environ,CARGO_HOME=str(root/'.cache/ox/cargo-home'),PYTHONDONTWRITEBYTECODE='1');start=time.monotonic()
+with (out/'stdout.log').open('wb') as stdout,(out/'stderr.log').open('wb') as stderr:run=subprocess.run(cmd,cwd=root/'application',env=env,stdout=stdout,stderr=stderr)
+after=observed();changes=[k for k in sorted(before.keys()|after.keys()) if before.get(k)!=after.get(k)]
+(out/'inputs-after.json').write_text(json.dumps(after,indent=2)+'\n')
+record={'command':cmd,'cwd':str(root/'application'),'CARGO_HOME':env['CARGO_HOME'],'time_utc':datetime.datetime.now(datetime.UTC).isoformat(),'seconds':time.monotonic()-start,'exit_code':run.returncode,'input_changes':changes,'method':'exact registry.sh rust-clippy argv from current automation flags/policy; no --fix or policy modification'}
+(out/'result.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record),flush=True)
+raise SystemExit(2 if changes else run.returncode)

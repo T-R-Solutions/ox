@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "role": "independent-review",
+  "reviewer": "/root/r3_orchestrator/review",
+  "verdict": "accepted",
+  "path": "tools/governance/scripts/governance_support.py",
+  "before_sha256": "e7b820655c0086334f25ac7049152bf9c112a9c487eeb8d8f497947552f2884f",
+  "after_sha256": "182afcb5f8a68e821fd883bab98bf29d518064a67e99fa79cba14d9ce54d30a5",
+  "decision_sha256": "0eada2d58b2f9bfb49eeca23dba2af3c2805f0a4a2720d4637d6b46255e67d91",
+  "scope": "Independent inspection of the helper delta wrapping preservation_bytes in one explicit document-ledger observation, the complete observation implementation at SHA-256 d50a969b11a021e4eec1f38c095053a093fc66b0138cf5adcb7e8c41a27b17c5, its current transitive read set and the bound decision. Reuse is limited to deeply immutable validated historical registry results; live judgments remain fresh. Entry and exit validate bytes and safe paths, lexical and canonical roots isolate cache reuse, and shared lifetime revocation rejects copied or borrowed scopes after owner exit. Independently executed 29 candidate tests, both expired-borrower probes with and without a body exception, and the public helper README preservation digest with context-disposal verification. All passed. No new subprocess boundary, timeout increase, suppression or Python hash repin was introduced by this delta.",
+  "limitations": [
+    "This accepts the reviewed observation delta, not the R3 task, final registry integration, complete governance inventory, copied commands or final feature gates.",
+    "Boundary comparisons are not an atomic filesystem snapshot and may miss hostile transient mutations restored before revalidation; no OS isolation or equivalent concurrent-mutation detection timing is claimed.",
+    "The explicit transitive read set is complete for the reviewed consumers; future changes to their file reads require corresponding maintenance and regression coverage.",
+    "Focused execution and the preserved microbenchmark do not establish whole-suite throughput or explain the earlier exit 143.",
+    "This record binds declared bytes and reviewer provenance, not cryptographic authorization or independent identity. The coordinating agent may consolidate this literal response because the reviewer role is read-only."
+  ]
+}

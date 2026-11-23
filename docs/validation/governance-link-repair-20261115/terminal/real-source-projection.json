@@ -1,0 +1,43 @@
+{
+  "command": [
+    "bash",
+    "-c",
+    "source \"$1/scripts/lib/common.sh\"; source \"$1/scripts/lib/process.sh\"; source \"$1/scripts/lib/progress.sh\"; progress_governance_project \"$2\"",
+    "_",
+    "/home/rodrigo/Projetos/ox",
+    "/tmp/ox-real-corpus-0zq442n1"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "exit_code": 0,
+  "inputs_before": {
+    "scripts/lib/progress.sh": "d013c0ee871b28edc2b1f22a2d6c78fe885a889f652e29d130a0bbf7f684b14c",
+    "scripts/tests/test_governance_diagnostics.py": "f4d6edfc190b919c85828c9da9b45e5d472996b57d9003918dc566ddcb9e79b2",
+    "scripts/tests/fixtures/governance-links.txt": "2a98bddc2da992fe3ed810cab4072ee79f9235ea9a88db40b1fa4d47d29a5f03",
+    "docs/validation/terminal-style-20261115/before/terminal-converge.md": "c0ebc63628c6621feb3575e66f4e854e951b6b7466f14da805ef9d0079f2fa19",
+    "docs/validation/terminal-style-20261115/before/scripts-README.md": "a3d7dcd18c50776b36ca1332e3ad2f995f4cb1c70545e4387caae28f37770133",
+    "docs/validation/terminal-style-20261115/pre-final-validation/terminal-progress-converge.md": "fd2f01a12585ca07139ad29a8bfaa3a02ee75b9981b211d185316c4c602729b4",
+    "docs/validation/history-correction-20261115/coordinator/terminal-converge-before.md": "ff2e0bc0fcfbe517467f3ea8d41d2da3ec292db681f80c28c37fdc2703dce92f",
+    "docs/validation/history-correction-20261115/coordinator/scripts-readme-before.md": "47e8177eeb9d250d4c739619d16a786b695841af82f6dc4fa31c497d3bfe3ed4"
+  },
+  "inputs_after": {
+    "scripts/lib/progress.sh": "d013c0ee871b28edc2b1f22a2d6c78fe885a889f652e29d130a0bbf7f684b14c",
+    "scripts/tests/test_governance_diagnostics.py": "f4d6edfc190b919c85828c9da9b45e5d472996b57d9003918dc566ddcb9e79b2",
+    "scripts/tests/fixtures/governance-links.txt": "2a98bddc2da992fe3ed810cab4072ee79f9235ea9a88db40b1fa4d47d29a5f03",
+    "docs/validation/terminal-style-20261115/before/terminal-converge.md": "c0ebc63628c6621feb3575e66f4e854e951b6b7466f14da805ef9d0079f2fa19",
+    "docs/validation/terminal-style-20261115/before/scripts-README.md": "a3d7dcd18c50776b36ca1332e3ad2f995f4cb1c70545e4387caae28f37770133",
+    "docs/validation/terminal-style-20261115/pre-final-validation/terminal-progress-converge.md": "fd2f01a12585ca07139ad29a8bfaa3a02ee75b9981b211d185316c4c602729b4",
+    "docs/validation/history-correction-20261115/coordinator/terminal-converge-before.md": "ff2e0bc0fcfbe517467f3ea8d41d2da3ec292db681f80c28c37fdc2703dce92f",
+    "docs/validation/history-correction-20261115/coordinator/scripts-readme-before.md": "47e8177eeb9d250d4c739619d16a786b695841af82f6dc4fa31c497d3bfe3ed4"
+  },
+  "stdout_sha256": "f6edc2b6835ac54095bbdc2df9140f765c99c131e5f70a9dddf1c67b7b99b2f6",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "observed": {
+    "recognized": 22,
+    "sources": 5,
+    "unsafe_fields": 0,
+    "groups": 20,
+    "display_groups": 10,
+    "omitted_occurrences": 10
+  },
+  "limitation": "Reads actual local source files and a temporary exact copy of corpus. Temporary raw locators inside this projection expire with the fixture; retained corpus data is scripts/tests/fixtures/governance-links.txt, original hash preserved in inputs-before.json. No checker or scanner executed."
+}

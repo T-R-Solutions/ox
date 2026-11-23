@@ -1,0 +1,33 @@
+Independent validation, preliminary disposition — 2026-11-15
+
+Scope: read-only validation of the authorized historical-link/terminal repair. No production, requirements, evidence envelope or repository documentation edits. Captures only in /tmp/ox-gl-independent-validation pending coordinator freeze. Primary skill consulted: .codex/skills/autonomous-verification-engineering/SKILL.md (no declared semantic version); used to separate authorization/execution/acceptance and challenge the public consumer independently.
+
+BLOCKER: In a temporary copy produced by governance_support.copy_distribution, the public checker through isolated-run.py accepts both the untouched tree and a scripts/README.md modified by appending a harmless unregistered paragraph. Both exits are 0. Expected unknown-successor rejection did not occur. See readme-mutation.json and baseline/unknown-readme stdout/stderr. Original checkout was not modified. Helper predecessor passes unknown bytes through; no downstream enforcement protects this new terminal destination. The existing helper test expecting pass-through does not prove the public rejection contract. Return to implementation; do not reduce requirements.
+
+Criterion dispositions:
+GL-01 APPROVED within observed corpus: independent 14-helper suite includes literal five expected pairs and 22-link count; current eight immutable digests match baseline. probe-2 and manual-observations.json.
+GL-02 REJECTED: registry/schema/path/source negative tests pass, but the public unknown README successor is accepted, contradicting required bounded documentary integrity.
+GL-03 APPROVED within declared governance-copy/read-observation boundary: public-baseline-replay-01 raw shows the four public positive/missing/tamper/restored checks pass; current own isolated-copy baseline exit0; exact 21 origins/12 old exceptions covered by probe-2. Python audit isolation is not OS sandbox evidence.
+GL-04 APPROVED: probe-3 14 current diagnostic tests exit0; literal 22 occurrences in five sources; current parser mutation loses a displayed group while raw stays intact and is rejected by independent conservation oracle.
+GL-05 APPROVED bounded corpus: probe-3 tests both streams, hostile controls/unknown/empty/truncated outputs, parser failure, unchanged raw and codes. ASCII safe source-backed metadata is conservative; no arbitrary-format or unlimited-input claim.
+GL-06 APPROVED controlled-runner boundary: probe-3 tests retained byte identity/locators, collisions, partial publisher, TTY/plain/dumb/NO_COLOR. Existing terminal-regressions and lifecycle-regressions receipts/raw verified; production and their actual test inputs unchanged. Three real wrapper locators currently exist; retention remains two dates.
+GL-07 REJECTED until public integrity counterexample is repaired and independently reviewed/retested. Broad suite still running and final evidence bindings not yet prepared. Selected whole-feature gate was executed, not waived.
+configuration-cohesion AC-16: origin-specific assertions supported, but leave UNVERIFIED in envelope pending correction of material integrity blocker; AC-01..15 remain existing UNVERIFIED, not reaccepted here.
+terminal-progress AC-01: APPROVED controlled fixture scope, actual N and phase counts in terminal-regressions raw/oracle reviewed.
+terminal-progress AC-02: APPROVED controlled fixture scope, monotonic total/member progress and no false100 during failed publication/cancellation.
+terminal-progress AC-03: APPROVED controlled fixture scope, outcome precedence and truthful summaries examined in regressions and current diagnostics.
+terminal-progress AC-04: APPROVED current diagnostic suite plus source-backed safe metadata and mutant sensitivity.
+terminal-progress AC-05: APPROVED controlled TTY/plain/dumb/NO_COLOR, colors/hierarchy and raw/environment/plan preservation.
+terminal-progress AC-06: INCONCLUSIVE pending final integration/independent review disposition for repaired governance production; terminal lifecycle/codes/publication tests themselves pass.
+history-scanner-correction AC-03: APPROVED bounded wording review: both distinct terminal messages observed in hash-matching wrapper stderr; current progress.sh contains both; focused regressions preserve outcome/code behavior. AC-01/02 remain existing UNVERIFIED native scanner requirements.
+
+Own commands (cwd Ox root, PYTHONDONTWRITEBYTECODE=1):
+python3 sdd/tools/validate.py --help: exit0.
+python3 sdd/tools/validate.py --root . --features sdd/features --feature configuration-cohesion --feature terminal-progress --feature history-scanner-correction --require-approved --require-fresh --check-convergence: exit1; exactly25 UNVERIFIED gates (16+6+3); no additional freshness/schema diagnostic. probe-1.* retains full output.
+PYTHONPATH=tools/governance/tests:scripts/tests python3 -m unittest -v test_historical_link_resolution.HistoricalLinkTests: exit0,14 tests, probe-2.*.
+Same environment python3 -m unittest discover -s scripts/tests -p test_governance_diagnostics.py -v: exit0,14 tests, probe-3.*.
+Public isolated-copy mutation method: readme-mutation.json, baseline0/mutant0 is a failed oracle expectation, not successful acceptance.
+Manual receipt comparison: old terminal/lifecycle/real-source receipts have exactly one changed overinclusive input, test_governance_diagnostics.py; it is not imported by those older suites, whose actual implementation/oracles match. Mutation-02 receipts have no drift. All checked retained raw stream hashes match. No old receipt hashes rewritten. Current observed-inputs.json has111 files; post-probe-drift.json found no changes during own focused observations.
+A first manual locator existence probe incorrectly stripped single quotes from double-quoted JSON display and failed locally; rerun with json.loads confirmed all3 references. This was a validator parsing error, not a product defect.
+
+Resume: implement fail-closed verification of every registered live successor while preserving legitimate predecessor normalization; add public unknown-README and downgrade/missing/symlink controls; repeat affected helper/public consumers on stable bytes, independent code reexamination, then publish new observation/bindings and rerun the explicitly selected complete-feature gate. Do not refresh old hashes. Full pipeline/downloads/commits/central maintenance were not performed. Documentation closure is coordinator-owned and remains pending this blocker.

@@ -26,7 +26,10 @@ class MaintenanceSuccessionTests(unittest.TestCase):
         previous.parent.mkdir(parents=True)
         previous.write_bytes((ROOT / self.row['previous']).read_bytes())
         self.previous = previous
-        self.current = (ROOT / self.relative).read_bytes()
+        # This unit fixture represents the 09/11 transition, not today's terminal.
+        self.current = (ROOT / 'docs/validation/governance-corrections-20261114/before/sdd/workflow.md.bin').read_bytes()
+        import hashlib
+        self.assertEqual(hashlib.sha256(self.current).hexdigest(), self.row['sha256'])
         target = self.root / self.relative
         target.parent.mkdir(parents=True)
         target.write_bytes(self.current)

@@ -6,68 +6,46 @@
       "id": "AC-01",
       "criterion": "A symbol query reports file, range, snapshot and method; oracle: fixtures with verified positions.",
       "status": "UNVERIFIED",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-02",
       "criterion": "A rename/edit invalidates old entries and updates affected ones; oracle: controlled repository mutations.",
       "status": "UNVERIFIED",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-03",
       "criterion": "An ambiguous call without semantics is not labeled a verified reference; oracle: same-name code and imports.",
       "status": "UNVERIFIED",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-04",
       "criterion": "An absent LSP results in explicit degradation without invented results; oracle: deliberately unavailable server.",
       "status": "UNVERIFIED",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-05",
       "criterion": "Content review and local validation confirm a complete entry, substantive references, boundaries and a valid bridge.",
       "status": "UNVERIFIED",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     },
     {
       "id": "AC-06",
       "criterion": "An observed agent trial distinguishes positive requests, negative requests and adversarial behavior; limitations and raw response are preserved.",
       "status": "UNVERIFIED",
-      "evidence_ids": [
-        "E-T011-R2-SOURCE-RETENTION"
-      ]
+      "evidence_ids": [],
+      "reason": "2026-11-17 evidence audit: unrelated persistence-retention/product-run observations were removed from current criterion references; original observations remain historical. Criterion-specific evidence is still required."
     }
   ],
-  "evidence": [
-    {
-      "id": "E-T011-R2-SOURCE-RETENTION",
-      "kind": "inspection",
-      "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
-      "observed_result": "Raw bytes unchanged, no fabricated missing link target; current index points to README.md.bin. License/source/asset blockers unchanged; T009/T011 OPEN.",
-      "artifact": "docs/validation/persistence-freeze-20261105-r2/retention-review.md",
-      "sha256": "9d4269d5f51cbd23d178b465f0e44336eb6a308437f7d69345e57a6feae62f45",
-      "inputs": [
-        {
-          "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
-          "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
-          "role": "other"
-        }
-      ]
-    }
-  ],
+  "evidence": [],
   "limitations": [
     "Acceptance restricted to governance/authoring; no Rust compilation, Iced integration or product effectiveness.",
     "Executor review is not independent human review; historical trials were not rerun.",
@@ -88,7 +66,8 @@
     "Configuration inputs changed; affected observations preserved under docs/validation/configuration-refactor-20261111/before-evidence/. Rerun relevant consumer/oracle before renewed technical acceptance.",
     "2026-11-13 Ec defaults: changed inputs invalidate dependent observations; original evidence preserved at docs/validation/scripts-defaults-20261113/prior/skill-code-context-engineering/evidence.json",
     "New documentary inspection reexamines changed authority/succession bytes only; original operational states and unaffected evidence references remain unchanged.",
-    "2026-11-14 instruction corrections: changed-input observations preserved unchanged in historical_evidence and governance-corrections-20261114/before; affected decided criteria require a new criterion-specific observation. No product/scanner reacceptance."
+    "2026-11-14 instruction corrections: changed-input observations preserved unchanged in historical_evidence and governance-corrections-20261114/before; affected decided criteria require a new criterion-specific observation. No product/scanner reacceptance.",
+    "2026-11-17 evidence audit: inappropriate current references and obsolete observations were retired without changing their recorded artifact/input hashes. This correction grants no acceptance; see docs/validation/audit-correction-20261117/governance.md."
   ],
   "historical_evidence": [
     {
@@ -3502,6 +3481,21 @@
         {
           "path": "docs/validation/scripts-defaults-20261113/succession.json",
           "sha256": "94e3d4b3c352c9030a9687ff7e0eee1bf0ebe1f75236377c8fe33795f54f2370",
+          "role": "other"
+        }
+      ]
+    },
+    {
+      "id": "E-T011-R2-SOURCE-RETENTION",
+      "kind": "inspection",
+      "command_or_method": "Inspect raw upstream README and archive member set; compare bytes before/after moving retained source to .bin; retain original notice index with unchanged digest and review current index location.",
+      "observed_result": "Raw bytes unchanged, no fabricated missing link target; current index points to README.md.bin. License/source/asset blockers unchanged; T009/T011 OPEN.",
+      "artifact": "docs/validation/persistence-freeze-20261105-r2/retention-review.md",
+      "sha256": "9d4269d5f51cbd23d178b465f0e44336eb6a308437f7d69345e57a6feae62f45",
+      "inputs": [
+        {
+          "path": "docs/validation/persistence-freeze-20261105-r2/source-notice-review.json",
+          "sha256": "c9cb21e8bffe4d8e9fde46ac4cdf1ad6010e623cdbeeb84288a2689b92741501",
           "role": "other"
         }
       ]

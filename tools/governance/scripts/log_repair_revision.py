@@ -10,17 +10,36 @@ ORIGINS_SHA256 = "115729da28c4f28de481fe5db836618ef98fb7e99f17e32be29fa1485e9c3a
 
 def origin_records(root):
     """Authenticate captured metadata and the complete preserved-source inventory."""
+    from historical_link_revision import digest, keys, path
     from instruction_revision import governance_copy
     from readme_revision import file, unique
     registry = root / ORIGINS
     if not registry.exists() and not registry.is_symlink():
-        if (root / REGISTRY).exists() or (root / REGISTRY).is_symlink():
-            raise ValueError("Missing historical origin registry")
-        return []
+        raise ValueError("Missing historical origin registry")
     content = file(root, ORIGINS).read_bytes()
     if hashlib.sha256(content).hexdigest() != ORIGINS_SHA256:
         raise ValueError("Historical origin registry changed")
-    rows = json.loads(content, object_pairs_hook=unique)["records"]
+    document = json.loads(content, object_pairs_hook=unique)
+    keys(document, ("schema_version", "records"), "previous origin registry")
+    if type(document["schema_version"]) is not int or document["schema_version"] != 1:
+        raise ValueError("Unexpected historical origin schema")
+    rows = document["records"]
+    if not isinstance(rows, list) or len(rows) != 16:
+        raise ValueError("Unexpected historical origin inventory")
+    seen = set()
+    for row in rows:
+        keys(row, ("source", "origin", "sha256", "excluded_targets"), "previous origin row")
+        source = path(row["source"])
+        path(row["origin"])
+        digest(row["sha256"])
+        if source in seen:
+            raise ValueError("Duplicate historical source: " + source)
+        seen.add(source)
+        if not isinstance(row["excluded_targets"], dict):
+            raise ValueError("Unexpected historical excluded targets schema")
+        for target, sha256 in row["excluded_targets"].items():
+            path(target)
+            digest(sha256)
     copy_mode = governance_copy(root)
     for row in rows:
         data = file(root, row["source"]).read_bytes()
@@ -31,7 +50,11 @@ def origin_records(root):
                 target = root / name
                 if target.exists() or symlinked(root, target):
                     raise ValueError("Excluded historical target present in governance copy: " + name)
-    return rows
+    from audit_revision import origin_records as audit_origins
+    from historical_link_revision import origin_records as additional_origins
+
+    combined = rows + additional_origins(root, rows)
+    return combined + audit_origins(root, combined)
 
 
 def origin(root, relative):
@@ -70,7 +93,11 @@ def records(root):
 
 
 def predecessor(root, relative, data):
+    from visual_skill_revision import predecessor as visual_predecessor
+    data = visual_predecessor(root, relative, data)
+    from historical_link_revision import predecessor as historical_predecessor
     from readme_revision import file
+    data = historical_predecessor(root, relative, data)
     for row in records(root):
         if row["destination"] != relative:
             continue
@@ -87,6 +114,10 @@ def predecessor(root, relative, data):
 
 def original_branch(root, relative, data):
     """Only the separately reviewed project terminal has an available-original branch."""
+    from historical_link_revision import predecessor as historical_predecessor
+    from windows_design_revision import predecessor as windows_predecessor
+    data = windows_predecessor(root, relative, data)
+    data = historical_predecessor(root, relative, data)
     return relative == "sdd/project.md" and any(
         row["destination"] == relative and row["chain_base"] == "original"
         and hashlib.sha256(data).hexdigest() == row["sha256"]
@@ -96,7 +127,9 @@ def original_branch(root, relative, data):
 
 def fixture_paths(root):
     """Explicit retained inputs needed by isolated succession consumers."""
-    return [REGISTRY, *[row["previous"] for row in records(root)]]
+    from historical_link_revision import fixture_paths as historical_paths
+    from windows_design_revision import fixture_paths as windows_paths
+    return [REGISTRY, "docs/validation/visual-skills-20261116/succession.json", *[row["previous"] for row in records(root)], *historical_paths(root), *windows_paths(root)]
 
 
 def excluded_reference(root, source, target):

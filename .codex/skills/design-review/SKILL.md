@@ -15,6 +15,15 @@ This skill owns interface evaluation, design rationale and review follow-up. It 
 
 ## Workflow
 
+For Windows/Fluent or named-IDE comparisons, use the
+[reference fidelity review](references/visual-quality.md#review-windows-or-ide-reference-fidelity)
+with the consumer's adopted product/version and declared exceptions.
+
+For hierarchy, typography, density and composition findings, use
+[visual quality](references/visual-quality.md). Compare the same task/content/state
+at the relevant sizes and themes; report visual inspection separately from
+keyboard, accessibility and behavioral observations.
+
 1. **Frame the task and decision.** State the user goal, completion condition, material risks and constraints. Distinguish the product outcome from the immediate review decision. Use existing requirements and decision authority; a small critique needs no full specification process.
 2. **Collect relevant evidence.** For an interface critique, trace entry, choices, submission, pending, empty, error, recovery and completion states as applicable. Record screen/state, action and result. Assess hierarchy, labels, feedback, navigation, consequences and consistency. Check keyboard/focus and relevant accessibility criteria when the interface permits; screenshots cannot establish them. For communication-only work, identify what the supplied evidence supports and what remains unknown.
 3. **Clarify and classify.** Connect each observation to task impact. Distinguish reproducible failure, plausible risk, preference and research hypothesis. When feedback proposes a control or layout, clarify the underlying need before accepting or rejecting the solution. Confirm material paraphrases; do not infer hidden motives or strengthen someone else's claim.

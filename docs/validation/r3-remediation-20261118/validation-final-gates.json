@@ -1,0 +1,469 @@
+{
+  "time_utc": "2026-11-18T21:08:22.905719+00:00",
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "command": [
+    "python3",
+    "sdd/tools/validate.py",
+    "--root",
+    ".",
+    "--features",
+    "sdd/features",
+    "--feature",
+    "configuration-cohesion",
+    "--feature",
+    "governance-externalization",
+    "--feature",
+    "governance-layout",
+    "--feature",
+    "governance-reconciliation",
+    "--feature",
+    "history-scanner-correction",
+    "--feature",
+    "maintenance-001",
+    "--feature",
+    "product-bootstrap",
+    "--feature",
+    "product-foundation",
+    "--feature",
+    "readme-skill-integration",
+    "--feature",
+    "repository-maintenance",
+    "--feature",
+    "scripts-centralization",
+    "--feature",
+    "scripts-security-quality",
+    "--feature",
+    "scripts-task-closure",
+    "--feature",
+    "scripts-toolchain-config",
+    "--feature",
+    "windows-design-baseline",
+    "--require-approved",
+    "--require-fresh",
+    "--check-convergence"
+  ],
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 1,
+  "features": {
+    "configuration-cohesion": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-05",
+          "implementation": ".codex/skills/commit-governance/SKILL.md",
+          "oracle": "tools/governance/tests/test_instruction_routes.py"
+        },
+        {
+          "acceptance": "AC-06",
+          "implementation": "sdd/templates/README.md",
+          "oracle": "tools/governance/tests/test_instruction_governance.py"
+        },
+        {
+          "acceptance": "AC-08",
+          "implementation": "sdd/README.md",
+          "oracle": "tools/governance/tests/test_instruction_governance.py"
+        },
+        {
+          "acceptance": "AC-10",
+          "implementation": "docs/development/codex-agents.md",
+          "oracle": "tools/governance/tests/test_instruction_routes.py"
+        },
+        {
+          "acceptance": "AC-11",
+          "implementation": "docs/development/codex-agents.md",
+          "oracle": "tools/governance/tests/test_instruction_routes.py"
+        },
+        {
+          "acceptance": "AC-13",
+          "implementation": "sdd/project.md",
+          "oracle": "tools/governance/tests/test_instruction_governance.py"
+        },
+        {
+          "acceptance": "AC-14",
+          "implementation": "tools/governance/scripts/closure_revision.py",
+          "oracle": "tools/governance/tests/test_instruction_succession.py"
+        },
+        {
+          "acceptance": "AC-16",
+          "implementation": "tools/governance/scripts/log_repair_revision.py",
+          "oracle": "tools/governance/tests/test_historical_link_resolution.py"
+        }
+      ]
+    },
+    "governance-externalization": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-01",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-02",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-03",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-04",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-05",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-06",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-07",
+          "implementation": "tools/governance/scripts/package-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        }
+      ]
+    },
+    "governance-layout": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-01",
+          "implementation": "tools/governance/scripts/governance_support.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-02",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-03",
+          "implementation": "tools/governance/scripts/package-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-04",
+          "implementation": "docs/decisions/governance-layout.md",
+          "oracle": "tools/governance/tests/test_governance.py"
+        }
+      ]
+    },
+    "governance-reconciliation": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-01",
+          "implementation": "config/governance/profile.json",
+          "oracle": "tools/governance/tests/test_reconciliation.py"
+        },
+        {
+          "acceptance": "AC-02",
+          "implementation": "tools/governance/scripts/verify-maintenance.py",
+          "oracle": "tools/governance/tests/test_reconciliation.py"
+        },
+        {
+          "acceptance": "AC-03",
+          "implementation": "tools/governance/scripts/run-tests.py",
+          "oracle": "tools/governance/tests/test_reconciliation.py"
+        },
+        {
+          "acceptance": "AC-04",
+          "implementation": "tools/governance/scripts/governance_support.py",
+          "oracle": "tools/governance/tests/test_reconciliation.py"
+        }
+      ]
+    },
+    "history-scanner-correction": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-02",
+          "implementation": "scripts/config/automation.json",
+          "oracle": "scripts/lib/backends.sh"
+        }
+      ]
+    },
+    "maintenance-001": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-01",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        }
+      ]
+    },
+    "product-bootstrap": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-10",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-12",
+          "implementation": "tools/governance/scripts/governance_support.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        }
+      ]
+    },
+    "product-foundation": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-01",
+          "implementation": "sdd/project.md",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-02",
+          "implementation": "docs/development/sdd-skills.md",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-03",
+          "implementation": "sdd/features/product-foundation/spec.md",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-04",
+          "implementation": "tools/governance/scripts/package-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        },
+        {
+          "acceptance": "AC-05",
+          "implementation": "tools/governance/scripts/check-ox.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        }
+      ]
+    },
+    "readme-skill-integration": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-01",
+          "implementation": ".codex/skills/readme-lifecycle-engineering/SKILL.md",
+          "oracle": "tools/governance/tests/test_readme_skill_integration.py"
+        },
+        {
+          "acceptance": "AC-02",
+          "implementation": "config/governance/profile.json",
+          "oracle": "tools/governance/tests/test_readme_skill_integration.py"
+        },
+        {
+          "acceptance": "AC-03",
+          "implementation": "tools/governance/scripts/skill_revision.py",
+          "oracle": "tools/governance/tests/test_readme_skill_integration.py"
+        },
+        {
+          "acceptance": "AC-04",
+          "implementation": "README.md",
+          "oracle": "tools/governance/tests/test_readme_skill_integration.py"
+        }
+      ]
+    },
+    "repository-maintenance": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-02",
+          "implementation": "sdd/workflow.md",
+          "oracle": "docs/validation/repository-maintenance-20261109/documentary-review.md"
+        }
+      ]
+    },
+    "scripts-centralization": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-07",
+          "implementation": "tools/governance/scripts/governance_support.py",
+          "oracle": "tools/governance/tests/test_governance.py"
+        }
+      ]
+    },
+    "scripts-security-quality": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-03",
+          "implementation": "AGENTS.md",
+          "oracle": "tools/governance/tests/test_task_closure.py"
+        }
+      ]
+    },
+    "scripts-task-closure": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-01",
+          "implementation": "sdd/features/scripts-task-closure/inventory.json",
+          "oracle": "tools/governance/tests/test_task_closure.py"
+        },
+        {
+          "acceptance": "AC-02",
+          "implementation": "scripts/automate.sh",
+          "oracle": "tools/governance/tests/test_task_closure.py"
+        },
+        {
+          "acceptance": "AC-03",
+          "implementation": "AGENTS.md",
+          "oracle": "tools/governance/tests/test_task_closure.py"
+        }
+      ]
+    },
+    "windows-design-baseline": {
+      "reason": "Current traceability implementation/oracle changed",
+      "dependencies": [
+        {
+          "acceptance": "AC-03",
+          "implementation": ".codex/skills/design-system/SKILL.md",
+          "oracle": "tools/governance/tests/test_windows_design_revision.py"
+        }
+      ]
+    },
+    "scripts-toolchain-config": {
+      "reason": "Current normative AC-02/03/04 require reviewed explicit configuration identities, source-mutation rejection and closure inputs; automation.json static source-review bindings changed.",
+      "dependencies": []
+    }
+  },
+  "inputs": {
+    "config/governance/succession.json": "459b42423eb3e996d6015e0c5de67b3f97f7c142c451deee8e3599db0c9d5d4f",
+    "docs/decisions/governance-authority-contracts.md": "d7f95b6bc0e6834bf528a7698994396c8d1c46cfa63b30cc522990f9e94edbc7",
+    "docs/validation/claude-remediation-20261117/findings.md": "64b1525998c9bd474665ee4645f610ba784f9253a8a74aecf963e1a0ffd54459",
+    "docs/validation/r3-remediation-20261118/implementation-inputs.json": "891ff1a2c59318a3618a579cd375667e8ceb2e1496d50c12c03f4a6d08a5e382",
+    "scripts/config/automation.json": "640e3aff7dd2853e41348b6825983ac9a0451b7510747e288ce522867db39602",
+    "sdd/evidence.md": "e7c9f0406fa70da85954f407751f78534364c354a9e8e31ef4eabd9e18c63d4a",
+    "sdd/features/configuration-cohesion/converge.md": "dbcc39133221b8c9e0614dea60e49bdca3fcf05e445c0eb045725af8d6bd3704",
+    "sdd/features/configuration-cohesion/evidence.json": "6819fe50c2ee70a653367b53d42ccf307246f8d634d94388a89cc4d70f0eac22",
+    "sdd/features/configuration-cohesion/plan.md": "04021e177af41509f49b37da5d8360d6e3621cfd2614e1569949a910f32d0ed9",
+    "sdd/features/configuration-cohesion/spec.md": "6e71f7d00d2d258ae16c1a2093e03c3781445b7aec778bd7eaa92ca7d48ff1b2",
+    "sdd/features/configuration-cohesion/tasks.md": "5b0bde6b2d08dc6c3714305a6df39a7c5c7396d2eadf72e2ae9ce1fb9e066792",
+    "sdd/features/configuration-cohesion/traceability.json": "25b29dcbe9bf032d10e6aba4b2f0be70e08e8d91683c24b7b274dd029fcdf638",
+    "sdd/features/governance-externalization/converge.md": "d1e9200864203b290b1e7b0e1085609da8e5f3a7cc55210bcf135f69b6fd65c6",
+    "sdd/features/governance-externalization/evidence.json": "c0278c1ce92ffb66b47c781fbac69dc8bda1197d95edadcbf9282916c3a58fc4",
+    "sdd/features/governance-externalization/plan.md": "f3156e68d5574d59907db802ebd5655148c822380e29486c00a87275d86731d1",
+    "sdd/features/governance-externalization/spec.md": "8076b9516ba6e4578317093224748476ae8680831dc6452f4b2a812b91144fdc",
+    "sdd/features/governance-externalization/tasks.md": "17cd3d264131e4cfff376e2c469df09fb8e8c2ea552263f97f17bb326a48e686",
+    "sdd/features/governance-externalization/traceability.json": "9c94fbf334f45c4df760161104fbc9c33a25886d6941455214e2725709372293",
+    "sdd/features/governance-layout/converge.md": "dac9866fddd1be6c79e0c5fe2e3ec6040e3a249d956f1a449d0dde5f9b923e07",
+    "sdd/features/governance-layout/evidence.json": "dc42ee9a032326fe458c1cb8a2308f640ce7bc25ed18d80e209240a48a4b6b15",
+    "sdd/features/governance-layout/plan.md": "bba364a08baebecf7b47fcec1867f2693c2636962ae3cfec7648847fed7ff6b2",
+    "sdd/features/governance-layout/spec.md": "1e0e5c3e428adccfc1ffdc8a0944d7a89387eb960c70003b0fe6d1fa0f96283e",
+    "sdd/features/governance-layout/tasks.md": "c469dcccc50d6e864b0d3e021acaa1e51e53c70686eedde2f1453ed1cf2a0df6",
+    "sdd/features/governance-layout/traceability.json": "b43f8063e9cfc2a712bdf34910d94fefa3e689db0649cb6db08ad39c17cd9a1f",
+    "sdd/features/governance-reconciliation/converge.md": "5dd6cd6d62326d66fe987d716ef109961423362a8e56835151b0c5a8a9c5895f",
+    "sdd/features/governance-reconciliation/evidence.json": "a290dbd070ba579d4b7fcf810a2bf9e0a579f0ff62b0336c7dd0254f9fe6a661",
+    "sdd/features/governance-reconciliation/plan.md": "5300606199322501eb6dfe47a64cc9d3cf30f0d020d69c62fe1ff8e918e21ce9",
+    "sdd/features/governance-reconciliation/spec.md": "2d31894be6bd0f46feb1747267a201ad6ed8702bfd263699126775eeac77b8b8",
+    "sdd/features/governance-reconciliation/tasks.md": "ec3cae30754b26c8d2797935c917c3263eab7ca4b391c432bad584ff66cf11fa",
+    "sdd/features/governance-reconciliation/traceability.json": "733c825257d6ed4b937a89242c26736f82e87546fe1996d61726614943b9e447",
+    "sdd/features/history-scanner-correction/converge.md": "d165316c40ad60e8f262d45f8b1fdb5a6d9ef111993d8d149dc64390637c8aec",
+    "sdd/features/history-scanner-correction/evidence.json": "de61fa899a2ef3d8c7f60e9ec6b96827116b9bdea65f4015a412506b602320bd",
+    "sdd/features/history-scanner-correction/plan.md": "918226979317f394f3275a423223209c815a410bd82d4484f504feee7b1120b4",
+    "sdd/features/history-scanner-correction/spec.md": "7c2dbb3e3f470a7fc7e89fee83ab41690231ac1c9e77bdca042b99b66af4f7a2",
+    "sdd/features/history-scanner-correction/tasks.md": "4eb6979680e89a0b69e25e5bb002021406cfb5a2abfb1eef3ae5ef99065b2202",
+    "sdd/features/history-scanner-correction/traceability.json": "b6271839d85e786db5941d30794bbd3b64e30b682056d7dc02c135f9d9792e07",
+    "sdd/features/maintenance-001/converge.md": "a968dda482db9da0b52b72683260e62557dceade92a6fc744f06e8c12a42a2e6",
+    "sdd/features/maintenance-001/evidence.json": "3d029b7c36db8d3f2d9356f33c36db50e8114caff5729bfc273d90d60a2f333e",
+    "sdd/features/maintenance-001/plan.md": "b4083a2c49e43bf678cfc5ad88e887b9a6ba411324d0e7b0219d33f29e97b568",
+    "sdd/features/maintenance-001/spec.md": "20cb07e6877cbda0fa52f9874e884129f7e21411e00ffb96de681d536adac470",
+    "sdd/features/maintenance-001/tasks.md": "0f8ed610648a45c7ea0354bc69b253d07478af23000439f9b1065656d1fc4dca",
+    "sdd/features/maintenance-001/traceability.json": "64d86d88102f9fc8005a81abc782add2ef5407e0eac7e629da3da5434d6b1761",
+    "sdd/features/product-bootstrap/converge.md": "bb3d239a77faa83c6e5cdfacc947fe94ceeef465bfed825e3bdea907db8c54b3",
+    "sdd/features/product-bootstrap/evidence.json": "6b002e47b6873e1aaf119a7d8b39bdda76d982e525abf710e6243bfb50f00bad",
+    "sdd/features/product-bootstrap/plan.md": "4ae4bd322e64b6a668163d50a2150a55a794dc22cf8040638cb6512a29ab1999",
+    "sdd/features/product-bootstrap/spec.md": "b32e68becd097b1fceffbbc61de4b1a29ff5c3379ac3e9b38810d305c4de5b2d",
+    "sdd/features/product-bootstrap/tasks.md": "035e1e1fe9798e39fbedf4f6b6a56f45d63238f182c394be5ee9b959831bac0e",
+    "sdd/features/product-bootstrap/traceability.json": "744d4d3daf7b4cf28b070f070258a336f251eae972aa204768596d1a24ab1a44",
+    "sdd/features/product-foundation/converge.md": "94cca94bd9d0b7b229eb50c6d4b7b047fd1a6f68a1be584889b3f91133eea20d",
+    "sdd/features/product-foundation/evidence.json": "523ab095bd7a68426a13b281ef2a30930c38b61485a3a74709fec1536ae70d24",
+    "sdd/features/product-foundation/plan.md": "04e60480d07170af321d0dd77a3188aeded737cbcb5223a126f1fcf1ef0c8b73",
+    "sdd/features/product-foundation/spec.md": "37c6d7896e66568c497885d8bba745961d25cf3b7057234e5333fe70dc4b8987",
+    "sdd/features/product-foundation/tasks.md": "210b7ee10869597150a901d62e98136c8ce6b61b1bd37d4467fb4b2834ef5fb9",
+    "sdd/features/product-foundation/traceability.json": "f34d69cfffc7466869c04ffb31de7137cf4f3423172f47f3413db769238c918f",
+    "sdd/features/readme-skill-integration/converge.md": "2d635139ee6dde9fb4af368a9f6762506a67423959cf8c6f298f883f14064c06",
+    "sdd/features/readme-skill-integration/evidence.json": "15aeae3e21fe27064cb07cb8002ac62623cd4c382c2258a2ce4e28f22d50ddea",
+    "sdd/features/readme-skill-integration/plan.md": "9530c9c0423b86173706e799da23a0132050c0aa32351c4f1656c362b76b5351",
+    "sdd/features/readme-skill-integration/spec.md": "7bbea9cd601871decab32273d0d033addf2dff64da92a5bab7d0e22ab0c0742b",
+    "sdd/features/readme-skill-integration/tasks.md": "53409ce30dc70452a96d518b40b462fc13a112346fd345b9d1e9e16e07c5f986",
+    "sdd/features/readme-skill-integration/traceability.json": "699662640bfa906f0e8040a956b4bb31b75c44610e5ee1d1214287c195915b8a",
+    "sdd/features/repository-maintenance/converge.md": "12f4ebb5764f1b648bb32ab945ef4c9409c289fa53d3536a6c8b20bb9fcb4fbe",
+    "sdd/features/repository-maintenance/evidence.json": "9f78dada9cb0ffb8e7246fe22c53c9234008f15f56b33b1923208fdfdb06719c",
+    "sdd/features/repository-maintenance/plan.md": "94aae80607c72bfd7bf78b81619c5e4484df7a1cd77f1ea09727282b382d584d",
+    "sdd/features/repository-maintenance/spec.md": "c711a53d58faa01fa2592f20553e2e8b86e419055fb8b7c687e9bc4b6fcc5875",
+    "sdd/features/repository-maintenance/tasks.md": "88be3a7e653da3f6a1ec177844ffc187c7045a8d5f5d4845c4e3ef0ebd39a13b",
+    "sdd/features/repository-maintenance/traceability.json": "0e1bef9c5004514e10a21c0bb9ae972179faebf58d2d28df98553e63f0fd77ba",
+    "sdd/features/scripts-centralization/converge.md": "68f6b40983e724a5c76f8633ad17d5eacca4171eea92b0023db5266ecca865a8",
+    "sdd/features/scripts-centralization/evidence.json": "68e77edb9b4635aef7ea5903b0408e68d31750b21d13274c5b36c9a8c5cfd178",
+    "sdd/features/scripts-centralization/plan.md": "b03a421c23a0cba2cccc48b6da52b024b3995f725aaaa2ac3613140a004d7310",
+    "sdd/features/scripts-centralization/spec.md": "81f8c15e62cdfbe9f57173d4d2848d874b9d8c3a694b46a08faff34489e71e03",
+    "sdd/features/scripts-centralization/tasks.md": "43b7040b1ca7b308f454abfcfe37e26112c12aae98bf88122fbd0e18ff19008f",
+    "sdd/features/scripts-centralization/traceability.json": "1ed12128962f0896ae81437409c5afee781882e1a262fb3fb3ae371a8b2455c2",
+    "sdd/features/scripts-security-quality/converge.md": "061bb942bf713e9d9b75f9ffe1ca06139ccbb137c6181cec7b31841964af64e3",
+    "sdd/features/scripts-security-quality/evidence.json": "878ed25159fa4b5fb8d922e390236da51c22f95a77fafe34f4b775f7320bd28b",
+    "sdd/features/scripts-security-quality/plan.md": "91d0fba2150f6bc37d58eab0f28337eda074281ffc6496070592854c0246fdb8",
+    "sdd/features/scripts-security-quality/spec.md": "5b1e0f91fd2d2f7ebc0b9ae72460b4cc4a37f88241b0d691052b3c8b6b492b79",
+    "sdd/features/scripts-security-quality/tasks.md": "046dba615f9d6ea3ea2fe8be54eb37890dd9c2f091ba7d96645dd8e9b591bc4f",
+    "sdd/features/scripts-security-quality/traceability.json": "9ad4d45f06b12a8682477efc0ad12d419b246e6ebc58069c4c78953cd28ac0c9",
+    "sdd/features/scripts-task-closure/converge.md": "4c7a6fc18b2d17f8bcb6e16fce765a6157ef44ec06696238074ad776d1135d7e",
+    "sdd/features/scripts-task-closure/evidence.json": "f50363b3904949a5ac40b6b82e83537ff9ccf1da10c19d0c9f3b516e2a9ca545",
+    "sdd/features/scripts-task-closure/plan.md": "d7ae81c6bcc32054dd6177a2c7d9f3f9b10d2d6650e999a0e3d09d810633994d",
+    "sdd/features/scripts-task-closure/spec.md": "67ba9499b6f3cab5f625e045d0f704597b741ae0e217da451e15f7c2d6be7e21",
+    "sdd/features/scripts-task-closure/tasks.md": "26f758cc4be8f89d2b5477243122d5545c2dc426f0acd1df8f3e7ffd5d53309e",
+    "sdd/features/scripts-task-closure/traceability.json": "ca5d7c6042db80b8ce3f1bfcc3d7e0db424ccd7a56865cb166254e89267e00e4",
+    "sdd/features/scripts-toolchain-config/converge.md": "29e4e4f0833dddcaecd7bb7fdd47722f53ba5256f87b9d1f82904f1a36b15cb5",
+    "sdd/features/scripts-toolchain-config/evidence.json": "6606d348de3aed191481d7f3bc83ca2f9eb6ec4dc801102fc6167ca83f1c5ab0",
+    "sdd/features/scripts-toolchain-config/plan.md": "51afd9e182f1e1f9b15c0efea99fe80f2f446a59ffcbec0c6fbf40d99cd8e6c0",
+    "sdd/features/scripts-toolchain-config/spec.md": "1fa315b97679e6db39b7abbfcedda77782c5f52a905c718dd989ae2d41869813",
+    "sdd/features/scripts-toolchain-config/tasks.md": "b9dfb31cb38890b5c550b44c7cc3b37ed11743190b436d86b6d551587260f717",
+    "sdd/features/scripts-toolchain-config/traceability.json": "eb56be201f571bc14ca2a52d37c0ae221af94226ad6225c15aad5cbbf33e6d62",
+    "sdd/features/windows-design-baseline/converge.md": "13fef9fa0457d799851b9586e3468e1f272cf40fe4111a6d2e83b500feebae8b",
+    "sdd/features/windows-design-baseline/evidence.json": "396e18e03e70d371e336c3bd84febf3987b77c0052397320d8dc2920be87f563",
+    "sdd/features/windows-design-baseline/plan.md": "9459146930b509f360de4317ccb3356c7313e025ec4580f684413091b17c97d9",
+    "sdd/features/windows-design-baseline/spec.md": "ce284ca4c35bfdd7e9505ec8195d64a0616d495f097da02a7f5112a2c81d15a6",
+    "sdd/features/windows-design-baseline/tasks.md": "eb12ff6bc58bbb0c6e0be529f3be85e6f522efda2d9ab77c024b28cd373a6055",
+    "sdd/features/windows-design-baseline/traceability.json": "3142dea958e79d33ebec1f32ec96be9723b4902f9e8e69d18423e70c8a3efc6e",
+    "sdd/project.md": "7fc42e1b97526855dd1a77748a0b1c48f9d4c52ae8b9b30482c9649be3abdd6d",
+    "sdd/tools/validate.py": "3b1e99d6152dbf7e6ac27dba534798baa66b57a63ba6f943c40de151f243922c",
+    "sdd/workflow.md": "3c2de7e71414e6e90972c4098a038d4f98bc1aa20b276eab4dc5eb3b8670913b",
+    "tools/governance/scripts/audit_revision.py": "237dc0a777c382d62a3bb146322198832f8590d92f8cbe0db83f53db87751bb6",
+    "tools/governance/scripts/claude_analysis_revision.py": "a40a1be93da433174415bb5d919556e7c1999248123c29a57580688f434a4500",
+    "tools/governance/scripts/document_ledger.py": "039fdd67cf192de1c70e8fbac97c104cb361ec9991060dd26729bd54a5a56340",
+    "tools/governance/scripts/log_repair_revision.py": "d4cc429896e6250d2f41dc2d531611b55204085cd86f6a9a48a9a0d66149f746",
+    "tools/governance/tests/test_audit_revision.py": "964f640456ec65cd74bd79d908d16dc8ed860f3c32ec2abc3f475655d70da2e6",
+    "tools/governance/tests/test_claude_analysis_revision.py": "157c93e1e6e6916ddcc7804176e64427c8eae8f26498f8c1a8978972e400b058",
+    "tools/governance/tests/test_document_ledger.py": "4dd9bd4b339c2abbff2fa1eaf0ccf905d211448acd74cae762f33a5ca11cfc1f",
+    "tools/governance/tests/test_governance.py": "e6367fa5126f9aa100169e43aad4f93273d9f1d085054c7d6bdb4947cd27f5ec",
+    "tools/governance/tests/test_instruction_copy.py": "76f212f48b22ded0175775c7fdeef09bce2af3915c61c8e97f84a7fe27d61e88",
+    "tools/governance/tests/test_instruction_governance.py": "dfcbba41de5e081ecdca66a32615c085d8240f58303ae6ef12087d85a8a8d0ea",
+    "tools/governance/tests/test_instruction_routes.py": "f30e473c91c92726d5ecdb97b083cf100d5c85ab59f834e501afd8cffea52603",
+    "tools/governance/tests/test_instruction_succession.py": "6faf23186c19280f7091e1f4b9aed2bf7dcf9cdfc3ee4e80b5cc5a544e674d24",
+    "tools/governance/tests/test_maintenance_succession.py": "d127cde7fbe4eda61267aebbfe28690ac976d49814c9b72c2bd66dd499177826",
+    "tools/governance/tests/test_osv_acquisition_revision.py": "4012cdcdfb46960941377b205d30fada0d7fd7d431f27ae829a4eefb4f776360",
+    "tools/governance/tests/test_project_revision.py": "13bfb669bdc34bc719df09762f8d9cca45290ba8f00d6e38b9668483219ac679",
+    "tools/governance/tests/test_readme_skill_integration.py": "c26a360faee78328e46527a91140f98f362eed7fc563a9d7e2de2881e8d32484",
+    "tools/governance/tests/test_reconciliation.py": "105f315a0aeecb7bd78ada3f4d4c733453c9531a747bdfe1dd8c0fe0e5f1bc91",
+    "tools/governance/tests/test_task_closure.py": "0d4ff918dc7cb4b0320ac8878d1249172abb2148662278485d3e9f7d26801708",
+    "tools/governance/tests/test_windows_design_revision.py": "85838cac7c0ab6f9ea21709a03a792e0cfbcff1c51864b67f0a1dee5550129e0"
+  },
+  "inputs_unchanged": true,
+  "changed_inputs": [],
+  "log_sha256": "47a8a09d4fbc4db15ddf9cbbefeb133d487dcada48dc363f27fc665d1a45f080",
+  "limitations": [
+    "No global acceptance. Every selected feature retains all its gates.",
+    "Direct traceability includes whole-file input dependencies even when the modified configuration subsection differs from a specific criterion.",
+    "scripts-toolbox-native and other mere historical authority bindings do not independently justify selection.",
+    "Current source-review identities are observed inputs; no historical evidence hashes were renewed."
+  ]
+}

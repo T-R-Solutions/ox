@@ -63,3 +63,29 @@ novamente. Snapshots anteriores preservados; reexame delimitado e parecer
 independente registrados, sem renovação dos hashes nem aceite global da feature.
 Fechamento documental: scripts/README.md e spec/plan/tasks/evidence atualizados;
 autoridades revisadas e limitações no relatório. Nenhum full run ou instalação.
+
+- T008 (implementada e verificada no escopo delimitado; parecer final no registro): Confrontar claude_analisys.md com os contratos atuais, corrigir
+  defeitos confirmados de scripts/ e seus oráculos, registrar disposição de todos
+  os IDs, executar regressões focadas e obter revisão/validação independentes.
+  Atualizar scripts/README.md e artefatos/evidências afetados, preservando histórico.
+  Registro: docs/validation/claude-analysis-20261117/report.md.
+
+T008: 132 testes de scripts, com um skip opt-in, passaram; a primeira execução
+registrou 17 erros no consumidor JSON, corrigido e reexecutado. Após revisão
+semântica independente, somente 17 bindings existentes foram atualizados; cinco
+testes de catálogo/rejeição passaram novamente. Quatro regressões detectaram os
+defeitos nas preimages. A suíte consumidora de governança passou 16 testes, e os
+sucessores documentais tiveram 6+7+6 testes focados aprovados. ShellCheck central
+não executou por restrição de escrita e pedido de escalonamento abortado; nenhum
+scanner completo, download, commit ou publicação. Fixtures Rust/YARA preparadas
+permanecem UNVERIFIED quanto ao casamento nativo. Fechamento documental: guias de
+scripts/regras/fixtures e artefatos desta feature atualizados, com disposição de
+cada ID, contratos preservados e entradas/limites no report. Revisão independente
+não tem achados abertos; a validação independente e estados finais são registrados
+em evidence.json/converge.md e docs/validation/claude-analysis-20261117/validation.md.
+
+## Correções da análise combinada — 2026-11-17
+
+- T090: corrigir defeitos confirmados e atualizar evidência afetada conforme
+  [relatório](../../../docs/validation/claude-remediation-20261117/report.md).
+  Verificações focadas e limites constam no relatório; aceite amplo não renovado.

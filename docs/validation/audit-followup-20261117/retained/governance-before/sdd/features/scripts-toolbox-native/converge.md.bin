@@ -1,0 +1,112 @@
+# Current acceptance projection
+
+Current automated states from [evidence.json](evidence.json). This projection
+is not a new observation or product acceptance.
+
+<!-- sdd:current-status -->
+| Criterion | Status |
+| --- | --- |
+| AC-01 | UNVERIFIED |
+| AC-02 | UNVERIFIED |
+| AC-03 | UNVERIFIED |
+<!-- /sdd:current-status -->
+
+## Historical convergence — before 2026-11-14 correction
+
+The following conclusions apply only to their original observed inputs. Current
+states are above; prior bytes remain in the bounded correction preimages.
+
+# Convergence
+
+| Criterion | Requirements / decisions / tasks | State | Evidence / limit |
+| --- | --- | --- | --- |
+| AC-01 | REQ-01 / D-01,D-02 / T001 | APPROVED | Consumer transport contract tests; not scanner operation |
+| AC-02 | REQ-02 / D-01,D-03 / T002 | APPROVED | Local contract and lifecycle tests; Docker boundary unverified |
+| AC-03 | REQ-03 / D-03 / T003 | UNVERIFIED | Real opt-in preflight failed: no active revisions; DB age API and RustSec maintenance pending |
+
+See docs/validation/scripts-toolbox-native/report.md for commands, inputs,
+results and resumption. No global operational approval or renewal of historical
+acceptance is asserted. No required runtime gap is marked recorded/passed.
+
+## SELinux successor — 2026-11-08
+
+Eight shared-label real probes passed, with concurrent Ruff/Bandit findings,
+unchanged source hashes and container removal. Public Ox wrapper clean probe
+exited zero. Local suite: 28 tests, one real opt-in skipped; platform: 70 tests.
+E-SELINUX-LOCAL replaces changed-input contract observations; AC-01/02 retain
+bounded local approval. AC-03 remains UNVERIFIED for the larger operational
+matrix. Previous contract/governance/preflight records remain historical.
+
+## Cleanup inspection successor — 2026-11-09
+
+The maintainer redirected the cleanup request to Ox only and prohibited tests,
+verification scripts, commits and publication for this task. Static inspection
+removed unreachable central-scanner setup after the toolbox branch exits, and a
+repeated coverage condition. Public commands, native dispatch, report validation,
+rules and fixtures remain unchanged in scope. Python bytecode caches were removed
+after copying their bytes and metadata; their source files remain present.
+
+AC-01/02 are INCONCLUSIVE on these changed implementation inputs: the previous
+tests and their original hashes remain preserved in evidence.json and historical
+artifacts; no test result was renewed. AC-03 remains UNVERIFIED. This record does
+not adjudicate later operational artifacts or claim current Docker qualification.
+The manual control-flow argument, input identities, preservation observations,
+recovery and remaining gaps are in
+the cleanup report (`docs/validation/repository-cleanup-20261109/report.md`).
+
+## Consumer guide alignment — 2026-11-09
+
+REQ-01/02 -> D-25/R-25 -> T025: wrapper now leaves SELinux label unset unless
+the caller selects it; updated test source expects unset. Native exec, argv,
+exit forwarding and discovery remain. Scripts documentation follows the observed
+consumer-integration/application guides, including explicit host relabel effects.
+AC-01/02 remain INCONCLUSIVE: manual review is not a current contract test result;
+AC-03 remains UNVERIFIED. Earlier evidence.json records and logs are unchanged,
+not rehashed into a fresh approval. Execution restrictions from the prior request
+were retained; no verifier, test, Docker probe or scanner was invoked.
+See inputs, review and recovery (`docs/validation/toolbox-consumer-alignment-20261109/report.md`).
+
+## Operational documentation cleanup — 2026-11-09
+
+Obsolete migration/preparation narratives were removed from scripts documentation,
+with exact preimages preserved outside the operational tree. SOURCES.md remains
+at its public/oracle path and links to the original research bytes; license
+notices, rules, fixtures and runtime interfaces remain. Inspection does not renew
+prior acceptance or evidence hashes. Changed-input observations remain historical;
+current operational acceptance is not established by this cleanup. See
+the cleanup record (`docs/validation/scripts-document-cleanup-20261109/report.md`).
+
+## Mandatory consumer rules successor — 2026-11-09
+
+REQ-01/02 -> D-26/R-26 -> T026: removed duplicate host commands for central
+scanners, ineffective scanner exports and unreachable local report handling.
+Plans choose the transport before command construction; unavailable local tools
+have empty argv. Native scanner argv, report checks, age policy, discovery and
+caller-controlled mounts are retained. Consumer documentation now accurately
+describes central automatic OSV acquisition and its distinct 12h acquisition age.
+
+Focused public CLI tests: 30 executed, 29 passed, one real-Docker opt-in skipped;
+includes aliases, clean/findings, malformed/missing diagnostics, cleanup failures,
+source/mode/inventory mutations, paths/argv, missing local tools and SELinux
+forwarding. Static inventory: all 11 native config files referenced, no legacy
+JSON/locks. These observations support T026 configuration conformity; broader
+AC-01/02 remain INCONCLUSIVE because no full feature acceptance/freshness run was
+performed on all current inputs. AC-03 remains UNVERIFIED: no real Docker scanner
+or OSV acquisition observed here. Historical evidence.json/logs are unchanged.
+Current inputs, source bytes, patches and test output:
+consumer rules report (`docs/validation/toolbox-consumer-rules-20261109/report.md`).
+
+## Single OSV acquisition successor — 2026-11-16
+
+The initial bounded manual review recorded OSV-01..05 approval in
+[the scoped report](../../../docs/validation/osv-acquisition-20261116/report.md).
+A later authorized run exposed a missing authenticated successor for this closure
+paragraph, legacy diagnostic exceptions and a Ruff finding in the new test.
+The initial OSV-05 closure conclusion is superseded by
+[the correction record](../../../docs/validation/osv-acquisition-20261116/repair/report.md).
+Prior observed bytes/results remain historical; no hashes are renewed to imply
+reexecution. Central v3 acquisition behavior is unchanged by this repair.
+
+The broad AC projection above remains unchanged: focused acquisition, consumer
+and governance checks do not qualify the complete real Docker/scanner matrix.
+The correction record owns the current scoped results and independent validation.

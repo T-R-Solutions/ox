@@ -1,0 +1,44 @@
+{
+  "utc": "2026-11-16T00:13:22.511542+00:00",
+  "completed": 198,
+  "current": "test_corruption_and_deletion_fail_for_new_and_existing_metadata (test_ui_metadata_inventory.MetadataInventoryTests.test_corruption_and_deletion_fail_for_new_and_existing_metadata) ... ",
+  "failures": [],
+  "finished": false,
+  "read_only_metadata_probes": [
+    {
+      "fixture": "/tmp/ox-ui-inventory-dlm7z8pd",
+      "probes": [
+        {
+          "skill": "rust",
+          "exists": true,
+          "matches_before": true,
+          "mtime_utc": "2026-11-16T00:12:00.135159+00:00"
+        },
+        {
+          "skill": "prompt",
+          "exists": true,
+          "matches_before": true,
+          "mtime_utc": "2026-11-16T00:12:53.046747+00:00"
+        },
+        {
+          "skill": "ai-engineering",
+          "exists": false,
+          "matches_before": false,
+          "mtime_utc": null
+        },
+        {
+          "skill": "agent-runtime-engineering",
+          "exists": true,
+          "matches_before": true,
+          "mtime_utc": "2026-10-29T01:28:58.585061+00:00"
+        },
+        {
+          "skill": "commit-governance",
+          "exists": true,
+          "matches_before": true,
+          "mtime_utc": "2026-11-06T20:35:19.814087+00:00"
+        }
+      ]
+    }
+  ]
+}

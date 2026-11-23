@@ -1,0 +1,44 @@
+{
+  "command": [
+    "./scripts/automate.sh",
+    "--scope",
+    "governance",
+    "--check",
+    "ox"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "environment": {
+    "TOOLBOX_BIN": "/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox",
+    "TOOLBOX_SELINUX_LABEL": "shared",
+    "CARGO_HOME": "/home/rodrigo/Projetos/ox/.cache/ox/cargo-home",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 29.65184207900893,
+  "inputs_before": {
+    "scripts/automate.sh": "922ebbfd9412ed4dc9bef8e1ab236fc5ac028cc6b95b5271eb92777d88bf496e",
+    "scripts/lib/progress.sh": "d013c0ee871b28edc2b1f22a2d6c78fe885a889f652e29d130a0bbf7f684b14c",
+    "scripts/lib/logs.sh": "52390e2804a487f649570bd029a48cfa3db328977117bae1b4c9770590c2fca5",
+    "scripts/lib/process.sh": "9dea81c958c8417028b9184ba15d6aabb5e7238bfcbd24eb6ae6c7996d1c9ff9",
+    "scripts/lib/common.sh": "c4f7c9b3d9d0b94076dc87564dde18cb6ca6b7bac6037c373a8a04426632c7af",
+    "scripts/lib/registry.sh": "cf38493c9b8261128daabad81ac4316cfc4888995aa440e417351f986fa59e26",
+    "scripts/config/automation.json": "0f39b96a58b2f20258497208c455760f60582643560298efbafac395761366f7",
+    "tools/governance/scripts/check-ox.py": "9600d3dfa63dae254e261caf386686970af450ab8fb95a17cc99057f2dfa92ef",
+    "tools/governance/scripts/log_repair_revision.py": "e92b03c3f2cb3661743be664f53853a36933ec102d8d05ba526a88521cae4eda",
+    "tools/governance/scripts/historical_link_revision.py": "d619bf1306e8c61d8f2b5b3c288896c3a22352273e9049eecdb250ab0e19dcb2"
+  },
+  "inputs_after": {
+    "scripts/automate.sh": "922ebbfd9412ed4dc9bef8e1ab236fc5ac028cc6b95b5271eb92777d88bf496e",
+    "scripts/lib/progress.sh": "d013c0ee871b28edc2b1f22a2d6c78fe885a889f652e29d130a0bbf7f684b14c",
+    "scripts/lib/logs.sh": "52390e2804a487f649570bd029a48cfa3db328977117bae1b4c9770590c2fca5",
+    "scripts/lib/process.sh": "9dea81c958c8417028b9184ba15d6aabb5e7238bfcbd24eb6ae6c7996d1c9ff9",
+    "scripts/lib/common.sh": "c4f7c9b3d9d0b94076dc87564dde18cb6ca6b7bac6037c373a8a04426632c7af",
+    "scripts/lib/registry.sh": "cf38493c9b8261128daabad81ac4316cfc4888995aa440e417351f986fa59e26",
+    "scripts/config/automation.json": "0f39b96a58b2f20258497208c455760f60582643560298efbafac395761366f7",
+    "tools/governance/scripts/check-ox.py": "9600d3dfa63dae254e261caf386686970af450ab8fb95a17cc99057f2dfa92ef",
+    "tools/governance/scripts/log_repair_revision.py": "e92b03c3f2cb3661743be664f53853a36933ec102d8d05ba526a88521cae4eda",
+    "tools/governance/scripts/historical_link_revision.py": "d619bf1306e8c61d8f2b5b3c288896c3a22352273e9049eecdb250ab0e19dcb2"
+  },
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "902bbba85c708dac19ea80d8d84a5ba13e8c09d24d5b7137a3cbb5cc9ce054ce"
+}

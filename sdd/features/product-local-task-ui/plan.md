@@ -123,3 +123,7 @@ t903-20261105/before/application; prior observations retain original digests.
 ## T903 memory correction successor
 
 Protocol recorded before new trials: docs/validation/t903-memory-20261105/plan.md. Apply adopted GUI64MiB to full-count history; keep fixed large-history256MiB separate. Preserve public inputs/equality/logical admission and historical evidence. Skills: performance-engineering primary, Rust/Iced supporting, actual entries read, unversioned and bridge v1; contributions in protocol. T903 remains open until final observations and checks.
+
+## R3 current native observation — 2026-11-19
+
+Reevaluate only AC-05 using the observed UI02/PNG build 58a91a46… and the maintained six-case desktop harness in a dedicated X11 session. The root executor owns the runtime observations; the R3 coordinator owns this criterion mapping and projection; independent review/validation inspect process oracles and actual captures. Four current responsiveness captures independently inspected, combined with producer/oracle liveness assertions and actual native test success. No unobserved platform, GPU, performance corpus or other criterion is approved. Exact results, observer, source identities, limitations and historical failures are retained under docs/validation/r3-remediation-20261118/root-checks/native-ui03.

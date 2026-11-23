@@ -51,17 +51,43 @@ For example, "I want a comprehensive report" can become "cover the supplied topi
 
 ## Build the prompt
 
-Include only useful elements: objective, context and inputs, requirements, constraints, output format, and acceptance criteria. A paragraph may suffice for simple tasks; use short sections when complexity warrants them.
+Include objective, context and inputs, requirements, constraints, output format, acceptance criteria, and an explicit task completion criterion. A paragraph may suffice for simple tasks; use short sections when complexity warrants them.
 
 Choose length according to the decisions the task requires, without an arbitrary minimum or maximum. Remove repetition, vague adjectives, decorative personas, and generic instructions that do not change the result. Preserve details that affect execution or evaluation. Do not promise perfect results or request disclosure of private internal reasoning; request justifications, evidence, or checks when useful.
 
 Make the prompt self-contained: include essential context and identify required files or materials. Use placeholders such as `[target audience]` only for genuinely missing information. When incorporating reference material, distinguish it from task instructions.
+
+## Mandatory task completion criterion
+
+Every generated or refined prompt must explicitly state when the described task
+may be declared finished, in the user's language. Use a labeled sentence for a
+simple task or a dedicated section for a complex one. Name the required
+deliverables, observable acceptance conditions, and checks or evidence needed to
+support completion. Avoid vague instructions such as "finish everything".
+
+Incorporate the consumer project's applicable closure requirements, including
+documentation updates, required review/validation and activity records, without
+inventing new gates or permissions. When a project requires an append-only task
+log, explicitly include its path and the requirement to append the completed
+task's work without deleting or overwriting existing information. Obtain those
+requirements from the supplied context or project authorities; do not impose a
+particular project's policy on unrelated prompts.
+
+Require the final response to report the delivered result, checks actually
+performed and remaining limitations. If a mandatory condition is unmet or cannot
+be verified, report the task as incomplete or blocked, with the missing condition
+and resumption step, rather than claiming completion. Keep the distinction between
+delivering the prompt and executing the task it describes.
 
 ## Review and deliver
 
 Check that the prompt preserves intent, supports evaluation, avoids invented requirements, and includes only relevant detail. Ensure each acceptance criterion corresponds to a real need.
 
 Verify that questionable premises have been addressed, conclusions are not predetermined, and applicable evidence restrictions are included in the final prompt.
+
+Before delivery, verify that the prompt itself contains an explicit, verifiable
+task completion criterion and the applicable closure requirements; commentary
+outside the ready-to-copy prompt does not satisfy this requirement.
 
 Deliver one ready-to-copy version in a code block. Outside it, include only relevant assumptions or unresolved points. When refining, incorporate the user's answers and provide the complete updated version. Writing a prompt does not authorize executing the task it describes.
 

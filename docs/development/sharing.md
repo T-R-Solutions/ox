@@ -65,7 +65,12 @@ Saídas regeneráveis: novos pacotes podem ser produzidos a partir dos inputs at
 mas uma observação histórica específica não é reproduzível apenas executando novamente.
 Por isso dist permanece local; sua exclusão da cópia não significa autorização de apagar.
 Caches Python e docs/validation/scratch são temporários excluídos pela allowlist.
-Não se atribui a todo log a condição de temporário: logs usados como evidência são incluídos.
+Não se atribui a todo log a condição de temporário: logs usados como evidência
+integram o contrato de preservação. A cópia elegível e o versionamento Git têm
+fronteiras diferentes: a regra `*.log` do Git não inclui esses arquivos por padrão.
+Uma evidência que dependa de log somente local não é reproduzível em um clone
+apenas por existir uma referência no envelope; verificar a presença e os hashes
+no consumidor antes de afirmar aceite portátil.
 
 ## Procedimento sem compactação
 
@@ -79,7 +84,7 @@ e seus registros dependentes das fontes, conforme a ADR de bootstrap.
 O conteúdo de governança inicial elegível tinha 11.022.855 bytes (10,51 MiB), antes
 dos novos registros desta manutenção. Isso é tamanho sem compressão, não previsão de ZIP.
 
-No destino de governança, executar somente os comandos de governança do README, incluindo check-ox,
+No destino de governança, consultar os comandos no [guia de governança](governance.md), incluindo check-ox,
 unittest e verify-maintenance. Para verificar independência, executar por
 isolated-run.py com a origem como argumento proibido. Esse oráculo bloqueia
 leituras Python da origem; não é sandbox de SO. A suíte contém fixtures sintéticas

@@ -1,0 +1,54 @@
+# Remediação R3 — registro em andamento
+
+Estado: **INCOMPLETO**, sem aceite global. As observações anteriores permanecem nos logs, manifestos e preimages; este documento apresenta a disposição corrente.
+
+## Escopo e responsabilidades
+
+R3-1/R3-2/R3-3, disposição individual de31itens R3-4 e inventário completo de verificações. claude_analysis.md permanece histórico; nenhum commit,push ou publicação. Mudanças preexistentes foram preservadas. Rota completa/alta: coordenador dono de governança, SDD e documentos comuns; raiz dona dos três harnesses nativos e execuções atribuídas; revisão e validação em contextos independentes, somente leitura.
+
+Autorizações adicionais concretas: refresh OSV pelo Toolbox; arquivo lru0.18.5 exato; nova geração RustSec no commit472a4c9a785030434f15d7da84964d60fbe789ab. Nenhuma delas autoriza manutenção central geral ou aquisições de outras dependências.
+
+| Achado | Correção integrada | Evidência e pendência |
+| --- | --- | --- |
+| R3-1 | Fixtures/oráculos confrontados com contratos; negativas removem Authorities protegidas, não contexto legítimo; fechamento de AGENTS/SDD/skills exige governança integral. Observação reutilizada somente por operação, com readset/identidade/path e revogação do contexto; prazo operacional do checker histórico300s calibrado/revisado | Integral candidato01 teve257testes/16falhas; focais passaram. Primeira full terminou143sem causa atribuída, incompleta. Classe histórica final e novas integrais ainda necessárias |
+| R3-2 | task_finalizada.md obrigatório; contrato de distribuição fecha fronteira exata de produto IDE em ZIP/export/cópias. Inspeção de ZIP usa inventário confiável externo finito, reserialização canônica e EOF; limites por membro/aninhamento preservados, modos644/755 e extração exata | Namedregressions e pacote/ledger focais passaram. Falha antiga128MiB preservada; geração/extração/cinco comandos reais da versão nova ainda pendentes |
+| R3-3 | Contratos por seção/identificador para três autoridades vivas, histórico autenticado separado; único registro schema2 versionado para sucessões de oráculos, com predecessores/decisão/revisão como dados. Consumidores transitivos integrados sem constantes Python a cada atualização | ADR e revisão independentes;42focais após reuso passaram. Demonstração anterior7estados correta em seus inputs; conferir versão final/gates. T09-3/T10-2 reabertos sem apagar histórico |
+| R3-4 |31disposições explícitas preservam pendências/adiamentos/recusas | Não autoriza toda Parte2 nem promove produto. Integrações proporcionais de harness/dependência foram necessárias aos testes obrigatórios |
+
+O registro de sucessão prova consistência e proveniência declarada sob revisão/VCS confiáveis, não autenticação criptográfica de autorização. Reescrita coerente de todo checker/registro não é detectável universalmente. Reuso de observação não é snapshot atômico contra host adversarial: primeiro resultado fresco valida readset/bytes, cache imutável só dentro da operação e saída reabre todos os caminhos; contexts copiados expiram com o dono. Limites explícitos nas ADRs.
+
+## Reparos adicionais necessários ao inventário
+
+- Harnesses nativos desktop07/Python04 integrados após revisão independente. Propostas reais seis X11 passaram; ambos Wayland04 tiveram exit/natural_exit0, artefatos42/sentinel e badges Critério aprovado inspecionados. Review03 exit0 com badge Não verificado foi rejeitado como evidência suficiente e preservado. Execuções finais sobre binário integrado ainda em curso/pedidas.
+- lru0.16.4 com RUSTSEC-2026-0253 substituído por0.18.5 no patch local de cryoglyph0.1.0; origem/licenças preservadas. Dois casts inseguros identificados pelo scan foram substituídos por conversões bytemuck com tipos Pod/Zeroable. Sem novas supressões. Runner integrado passou4testes e2negativos específicos, inputs estáveis; não prova GPUruntime/benchmarks.
+- RustSec nova geração preparada pela interface documentada em raiz descartável e promovida com lock/precondição, preservando registro/geração anterior e máximo5dias. Probe lockfinal:0vulnerabilidades,2avisos já nomeados na política (pin-utils/ttf-parser), sem exceções novas. Scans finais continuam necessários.
+
+## Verificação e limites atuais
+
+verification-matrix.md e root-checks/report.md registram comandos/exits/inputs/logs. Nenhum skip é contado como execução de cenário obrigatório. Falhas de quota, tentativas interrompidas, hipótese de corpus mutável, achados dos scanners e falhas de harness permanecem. Streams de novas execuções ficam fora do checkout até seu término.
+
+O primeiro full terminou143, sem sinal enviado pela raiz e sem causa atribuída; nenhuma conclusão dos checks restantes. Os1057inputs registrados não mudaram, mas streams dentro do checkout alteravam parte do corpus distribuído, limitação distinta. Supervisor seguinte usa streams externos e journal de sinais sem ignorar cancelamentos.
+
+Gates antigos15features/93ACs não aprovados são observações de então. A seleção semântica final contém19features; cada obrigação requer prova atual e sucessor expresso quando pertinente. F0-D4 já adotado substitui somente freezes antigos; perfil31 e bootstrap-implemented têm sucessores expressos. Não é necessária nova permissão para reconhecer essas decisões, nem elas dispensam outras provas.
+
+Impedimentos ainda a resolver: verificação completa/integral/pacote/export/entradas adicionais finais; renderização atual de seis páginas/figuras alteradas; obrigações nativas WC01–06 não cobertas por mera recuperação zenity; aceite visual explícito do mantenedor AC07 IDE; evidências/gates19 e revisão/validação finais. Não se considera origem externa de mudanças como dispensa de integração ou autorização para sobrescrevê-las.
+
+## Fechamento
+
+Após estabilizar fontes: executar matriz obrigatória, interpretar achados/negativos/skips, atualizar somente decisões sustentadas, repetir gates completos e verificações afetadas. Consolidar caminhos documentais e anexar registro completo a task_finalizada.md preservando todo prefixo. O registro final ainda não foi anexado.
+
+## Atualização de integração e observações finais parciais
+
+O registro ativo schema 2 agora contém cinco transições. A quinta usa a âncora histórica de instruções de 14/11/2026 para a sucessão de `dependency-hygiene/converge.md`. O primeiro predecessor é o terminal histórico autenticado, nunca o predecessor mais antigo. A decisão, a revisão independente e os preimages são dados versionados; nenhuma constante Python foi atualizada para fixar o novo documento inteiro. Os consumidores reais de instruções e auditoria usam o mesmo mecanismo. Trinta e cinco testes focais passaram, incluindo downgrade, metadados alterados, caminhos inseguros, preimages e invalidação da observação.
+
+A demonstração física compacta final executou sete estados com os consumidores reais: baseline, seção legítima de autorização, anexação ao log, remoção de contrato protegido, corrupção de evidência, downgrade e restauração. Todos satisfizeram seus oráculos específicos. São 342 arquivos e cerca de 2,55 MB; essa prova não equivale a exportação, pacote, suíte integral ou aceite de feature.
+
+A renderização documental usou as versões de ferramentas mantidas, instaladas exclusivamente do cache, e Firefox já disponível na imagem local Playwright, sem aquisição de browser. Foram corrigidas duas exportações SVG a partir de suas fontes Mermaid existentes. A observação final produziu 49 vistas e 11 figuras, sem os problemas automatizados examinados; a inspeção independente cobriu as seis páginas alteradas e suas figuras em tamanhos/temas selecionados, não as 49 vistas manualmente nem leitores de tela. O checker de assets examinou 262 links e 11 SVG, sem falhas. Tentativas anteriores e limitações estão preservadas em `documentation-render/`.
+
+As execuções finais da aplicação usam o binário `39d517bb89494ba73725c4da2e7e7fd8b326f1abd3c38dce21a88a3593e03f86`: Cargo e os seis testes X11 explícitos passaram; os roteiros Wayland integrados também foram executados. A raiz reteve tentativas, imagens e manifestos em `root-checks/native-final/`. A execução WC07 completou sete sessões naturais e 100 checks, mas a inspeção identificou que o menu ainda estava aberto após o clique externo na largura 2560. Esse comportamento não tinha oráculo semântico no driver: AC02 de product-ide-shell permanece INCONCLUSIVE até esclarecimento, sem confundir exit zero com aceite.
+
+O mantenedor aprovou explicitamente o julgamento visual AC07 do conjunto final vinculado ao índice e às capturas. O evento é `root-checks/native-final/maintainer-visual-acceptance.json`; seu escopo é exclusivamente visual, sem aprovar funcionalidade, licenciamento, publicação ou a tarefa inteira. O índice vinculado não será editado para aparentar uma nova observação.
+
+O gate real das 19 features selecionadas retornou exit 1, com 92 critérios INCONCLUSIVE e 30 UNVERIFIED naquele instante. Essa contagem é histórica da execução, não uma afirmação de 122 novos defeitos. A matriz semântica deve distinguir critérios com provas atuais, provas que ainda dependem da suíte/pacote e obrigações externas. Em maintenance-001 AC05, a confirmação de direitos de terceiros permanece ausente; a condição de licenciamento não foi satisfeita e não será dispensada por uma verificação local.
+
+A primeira full e a tentativa final do módulo histórico terminaram com exit 143 sem sinal enviado pelos executores nem causa estabelecida. São execuções incompletas preservadas. A próxima full usa TTY, journal de sinais, streams fora do checkout e TMPDIR exclusivo aprovado em /var/tmp; nenhum sinal será ignorado. Geração e extração do pacote, exportação, entradas públicas adicionais e opt-in real final continuam obrigatórios.

@@ -90,8 +90,8 @@ o que foi reavaliado.
 
 - [Revisão visual](validation/documentation-visuals-20261104/report.md):
   figuras, renderização, temas, fontes, preservação e limites desta entrega.
-- [F0 vigente](validation/f0-resumption-20261103/report.md): aceitação da fundação
-  no corpus local adotado, sem expansão automática de fase ou plataforma.
+- [F0 observado em 03/11](validation/f0-resumption-20261103/report.md): aceitação
+  histórica vinculada àquele corpus; os estados atuais ficam nos envelopes das features.
 - [Análise da aplicação](validation/application-documentation-20261104/report.md):
   fontes e contratos inspecionados na revisão anterior.
 - [Correção da preservação do README](validation/readme-preservation-20261104/report.md):
@@ -110,8 +110,9 @@ seus hashes. O pacote de governança exclui o aplicativo; links de produto nesta
 
 ## Manutenção do workspace
 
-- [Artefatos locais](development/local-artifacts.md): caminhos compartilhados,
-  liberação, simulação, coleta, recuperação e exceções legadas.
+- [Artefatos locais](development/local-artifacts.md): caminhos de logs e caches,
+  simulação e rotação de no máximo duas datas, sem backup, lixeira ou recibo.
+  Essa retenção operacional não substitui o histórico de evidências em `docs/validation`.
 - [Decisão de manutenção](decisions/repository-maintenance.md) e
   [observações](validation/repository-maintenance-20261109/report.md).
 - [Fechamento documental por tarefa](../sdd/workflow.md#documentation-before-task-closure).
@@ -122,3 +123,11 @@ Current visual integration: [source coverage](design/reference-coverage.md),
 [native components](design/components.md),
 [observed outcomes and remaining work](validation/visual-integration-20261111/report.md).
 Task completion requires the [SDD documentation update rule](../sdd/workflow.md#documentation-before-task-closure).
+
+## Proveniência e instruções históricas
+
+- [Prompt de bootstrap v2.0](iniciar-projeto-revisado.md): instruções históricas
+  executadas na [adoção do bootstrap](decisions/product-bootstrap.md); seus diagramas
+  representam o projeto solicitado naquele momento, não a integração atual dos crates.
+- [Ledger de proveniência](structure/README.md): interpretação de `files.json`
+  e dos registros de sucessão, sem tratá-los como inventário da árvore atual.

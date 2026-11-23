@@ -1,0 +1,180 @@
+"""Adversarial checks for the exact audit successor and captured-origin inventory."""
+
+import copy
+import hashlib
+import importlib
+import json
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "tools/governance/scripts"))
+A = importlib.import_module("audit_revision")
+sha = lambda data: hashlib.sha256(data).hexdigest()
+
+
+class AuditRevisionTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory(prefix="ox-audit-revision-")
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        for name in [*A.fixture_paths(ROOT), "docs/validation/windows-design-20261117/succession.json"]:
+            target = self.root / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes((ROOT / name).read_bytes())
+
+    def test_all_reviewed_terminals_reconstruct_and_unknown_buffers_do_not(self):
+        self.assertEqual(A.errors(self.root), [])
+        for name, row in A.records(self.root).items():
+            with self.subTest(path=name):
+                data = (self.root / name).read_bytes()
+                expected = (self.root / row["previous"]).read_bytes()
+                self.assertEqual(A.predecessor(self.root, name, data), expected)
+                unknown = data + b"unknown supplied input"
+                self.assertEqual(A.predecessor(self.root, name, unknown), unknown)
+        # Independent immutable oracle for the two previously broken chains.
+        for name, expected in (
+            ("sdd/project.md", "6e6c2738bb9d62223279399ad272ee4cc15f7ff8efd016db21d61869fddc6230"),
+            ("sdd/features/product-visual-workbench/converge.md", "91981cc160d0444b256d0830f176451204f5bb1928ce2c7217f17f07d3144ce1"),
+        ):
+            self.assertEqual(sha(A.predecessor(self.root, name, (self.root / name).read_bytes())), expected)
+        self.assertEqual(A.predecessor(self.root, "ordinary.md", b"unrelated"), b"unrelated")
+
+    def test_live_mutation_missing_symlink_and_predecessor_downgrade_fail(self):
+        for name in ("README.md", "sdd/project.md", ".codex/skills/software-testing/SKILL.md"):
+            target = self.root / name
+            original = target.read_bytes()
+            row = A.records(self.root)[name]
+            previous = (self.root / row["previous"]).read_bytes()
+            for mode in ("mutated", "missing", "symlink", "downgrade"):
+                with self.subTest(path=name, mode=mode):
+                    target.unlink()
+                    if mode == "mutated":
+                        target.write_bytes(original + b"unreviewed live mutation")
+                    elif mode == "symlink":
+                        other = self.root / "same-bytes.bin"
+                        other.write_bytes(original)
+                        target.symlink_to(other)
+                    elif mode == "downgrade":
+                        target.write_bytes(previous)
+                    self.assertTrue(A.errors(self.root))
+                    if mode == "mutated":
+                        unknown = target.read_bytes()
+                        self.assertEqual(A.predecessor(self.root, name, unknown), unknown)
+                    if mode == "downgrade":
+                        with self.assertRaisesRegex(ValueError, "downgrade"):
+                            A.predecessor(self.root, name, previous)
+                    if target.exists() or target.is_symlink():
+                        target.unlink()
+                    target.write_bytes(original)
+
+    def test_registry_snapshot_and_parent_mutations_fail(self):
+        row = A.records(self.root)["README.md"]
+        for name in (A.REGISTRY, row["previous"], A.ORIGINS, A.BRIDGE):
+            target = self.root / name
+            data = target.read_bytes()
+            for mode in ("missing", "mutated", "symlink"):
+                with self.subTest(path=name, mode=mode):
+                    target.unlink()
+                    if mode == "mutated":
+                        target.write_bytes(data + b"tampered")
+                    elif mode == "symlink":
+                        other = self.root / "registry-copy.bin"
+                        other.write_bytes(data)
+                        target.symlink_to(other)
+                    callback = (lambda: A.origin_records(self.root, [])) if name == A.ORIGINS else (
+                        (lambda: A.project_bridge(self.root, "sdd/project.md", b"input"))
+                        if name == A.BRIDGE else (lambda: A.records(self.root)))
+                    with self.assertRaises(ValueError):
+                        callback()
+                    if target.exists() or target.is_symlink():
+                        target.unlink()
+                    target.write_bytes(data)
+        folder = self.root / A.BASE / "before"
+        moved = self.root / "actual-before"
+        folder.rename(moved)
+        folder.symlink_to(moved, target_is_directory=True)
+        with self.assertRaisesRegex(ValueError, "symlinked"):
+            A.records(self.root)
+
+    def test_exact_origin_inventory_and_tampered_snapshot_fail(self):
+        rows = A.origin_records(self.root, [])
+        # The two captured directories contain ten reviewed Markdown origins each.
+        self.assertEqual(len(rows), 20)
+        for row in rows:
+            parts = row["source"].split("/before/", 1)
+            self.assertEqual(parts[1], row["origin"])
+        source = self.root / rows[0]["source"]
+        source.write_bytes(source.read_bytes() + b"unknown")
+        with self.assertRaisesRegex(ValueError, "changed"):
+            A.origin_records(self.root, [])
+
+    def test_registry_schema_inventory_and_duplicate_keys_still_fail_if_repinning(self):
+        original = json.loads((self.root / A.REGISTRY).read_text())
+        mutations = []
+        for key, value in (("schema_version", True), ("revision", "unknown"), ("records", [])):
+            doc = copy.deepcopy(original)
+            doc[key] = value
+            mutations.append(doc)
+        for key, value in (("destination", "../escaping"), ("destination", "new.md"),
+                           ("previous", "README.md"), ("sha256", "invalid")):
+            doc = copy.deepcopy(original)
+            doc["records"][0][key] = value
+            mutations.append(doc)
+        doc = copy.deepcopy(original)
+        doc["records"].append(doc["records"][0])
+        mutations.append(doc)
+        for doc in mutations:
+            raw = json.dumps(doc).encode()
+            (self.root / A.REGISTRY).write_bytes(raw)
+            with self.subTest(doc=doc), patch.object(A, "REVIEWED", sha(raw)), self.assertRaises(ValueError):
+                A.records(self.root)
+        raw = json.dumps(original).replace('"schema_version": 1', '"schema_version": 1, "schema_version": 1').encode()
+        (self.root / A.REGISTRY).write_bytes(raw)
+        with patch.object(A, "REVIEWED", sha(raw)), self.assertRaisesRegex(ValueError, "Duplicate"):
+            A.records(self.root)
+
+    def test_audited_copy_retains_exactly_the_two_existing_design_exclusions(self):
+        import shutil
+        from instruction_revision import write_copy_context
+        from readme_revision import excluded_product_reference
+
+        # Remove only this fixture's product roots; the explicit receipt selects
+        # the consumer. Neither missing sources nor an arbitrary target opts in.
+        shutil.rmtree(self.root / "application")
+        write_copy_context(self.root)
+        targets = (
+            "sdd/features/product-visual-workbench/converge.md",
+            "sdd/features/skill-native-visual-method/spec.md",
+        )
+        for name in targets:
+            self.assertTrue(excluded_product_reference(self.root, "DESIGN.md", self.root / name))
+        self.assertFalse(excluded_product_reference(self.root, "DESIGN.md", self.root / "application/new.rs"))
+        data = (self.root / "DESIGN.md").read_bytes()
+        (self.root / "DESIGN.md").write_bytes(data + b"unknown")
+        for name in targets:
+            self.assertFalse(excluded_product_reference(self.root, "DESIGN.md", self.root / name))
+        (self.root / "DESIGN.md").write_bytes(data)
+        (self.root / ".ox-governance-copy.json").unlink()
+        for name in targets:
+            self.assertFalse(excluded_product_reference(self.root, "DESIGN.md", self.root / name))
+
+    def test_project_intermediate_bridge_requires_the_exact_new_terminal(self):
+        current = (self.root / "sdd/project.md").read_bytes()
+        stage = bytes.fromhex("")  # Caller buffers are not trusted merely by path.
+        self.assertEqual(A.project_bridge(self.root, "sdd/project.md", stage), stage)
+        # Independent input/output hashes from the already pinned older registries.
+        import windows_design_revision as W
+        intermediate = W.predecessor(self.root, "sdd/project.md", current)
+        self.assertEqual(sha(intermediate), "97f5a391e32e49cf6bfa5c1b28622cb27c8ab10a3b7119520347646e2ac8cb28")
+        previous = A.project_bridge(self.root, "sdd/project.md", intermediate)
+        self.assertEqual(sha(previous), "7ecff339f506d569c0210a1aa5f060f970fb1c051c9bb38a934dd385093a5de8")
+        (self.root / "sdd/project.md").write_bytes(current + b"unknown")
+        self.assertEqual(A.project_bridge(self.root, "sdd/project.md", intermediate), intermediate)
+
+
+if __name__ == "__main__":
+    unittest.main()

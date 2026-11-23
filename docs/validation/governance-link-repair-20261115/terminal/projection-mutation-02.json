@@ -1,0 +1,36 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_governance_diagnostics.ProjectionTests.test_projection_mutation_losing_display_group_is_rejected_with_raw_intact"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "scripts/tests"
+  },
+  "started_utc": "2026-11-15T23:25:45.317280+00:00",
+  "inputs_before": {
+    "scripts/lib/progress.sh": "d013c0ee871b28edc2b1f22a2d6c78fe885a889f652e29d130a0bbf7f684b14c",
+    "scripts/lib/common.sh": "c4f7c9b3d9d0b94076dc87564dde18cb6ca6b7bac6037c373a8a04426632c7af",
+    "scripts/lib/process.sh": "9dea81c958c8417028b9184ba15d6aabb5e7238bfcbd24eb6ae6c7996d1c9ff9",
+    "scripts/tests/test_governance_diagnostics.py": "869a68143e56436321907a5d3548276a457b64882c60a55454ab69f943f589e8",
+    "scripts/tests/fixtures/governance-links.txt": "2a98bddc2da992fe3ed810cab4072ee79f9235ea9a88db40b1fa4d47d29a5f03",
+    "scripts/tests/test_terminal_progress.py": "665987e42c74b38db9c21d09b26155473c32550ac45d59c6f6cbbf254c99855f",
+    ".local/logs/2026-11-15/ox-run-5DyYy5sn--ox--stdout.log.log": "2a98bddc2da992fe3ed810cab4072ee79f9235ea9a88db40b1fa4d47d29a5f03"
+  },
+  "exit_code": 0,
+  "inputs_after": {
+    "scripts/lib/progress.sh": "d013c0ee871b28edc2b1f22a2d6c78fe885a889f652e29d130a0bbf7f684b14c",
+    "scripts/lib/common.sh": "c4f7c9b3d9d0b94076dc87564dde18cb6ca6b7bac6037c373a8a04426632c7af",
+    "scripts/lib/process.sh": "9dea81c958c8417028b9184ba15d6aabb5e7238bfcbd24eb6ae6c7996d1c9ff9",
+    "scripts/tests/test_governance_diagnostics.py": "869a68143e56436321907a5d3548276a457b64882c60a55454ab69f943f589e8",
+    "scripts/tests/fixtures/governance-links.txt": "2a98bddc2da992fe3ed810cab4072ee79f9235ea9a88db40b1fa4d47d29a5f03",
+    "scripts/tests/test_terminal_progress.py": "665987e42c74b38db9c21d09b26155473c32550ac45d59c6f6cbbf254c99855f",
+    ".local/logs/2026-11-15/ox-run-5DyYy5sn--ox--stdout.log.log": "2a98bddc2da992fe3ed810cab4072ee79f9235ea9a88db40b1fa4d47d29a5f03"
+  },
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "cbe07b5aea0bca2dc5233030624521360e465e3976ae692b176dc337d3d371ec"
+}

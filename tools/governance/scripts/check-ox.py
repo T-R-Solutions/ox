@@ -29,6 +29,8 @@ from governance_support import (
 from readme_revision import excluded_product_reference
 from skill_revision import records as integration_records
 from technical_acceptance import technical_errors
+from visual_skill_revision import errors as skill_visual_errors
+from visual_skill_revision import records as skill_visual_records
 
 ROOT = Path(__file__).resolve().parents[3]
 
@@ -257,6 +259,7 @@ def check(root):
 
     errors.extend(instruction_errors(root))
     errors.extend(visual_errors(root))
+    errors.extend(skill_visual_errors(root))
     metadata = metadata_revision(root, read)
     for relative, row in metadata.items():
         target = root / relative
@@ -334,6 +337,7 @@ def check(root):
                 | succession_records(root).keys()
                 | integration_records(root).keys()
                 | visual_records(root).keys()
+                | skill_visual_records(root).keys()
             ):
                 errors.append(
                     "Unexpected copied resource: " + str(path.relative_to(root))

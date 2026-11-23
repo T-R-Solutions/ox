@@ -181,3 +181,113 @@ is authorized. Coordinator assigned this after confirming advanced absent; root
 notified to avoid a competing edit. Build/test offline and locked.
 S02 requires an absolute parent in UI so complete destination can be shown without
 filesystem IO in view; backend canonicalizes the supplied existing parent.
+
+## Welcome identity/layout plan — 2026-11-16
+
+Local-route presentation refactor under the current request, superseding the
+earlier scope's text-only identity/download restriction solely for the required
+embedded PNG rendering support. Root owns UI/assets/manifests and affected docs.
+Use existing controls/messages/IDs rather than a new entry-state machine. Put
+the signature/mascot in a 240-unit navy column with a flexible project-entry/list
+area (1080 max); below 900 use a horizontal identity strip and stacked sections.
+The same body scroll/reveal operation handles focus and lengthy recent lists.
+PNG-only image decoding extends Iced 0.14.0's current software renderer; preserve
+edition/MSRV/toolchain and existing package versions. Runtime reads no local asset
+path. Source PNGs remain unchanged and provenance is recorded beside their copies.
+
+Consulted methods: design-system (composition/reuse/accessibility), iced-engineering
+(native adaptation/capture/keyboard), rust (manifest/features/checks), actual entries
+and references recorded in the identity report. No bridge installation or delegation.
+Risk/criteria, actual commands, source/copy identities and observation limitations
+are in docs/validation/welcome-identity-20261116/report.md. Historical WC/AC gate
+states are not renewed by a bounded visual observation.
+
+## Enterprise desktop successor — 2026-11-16
+
+D-EV-01: Replace the floating welcome card with docked full-window project
+navigation and primary canvas. A merely restyled card was rejected by the user;
+a copied IntelliJ feature set would invent capabilities. Keep native composition
+and real domain contracts. Shared section/chrome refinements cover all consumers.
+R-EV-01: Changed geometry can desynchronize explicit keyboard IDs/order, hide
+controls at 640×480, or create misleading state. Review traversal against widgets;
+exercise native focus/overflow, source invariants and themes before bounded verdict.
+
+Primary skill actually consulted: `.codex/skills/design-system/SKILL.md`, bridge
+`sdd/chain/design-system.md` version 1; contributions: composition, semantic roles,
+shared variants and adaptive constraints. Consulted references visual-composition
+and navigation/workbench/settings rows of interaction-patterns. Supporting skill:
+`.codex/skills/iced-engineering/SKILL.md`, bridge version 1; contribution: native
+widget geometry, messages/focus and source-bound capture; native-visual-contract read.
+Skills have no standalone entry version; current bytes will be bound in the report.
+
+Coordination: root triage, ec_orquestrador_alta owns common documentation/integration;
+ec_implementador owns ox-ui desktop/design sources and necessary identity assets.
+Independent ec_revisor and ec_validador_alta receive fresh contexts. Host exposes
+profile-based creation, messaging/status/interruption and four concurrent slots;
+completed-slot reuse must be observed. No self-review substitutes independence.
+Current dirty bytes are preserved in the report's before directory before mutation.
+Native executor uses a private Mutter session, never primary-desktop input.
+
+## Desktop navigation successor — 2026-11-17
+
+D-DN-01: Use native icon controls/tooltips and a distinct semantic icon vocabulary
+in the existing Iced shell. Remove mascot rendering but preserve source artwork.
+D-DN-02: Keep sidebar width/drag/collapse in transient presentation state; real
+divider initiation plus global mouse move/release/focus-loss handles capture.
+Bound width to200..420 and available window width; collapsed rail52. Keyboard
+Ctrl+B toggles; labelled shrink/grow icon buttons support Tab/Enter resize by24 units.
+Ctrl+Alt+Left/Right is supplementary and may be intercepted by the window manager. Expanded width is remembered
+in-session. No geometry is persisted.
+R-DN-01: Drag capture/release outside viewport may leave stale interaction or
+swallow controls; inspect subscriptions and exercise real pointer delivery.
+R-DN-02: Icon-only controls can lose identity/focus, group sorting can change
+IDs/order; preserve IDs and test hover/focus/reveal plus navigation destination.
+
+Same consulted primary design-system entry and bridge v1, supporting
+iced-engineering entry and bridge v1. Reused actual visual-composition,
+interaction-patterns navigation/workbench rows and native-visual-contract
+for geometry/focus/native observation. No new skill/library or backend authority.
+Coordinator owns common documentation and new native harness; ec_implementador
+owns ox-ui desktop/views/icons/identity/design/workbench and focused tests.
+Existing ec_revisor remains independent; ec_validador_alta follows in separate
+context. Four-slot model is observed; same canonical capabilities as prior slice.
+
+## Project-entry local correction — 2026-11-17
+
+Root owns desktop.rs, views.rs, icons.rs and affected docs. Known presentation
+consumers and layout/state/native oracles permit the local route; no material
+permission, concurrency, persistence, migration or recovery contract changes.
+Primary consulted skill: .codex/skills/iced-engineering/SKILL.md (current working
+entry, unversioned), plus its native-visual-contract.md: shared drawing, state/view
+consistency, keyboard order, narrow geometry and source-bound native observations.
+No bridge/full-route activation or delegation needed. Risk: keyboard order or
+scrolling diverges from visible controls; verify existing widget-event regressions
+and wide/narrow native captures. Clone implementation is outside this visual slice.
+
+Visual source successor 2026-11-17: consult DESIGN revision 5.0 and
+windows-design-baseline before the next native visual change. Record source/version,
+surface/component disposition and paired native evidence; prior observations retain
+their original inputs. This documentation task implements no native successor.
+
+## Fixed-sidebar/settings local plan — 2026-11-17
+
+Root owns desktop.rs/views.rs and shared documentation. Use bounded row/column
+composition with independent scroll regions and a session preview snapshot.
+Primary skill consulted/applied: .codex/skills/iced-engineering/SKILL.md and
+references/native-visual-contract.md, live checkout on 2026-11-17 (Iced 0.14).
+Source: Visual Studio 2026 Enterprise, DESIGN revision 5.0 and Windows analysis
+2026-11-17. Adopt docked auxiliary region and fixed form actions; adapt to native
+Iced opaque palette and current Linux window chrome. Windows materials, durable
+settings and plugin integration remain deferred. Risks: scrolling Fill constraints,
+hidden keyboard targets and save/cancel semantics. Oracles: existing native widget
+tests, state regression, wide/small isolated Wayland interaction/captures.
+
+## Audit follow-up — 2026-11-17
+
+The maintainer authorizes correction of mixed-language local completion text and focus styles that erase button roles. Preserve domain states and component backgrounds; use a contrasting boundary for focus. Native matrix observations and actual keyboard journeys have distinct claims. Source, selected methods and independent acceptance: docs/validation/audit-followup-20261117/plan.md and report.md.
+
+## Combined Claude remediation — 2026-11-17
+
+Changed implementation and focused regressions are tracked in
+[the remediation report](../../../docs/validation/claude-remediation-20261117/report.md).
+Historical observations remain unchanged; current broad acceptance is not renewed.

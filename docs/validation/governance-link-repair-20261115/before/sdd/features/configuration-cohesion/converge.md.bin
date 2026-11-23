@@ -1,0 +1,57 @@
+# Current acceptance projection
+
+Current automated states from [evidence.json](evidence.json). This projection
+is not a new observation or product acceptance. The 2026-11-14 correction
+observations are retained as history. Changed bound inputs require fresh scoped
+verification; current criteria are UNVERIFIED in evidence.json.
+
+<!-- sdd:current-status -->
+| Criterion | Status |
+| --- | --- |
+| AC-01 | UNVERIFIED |
+| AC-02 | UNVERIFIED |
+| AC-03 | UNVERIFIED |
+| AC-04 | UNVERIFIED |
+| AC-05 | UNVERIFIED |
+| AC-06 | UNVERIFIED |
+| AC-07 | UNVERIFIED |
+| AC-08 | UNVERIFIED |
+| AC-09 | UNVERIFIED |
+| AC-10 | UNVERIFIED |
+| AC-11 | UNVERIFIED |
+| AC-12 | UNVERIFIED |
+| AC-13 | UNVERIFIED |
+| AC-14 | UNVERIFIED |
+| AC-15 | UNVERIFIED |
+<!-- /sdd:current-status -->
+
+## Historical convergence — before 2026-11-14 correction
+
+The following conclusions apply only to their original observed inputs. Current
+states are above; prior bytes remain in the bounded correction preimages.
+
+# Configuration cohesion convergence
+
+| Criterion | State | Observation | Limit |
+|---|---|---|---|
+| AC-01 | APPROVED | 36 retained-procedure/reference/table/Toolbox comparisons; shared rules still governed by workflow/evidence | Not a comparative agent-quality evaluation |
+| AC-02 | APPROVED | 28 succession tests, seven closure tests, 31 metadata checks, portable structure and check-ox; historical bytes retained | Checks cannot prove semantic adequacy of all specialist resources |
+| AC-03 | APPROVED | 225-file inventory and per-file measurements; 15,893 bytes / 2,492 words removed from the 36 compacted files | No tokenizer/billing claim; new audit records are not default context |
+
+Updated documentation is recorded per task. No commit, publication or application
+code modification. Initial schema-version and marker mismatches were repaired to
+retain the existing validator contract. Scanner transition regression now pins its
+reviewed bytes by digest instead of borrowing subsequently edited working files;
+the current complete preservation chain remains checked by check-ox.
+
+Current feature acceptance is limited to configuration preservation and structural
+coherence. Existing product/skill execution criteria have their own states, with
+18 affected feature evidence documents preserved before selective invalidation.
+Resume technical acceptance by rerunning the criterion's concrete consumer/oracle
+with current skill/configuration inputs, not by renewing old hashes.
+
+## Log repair continuation — 2026-11-15
+
+Current states above supersede historical approval prose only for changed inputs.
+Prior observations retain their original hashes; scoped verification and independent
+review/validation are recorded in docs/validation/log-repair-20261115/report.md.

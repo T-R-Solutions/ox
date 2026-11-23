@@ -42,3 +42,14 @@ records remain historical; this section is their implementation successor.
 - AC-14 → REQ-14: A changed-input map and bounded succession checks reject unknown mutations, tampered predecessors, downgrade and symlink substitutions; no historical digest is renewed to represent new execution.
 - REQ-15: Integration is accepted using the corrected current inputs and reviewable evidence, without global approval of unrelated pending features.
 - AC-15 → REQ-15: Focused regressions, affected consumers, independent review/validation and the selected feature's complete applicable gates are satisfied, or each outstanding criterion retains its proper non-approved state with a resumption condition.
+
+## Historical-link repair successor — 2026-11-15
+
+The maintainer explicitly requested implementation of the reviewed historical-link
+repair plan. Local source/documentation changes, focused tests and independent
+review/validation are authorized; complete scanners, downloads, central maintenance,
+commits and publication are excluded. Existing AC-01–15 and their current states
+are retained; this successor does not inherit or renew their past acceptance.
+
+- REQ-16: Exactly reviewed historical Markdown copies resolve from their authenticated original locations, while unchanged prior records, common link containment and consumer boundaries remain mandatory.
+- AC-16 → REQ-16: The five captures in governance-historical-links-001 resolve all 22 observed references without snapshot edits; altered/missing registries or sources, duplicate/conflicting mappings, unsafe paths and symlinks reject. Unknown files retain ordinary link checks. An independent declared governance copy validates the same inventory without source-checkout access or new missing-target exceptions.

@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "code-knowledge-graph-engineering-positive",
+      "kind": "selection",
+      "prompt": "Definir schema de arestas de código e consultas de impacto com limites e duas projeções do mesmo grafo."
+    },
+    {
+      "id": "code-knowledge-graph-engineering-negative",
+      "kind": "selection",
+      "prompt": "Criar um diagrama estático de marketing sem relações extraídas de código."
+    },
+    {
+      "id": "code-knowledge-graph-engineering-failure",
+      "kind": "behavior",
+      "skill": "code-knowledge-graph-engineering",
+      "prompt": "Aresta inferida com similaridade 0.98 veio marcada verified=true; seu arquivo mudou. Consulta passa por ciclo e um hub com dez mil arestas. Especifique validações, invalidação e limites sem presumir desempenho."
+    }
+  ],
+  "oracle": {
+    "primary": "code-knowledge-graph-engineering",
+    "negative": "design-system",
+    "failure": "reject false verified; snapshot invalidation; visited plus limits and truncation"
+  }
+}

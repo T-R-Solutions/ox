@@ -1,0 +1,24 @@
+# Convergence
+
+Current documentary acceptance follows [evidence.json](evidence.json) and the
+[independent validation](../../../docs/validation/windows-design-20261117/validation.md).
+Review/source/skill-preservation criteria are bounded to observed inputs. No native
+fidelity, accessibility or runtime outcome is accepted by this feature.
+
+<!-- sdd:current-status -->
+| Criterion | Status |
+| --- | --- |
+| AC-01 | APPROVED |
+| AC-02 | APPROVED |
+| AC-03 | APPROVED |
+<!-- /sdd:current-status -->
+
+Previous authoring state was UNVERIFIED. Host approval was required and obtained
+for the six .codex edits; exact preimages and existing dirty changes were preserved.
+Three quick_validate checks and12 focused preservation tests passed; independent
+validator repeated the five new rejection tests. Global check-ox and two regression
+cases retain documented baseline/stale-history failures. Earlier visual-skill-refinement
+observations remain historical and its current criteria UNVERIFIED.
+
+Final selected-feature gate/input inspection is recorded in
+[closure](../../../docs/validation/windows-design-20261117/closure.md).

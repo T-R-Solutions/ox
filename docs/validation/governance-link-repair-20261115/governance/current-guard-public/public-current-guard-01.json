@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_historical_link_resolution.PublicHistoricalLinkTests.test_public_copy_requires_registry_and_rejects_recalculated_metadata",
+    "test_historical_link_resolution.PublicHistoricalLinkTests.test_public_copy_rejects_unregistered_live_readme_append"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "tools/governance/tests"
+  },
+  "exit": 0,
+  "elapsed_seconds": 100.96991881000577,
+  "inputs": "inputs.json",
+  "capture": "outside source tree"
+}

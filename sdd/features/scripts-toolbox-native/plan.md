@@ -175,3 +175,30 @@ uses /bin/bash and a fixed program with positional paths. Exact-source guarded
 native baseline/per-file S603 dispositions apply, not global exclusions. Python
 style corrections preserve AST except an unused import and strict zip of fixed
 three-channel tuples. Native UI execution is not renewed by this comparison.
+
+## Bounded complete-run correction — 2026-11-15
+
+D-32 / R-32 / REQ-01,REQ-02: the maintainer authorizes diagnosis and repair of
+the retained ox-run-OQzMt04y failures, including selection and concealed failures.
+Retain active tests and all Bandit rules; bind only reviewed benign records to
+exact source/policy hashes. Native baseline matching alone is not line-exact.
+The full-route plan, selected skills, ownership and manual BS-01..04 criteria
+are in docs/validation/bandit-repair-20261115/plan.md. This bounded correction
+does not promote the broad feature ACs or authorize a complete rerun.
+
+## Single OSV acquisition clock successor — 2026-11-16
+
+D-31/R-31: the explicit request supersedes all earlier OSV 24h clauses in this
+plan. Implement one central 12h clock since successful download, independent of
+scan time or upstream publication age; preserve Trivy/Grype and advisory policies.
+Full route, ownership, selected software-delivery entry/bridge and manual criteria
+are in docs/validation/osv-acquisition-20261116/plan.md. The actual skill was read
+and applied, not merely indicated. Independent review/validation are required;
+central changes are prepared locally and need effective write permission to apply.
+No real downloads, complete run, commits or publication in this successor.
+
+## Audit identifier clarification — 2026-11-17
+
+The Bandit correction uses D-32/R-32; D-30/R-30 above continues to identify the
+Gitleaks fingerprint review. This disambiguates existing decisions without
+changing scanner policy, criterion scope or historical observation identities.

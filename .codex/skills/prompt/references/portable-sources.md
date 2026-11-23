@@ -12,4 +12,4 @@ Analyzed physical PDF ranges (1-based): [[224, 230], [257, 259], [272, 275]]. Vi
 
 ## Extraction and interpretation limits
 
-Only the listed sections were analyzed. All other content remains unanalyzed. Diagrams and images were not visually inspected, except the GC copyright page explicitly recorded above; EPUB figures were not inspected. Error-free text extraction does not establish full fidelity.
+Only the listed sections were analyzed. All other content remains unanalyzed. Diagrams and images were not visually inspected; EPUB figures were not inspected. Error-free text extraction does not establish full fidelity.

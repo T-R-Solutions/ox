@@ -1,0 +1,28 @@
+import hashlib,importlib.util,json,subprocess,time
+from pathlib import Path
+ROOT=Path('/home/rodrigo/Projetos/ox');BASE=ROOT/'docs/validation/audit-followup-20261117/native'
+helper=ROOT/'docs/validation/f0-resumption-20261103/native-session.py'
+sp=importlib.util.spec_from_file_location('native',helper);n=importlib.util.module_from_spec(sp);sp.loader.exec_module(n)
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+inputs=[ROOT/'application/crates/ox-ui/src/design.rs',ROOT/'application/crates/ox-ui/src/local_task.rs',ROOT/'application/crates/ox-ui/examples/audit_focus.rs',ROOT/'application/Cargo.lock',helper,Path(__file__)]
+record={'method':'private Mutter Wayland native rendering of production button_style fixture plus actual application keyboard focus','source_inputs':{str(p):sha(p) for p in inputs},'limitations':['Fixture forces widget status/focus for comparative rendering; application capture separately observes real application-managed keyboard focus.','No assistive technology or domain workflow acceptance.']};session=None
+try:
+ session=n.Session(BASE/'observed-native','1280x800',1)
+ def chord(mod,key):session.key(mod,True);session.key(key);session.key(mod,False);time.sleep(.25)
+ def app(binary,args,label):
+  log=session.out/(label+'.log');h=log.open('w');env=dict(session.env,WAYLAND_DEBUG='1',XDG_STATE_HOME=str(session.out/'state'))
+  p=subprocess.Popen([str(binary),*args],cwd=ROOT,env=env,stdout=h,stderr=h);session.children.append(p)
+  session.wait(lambda:'xdg_toplevel' in log.read_text(),'toplevel '+label);time.sleep(.6);session.key(0xFFE1);session.wait(lambda:'.enter(' in log.read_text(),'keyboard '+label);chord(0xFFE9,0xFFC7)
+  return p,h
+ binary=ROOT/'application/target/debug/examples/audit_focus';record['fixture_binary_sha256']=sha(binary)
+ for theme in ['light','dark','hc']:
+  p,h=app(binary,[theme],theme);session.shot('matrix-'+theme);chord(0xFFE9,0xFFC1);session.wait(lambda:p.poll() is not None,'exit '+theme);assert p.returncode==0;h.close()
+ binary=ROOT/'application/target/debug/ox';record['application_binary_sha256']=sha(binary)
+ p,h=app(binary,[],'application');session.shot('application-initial')
+ for i in range(1,6):session.key(0xFF09);session.shot('application-tab-'+str(i))
+ chord(0xFFE9,0xFFC1);session.wait(lambda:p.poll() is not None,'application exit');assert p.returncode==0;h.close();record['result']='captures completed; visual review required'
+except Exception as e:
+ record['error']=str(e);raise
+finally:
+ if session:session.close()
+ record['sources_stable']=all(sha(Path(k))==v for k,v in record['source_inputs'].items());(BASE/'result.json').write_text(json.dumps(record,indent=2)+'\n')

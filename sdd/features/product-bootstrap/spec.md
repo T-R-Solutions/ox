@@ -24,8 +24,8 @@ Future actions are not presented as available. Closing has no external work to c
 - AC-09 → REQ-09: Evidence with actual inputs and results; verify with Cargo, inspection or graphical execution according to the plan.
 - REQ-10: Governance checkers remain operational.
 - AC-10 → REQ-10: Governance checkers remain operational; verify with Cargo, inspection or graphical execution according to the plan.
-- REQ-11: Versioned plugin contract; IPC and sandbox unavailable.
-- AC-11 → REQ-11: Versioned plugin contract; IPC and sandbox unavailable; verify with Cargo, inspection or graphical execution according to the plan.
+- REQ-11: Versioned plugin contract; sandbox remains unavailable. The initial absence of IPC is superseded only by the authorized local Unix transport in product-plugin-host.
+- AC-11 → REQ-11: Verify the versioned plugin contract and explicit absence of sandbox; local IPC is scoped and accepted independently in product-plugin-host, not inferred from bootstrap acceptance.
 - REQ-12: Product separate from governance distribution.
 - AC-12 → REQ-12: Product separate from governance distribution; verify with Cargo, inspection or graphical execution according to the plan.
 - REQ-13: 16 useful contracts and future capabilities explicitly unavailable.
@@ -42,3 +42,13 @@ local task fixtures and explicit verification. Existing launch, details and exit
 requirements remain; new task behavior is accepted in its own feature. General
 agents, sandbox, persisted history and plugin-host UI remain unavailable. This
 supersedes no other policy and does not complete F0.
+
+## IPC applicability clarification — 2026-11-17
+
+The product-plugin-host successor recorded in plan.md and T011 supersedes only
+the initial absence-of-IPC clause of REQ-11/AC-11. Versioned-contract and explicit
+sandbox limits remain applicable. No whole-criterion NOT APPLICABLE verdict or
+new operational approval follows. Current bootstrap evidence remains undecided;
+the prior observations and criterion text remain in its historical records.
+Documentation review: spec, plan/T011 and plugin-host host.rs inspected for this
+correction; no new product behavior or IPC execution.

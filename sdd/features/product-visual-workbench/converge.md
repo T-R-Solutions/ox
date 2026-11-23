@@ -73,3 +73,58 @@ Prior observations retain their original hashes; scoped verification and indepen
 review/validation are recorded in docs/validation/log-repair-20261115/report.md.
 
 Current WC-01–06 states: UNVERIFIED in evidence.json after bound Rust sources changed.
+
+## Welcome identity/layout continuation — 2026-11-16
+
+S01 now integrates the supplied definitive signature and tagged mascot, with a
+wide identity column and narrow stacked strip. Local focused Rust/native results
+and documentary disposition are in [identity report](../../../docs/validation/welcome-identity-20261116/report.md).
+WC-01–06 remain UNVERIFIED; the local observation does not supply WC-06's complete
+independent acceptance matrix or renew the six broader INCONCLUSIVE ACs. Historical
+evidence bytes and gate semantics are preserved.
+
+## Enterprise desktop continuation — 2026-11-16
+
+S01/S02 and shared workbench components have been reformulated around window-filling
+desktop composition. Scope EV-01–04, current inputs, failed first capture, selection
+correction and final observations are recorded in
+[enterprise report](../../../docs/validation/enterprise-visual-20261116/report.md).
+Broad AC-01–06 remain INCONCLUSIVE and WC-01–06 UNVERIFIED. This presentation
+delivery does not renew their full matrix, previous F0 or other platforms.
+
+Final03 scoped EV-01–04 APPROVED by independent validation on2026-11-17;
+42unit+4integration+1contract,Clippy/build0 and native640/1440/2560 observations
+are recorded with final inputs. T023–T026 complete; inherited broad gates unchanged.
+
+## Desktop navigation continuation — 2026-11-17
+
+Compact icon-only chrome,27 semantic destination icons, no mascot and real
+resizable/collapsible sidebar are implemented. DN-01–05 criteria, failed/preliminary
+captures, final pointer/keyboard observations, independent review and limitations:
+[report](../../../docs/validation/desktop-navigation-20261117/report.md).
+Previous enterprise approval remains historical; broad AC/WC states unchanged.
+
+DN-01–05 APPROVED by independent scoped validation on final03; T027–T030 complete.
+Source-bound report retains capture anomaly exclusion and platform/matrix limits.
+
+## Project-entry local correction — 2026-11-17
+
+PE-01–04 observations and current source bindings are recorded in
+[entry report](../../../docs/validation/project-entry-20261117/report.md). Root
+performed focused local verification; this is not independent validation or
+renewed DN/EV/full AC/WC acceptance. Existing evidence.json undecided broad states
+remain unchanged; historical native observations retain original inputs.
+
+## Fixed-sidebar/settings successor — 2026-11-17
+
+SS-01–03 local assessment: [report](../../../docs/validation/sidebar-settings-20261117/report.md).
+Changed desktop sources supersede earlier native observations for this slice;
+previous PE/DN/EV observations retain original input bindings. Broad evidence.json
+AC/WC states are unchanged. This bounded local assessment does not renew broad
+product acceptance or claim independent validation.
+
+## Combined Claude remediation — 2026-11-17
+
+Changed implementation and focused regressions are tracked in
+[the remediation report](../../../docs/validation/claude-remediation-20261117/report.md).
+Historical observations remain unchanged; current broad acceptance is not renewed.

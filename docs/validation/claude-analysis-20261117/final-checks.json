@@ -1,0 +1,26 @@
+{
+  "scope": "Final checks after independently validated AC-08 envelope; previous AC-01..07 stay INCONCLUSIVE.",
+  "checks": [
+    {
+      "command": "python3 sdd/tools/validate.py --root . --features sdd/features --feature scripts-centralization --require-fresh --check-convergence",
+      "exit_code": 0,
+      "log": "freshness-final.log",
+      "sha256": "dcc68a43a71d854b08639497ea9d71bf211dc43e3a4e0da41ccc6c9e6ac94a1a"
+    },
+    {
+      "command": "python3 sdd/tools/validate.py --root . --features sdd/features --feature scripts-centralization --require-approved --require-fresh --check-convergence",
+      "exit_code": 1,
+      "log": "approval-final.log",
+      "reason": "Exactly AC-01..07 INCONCLUSIVE; no AC-08/hash/convergence failure.",
+      "sha256": "c167363f77d932021c4c359c7c6cf322e1777ee138450ecfa71dd518b8cd26b5"
+    },
+    {
+      "command": "python3 tools/governance/scripts/check-ox.py",
+      "exit_code": 0,
+      "log": "governance-final.log",
+      "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+    }
+  ],
+  "capability_closure": "Named-profile implementer completed and a fresh high-validator context was created successfully in the four-slot tree. Final list_agents shows reviewer and validator completed; no delegated writer or test process remains active.",
+  "documentation_inputs": "Report, spec/plan/tasks/traceability, review and validation artifact remain frozen at their captured identities. Only post-verdict gate output records were added."
+}

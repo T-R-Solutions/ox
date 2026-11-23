@@ -1,6 +1,6 @@
 ---
 name: design-system
-description: Create or evolve shared UI tokens, components, variants, states, and usage contracts. Use when implementing reusable interfaces, resolving component inconsistency, or maintaining a design system. Do not use for unrelated backend work or a purely aesthetic opinion; use design-review for evidence-based journey evaluation.
+description: Create or evolve shared UI tokens, components, visual direction and screen layouts composed from a design system. Use for reusable interfaces, cross-screen composition, component inconsistency or system maintenance. Use design-review for journey evaluation; skip backend architecture and isolated cosmetic fixes.
 ---
 
 # Design System
@@ -14,6 +14,17 @@ Inspect the existing component library, tokens, design references, consuming scr
 This skill owns reusable interface contracts and their evolution. A one-off screen may need only existing components. Cross-screen usability investigation belongs to design-review; specialized threats belong to application-security; measured runtime bottlenecks belong to performance-engineering. Load another skill only for a concrete unresolved responsibility, never the whole library.
 
 ## Workflow
+
+When the consumer adopts Windows/Fluent or a named IDE as its reference, apply
+[reference translation](references/visual-composition.md#translate-a-windows-or-ide-reference)
+to separate visual lineage, product decisions and toolkit capabilities.
+
+For shared visual direction or screen composition, use
+[visual composition](references/visual-composition.md) to connect task hierarchy,
+geometry, typography and semantic roles. For a concrete workbench, table, board,
+form, palette or conversation, consult only the applicable row in
+[interaction patterns](references/interaction-patterns.md). These methods extend
+the existing system; they do not require a new style, framework or system rebuild.
 
 1. **Locate the contract.** Find the actual component entry points, token definitions and consumers. Record purpose, content constraints, semantics, inputs/events, state transitions and compatibility obligations. Start from the requested change rather than rebuilding the system.
 2. **Compare reuse choices.** Reuse an existing pattern when purpose and behavior agree. Add a bounded variant when shared meaning remains stable. Separate components when divergent responsibilities produce interacting flags or incompatible semantics. Similar pixels alone are insufficient evidence for consolidation. Read [pattern decisions](references/pattern-decisions.md) for this choice.

@@ -1,0 +1,398 @@
+"""Small isolated contract fixtures for A01/A04/A06, without product acceptance."""
+
+import hashlib
+import importlib.machinery
+import importlib.util
+import json
+import os
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+ENTRY = ROOT / "sdd/tools/validate.py"
+spec = importlib.util.spec_from_file_location("instruction_validator", ENTRY)
+V = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(V)
+
+
+class VerifiedSourceLoader(importlib.machinery.SourceFileLoader):
+    """Compile the one validated byte string; never consult source or bytecode again."""
+    def __init__(self, name, path, expected):
+        super().__init__(name, str(path))
+        self.verified = path.read_bytes()
+        if hashlib.sha256(self.verified).hexdigest() != expected:
+            raise ValueError("Historical validator snapshot changed")
+
+    def get_code(self, fullname):
+        if fullname != self.name:
+            raise ImportError("Unexpected historical module name")
+        return self.source_to_code(self.verified, self.path)
+
+
+def load_verified(loader):
+    snapshot_spec = importlib.util.spec_from_loader(loader.name, loader)
+    module = importlib.util.module_from_spec(snapshot_spec)
+    loader.exec_module(module)
+    return module
+
+
+def projection(rows):
+    return "\n".join([
+        "<!-- sdd:current-status -->",
+        "| Criterion | Status |",
+        "| --- | --- |",
+        *(f"| {identifier} | {status} |" for identifier, status in rows),
+        "<!-- /sdd:current-status -->",
+        "",
+    ])
+
+
+class ValidatorFixture(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="ox-instruction-validator-")
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        for name in (
+            "README.md", "project.md", "constitution.md", "workflow.md", "evidence.md",
+            "templates/spec.md", "templates/plan.md", "templates/tasks.md",
+            "templates/converge.md",
+        ):
+            self.write("sdd/" + name, "fixture\n")
+        self.write("implementation.py", "fixture implementation\n")
+        self.write("oracle.py", "fixture oracle\n")
+
+    def write(self, relative, text):
+        path = self.root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text)
+        return path
+
+    def feature(self, name, status="APPROVED", container="sdd/features", version=2):
+        folder = f"{container}/{name}"
+        self.write(folder + "/spec.md", "- REQ-01: fixture\n- AC-01 → REQ-01: fixture\n")
+        self.write(folder + "/plan.md", "D-01 R-01\n")
+        self.write(folder + "/tasks.md", "T001\n")
+        self.write(folder + "/traceability.json", json.dumps([{
+            "acceptance": "AC-01", "requirement": "REQ-01", "decision": "D-01",
+            "risk": "R-01", "tasks": ["T001"],
+            "implementation": "implementation.py", "oracle": "oracle.py",
+        }]))
+        artifact = self.write(folder + "/observation.txt", "controlled fixture observation\n")
+        paths = [folder + "/" + n for n in (
+            "spec.md", "plan.md", "tasks.md", "traceability.json",
+        )] + ["implementation.py", "oracle.py"]
+        evidence = {
+            "id": "E-01", "kind": "test", "command_or_method": "isolated fixture",
+            "observed_result": "fixture", "artifact": str(artifact.relative_to(self.root)),
+            "sha256": V.digest(artifact),
+        }
+        if version == 2:
+            evidence["inputs"] = [
+                {"path": p, "sha256": V.digest(self.root / p), "role": "contract"}
+                for p in paths
+            ]
+        self.write(folder + "/evidence.json", json.dumps({
+            "schema_version": version, "environment": "controlled fixture",
+            "limitations": ["Not a real execution observation"], "evidence": [evidence],
+            "requirements": [{
+                "id": "AC-01", "criterion": "fixture", "status": status,
+                "evidence_ids": ["E-01"],
+            }],
+        }))
+        self.write(folder + "/converge.md", projection([("AC-01", V.state(status))]))
+        return self.root / folder
+
+    def cli(self, *args):
+        return subprocess.run(
+            [sys.executable, str(ENTRY), "--root", str(self.root), *args],
+            capture_output=True, text=True,
+            env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1"),
+            check=False,
+        )
+
+
+class ConvergenceTests(ValidatorFixture):
+    def test_agreement_all_states_and_legacy_normalization(self):
+        for status in sorted(V.STATES):
+            with self.subTest(status=status):
+                self.assertEqual(V.convergence_errors(
+                    projection([("AC-01", status)]), {"AC-01"},
+                    {"requirements": [{"id": "AC-01", "status": status}]},
+                ), [])
+        for legacy, normalized in V.LEGACY_STATES.items():
+            self.assertEqual(V.convergence_errors(
+                projection([("AC-01", normalized)]), {"AC-01"},
+                {"requirements": [{"id": "AC-01", "status": legacy}]},
+            ), [])
+
+    def test_history_ignored_and_check_never_writes(self):
+        folder = self.feature("target", "UNVERIFIED")
+        (folder / "converge.md").write_text(
+            projection([("AC-01", "UNVERIFIED")]) + "\nHistorical AC-01 APPROVED.\n"
+        )
+        before = {p: p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
+        self.assertEqual(V.audit(self.root, check_convergence=True), [])
+        self.assertEqual(before, {p: p.read_bytes() for p in before})
+
+    def test_projection_mismatch_old_checker_misses_and_new_detects(self):
+        folder = self.feature("target", "UNVERIFIED")
+        (folder / "converge.md").write_text(projection([("AC-01", "APPROVED")]))
+        preimage = ROOT / "docs/validation/governance-corrections-20261114/before/sdd/tools/validate.py.bin"
+        loader = VerifiedSourceLoader(
+            "pre_correction_validator", preimage,
+            "6df3b403dc50d4d6aebcbd803a65af175ec4baf6f9c18afb21e183b0db2f3aa5",
+        )
+        old = load_verified(loader)
+        self.assertEqual(old.audit(self.root), [])
+        self.assertEqual(V.audit(self.root), [])  # Portable opt-in is retained.
+        self.assertTrue(any("status mismatch" in e for e in V.audit(
+            self.root, check_convergence=True,
+        )))
+        self.assertEqual(self.cli("--check-convergence").returncode, 1)
+
+    def test_bad_rows_and_marker_shapes_rejected(self):
+        folder = self.feature("target", "UNVERIFIED")
+        valid = projection([("AC-01", "UNVERIFIED")])
+        mutations = {
+            "missing-row": projection([]),
+            "duplicate-row": projection([("AC-01", "UNVERIFIED")] * 2),
+            "unknown-row": projection([("AC-01", "UNVERIFIED"), ("AC-99", "APPROVED")]),
+            "invalid-state": valid.replace("UNVERIFIED", "PENDING"),
+            "legacy-projection": valid.replace("UNVERIFIED", "NÃO VERIFICADO"),
+            "lowercase": valid.replace("UNVERIFIED", "unverified"),
+            "missing-block": "Historical AC-01 APPROVED\n",
+            "duplicate-block": valid + valid,
+            "missing-close": valid.replace("<!-- /sdd:current-status -->", ""),
+            "bad-header": valid.replace("Criterion", "Criteria"),
+            "inline-marker": valid.replace("<!-- sdd:current-status -->", "prefix <!-- sdd:current-status -->"),
+            "reversed": "<!-- /sdd:current-status -->\n<!-- sdd:current-status -->\n",
+            "blank-row": valid.replace("| AC-01", "\n| AC-01"),
+        }
+        for name, text in mutations.items():
+            with self.subTest(name=name):
+                (folder / "converge.md").write_text(text)
+                self.assertTrue(V.audit(self.root, check_convergence=True))
+
+    def test_missing_projection_file_and_missing_json_are_failures(self):
+        folder = self.feature("target")
+        (folder / "converge.md").unlink()
+        self.assertTrue(V.audit(self.root, check_convergence=True))
+        (folder / "evidence.json").unlink()
+        self.assertTrue(V.audit(self.root, check_convergence=True))
+
+    def test_manual_workflow_and_structure_mode_do_not_require_projection(self):
+        self.assertEqual(V.audit(self.root), [])
+        folder = self.feature("manual", "UNVERIFIED")
+        (folder / "converge.md").write_text("Manual notes\n")
+        (folder / "evidence.json").unlink()
+        self.assertEqual(V.audit(self.root, check_evidence=False), [])
+        self.assertNotEqual(self.cli("--structure-only", "--check-convergence").returncode, 0)
+        self.assertTrue(V.audit(self.root, False, check_convergence=True))
+
+
+class LinkScopeTests(ValidatorFixture):
+    def test_project_sibling_authority_and_portable_api_boundary(self):
+        self.write("docs/constitution.md", "authority\n")
+        self.write("sdd/constitution.md", "[authority](../docs/constitution.md#policy)\n")
+        self.assertEqual(V.audit(self.root), [])
+        self.assertEqual(V.markdown_errors(self.root / "sdd", self.root), [])
+        self.assertTrue(V.markdown_errors(self.root / "sdd"))
+        self.assertTrue(V.audit(self.root, link_scope="portable"))
+        self.assertEqual(self.cli().returncode, 0)
+        self.assertEqual(self.cli("--link-scope", "portable").returncode, 1)
+        (self.root / "docs/constitution.md").unlink()
+        self.assertTrue(V.audit(self.root))  # No fallback to original checkout.
+
+    def test_contained_and_external_links_and_fragments(self):
+        self.write("sdd/a b.md", "target\n")
+        self.write("sdd/README.md", "[local](a%20b.md#fragment) [fragment](#only) "
+                   "[web](https://example.invalid/missing) [web](//example.invalid/x)\n")
+        self.assertEqual(V.audit(self.root, link_scope="portable"), [])
+
+    def test_missing_and_escape_encoded_paths_both_scopes(self):
+        outside = self.root.parent / (self.root.name + "-outside.md")
+        outside.write_text("outside\n")
+        self.addCleanup(outside.unlink)
+        for target in ("missing.md", "../../" + outside.name, "%2e%2e/%2e%2e/" + outside.name):
+            self.write("sdd/README.md", f"[bad]({target})\n")
+            for scope in ("project", "portable"):
+                with self.subTest(target=target, scope=scope):
+                    self.assertTrue(V.audit(self.root, link_scope=scope))
+
+    def test_file_and_parent_symlinks_internal_external_and_encoded_rejected(self):
+        self.write("docs/authority.md", "authority\n")
+        (self.root / "docs/alias.md").symlink_to("authority.md")
+        (self.root / "docs/alias").symlink_to(self.root / "docs", target_is_directory=True)
+        (self.root / "docs/external").symlink_to(self.root.parent, target_is_directory=True)
+        for target in (
+            "../docs/alias.md", "../docs/alias/authority.md",
+            "../docs/%61lias/authority.md", "../docs/alias/../authority.md",
+            "../docs/external/" + self.root.name + "/docs/authority.md",
+        ):
+            self.write("sdd/README.md", f"[bad]({target})\n")
+            with self.subTest(target=target):
+                self.assertTrue(V.audit(self.root))
+        for target in ("docs/alias.md", "docs/alias/authority.md"):
+            with self.assertRaisesRegex(ValueError, "Symlink"):
+                V.local_file(self.root, target)
+
+    def test_symlink_model_and_parent_folder_rejected(self):
+        (self.root / "alias").symlink_to(self.root / "sdd", target_is_directory=True)
+        self.assertTrue(V.markdown_errors(self.root / "alias/templates", self.root))
+        with self.assertRaisesRegex(ValueError, "Symlink"):
+            V.audit(self.root, model="alias")
+
+    def test_standalone_skill_remains_folder_scoped(self):
+        self.write("skill/SKILL.md", "---\nname: sample\ndescription: fixture\n---\n[own](reference.md)\n")
+        self.write("skill/reference.md", "fixture\n")
+        self.assertEqual(V.skill_errors(self.root / "skill"), [])
+        self.write("skill/reference.md", "[sibling](../oracle.py)\n")
+        self.assertTrue(V.skill_errors(self.root / "skill"))
+        for mode in ("project", "portable"):
+            self.assertEqual(self.cli("--skill", str(self.root / "skill"), "--link-scope", mode).returncode, 2)
+
+
+class FeatureSelectionTests(ValidatorFixture):
+    def test_selected_approved_fresh_feature_beside_unverified_sibling(self):
+        self.feature("approved")
+        self.feature("unfinished", "UNVERIFIED")
+        self.assertEqual(V.audit(
+            self.root, require_approved=True, require_fresh=True,
+            feature_names=["approved"], check_convergence=True,
+        ), [])
+        result = self.cli("--feature", "approved", "--require-approved", "--require-fresh", "--check-convergence")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("Selected features: approved", result.stdout)
+        self.assertTrue(V.audit(self.root, require_approved=True))
+        self.assertTrue(V.audit(self.root, require_approved=True, feature_names=["unfinished"]))
+
+    def test_all_selected_acceptance_gates_still_apply(self):
+        folder = self.feature("target")
+        self.assertEqual(V.audit(self.root, require_approved=True, require_fresh=True, feature_names=["target"]), [])
+        mutations = ("stale", "missing-trace", "artifact", "missing-binding", "duplicate-json")
+        original = {p: p.read_bytes() for p in folder.iterdir()}
+        for mutation in mutations:
+            with self.subTest(mutation=mutation):
+                if mutation == "stale":
+                    (folder / "plan.md").write_text("D-01 R-01 changed\n")
+                elif mutation == "missing-trace":
+                    (folder / "traceability.json").unlink()
+                elif mutation == "artifact":
+                    (folder / "observation.txt").write_text("tampered\n")
+                elif mutation == "missing-binding":
+                    path = folder / "evidence.json"
+                    doc = json.loads(path.read_text())
+                    doc["evidence"][0]["inputs"].pop()
+                    path.write_text(json.dumps(doc))
+                else:
+                    path = folder / "evidence.json"
+                    path.write_text(path.read_text().replace('"schema_version": 2', '"schema_version": 2, "schema_version": 2'))
+                self.assertTrue(V.audit(self.root, require_approved=True, require_fresh=True, feature_names=["target"]))
+                for path, content in original.items():
+                    path.write_bytes(content)
+
+    def test_schema_one_is_not_fresh(self):
+        self.feature("legacy", version=1)
+        self.assertEqual(V.audit(self.root, feature_names=["legacy"]), [])
+        self.assertTrue(any("schema_version 2" in e for e in V.audit(
+            self.root, feature_names=["legacy"], require_fresh=True,
+        )))
+
+    def test_multiple_deduplicated_names_and_custom_container(self):
+        for name in ("a", "b"):
+            self.feature(name, container="custom/features")
+        result = self.cli("--features", "custom/features", "--feature", "b", "--feature", "a", "--feature", "b", "--require-approved")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("Selected features: a, b", result.stdout)
+        self.assertEqual(V.audit(self.root, features="custom/features", feature_names=["a", "b"], check_convergence=True), [])
+
+    def test_unknown_empty_and_escaping_names_fail(self):
+        self.feature("target")
+        for name in ("unknown", "", " ", ".", "..", "../target", "a/b", "a\\b", "/target", "target "):
+            with self.subTest(name=name):
+                self.assertTrue(V.audit(self.root, feature_names=[name]))
+                self.assertNotEqual(self.cli("--feature", name).returncode, 0)
+        self.assertTrue(V.audit(self.root, feature_names=[]))
+
+    def test_invalid_and_mistaken_feature_containers_fail(self):
+        self.feature("target")
+        self.write("container-file", "fixture\n")
+        for container in ("", "missing", "container-file", "../escape", "sdd/features/target"):
+            with self.subTest(container=container):
+                self.assertTrue(V.audit(self.root, features=container, feature_names=["target"]))
+                self.assertNotEqual(self.cli("--features", container, "--feature", "target").returncode, 0)
+        errors = V.audit(self.root, features="sdd/features/target")
+        self.assertTrue(any("container, not a feature" in e for e in errors))
+
+    def test_zero_match_and_symlink_feature_or_container_fail(self):
+        (self.root / "empty").mkdir()
+        self.assertTrue(V.audit(self.root, features="empty", feature_names=["target"]))
+        self.feature("target")
+        (self.root / "sdd/features/alias").symlink_to("target", target_is_directory=True)
+        self.assertTrue(V.audit(self.root, feature_names=["alias"]))
+        (self.root / "alias-container").symlink_to(self.root / "sdd", target_is_directory=True)
+        self.assertTrue(V.audit(self.root, features="alias-container/features", feature_names=["target"]))
+
+    def test_shared_links_and_bridges_remain_checks_with_selection(self):
+        self.feature("target")
+        self.write("sdd/shared.md", "[missing](missing.md)\n")
+        self.assertTrue(V.audit(self.root, feature_names=["target"]))
+        self.write("sdd/shared.md", "resolved\n")
+        self.write("sdd/chain/sample.md", "---\nskill: sample\nskill_path: UNCONFIGURED\nbridge_version: 1\n---\n")
+        self.assertTrue(V.audit(self.root, feature_names=["target"]))
+
+    def test_selected_set_filters_schema_and_convergence_of_siblings(self):
+        self.feature("target")
+        sibling = self.feature("sibling", "UNVERIFIED")
+        (sibling / "evidence.json").write_text("not json\n")
+        (sibling / "converge.md").write_text("manual history\n")
+        self.assertEqual(V.audit(self.root, feature_names=["target"], check_convergence=True), [])
+        self.assertTrue(V.audit(self.root, check_convergence=True))
+
+    def test_existing_positional_apis_keep_their_meaning(self):
+        self.feature("target")
+        self.assertEqual(V.audit(self.root, True, True, "sdd/features", "sdd", True), [])
+        self.assertEqual(V.feature_errors(self.root, True, True, self.root / "sdd/features", True), [])
+
+    def test_mode_exclusions_and_explicit_link_scope(self):
+        self.feature("target")
+        for options in (
+            ("--structure-only", "--require-fresh"),
+            ("--structure-only", "--require-approved"),
+            ("--structure-only", "--check-convergence"),
+            ("--skill", str(self.root), "--feature", "target"),
+            ("--skill", str(self.root), "--check-convergence"),
+            ("--skill", str(self.root), "--model", "sdd"),
+            ("--skill", str(self.root), "--features", ""),
+        ):
+            with self.subTest(options=options):
+                self.assertEqual(self.cli(*options).returncode, 2)
+        self.assertEqual(self.cli("--structure-only", "--feature", "target").returncode, 0)
+
+
+
+
+class VerifiedLoaderTests(unittest.TestCase):
+    def test_validated_bytes_ignore_changed_source_and_bytecode_reads(self):
+        with tempfile.TemporaryDirectory(prefix="ox-verified-loader-") as temp:
+            path = Path(temp) / "snapshot.py"
+            source = b"VALUE = 7\n"
+            path.write_bytes(source)
+            expected = hashlib.sha256(source).hexdigest()
+            loader = VerifiedSourceLoader("verified_snapshot", path, expected)
+            path.write_bytes(b"raise RuntimeError('unverified source')\n")
+
+            def forbidden_read(_path):
+                raise AssertionError("Source or bytecode cache was reread")
+
+            loader.get_data = forbidden_read
+            self.assertEqual(load_verified(loader).VALUE, 7)
+            with self.assertRaisesRegex(ValueError, "snapshot changed"):
+                VerifiedSourceLoader("changed_snapshot", path, expected)
+
+
+if __name__ == "__main__":
+    unittest.main()

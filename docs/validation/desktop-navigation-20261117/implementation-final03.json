@@ -1,0 +1,39 @@
+{
+  "checks": [
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "application/Cargo.toml",
+        "-p",
+        "ox-ui",
+        "--offline"
+      ],
+      "exit": 0,
+      "log": "implementation-final03-test.log"
+    },
+    {
+      "command": [
+        "cargo",
+        "build",
+        "--manifest-path",
+        "application/Cargo.toml",
+        "-p",
+        "ox-app",
+        "--offline"
+      ],
+      "exit": 0,
+      "log": "implementation-final03-build.log"
+    }
+  ],
+  "inputs": {
+    "application/crates/ox-ui/src/desktop.rs": "5e9d2889d63cd0c31328f43f8149b4aaffaaed97bc60e1a791551f5a006b905b",
+    "application/crates/ox-ui/src/desktop/views.rs": "2a60c773cc5c4d2ee9b0595e712d2de57c4ed208eebb44c6f4c557202036a27f",
+    "application/crates/ox-ui/src/desktop/identity.rs": "d93b8401dfd08f71cda577811867e40457cb46aff515671a077f54a3af447a55",
+    "application/crates/ox-ui/src/desktop/icons.rs": "eccfbd5334854a18ae897dbe6a4a6ff063270307144d668f68705dd1d46fcbce",
+    "application/crates/ox-ui/src/desktop/splitter.rs": "75c33a9192d5afb6905872614fee3ea9a044e8a12dcdd68b13a650d98dc5796a",
+    "application/crates/ox-ui/src/desktop/hint.rs": "e6985401ddc26c21e85b725472702503c6402a7283fcf2b14b1b7b320fadf632",
+    "application/target/debug/ox": "55bb67c7a76ca36b4dac9e8c48931fe814627dfeae9b6c6ac3b337d5ef818a23"
+  }
+}

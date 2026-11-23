@@ -1,0 +1,14 @@
+import hashlib,json,subprocess,sys,time
+from pathlib import Path
+root=Path('/home/rodrigo/Projetos/ox')
+script=Path('/tmp/ox-r3-consumer-demonstration-final-03.py')
+out=Path('/tmp/ox-r3-consumer-observe-03');out.mkdir(exist_ok=False)
+paths=sorted((root/'tools/governance/scripts').glob('*.py'))+sorted((root/'tools/governance/tests').glob('*.py'))+[script,Path(__file__)]
+def manifest():return {str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+before=manifest();(out/'inputs-before.json').write_text(json.dumps(before,indent=2)+'\n');start=time.time()
+with (out/'stdout.log').open('wb') as stdout,(out/'stderr.log').open('wb') as stderr:
+ result=subprocess.run([sys.executable,str(script)],cwd=root,stdout=stdout,stderr=stderr,check=False)
+after=manifest();(out/'inputs-after.json').write_text(json.dumps(after,indent=2)+'\n')
+changes=[p for p in before if before[p]!=after.get(p)]
+(out/'result.json').write_text(json.dumps({'command':[sys.executable,str(script)],'cwd':str(root),'exit_code':result.returncode,'duration_seconds':time.time()-start,'input_changes':changes,'limitations':['Executor manifest covers all governance Python scripts and tests plus this supervisor and demo. Fixture initial manifest binds data separately. Not package/full proof.']},indent=2)+'\n')
+raise SystemExit(result.returncode if result.returncode else (1 if changes else 0))

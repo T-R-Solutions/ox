@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "transitions": [
+    {
+      "path": "tools/governance/tests/test_readme_skill_integration.py",
+      "version": 1,
+      "anchor": "log-repair-20261115",
+      "before": {
+        "path": "docs/validation/r3-remediation-20261118/baseline-sources/tools/governance/tests/test_readme_skill_integration.py.bin",
+        "sha256": "ff232b80d7b6c21656b6a43a03eb0e611626cb481c5e1639e902cdd40e8fea97"
+      },
+      "after_sha256": "c26a360faee78328e46527a91140f98f362eed7fc563a9d7e2de2881e8d32484",
+      "decision": {
+        "path": "docs/decisions/governance-authority-contracts.md",
+        "sha256": "d7f95b6bc0e6834bf528a7698994396c8d1c46cfa63b30cc522990f9e94edbc7"
+      },
+      "review": {
+        "path": "docs/validation/r3-remediation-20261118/oracle-review-v1.json",
+        "sha256": "903b31755a26562710d0493dfbab8ce01a7b44b606557e45c70cd6d83e4344c8"
+      }
+    },
+    {
+      "path": "tools/governance/scripts/governance_support.py",
+      "version": 1,
+      "anchor": "document-ledger-20261117",
+      "before": {
+        "path": "docs/validation/r3-remediation-20261118/baseline-sources/tools/governance/scripts/governance_support.py.bin",
+        "sha256": "b7e4bfeac8294e9e44660991b14ac0452d3ca50e513561f471129999b9c0df30"
+      },
+      "after_sha256": "e7b820655c0086334f25ac7049152bf9c112a9c487eeb8d8f497947552f2884f",
+      "decision": {
+        "path": "docs/decisions/governance-local-package-inspection.md",
+        "sha256": "85b6251bc60270f6dc0e55a255ff57ac134b1b37cdd340d0f25ab8f714ce19b3"
+      },
+      "review": {
+        "path": "docs/validation/r3-remediation-20261118/package-integration/helper-v1.json",
+        "sha256": "c30fd75cdd9ba56ba85431f713033cd526b4fdbf4a7d6e1c652aaa10b7ecf9e7"
+      }
+    },
+    {
+      "path": "tools/governance/scripts/package-ox.py",
+      "version": 1,
+      "anchor": "log-repair-20261115",
+      "before": {
+        "path": "docs/validation/r3-remediation-20261118/baseline-sources/tools/governance/scripts/package-ox.py.bin",
+        "sha256": "8f06fa93a506ba8037e1708bd5530c456d6fe001885f036e250917d6cd077de0"
+      },
+      "after_sha256": "0f3f2491fb8a41b2d488b1364ba0b87f6b0f7299793c83801b11e97d6ec465e6",
+      "decision": {
+        "path": "docs/decisions/governance-local-package-inspection.md",
+        "sha256": "85b6251bc60270f6dc0e55a255ff57ac134b1b37cdd340d0f25ab8f714ce19b3"
+      },
+      "review": {
+        "path": "docs/validation/r3-remediation-20261118/package-integration/package-v1.json",
+        "sha256": "5d4bf9b98f2eaf2b8cf92d9cba602bf9eb81572bd2ff031cc6a6dede8bbb385f"
+      }
+    },
+    {
+      "path": "tools/governance/scripts/governance_support.py",
+      "version": 2,
+      "anchor": "document-ledger-20261117",
+      "before": {
+        "path": "docs/validation/r3-remediation-20261118/observation-integration/before/tools/governance/scripts/governance_support.py.bin",
+        "sha256": "e7b820655c0086334f25ac7049152bf9c112a9c487eeb8d8f497947552f2884f"
+      },
+      "after_sha256": "182afcb5f8a68e821fd883bab98bf29d518064a67e99fa79cba14d9ce54d30a5",
+      "decision": {
+        "path": "docs/decisions/governance-observation-reuse.md",
+        "sha256": "0eada2d58b2f9bfb49eeca23dba2af3c2805f0a4a2720d4637d6b46255e67d91"
+      },
+      "review": {
+        "path": "docs/validation/r3-remediation-20261118/observation-integration/helper-v2-review.json",
+        "sha256": "20eafabe8494c9401434e1e5df70c797f004a60dd8cfc94e9c1ea70c179ea9c7"
+      }
+    },
+    {
+      "path": "sdd/features/dependency-hygiene/converge.md",
+      "version": 1,
+      "anchor": "instruction-governance-20261114",
+      "before": {
+        "path": "docs/validation/r3-remediation-20261118/vendor-integration/feature-before/converge.md.bin",
+        "sha256": "6c126c2b0ac73dfdd5ce7dcd08688675c5a337e2dc127e9f1c509f69a80c40a0"
+      },
+      "after_sha256": "175ed17576fe5e3bfa3aec3790aa9dd8ed6e82b03c86179682a11a655e86a19f",
+      "decision": {
+        "path": "docs/decisions/governance-instruction-data-succession.md",
+        "sha256": "aac8417a6bc41a653f7cad829dc6c2d673f127d3d9005887daae50e844db7c57"
+      },
+      "review": {
+        "path": "docs/validation/r3-remediation-20261118/instruction-anchor-integration/converge-v1-review.json",
+        "sha256": "d372994f3ed4978974dda2218a3b0e60cccb4a312d844ee1f37fb337a0c7be9d"
+      }
+    },
+    {
+      "path": "sdd/features/product-bootstrap/converge.md",
+      "version": 1,
+      "anchor": "instruction-governance-20261114",
+      "before": {
+        "path": "docs/validation/r3-remediation-20261118/native-criteria-integration/before/sdd/features/product-bootstrap/converge.md.bin",
+        "sha256": "bb3d239a77faa83c6e5cdfacc947fe94ceeef465bfed825e3bdea907db8c54b3"
+      },
+      "after_sha256": "18c4914295690d4e0ce20fdedba563481316af446617ac3e79272fecef5c7620",
+      "decision": {
+        "path": "docs/decisions/governance-native-projection-succession.md",
+        "sha256": "5ac4961980bd3e4d8ba5220e9bdad3914c930126abee2f3de6a5e44ae6ff94b1"
+      },
+      "review": {
+        "path": "docs/validation/r3-remediation-20261118/native-criteria-integration/product-bootstrap-projection-review.json",
+        "sha256": "6da5d2d1815dc56b5e473313e65adc39109c68f7afe6d0ceb301a2e5646a1dfc"
+      }
+    },
+    {
+      "path": "sdd/features/product-local-task-ui/converge.md",
+      "version": 1,
+      "anchor": "instruction-governance-20261114",
+      "before": {
+        "path": "docs/validation/r3-remediation-20261118/native-criteria-integration/before/sdd/features/product-local-task-ui/converge.md.bin",
+        "sha256": "43b6fa32e02e5ff213d581fcbaa7bede8e012dbded5b5e1ef3582dbeffd86314"
+      },
+      "after_sha256": "1b0f85a95f72dce7267c4433a876ed9cfcd260bb51f138b712eeec402c6c22ba",
+      "decision": {
+        "path": "docs/decisions/governance-native-projection-succession.md",
+        "sha256": "5ac4961980bd3e4d8ba5220e9bdad3914c930126abee2f3de6a5e44ae6ff94b1"
+      },
+      "review": {
+        "path": "docs/validation/r3-remediation-20261118/native-criteria-integration/product-local-task-ui-projection-review.json",
+        "sha256": "5efde37ef77a29aeddc19bcef40031915a088981439f5ee3d11c1e1ba09418a6"
+      }
+    }
+  ]
+}

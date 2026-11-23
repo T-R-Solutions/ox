@@ -83,7 +83,7 @@ ponte de mensagens e acompanha trabalho delegado até o resultado.
 | Capacidade ou contexto independente necessário ausente em tarefa material | Concluir análise/plano independente autorizado; bloquear execução dependente e registrar condição exata de retomada |
 
 A rota direta exige todas as condições locais do workflow; tamanho de diff não
-basta. Esta alteração de política/checker é de risco material. Falta de ferramenta
+basta. A alteração de política/checker de configuration-cohesion (14/11/2026) foi classificada como material. Falta de ferramenta
 não converte alto risco em reparo simples. Restrições do usuário/host prevalecem;
 raiz não chama autorrevisão de validação independente nem simula troca de modelo.
 Reclassifique ao surgir risco material e preserve o trabalho válido.
@@ -181,7 +181,7 @@ Confirme comandos e pré-requisitos no [README](../../README.md),
 [projeto](../../sdd/project.md) e [scripts](../../scripts/README.md).
 `--features` recebe um diretório de features; `--feature NAME` é repetível e
 seleciona filhos diretos completos. O contrato de seleção e os checks compartilhados
-estão em [evidence.md](../../sdd/evidence.md#select-whole-features). Para esta feature:
+estão em [evidence.md](../../sdd/evidence.md#select-whole-features). Exemplo de seleção da feature configuration-cohesion:
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --features sdd/features --feature configuration-cohesion --require-approved --require-fresh --check-convergence

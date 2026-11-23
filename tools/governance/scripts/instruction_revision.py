@@ -27,9 +27,13 @@ def records(root):
 
 
 def predecessor(root, relative, data):
+    from document_ledger import succession_predecessor
     from log_repair_revision import predecessor as log_predecessor
     from readme_revision import file
+    from visual_skill_revision import predecessor as visual_skill_predecessor
     rows = records(root)  # Authenticate the immutable historical registry first.
+    data = succession_predecessor(root, relative, data)
+    data = visual_skill_predecessor(root, relative, data)
     data = log_predecessor(root, relative, data)
     for row in rows:
         if row['destination'] != relative:
@@ -48,6 +52,7 @@ def predecessor(root, relative, data):
 def errors(root):
     from pathlib import Path
 
+    from document_ledger import succession_predecessor
     from governance_support import product_record
     from readme_revision import file
     result = []
@@ -69,7 +74,10 @@ def errors(root):
             current = file(root, name).read_bytes()
             from log_repair_revision import original_branch
             from log_repair_revision import predecessor as log_predecessor
-            normalized = log_predecessor(root, name, current)
+            from visual_skill_revision import predecessor as visual_skill_predecessor
+            normalized = succession_predecessor(root, name, current)
+            normalized = visual_skill_predecessor(root, name, normalized)
+            normalized = log_predecessor(root, name, normalized)
             expected = row['previous_sha256'] if original_branch(root, name, current) else row['sha256']
             if hashlib.sha256(normalized).hexdigest() != expected:
                 result.append('Instruction current changed: ' + name)

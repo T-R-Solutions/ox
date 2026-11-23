@@ -1,0 +1,48 @@
+--- scripts/lib/progress.sh.rejected-p2
++++ scripts/lib/progress.sh
+@@ -257,7 +257,7 @@
+             # Materialize the bounded bytes so every producer failure is checked.
+             head -c 65536 -- "${sample}" >"${sample}.bounded" || return 2
+             mv -- "${sample}.bounded" "${sample}" || return 2
+-            sample_sha=$(sha256sum -- "${sample}") || return 2
++            sample_sha=$(sha256sum <"${sample}") || return 2
+             sample_sha=${sample_sha:0:64}
+             # jq replaces invalid UTF-8 with U+FFFD; rejecting every non-ASCII
+             # record below makes that replacement explicit as unrecognized data.
+--- scripts/tests/test_governance_diagnostics.py.rejected-p2
++++ scripts/tests/test_governance_diagnostics.py
+@@ -220,6 +220,23 @@
+         out = self.project(b'x' * 100000)['streams'][0]
+         self.assertTrue(out['truncated'])
+         self.assertEqual(out['recognized'], 0)
++
++    def test_sample_hashes_ignore_directory_filename_escaping(self):
++        raw = LINE * 2
++        expected_hash = hashlib.sha256(raw).hexdigest()
++        for name in ('ordinary', 'back\\slash', 'line\nbreak'):
++            with self.subTest(directory=name):
++                self.directory = self.root / name
++                self.directory.mkdir()
++                projection = self.project(raw)
++                self.assertEqual(projection['selected'], ['stdout'])
++                out = projection['streams'][0]
++                self.assertEqual(out['recognized'], 2)
++                self.assertEqual(sum(group['count'] for group in out['groups']), 2)
++                self.assertFalse(out['truncated'])
++                self.assertEqual(out['raw_sha256'], expected_hash)
++                self.assertEqual(out['sample_sha256'], expected_hash)
++                self.assertEqual((self.directory / 'stdout.log').read_bytes(), raw)
+ 
+ 
+ class RunnerDiagnosticsTests(unittest.TestCase):
+--- scripts/config/automation.json.rejected-p2
++++ scripts/config/automation.json
+@@ -281,7 +281,7 @@
+         "tools/governance/tests/test_instruction_routes.py": "0ee5604983175afb6ed0286d7ac9e0bf161e3e8b7f9daf70d3246681403ab01f",
+         "tools/governance/tests/test_instruction_validator.py": "40c93a52aa90d4811e9c032831be6dec8a03c37aee74d575f949db5108c43924",
+         "scripts/tests/test_terminal_progress.py": "665987e42c74b38db9c21d09b26155473c32550ac45d59c6f6cbbf254c99855f",
+-        "scripts/tests/test_governance_diagnostics.py": "107db57caa625602018a374f0474d395e8d001f4badabefa07487e0ca40933c0",
++        "scripts/tests/test_governance_diagnostics.py": "dacaaf252325e47835ad13c1a269e4036fc321414d28801fe12f2aedfa07e032",
+         "tools/governance/tests/test_historical_link_resolution.py": "d77f0c7ad8c510422776121ab430df82e4c4df032479b9b388f0856c40fd6cc6"
+       },
+       "policy_files": {

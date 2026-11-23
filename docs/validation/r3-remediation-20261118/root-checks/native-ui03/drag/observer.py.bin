@@ -1,0 +1,134 @@
+"""Private real-pointer sidebar drag supplement; no primary desktop or product hooks."""
+from pathlib import Path
+import hashlib,importlib.util,json,os,re,struct,subprocess,sys,time,traceback
+sys.dont_write_bytecode=True
+from PIL import Image
+ROOT=Path('/home/rodrigo/Projetos/ox');OUT=Path('/tmp/ox-r3-drag-probe-01')
+if OUT.exists():raise SystemExit('Refuse overwrite')
+spec=importlib.util.spec_from_file_location('native',ROOT/'docs/validation/f0-resumption-20261103/native-session.py');native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
+class ObservedSession(native.Session):
+ def sample(self,sink):
+  sample=sink.emit('pull-sample');buffer=sample.get_buffer();caps=sample.get_caps().get_structure(0);w=caps.get_value('width');h=caps.get_value('height');raw=buffer.extract_dup(0,buffer.get_size());received=time.monotonic()
+  self.latest=(received,w,h,raw);self.frames.append(received)
+  clock=self.pipeline.get_clock() if self.pipeline is not None else None
+  metadata={'received_monotonic':received,'pts_ns':int(buffer.pts),'dts_ns':int(buffer.dts),'duration_ns':int(buffer.duration),'pipeline_base_ns':int(self.pipeline.get_base_time()) if self.pipeline is not None else None,'clock_now_ns':int(clock.get_time()) if clock is not None else None,'note':'receipt time alone does not prove production/presentation after an input'}
+  self.capture_state=((received,w,h,raw),metadata)
+  return native.Gst.FlowReturn.OK
+source_before=hashlib.sha256(Path(__file__).read_bytes()).hexdigest();session_before=hashlib.sha256(Path(spec.origin).read_bytes()).hexdigest()
+session=None;app=None;log=None
+record={'scope':'real sidebar press/move/release and post-release move; private desktop, no product hooks','observer_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'session_mechanism_sha256':hashlib.sha256(Path(spec.origin).read_bytes()).hexdigest(),'events':[],'dont_write_bytecode':sys.dont_write_bytecode,'PYTHONDONTWRITEBYTECODE':os.environ.get('PYTHONDONTWRITEBYTECODE')}
+def chord(mod,key):session.key(mod,True);session.key(key);session.key(mod,False)
+def click(x,y):
+ session.call('RemoteDesktop',session.rd,'NotifyPointerMotionAbsolute','(sdd)',(session.stream,float(x),float(y)));time.sleep(.15)
+ for pressed in [True,False]:
+  record['events'].append({'time':time.monotonic(),'xy':[x,y],'pressed':pressed})
+  session.call('RemoteDesktop',session.rd,'NotifyPointerButton','(ib)',(272,pressed))
+ time.sleep(.2)
+def roi():
+ (stamp,w,h,raw),metadata=session.capture_state
+ return Image.frombytes('RGB',(w,h),raw,'raw','RGB',len(raw)//h).crop((180,80,508,224)).tobytes()
+def shot(name):
+ time.sleep(.15);(stamp,w,h,raw),metadata=session.capture_state
+ picture=Image.frombytes('RGB',(w,h),raw,'raw','RGB',len(raw)//h);target=OUT/(name+'.png');picture.save(target)
+ session.events.append({'time':time.monotonic(),'capture':name,'frame_time':stamp,'size':[w,h]})
+ record.setdefault('captures',[]).append({'name':name,'path':str(target),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'capture_monotonic':time.monotonic(),'buffer':dict(metadata),'roi_pixel_sha256':hashlib.sha256(picture.crop((180,80,508,224)).tobytes()).hexdigest()})
+ return (stamp,w,h,raw),dict(metadata)
+def changed(previous,label):session.wait(lambda:roi()!=previous,label,timeout=5)
+def geometry():
+ pairs=re.findall(r'xdg_toplevel#\d+\.configure\((\d+), (\d+),',(OUT/'wayland.log').read_text())
+ return next(((int(w),int(h)) for w,h in reversed(pairs) if int(w)>0 and int(h)>0),None)
+try:
+ session=ObservedSession(OUT,'2560x1000',1)
+ source=ROOT/'docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/actual-history-before-corruption.bin';data=source.read_bytes();state=OUT/'state';(state/'ox').mkdir(parents=True);(state/'ox/recent-projects.v1').write_bytes(data)
+ if data[:8]!=b'OXRECENT' or struct.unpack_from('<II',data,8)!=(1,1):raise RuntimeError('Unexpected observed snapshot envelope')
+ length,=struct.unpack_from('<I',data,16)
+ if len(data)!=20+length:raise RuntimeError('Unexpected observed snapshot framing')
+ project=Path(data[20:].decode('utf8'))
+ if project.is_symlink() or not project.is_dir() or not project.is_relative_to(Path('/tmp/ox-r3-wc-07/projects')):raise RuntimeError('Unexpected actual predecessor project')
+ def project_inventory():
+  return [{'path':str(p.relative_to(project)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest() if p.is_file() else None,'is_directory':p.is_dir()} for p in sorted(project.rglob('*'))]
+ project_before=project_inventory();record['project_before']=project_before
+ record['fixture']={'source':str(source),'sha256':hashlib.sha256(data).hexdigest(),'method':'exact snapshot really published by final app in WC07; actual private project still exists, no synthetic project/history','private_state':str(state)}
+ session.call('RemoteDesktop',session.rd,'NotifyPointerMotionAbsolute','(sdd)',(session.stream,1.0,1.0))
+ env=dict(session.env,WAYLAND_DEBUG='1',OX_VALIDATION_SESSION='recent-menu-probe',XDG_STATE_HOME=str(state),XDG_DATA_HOME=str(OUT/'data'),XDG_CONFIG_HOME=str(OUT/'config'),XDG_CACHE_HOME=str(OUT/'cache'))
+ binary=ROOT/'application/target/debug/ox';before=hashlib.sha256(binary.read_bytes()).hexdigest();record['binary_before']=before
+ log=(OUT/'wayland.log').open('w');app=subprocess.Popen([str(binary)],cwd=ROOT,env=env,stdout=log,stderr=log);session.children.append(app)
+ session.wait(lambda:'xdg_toplevel' in (OUT/'wayland.log').read_text(),'native toplevel');time.sleep(.6);session.key(0xFFE1);session.wait(lambda:'.enter(' in (OUT/'wayland.log').read_text(),'keyboard focus')
+ if geometry()!=(2560,1000):chord(0xFFE9,0xFFC7)
+ session.wait(lambda:geometry()==(2560,1000),'actual2560x1000');record['geometry']=list(geometry())
+ for _ in range(6):session.key(0xFF09)
+ session.key(0xFF0D);session.wait(lambda:'.set_title("Tarefas — new — Ox' in (OUT/'wayland.log').read_text(),'actual recent reopen');time.sleep(.3);shot('initial-tasks')
+ # Capture columns across a long vertical band. The source's actual splitter is
+ # six logical pixels wide at x256 initially. The predicate is an observed raster
+ # geometry oracle; an independent review must also inspect the saved frames.
+ def image():
+  (stamp,w,h,raw),metadata=session.capture_state
+  return Image.frombytes('RGB',(w,h),raw,'raw','RGB',len(raw)//h)
+ def signature(picture,x):
+  return tuple(picture.getpixel((x+dx,y)) for y in range(300,900) for dx in range(6))
+ def matches(picture,x,reference):
+  actual=signature(picture,x)
+  return sum(max(abs(a-b) for a,b in zip(pixel,prior))<=1 for pixel,prior in zip(actual,reference))/len(reference)
+ def divider_position(reference,picture=None):
+  if picture is None:picture=image()
+  scores=[(matches(picture,x,reference),x) for x in range(180,451)]
+  candidates=[(score,x) for score,x in scores if score>=0.99]
+  if len(candidates)!=1:return None
+  return candidates[0][1]
+ def move(x,y):
+  record['events'].append({'kind':'pointer_motion','time':time.monotonic(),'xy':[x,y]})
+  session.call('RemoteDesktop',session.rd,'NotifyPointerMotionAbsolute','(sdd)',(session.stream,float(x),float(y)));time.sleep(.2)
+ def button(pressed):
+  record['events'].append({'kind':'pointer_button','time':time.monotonic(),'button':272,'pressed':pressed})
+  session.call('RemoteDesktop',session.rd,'NotifyPointerButton','(ib)',(272,pressed));time.sleep(.2)
+ move(1000,230);time.sleep(.3);shot('drag-before')
+ reference=signature(image(),256)
+ initial=divider_position(reference)
+ if initial!=256:raise RuntimeError('Initial splitter raster geometry ambiguous: '+str(initial))
+ move(259,400);button(True)
+ for x in [279,299,319,339]:move(x,400)
+ shot('drag-held')
+ button(False);move(1000,230)
+ session.wait(lambda:divider_position(reference)==336,'actual divider moved80pixels after real drag',timeout=10)
+ shot('drag-after-release')
+ if matches(image(),256,reference)>=0.99:raise RuntimeError('Original divider column still matches after displacement')
+ record['divider_positions']=[{'stage':'before','x':initial},{'stage':'after_release','x':divider_position(reference)}]
+ # A public, visible button hover is the post-motion redraw witness. Receipt
+ # time is only a sample identity aid: actual hover appearance and pointer
+ # protocol must be inspected independently; it is not presentation timing.
+ witness_box=(356,528,495,570)
+ pre_hover=image().crop(witness_box).tobytes()
+ pre_hover_received=session.capture_state[1]['received_monotonic']
+ shot('before-unpressed-hover-witness')
+ move(419,400);move(420,548)
+ session.wait(lambda:session.capture_state[1]['received_monotonic']>pre_hover_received and image().crop(witness_box).tobytes()!=pre_hover,'new sample with public button-hover witness after unpressed motion',timeout=10)
+ captured,metadata=shot('drag-after-unpressed-motion')
+ # Bind crop and geometry to the immutable sample just retained above.
+ stamp,w,h,raw=captured
+ witness_picture=Image.frombytes('RGB',(w,h),raw,'raw','RGB',len(raw)//h)
+ witness=witness_picture.crop(witness_box)
+ witness.save(OUT/'post-motion-hover-witness.png')
+ record['redraw_witness']={'kind':'public Validate-directory button hover, without click','box':list(witness_box),'pre_hover_received_monotonic':pre_hover_received,'captured_buffer':dict(metadata),'before_crop_sha256':hashlib.sha256(pre_hover).hexdigest(),'after_crop_sha256':hashlib.sha256(witness.tobytes()).hexdigest(),'limitations':'Receipt alone does not prove production/presentation; independently inspect hover appearance, pointer protocol and divider in saved frame.'}
+ if divider_position(reference,witness_picture)!=336:raise RuntimeError('Sidebar continued moving after button release')
+ if matches(witness_picture,256,reference)>=0.99:raise RuntimeError('Original divider column reappeared')
+ record['divider_positions'].append({'stage':'after_unpressed_motion','x':divider_position(reference,witness_picture)})
+ record['pointer_protocol']=[line for line in (OUT/'wayland.log').read_text().splitlines() if 'wl_pointer' in line and any(t in line for t in ['.motion(','.button('])]
+ chord(0xFFE9,0xFFC1);session.wait(lambda:app.poll() is not None,'natural close');record['natural_exit']=app.returncode
+ if app.returncode!=0:raise RuntimeError('Nonzero natural exit')
+ record['binary_after']=hashlib.sha256(binary.read_bytes()).hexdigest()
+ if before!=record['binary_after']:raise RuntimeError('Binary drift')
+ record['project_after']=project_inventory()
+ if record['project_after']!=project_before or list(project.glob('.ox-task-*')):raise RuntimeError('Project changed/task started by navigation')
+ record['result']='observed: real-pointer drag moved splitter256to336 and unpressed motion preserved336; independent image inspection required'
+except Exception as error:
+ record['error']=str(error);traceback.print_exc()
+ if session:
+  try:shot('failure')
+  except Exception:pass
+finally:
+ if session:session.close()
+ if log:log.close()
+ record['source_after_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest();record['session_after_sha256']=hashlib.sha256(Path(spec.origin).read_bytes()).hexdigest()
+ if record['source_after_sha256']!=source_before or record['session_after_sha256']!=session_before:record['error']='observing source/session drift';record['result']='INCONCLUSIVE due to source drift'
+ OUT.mkdir(exist_ok=True);(OUT/'observer.py.bin').write_bytes(Path(__file__).read_bytes());(OUT/'result.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps({k:v for k,v in record.items() if k not in ['events','captures','pointer_protocol']}),flush=True)
+raise SystemExit(1 if 'error' in record else 0)

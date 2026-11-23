@@ -1,0 +1,84 @@
+[
+  {
+    "acceptance": "AC-01",
+    "requirement": "REQ-01",
+    "decision": "D-01",
+    "risk": "R-01",
+    "tasks": [
+      "T002"
+    ],
+    "implementation": "docs/design/tokens.json",
+    "oracle": "application/tools/check_contrast.py"
+  },
+  {
+    "acceptance": "AC-02",
+    "requirement": "REQ-02",
+    "decision": "D-02",
+    "risk": "R-02",
+    "tasks": [
+      "T003",
+      "T007"
+    ],
+    "implementation": "application/crates/ox-ui/src/desktop/chrome.rs",
+    "oracle": "application/crates/ox-ui/src/desktop.rs"
+  },
+  {
+    "acceptance": "AC-03",
+    "requirement": "REQ-03",
+    "decision": "D-03",
+    "risk": "R-03",
+    "tasks": [
+      "T004",
+      "T007"
+    ],
+    "implementation": "application/crates/ox-ui/src/desktop/dock.rs",
+    "oracle": "application/crates/ox-ui/src/desktop.rs"
+  },
+  {
+    "acceptance": "AC-04",
+    "requirement": "REQ-04",
+    "decision": "D-04",
+    "risk": "R-04",
+    "tasks": [
+      "T005",
+      "T007"
+    ],
+    "implementation": "application/crates/ox-ui/src/desktop/views.rs",
+    "oracle": "application/crates/ox-ui/src/desktop.rs"
+  },
+  {
+    "acceptance": "AC-05",
+    "requirement": "REQ-05",
+    "decision": "D-05",
+    "risk": "R-05",
+    "tasks": [
+      "T006",
+      "T007"
+    ],
+    "implementation": "application/crates/ox-ui/src/desktop/views.rs",
+    "oracle": "application/crates/ox-ui/src/desktop.rs"
+  },
+  {
+    "acceptance": "AC-06",
+    "requirement": "REQ-06",
+    "decision": "D-06",
+    "risk": "R-06",
+    "tasks": [
+      "T001",
+      "T010"
+    ],
+    "implementation": "application/Cargo.toml",
+    "oracle": "scripts/automate.sh"
+  },
+  {
+    "acceptance": "AC-07",
+    "requirement": "REQ-07",
+    "decision": "D-06",
+    "risk": "R-06",
+    "tasks": [
+      "T011"
+    ],
+    "implementation": "docs/design/ide-shell.md",
+    "oracle": "sdd/features/product-ide-shell/spec.md"
+  }
+]

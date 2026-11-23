@@ -1,0 +1,549 @@
+"""Human progress contracts through disposable runners and controlled processes.
+
+The scanner adapter double supplies assessments only. It does not qualify scanners,
+datasets, the complete repository pipeline, or product acceptance.
+"""
+
+import errno
+import json
+import os
+import pty
+import re
+import select
+import shutil
+import signal
+import subprocess
+import sys
+import tempfile
+import time
+import unittest
+from pathlib import Path
+
+import support as S
+
+
+class TerminalProgressTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="Ox terminal fixture ")
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        shutil.copytree(S.ROOT / "scripts", self.root / "scripts")
+        for path in (
+            "AGENTS.md",
+            "sdd/tools/validate.py",
+            "tools/governance/scripts/check-ox.py",
+            "tools/governance/scripts/run-tests.py",
+        ):
+            target = self.root / path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text("# Controlled runner fixture\n")
+        self.catalog_path = self.root / "scripts/config/automation.json"
+        self.catalog = json.loads(self.catalog_path.read_text())
+        self.real_adapter = (self.root / "scripts/checks/run.sh").read_text()
+        self.real_registry = (self.root / "scripts/lib/registry.sh").read_text()
+        self.select_checks("sdd-structure", "ox")
+        # The original registry/selection still choose the commands. Only execution
+        # of non-scanner checks is replaced inside this disposable checkout.
+        with (self.root / "scripts/lib/registry.sh").open("a") as stream:
+            stream.write('''
+check_command() {
+    CWD=$ROOT
+    CMD=("${FIXTURE_PYTHON}" "$ROOT/fixture.py" "$1" "$2")
+}
+''')
+        (self.root / "fixture.py").write_text('''import json,os,signal,sys,time
+from pathlib import Path
+name=sys.argv[1]; output=Path(sys.argv[2]); root=Path(os.environ["FIXTURE_ROOT"])
+rows=json.loads(os.environ.get("FIXTURE_ROWS","{}")); row=rows.get(name,{})
+with (root/"started.txt").open("a") as stream: stream.write(name+"\\n")
+if row.get("wait"):
+ def cancel(*_):
+  time.sleep(0.1); (root/"cleaned.txt").touch(); sys.exit(130)
+ signal.signal(signal.SIGTERM,cancel)
+ (root/"ready.txt").touch()
+ time.sleep(20)
+time.sleep(row.get("delay",0))
+sys.stdout.buffer.write(bytes.fromhex(row.get("stdout_hex","")))
+sys.stderr.buffer.write(bytes.fromhex(row.get("stderr_hex","")))
+sys.exit(row.get("code",0))
+''')
+        # Real outer execute/capture/merge/result/publication run around this double.
+        (self.root / "scripts/checks/run.sh").write_text('''#!/usr/bin/env bash
+set -euo pipefail
+name= output=
+while (($#)); do case $1 in --check) name=$2; shift 2;; --output) output=$2; shift 2;; *) shift;; esac; done
+exec "$FIXTURE_PYTHON" "$FIXTURE_ROOT/adapter.py" "$name" "$output"
+''')
+        (self.root / "adapter.py").write_text('''import json,os,sys,time
+from pathlib import Path
+name=sys.argv[1]; output=Path(sys.argv[2]); root=Path(os.environ["FIXTURE_ROOT"])
+rows=json.loads(os.environ.get("FIXTURE_ROWS","{}")); row=rows.get(name,{})
+with (root/"started.txt").open("a") as stream: stream.write(name+"\\n")
+for completed in row.get("members",[]):
+ target=output/"progress.json"; temporary=output/"progress.next"
+ temporary.write_text(json.dumps({"schema":1,"completed":completed,"total":row["total"],"activity":"membros"}))
+ temporary.replace(target); time.sleep(1.1)
+time.sleep(row.get("delay",0))
+state=row.get("state","passed"); code=row.get("code",0)
+assessment={"check":name,"state":state,"exit_code":code,"tool_exit_code":row.get("tool_code",code),"runner_exit_code":code,"finding_count":row.get("count",0),"reason":row.get("reason",""),"limits":row.get("limits",[])}
+assessment.update(row.get("assessment",{}))
+for field in row.get("omit_fields",[]): assessment.pop(field,None)
+(output/"assessment.json").write_text(json.dumps(assessment))
+if "report" in row: (output/"report.json").write_text(json.dumps(row["report"]))
+if "report_stream" in row:
+ (output/"tool").mkdir(); (output/"tool/stdout.log").write_text(json.dumps(row["report_stream"]))
+sys.stdout.buffer.write(bytes.fromhex(row.get("stdout_hex","")))
+sys.stderr.buffer.write(bytes.fromhex(row.get("stderr_hex","")))
+sys.exit(code)
+''')
+        self.env = dict(
+            os.environ,
+            FIXTURE_ROOT=str(self.root),
+            FIXTURE_PYTHON=sys.executable,
+            TMPDIR=str(self.root),
+            NO_COLOR="1",
+        )
+
+    def select_checks(self, *names):
+        self.catalog["scopes"] = {"governance": list(names)}
+        self.catalog["selection"] = {
+            "surfaces": {"docs": list(names)},
+            "mandatory": ["docs"],
+            "aliases": {},
+            "complete_only": [],
+            "explicit_surface": [],
+        }
+        self.catalog_path.write_text(json.dumps(self.catalog))
+
+    def command(self, operation="run"):
+        return ["/bin/bash", str(self.root / "scripts/automate.sh"), operation, "--scope", "complete"]
+
+    def run_fixture(self, rows=None, *, tty=False, env=None):
+        settings = dict(self.env, FIXTURE_ROWS=json.dumps(rows or {}), **(env or {}))
+        if not tty:
+            return subprocess.run(self.command(), env=settings, capture_output=True, timeout=20)
+        master, slave = pty.openpty()
+        try:
+            proc = subprocess.Popen(self.command(), env=settings, stdout=subprocess.PIPE, stderr=slave)
+            os.close(slave)
+            slave = None
+            output = bytearray()
+            deadline = time.monotonic() + 20
+            while True:
+                self.assertLess(time.monotonic(), deadline, "TTY runner did not finish")
+                if select.select([master], [], [], 0.2)[0]:
+                    try:
+                        data = os.read(master, 65536)
+                    except OSError as error:
+                        if error.errno != errno.EIO:
+                            raise
+                        break
+                    if not data:
+                        break
+                    output.extend(data)
+                elif proc.poll() is not None:
+                    break
+            stdout, _ = proc.communicate(timeout=5)
+            return subprocess.CompletedProcess(self.command(), proc.returncode, stdout, bytes(output))
+        finally:
+            os.close(master)
+            if slave is not None:
+                os.close(slave)
+
+    def published(self, suffix):
+        matches = list((self.root / ".local/logs").glob("*/*--" + suffix + ".log"))
+        self.assertEqual(len(matches), 1, (suffix, matches))
+        return matches[0]
+
+    def totals(self, output):
+        pattern = "total(?: concluído)?: (\\d+)%".encode()
+        return [int(value) for value in re.findall(pattern, output.lower())]
+
+    def controlled_cargo(self):
+        application = self.root / "application"
+        application.mkdir()
+        (application / "Cargo.lock").write_text("version = 4\n")
+        (application / "rust-toolchain.toml").write_text('[toolchain]\nchannel="fixture"\n')
+        binary = self.root / "bin"
+        binary.mkdir()
+        cargo = binary / "cargo"
+        cargo.write_text("#!/usr/bin/env bash\nexit 0\n")
+        cargo.chmod(0o755)
+        rustup = binary / "rustup"
+        rustup.write_text('#!/usr/bin/env bash\nprintf \'%s/bin/cargo\\n\' "$FIXTURE_ROOT"\n')
+        rustup.chmod(0o755)
+        return {"PATH": str(binary) + ":/usr/bin:/bin"}
+
+    def observe_publication(self, *, barrier=False):
+        common = self.root / "scripts/lib/common.sh"
+        original = common.read_text()
+        self.assertEqual(original.count("run_complete() {"), 1)
+        wrapper = '''
+run_complete() {
+    printf '%s\\n' "$1" >"${ROOT}/publication-run.txt"
+    touch "${ROOT}/publication-ready"
+'''
+        if barrier:
+            wrapper += '''    while [[ ! -f ${ROOT}/publication-release ]]; do sleep 0.05; done
+'''
+        wrapper += '''    fixture_run_complete "$1"
+}
+'''
+        common.write_text(original.replace("run_complete() {", "fixture_run_complete() {", 1) + wrapper)
+
+    def test_dynamic_plan_count_plain_output_and_completion_after_publication(self):
+        for names in (("sdd-structure",), ("sdd-structure", "ox", "governance-tests")):
+            with self.subTest(checks=names):
+                self.select_checks(*names)
+                plan = subprocess.run(self.command("plan"), env=self.env, capture_output=True, timeout=5)
+                self.assertEqual(plan.returncode, 0, plan.stderr)
+                selected = json.loads(plan.stdout)
+                self.assertEqual([row[0] for row in selected], list(names))
+                self.assertEqual(plan.stderr, b"")
+                result = self.run_fixture()
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertNotIn(b"\x1b", result.stderr)
+                self.assertNotIn(b"\r", result.stderr)
+                self.assertIn(f"[1/{len(selected) + 2}]".encode(), result.stderr)
+                self.assertIn(f"[{len(selected) + 2}/{len(selected) + 2}]".encode(), result.stderr)
+                totals = self.totals(result.stderr)
+                self.assertTrue(totals, result.stderr)
+                self.assertEqual(totals, sorted(totals))
+                self.assertEqual(totals[-1], 100)
+                self.assertEqual(totals.count(100), 1)
+                self.assertIn(b"prepara", result.stderr.lower())
+                self.assertIn(b"publica", result.stderr.lower())
+
+    def test_opaque_activity_does_not_invent_internal_or_total_progress(self):
+        self.select_checks("ox")
+        result = self.run_fixture({"ox": {"delay": 2.2}})
+        self.assertEqual(result.returncode, 0, result.stderr)
+        phase_lines = [line for line in result.stderr.splitlines() if b"[2/3]" in line and b"total:" in line]
+        self.assertTrue(phase_lines, result.stderr)
+        self.assertTrue(all(b"fase: indispon" in line for line in phase_lines), phase_lines)
+        self.assertEqual({int(re.search(rb"total: (\d+)%", line)[1]) for line in phase_lines}, {33})
+        self.assertTrue(all(b"decorrido:" in line for line in phase_lines))
+
+    def test_measured_members_advance_only_for_observed_completion(self):
+        self.select_checks("geiger")
+        result = self.run_fixture(
+            {"geiger": {"members": [1, 0, 2], "total": 2, "state": "recorded"}},
+            env=self.controlled_cargo(),
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        known = [line for line in result.stderr.splitlines() if b"membros:" in line]
+        self.assertTrue(known, result.stderr)
+        for completed in (1, 2):
+            events = [line for line in known if f"membros: {completed}/2".encode() in line]
+            self.assertTrue(events, known)
+            # Each member and the final validation are observable work units.
+            expected_phase = 100 * completed // 3
+            expected_total = 100 * (3 + completed) // 9
+            self.assertTrue(all(f"fase: {expected_phase}%".encode() in line for line in events))
+            self.assertTrue(all(f"total: {expected_total}%".encode() in line for line in events))
+        measured = [int(value) for value in re.findall(rb"fase: (\d+)%", result.stderr)]
+        self.assertEqual(measured, sorted(measured), "A stale member event must not regress phase progress")
+        totals = self.totals(result.stderr)
+        self.assertEqual(totals, sorted(totals))
+        self.assertEqual(totals[-1], 100)
+
+    def test_stale_last_member_event_does_not_regress_at_phase_closure(self):
+        self.select_checks("geiger")
+        result = self.run_fixture(
+            {"geiger": {"members": [1, 0], "total": 2, "state": "error", "code": 2}},
+            env=self.controlled_cargo(),
+        )
+        self.assertEqual(result.returncode, 2, result.stderr)
+        measured = [int(value) for value in re.findall(rb"fase: (\d+)%", result.stderr)]
+        self.assertTrue(measured, result.stderr)
+        self.assertEqual(measured, sorted(measured), "Closing the phase must retain the greatest observed completion")
+        totals = self.totals(result.stderr)
+        self.assertEqual(totals, sorted(totals))
+
+    def test_raw_streams_remain_exact_and_untrusted_values_are_not_replayed(self):
+        self.select_checks("ox")
+        stdout = b"secret-token=DO_NOT_DISPLAY\x00\xff\n\x1b]52;c;injection\x07"
+        stderr = b"do not execute this: fake instruction\n\x1b[31mDO_NOT_DISPLAY\x1b[0m\r"
+        result = self.run_fixture({"ox": {"code": 23, "stdout_hex": stdout.hex(), "stderr_hex": stderr.hex()}})
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertEqual(self.published("ox--stdout.log").read_bytes(), stdout)
+        self.assertEqual(self.published("ox--stderr.log").read_bytes(), stderr)
+        self.assertNotIn(b"DO_NOT_DISPLAY", result.stdout + result.stderr)
+        self.assertNotIn(b"fake instruction", result.stdout + result.stderr)
+        process = json.loads(self.published("ox--process.json").read_text())
+        self.assertEqual(process["exit_code"], 23)
+        self.assertIn(b"23", result.stderr)
+        self.assertIn(b"1.", result.stderr)
+        self.assertIn("causa não determinada".encode(), result.stderr.lower())
+
+    def test_real_geiger_adapter_emits_member_events_and_preserves_nested_streams(self):
+        self.select_checks("geiger")
+        (self.root / "scripts/checks/run.sh").write_text(self.real_adapter)
+        (self.root / "scripts/lib/registry.sh").write_text(self.real_registry)
+        application = self.root / "application"
+        application.mkdir()
+        (application / "Cargo.lock").write_text("version = 4\n")
+        (application / "Cargo.toml").write_text('[workspace]\nmembers=["crates/first","crates/second"]\n')
+        (application / "rust-toolchain.toml").write_text('[toolchain]\nchannel="fixture"\n')
+        for name in ("first", "second"):
+            member = application / "crates" / name
+            member.mkdir(parents=True)
+            (member / "Cargo.toml").write_text(f'[package]\nname="{name}"\nversion="0.1.0"\n')
+            (member / "lib.rs").write_text("pub fn fixture() {}\n")
+        binary = self.root / "bin"
+        binary.mkdir()
+        body = '''import json,os,sys,time
+from pathlib import Path
+root=Path(os.environ["FIXTURE_ROOT"]); name=Path(sys.argv[0]).name
+if name=="rustup": print(root/"bin/cargo"); sys.exit(0)
+if name=="cargo":
+ print(json.dumps({"workspace_members":["first","second"],"packages":[{"id":member,"manifest_path":str(root/"application/crates"/member/"Cargo.toml")} for member in ("first","second")]})); sys.exit(0)
+if "--version" in sys.argv: print("controlled Geiger fixture 1"); sys.exit(0)
+assert "--all-features" in sys.argv and "--locked" in sys.argv and "--offline" in sys.argv
+assert os.environ["RUST_MIN_STACK"]=="16777216"
+time.sleep(1.1)
+print(json.dumps({"packages":[{}],"packages_without_metrics":[],"used_but_not_scanned_files":[]}))
+sys.stderr.buffer.write(b"SYNTHETIC_SECRET\\x00\\xff\\n")
+'''
+        for name in ("rustup", "cargo", "cargo-geiger"):
+            path = binary / name
+            path.write_text("#!" + sys.executable + "\n" + body)
+            path.chmod(0o755)
+        self.catalog["checks"]["geiger"]["executable"] = {"path": "bin/cargo-geiger", "sha256": S.digest(binary / "cargo-geiger")}
+        self.catalog_path.write_text(json.dumps(self.catalog))
+        result = self.run_fixture(env={"PATH": str(binary) + ":/usr/bin:/bin", "OX_CARGO_BIN": str(binary)})
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn(b"membros: 1/2", result.stderr)
+        self.assertIn(b"REGISTRADO", result.stderr)
+        self.assertNotIn(b"SYNTHETIC_SECRET", result.stdout + result.stderr)
+        for index in (0, 1):
+            self.assertEqual(self.published(f"geiger--tool--{index}--stderr.log").read_bytes(), b"SYNTHETIC_SECRET\x00\xff\n")
+        progress = json.loads(self.published("geiger--progress.json").read_text())
+        self.assertEqual((progress["completed"], progress["total"]), (2, 2))
+
+    def test_honest_assessment_states_and_aggregate_precedence(self):
+        self.select_checks("ruff")
+        states = (("passed", 0, 0, "SUCESSO"), ("failed", 1, 1, "FALHA"), ("error", 2, 2, "FALHA"), ("blocked", 3, 3, "BLOQUEADA"), ("recorded", 0, 0, "REGISTRADO"), ("skipped", 0, 0, "IGNORADA"))
+        for state, code, expected, label in states:
+            with self.subTest(state=state):
+                result = self.run_fixture({"ruff": {"state": state, "code": code, "count": int(state == "failed")}})
+                self.assertEqual(result.returncode, expected, result.stderr)
+                self.assertIn(label.encode(), result.stderr)
+                self.assertIn(b"assessment.json", result.stderr)
+                if state == "recorded":
+                    block = result.stderr.split(b"[2/3]")[-1].split(b"[3/3]")[0]
+                    self.assertNotIn(b"SUCESSO", block)
+        self.select_checks("ruff", "sbom", "gitleaks")
+        result = self.run_fixture({"ruff": {"state": "failed", "code": 1}, "sbom": {"state": "blocked", "code": 3}, "gitleaks": {"state": "error", "code": 2}})
+        self.assertEqual(result.returncode, 2, result.stderr)
+
+    def test_log_publication_failure_is_visible_and_never_reaches_100(self):
+        self.select_checks("ox")
+        (self.root / ".local").mkdir()
+        (self.root / ".local/logs").write_text("controlled obstruction")
+        result = self.run_fixture()
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertNotIn(100, self.totals(result.stderr))
+        self.assertIn(b"FALHA", result.stderr)
+        self.assertIn(b"publica", result.stderr.lower())
+
+    def test_term_during_publication_finishes_publication_and_releases_pipes(self):
+        self.select_checks("ox")
+        self.observe_publication(barrier=True)
+        proc = subprocess.Popen(self.command(), env=self.env, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        try:
+            deadline = time.monotonic() + 5
+            while not (self.root / "publication-ready").exists():
+                self.assertLess(time.monotonic(), deadline)
+                time.sleep(0.01)
+            proc.send_signal(signal.SIGTERM)
+            (self.root / "publication-release").touch()
+            # communicate itself must reach EOF; polling/reaping the parent first
+            # would conceal a watcher that inherited and retained these pipes.
+            stdout, stderr = proc.communicate(timeout=5)
+            self.assertEqual(proc.returncode, 143, (stdout, stderr))
+            self.assertIn(b"CANCELADA", stderr)
+            self.assertNotIn(100, self.totals(stderr))
+            run = Path((self.root / "publication-run.txt").read_text().strip())
+            self.assertFalse(run.exists(), run)
+            results = json.loads(self.published("results.json").read_text())
+            self.assertEqual([row["check"] for row in results["results"]], ["ox"])
+        finally:
+            if proc.poll() is None:
+                proc.kill()
+                proc.communicate(timeout=5)
+
+    def test_emergency_diagnostic_failure_still_publishes_cleans_and_releases_pipes(self):
+        self.select_checks("ox")
+        self.observe_publication()
+        binary = self.root / "bin"
+        binary.mkdir()
+        mktemp = binary / "mktemp"
+        mktemp.write_text('''#!/usr/bin/env bash
+case ${*: -1} in */ox-publication-*) exit 1;; esac
+exec "$FIXTURE_REAL_MKTEMP" "$@"
+''')
+        mktemp.chmod(0o755)
+        settings = dict(self.env, PATH=str(binary) + ":/usr/bin:/bin", FIXTURE_REAL_MKTEMP=shutil.which("mktemp"))
+        proc = subprocess.Popen(self.command(), env=settings, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        try:
+            stdout, stderr = proc.communicate(timeout=5)
+            self.assertEqual(proc.returncode, 2, (stdout, stderr))
+            self.assertNotIn(100, self.totals(stderr))
+            self.assertIn("Diagnóstico bruto: indisponível".encode(), stderr)
+            self.assertTrue((self.root / "publication-ready").exists())
+            run = Path((self.root / "publication-run.txt").read_text().strip())
+            self.assertFalse(run.exists(), run)
+            self.assertTrue(self.published("results.json").is_file())
+        finally:
+            if proc.poll() is None:
+                proc.kill()
+                proc.communicate(timeout=5)
+
+    def test_finding_from_tool_stdout_has_a_real_published_reference(self):
+        self.select_checks("ruff")
+        finding = {"filename": "scripts/demo.py", "location": {"row": 12}, "code": "F401"}
+        result = self.run_fixture({"ruff": {"state": "findings", "code": 1, "count": 1, "report_stream": [finding]}})
+        self.assertEqual(result.returncode, 1, result.stderr)
+        retained = self.published("ruff--tool--stdout.log")
+        references = [json.loads(line.split(": ", 1)[1]) for line in result.stderr.decode().splitlines() if line.startswith("Referência publicada: ")]
+        self.assertIn(str(retained), references)
+        self.assertTrue(all(Path(path).is_file() for path in references), references)
+        self.assertIn(b"scripts/demo.py", result.stderr)
+        self.assertEqual(json.loads(retained.read_text()), [finding])
+
+    def test_missing_diagnostic_counts_are_unavailable_and_observed_empty_arrays_are_zero(self):
+        self.select_checks("ruff")
+        missing = self.run_fixture({"ruff": {"omit_fields": ["warnings", "skips", "limits"]}})
+        self.assertEqual(missing.returncode, 0, missing.stderr)
+        self.assertIn("Avisos: indisponível; skips registrados: indisponível; limitações registradas: indisponível".encode(), missing.stderr)
+        observed = self.run_fixture({"ruff": {"assessment": {"warnings": [], "skips": [], "limits": []}}})
+        self.assertEqual(observed.returncode, 0, observed.stderr)
+        self.assertIn("Avisos: 0; skips registrados: 0; limitações registradas: 0".encode(), observed.stderr)
+
+    def test_structured_findings_have_numbered_locations_without_echoing_secrets(self):
+        self.select_checks("ruff")
+        findings = [
+            {"filename": "scripts/demo.py", "location": {"row": 12, "column": 3}, "code": "F401", "message": "DO_NOT_DISPLAY"},
+            {"filename": "scripts/demo.py", "location": {"row": 21, "column": 1}, "code": "F821", "message": "DO_NOT_DISPLAY"},
+        ]
+        result = self.run_fixture({"ruff": {"state": "findings", "code": 1, "count": 2, "report": findings}})
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn(b"1.", result.stderr)
+        self.assertIn(b"2.", result.stderr)
+        self.assertIn(b"scripts/demo.py", result.stderr)
+        self.assertIn(b"12", result.stderr)
+        self.assertIn(b"21", result.stderr)
+        self.assertIn(b"report.json", result.stderr)
+        self.assertNotIn(b"DO_NOT_DISPLAY", result.stdout + result.stderr)
+
+    def test_fixed_adapter_cause_is_distinguished_from_unknown_free_text(self):
+        self.select_checks("ruff")
+        result = self.run_fixture({"ruff": {"state": "error", "code": 2, "reason": "Invalid/incomplete scanner report"}})
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertIn("relatório rejeitado pelo parser".encode(), result.stderr.lower())
+        self.assertIn(b"assessment.json", result.stderr)
+        self.assertNotIn("causa não determinada".encode(), result.stderr.lower())
+
+    def test_related_findings_group_repetitions_without_hiding_quantity(self):
+        self.select_checks("ruff")
+        finding = {"filename": "scripts/demo.py", "location": {"row": 12, "column": 3}, "code": "F401"}
+        result = self.run_fixture({"ruff": {"state": "findings", "code": 1, "count": 2, "report": [finding, finding]}})
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertRegex(result.stderr, rb"(?m)^1\. ")
+        self.assertNotRegex(result.stderr, rb"(?m)^2\. ")
+        self.assertRegex(result.stderr.decode().lower(), r"(?:ocorrências|repetições|quantidade)[^\n]*2")
+
+    def test_partially_located_findings_keep_the_unlocated_count(self):
+        self.select_checks("ruff")
+        located = {"filename": "scripts/demo.py", "location": {"row": 12}, "code": "F401"}
+        result = self.run_fixture({"ruff": {"state": "findings", "code": 1, "count": 2, "report": [located, {"code": "F821"}]}})
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertRegex(result.stderr, rb"(?m)^1\. ")
+        self.assertRegex(result.stderr, rb"(?m)^2\. ")
+        self.assertIn("localização indisponível".encode(), result.stderr)
+        self.assertRegex(result.stderr, rb"quantidade: 1")
+        self.assertNotRegex(result.stderr, rb"(?m)^3\. ")
+
+    def test_operational_failure_remains_visible_beside_project_findings(self):
+        self.select_checks("ruff")
+        finding = {"filename": "scripts/demo.py", "location": {"row": 12}, "code": "F401"}
+        result = self.run_fixture({"ruff": {"state": "error", "code": 2, "count": 1, "reason": "Invalid/incomplete scanner report", "report": [finding]}})
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertRegex(result.stderr, rb"(?m)^1\. ")
+        self.assertRegex(result.stderr, rb"(?m)^2\. ")
+        self.assertIn(b"scripts/demo.py", result.stderr)
+        self.assertIn("relatório rejeitado pelo parser".encode(), result.stderr)
+        self.assertIn(b"report.json", result.stderr)
+        self.assertIn(b"assessment.json", result.stderr)
+
+    def test_structured_locations_cannot_inject_terminal_controls(self):
+        self.select_checks("ruff")
+        finding = {"filename": "scripts/\x1b]52;c;INJECTION\x07.py", "location": {"row": 12}, "code": "F401"}
+        result = self.run_fixture({"ruff": {"state": "findings", "code": 1, "count": 1, "report": [finding]}})
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertNotIn(b"\x1b", result.stdout + result.stderr)
+        self.assertNotIn(b"\x07", result.stdout + result.stderr)
+        self.assertIn(b"\\u001b", result.stderr)
+
+    def test_tty_no_color_keeps_permanent_blocks_and_elapsed_activity(self):
+        self.select_checks("ox")
+        result = self.run_fixture({"ox": {"delay": 2.2}}, tty=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertNotRegex(result.stderr, rb"\x1b\[[0-9;]*m")
+        self.assertIn(b"decorrido:", result.stderr)
+        self.assertIn(b"SUCESSO", result.stderr)
+        self.assertIn(b"[2/3]", result.stderr)
+        self.assertRegex(result.stderr, rb"\[2/3\][^\r\n]*decorrido: 00:0[12]")
+        self.assertLess(len(result.stderr.splitlines()), 80)
+
+    def test_cancellation_waits_for_cleanup_stops_selection_and_is_not_completion(self):
+        self.select_checks("ox", "governance-tests")
+        env = dict(self.env, FIXTURE_ROWS=json.dumps({"ox": {"wait": True}}))
+        proc = subprocess.Popen(self.command(), env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        try:
+            deadline = time.monotonic() + 5
+            while not (self.root / "ready.txt").exists():
+                self.assertLess(time.monotonic(), deadline)
+                time.sleep(0.01)
+            proc.send_signal(signal.SIGTERM)
+            stdout, stderr = proc.communicate(timeout=5)
+            self.assertNotEqual(proc.returncode, 0, (stdout, stderr))
+            self.assertTrue((self.root / "cleaned.txt").exists())
+            self.assertEqual((self.root / "started.txt").read_text().splitlines(), ["ox"])
+            self.assertIn(b"CANCELADA", stderr)
+            self.assertNotIn(100, self.totals(stderr))
+        finally:
+            if proc.poll() is None:
+                proc.kill()
+                proc.communicate(timeout=5)
+
+    def test_cancellation_after_measured_progress_never_regresses_total(self):
+        self.select_checks("geiger")
+        settings = dict(self.env, FIXTURE_ROWS=json.dumps({"geiger": {"members": [1], "total": 2, "delay": 20}}), **self.controlled_cargo())
+        proc = subprocess.Popen(self.command(), env=settings, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        observed = bytearray()
+        try:
+            deadline = time.monotonic() + 5
+            while b"membros: 1/2" not in observed:
+                self.assertLess(time.monotonic(), deadline, observed)
+                if select.select([proc.stderr], [], [], 0.1)[0]:
+                    data = os.read(proc.stderr.fileno(), 65536)
+                    self.assertTrue(data, observed)
+                    observed.extend(data)
+            proc.send_signal(signal.SIGTERM)
+            stdout, stderr = proc.communicate(timeout=5)
+            observed.extend(stderr)
+            self.assertNotEqual(proc.returncode, 0, stdout)
+            self.assertIn(b"CANCELADA", observed)
+            totals = self.totals(bytes(observed))
+            self.assertEqual(totals, sorted(totals), observed.decode(errors="replace"))
+            self.assertNotIn(100, totals)
+        finally:
+            if proc.poll() is None:
+                proc.kill()
+                proc.communicate(timeout=5)
+
+
+if __name__ == "__main__":
+    unittest.main()

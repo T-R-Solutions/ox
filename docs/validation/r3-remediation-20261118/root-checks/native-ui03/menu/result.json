@@ -1,0 +1,197 @@
+{
+  "scope": "same recent-reopen and double-menu sequence as WC07, no product edits",
+  "observer_sha256": "0e4090560c318710f9b4350bc5a66b82ca964e1b3454f19538d74403b0bc120a",
+  "session_mechanism_sha256": "1ab4c178cccf0db8aeec85c927f4f7045fc1a464a54dced77000abe5109f6964",
+  "events": [
+    {
+      "time": 186630.370912601,
+      "xy": [
+        220,
+        60
+      ],
+      "pressed": true
+    },
+    {
+      "time": 186630.371438272,
+      "xy": [
+        220,
+        60
+      ],
+      "pressed": false
+    },
+    {
+      "time": 186631.318824563,
+      "xy": [
+        220,
+        60
+      ],
+      "pressed": true
+    },
+    {
+      "time": 186631.319261523,
+      "xy": [
+        220,
+        60
+      ],
+      "pressed": false
+    },
+    {
+      "time": 186632.053137558,
+      "xy": [
+        1000,
+        230
+      ],
+      "pressed": true
+    },
+    {
+      "time": 186632.053604689,
+      "xy": [
+        1000,
+        230
+      ],
+      "pressed": false
+    }
+  ],
+  "dont_write_bytecode": true,
+  "PYTHONDONTWRITEBYTECODE": "1",
+  "project_before": [],
+  "fixture": {
+    "source": "/home/rodrigo/Projetos/ox/docs/validation/r3-remediation-20261118/root-checks/native-final/wc-07/actual-history-before-corruption.bin",
+    "sha256": "f358a750856856c78669ad490943a94530c741b2af4d34d560145b621e610dcb",
+    "method": "exact snapshot really published by final app in WC07; actual private project still exists, no synthetic project/history",
+    "private_state": "/tmp/ox-r3-menu-recent-probe-02/state"
+  },
+  "binary_before": "58a91a46a462afae671a97ebc81d6d906b57fad1ba981dc8209fb3648e15f0dd",
+  "geometry": [
+    2560,
+    1000
+  ],
+  "captures": [
+    {
+      "name": "initial-tasks",
+      "path": "/tmp/ox-r3-menu-recent-probe-02/initial-tasks.png",
+      "sha256": "ecccf3da535714a6262d42b17c6a6f6f6510ab90c2397ca08aa8f4755ec8c99f",
+      "capture_monotonic": 186630.21835767,
+      "buffer": {
+        "received_monotonic": 186629.823514345,
+        "pts_ns": 1594177659,
+        "dts_ns": 1594177659,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 229110,
+        "clock_now_ns": 1597726333,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "0475cf86096f9f32256ca680777893b780d043fd61e47f2df7a857d273993b7c"
+    },
+    {
+      "name": "first-open",
+      "path": "/tmp/ox-r3-menu-recent-probe-02/first-open.png",
+      "sha256": "6d619e5db93f4365181c3e852086f5ec9ff19ec8735e1f5638ef4c9836085cb8",
+      "capture_monotonic": 186630.785733101,
+      "buffer": {
+        "received_monotonic": 186630.579367748,
+        "pts_ns": 2350185659,
+        "dts_ns": 2350185659,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 229110,
+        "clock_now_ns": 2353573896,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "c353e0d924a5ccf383dc6cec288dc8dd260fa266023d383512a702da2002277f"
+    },
+    {
+      "name": "escape-closed",
+      "path": "/tmp/ox-r3-menu-recent-probe-02/escape-closed.png",
+      "sha256": "1d6cb90dbfd8de1c5adb69069e22b6170ae38aa2d1d91a81cccd83f8823008e6",
+      "capture_monotonic": 186631.167166613,
+      "buffer": {
+        "received_monotonic": 186630.957006894,
+        "pts_ns": 2727422659,
+        "dts_ns": 2727422659,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 229110,
+        "clock_now_ns": 2731213182,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "06ec8779e14993aa91926532b84089696fff84d644abd43b60ffcc7dda899159"
+    },
+    {
+      "name": "second-open",
+      "path": "/tmp/ox-r3-menu-recent-probe-02/second-open.png",
+      "sha256": "6d619e5db93f4365181c3e852086f5ec9ff19ec8735e1f5638ef4c9836085cb8",
+      "capture_monotonic": 186631.901399749,
+      "buffer": {
+        "received_monotonic": 186631.689072175,
+        "pts_ns": 3459384659,
+        "dts_ns": 3459384659,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 229110,
+        "clock_now_ns": 3463292704,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "c353e0d924a5ccf383dc6cec288dc8dd260fa266023d383512a702da2002277f"
+    },
+    {
+      "name": "outside-after-short",
+      "path": "/tmp/ox-r3-menu-recent-probe-02/outside-after-short.png",
+      "sha256": "10000b49601326a3bb61d2650810e00f7b457f79c6ef330dae3e561a31df6857",
+      "capture_monotonic": 186632.443679826,
+      "buffer": {
+        "received_monotonic": 186632.377277063,
+        "pts_ns": 4147937659,
+        "dts_ns": 4147937659,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 229110,
+        "clock_now_ns": 4151484921,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "06ec8779e14993aa91926532b84089696fff84d644abd43b60ffcc7dda899159"
+    },
+    {
+      "name": "outside-after-region-change",
+      "path": "/tmp/ox-r3-menu-recent-probe-02/outside-after-region-change.png",
+      "sha256": "10000b49601326a3bb61d2650810e00f7b457f79c6ef330dae3e561a31df6857",
+      "capture_monotonic": 186632.634221422,
+      "buffer": {
+        "received_monotonic": 186632.377277063,
+        "pts_ns": 4147937659,
+        "dts_ns": 4147937659,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 229110,
+        "clock_now_ns": 4151484921,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "06ec8779e14993aa91926532b84089696fff84d644abd43b60ffcc7dda899159"
+    },
+    {
+      "name": "outside-after-long",
+      "path": "/tmp/ox-r3-menu-recent-probe-02/outside-after-long.png",
+      "sha256": "10000b49601326a3bb61d2650810e00f7b457f79c6ef330dae3e561a31df6857",
+      "capture_monotonic": 186633.824913159,
+      "buffer": {
+        "received_monotonic": 186632.377277063,
+        "pts_ns": 4147937659,
+        "dts_ns": 4147937659,
+        "duration_ns": 16666666,
+        "pipeline_base_ns": 229110,
+        "clock_now_ns": 4151484921,
+        "note": "receipt time alone does not prove production/presentation after an input"
+      },
+      "roi_pixel_sha256": "06ec8779e14993aa91926532b84089696fff84d644abd43b60ffcc7dda899159"
+    }
+  ],
+  "pointer_protocol": [
+    ":21.550917] wl_pointer#51.motion(186631902, 1000.00000000, 195.00000000)",
+    "[02:56:21.550944] wl_pointer#21.motion(186631902, 1000.00000000, 195.00000000)",
+    "[02:56:21.701385] wl_pointer#51.button(32, 186632053, 272, 1)",
+    "[02:56:21.701423] wl_pointer#21.button(32, 186632053, 272, 1)",
+    "[02:56:21.701591] wl_pointer#51.button(33, 186632053, 272, 0)",
+    "[02:56:21.709099] wl_pointer#21.button(33, 186632053, 272, 0)"
+  ],
+  "natural_exit": 0,
+  "binary_after": "58a91a46a462afae671a97ebc81d6d906b57fad1ba981dc8209fb3648e15f0dd",
+  "project_after": [],
+  "result": "observed; actual open/close/focus frames require independent visual review; region difference is only synchronization",
+  "source_after_sha256": "0e4090560c318710f9b4350bc5a66b82ca964e1b3454f19538d74403b0bc120a",
+  "session_after_sha256": "1ab4c178cccf0db8aeec85c927f4f7045fc1a464a54dced77000abe5109f6964"
+}

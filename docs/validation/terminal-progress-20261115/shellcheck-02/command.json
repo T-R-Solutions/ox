@@ -1,0 +1,20 @@
+[
+  "/home/rodrigo/Projetos/dev_audit/shared-toolbox/bin/toolbox",
+  "exec",
+  "--tool",
+  "shellcheck",
+  "--project-root",
+  "/tmp/ox-terminal-progress-lint-ic_ow9rt/source",
+  "--timeout",
+  "120",
+  "--diagnostic-file",
+  "/tmp/ox-terminal-progress-lint-ic_ow9rt/shellcheck/diagnostic.json",
+  "--",
+  "--rcfile",
+  "/project/scripts/config/native/shellcheck/shellcheckrc",
+  "--format=json",
+  "/project/scripts/lib/process.sh",
+  "/project/scripts/lib/progress.sh",
+  "/project/scripts/checks/run.sh",
+  "/project/scripts/automate.sh"
+]

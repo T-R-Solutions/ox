@@ -1,0 +1,23 @@
+{
+  "command": [
+    "python3",
+    "sdd/tools/validate.py",
+    "--root",
+    ".",
+    "--features",
+    "sdd/features",
+    "--feature",
+    "terminal-progress",
+    "--require-approved",
+    "--require-fresh",
+    "--check-convergence"
+  ],
+  "exit": 0,
+  "elapsed_seconds": 0.10913872718811035,
+  "cwd": "/home/rodrigo/Projetos/ox",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "stdout_sha256": "efbe05d250c1f0cdd8d4db2ca485685e887899b8f2012fb0a8ef0773ae6c10ca",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

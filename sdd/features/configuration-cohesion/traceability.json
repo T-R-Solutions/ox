@@ -169,5 +169,16 @@
     ],
     "implementation": "sdd/features/configuration-cohesion/plan.md",
     "oracle": "docs/validation/governance-corrections-20261114/final-observations.json"
+  },
+  {
+    "acceptance": "AC-16",
+    "requirement": "REQ-16",
+    "decision": "D-15",
+    "risk": "R-15",
+    "tasks": [
+      "T019"
+    ],
+    "implementation": "tools/governance/scripts/log_repair_revision.py",
+    "oracle": "tools/governance/tests/test_historical_link_resolution.py"
   }
 ]

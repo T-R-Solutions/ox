@@ -1,0 +1,10 @@
+# No package exclusions; two temporary maintenance exceptions authorized 2026-11-09.
+PackageOverrides = []
+
+[[IgnoredVulns]]
+id = "RUSTSEC-2026-0441"
+reason = "Temporary maintainer acceptance of pin-utils maintenance status; review on dependency upgrade or maintainer resumption. Other advisories remain enforced."
+
+[[IgnoredVulns]]
+id = "RUSTSEC-2026-0192"
+reason = "Temporary maintainer acceptance of ttf-parser maintenance status; review on dependency upgrade or maintainer resumption. Other advisories remain enforced."

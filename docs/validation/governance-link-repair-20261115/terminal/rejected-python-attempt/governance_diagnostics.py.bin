@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+"""Bounded presentation of check-ox text v1; never an authority for exit status.
+
+Only the checker's literal broken-link class is recognized. Unknown text stays in
+raw logs, never in this metadata projection. Stream order is not event order.
+"""
+import json
+import os
+import re
+import stat
+import sys
+from collections import Counter, OrderedDict
+from pathlib import Path
+
+READ_LIMIT = 65536
+GROUP_LIMIT = 10
+FIELD_LIMIT = 256
+PREFIX = 'FAIL: Broken/escaping link: '
+PATH = re.compile(r'[A-Za-z0-9_./-]+(?:#[A-Za-z0-9_.-]+)?\Z')
+SENSITIVE = re.compile(r'(?i)(secret|password|credential|token|api[_-]?key)')
+
+
+def safe_fields(text, root):
+    fields = text.split(': ')
+    if len(fields) != 2:
+        return None, None
+    source, target = fields
+    for field in fields:
+        if (not 0 < len(field) <= FIELD_LIMIT or not PATH.fullmatch(field)
+                or SENSITIVE.search(field) or field.startswith('/')
+                or any(len(part) > 80 for part in field.split('/'))):
+            return None, None
+    if (not source.endswith('.md') or any(p in ('', '.', '..') for p in source.split('/'))
+            or not target.split('#')[0].endswith(('.md', '.json'))):
+        return None, None
+    # Only display source paths actually owned by this repository, without links.
+    path = root
+    for part in source.split('/'):
+        path = path / part
+        if path.is_symlink():
+            return None, None
+    if not path.is_file():
+        return None, None
+    return source, target
+
+
+def inspect_stream(path, name, root):
+    result = dict(stream=name, path=str(path), status='unavailable', bytes_read=0,
+                  truncated=False, recognized=0, unknown_records=0,
+                  unsafe_fields=0, groups=[])
+    # Do not follow symlinks or block on a pipe supplied instead of a captured log.
+    try:
+        fd = os.open(path, os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
+        with os.fdopen(fd, 'rb') as stream:
+            mode = os.fstat(stream.fileno()).st_mode
+            if not stat.S_ISREG(mode) or not mode & 0o444:
+                return result
+            data = stream.read(READ_LIMIT + 1)
+    except OSError:
+        return result
+    result['status'] = 'nonempty' if data else 'empty'
+    result['truncated'] = len(data) > READ_LIMIT
+    data = data[:READ_LIMIT]
+    result['bytes_read'] = len(data)
+    if result['truncated'] and not data.endswith(b'\n'):
+        data = data.rsplit(b'\n', 1)[0] if b'\n' in data else b''
+    groups = Counter()
+    for raw in data.split(b'\n'):
+        if not raw:
+            continue
+        try:
+            line = raw.decode('utf-8', errors='strict')
+        except UnicodeError:
+            result['unknown_records'] += 1
+            continue
+        if any(ord(char) < 32 or ord(char) == 127 for char in line):
+            result['unknown_records'] += 1
+            continue
+        if not line.startswith(PREFIX):
+            result['unknown_records'] += 1
+            continue
+        result['recognized'] += 1
+        source, target = safe_fields(line[len(PREFIX):], root)
+        if source is None:
+            result['unsafe_fields'] += 1
+        groups[(source, target)] += 1
+    # Round robin by source keeps distinct affected files visible within the cap.
+    sources = OrderedDict()
+    for (source, target), count in groups.items():
+        sources.setdefault(source, []).append(dict(source=source, target=target, count=count))
+    while any(sources.values()):
+        for rows in sources.values():
+            if rows:
+                result['groups'].append(rows.pop(0))
+    return result
+
+
+def project(directory, root):
+    streams = [inspect_stream(directory / (name + '.log'), name, root)
+               for name in ('stdout', 'stderr')]
+    selected = [row['stream'] for row in streams if row['recognized']]
+    if not selected:
+        selected = [row['stream'] for row in streams if row['status'] == 'nonempty']
+    remaining = GROUP_LIMIT
+    for row in streams:
+        row['display_groups'] = row['groups'][:remaining]
+        remaining -= len(row['display_groups'])
+        row['omitted_groups'] = len(row['groups']) - len(row['display_groups'])
+        row['omitted_occurrences'] = sum(g['count'] for g in row['groups'][len(row['display_groups']):])
+    return dict(schema=1, parser='check-ox-broken-link-v1',
+                limits=dict(bytes_per_stream=READ_LIMIT, groups=GROUP_LIMIT, field_characters=FIELD_LIMIT),
+                selected=selected, streams=streams)
+
+
+if __name__ == '__main__':
+    print(json.dumps(project(Path(sys.argv[1]), Path(sys.argv[2])), ensure_ascii=True))

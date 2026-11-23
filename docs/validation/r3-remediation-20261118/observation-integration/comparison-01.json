@@ -1,0 +1,61 @@
+{
+  "workload": "Five sequential preservation_digest(root, README.md), same process/root/bytes, unprofiled; before then after, no randomization or cold-cache guarantee.",
+  "observations": [
+    {
+      "version": "before",
+      "observations": [
+        {
+          "seconds": 0.4237249650177546,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        },
+        {
+          "seconds": 0.4089387230051216,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        },
+        {
+          "seconds": 0.41777546500088647,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        },
+        {
+          "seconds": 0.40411780498106964,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        },
+        {
+          "seconds": 0.4049661259923596,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "observations": [
+        {
+          "seconds": 0.13256589497905225,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        },
+        {
+          "seconds": 0.13342596602160484,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        },
+        {
+          "seconds": 0.13172723399475217,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        },
+        {
+          "seconds": 0.1320053840172477,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        },
+        {
+          "seconds": 0.13221585398423485,
+          "digest": "1d096e444fd242dcd309a082b4298b5a8678ea9eee00aa85d8dd6ab1837ff98d"
+        }
+      ]
+    }
+  ],
+  "equivalent_digests": true,
+  "candidate_source_sha256": {
+    "tools/governance/tests/test_document_ledger.py": "eddbb57e129ca9704745abff7c4847fd6c29985ac5cb0d36a72603c43f35353b",
+    "tools/governance/scripts/governance_support.py": "182afcb5f8a68e821fd883bab98bf29d518064a67e99fa79cba14d9ce54d30a5",
+    "tools/governance/scripts/document_ledger.py": "8417e61266b5f6c435d8b6bfe742753e71ac5fd4bf828593047bdc190512768c"
+  }
+}

@@ -39,4 +39,4 @@ checks actually run and criteria for retirement or the exact remaining dependenc
 A green final-state suite cannot prove safe intermediate states. Keep local changes
 proportional. Architecture selects structural boundaries; design owns local interfaces;
 database/delivery specialists may resolve concrete product or rollout questions when
-available. No other skill or SDD is needed to perform this workflow.
+available. No other skill is a prerequisite; the consumer project’s required workflow and acceptance contracts still apply.

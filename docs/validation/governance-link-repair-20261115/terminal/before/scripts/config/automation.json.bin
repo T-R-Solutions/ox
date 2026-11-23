@@ -1,0 +1,494 @@
+{
+  "schema": 1,
+  "components": {
+    "application": {
+      "root": "application",
+      "lockfile": "application/Cargo.lock",
+      "language": "rust"
+    }
+  },
+  "scopes": {
+    "governance": [
+      "sdd-structure",
+      "ox",
+      "governance-tests"
+    ],
+    "rust": [
+      "rust-fmt",
+      "rust-check",
+      "rust-build",
+      "rust-test",
+      "rust-clippy"
+    ],
+    "security": [
+      "gitleaks",
+      "osv",
+      "opengrep",
+      "audit",
+      "bandit"
+    ],
+    "quality": [
+      "machete",
+      "ruff",
+      "deny"
+    ],
+    "full": [
+      "sdd-structure",
+      "ox",
+      "governance-tests",
+      "rust-fmt",
+      "rust-check",
+      "rust-build",
+      "rust-test",
+      "rust-clippy",
+      "gitleaks",
+      "osv",
+      "opengrep",
+      "audit",
+      "bandit",
+      "machete",
+      "ruff",
+      "deny"
+    ],
+    "complete": [
+      "sdd-structure",
+      "ox",
+      "governance-tests",
+      "rust-fmt",
+      "rust-check",
+      "rust-build",
+      "rust-test",
+      "rust-clippy",
+      "gitleaks",
+      "osv",
+      "opengrep",
+      "audit",
+      "bandit",
+      "machete",
+      "ruff",
+      "deny",
+      "history",
+      "coverage",
+      "geiger",
+      "trivy",
+      "sbom",
+      "grype",
+      "malware",
+      "shellcheck"
+    ]
+  },
+  "optional": [
+    "history",
+    "coverage",
+    "geiger",
+    "trivy",
+    "sbom",
+    "grype",
+    "malware",
+    "shellcheck"
+  ],
+  "checks": {
+    "gitleaks": {
+      "tool": "gitleaks",
+      "executor": "toolbox",
+      "snapshot": "all",
+      "dataset": "",
+      "policy": "gitleaks.toml"
+    },
+    "history": {
+      "tool": "gitleaks",
+      "executor": "toolbox",
+      "snapshot": "none",
+      "dataset": "",
+      "policy": "gitleaks.toml"
+    },
+    "osv": {
+      "tool": "osv-scanner",
+      "executor": "toolbox",
+      "snapshot": "none",
+      "dataset": "",
+      "policy": "osv-scanner.toml"
+    },
+    "opengrep": {
+      "tool": "opengrep",
+      "executor": "toolbox",
+      "snapshot": "code",
+      "dataset": "",
+      "policy": "ox.yml",
+      "native_timeout": 3600
+    },
+    "audit": {
+      "tool": "cargo-audit",
+      "executor": "native",
+      "snapshot": "none",
+      "dataset": "rustsec",
+      "policy": "audit.toml"
+    },
+    "deny": {
+      "tool": "cargo-deny",
+      "executor": "native",
+      "snapshot": "none",
+      "dataset": "",
+      "policy": "deny.toml"
+    },
+    "machete": {
+      "tool": "cargo-machete",
+      "executor": "native",
+      "snapshot": "all",
+      "dataset": ""
+    },
+    "coverage": {
+      "tool": "cargo-llvm-cov",
+      "executor": "native",
+      "snapshot": "all",
+      "dataset": ""
+    },
+    "geiger": {
+      "tool": "cargo-geiger",
+      "executor": "native",
+      "executable": {
+        "path": ".cache/ox/cargo-home/bin/cargo-geiger",
+        "sha256": "499d0923d8fa12c7f2e61f53616f3698ac5561b1eac14886e955eb118b7427a0"
+      },
+      "snapshot": "all",
+      "dataset": ""
+    },
+    "trivy": {
+      "tool": "trivy",
+      "executor": "toolbox",
+      "snapshot": "all",
+      "dataset": "",
+      "policy": "trivy.yaml",
+      "native_timeout": 1800
+    },
+    "sbom": {
+      "tool": "syft",
+      "executor": "toolbox",
+      "snapshot": "all",
+      "dataset": "",
+      "policy": "syft.yaml",
+      "native_timeout": 1800
+    },
+    "grype": {
+      "tool": "grype",
+      "executor": "toolbox",
+      "snapshot": "all",
+      "dataset": "",
+      "policy": "grype.yaml"
+    },
+    "malware": {
+      "tool": "yr",
+      "executor": "toolbox",
+      "snapshot": "all",
+      "dataset": "",
+      "policy": "suspicious.yar",
+      "native_timeout": 1800
+    },
+    "ruff": {
+      "tool": "ruff",
+      "executor": "toolbox",
+      "snapshot": "code",
+      "dataset": "",
+      "policy": "ruff.toml"
+    },
+    "bandit": {
+      "tool": "bandit",
+      "executor": "toolbox",
+      "snapshot": "code",
+      "dataset": "",
+      "policy": "bandit.yaml"
+    },
+    "shellcheck": {
+      "tool": "shellcheck",
+      "executor": "toolbox",
+      "snapshot": "all",
+      "dataset": "",
+      "policy": "shellcheckrc"
+    }
+  },
+  "policies": {
+    "audit.toml": "scripts/config/native/cargo-audit/audit.toml",
+    "deny.toml": "scripts/config/native/cargo-deny/deny.toml",
+    "bandit.yaml": "scripts/config/native/bandit/bandit.yaml",
+    "bandit.ini": "scripts/config/native/bandit/bandit.ini",
+    "bandit-baseline.json": "scripts/config/native/bandit/bandit-baseline.json",
+    "gitleaks-history.ignore": "scripts/config/native/gitleaks/gitleaks-history.ignore",
+    "ruff.toml": "scripts/config/native/ruff/ruff.toml",
+    "grype.yaml": "scripts/config/native/grype/grype.yaml",
+    "osv-scanner.toml": "scripts/config/native/osv-scanner/osv-scanner.toml",
+    "shellcheckrc": "scripts/config/native/shellcheck/shellcheckrc",
+    "syft.yaml": "scripts/config/native/syft/syft.yaml",
+    "trivy.yaml": "scripts/config/native/trivy/trivy.yaml",
+    "trivyignore": "scripts/config/native/trivy/trivyignore",
+    "gitleaks.toml": "scripts/config/native/gitleaks/gitleaks.toml",
+    "ox.yml": "scripts/rules/opengrep/ox.yml",
+    "suspicious.yar": "scripts/rules/yara-x/ox.yar",
+    "clippy.toml": "scripts/config/native/clippy/clippy.toml",
+    "rust.yml": "scripts/rules/opengrep/rust.yml"
+  },
+  "runtime": {
+    "native_timeout": 600,
+    "geiger_stack_bytes": 16777216,
+    "clippy_flags": [
+      "-W",
+      "clippy::all",
+      "-W",
+      "clippy::pedantic",
+      "-W",
+      "clippy::nursery",
+      "-W",
+      "clippy::cargo",
+      "-D",
+      "warnings"
+    ]
+  },
+  "databases": {
+    "osv": {
+      "maximum_age_seconds": 86400
+    },
+    "trivy": {
+      "maximum_age_seconds": 432000
+    }
+  },
+  "reviews": {
+    "static": {
+      "sources": {
+        "docs/assets/check.py": "ad2348ce9b6052047420f213ebe2d5dc3c9fc841c4d3a2ce41e0093602ebf474",
+        "scripts/tests/support.py": "4e20b3fcf40835b2c63e828f339e2d9226035cffd9b4c7a085df4e5e3c9fda5e",
+        "scripts/tests/test_automation.py": "c54ff45b74928d8dfd646fc19b618e2c761d2d72d6d2ba884107a2b8f8801b80",
+        "scripts/tests/test_backends.py": "718077360c8984f5ed35bfa20e9c5cdbf46711ba0b6067913eecfb40fc22162d",
+        "scripts/tests/test_database_age.py": "de9ef349a55edc02cb497e190730e4814ac98c92745ff5588288c0893b9d01ee",
+        "scripts/tests/test_native_reports.py": "29dcdbdc3f453f4aa1c6daf96b1da664a374ef8acc97e227fc0e938b630f47a3",
+        "scripts/tests/test_optional_datasets.py": "08f0d89b84af8315380e82fcf29c312f908732e0e11aac4f19e6da3feafd3441",
+        "scripts/tests/test_preparation.py": "3f7883561b03eec292581f9ad60e958d8195f089b2b6a963d4445a63127a65ef",
+        "scripts/tests/test_process_lifecycle.py": "f1b1da475db9cbdb69c140d56805e44b23e973267a71a65905bc9255d348c8f7",
+        "scripts/tests/test_real_security_backends.py": "65bb0d2ef1ba0a31f9f4b5ed97073e50abe05af998b42ab7a78d3ee6f8df8262",
+        "scripts/tests/test_selinux_transport.py": "6c9186e45cc8abfa21210a88474603ddf0227992d28ef1f3e544918bf78e1d5a",
+        "tools/governance/consumers/gui_test.py": "1ffc519b3ba47d063582639f4cc39157877aa3f397967ec2a6e946fe783ebf2b",
+        "tools/governance/consumers/isolation_test.py": "a9cedd279f22f2e27734dbdfe2d08d5ef5aa6565a84e911a3ec1c2dc45db7c7f",
+        "tools/governance/consumers/run_base.py": "f35b99825aa5cc8be39d78f532dd04cebe07acf9d23e4d28af5c0d7b12718083",
+        "tools/governance/scripts/package-ox.py": "8f06fa93a506ba8037e1708bd5530c456d6fe001885f036e250917d6cd077de0",
+        "tools/governance/scripts/run-checks.py": "33f7f73d5d5c0a10cf266c5cdf41f176ee0d9e463d22331d706ab3cac42992bd",
+        "tools/governance/tests/test_governance.py": "7e23cba5ce4a4c4337cae53f3d9223483528b2e093dc1818cafa726dd2e902ff",
+        "tools/governance/tests/test_project_revision.py": "db1d4479779a79d6baf5637f7d05fa64598152e73f7c1075d5596efe323d1337",
+        "tools/governance/tests/test_security_quality.py": "38737b2c3a38d833d9ea60afc250d0d314b04f7983bbe41ae5d867c3b325d6e2",
+        "tools/governance/tests/test_task_closure.py": "31533002342718adc8a3a467baec7f1db9e3b744a5b0745dac0507d87bd82ef8",
+        "scripts/tests/test_local_lifecycle.py": "c118e9d83141fd267695af69edb931266e8a00982ed4f6d6179b335f34e6090c",
+        "application/tools/native_review.py": "2bf921de96eb5adbe9f50961dfd60bf8f0c423bb2e2aec1f8c4c3579bc0377ec",
+        "application/tools/native_composition_review.py": "18671fa7d3757a6c512f65c58a102c737388dd7c379f17dc9563a93cbf308fb8",
+        "scripts/tests/test_catalog.py": "3e646b4a1f83610188b9105cba8e1e57688d4fb93bf8024f3067221a4fbfbbc1",
+        "sdd/tools/validate.py": "3b1e99d6152dbf7e6ac27dba534798baa66b57a63ba6f943c40de151f243922c",
+        "tools/governance/tests/test_instruction_routes.py": "0ee5604983175afb6ed0286d7ac9e0bf161e3e8b7f9daf70d3246681403ab01f",
+        "tools/governance/tests/test_instruction_validator.py": "40c93a52aa90d4811e9c032831be6dec8a03c37aee74d575f949db5108c43924",
+        "scripts/tests/test_terminal_progress.py": "665987e42c74b38db9c21d09b26155473c32550ac45d59c6f6cbbf254c99855f"
+      },
+      "policy_files": {
+        "scripts/config/native/ruff/ruff.toml": "eb3d3cbfc78ef2b897e75870ade7c26917d5e4b98d7fcd4a719311d1962cc4a0",
+        "scripts/config/native/bandit/bandit-baseline.json": "a06355232ae975f5773163c32603e5291e4a0618aadddba3c794c1ada37431f0"
+      },
+      "reason": "Reviewed false positives: shell-free argv to explicit test or governance commands; subprocess import alone is not command injection; /tmp literals are adversarial aliases or cwd/tmpfs, never insecure temporary file creation; XML parser handles only the repository SVG corpus. No scanner severity or rule globally disabled. Changed reviewed source or policy fails before scanning. 2026-11-11: reviewed fixture path migration to dated logs and .cache/ox; shell-only production contract remains unchanged. Existing suppression rules unchanged. Complete-run repair: reviewed only retained-log/cache fixture paths, a deterministic historical resource selection and missing-diagnostic assertions; executable subprocess boundaries and suppression policies unchanged. Reviewed six new native-helper/lifecycle subprocess occurrences: user-selected local binary passed as one argv element without a shell; fixed Bash test program with positional fixture paths. Fixed absolute Bash executable; only exact source hashes and native occurrences/per-file S603 accepted. 2026-11-13: maintainer requested Ec analyzer defaults. Ruff adopts Ec groups (security remains integral Bandit); old Ruff per-file exceptions removed. test_automation.py changes only the shell-layout assertion to permit unittest -m while still rejecting inline Python; subprocess boundaries and Bandit baseline unchanged. 2026-11-13 complete repair: preserve authenticated SDD validator/runner bytes; bounded Ruff I001/UP017 style dispositions and one baseline B110 validator path handler. trace_errors already reports rejected paths; no security error is accepted. Source and policy hashes enforce these reviewed inputs. Legacy CLI regression now checks manifest rejection during execution and planning without Cargo; local fixed argv to the explicit fixture wrapper, no shell=True or new trust boundary. 2026-11-15: independent review of five new B404/B603 test occurrences in instruction routes/validator: fixed sys.executable plus repository entry and disposable fixture arguments, shell=False. Baseline records only these five native occurrences and exact reviewed source hashes. Package source import/receipt bytes and validator path checks reviewed against retained preimages; no severity/rule exclusion or changed acceptance expectation. New observations pending; historical scanner hashes are not renewed. 2026-11-15 terminal progress: independent occurrence review approved exactly eight native Bandit candidates (B404 import and seven B603 calls) in the new controlled runner tests: absolute /bin/bash with fixed argv, shell=False, disposable fixture paths and internal data. Source and baseline hashes bind this disposition; all rules/severities remain enabled. Review and observed native reports: docs/validation/terminal-progress-20261115/review-security.json. This does not renew historical observations or approve the product."
+    },
+    "history_sha256": "4e025a01248fdfdc4023d5207e41802d1f4570fea7959fed1d0f9a967af17d83"
+  },
+  "inputs": {
+    "roots": [
+      "application",
+      "tools",
+      "scripts",
+      "sdd",
+      "config",
+      "docs",
+      ".github",
+      ".codex"
+    ],
+    "root_patterns": [
+      "*.md",
+      "*.toml",
+      "*.json",
+      "*.yml",
+      "*.yaml",
+      "*.py",
+      "*.sh",
+      "*.txt",
+      "*.lock",
+      ".env*",
+      "LICENSE",
+      "NOTICE",
+      ".gitleaksignore",
+      ".semgrepignore"
+    ],
+    "exclude_names": [
+      ".git",
+      ".local",
+      ".cache",
+      "target",
+      "dist",
+      "__pycache__",
+      ".venv",
+      "venv",
+      ".agents",
+      ".aws",
+      "node_modules",
+      ".pytest_cache",
+      ".mypy_cache",
+      ".ruff_cache",
+      ".coverage",
+      ".coverage.*",
+      "coverage",
+      "htmlcov",
+      ".vitest",
+      ".nyc_output",
+      "playwright-report",
+      "test-results",
+      "blob-report",
+      ".pnpm-store",
+      ".npm",
+      ".vite",
+      ".vite-temp",
+      ".vite-inspect",
+      ".idea",
+      ".history",
+      "*.py[cod]",
+      "*.rs.bk",
+      "*.pdb",
+      "*.tsbuildinfo",
+      "vite.config.*.timestamp-*",
+      "*.profraw",
+      "*.profdata",
+      "*.gcda",
+      "*.gcno",
+      "*.tmp",
+      "*.temp",
+      "*.swp",
+      "*.swo",
+      "*~",
+      "*.bak",
+      "*.orig",
+      "*.rej",
+      ".DS_Store",
+      "Thumbs.db",
+      "Desktop.ini",
+      "npm-debug.log*",
+      "yarn-debug.log*",
+      "yarn-error.log*",
+      "pnpm-debug.log*",
+      "lerna-debug.log*"
+    ],
+    "exclude_paths": [
+      "docs/validation"
+    ]
+  },
+  "paths": {
+    "root": ".local",
+    "runs": ".local/logs",
+    "datasets": ".cache/ox/security",
+    "cargo": ".cache/ox/cargo-home"
+  },
+  "selection": {
+    "surfaces": {
+      "docs": [
+        "sdd-structure",
+        "ox",
+        "governance-tests"
+      ],
+      "scripts": [
+        "scripts-syntax",
+        "shellcheck",
+        "ruff",
+        "scripts-tests"
+      ],
+      "application": [
+        "rust-fmt",
+        "rust-check",
+        "rust-build",
+        "rust-test",
+        "rust-clippy",
+        "machete",
+        "deny",
+        "audit",
+        "geiger",
+        "coverage"
+      ],
+      "security": [
+        "gitleaks",
+        "history",
+        "opengrep",
+        "osv",
+        "trivy",
+        "grype",
+        "bandit",
+        "sbom",
+        "malware"
+      ]
+    },
+    "mandatory": [
+      "docs"
+    ],
+    "complete_only": [
+      "grype",
+      "bandit",
+      "sbom",
+      "malware"
+    ],
+    "explicit_surface": [
+      "coverage"
+    ],
+    "aliases": {
+      "fmt": [
+        "rust-fmt"
+      ],
+      "check": [
+        "rust-check"
+      ],
+      "build": [
+        "rust-build"
+      ],
+      "test": [
+        "rust-test"
+      ],
+      "clippy": [
+        "rust-clippy"
+      ],
+      "syntax": [
+        "scripts-syntax"
+      ],
+      "tests": [
+        "scripts-tests"
+      ],
+      "secrets": [
+        "gitleaks",
+        "history"
+      ],
+      "sast": [
+        "opengrep"
+      ],
+      "dependencies": [
+        "osv"
+      ],
+      "syft": [
+        "sbom"
+      ],
+      "yara-x": [
+        "malware"
+      ]
+    }
+  },
+  "environment": {
+    "defaults": {
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "NO_COLOR": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "RUSTUP_AUTO_INSTALL": "0",
+      "CARGO_NET_OFFLINE": "true",
+      "TOOLBOX_SELINUX_LABEL": "shared"
+    }
+  },
+  "discovery": {
+    "toolbox": [
+      "{parent}/shared-toolbox/bin/toolbox",
+      "{parent}/dev_audit/shared-toolbox/bin/toolbox",
+      "{home}/.local/bin/toolbox"
+    ]
+  }
+}

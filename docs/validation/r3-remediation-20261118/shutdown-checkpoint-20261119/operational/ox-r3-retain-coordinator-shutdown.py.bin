@@ -1,0 +1,59 @@
+import datetime,hashlib,json,os,sys
+from pathlib import Path
+root=Path('/home/rodrigo/Projetos/ox')
+base=root/'docs/validation/r3-remediation-20261118'
+out=base/'shutdown-checkpoint-20261119'
+facts=json.loads(Path(sys.argv[1]).read_text())
+assert facts['processes_stopped'] is True
+assert isinstance(facts['exit_code'],int)
+assert facts['full03_summary'] and facts['full03_evidence']
+assert not out.exists(), 'Never overwrite an earlier checkpoint'
+sha=lambda data:hashlib.sha256(data).hexdigest()
+proposals={name:Path('/tmp/ox-r3-shutdown-'+name+'.md').read_bytes() for name in ['checkpoint','log-entry']}
+extra=['/tmp/ox-r3-retain-coordinator-shutdown.py','/tmp/ox-r3-shutdown-executor-manifest.json','/tmp/ox-r3-s0-consolidation-draft.md','/tmp/ox-r3-final-consolidation-notes.md','/tmp/ox-r3-package-timeout-preflight.json','/tmp/ox-r3-instruction-copy-loop-count.json','/tmp/ox-r3-instruction-copy-current-observation.json']+[f'/tmp/ox-r3-instruction-copy-current-observation-0{i}.json' for i in range(2,6)]
+executors=json.loads(Path('/tmp/ox-r3-shutdown-executor-manifest.json').read_text())
+for row in executors:
+ p=Path(row['source']);assert p.is_file() and not p.is_symlink();assert sha(p.read_bytes())==row['sha256']
+for p in extra:assert Path(p).is_file() and not Path(p).is_symlink()
+paths=['report.md','verification-matrix.md','plan.md','tasks.md']
+preimages={name:(base/name).read_bytes() for name in paths}
+log=root/'task_finalizada.md';prefix=log.read_bytes()
+checkpoint=proposals['checkpoint'].decode().replace('FINAL_FULL03_RECEIPT_PENDING',facts['full03_summary']+'\n\nEvidências duráveis: '+facts['full03_evidence']+'\n\nProcessos: '+facts['process_observation'])
+checkpoint += '\n## Pareceres e retenção deste checkpoint\n\n'+facts['peer_summary']+'\n\nO manifesto retention.json registra origem, destino, bytes e SHA dos lançadores e\ndependências retidos, inclusive os caminhos de restauração. Arquivos .bin são\nsnapshots, não novas entradas executáveis ou novas observações de testes.\n'
+entry=proposals['log-entry'].decode().replace('FULL03_RESULT_PENDING',facts['full03_summary']).replace('CHECKPOINT_PEER_RESULTS_PENDING',facts['peer_summary']).replace('PREFIX_BINDING_PENDING',f'prefixo observado de {len(prefix)} bytes e SHA-256 `{sha(prefix)}` preservado integralmente')
+entry=entry.replace('## 2026-11-19 —', '## '+datetime.datetime.now(datetime.timezone.utc).isoformat()+' —')
+for text in [checkpoint,entry]:
+ for token in ['FINAL_FULL03_RECEIPT_PENDING','FULL03_RESULT_PENDING','CHECKPOINT_PEER_RESULTS_PENDING','PREFIX_BINDING_PENDING']:assert token not in text
+out.mkdir()
+retained=[]
+def retain(src,dest,data=None):
+ src=Path(src);data=src.read_bytes() if data is None else data
+ target=out/dest;target.parent.mkdir(parents=True,exist_ok=True)
+ with target.open('xb') as f:f.write(data)
+ assert target.read_bytes()==data
+ retained.append({'source':str(src),'retained':str(target.relative_to(root)),'bytes':len(data),'sha256':sha(data)})
+for i,row in enumerate(executors):
+ data=Path(row['source']).read_bytes();assert sha(data)==row['sha256']
+ retain(row['source'],f'executors/{i:02d}-{Path(row["source"]).name}.bin',data)
+for p in extra:retain(p,'operational/'+Path(p).name+'.bin')
+for name,data in proposals.items():retain('/tmp/ox-r3-shutdown-'+name+'.md','proposals/'+name+'.md.bin',data)
+for name,data in preimages.items():retain(base/name,'before/'+name+'.bin',data)
+retain(log,'before/task_finalizada.md.bin',prefix)
+(out/'checkpoint.md').write_text(checkpoint)
+(out/'retention.json').write_text(json.dumps({'created_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'files':retained,'executors':executors,'limitations':['Launchers have not been executed by this checkpoint.','Historical and maintained checkout dependencies must not overwrite changed live files on restoration.','Runtime binaries, private sockets and large test fixture trees are not copied; verify prerequisites after reboot.']},indent=2)+'\n')
+(out/'termination-facts.json').write_text(json.dumps(facts,indent=2)+'\n')
+(out/'independent-checkpoint-assessment.md').write_text('# Parecer independente do checkpoint\n\n'+facts['peer_summary']+'\n\nEscopo: textos e método de preservação/retomada, sem aprovação técnica da tarefa.\n')
+common='''\n\n## Checkpoint de interrupção solicitada — 2026-11-19\n\nEstado **INCOMPLETO**: o usuário informou desligamento do computador em30min; a\nexecução foi encerrada controladamente para preservar resultados. Não é timeout\ntécnico nem conclusão da tarefa. '''+facts['full03_summary']+'''\n\n[Checkpoint e retomada](shutdown-checkpoint-20261119/checkpoint.md) registram os\nlançadores preservados, inputs, processos e etapas pendentes. [Observações nativas\natuais](root-checks/native-ui03/report.md) continuam vinculadas aos próprios inputs.\nO último gate ANTES deste checkpoint/anexação terminou1 com118estados pendentes\nem19features, sem erro de bindings/freshness; freshness após append não observada.\nClippy do catálogo101/hashbrown, direitosAC05 e demais critérios pendentes não foram\ndispensados. GUIconsumer final, quickskills, opt-in real final, pacote/export/demo,\ndiscovergovernança explícito da raiz emS1 e guardasS2 continuam não executados.\nO registro append-only de atividade documenta trabalho/interrupção, não aceite.\nNenhuma tarefa T003/T004/T005 é marcada concluída por este checkpoint.\n'''
+for name,data in preimages.items():
+ p=base/name;assert p.read_bytes()==data
+ with p.open('ab') as f:f.write(common.encode());f.flush();os.fsync(f.fileno())
+ assert p.read_bytes()==data+common.encode()
+assert log.read_bytes()==prefix
+entry_bytes=entry.encode()
+with log.open('ab') as f:f.write(entry_bytes);f.flush();os.fsync(f.fileno())
+after=log.read_bytes();assert after==prefix+entry_bytes
+receipt={'time_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'prefix_bytes':len(prefix),'prefix_sha256':sha(prefix),'appended_bytes':len(entry_bytes),'appended_sha256':sha(entry_bytes),'after_bytes':len(after),'after_sha256':sha(after),'prefix_byte_exact':after[:len(prefix)]==prefix,'whole_after_equals_prefix_plus_entry':after==prefix+entry_bytes,'state':'INCOMPLETO','claim':'Activity checkpoint only; no completed suite or terminal S1/S2 acceptance claimed.'}
+(out/'append-only-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+(out/'activity-entry.md.bin').write_bytes(entry_bytes)
+(out/'document-updates.json').write_text(json.dumps({name:{'before_sha256':sha(data),'after_sha256':sha((base/name).read_bytes()),'prefix_preserved':(base/name).read_bytes().startswith(data)} for name,data in preimages.items()},indent=2)+'\n')
+print(json.dumps({'checkpoint':str(out),'retained_files':len(retained),'append':receipt},indent=2))

@@ -1,0 +1,47 @@
+"""Retain the optional maintained aggregate without installing its dependency."""
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+sys.dont_write_bytecode = True
+import yaml
+
+root = Path('/home/rodrigo/Projetos/ox')
+out = Path('/tmp/ox-r3-quick-skills-final-01')
+out.mkdir(exist_ok=False)
+profile = root / 'config/governance/profile.json'
+names = json.loads(profile.read_text())['new']
+paths = [profile, Path(__file__), Path(yaml.__file__),
+         root / 'tools/governance/scripts/check-new-skills.py',
+         root / 'tools/governance/scripts/skill-quick-validate.py']
+paths += [root / '.codex/skills' / name / 'SKILL.md' for name in names]
+
+
+def inputs():
+    return {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+
+
+before = inputs()
+argv = [sys.executable, '-B', 'tools/governance/scripts/check-new-skills.py']
+started = time.monotonic()
+with (out / 'stdout.log').open('wb') as stdout, (out / 'stderr.log').open('wb') as stderr:
+    result = subprocess.run(argv, cwd=root, stdout=stdout, stderr=stderr,
+                            env=dict(os.environ, PYTHONDONTWRITEBYTECODE='1'), check=False)
+after = inputs()
+record = {'argv': argv, 'cwd': str(root), 'optional_maintained_entry': True,
+          'profile_new': names, 'yaml_version': yaml.__version__,
+          'yaml_source': yaml.__file__, 'python': sys.version,
+          'exit_code': result.returncode, 'seconds': time.monotonic() - started,
+          'observed_at': datetime.datetime.now(datetime.UTC).isoformat(),
+          'inputs_before': before, 'inputs_after': after,
+          'inputs_unchanged': before == after,
+          'scope': 'check-new-skills invokes skill-quick-validate for profile.new; one aggregate execution, no second independent suite or global acceptance.'}
+(out / 'result.json').write_text(json.dumps(record, indent=2) + '\n')
+print(json.dumps({'exit_code': result.returncode, 'inputs_unchanged': before == after,
+                  'skills': len(names)}), flush=True)
+raise SystemExit(result.returncode or int(before != after))

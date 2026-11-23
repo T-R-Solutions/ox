@@ -1,0 +1,6 @@
+{
+  "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONOPTIMIZE=0 PYTHONPATH=scripts/tests python3 -m unittest test_backends.Backends.test_static_review_rejects_changed_source_and_policy test_backends.Backends.test_static_review_missing_registry_is_rejected -v",
+  "exit_code": 0,
+  "scope": "Two rejection regressions with simulated backend; not real scanner execution",
+  "configuration_sha256": "bb93abbf673e783c881422457ec715580c136e7b26bad94643b73180aa075440"
+}

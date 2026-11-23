@@ -99,3 +99,7 @@ AC-13 still forbids presenting remote/general agents, sandbox or persistence as
 available. Current Cargo metadata replaces the old dependency-layout snapshot for
 AC-01/07. No old hash is renewed as a new execution; acceptance review and receipts
 are in docs/validation/product-local-task-ui/acceptance. T012 records this review.
+
+## R3 current native observation — 2026-11-19
+
+Reevaluate only AC-02 using the observed UI02/PNG build 58a91a46… and the maintained six-case desktop harness in a dedicated X11 session. The root executor owns the runtime observations; the R3 coordinator owns this criterion mapping and projection; independent review/validation inspect process oracles and actual captures. Window expansion/reversal captures independently inspected and associated with the actual process exit oracles. No unobserved platform, GPU, performance corpus or other criterion is approved. Exact results, observer, source identities, limitations and historical failures are retained under docs/validation/r3-remediation-20261118/root-checks/native-ui03.

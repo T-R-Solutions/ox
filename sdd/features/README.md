@@ -16,10 +16,11 @@ acceptance. [Workflow](../workflow.md) defines the local and full routes;
 | `product-agent-runtime` | Direct-child supervision, attempts, events, cancellation and deadline |
 | `product-verification-engine` | Local oracle, byte snapshots, history and invalidation in memory |
 | `product-local-task-ui` | Controlled task and explicit verification integrated into the desktop |
-| `product-f0-gate` | Foundation gate and successive operational observations; final raster-profile successor accepts the adopted local corpus |
+| `product-f0-gate` | Foundation gate; historical acceptance applies only to its observed inputs, with current states in evidence.json |
+| `product-visual-workbench` | Desktop destinations, bounded recent-project metadata and project entry; general persistence and real agents remain separate |
 | `product-local-persistence` | Proposed independent delivery after F0 and before F3/MVP; implementation awaits authorization |
 
-F0's current report at `docs/validation/f0-resumption-20261103/report.md`
+F0's historical report at `docs/validation/f0-resumption-20261103/report.md`
 supersedes earlier open conclusions only for the identified inputs and corpus.
 It does not authorize F1 or persistence implementation. Real agents, full engines,
 SDK and distribution remain future scopes. See the
@@ -48,11 +49,41 @@ index lists their names without requiring them as link targets.
 | [scripts-security-quality](scripts-security-quality/converge.md) | Retain stack-relevant security/quality capabilities, local rules and governance-copy consumers |
 | [scripts-shell-refactor](scripts-shell-refactor/converge.md) | Bash entry and shared modules; Python retained only for tests within scripts/ |
 | [scripts-toolchain-config](scripts-toolchain-config/converge.md) | Explicit native/toolbox configuration; Trivy/OSV/Grype toolbox ownership successor, real Docker acceptance pending |
-| [scripts-security-preparation](scripts-security-preparation/converge.md) | Separate dataset acquisition/import, offline checks, rule tests and portable toolbox discovery; optional native tools remain unverified |
+| [scripts-security-preparation](scripts-security-preparation/converge.md) | Separate dataset acquisition/import, offline checks, rule tests and portable toolbox discovery; see current evidence for operational limits |
 
-The nine `skill-*` features cover authoring, routing and evaluation of library
-specializations. Their methods are indexed in the [bridge catalog](../chain/README.md).
-Their technical criteria and consumer observations do not approve product modules.
+Additional governance features:
+
+| Feature | Purpose |
+| --- | --- |
+| [configuration-cohesion](configuration-cohesion/spec.md) | Authority integration, gates, bounded documentary succession and independent acceptance |
+| `dependency-hygiene` (full checkout only) | Reviewed dependencies and explicit local verification inputs |
+| [history-scanner-correction](history-scanner-correction/spec.md) | Preserve scanner diagnostics and bound historical-source corrections |
+| [repository-maintenance](repository-maintenance/spec.md) | Local artifact paths and the later two-date retention contract |
+| [scripts-centralization](scripts-centralization/spec.md) | Declarative automation catalog, discovery and execution defaults |
+| [scripts-toolbox-native](scripts-toolbox-native/spec.md) | Native Toolbox scanner contracts, datasets and consumer integration |
+| [terminal-progress](terminal-progress/spec.md) | Terminal progress, publication and diagnostic projections |
+| [visual-skill-refinement](visual-skill-refinement/spec.md) | Visual method refinement with independent source review |
+| [windows-design-baseline](windows-design-baseline/spec.md) | VS 2026 baseline provenance and Windows guidance adaptation |
+
+The twelve `skill-*` features cover nine engineering specializations plus consumer
+validation, UI metadata and native visual methods:
+
+| Feature | Purpose |
+| --- | --- |
+| [skill-agent-runtime-engineering](skill-agent-runtime-engineering/spec.md) | Runtime supervision method |
+| [skill-agent-usage-accounting](skill-agent-usage-accounting/spec.md) | Usage provenance and reconciliation method |
+| [skill-autonomous-verification-engineering](skill-autonomous-verification-engineering/spec.md) | Criterion and evidence gate method |
+| [skill-code-context-engineering](skill-code-context-engineering/spec.md) | Snapshot-bound indexing and retrieval method |
+| [skill-code-knowledge-graph-engineering](skill-code-knowledge-graph-engineering/spec.md) | Evidence-backed graph method |
+| [skill-iced-engineering](skill-iced-engineering/spec.md) | Iced state, task and widget method |
+| [skill-plugin-protocol-engineering](skill-plugin-protocol-engineering/spec.md) | Versioned plugin contract method |
+| [skill-tool-output-engineering](skill-tool-output-engineering/spec.md) | Conservative output transformation method |
+| [skill-workspace-integrity-engineering](skill-workspace-integrity-engineering/spec.md) | Workspace preservation method |
+| `skill-native-visual-method` (full checkout only) | Native visual handoff and verification method |
+
+Consumer-validation and UI-metadata entries are listed above. Their methods are
+indexed in the [bridge catalog](../chain/README.md). Technical criteria and
+consumer observations do not approve product modules.
 
 Historical results retain their original bytes and scope. Changed inputs require
 new observations or an explicit undecided state, not renewed historical hashes.

@@ -1,0 +1,10 @@
+{
+  "reviewer": "ec_revisor independent context",
+  "baseline": "/tmp/ox-r3-baseline-20261118",
+  "sources": {
+    "tools/governance/tests/test_governance.py": "e6367fa5126f9aa100169e43aad4f93273d9f1d085054c7d6bdb4947cd27f5ec",
+    "tools/governance/tests/test_task_closure.py": "0d4ff918dc7cb4b0320ac8878d1249172abb2148662278485d3e9f7d26801708",
+    "tools/governance/tests/test_instruction_routes.py": "f30e473c91c92726d5ecdb97b083cf100d5c85ab59f834e501afd8cffea52603"
+  },
+  "finding": "No new subprocess boundary, command, suppression or policy change; subprocess AST unchanged (3,5,2 calls). Updates bind reviewed live bytes only; no historical acceptance renewal."
+}

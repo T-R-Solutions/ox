@@ -90,11 +90,23 @@ No phrase authorizes destructive rewrite operations (`reset --hard`, force-push,
 1. **Preflight.** Confirm explicit intent; run `git rev-parse --show-toplevel`, `git status --short --branch`, inspect `git diff`, `git diff --cached`, and relevant ignored/untracked status as necessary. Identify nested repositories or submodules instead of assuming one Git root.
 2. **Scope.** Classify each changed path as authorized, unrelated, generated, sensitive, conflicting, or uncertain. Preserve unrelated work, including pre-staged files; do not assume that already-staged content was authorized.
 3. **SDD awareness.** Check whether the change affects SDD features, evidence inputs, or governance checks. Preserve their actual validation states. Do not change evidence hashes merely to make them pass; do not mark unexecuted criteria approved.
-4. **Validation choice.** Resolve the pre-commit choice below before staging or creating any commits; an explicit applicable user instruction may already settle it. Do not run the automation without an affirmative choice.
+4. **Prepare grouping and validation choice.** Resolve the pre-commit choice below before staging or creating any commits; an explicit applicable user instruction may already settle it. Do not run the automation without an affirmative choice.
 5. **Group.** Produce coherent commits by purpose and review each staged diff. **Do not impose a blanket separation of UI and core changes:** a single atomic feature may reasonably span `ox-ui`, `ox-core`, SDD and tests. Separate unrelated concerns instead.
 6. **Stage.** Prefer explicit path staging (`git add -- <paths>`), inspecting staged hunks. `git add -A` is allowed **only** for an explicitly authorized repository-wide scope, from the verified root, and after a complete status/diff review. Verify staged content again before committing.
 7. **Commit.** Use a matching Conventional Commit subject; avoid empty commits unless explicitly requested. Do not modify unrelated hooks or bypass checks merely for convenience.
 8. **Verify.** Capture the commit hash, exact subject and committed file list (`git show --stat --oneline HEAD`, or equivalent) and final residual `git status`. Disclose remaining changes, failed validation and any uncommitted authorized paths.
+
+## Validation scope
+
+The automation observes the complete working tree, including uncommitted inputs;
+it does not validate the Git index or each proposed partial commit in isolation.
+Before attributing a successful run to a commit, compare its staged bytes and
+required dependencies with the observed input set. For a partial commit, use an
+isolated checkout of the proposed tree when that verification is required and
+authorized, or explicitly report that the run validates only the working tree.
+Preserve unrelated staged/unstaged work; neither a clean run nor this skill grants
+permission to include it. Any required validation of committed bytes remains open
+until that exact proposed tree is verified.
 
 ## Pre-commit automation choice
 

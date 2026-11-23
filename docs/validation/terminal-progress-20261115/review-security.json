@@ -1,0 +1,77 @@
+{
+  "kind": "independent_static_security_review",
+  "observed_at_utc": "2026-11-15T18:31:43.524898+00:00",
+  "verdict": "FALSE_POSITIVES_JUSTIFIED_FOR_THE_EIGHT_OBSERVED_OCCURRENCES_ONLY",
+  "source": {
+    "path": "scripts/tests/test_terminal_progress.py",
+    "sha256": "665987e42c74b38db9c21d09b26155473c32550ac45d59c6f6cbbf254c99855f"
+  },
+  "scanner_report": {
+    "path": "/tmp/ox-terminal-progress-python-lint-38404xyn/bandit/stdout.log",
+    "sha256": "2b76ff2b0a8c3f297a833b1208536ab78792296ca6e063d94044075e086d77f1",
+    "errors": [],
+    "observed_results": 8,
+    "reported_scan_exit": 1,
+    "scan_execution": "Executed by root; this reviewer independently read the resulting JSON and matching current source. Reviewer did not execute Bandit."
+  },
+  "occurrences": [
+    {
+      "test_id": "B404",
+      "line": 15,
+      "verdict": "FALSE_POSITIVE",
+      "rationale": "Importing subprocess is necessary to observe runner processes; import itself executes no external command."
+    },
+    {
+      "test_id": "B603",
+      "line": 124,
+      "verdict": "FALSE_POSITIVE",
+      "rationale": "Fixed /bin/bash argv through self.command(); runner is a local scripts copy inside the test-owned TemporaryDirectory. Fixture rows are serialized data; shell=False. Timeout 20 seconds."
+    },
+    {
+      "test_id": "B603",
+      "line": 127,
+      "verdict": "FALSE_POSITIVE",
+      "rationale": "Same fixed argv as line 124; stderr is an owned PTY descriptor. No shell interpolation or tool text enters argv; PTY descriptors closed in finally."
+    },
+    {
+      "test_id": "B603",
+      "line": 198,
+      "verdict": "FALSE_POSITIVE",
+      "rationale": "Fixed command with literal operation plan. Source is the same private fixture checkout; capture and timeout 5 seconds. No external scanner is launched by this fixture plan."
+    },
+    {
+      "test_id": "B603",
+      "line": 353,
+      "verdict": "FALSE_POSITIVE",
+      "rationale": "Fixed command with literal run. Publication barrier is fixed quoted shell code written only into disposable common.sh. SIGTERM targets only the owned process; communicate before poll detects leaked pipes; finally kills/reaps on a failed assertion."
+    },
+    {
+      "test_id": "B603",
+      "line": 388,
+      "verdict": "FALSE_POSITIVE",
+      "rationale": "Fixed command with literal run; PATH override points to an owned temporary mktemp shim plus system bins. Shim is fixed quoted code and delegates via one executable path argument. No report data is interpreted. Communication bounded to 5 seconds and process reaped."
+    },
+    {
+      "test_id": "B603",
+      "line": 503,
+      "verdict": "FALSE_POSITIVE",
+      "rationale": "Fixed command with literal run; FIXTURE_ROWS holds a fixed JSON fixture. SIGTERM only to proc; cleanup marker and stopped selection are checked; finally kills/reaps owned proc."
+    },
+    {
+      "test_id": "B603",
+      "line": 524,
+      "verdict": "FALSE_POSITIVE",
+      "rationale": "Fixed command with literal run; Cargo/rustup binaries and JSON member events are generated in the owned temporary checkout. Inputs are fixture literals. No externally supplied tool output enters argv; deadline and finally kill/reap apply."
+    }
+  ],
+  "common_trust_boundary": "Tests execute trusted local repository scripts copied into a private TemporaryDirectory. self.command() returns argv [/bin/bash, fixture/scripts/automate.sh, literal operation, --scope, complete]. No shell=True, command string, user-supplied operation, scanner output or arbitrary stderr enters process argv. The inherited cwd does not determine ROOT, which is derived from the copied runner. Fixtures supply explicit tool doubles; the intentionally retained real Geiger adapter uses controlled binaries. This is not OS isolation or approval to execute untrusted repositories.",
+  "limits": [
+    "No broad rule/severity exclusion is justified. Exact reviewed occurrences and final source hash only.",
+    "Final Bandit baseline, catalog hash pin and post-policy scan are not yet integrated/covered; coordinator and validator must inspect those independently.",
+    "No application security claim, scanner qualification, central maintenance or complete pipeline acceptance."
+  ],
+  "skill": {
+    "path": ".codex/skills/application-security/SKILL.md",
+    "sha256": "0d992c0538df30bd5e0c6be689990184ec51671225809eac0f01759cc08257c4"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "command": [
+    "cargo",
+    "clippy",
+    "--workspace",
+    "--all-targets",
+    "--locked",
+    "--offline",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "cwd": "/home/rodrigo/Projetos/ox/application",
+  "exit_code": 101,
+  "seconds": 7.78680157661438,
+  "CARGO_HOME": "/home/rodrigo/Projetos/ox/.cache/ox/cargo-home",
+  "time_utc": "2026-11-19T00:10:49.545425+00:00",
+  "TOOLBOX_BIN": null,
+  "TOOLBOX_SELINUX_LABEL": null,
+  "inputs_unchanged": true,
+  "input_changes": []
+}

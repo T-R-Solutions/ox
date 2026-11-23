@@ -1,0 +1,274 @@
+# Contratos da fundação
+
+Referência descritiva do código local de 04/11/2026, versão interna 0.1.0.
+Os contratos são APIs Rust e um protocolo local de fixture; não há API HTTP,
+SDK público ou compatibilidade pública de dados persistidos. Os nomes abaixo
+correspondem às fontes vinculadas; não instituem requisitos novos.
+[Visão da aplicação](application.md) · [README](../../README.md).
+
+## Índice dos contratos
+
+[UI e Controller](#composição-e-ui) · [Arquivos](#pedido-e-resultado-da-tarefa-controlada) ·
+[Runtime](#agent-runtime) · [Plugins](#plugin-host-e-protocolo-local) ·
+[Verificação](#verification-engine) · [Demais tipos](#demais-contratos-de-domínio)
+
+## Composição e UI
+
+[ox-app/startup.rs](../../application/crates/ox-app/src/startup.rs) expõe
+`run() -> Result`, propagando `iced::Result` da UI. Falha de inicialização não
+é sucesso; o [teste de startup](../../application/crates/ox-app/tests/initialization.rs)
+exercita um display inválido em processo separado.
+
+[Controller](../../application/crates/ox-ui/src/local_task.rs):
+
+| Operação | Entrada e retorno | Efeitos e falhas |
+| --- | --- | --- |
+| `new(binaries)` | `PathBuf` do diretório dos auxiliares → Controller novo | Sessão baseada em horário; Engine vazio; sem leitura de histórico |
+| `select(path)` | `&Path` → `io::Result<String>` | Canonicaliza, exige diretório listável; seleciona e limpa Check atual. Não testa escrita nem confina processo |
+| `execute(mode, cancel)` | Modo `good`, `bad`, `failure` ou `hang`; `Arc<AtomicBool>` → `io::Result<String>` | Exige seleção, incrementa tentativa, cria diretório/pedido exclusivos, prepara Check e supervisiona `local-task`. Retorno descreve término; não aprova |
+| `verify(execute)` | `bool` → `io::Result<String>` | Exige Check. `true` executa oráculo e avalia; `false` apenas observa atualidade. Retorna status, critério, inputs e histórico |
+| `verify_cancellable(execute, cancel)` | Como acima, com `&AtomicBool` | Propaga falhas e cancelamento do Engine; ausência de arquivos impede aprovação |
+
+Os métodos bloqueantes devem ser chamados em worker. O Desktop serializa ações,
+ignora respostas com geração antiga e desabilita início durante uma operação.
+A seleção do workspace não é um grant de segurança. Diretórios de tentativa são
+artefatos locais retidos; erros de execução podem deixar uma tentativa parcial.
+[Testes da integração](../../application/crates/ox-ui/tests/local_task.rs) cobrem
+identidade, invalidação, preservação, cancelamento, timeout e seleção inválida.
+
+## Pedido e resultado da tarefa controlada
+
+O produtor [local-task](../../application/crates/ox-agent/src/bin/local-task.rs)
+recebe um único modo em argv e trabalha no diretório da tentativa. O Controller
+gera um identificador `<sessão>:1:<tentativa>` e este conteúdo UTF-8 exato:
+
+```text
+ox-task-v1:<identificador>\n
+```
+
+Aqui `\n` representa um byte de quebra de linha, não dois caracteres literais.
+`request.txt` contém essa linha; `result.txt` repete o pedido e acrescenta
+`result=42\n` em `good` ou `result=41\n` em `bad`. Ambos os modos podem terminar
+com exit code 0. Arquivos são criados com `create_new`; o produtor sincroniza o
+resultado. `failure` encerra com 17; `hang` dorme 30 s e deve ser interrompido pelo
+supervisor de 10 s. Erros do produtor também resultam em 17.
+
+O [task-oracle](../../application/crates/ox-verification/src/bin/task-oracle.rs)
+recebe o identificador esperado em argv, lê os dois arquivos e exige igualdade
+exata com pedido e resultado 42. Ele não escreve o candidato: exit 0 significa
+aceitação pelo oráculo, 17 inclui resultado incorreto, arquivo ausente ou
+identidade divergente. O Engine ainda precisa verificar estabilidade e atualidade.
+O Check inclui pedido, resultado, executável `local-task` e o próprio oráculo;
+não cobre automaticamente outros arquivos ou todo o ambiente.
+
+## Agent Runtime
+
+[runtime.rs](../../application/crates/ox-agent/src/runtime.rs) oferece
+`Runtime::spawn(executable, mode, workspace, identity, limit) -> io::Result<Runtime>`.
+Exige executável absoluto e duração em `(0, 10 s]`; passa `mode` como um argumento,
+usando `workspace` como diretório corrente. stdin/stdout/stderr vão para null;
+`output_available()` é sempre falso. Não há expansão por shell ou captura de logs.
+
+`Identity` contém `session`, `task`, `attempt` (`u64`). `Event` acrescenta sequência
+crescente a partir de 1 e `Kind`. O reducer `Machine::apply` retorna falso e
+preserva estado para outra identidade, sequência repetida/fora de ordem ou
+transição inválida. Ele não autentica eventos; Runtime fornece eventos observados.
+
+| Origem | Evento admitido | Destino |
+| --- | --- | --- |
+| `Idle` | `Started` | `Running` |
+| `Running` | `CancelRequested` | `Cancelling` |
+| `Running` | `Exited(Success ou Failed(code))` | `Finished(outcome)` |
+| `Cancelling` | `Exited(Cancelled ou TimedOut)` | `Finished(outcome)` |
+
+### Estados do supervisor
+
+[![Máquina Idle, Running, Cancelling e Finished; só a saída observada encerra o supervisor](../assets/runtime-states.svg)](../assets/runtime-states.svg)
+
+*Estados do Runtime. Eles não são os cinco verdicts do Verification Engine.* [Abrir em tamanho integral](../assets/runtime-states.svg).
+
+<details>
+<summary>Diagrama Mermaid — fonte editável</summary>
+
+```mermaid
+stateDiagram-v2
+    accTitle: Estados do supervisor de filho direto
+    accDescr: Idle passa a Running após Started. Running termina ao observar Success ou Failed, ou passa a Cancelling após pedido. Cancelling só termina quando a saída Cancelled ou TimedOut é observada. Finished é terminal.
+    direction TB
+    [*] --> Idle
+    Idle --> Running: Started
+    Running --> Finished: Exited · Success ou Failed
+    Running --> Cancelling: CancelRequested
+    Cancelling --> Finished: Exited · Cancelled ou TimedOut
+    Finished --> [*]
+    note right of Cancelling
+        Solicitar parada não basta.
+        É preciso observar a saída.
+    end note
+```
+
+</details>
+
+`poll()` observa o filho e aplica o prazo; `cancel()` primeiro observa e solicita
+parada se ainda estiver rodando. Enviar kill não termina a máquina: é necessário
+observar saída. Um processo já encerrado pode ser reconhecido como sucesso/falha
+antes do pedido de cancelamento. `Drop` tenta matar e aguarda o filho restante.
+O chamador deve continuar fazendo polling. O prazo não é contenção de descendentes
+ou garantia de reap/FS limitado. Erros de spawn/poll/kill são `io::Error`.
+[Testes](../../application/crates/ox-agent/tests/runtime.rs) exercitam execução,
+recuperação após cancelamento, prazo, ordenação e preservação do workspace.
+
+`session.rs` conserva tipos de descrição independentes (`SessionState`, capabilities
+e erros). Eles não equivalem aos estados do supervisor nem a adaptadores de agentes.
+
+## Plugin Host e protocolo local
+
+[protocol.rs](../../application/crates/ox-plugin/src/protocol.rs) define
+`ProtocolVersion { major, minor }`. `required.accepts(peer)` exige mesmo major e
+minor do peer maior ou igual ao requerido. `PluginDescriptor` contém nome, versão
+e capabilities; descrevê-las não autoriza execução.
+
+O [host.rs](../../application/crates/ox-plugin/src/host.rs) tem um contrato wire mais
+restrito: handshake **exatamente 1.0**, em socket Unix de diretório temporário
+criado com modo 0700. `Host::start(executable, scenario, grant_echo, deadline)`
+lança o fixture com caminho do socket e cenário. Duração deve estar em `(0,10 s]`.
+O transporte usa linhas ASCII, sem bytes de controle no conteúdo, terminadas em
+LF, com limite de recepção de 1024 bytes antes do delimitador.
+
+```text
+plugin → host: HELLO 1 0 echo
+host → plugin: READY echo
+host → plugin: CALL 1 echo token123
+plugin → host: OK 1 token123
+host → plugin: STOP
+```
+
+### Sequência do protocolo
+
+[![Sequência HELLO, READY, CALL, OK e STOP com grant de echo exigido](../assets/plugin-protocol.svg)](../assets/plugin-protocol.svg)
+
+*O handshake do host exige exatamente 1.0; os tipos genéricos de versão têm contrato distinto.* [Abrir em tamanho integral](../assets/plugin-protocol.svg).
+
+<details>
+<summary>Diagrama Mermaid — fonte editável</summary>
+
+```mermaid
+sequenceDiagram
+    accTitle: Handshake e chamada echo do fixture local
+    accDescr: O plugin anuncia HELLO 1 0 echo. O host só responde READY echo se a oferta e o grant do chamador permitirem. A chamada e resposta compartilham identidade e token; STOP encerra. Não existe integração dessa API com a UI.
+    participant H as Plugin Host
+    participant P as Fixture local-plugin
+    P->>H: HELLO 1 0 echo
+    alt Oferta e grant permitem echo
+        H->>P: READY echo
+        H->>P: CALL 1 echo token123
+        P-->>H: OK 1 token123
+        Note over H,P: Identidade e token devem coincidir.
+    else Echo não autorizado ou não oferecido
+        H->>P: READY -
+        Note over H: Recusar echo antes da troca.
+    end
+    H->>P: STOP
+    P-->>H: Saída bem-sucedida observada
+    Note over H,P: Falha de transporte, prazo ou frame recolhe o filho.
+```
+
+</details>
+
+A capability também pode ser `-`; o host responde `READY -` quando o grant ou a
+oferta de echo falta. A operação `echo` requer ambos. Tokens devem ser alfanuméricos
+ASCII, com 1–900 bytes; a resposta deve repetir token e identificador exatos.
+O identificador cresce por chamada. `echo_cancellable` usa um prazo comum de envio
+mais recepção e uma flag atômica; falha de troca admitida marca o host como `Failed`
+e recolhe o filho. Recusa local de autorização/token ocorre antes da troca.
+
+Estados: `Starting`, `Ready`, `Failed`, `Stopped`. `shutdown()` só aceita `Ready`,
+envia STOP e exige saída bem-sucedida; falha altera estado para Failed. `Drop`
+recolhe o processo e tenta remover socket/diretório. Erros distinguem I/O, timeout,
+saída inesperada, incompatibilidade, ausência de autorização, frame inválido/grande,
+estado/limite inválido e cancelamento.
+
+O prazo não cobre toda espera do SO e o diretório privado não prova sandbox. O
+protocolo é fixture local, sem JSON-RPC, ACP, negociação de terceiros ou integração
+à UI. [Testes do host](../../application/crates/ox-plugin/tests/host.rs) e
+[compatibilidade](../../application/crates/ox-plugin/tests/compatibility.rs)
+verificam a diferença entre tipos de versão e transporte estrito, correlação,
+frames inválidos, falhas, grants, cancelamento e limpeza.
+
+## Verification Engine
+
+[engine.rs](../../application/crates/ox-verification/src/engine.rs) guarda somente
+observações e declarações em memória. `Check` contém `id`, `description`,
+`executable`, `arguments`, `directory`, `inputs` e `expected_exit`. O conteúdo
+integral desse Check participa da igualdade para escolher observações aplicáveis.
+
+| Restrição | Comportamento |
+| --- | --- |
+| Critério | ID/descrição não vazios, diretório absoluto, 1–8 inputs declarados |
+| Captura | Inputs e executável absolutos, ordenados e deduplicados; leitura exata por bytes |
+| Conteúdo | Até 16 MiB/arquivo e 32 MiB/captura, incluindo o oráculo |
+| Histórico | Até 32 observações e 128 MiB de conteúdo retido |
+| Admissão | Reserva captura posterior máxima antes de lançar; recusa sem apagar evidência anterior |
+| Execução | Prazo `(0,10 s]`, stdin/stdout/stderr null, sem shell |
+| Declaração textual | `note_completion`: até 32 notas de até 1024 bytes; não cria aprovação |
+
+`execute`/`execute_cancellable` capturam antes, executam o oráculo autorizado pelo
+chamador, observam término e capturam depois. Retornam o número da observação,
+não um verdict. Cancelamento anterior ao lançamento retorna Interrupted sem
+executar; depois do lançamento aguarda saída do filho. Timeout/cancelamento
+registrados não aprovam. Falha de captura posterior conserva observação inadequada
+(`after` vazio). Captura inicial, spawn ou limites podem retornar `io::Error` sem
+nova observação. O deadline limita supervisão, não todo o filesystem/reap.
+
+`evaluate(check)` recaptura inputs atuais. Falha de leitura retorna `NotVerified`.
+Só considera observações com Check igual e captura anterior igual à atual:
+
+1. Exit code diferente do esperado em observação estável resulta em `Rejected`,
+   mesmo havendo aprovação da mesma versão dos inputs.
+2. Se não houver rejeição aplicável, captura alterada durante execução, timeout ou
+   cancelamento tornam o conjunto `Inconclusive`, ainda que exista um passe.
+3. Sem esses impedimentos, ao menos uma saída esperada resulta em `Approved`.
+4. Sem observação aplicável, retorna `NotVerified`; observações antigas permanecem.
+
+`not_applicable(reason)` exige justificativa não vazia após trim. O modelo
+[Verdict](../../application/crates/ox-verification/src/verdict.rs) representa cinco
+estados: NotVerified (`UNVERIFIED` na UI), Approved, Rejected, Inconclusive e
+NotApplicable. Evidência é uma referência `run:<n>` local à instância. Reinício
+não restaura observações. Não há assinatura, autenticação, snapshot atômico contra
+escritores hostis ou descoberta automática de dependências não declaradas.
+[Testes do Engine](../../application/crates/ox-verification/tests/engine.rs)
+cobrem contradições, stale inputs, cancelamento, reinício e recusa antes do efeito
+por tamanho/contagem/orçamento.
+
+## Demais contratos de domínio
+
+Estes módulos oferecem tipos ou comportamento local restrito; não são serviços
+completos nem estão todos integrados ao Controller.
+
+| Fonte | Contrato | Limite semântico |
+| --- | --- | --- |
+| [ox-core/capability](../../application/crates/ox-core/src/capability.rs) | `Availability::Available / Unavailable { reason }` | Disponibilidade técnica não concede permissão |
+| [ox-policy/authorization](../../application/crates/ox-policy/src/authorization.rs) | `Decision::ApprovalRequired` padrão; Denied com motivo; Granted com escopo | Representação de decisão, sem enforcement do SO |
+| [ox-task/state](../../application/crates/ox-task/src/state.rs) | Planned → Running/Cancelled; Running → Cancelled/Failed/Completed | Estados terminais não reiniciam; transição inválida preserva estado; Completed não aprova critério |
+| [ox-workspace/root](../../application/crates/ox-workspace/src/root.rs) | `WorkspaceRoot::new` aceita apenas PathBuf absoluto | Não canonicaliza, testa existência, remove `..` ou garante confinamento |
+| [ox-storage/local](../../application/crates/ox-storage/src/local.rs) | `LocalStoreLocation`; erros Unavailable, Io, UnsupportedSchema | Não abre banco, grava dados ou migra schema |
+| [ox-context/query](../../application/crates/ox-context/src/query.rs) | Query com texto/limite NonZeroUsize; hit com path/snapshot/excerpt; IndexUnavailable/StaleSnapshot | Sem índice ou resolução semântica |
+| [ox-graph/relation](../../application/crates/ox-graph/src/relation.rs) | Relation liga NodeKeys com kind e evidência Verified/Inferred, método/snapshot/origem | Rótulos de evidência não verificam automaticamente uma relação |
+| [ox-output/capture](../../application/crates/ox-output/src/capture.rs) | RawOutput: bytes stdout/stderr, exit/sinal/desconhecido, completo/incompleto; Projection conserva original e perdas | Não implementa captura ou compactação do Runtime |
+| [ox-observability/measurement](../../application/crates/ox-observability/src/measurement.rs) | Measured, Estimated, Derived, Unknown; Sample com unidade e período SystemTime | Desconhecido não é zero; sem coleta/contabilidade automática |
+| [ox-sdd/artifact](../../application/crates/ox-sdd/src/artifact.rs) | Referências Spec/Plan/Tasks/Convergence e erros ReaderUnavailable/Io/InvalidFormat | Sem parser ou sincronização de SDD do usuário |
+| [ox-skills/reference](../../application/crates/ox-skills/src/reference.rs) | Available, Suggested, Selected, Consulted, Used; nome e entry path | Estado declarado não lê, executa ou autoriza skill |
+
+## Contratos operacionais e manutenção
+
+A [constituição](../constitution.md), [workflow](../../sdd/workflow.md) e
+[evidências](../../sdd/evidence.md) governam desenvolvimento e aceitação. São
+independentes das APIs Rust: `ox-sdd` não implementa o validador Python do
+repositório, e o catálogo `.codex/skills` não é carregado automaticamente pela UI.
+A execução continua sujeita às permissões efetivas do ambiente. Processo separado,
+tipos de política e grants de echo não estabelecem isolamento de SO.
+
+Quem altera API, transições, protocolo, limites ou inputs do oráculo deve atualizar
+esta referência, os testes pertinentes e os artefatos/evidências afetados. Evolução
+para terceiros ou persistência precisa de decisão de compatibilidade própria;
+estes contratos internos não prometem estabilidade pública.

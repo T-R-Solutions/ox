@@ -1,0 +1,131 @@
+[
+  {
+    "scenario": "success",
+    "fixture_root": "/tmp/Ox terminal fixture krwwry3i",
+    "command": [
+      "/bin/bash",
+      "/tmp/Ox terminal fixture krwwry3i/scripts/automate.sh",
+      "run",
+      "--scope",
+      "complete"
+    ],
+    "exit_code": 0,
+    "effects": {},
+    "streams": {
+      "stdout": {
+        "path": "/tmp/ox-terminal-progress-current-example-success.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/tmp/ox-terminal-progress-current-example-success.stderr.log",
+        "sha256": "b72f32ea6447608a36e59384fd43fee7136bb80edce28749c849cef9fcd72672",
+        "bytes": 2009
+      }
+    }
+  },
+  {
+    "scenario": "known-geiger",
+    "fixture_root": "/tmp/Ox terminal fixture 3ouyqfv3",
+    "command": [
+      "/bin/bash",
+      "/tmp/Ox terminal fixture 3ouyqfv3/scripts/automate.sh",
+      "run",
+      "--scope",
+      "complete"
+    ],
+    "exit_code": 0,
+    "effects": {},
+    "streams": {
+      "stdout": {
+        "path": "/tmp/ox-terminal-progress-current-example-known-geiger.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/tmp/ox-terminal-progress-current-example-known-geiger.stderr.log",
+        "sha256": "9ab7840cdfc084f2963b31879b6fe3ae66f06c2409e4b43b4b3209de91726ddd",
+        "bytes": 2534
+      }
+    }
+  },
+  {
+    "scenario": "finding",
+    "fixture_root": "/tmp/Ox terminal fixture wwr7ow61",
+    "command": [
+      "/bin/bash",
+      "/tmp/Ox terminal fixture wwr7ow61/scripts/automate.sh",
+      "run",
+      "--scope",
+      "complete"
+    ],
+    "exit_code": 1,
+    "effects": {},
+    "streams": {
+      "stdout": {
+        "path": "/tmp/ox-terminal-progress-current-example-finding.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/tmp/ox-terminal-progress-current-example-finding.stderr.log",
+        "sha256": "b4a7410a489338820b206266e9c845b7425c48ae6d54979440f6b46187ed0e57",
+        "bytes": 2573
+      }
+    }
+  },
+  {
+    "scenario": "publication-failure",
+    "fixture_root": "/tmp/Ox terminal fixture 5plja5rs",
+    "command": [
+      "/bin/bash",
+      "/tmp/Ox terminal fixture 5plja5rs/scripts/automate.sh",
+      "run",
+      "--scope",
+      "complete"
+    ],
+    "exit_code": 2,
+    "effects": {},
+    "streams": {
+      "stdout": {
+        "path": "/tmp/ox-terminal-progress-current-example-publication-failure.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/tmp/ox-terminal-progress-current-example-publication-failure.stderr.log",
+        "sha256": "5c443eb7df3970de8fd8963eb27a1b7574daf3b14a77f32d3583646189efc1e1",
+        "bytes": 1724
+      }
+    }
+  },
+  {
+    "scenario": "publication-cancelled",
+    "fixture_root": "/tmp/Ox terminal fixture qj2u19he",
+    "command": [
+      "/bin/bash",
+      "/tmp/Ox terminal fixture qj2u19he/scripts/automate.sh",
+      "run",
+      "--scope",
+      "complete"
+    ],
+    "exit_code": 143,
+    "effects": {
+      "run_removed": true,
+      "published_results": "/tmp/Ox terminal fixture qj2u19he/.local/logs/2026-11-15/ox-run-ZiPKvJTr--results.json.log",
+      "direct_communicate_completed": true
+    },
+    "streams": {
+      "stdout": {
+        "path": "/tmp/ox-terminal-progress-current-example-publication-cancelled.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "/tmp/ox-terminal-progress-current-example-publication-cancelled.stderr.log",
+        "sha256": "1e06ab8d7437400e2020c8a13517b803825b6c6a437cc7002457755b15c6455c",
+        "bytes": 1973
+      }
+    }
+  }
+]

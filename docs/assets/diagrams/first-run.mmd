@@ -6,14 +6,14 @@ flowchart TD
     FIX --> W
     D -->|sim| RUN["2 · Executar tarefa local"]
     RUN --> RAW["Artefato candidato · UNVERIFIED"]
-    RAW --> CHECK["3 · Verify result"]
+    RAW --> CHECK["3 · Verificar resultado"]
     CHECK --> RESULT{"Observação aplicável?"}
     RESULT -->|estável e aceita| OK["APPROVED"]
     RESULT -->|estável e contradiz| BAD["REJECTED"]
     RESULT -->|interrompida ou instável| INC["INCONCLUSIVE"]
     RESULT -->|ausente ou ilegível| NONE["UNVERIFIED"]
     OK --> EDIT["Editou um input?"]
-    EDIT --> REFRESH["Refresh inputs · reavaliar atualidade"]
+    EDIT --> REFRESH["Atualizar inputs · reavaliar atualidade"]
     classDef good fill:#ecfdf5,stroke:#047857,color:#064e3b
     classDef bad fill:#fff1f2,stroke:#be123c,color:#881337
     classDef uncertain fill:#fff7ed,stroke:#9a3412,color:#7c2d12

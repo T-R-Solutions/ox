@@ -18,7 +18,8 @@ From the source checkout, use only this allowlist:
 
 - `sdd/workflow.md` and `sdd/evidence.md`.
 - `sdd/templates/README.md`, `spec.md`, `plan.md`, `tasks.md`, `converge.md`;
-  optionally `checklist.md` and `adr.md` when needed.
+  optionally `checklist.md` when needed. Author project-specific ADRs separately;
+  this template set does not ship an `adr.md`.
 - Optionally `sdd/tools/validate.py` (Python 3.11+ stdlib, no installation).
 
 Create destination `sdd/`, `sdd/templates/`, empty `sdd/chain/` and, for the checker,
@@ -32,7 +33,7 @@ that no bridges are selected yet. Reuse an existing constitution; never copy the
 Ox policies as the destination's adopted decisions.
 
 Do not copy `features/`, `project.md`, `codex-agents.md`, the Ox README/context,
-acceptance/evidence records, this correction supplement, `.codex/config.toml`,
+acceptance/evidence records, Ox-specific correction supplements, `.codex/config.toml`,
 agent profiles or the full bridge catalog. Ox governance export is a different,
 versioned distribution contract. `sdd/model/` describes historical source-library
 layout; it is not a command or directory required in this checkout.

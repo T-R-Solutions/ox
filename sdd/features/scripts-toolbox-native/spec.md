@@ -39,3 +39,23 @@ more than 12h ago; failure blocks scanning. This supersedes earlier no-acquisiti
 claims for OSV only. The scanner remains offline, and the Ox 24h data timestamp
 policy remains independent of central acquisition time. Preserve native reports,
 explicit mounts, discovery, diagnostics and caller-selected SELinux behavior.
+
+## Single OSV acquisition clock successor — 2026-11-16
+
+Current authority: docs/decisions/osv-acquisition-validity.md. Supersede earlier
+OSV 24h/upstream-age and no-central-acquisition clauses: Toolbox reuses a validated
+base for <=12h since the last successful download, and acquires on absence,
+unknown acquisition or >12h. Every successful download records acquisition,
+including manual/idempotent updates; scans never reset it. Identity and acquisition
+publish atomically; failed acquisition blocks the requested scan and preserves
+previous state. Upstream dates are provenance only for OSV. Retain Trivy/Grype
+120h, source/report integrity and advisory exceptions. Existing broad real-Docker
+criteria remain unverified; bounded manual criteria OSV-01..05 and inputs are in
+docs/validation/osv-acquisition-20261116/plan.md and report.md.
+
+## Interface scope clarification — 2026-11-17 audit
+
+The unset/empty relabel preservation requirement applies to scripts/toolbox.sh
+called directly. The separately authorized scripts-centralization default-parity
+successor applies automation.json defaults in plan/run before wrapper dispatch.
+Do not infer an unchanged runner environment from the wrapper-only contract.

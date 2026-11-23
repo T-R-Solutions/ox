@@ -1,0 +1,200 @@
+"""Observe the documented GUI consumer against the current locked graph."""
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+sys.dont_write_bytecode = True
+ROOT = Path('/home/rodrigo/Projetos/ox')
+OUT = Path('/tmp/ox-r3-gui-consumer-final-02')
+ENV = dict(os.environ, CARGO_HOME=str(ROOT / '.cache/ox/cargo-home'),
+           RUSTUP_AUTO_INSTALL='0', PYTHONDONTWRITEBYTECODE='1')
+COMMANDS = []
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def inputs():
+    paths = [Path(__file__)]
+    paths += [ROOT / p for p in (
+        'application/Cargo.toml', 'application/Cargo.lock',
+        'application/rust-toolchain.toml',
+        'tools/governance/consumers/gui.rs',
+        'tools/governance/consumers/gui_tests.rs',
+        'tools/governance/consumers/gui_test.py',
+        'docs/validation/f0-resumption-20261103/native-session.py',
+        'docs/validation/f0-resumption-20261103/probe-session.py')]
+    for directory in ('application/crates', 'application/vendor',
+                      'application/.cargo', '.cargo'):
+        paths.extend(p for p in (ROOT / directory).rglob('*') if p.is_file())
+    return {str(p): digest(p) for p in sorted(set(paths)) if p.is_file()}
+
+
+def run(name, argv, cwd, env):
+    started = time.monotonic()
+    with (OUT / (name + '.stdout.log')).open('wb') as stdout, \
+            (OUT / (name + '.stderr.log')).open('wb') as stderr:
+        result = subprocess.run(argv, cwd=cwd, env=env,
+                                stdout=stdout, stderr=stderr, check=False)
+    COMMANDS.append({'name': name, 'argv': argv, 'cwd': str(cwd),
+                     'exit_code': result.returncode,
+                     'seconds': time.monotonic() - started})
+    (OUT / 'commands.json').write_text(json.dumps(COMMANDS, indent=2) + '\n')
+    if result.returncode:
+        raise RuntimeError(f'{name} exited {result.returncode}')
+
+
+def main():
+    OUT.mkdir(exist_ok=False)
+    before = inputs()
+    (OUT / 'inputs-before.json').write_text(json.dumps(before, indent=2) + '\n')
+    session = None
+    error = None
+    interruption = None
+    completed = False
+    dependency_inputs = {}
+    try:
+        app = ROOT / 'application'
+        run('compiler-version', ['rustc', '+1.99.1', '--version', '--verbose'], app, ENV)
+        run('cargo-version', ['cargo', '--version', '--verbose'], app, ENV)
+        run('metadata', ['cargo', 'metadata', '--format-version', '1', '--locked',
+                         '--offline'], app, ENV)
+        run('build', ['cargo', 'build', '--workspace', '--locked', '--offline',
+                      '--message-format=json'], app, ENV)
+        metadata = json.loads((OUT / 'metadata.stdout.log').read_text())
+        artifacts = [json.loads(line) for line in
+                     (OUT / 'build.stdout.log').read_text().splitlines()
+                     if line.strip()]
+        artifacts = [a for a in artifacts
+                     if a.get('reason') == 'compiler-artifact']
+        selected = {}
+        for name, version in [('iced', '0.14.0'), ('x11rb', '0.13.2')]:
+            package_ids = [p['id'] for p in metadata['packages']
+                           if (p['name'], p['version']) == (name, version)]
+            if len(package_ids) != 1:
+                raise RuntimeError(f'Ambiguous/missing current PackageID: {name}')
+            package_id = package_ids[0]
+            matches = [(a, Path(filename)) for a in artifacts
+                       if a['package_id'] == package_id
+                       and a['target']['name'] == name
+                       for filename in a['filenames'] if filename.endswith('.rlib')]
+            if len(matches) != 1:
+                raise RuntimeError(f'Ambiguous/missing current artifact: {name}')
+            artifact, path = matches[0]
+            selected[name] = {'package_id': package_id, 'path': str(path),
+                              'sha256': digest(path), 'features': artifact['features']}
+        # Bind all actual compiler outputs, including transitive libraries, rather
+        # than selecting whichever old rlib happens to exist in target/debug/deps.
+        for artifact in artifacts:
+            for filename in artifact['filenames']:
+                path = Path(filename)
+                if path.is_file():
+                    dependency_inputs[str(path)] = digest(path)
+        (OUT / 'current-artifacts.json').write_text(json.dumps(
+            {'selected': selected, 'compiler_outputs': dependency_inputs}, indent=2) + '\n')
+        deps = app / 'target/debug/deps'
+        for name, source, dependency, extra in [
+                ('gui', 'gui.rs', 'iced', []),
+                ('gui-tests', 'gui_tests.rs', 'x11rb', ['--test'])]:
+            run('compile-' + name, ['rustc', '+1.99.1', '--edition=2024',
+                '-L', 'dependency=' + str(deps), '--extern',
+                dependency + '=' + selected[dependency]['path'],
+                str(ROOT / 'tools/governance/consumers' / source),
+                '-o', str(OUT / name), *extra], ROOT, ENV)
+        binaries = {name: {'path': str(OUT / name), 'sha256': digest(OUT / name)}
+                    for name in ('gui', 'gui-tests')}
+        (OUT / 'binaries.json').write_text(json.dumps(binaries, indent=2) + '\n')
+        spec = importlib.util.spec_from_file_location('native_consumer_session',
+            ROOT / 'docs/validation/f0-resumption-20261103/native-session.py')
+        native = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(native)
+        # Retain ownership before __init__: readiness can fail after children start.
+        session = native.Session.__new__(native.Session)
+        native.Session.__init__(session, OUT / 'parent', '2000x1400')
+        env = dict(session.env, **{key: ENV[key] for key in
+                   ('CARGO_HOME', 'RUSTUP_AUTO_INSTALL', 'PYTHONDONTWRITEBYTECODE')})
+        for key, name in [('OX_GUI_CONSUMER', 'gui'), ('OX_GUI_TESTS', 'gui-tests')]:
+            env[key] = binaries[name]['path']
+            env[key + '_SHA256'] = binaries[name]['sha256']
+        run('gui-test', [sys.executable, str(ROOT / 'tools/governance/consumers/gui_test.py'),
+                        str(OUT / 'gui-report')], ROOT, env)
+        for name, row in binaries.items():
+            if digest(Path(row['path'])) != row['sha256']:
+                raise RuntimeError('Compiled binary changed: ' + name)
+        completed = True
+    except Exception as exc:
+        error = repr(exc)
+    except BaseException as exc:
+        interruption = exc
+        error = 'Interrupted: ' + repr(exc)
+    finally:
+        if session:
+            cleanup_errors = []
+            pipeline = getattr(session, 'pipeline', None)
+            if pipeline:
+                try:
+                    pipeline.set_state(native.Gst.State.NULL)
+                except Exception as exc:
+                    cleanup_errors.append(repr(exc))
+            for child in reversed(getattr(session, 'children', [])):
+                try:
+                    if child.poll() is None:
+                        child.terminate()
+                        try:
+                            child.wait(timeout=5)
+                        except subprocess.TimeoutExpired:
+                            child.kill()
+                            child.wait()
+                except Exception as exc:
+                    cleanup_errors.append(repr(exc))
+            for resource_name in ('sock', 'log'):
+                resource = getattr(session, resource_name, None)
+                if resource is not None:
+                    try:
+                        resource.close()
+                    except Exception as exc:
+                        cleanup_errors.append(repr(exc))
+            (OUT / 'session-cleanup.json').write_text(json.dumps({
+                'errors': cleanup_errors,
+                'owned_children': [{'pid': child.pid, 'returncode': child.poll()}
+                                   for child in getattr(session, 'children', [])],
+                'socket_path': getattr(session, 'buspath', None),
+                'socket_path_disposition': 'Closed endpoint retained as operational artifact; no unlink of an unproven path.',
+                'events': getattr(session, 'events', [])}, indent=2) + '\n')
+            if cleanup_errors:
+                error = (error or '') + '\nSession cleanup failed: ' + repr(cleanup_errors)
+        after = inputs()
+        changed_outputs = [path for path, value in dependency_inputs.items()
+                           if not Path(path).is_file() or digest(Path(path)) != value]
+        (OUT / 'inputs-after.json').write_text(json.dumps(after, indent=2) + '\n')
+        result = {'commands': COMMANDS, 'error': error,
+                  'all_stages_completed': completed,
+                  'interrupted': interruption is not None,
+                  'observer_dont_write_bytecode': sys.dont_write_bytecode,
+                  'inputs_unchanged': before == after,
+                  'compiler_outputs_changed': changed_outputs,
+                  'limitations': ['Separate documented consumer, not product UI acceptance.',
+                                  'Screenshots still require independent visual inspection.',
+                                  'Before/after identity is not a hostile-writer atomic snapshot.']}
+        result['exit_code'] = int(bool(error or not completed or before != after or changed_outputs))
+        if isinstance(interruption, KeyboardInterrupt):
+            result['exit_code'] = 130
+        elif isinstance(interruption, SystemExit):
+            result['exit_code'] = interruption.code if isinstance(interruption.code, int) and interruption.code else 1
+        (OUT / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
+    print(json.dumps(result), flush=True)
+    if interruption is not None:
+        if isinstance(interruption, SystemExit) and not interruption.code:
+            raise SystemExit(result['exit_code'])
+        raise interruption
+    return result['exit_code']
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

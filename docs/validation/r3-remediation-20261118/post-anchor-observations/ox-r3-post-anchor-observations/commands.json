@@ -1,0 +1,34 @@
+[
+  {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py",
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "exit_source": "completed exec/write_stdin tool result observed by coordinator",
+    "logs": {
+      "stdout": {
+        "path": "/tmp/ox-r3-check-ox-final-05.stdout.log",
+        "sha256": "57282a56cf66028c8ea6e09e3508a7ac56e58d6d7283b8940abbe229bb034935"
+      },
+      "stderr": {
+        "path": "/tmp/ox-r3-check-ox-final-05.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root . --structure-only",
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "exit_source": "completed exec/write_stdin tool result observed by coordinator",
+    "logs": {
+      "stdout": {
+        "path": "/tmp/ox-r3-structure-final-02.stdout.log",
+        "sha256": "2e2f6772c51501073d4793e1978689b67dcb4c245fb37c25a4013aa8b0c6cd86"
+      },
+      "stderr": {
+        "path": "/tmp/ox-r3-structure-final-02.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  }
+]

@@ -34,7 +34,7 @@ Assess the dimensions affected by the change below. Report omissions when they l
 - **Compatibility:** edition and MSRV, dependency/features/target constraints, public type and trait commitments, and existing callers.
 - **Performance:** algorithmic cost, avoidable allocation/copying, contention, and evidence for claimed improvements. A simpler owned value or deliberate clone can be the better design.
 
-Do not impose blanket bans on `clone`, `unwrap`, `expect`, `panic!`, or `unsafe`. Assess ownership needs, failure contracts, cost, and proof obligations. Do not weaken checks or silence diagnostics merely to make a change pass.
+Honor explicit repository bans, including `forbid(unsafe_code)`, as hard constraints; if a requirement appears to need a prohibited operation, report that conflict before changing it. Do not introduce new blanket bans on `clone`, `unwrap`, `expect`, `panic!`, or `unsafe` where the repository has not adopted them. Assess ownership needs, failure contracts, cost, and proof obligations. Do not weaken checks or silence diagnostics merely to make a change pass.
 
 ## Validate and report
 

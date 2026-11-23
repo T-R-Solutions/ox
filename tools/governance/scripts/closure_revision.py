@@ -8,6 +8,9 @@ REVIEWED = "252155ba4dbe8defb06e55fae98367c457a646965d2a033b538dbb71114be54b"
 
 
 def predecessor(root, relative, data):
+    from visual_skill_revision import predecessor as skill_visual_predecessor
+
+    data = skill_visual_predecessor(root, relative, data)
     data = configuration_predecessor(root, relative, data)
     data = visual_predecessor(root, relative, data)
     data = maintenance_predecessor(root, relative, data)

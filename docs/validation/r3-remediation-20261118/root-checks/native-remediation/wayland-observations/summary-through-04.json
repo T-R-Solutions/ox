@@ -1,0 +1,135 @@
+[
+  {
+    "observation": "native_review-attempt-01",
+    "record": {
+      "method": "isolated native Wayland via Mutter RemoteDesktop and PipeWire",
+      "baseline": false,
+      "binary_sha256": "103f0a8d1ccb52930365817a8e183480ed4ba009726562d68a4fd43155866873",
+      "fixture": {
+        "workspace": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_review-attempt-01/workspace",
+        "XDG_STATE_HOME": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_review-attempt-01/state",
+        "dialog_provider": "controlled exit-2 fixture; real portal/dialog not claimed"
+      },
+      "artifacts": [
+        {
+          "path": "workspace/sentinel",
+          "sha256": "3e816ea9bd09f62766b241e8b894df2900d457224d05587e6955c427d0d72618"
+        },
+        {
+          "path": "workspace/.ox-task-1795045253510406361-1/result.txt",
+          "sha256": "847caa25dfdaf4cccc83e8ffd7c0a34417ecf7fb2ac09d09c24455466c98dbe1"
+        },
+        {
+          "path": "workspace/.ox-task-1795045253510406361-1/request.txt",
+          "sha256": "4a2cfc607db11aa3cb9582e1f34db85363d83a6cdba74b6127bab5a988473584"
+        }
+      ],
+      "result": "observed",
+      "natural_exit": 0
+    },
+    "semantic_result": "INCONCLUSIVE: task verification not activated, despite exit0"
+  },
+  {
+    "observation": "native_review-attempt-02",
+    "record": {
+      "method": "isolated native Wayland via Mutter RemoteDesktop and PipeWire",
+      "baseline": false,
+      "binary_sha256": "103f0a8d1ccb52930365817a8e183480ed4ba009726562d68a4fd43155866873",
+      "observer": {
+        "path": "/tmp/ox-r3-native-proposal-2fhe00q5/revisions/python-04/native_review.py",
+        "sha256": "8cc3b7c49d32a323ae7b8b03ba96d8317393e5a4ad125eb9a463309c95835ae0",
+        "arguments": {
+          "baseline": false,
+          "output": "native_review-attempt-02",
+          "binary": "/tmp/ox-r3-native-proposal-2fhe00q5/binaries/ox",
+          "monitor": "1600x1000",
+          "scale": 1,
+          "capture_only": false
+        },
+        "session_sha256": "1ab4c178cccf0db8aeec85c927f4f7045fc1a464a54dced77000abe5109f6964"
+      },
+      "fixture": {
+        "workspace": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_review-attempt-02/workspace",
+        "XDG_STATE_HOME": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_review-attempt-02/state",
+        "dialog_provider": "controlled exit-2 fixture; real portal/dialog not claimed"
+      },
+      "artifacts": [
+        {
+          "path": "workspace/sentinel",
+          "sha256": "3e816ea9bd09f62766b241e8b894df2900d457224d05587e6955c427d0d72618"
+        },
+        {
+          "path": "workspace/.ox-task-1795045597856998966-1/result.txt",
+          "sha256": "a71efbd419595e97f228d4194b0fb1493bf70232aeef00b002f79a99b81a6821"
+        },
+        {
+          "path": "workspace/.ox-task-1795045597856998966-1/request.txt",
+          "sha256": "f9e05c874d96486ecb5202170d7cbbb850d97307656b8678c4079ec0ea2281ea"
+        }
+      ],
+      "result": "observed",
+      "natural_exit": 0
+    },
+    "semantic_result": "artifact and approved badge observed; bounded GUI evidence"
+  },
+  {
+    "observation": "native_composition_review-attempt-01",
+    "record": {
+      "method": "isolated native Wayland via Mutter RemoteDesktop and PipeWire",
+      "baseline": false,
+      "binary_sha256": "103f0a8d1ccb52930365817a8e183480ed4ba009726562d68a4fd43155866873",
+      "fixture": {
+        "workspace": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_composition_review-attempt-01/workspace",
+        "XDG_STATE_HOME": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_composition_review-attempt-01/state",
+        "dialog_provider": "controlled exit-2 fixture; real portal/dialog not claimed"
+      },
+      "artifacts": [
+        {
+          "path": "workspace/sentinel",
+          "sha256": "3e816ea9bd09f62766b241e8b894df2900d457224d05587e6955c427d0d72618"
+        },
+        {
+          "path": "workspace/.ox-task-1795042430567176500-1/result.txt",
+          "sha256": "1e9bd7f5a7ad2adb7889e218b31edfc74f932af7ea25f79eda33c897dae417e2"
+        },
+        {
+          "path": "workspace/.ox-task-1795042430567176500-1/request.txt",
+          "sha256": "ce5855a8a77cc128bbfd68b788c0493807841a312200a56e31e5b94878dc2870"
+        }
+      ],
+      "result": "observed",
+      "natural_exit": 0
+    },
+    "semantic_result": "artifact and approved badge observed; bounded GUI evidence"
+  },
+  {
+    "observation": "native_composition_review-attempt-02",
+    "record": {
+      "method": "isolated native Wayland via Mutter RemoteDesktop and PipeWire",
+      "baseline": false,
+      "binary_sha256": "103f0a8d1ccb52930365817a8e183480ed4ba009726562d68a4fd43155866873",
+      "fixture": {
+        "workspace": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_composition_review-attempt-02/workspace",
+        "XDG_STATE_HOME": "/tmp/ox-r3-native-proposal-2fhe00q5/wayland-observations/native_composition_review-attempt-02/state",
+        "dialog_provider": "controlled exit-2 fixture; real portal/dialog not claimed"
+      },
+      "artifacts": [
+        {
+          "path": "workspace/sentinel",
+          "sha256": "3e816ea9bd09f62766b241e8b894df2900d457224d05587e6955c427d0d72618"
+        },
+        {
+          "path": "workspace/.ox-task-1795045479330191554-1/result.txt",
+          "sha256": "c5d9311df1824ffd53ca77274958a41de78263579477ef347602c88501ee2615"
+        },
+        {
+          "path": "workspace/.ox-task-1795045479330191554-1/request.txt",
+          "sha256": "0e9235ff154c130a5427b988c9faed588ff0609c791b9d0e88a07b56b058e34a"
+        }
+      ],
+      "result": "observed",
+      "natural_exit": 0
+    },
+    "semantic_result": "artifact and approved badge observed; bounded GUI evidence"
+  }
+]

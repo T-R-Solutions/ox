@@ -70,3 +70,11 @@ Geiger declares the existing local ox.1 binary; it does not silently substitute
 the global ec.2 when the qualified local installation is unavailable. No cache
 or binary joins governance distribution. A clean consumer must provision its
 explicitly selected tool separately; planning remains tool-free.
+
+## Analysis corrections successor — 2026-11-17
+
+Authorization: analyze claude_analisys.md and implement corrections. Preserve prior
+scanner policies, raw-result integrity and legacy compatibility unless a confirmed
+defect requires a documented bounded successor.
+
+- AC-08: Confirmed runner/reporting/selection/test-oracle defects from the analysis are corrected and covered by focused behavioral checks; every report ID has an explicit disposition against current code and contracts, with independent review and validation and unexecuted operational checks identified.

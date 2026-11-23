@@ -1,0 +1,29 @@
+// Non-executable Opengrep data: no compilation or database/network effects.
+fn examples(client: Client, input: &str) {
+    // ruleid: ox.reference.rust.uninitialized-value
+    let first: u32 = std::mem::uninitialized();
+    // ruleid: ox.reference.rust.uninitialized-value
+    let second: u32 = mem::uninitialized();
+    // ok: ox.reference.rust.uninitialized-value
+    let initialized: u32 = 0;
+
+    // ruleid: ox.reference.rust.dynamic-postgres-query
+    client.query(&format!("SELECT {}", input), &[]);
+    // ruleid: ox.reference.rust.dynamic-postgres-query
+    client.query_one(&format!("SELECT {}", input), &[]);
+    // ruleid: ox.reference.rust.dynamic-postgres-query
+    client.execute(&format!("SELECT {}", input), &[]);
+    // ruleid: ox.reference.rust.dynamic-postgres-query
+    client.batch_execute(&format!("SELECT {}", input));
+    // ok: ox.reference.rust.dynamic-postgres-query
+    client.query("SELECT $1", &[input]);
+
+    // ruleid: ox.reference.rust.weak-hash
+    let digest = md5::compute(input);
+    // ruleid: ox.reference.rust.weak-hash
+    let hasher = md5::Md5::new();
+    // ruleid: ox.reference.rust.weak-hash
+    let other = sha1::Sha1::new();
+    // ok: ox.reference.rust.weak-hash
+    let stronger = sha2::Sha256::new();
+}

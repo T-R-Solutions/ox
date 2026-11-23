@@ -1,0 +1,232 @@
+[
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--audit--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "audit"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--bandit--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 1,
+    "state": "findings",
+    "tool_exit_code": 1,
+    "check": "bandit"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--coverage--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "recorded",
+    "tool_exit_code": 0,
+    "check": "coverage"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--deny--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "deny"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--geiger--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "recorded",
+    "tool_exit_code": 0,
+    "check": "geiger"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--gitleaks--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "gitleaks"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--governance%2Dtests--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "governance-tests"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--grype--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "grype"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--history--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "history"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--machete--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "machete"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--malware--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "malware"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--opengrep--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "opengrep"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--osv--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "osv"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--ox--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "ox"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--preparation--result.json.log",
+    "exit_code": 0,
+    "state": "passed",
+    "reason": ""
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--ruff--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 1,
+    "state": "findings",
+    "tool_exit_code": 1,
+    "check": "ruff"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--rust%2Dbuild--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "rust-build"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--rust%2Dcheck--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "rust-check"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--rust%2Dclippy--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "rust-clippy"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--rust%2Dfmt--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "rust-fmt"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--rust%2Dtest--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox/application",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "rust-test"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--sbom--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "recorded",
+    "tool_exit_code": 0,
+    "check": "sbom"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--scripts%2Dsyntax--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "scripts-syntax"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--scripts%2Dtests--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "scripts-tests"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--sdd%2Dstructure--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "check": "sdd-structure"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--shellcheck--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 1,
+    "state": "findings",
+    "tool_exit_code": 1,
+    "check": "shellcheck"
+  },
+  {
+    "path": ".local/logs/2026-11-15/ox-run-OQzMt04y--trivy--result.json.log",
+    "argv_recorded": false,
+    "cwd": "/home/rodrigo/Projetos/ox",
+    "exit_code": 0,
+    "state": "passed",
+    "tool_exit_code": 0,
+    "check": "trivy"
+  }
+]

@@ -51,7 +51,7 @@ workspace, critério e `Engine` em memória.
 4. **Verificação:** uma ação explícita executa `task-oracle`. O Engine captura os
    inputs e o executável do oráculo antes/depois. Só o exit code esperado, com
    conteúdo estável e atual, pode fundamentar aprovação.
-5. **Atualidade:** `Refresh inputs` apenas reavalia contra os bytes atuais. Alterar
+5. **Atualidade:** `Atualizar inputs` apenas reavalia contra os bytes atuais. Alterar
    pedido, resultado, produtor ou oráculo pode invalidar uma observação. O histórico
    preserva observações anteriores; não existe watcher ou restauração após reinício.
 
@@ -113,12 +113,12 @@ sequenceDiagram
     participant C as Controller
     participant R as Runtime / local-task
     participant E as Engine / task-oracle
-    U->>C: Run correct ou Run incorrect
+    U->>C: Executar correto ou Executar incorreto
     C->>C: Criar tentativa e request.txt exclusivos
     C->>R: Lançar produtor no diretório da tentativa
     R-->>C: Saída observada e possível result.txt
     C-->>U: Término do processo · UNVERIFIED
-    U->>C: Verify result
+    U->>C: Verificar resultado
     C->>E: Check com identidade e inputs
     E->>E: Capturar antes / executar / capturar depois
     alt Observação estável e oráculo aceita
@@ -130,7 +130,7 @@ sequenceDiagram
     end
     C-->>U: Verdict, inputs e histórico em memória
     opt Edição posterior dos arquivos
-        U->>C: Refresh inputs
+        U->>C: Atualizar inputs
         C->>E: Recapturar e reavaliar sem executar oráculo
         E-->>U: Evidência anterior pode perder aplicabilidade
     end
@@ -140,7 +140,7 @@ sequenceDiagram
 </details>
 
 A captura inicial e posterior pertencem à verificação. Uma edição posterior exige
-**Refresh inputs** e pode tornar a observação antiga inaplicável. O histórico
+**Atualizar inputs** e pode tornar a observação antiga inaplicável. O histórico
 continua em memória; nenhum passo desta figura restaura dados após reinício.
 A [referência do Engine](contracts.md#verification-engine) detalha a precedência
 entre contradição, interrupção e aprovação.
