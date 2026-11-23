@@ -2,22 +2,28 @@
 # shellcheck disable=SC2154 # ROOT is initialized by common.sh; AUTOMATION_JSON is supplied by registry.sh.
 # File trees use NUL-delimited paths and JSON manifests, never newline lists.
 tree_manifest() {
-    local path=$1 item rel h
+    local path=$1 item
     [[ -d ${path} && ! -L ${path} ]] || return 1
-    local listing invalid=false
-    listing=$(mktemp) || return 1
-    find "${path}" -mindepth 1 -print0 >"${listing}" || { rm -f -- "${listing}"; return 1; }
-    while IFS= read -r -d '' item; do
+    local -a entries=() files=()
+    capture_nul entries find "${path}" -mindepth 1 -print0 || return 1
+    for item in "${entries[@]}"; do
         if [[ -L ${item} || (! -f ${item} && ! -d ${item}) ]]; then
             printf 'Nonregular/symlinked entry: %s\n' "${item}" >&2
-            invalid=true; break
+            return 1
         fi
-        [[ -f ${item} ]] || continue
-        rel=${item#"${path}"/}; h=$(hash_file "${item}") || return
-        jq -cn --arg path "${rel}" --arg sha "${h}" '{key:$path,value:$sha}' || return 1
-    done <"${listing}"
-    rm -f -- "${listing}" || return 1
-    ! ${invalid}
+        [[ ! -f ${item} ]] || files+=("${item}")
+    done
+    ((${#files[@]})) || return 0
+    # GNU -z preserves newlines/backslashes verbatim; xargs batches by ARG_MAX.
+    # pipefail propagates a failed hash producer instead of accepting partial rows.
+    # shellcheck disable=SC2312 # xargs aggregates child failure statuses and pipefail propagates them.
+    printf '%s\0' "${files[@]}" | xargs -0 -r sha256sum -z -- |
+        jq -Rsc --arg prefix "${path}/" '
+          split("\u0000")[:-1][] |
+          if .[0:64]|test("^[a-f0-9]{64}$") then . else error("invalid digest") end |
+          if .[64:66]=="  " and (.[66:]|startswith($prefix)) then
+            {key:(.[66:]|ltrimstr($prefix)),value:.[0:64]}
+          else error("invalid hash record") end'
 }
 tree_identity() {
     local path=$1 rows
@@ -38,19 +44,22 @@ source_snapshot() {
     local listing=${output}/source-paths.nul
     catalog_load
     local value matched
-    local -a prune=() roots=() patterns=()
+    local -a prune=() roots=() patterns=() stream_fields=()
     # shellcheck disable=SC2016 # jq variables belong to the quoted program.
     capture_lines stream_fields jq -r '.inputs.exclude_names[]' <<<"${AUTOMATION_JSON}" || return 1
-    while IFS= read -r value; do prune+=(-name "${value}" -o); done < <(printf '%s\n' "${stream_fields[@]}")
+    for value in "${stream_fields[@]}"; do prune+=(-name "${value}" -o); done
     # shellcheck disable=SC2016 # jq variables belong to the quoted program.
     capture_lines stream_fields jq -r '.inputs.exclude_paths[]' <<<"${AUTOMATION_JSON}" || return 1
-    while IFS= read -r value; do prune+=(-path "./${value}" -o); done < <(printf '%s\n' "${stream_fields[@]}")
-    unset 'prune[${#prune[@]}-1]'
+    for value in "${stream_fields[@]}"; do prune+=(-path "./${value}" -o); done
+    if ((${#prune[@]})); then
+        unset 'prune[-1]'
+        prune=(\( "${prune[@]}" \) -prune -o)
+    fi
     # shellcheck disable=SC2016 # jq variables belong to the quoted program.
     capture_lines roots jq -r '.inputs.roots[]' <<<"${AUTOMATION_JSON}" || return 1
     # shellcheck disable=SC2016 # jq variables belong to the quoted program.
     capture_lines patterns jq -r '.inputs.root_patterns[]' <<<"${AUTOMATION_JSON}" || return 1
-    (cd -- "${ROOT}" && find . -mindepth 1       \( "${prune[@]}" \) -prune -o -print0) >"${listing}" || return 1
+    (cd -- "${ROOT}" && find . -mindepth 1 "${prune[@]}" -print0) >"${listing}" || return 1
     : >"${output}/input-rows.jsonl" || return 1
     : >"${output}/mode-rows.jsonl" || return 1
     while IFS= read -r -d '' item; do
@@ -78,7 +87,7 @@ source_snapshot() {
         if [[ ${mode} == code && ${rel} != *.rs && ${rel} != *.py ]]; then continue; fi
         [[ -f ${ROOT}/${rel} ]] || return 1
         current_sha=$(hash_file "${ROOT}/${rel}") || return 1
-        expected=${current_sha} || return
+        expected=${current_sha}
         dest=${output}/source/${rel}
         mkdir -p -- "${dest%/*}" || return 1
         cp -p -- "${ROOT}/${rel}" "${dest}" || return 1
@@ -94,7 +103,7 @@ source_snapshot() {
     jq -e 'length>0' "${output}/inputs.json" >/dev/null
 }
 input_add() {
-    local output=$1 rel=$2 path
+    local output=$1 rel=$2 path path_sha
     path=$(contained "${rel}") && [[ -f ${path} ]] || return 1
     path_sha=$(hash_file "${path}") || return 1
     jq --arg path "${rel}" --arg sha "${path_sha}" '. + {($path):$sha}' "${output}/inputs.json" >"${output}/inputs.next" || return 1
@@ -102,9 +111,11 @@ input_add() {
 }
 verify_inputs() {
     local output=$1 rel expected file observed snapshot_mode mode
+    local -A input_modes=()
     if [[ -f ${output}/input_modes.json ]]; then
         jq -j 'to_entries[] | .key,"\u0000",.value,"\u0000"' "${output}/input_modes.json" >"${output}/.modes.nul" || return 1
         while IFS= read -r -d '' rel && IFS= read -r -d '' expected; do
+            input_modes["${rel}"]=${expected}
             file=$(contained "${rel}") || return 1
             observed=$(stat -c %a -- "${file}") || return 1
             snapshot_mode=$(stat -c %a -- "${output}/source/${rel}") || return 1
@@ -117,11 +128,10 @@ verify_inputs() {
         [[ -f ${file} ]] || return 1
         observed=$(hash_file "${file}") || return 1
         [[ ${observed} == "${expected}" ]] || return 1
-        mode=''
-        if [[ -f ${output}/input_modes.json ]]; then
-            mode=$(jq -r --arg rel "${rel}" '.[$rel] // empty' "${output}/input_modes.json") || return 1
+        mode=${input_modes[${rel}]-}
+        if [[ -n ${mode} ]]; then
             observed=$(stat -c %a -- "${file}") || return 1
-            [[ -z ${mode} || ${observed} == "${mode}" ]] || return 1
+            [[ ${observed} == "${mode}" ]] || return 1
         fi
         file=${output}/source/${rel}
         [[ ! -L ${file} ]] || return 1
@@ -134,14 +144,14 @@ verify_inputs() {
     done <"${output}/.inputs.nul"
 }
 reviewed_dataset() {
-    local name=$1 output=$2 registry row relative expiry today observed
+    local name=$1 output=$2 registry row relative expiry today observed checked_expiry expected_sha registry_sha copied_sha
     registry=$(local_path datasets)/datasets.json && [[ -f ${registry} ]] || return 1
     strict_json "${registry}" || return
     row=$(jq -ce --arg name "${name}" '.[$name] | select(type=="object" and (keys==["license","path","sha256","source","valid_until"]) and all(.[]; type=="string" and test("\\S")))' "${registry}") || return
     relative=$(jq -r .path <<<"${row}") || return 1
     PREPARED=$(contained "${relative}") || { printf 'Dataset must stay relative to repository\n' >&2; return 1; }
     expiry=$(jq -r .valid_until <<<"${row}") || return 1
-    today=$(date -u +%F) || return 1 || return 1
+    today=$(date -u +%F) || return 1
     checked_expiry=$(date -ud "${expiry}" +%F) || return 1
     [[ ${expiry} =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ && ${checked_expiry} == "${expiry}" && ! ${expiry} < ${today} ]] || { printf 'Dataset review expired/invalid\n' >&2; return 1; }
     observed=$(tree_identity "${PREPARED}") || return

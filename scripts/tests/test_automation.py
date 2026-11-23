@@ -2,9 +2,7 @@
 
 import hashlib
 import json
-import os
 import shutil
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -23,7 +21,7 @@ class ShellAutomationTests(unittest.TestCase):
     def report(self, value, parser="gitleaks", raw=False):
         p = self.root / "report.json"
         p.write_text(value if raw else json.dumps(value))
-        return subprocess.run(
+        return S.run(
             [
                 "/bin/bash",
                 str(ROOT / "scripts/security/analyzers/check-report.sh"),
@@ -123,13 +121,13 @@ class ShellAutomationTests(unittest.TestCase):
                     "recorded" if parser == "geiger" else "passed",
                 )
                 p.write_text("{}")
-                with self.assertRaises(ValueError):
+                with S.rejected(self):
                     S.assess(parser, 0, p)
 
     def test_all_checks_plan_offline_and_no_writes(self):
         names = "gitleaks osv opengrep audit bandit machete ruff deny history coverage geiger trivy sbom grype malware shellcheck".split()
         for name in names:
-            run = subprocess.run(
+            run = S.run(
                 [
                     "/bin/bash",
                     str(ROOT / "scripts/checks/run.sh"),
@@ -161,7 +159,7 @@ class ShellAutomationTests(unittest.TestCase):
         ).hexdigest()
         self.assertEqual(S.tree_identity(self.root), expected)
         (self.root / "alias").symlink_to("/etc/passwd")
-        with self.assertRaises(ValueError):
+        with S.rejected(self):
             S.tree_identity(self.root)
 
     def test_snapshot_change_and_root_symlink_rejected(self):
@@ -172,17 +170,17 @@ class ShellAutomationTests(unittest.TestCase):
         out.mkdir()
         S.source_copy(self.root, out)
         p.write_text("exit 1\n")
-        with self.assertRaises(ValueError):
+        with S.rejected(self):
             S.shell('ROOT=$OX_TEST_ROOT; verify_inputs "$1"', out, root=self.root)
         (self.root / "application").symlink_to("/tmp", target_is_directory=True)
         out2 = self.root / "out2"
         out2.mkdir()
-        with self.assertRaises(ValueError):
+        with S.rejected(self):
             S.source_copy(self.root, out2)
 
     def test_summarizer_preserves_failure_and_rejects_invalid_state(self):
         p = self.root / "results.json"
-        row = {"argv": ["check", "a|b"], "state": "failed", "exit_code": 23}
+        row = {"check": "a|b", "state": "failed", "exit_code": 23}
         p.write_text(
             json.dumps(
                 {
@@ -193,19 +191,19 @@ class ShellAutomationTests(unittest.TestCase):
             )
         )
         argv = ["/bin/bash", str(ROOT / "scripts/reports/summarize.sh"), str(p)]
-        run = subprocess.run(argv, capture_output=True)
-        self.assertEqual(run.returncode, 23, run.stderr)
+        run = S.run(argv, capture_output=True)
+        self.assertEqual(run.returncode, 2, run.stderr)
         self.assertIn(b"Omitted:", run.stdout)
         row["state"] = "invented"
         p.write_text(json.dumps({"results": [row], "product_acceptance": False}))
-        self.assertEqual(subprocess.run(argv, capture_output=True).returncode, 2)
+        self.assertEqual(S.run(argv, capture_output=True).returncode, 2)
 
     def test_shell_layout_and_syntax(self):
         for p in (ROOT / "scripts").rglob("*"):
             if p.suffix == ".py":
                 self.assertIn("tests", p.relative_to(ROOT / "scripts").parts)
             if p.suffix == ".sh":
-                run = subprocess.run(["/bin/bash", "-n", str(p)], capture_output=True)
+                run = S.run(["/bin/bash", "-n", str(p)], capture_output=True)
                 self.assertEqual(run.returncode, 0, (str(p), run.stderr))
                 self.assertNotRegex(p.read_bytes(), rb"python3\s+-(?:c(?:\s|$)|\s)")
 
@@ -225,10 +223,10 @@ class ShellAutomationTests(unittest.TestCase):
         (self.root / ".semgrepignore").write_text("scripts/\n")
         out = self.root / "out"
         out.mkdir()
-        with self.assertRaisesRegex(ValueError, "requires review"):
+        with S.rejected(self, message="requires review"):
             S.source_copy(self.root, out, True)
 
-    def test_every_adapter_executes_controlled_tool_and_records_identity(self):
+    def test_native_adapters_execute_controlled_tool_and_record_identity(self):
         import datetime as dt
         import sys
 
@@ -331,12 +329,13 @@ else:
         }
         catalog_path.write_text(json.dumps(catalog))
         env = dict(
-            os.environ, PATH=str(binary) + ":/usr/bin:/bin", FIXTURE_ROOT=str(self.root),
+            S.environment(), PATH=str(binary) + ":/usr/bin:/bin", FIXTURE_ROOT=str(self.root),
             CARGO_HOME=str(self.root / "cargo-home"), OX_CARGO_BIN=str(binary),
         )
         # Database scanners are covered by toolbox boundary tests.
         for name in (n for n in tools if n in ("audit", "deny", "machete", "coverage", "geiger")):
-            run = subprocess.run(
+            before = S.published_assessments(self.root)
+            run = S.run(
                 [
                     "/bin/bash",
                     str(self.root / "scripts/checks/run.sh"),
@@ -348,11 +347,7 @@ else:
             )
             with self.subTest(check=name):
                 self.assertEqual(run.returncode, 0, run.stderr)
-                assessment = sorted(
-                    (self.root / ".local/logs").glob("*/ox-security-*--assessment.json.log"),
-                    key=lambda p: p.stat().st_mtime_ns,
-                )[-1]
-                row = json.loads(assessment.read_text())
+                row = S.current_assessment(self.root, before)
                 self.assertEqual(row["tool_exit_code"], 0)
                 self.assertEqual(row["tool"]["sha256"], S.digest(binary / tools[name]))
                 self.assertEqual(
@@ -365,16 +360,13 @@ else:
         second.mkdir()
         (second / "Cargo.toml").write_text('[package]\nname="second"\nversion="0.1.0"\n')
         (second / "lib.rs").write_text("pub fn second() {}\n")
-        run = subprocess.run(
+        before = S.published_assessments(self.root)
+        run = S.run(
             ["/bin/bash", str(self.root / "scripts/checks/run.sh"), "--check", "geiger"],
             env=dict(env, GEIGER_INCOMPLETE="1"), capture_output=True,
         )
         self.assertEqual(run.returncode, 2, run.stderr)
-        assessment = max(
-            (self.root / ".local/logs").glob("*/ox-security-*--assessment.json.log"),
-            key=lambda p: p.stat().st_mtime_ns,
-        )
-        row = json.loads(assessment.read_text())
+        row = S.current_assessment(self.root, before)
         self.assertEqual(row["state"], "error")
         self.assertEqual([m["state"] for m in row["member_results"]], ["error", "recorded"])
         self.assertEqual(row["tool_exit_code"], 0)

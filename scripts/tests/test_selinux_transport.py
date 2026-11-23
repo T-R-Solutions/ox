@@ -1,9 +1,9 @@
 """Ox leaves SELinux relabel selection to the caller, as the consumer guide requires."""
-import os
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+
+import support as S
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -14,11 +14,11 @@ class SelinuxTransport(unittest.TestCase):
             tool = Path(folder) / 'toolbox'
             tool.write_text('#!/bin/sh\nprintf "%s" "${TOOLBOX_SELINUX_LABEL-unset}"\nexit '+str(code)+'\n')
             tool.chmod(0o700)
-            env = dict(os.environ, TOOLBOX_BIN=str(tool))
+            env = S.environment(TOOLBOX_BIN=str(tool))
             env.pop('TOOLBOX_SELINUX_LABEL', None)
             if override is not None:
                 env['TOOLBOX_SELINUX_LABEL'] = override
-            return subprocess.run(['bash', str(ROOT/'scripts/toolbox.sh'), command], env=env, capture_output=True)
+            return S.run(['bash', str(ROOT/'scripts/toolbox.sh'), command], env=env, capture_output=True)
 
     def test_exec_does_not_select_label(self):
         self.assertEqual(self.invoke().stdout, b'unset')

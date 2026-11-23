@@ -1,20 +1,21 @@
 """Behavior of the two-date policy, raw logs and disposable working inputs."""
 import concurrent.futures
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+
+import support as S
 
 
 class logs:
     @staticmethod
     def maintain(root, run=None, apply=True, day=None):
         script = Path(__file__).resolve().parents[1] / 'lib/logs.sh'
-        result = subprocess.run(['/bin/bash', '-c', 'source "$1"; retain_logs "$2" "$3" "$4" "$5"',
+        result = S.run(['/bin/bash', '-c', 'source "$1"; retain_logs "$2" "$3" "$4" "$5"',
                                  '_', str(script), str(root), str(run) if run else '',
                                  str(apply).lower(), day or '2026-11-11'], capture_output=True)
         if result.returncode:
-            raise ValueError(result.stderr.decode())
+            raise S.ShellError(result.returncode, result.stderr, result.stdout)
 
 
 class Lifecycle(unittest.TestCase):
@@ -52,14 +53,14 @@ class Lifecycle(unittest.TestCase):
 
     def test_symlink_root_refused(self):
         (self.root / '.local').symlink_to(self.root)
-        with self.assertRaises(ValueError):
+        with S.rejected(self, returncode=2):
             logs.maintain(self.root)
 
     def test_symlink_date_refused(self):
         base = self.root / '.local/logs'
         base.mkdir(parents=True)
         (base / '2026-11-09').symlink_to(self.root)
-        with self.assertRaises(ValueError):
+        with S.rejected(self, returncode=2):
             logs.maintain(self.root)
 
     def test_dry_run_then_prune(self):
@@ -74,7 +75,7 @@ class Lifecycle(unittest.TestCase):
     def test_clock_rollback_refused(self):
         self.publish('2026-11-10')
         self.publish('2026-11-11')
-        with self.assertRaises(ValueError):
+        with S.rejected(self, returncode=2):
             self.publish('2026-11-09')
 
     def test_concurrent_publish_serializes_without_loss(self):

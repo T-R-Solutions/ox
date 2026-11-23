@@ -1,9 +1,7 @@
 """Strict native report boundaries and installed Machete 0.9.2 compatibility."""
 
 import json
-import os
 import shutil
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -32,10 +30,8 @@ class NativeReports(unittest.TestCase):
                     '[package]\nname="probe"\nversion="0.1.0"\nedition="2021"\n'
                     + suffix
                 )
-                environment = {
-                    key: value for key, value in os.environ.items() if key != "CARGO"
-                }
-                result = subprocess.run(
+                environment = S.environment()
+                result = S.run(
                     [binary, "--skip-target-dir", "--no-ignore", "."],
                     cwd=root,
                     env=environment,
@@ -51,8 +47,12 @@ class NativeReports(unittest.TestCase):
                         expected,
                     )
                 else:
-                    with self.assertRaises(ValueError):
+                    with S.rejected(self):
                         S.assess("machete-text", result.returncode, root / "stdout.log")
+
+    def test_machete_rejects_incomplete_stderr_without_installed_binary(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
             (root / "stdout.log").write_text(
                 "cargo-machete didn't find any unused dependencies in this directory. Good job!\n"
             )
@@ -62,7 +62,7 @@ class NativeReports(unittest.TestCase):
                 "Analyzing dependencies of crates in ....\nerror when handling manifest\nDone!\n",
             ):
                 (root / "stderr.log").write_text(stderr)
-                with self.assertRaises(ValueError):
+                with S.rejected(self):
                     S.assess("machete-text", 0, root / "stdout.log")
 
     def test_deny_summary_and_exit_must_agree(self):
@@ -89,7 +89,7 @@ class NativeReports(unittest.TestCase):
                 ([summary, summary], 0),
             ):
                 report.write_text(json.dumps(value))
-                with self.assertRaises(ValueError):
+                with S.rejected(self):
                     S.assess("deny", raw, report)
             summary["fields"]["licenses"]["errors"] = 1
             report.write_text(json.dumps([diagnostic, summary]))

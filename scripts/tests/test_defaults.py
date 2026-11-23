@@ -37,6 +37,16 @@ class DefaultParityTests(unittest.TestCase):
                          mandatory + ['scripts-syntax', 'shellcheck', 'ruff', 'scripts-tests'])
 
     def test_bad_arguments_are_rejected_before_execution(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        S.copy_scripts_fixture(root)
+        for relative in ('AGENTS.md', 'sdd/tools/validate.py',
+                         'tools/governance/scripts/check-ox.py',
+                         'tools/governance/scripts/run-tests.py', 'application/Cargo.lock'):
+            path = root / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('raise RuntimeError("unexpected execution")\n', encoding='utf-8')
         for args in [(), ('execute',), ('run', '--scope', 'full'),
                      ('run', '--scope', 'complete', '--check', 'ruff'),
                      ('run', '--scope', 'complete', '--surface', 'docs'),
@@ -45,8 +55,10 @@ class DefaultParityTests(unittest.TestCase):
                      ('run', '--surface', 'scripts', '--check', 'rust-check'),
                      ('run', '--check', 'coverage'), ('run', '--root'),
                      ('run', '--check', '--surface', 'docs'), ('run', '--plan')]:
-            with self.subTest(args=args), self.assertRaises(ValueError):
-                self.invoke(*args)
+            with self.subTest(args=args), S.rejected(self, returncode=2):
+                S.shell('bash "$1" "${@:2}"', root / 'scripts/automate.sh', *args)
+        self.assertFalse((root / '.local').exists())
+        self.assertFalse((root / '.cache').exists())
 
     def test_plan_does_not_probe_cargo_or_create_local_state(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -146,13 +158,13 @@ class DefaultParityTests(unittest.TestCase):
             self.assertFalse(json.loads((output / 'redaction.json').read_text())['raw_retained'])
             data['Results'][0]['ExperimentalModifiedFindings'] = [{}]
             report.write_text(json.dumps(data))
-            with self.assertRaises(ValueError):
+            with S.rejected(self):
                 S.assess('trivy', 0, report)
-            with self.assertRaises(ValueError):
+            with S.rejected(self):
                 S.shell('redact_trivy "$1" "$2"', report, output)
             self.assertNotIn('sensitive-value', report.read_text())
             report.write_text('{malformed sensitive-value')
-            with self.assertRaises(ValueError):
+            with S.rejected(self):
                 S.shell('redact_trivy "$1" "$2"', report, output)
             self.assertNotIn('sensitive-value', report.read_text())
 

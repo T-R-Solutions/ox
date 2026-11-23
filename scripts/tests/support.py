@@ -3,16 +3,79 @@
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import tempfile
+from contextlib import contextmanager
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
+class ShellError(RuntimeError):
+    """A shell failure retains its status and both captured streams."""
+
+    def __init__(self, returncode, stderr, stdout=b""):
+        self.returncode = returncode
+        self.stderr = stderr
+        self.stdout = stdout
+        super().__init__(f"shell exited {returncode}: {stderr.decode(errors='replace')}")
+
+
+@contextmanager
+def rejected(test, returncode=1, message=None):
+    with test.assertRaises(ShellError) as caught:
+        yield
+    test.assertEqual(caught.exception.returncode, returncode, str(caught.exception))
+    if message is not None:
+        test.assertIn(message, str(caught.exception))
+
+
+def environment(**overrides):
+    """Expose only required host settings; fixture controls are always explicit."""
+    settings = {key: os.environ[key] for key in ("HOME", "TMPDIR") if key in os.environ}
+    settings.update(PATH="/usr/bin:/bin", LANG="C.UTF-8", LC_ALL="C.UTF-8",
+                    PYTHONDONTWRITEBYTECODE="1", GIT_CONFIG_NOSYSTEM="1",
+                    GIT_CONFIG_GLOBAL="/dev/null", GIT_CONFIG_SYSTEM="/dev/null",
+                    GIT_CONFIG_COUNT="0", GIT_TERMINAL_PROMPT="0")
+    settings.update(overrides)
+    return settings
+
+
+def run(*args, **kwargs):
+    kwargs.setdefault("timeout", 60)
+    kwargs.setdefault("env", environment())
+    return subprocess.run(*args, **kwargs)
+
+
+def published_assessments(root):
+    return set((Path(root) / ".local/logs").glob("*/ox-security-*--assessment.json.log"))
+
+
+def current_assessment(root, before):
+    created = published_assessments(root) - before
+    if len(created) != 1:
+        raise AssertionError(f"Expected exactly one new assessment, got {sorted(created)}")
+    return json.loads(created.pop().read_text(encoding="utf-8"))
+
+
+def copy_scripts_fixture(root):
+    """Bind the adapter double to fixture inputs, without approving production."""
+    root = Path(root)
+    shutil.copytree(ROOT / "scripts", root / "scripts")
+    catalog = root / "scripts/config/automation.json"
+    data = json.loads(catalog.read_text(encoding="utf-8"))
+    for section in ("sources", "policy_files"):
+        sources = data["reviews"]["static"][section]
+        for relative in sources:
+            if (root / relative).is_file():
+                sources[relative] = digest(root / relative)
+    catalog.write_text(json.dumps(data), encoding="utf-8")
+
+
 def shell(code, *args, root=ROOT):
     prelude = 'source "$1/lib/common.sh"; for m in process registry files reports; do source "$1/lib/$m.sh"; done; shift; '
-    run = subprocess.run(
+    result = run(
         [
             "/bin/bash",
             "-c",
@@ -22,17 +85,18 @@ def shell(code, *args, root=ROOT):
             *map(str, args),
         ],
         capture_output=True,
-        env=dict(os.environ, OX_TEST_ROOT=str(root)),
+        env=environment(OX_TEST_ROOT=str(root)),
     )
-    if run.returncode:
-        raise ValueError(run.stderr.decode(errors="replace"))
-    return run.stdout
+    if result.returncode:
+        raise ShellError(result.returncode, result.stderr, result.stdout)
+    return result.stdout
 
 
 def commands(scope):
     return json.loads(
         subprocess.check_output(
-            ["/bin/bash", str(ROOT / "scripts/automate.sh"), "--scope", scope, "--plan"]
+            ["/bin/bash", str(ROOT / "scripts/automate.sh"), "--scope", scope, "--plan"],
+            env=environment(), timeout=60,
         )
     )
 
@@ -40,7 +104,7 @@ def commands(scope):
 def execute(argv, cwd, env, directory):
     directory = Path(directory)
     target = directory / "process"
-    subprocess.run(
+    run(
         [
             "/bin/bash",
             "-c",
@@ -110,21 +174,6 @@ def assess(name, raw, report):
     )
 
 
-def member_manifests(workspace):
-    root = Path(workspace).parent
-    doc = json.loads(
-        shell("ROOT=$OX_TEST_ROOT; installed_cargo; workspace_metadata", root=root)
-    )
-    paths = [
-        Path(p["manifest_path"])
-        for p in doc["packages"]
-        if p["id"] in doc["workspace_members"]
-    ]
-    if not paths or any(not p.is_relative_to(workspace) for p in paths):
-        raise ValueError("workspace member escape/empty")
-    return paths
-
-
 def read_json(path):
     shell('strict_json "$1"', path)
     return json.loads(Path(path).read_text())
@@ -134,7 +183,7 @@ def exceptions(rows):
     with tempfile.TemporaryDirectory() as tmp:
         p = Path(tmp) / "exceptions.json"
         p.write_text(json.dumps(rows))
-        run = subprocess.run(
+        result = run(
             [
                 "/bin/bash",
                 str(ROOT / "scripts/security/analyzers/validate-exceptions.sh"),
@@ -142,6 +191,6 @@ def exceptions(rows):
             ],
             capture_output=True,
         )
-        if run.returncode:
-            raise ValueError(run.stderr)
-        return json.loads(run.stdout)
+        if result.returncode:
+            raise ShellError(result.returncode, result.stderr, result.stdout)
+        return json.loads(result.stdout)

@@ -1,10 +1,11 @@
 """Declarative configuration contracts through public plan entry points."""
 import json
 import shutil
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+
+import support as S
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -19,7 +20,7 @@ class CatalogTests(unittest.TestCase):
         self.data = json.loads(self.catalog.read_text())
 
     def plan(self):
-        return subprocess.run(
+        return S.run(
             ['bash', str(self.root / 'scripts/checks/run.sh'), '--check', 'ruff', '--plan'],
             capture_output=True, text=True, check=False,
         )

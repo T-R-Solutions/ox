@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 # Shared startup, JSON and path primitives. Source from an entry, never execute.
-set -Eeuo pipefail
+if ((BASH_VERSINFO[0] < 4 || (BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] < 4))); then
+    printf 'Bash 4.4 or newer is required.\n' >&2
+    if [[ ${BASH_SOURCE[0]} == "$0" ]]; then exit 2; else return 2; fi
+fi
+set -euo pipefail
 umask 077
 LIB_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 SCRIPTS_DIR=$(dirname -- "${LIB_DIR}")
 ROOT=$(dirname -- "${SCRIPTS_DIR}")
-export PYTHONDONTWRITEBYTECODE=1 CARGO_NET_OFFLINE=true RUSTUP_AUTO_INSTALL=0
+# Defaults also protect standalone entries; explicit operator values are retained.
+export PYTHONDONTWRITEBYTECODE=${PYTHONDONTWRITEBYTECODE-1}
+export CARGO_NET_OFFLINE=${CARGO_NET_OFFLINE-true}
+export RUSTUP_AUTO_INSTALL=${RUSTUP_AUTO_INSTALL-0}
 
 die() { printf '%s\n' "$*" >&2; exit 2; }
 need() { command -v "$1" >/dev/null || die "Required command missing: $1"; }
@@ -126,4 +133,13 @@ capture_nul() {
     else rc=$?; fi
     rm -f -- "${temporary}" || return 1
     return "${rc}"
+}
+
+# Public outcome precedence, shared by both CLIs and the report projection.
+aggregate_results() {
+    jq -r '
+      if any(.results[]; .state=="error" or
+          (.state!="blocked" and .exit_code!=0 and .exit_code!=1 and .exit_code!=3)) then 2
+      elif any(.results[]; .state=="blocked" or .exit_code==3) then 3
+      elif any(.results[]; .exit_code!=0) then 1 else 0 end' "$1"
 }

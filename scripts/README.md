@@ -60,6 +60,79 @@ o ambiente temporário e executa a mesma seleção. Sem `--scope complete`, toda
 as superfícies são incluídas, exceto Grype, Bandit, Syft e YARA-X. `complete`
 inclui esses quatro e rejeita `--surface`/`--check`, como no Ec.
 
+### Acompanhar fases e resultados
+
+`run` apresenta o andamento humano em stderr, em português. O total de fases é
+calculado a partir dos checks realmente selecionados, mais preparação e
+finalização/publicação dos logs. A contagem não é fixa e não altera a seleção.
+Cada fase tem o mesmo peso: o percentual total é a parte inteira de
+`100 × (fases concluídas + fração observável da fase atual) / total de fases`.
+Isso mede trabalho concluído, não tempo estimado nem proporção de checks aprovados.
+Uma fase com falha também pode estar concluída. O total só chega a 100% depois
+de confirmar a publicação dos resultados; cancelamento e falha de publicação
+não representam conclusão normal.
+Durante a publicação, o indicador de atividade atualiza apenas o terminal: não
+lê nem grava estado no diretório temporário que está sendo copiado e removido.
+
+Quando há unidades observáveis, elas determinam o percentual da fase. No Geiger,
+as unidades são os membros do workspace processados e a avaliação final; a tela
+também mostra o contador de membros. As demais ferramentas, quando não fornecem
+eventos mensuráveis, exibem `fase: indisponível`, atividade e tempo decorrido.
+O relógio nunca inventa avanço percentual. Em TTY, a linha de atividade pode ser
+atualizada; os blocos finais permanecem. Redirecionamento produz texto sem
+sequências de controle. Em terminal compatível, todos os escopos usam títulos de
+fase destacados, detalhes alinhados e recuados, e estados em caixa alta: SUCESSO
+em verde escuro, FALHA em vermelho escuro e WARNING em amarelo escuro. São as
+cores ANSI normais 32/31/33; a paleta do terminal define o tom efetivo. Os nomes
+continuam identificando o estado quando a cor está desativada. A preferência
+`NO_COLOR` do chamador e `TERM=dumb` desativam as cores; o padrão `NO_COLOR=1`
+das ferramentas continua independente da apresentação humana.
+
+Cada fechamento informa estado, duração, resumo e referência ao diagnóstico.
+`passed` aparece como SUCESSO da execução; `findings` como FALHA por ocorrências;
+`failed`/`error` como FALHA; `blocked` como BLOQUEADA; `recorded` como REGISTRADO,
+sem aprovação de medição/inventário. Estados de skip e cancelamento são distintos.
+O aviso “A aceitação funcional do produto é avaliada separadamente” explica o
+limite desta execução; não indica falha ou reprovação. O estado de cada fase e o
+código de saída informam seu resultado. Problemas são
+enumerados com código/sinal, localização disponível, causa comprovada ou
+`causa não determinada` e referência ao bruto. Contagens agrupadas não descartam
+ocorrências: o relatório original continua sendo a fonte completa.
+
+A apresentação não despeja saída arbitrária de ferramentas no terminal nem
+transforma mensagens em comandos. Os streams originais continuam nos logs,
+com a redação de segredos do Trivy já prevista no contrato. O JSON de `plan` e
+os relatórios estruturados mantêm seus formatos. Quando recebe um sinal, o registro
+de processo acrescenta `cancelled: true` e `signal`; `exit_code` e a saída pública
+do runner usam 128 + número do sinal (INT 130, TERM 143, HUP 129), inclusive durante
+a publicação. `child_exit_code` preserva o código observado do filho cancelado,
+que pode ter seu próprio tratador de sinal. A limpeza do filho termina antes da
+publicação. Contagens de avisos/skips só aparecem quando foram registradas;
+ausência não significa zero. Falhas sem categoria conhecida usam `UNKNOWN`,
+projetado como `causa não determinada`. Os arquivos auxiliares `progress.json` e
+`progress-observed.json` registram contadores de apresentação; eles não substituem
+o assessment nem modificam os gates. Durante a execução, os caminhos
+temporários são válidos até a publicação; os logs publicados seguem a codificação
+de caminhos da retenção. Se a publicação falhar, o runner informa falha e um log
+emergencial temporário, quando sua captura for possível; esse diagnóstico não
+contém cópias de fontes/datasets e não integra a retenção automática por datas.
+
+No check de governança Ox, falhas de links reconhecidas são resumidas a partir
+do stream que realmente as contém; stderr vazio não oculta diagnósticos de stdout.
+Quando ambos contêm falhas, a projeção conserva a origem por stream. O resumo usa
+somente metadados limitados e sanitizados, com indicação de omissões/truncamento;
+saída desconhecida continua disponível no bruto e não se transforma em sucesso.
+Após publicar, cada referência confirmada deve apontar a um arquivo retido existente.
+Os caminhos publicados permanecem disponíveis durante a retenção vigente de duas
+datas, sem promessa de armazenamento permanente. A
+[correção de diagnóstico e links históricos](../docs/validation/governance-link-repair-20261115/report.md)
+registra escopo, observações e limites.
+
+O [registro da alteração](../docs/validation/terminal-progress-20261115/report.md)
+documenta exemplos realmente observados em fixtures, verificações e limitações.
+O [sucessor visual do terminal](../docs/validation/terminal-style-20261115/report.md)
+registra o escopo das cores e da hierarquia, com verificações próprias.
+
 Superfícies: `docs`, `scripts`, `application` e `security`. `--surface` e `--check`
 são repetíveis; governança (`docs`) permanece obrigatória. Sem superfície explícita,
 o check determina sua superfície; `coverage` exige `--surface application`.
@@ -114,12 +187,17 @@ Compatibilidade: as chamadas antigas `--scope governance|rust|security|quality|f
 e `--plan` continuam aceitas sem subcomando, com sua seleção e filtragem anteriores.
 Elas não definem mais o padrão recomendado; `run --scope full` é inválido.
 
-Somente `history` usa `scripts/config/native/gitleaks/gitleaks-history.ignore`: 1.606 fingerprints
+Somente `history` usa `scripts/config/native/gitleaks/gitleaks-history.ignore`: 1.753 fingerprints
 históricos revisados, com commit, arquivo, regra e linha. O adapter verifica os
 bytes desse conjunto antes de executar. São hashes de evidência, identificadores
 SQLite, prosa e um teste sintético; nenhum diretório ou regra foi excluído.
 Novos commits não herdam essas exceções; `gitleaks` sobre arquivos atuais não as
-usa. A revisão está em `docs/validation/complete-repair-20261111/history-review.json`.
+usa. A revisão inicial está em `docs/validation/complete-repair-20261111/history-review.json`.
+Em 15/11, 147 ocorrências adicionais foram comprovadas como hashes SHA-256 de
+arquivos em evidências JSON, incluindo `tokens.rs` no resultado citado da tela de
+boas-vindas. O [registro da correção](../docs/validation/history-correction-20261115/report.md)
+identifica cada ocorrência e seus controles. `history` é o Gitleaks sobre commits,
+incluindo documentação; não é uma execução de todos os analisadores sobre `docs`.
 Trivy recebe o cache e o Checks Bundle da Toolbox; não redefine `--cache-dir`.
 Geiger continua recusando relatórios com arquivos usados sem métricas, inclusive
 Rust gerado: obter exit zero da ferramenta não basta para aprovar a medição.
@@ -158,10 +236,10 @@ variáveis para evitar uma segunda autoridade. Remova-as dos ambientes anteriore
 | history | gitleaks git, log-opts=--all, mesma política | opcional; Git completo |
 | osv | osv-scanner scan source --offline --all-packages --lockfile | obrigatório security |
 | opengrep | opengrep scan, regras locais, strict, no-git-ignore, disable-nosem | obrigatório security |
-| bandit | bandit, YAML + INI explícitos, ignore-nosec, arquivos explícitos | obrigatório security |
+| bandit | bandit, YAML + INI explícitos, ignore-nosec, arquivos explícitos | somente complete no runner plan/run |
 | ruff | ruff check --ignore-noqa --no-fix --no-cache | obrigatório quality |
-| shellcheck | shellcheck --format=json, rcfile explícito | opcional |
-| trivy | trivy fs --scanners vuln, offline, skip-db-update e skip-java-db-update | opcional |
+| shellcheck | shellcheck --format=json, rcfile explícito | selecionado pelo catálogo no runner plan/run; opcional no CLI legado |
+| trivy | trivy fs --scanners vuln,misconfig,secret, offline, skip-db-update e skip-java-db-update | opcional |
 | grype | grype dir:/project -o json | opcional |
 | sbom | syft scan dir:/project -o syft-json | inventário sem aprovação |
 | malware | yara-x (entrypoint yr), scan JSON recursive | indicadores locais; sem detecção universal |
@@ -171,8 +249,10 @@ variáveis para evitar uma segunda autoridade. Remova-as dos ambientes anteriore
 `config/automation.json` conserva escopos security/quality/full/complete/governance/rust, a lista
 de opcionais e os parâmetros dos scanners. `lib/registry.sh` lê o catálogo e monta argv nativo por scanner central. Comandos
 locais ficam restritos à governança e às ferramentas Cargo do consumidor. `automate.sh` seleciona checks; `checks/run.sh` prepara entradas e
-assessment; `lib/backends.sh` apenas transporta argv via exec e avalia diagnóstico;
+assessment; `lib/backends.sh` constrói o mesmo argv para plano/execução e avalia diagnóstico;
 `lib/files.sh` conserva snapshots/manifests; `lib/reports.sh` valida relatórios.
+`lib/lifecycle.sh` é responsável pela publicação, limpeza e status final;
+`lib/progress.sh` apresenta os estados e diagnósticos.
 ShellCheck seleciona todos os scripts .sh do manifesto efetivo, inclusive
 security/prepare-datasets.sh e toolbox.sh, sem lista estática paralela.
 
@@ -208,7 +288,15 @@ Antes de cada análise OSV por `exec`/`run`, o gerenciador central baixa e valid
 a base se ela estiver ausente ou tiver aquisição de mais de 12 horas. Se a
 aquisição necessária falhar, a análise não prossegue. Isso pode usar rede no
 gerenciador, embora o scanner receba `--offline` e o container use rede `none`.
-A idade de aquisição não substitui a data dos advisories nem o limite Ox de 24h.
+Essa é a única regra temporal de validade do OSV: conta desde o último download
+bem-sucedido, inclusive atualização manual ou download de conteúdo idêntico.
+Exatamente 12 horas ainda reutiliza; executar uma análise não reinicia o relógio.
+A aquisição e a identidade são publicadas juntas no ponteiro central `current.json`;
+um registro legado de aquisição vinculado à mesma base migra preservando seu
+valor exato. Sem timestamp confiável, a base é adquirida novamente. Falha de
+download/validação preserva a base anterior e impede a análise solicitada.
+A substituição é lógica e atômica: snapshots imutáveis em uso não são apagados.
+Datas upstream/advisories continuam como proveniência, sem expiração OSV por idade.
 Não há pin, bloqueio ou atualização local de OSV em scripts; os demais scanners
 continuam com manutenção explícita. CI e operadores precisam prever esse efeito
 antes de executar os gates que selecionam OSV.
@@ -231,13 +319,14 @@ ferramenta; ficam sob umask 077, sem truncamento e sem exclusão automática. Ac
 e remoção/retencão exigem revisão do proprietário. Gitleaks recebe redação nativa;
 teste real com segredo sintético ainda depende de imagens ativas.
 
-OSV exige idade máxima 24h; Trivy e Grype, 120h. O diagnóstico público de
-exec vincula database_metadata à identidade da base realmente montada. OSV usa
-a criação da geração publicada no GCS, com origem, geração e SHA256; Trivy usa
-UpdatedAt nativo de cada base, nunca DownloadedAt. O Ox verifica todos os timestamps
-e a igualdade com o mais antigo. Metadados ausentes, inválidos, futuros,
-inconsistentes ou vencidos bloqueiam. Grype mantém validate-age=true e
-max-allowed-built-age=120h no YAML nativo. Nenhum consumidor fixa snapshots.
+Trivy e Grype mantêm idade máxima de 120h. O diagnóstico público de exec
+vincula database_metadata à identidade da base realmente montada. OSV conserva
+a criação da geração publicada no GCS, origem, geração e SHA256 como proveniência;
+o Ox exige metadados consistentes, sem compará-los com um limite de idade.
+Trivy usa UpdatedAt nativo de cada base, nunca DownloadedAt; timestamps ausentes,
+inválidos, futuros, inconsistentes ou vencidos bloqueiam. Grype mantém
+validate-age=true e max-allowed-built-age=120h no YAML nativo. Nenhum consumidor
+fixa snapshots. Exceções de advisories existentes permanecem inalteradas.
 
 Rust 1.99.1, fmt/Clippy/build/test e dependências Cargo continuam responsabilidade
 do produto, sempre locked/offline. cargo-audit, cargo-deny, cargo-machete,
@@ -259,7 +348,9 @@ inputs operacionais em `.cache/ox/`, não cópias de recuperação.
 
 ### SELinux em hosts enforcing
 
-O wrapper do Ox não seleciona rótulo automaticamente. Ausente/vazia, a variável
+O wrapper `scripts/toolbox.sh`, quando chamado diretamente, não seleciona rótulo
+automaticamente. O runner `plan/run` aplica os defaults de `automation.json`,
+incluindo `shared`; são interfaces distintas. Na chamada direta, ausente/vazia, a variável
 `TOOLBOX_SELINUX_LABEL` deixa os mounts sem relabel; os contextos já precisam
 permitir acesso. Após revisar os caminhos dedicados com o operador, selecione
 explicitamente `export TOOLBOX_SELINUX_LABEL=shared` no ambiente que executará
@@ -364,3 +455,39 @@ SC2310 foi revisto por chamada: predicados propagam falhas explicitamente; os
 produtores de inventário têm seus códigos conferidos antes de carregar arrays.
 As regras dos linters continuam ativas. As disposições de duplicidade/licença
 estão na [política de dependências](../docs/licensing/dependency-policy-20261109.md).
+
+### Seleção complete: interfaces distintas
+
+No catálogo atual, `run --scope complete` seleciona 26 checks pelas superfícies,
+incluindo `scripts-syntax` e `scripts-tests`. A interface legada `--scope complete`
+usa a lista `scopes.complete` de 24 checks. Esses números descrevem seleção,
+não execução ou aceite. `plan --scope complete` permite inspecionar a seleção
+atual sem executar scanners. Os defaults do runner (incluindo a descoberta
+relativa `../dev_audit/shared-toolbox/bin/toolbox`) implementam a paridade
+registrada em scripts-centralization; o wrapper público preserva override/PATH.
+A verificação completa deste checkout continua usando a seleção explícita do
+mantenedor em AGENTS.md.
+
+## Correções da análise de scripts — 17/11/2026
+
+As duas interfaces conservam suas seleções documentadas e agora aplicam os mesmos
+padrões de ambiente e a mesma precedência de resultado: erro (2), bloqueio (3),
+achado/falha de check (1), sucesso (0). Os códigos brutos das ferramentas continuam
+nos relatórios. Achados do cargo-deny usam 1 no agregado mesmo quando o código
+nativo é uma máscara 2/4/8. Variáveis explicitamente definidas pelo operador,
+inclusive vazias, são preservadas; os comandos Cargo conservam `--locked --offline`.
+
+`reports/summarize.sh RESULTS.json` lê o `check`, estado e código efetivamente
+publicados pelo runner, sem exigir nem reproduzir argv. Retorna o mesmo agregado.
+`omitted` registra os checks das superfícies escolhidas não selecionados pelo filtro
+ou escopo; governança continua obrigatória. Categorias estáveis `reason_code`
+permitem explicar falhas de bases, entradas, ferramentas, políticas, executor e
+relatórios sem imprimir mensagens livres das ferramentas no terminal.
+
+`local.sh --path` processa todos os argumentos antes de resolver o caminho; a ordem
+de `--root` é indiferente. Valores ausentes, raiz inexistente e ações conflitantes
+retornam erro de uso. O catálogo rejeita tipos/caminhos inválidos nos seletores,
+caminhos locais e bindings de revisão antes da execução.
+
+Disposição dos achados, revisão e limites operacionais:
+[correções da análise](../docs/validation/claude-analysis-20261117/report.md).

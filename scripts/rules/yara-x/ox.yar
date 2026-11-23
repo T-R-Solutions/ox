@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GPL-3.0-only
 // Indicators require human investigation. Matches are not proof of malicious intent.
 rule download_and_execute {
   meta:

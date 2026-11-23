@@ -90,8 +90,7 @@ for name in "${selected[@]}"; do
         [[ ${copied_sha} == "${before}" ]] || die 'Import changed during copy'
     fi
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    copied_sha=$(tree_identity "${dest}") || exit 2
-    identity=${copied_sha} || die 'Nonregular or empty dataset'
+    identity=$(tree_identity "${dest}") || die 'Nonregular or empty dataset'
     "${scanner}" --version >"${stage}/${name}-version.txt"
     # Probe actual scanner parsing against the project lockfile, with all fetches disabled.
     rc=0
@@ -111,8 +110,7 @@ for name in "${selected[@]}"; do
     fi
     # Some scanners update cache metadata on load; bind the verified final bytes.
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    copied_sha=$(tree_identity "${dest}") || exit 2
-    identity=${copied_sha} || die 'Invalid final dataset'
+    identity=$(tree_identity "${dest}") || die 'Invalid final dataset'
     prepared_at=$(date -u +%FT%TZ) || exit 2
     scanner_path=$(command -v "${scanner}") || exit 2
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.

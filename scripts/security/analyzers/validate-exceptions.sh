@@ -3,8 +3,9 @@
 source "$(dirname -- "${BASH_SOURCE[0]}")/../../lib/common.sh"
 [[ $# == 1 ]] || die 'Usage: validate-exceptions.sh REGISTRY'
 invalid() { printf '{"state":"error","reason":"Invalid/expired exception metadata"}\n'; exit 2; }
-registry_size=$(stat -c %s -- "$1") || exit 2
-if [[ ! -f $1 || ${registry_size} -gt 2097152 ]]; then invalid; fi
+[[ -f $1 ]] || invalid
+registry_size=$(stat -c %s -- "$1") || invalid
+if [[ ${registry_size} -gt 2097152 ]]; then invalid; fi
 # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
 strict_json "$1" || invalid
 stream_fields=()

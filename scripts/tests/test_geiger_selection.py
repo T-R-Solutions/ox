@@ -104,13 +104,13 @@ fi
             with self.subTest(selection=selection):
                 self.catalog["checks"]["geiger"]["executable"] = selection
                 self.save()
-                with self.assertRaisesRegex(ValueError, "Invalid automation catalog schema"):
+                with S.rejected(self, returncode=2, message="Invalid automation catalog schema"):
                     self.select()
 
     def test_toolbox_selection_cannot_declare_native_executable(self):
         self.catalog["checks"]["ruff"]["executable"] = self.catalog["checks"]["geiger"]["executable"]
         self.save()
-        with self.assertRaisesRegex(ValueError, "Invalid automation catalog schema"):
+        with S.rejected(self, returncode=2, message="Invalid automation catalog schema"):
             self.select("ruff")
 
     def test_runner_rejects_binary_changed_after_selection(self):

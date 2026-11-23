@@ -1,9 +1,6 @@
 """Consumer exec contract tests. The fake executor does not homologate scanners."""
 
 import json
-import os
-import shutil
-import subprocess
 import sys
 import tempfile
 import unittest
@@ -17,7 +14,7 @@ class Backends(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory(prefix="ox native ; $ space ")
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
-        shutil.copytree(S.ROOT / "scripts", self.root / "scripts")
+        S.copy_scripts_fixture(self.root)
         (self.root / "scripts/probe.py").write_text('print("fixture")\n')
         (self.root / "application").mkdir()
         (self.root / "application/Cargo.lock").write_text("version = 4\n")
@@ -36,7 +33,7 @@ assert '--project-write' not in a and '--network' not in a and '--mount' not in 
 assert '--timeout' in a and '--' in a
 native=a[a.index('--')+1:]; assert native
 mode=os.environ.get('FIXTURE_MODE','clean')
-count=1 if mode=='finding' else 0
+count=1 if mode in ('finding','old-upstream-finding') else 0
 code=0
 if tool=='gitleaks':
  assert '--redact=100' in native and '--ignore-gitleaks-allow' in native
@@ -57,6 +54,9 @@ elif tool=='opengrep':
 elif tool=='syft': report={'descriptor':{},'artifacts':[{}]}
 elif tool=='yara-x': report={'version':'1.0.0','matches':[{'rule':'fixture','file':'fixture'}]*count}
 elif tool=='grype': report={'descriptor':{},'source':{},'matches':[{}]*count}
+elif tool=='osv-scanner':
+ assert '--offline' in native and '--all-packages' in native
+ report={'results':[{'packages':[{'package':{'name':'fixture'},'vulnerabilities':[{'id':'TEST-1'}]*count}]}]}; code=1 if count else 0
 else: report={}
 if mode=='exit-disagreement': code=0; report=[{'code':'F821'}]
 if mode=='omit' and tool=='bandit': report['metrics']={'other':{}}
@@ -66,6 +66,9 @@ if mode=='mutate': (root/'scripts/probe.py').write_text('changed')
 if mode=='mode': (root/'scripts/probe.py').chmod(0o777)
 if mode=='add': (Path(os.environ['FIXTURE_PROJECT'])/'scripts/new source.py').write_text('x=1')
 d={'tool':tool,'version':'fixture','image':'sha256:'+'a'*64,'database':'b'*64,'native_exit_code':code,'outcome':'native','cleanup':'removed'}
+if tool=='osv-scanner' and mode.startswith('old-upstream'):
+ timestamp='2000-01-01T00:00:00Z'
+ d['database_metadata']={'schema':1,'snapshot':'b'*64,'data_timestamp':timestamp,'timestamp_semantics':'oldest_required_source','sources':[{'url':'https://official.example','sha256':'c'*64,'data_timestamp':timestamp,'timestamp_semantics':'upstream_object_generation_created'}]*2}
 if mode in ('timeout','cancelled','infrastructure'): d['outcome']=mode; d['native_exit_code']=None; code=124
 if mode=='cleanup': d['cleanup']='failed'
 if mode=='identity': d['image']='mutable'
@@ -75,13 +78,14 @@ sys.exit(code)
         )
         self.cli.chmod(0o755)
         self.env = dict(
-            os.environ, TOOLBOX_BIN=str(self.cli), FIXTURE_PROJECT=str(self.root)
+            S.environment(), TOOLBOX_BIN=str(self.cli), FIXTURE_PROJECT=str(self.root)
         )
         for k in ("OX_TOOLBOX_BIN", "OX_SCANNER_BACKEND"):
             self.env.pop(k, None)
 
     def run_check(self, name, mode="clean"):
-        run = subprocess.run(
+        before = S.published_assessments(self.root)
+        run = S.run(
             [
                 "bash",
                 str(S.ROOT / "scripts/checks/run.sh"),
@@ -93,8 +97,7 @@ sys.exit(code)
             env=dict(self.env, FIXTURE_MODE=mode),
             capture_output=True,
         )
-        files = list((self.root / ".local/logs").glob("*/ox-security-*--assessment.json.log"))
-        row = json.loads(max(files, key=lambda p: p.stat().st_mtime_ns).read_text())
+        row = S.current_assessment(self.root, before)
         return run, row
 
     def test_all_aliases_native_exits_and_measurements(self):
@@ -174,6 +177,14 @@ if select_backend; then json_args "$TOOL_BIN"; else json_args "$BACKEND_REASON";
         self.assertEqual(row["state"], "error", row)
         self.assertIn("inventory", row["reason"])
 
+    def test_osv_old_upstream_provenance_passes_and_findings_still_fail(self):
+        for mode, expected in (("old-upstream", "passed"), ("old-upstream-finding", "findings")):
+            with self.subTest(mode=mode):
+                run, row = self.run_check("osv", mode)
+                self.assertEqual(row["state"], expected, (run.stderr, row))
+                self.assertEqual(run.returncode, 0 if expected == "passed" else 1)
+                self.assertFalse(row["product_acceptance"])
+
     def test_inventory_and_age_gaps(self):
         run, row = self.run_check("bandit", "omit")
         self.assertNotEqual(run.returncode, 0, row)
@@ -183,7 +194,7 @@ if select_backend; then json_args "$TOOL_BIN"; else json_args "$BACKEND_REASON";
             self.assertNotEqual(run.returncode, 0)
 
     def test_history_requires_full_self_contained_git(self):
-        subprocess.run(["git", "init", str(self.root)], check=True, capture_output=True)
+        S.run(["git", "init", str(self.root)], check=True, capture_output=True)
         run, row = self.run_check("history")
         self.assertEqual(run.returncode, 0, (run.stderr, row))
         (self.root / ".git/objects/info/alternates").write_text("/unavailable")
@@ -200,12 +211,12 @@ if select_backend; then json_args "$TOOL_BIN"; else json_args "$BACKEND_REASON";
         echo.chmod(0o755)
         args = ["exec", "--", "space name", ";$(false)", "", "--"]
         wrapper = str(S.ROOT / "scripts/toolbox.sh")
-        env = dict(self.env, PATH=str(self.root) + ":" + os.environ["PATH"])
+        env = dict(self.env, PATH=str(self.root) + ":" + S.environment()["PATH"])
         env.pop("TOOLBOX_BIN")
-        run = subprocess.run([wrapper, *args], env=env, capture_output=True)
+        run = S.run([wrapper, *args], env=env, capture_output=True)
         self.assertEqual(json.loads(run.stdout), args)
         for invalid in ("", "/missing", str(self.root)):
-            run = subprocess.run(
+            run = S.run(
                 [wrapper, *args],
                 env=dict(env, TOOLBOX_BIN=invalid),
                 capture_output=True,
@@ -214,7 +225,7 @@ if select_backend; then json_args "$TOOL_BIN"; else json_args "$BACKEND_REASON";
         native = self.root / "ruff"
         native.write_text('#!/bin/sh\ntouch "' + str(self.root / "native-ran") + '"\n')
         native.chmod(0o755)
-        self.env["PATH"] = str(self.root) + ":" + os.environ["PATH"]
+        self.env["PATH"] = str(self.root) + ":" + S.environment()["PATH"]
         self.env["TOOLBOX_BIN"] = "/missing"
         run, row = self.run_check("ruff")
         self.assertNotEqual(run.returncode, 0)
@@ -239,7 +250,7 @@ if select_backend; then json_args "$TOOL_BIN"; else json_args "$BACKEND_REASON";
             "shellcheck",
             "history",
         ):
-            run = subprocess.run(
+            run = S.run(
                 [
                     "bash",
                     str(S.ROOT / "scripts/checks/run.sh"),
@@ -270,7 +281,7 @@ if select_backend; then json_args "$TOOL_BIN"; else json_args "$BACKEND_REASON";
                 self.assertIn("--offline", row["argv"])
                 self.assertIn("/project/application/Cargo.lock", row["argv"])
         # A missing product utility must not leave obsolete host invocation argv.
-        run = subprocess.run(
+        run = S.run(
             [
                 "bash",
                 str(S.ROOT / "scripts/checks/run.sh"),
@@ -326,7 +337,7 @@ if select_backend; then json_args "$TOOL_BIN"; else json_args "$BACKEND_REASON";
         self.assertIn("Missing static review", row["reason"])
 
     def test_history_fingerprints_require_exact_reviewed_bytes(self):
-        subprocess.run(["git", "init", "-q", str(self.root)], check=True, capture_output=True)
+        S.run(["git", "init", "-q", str(self.root)], check=True, capture_output=True)
         run, row = self.run_check("history")
         self.assertEqual(run.returncode, 0, run.stderr)
         self.assertEqual(row["state"], "passed")

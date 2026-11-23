@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "UNVERIFIED",
+  "rust": {
+    "path": "rust-reference.rs.txt",
+    "encoding": "utf-8",
+    "rules": "scripts/rules/opengrep/rust.yml",
+    "oracle": "ruleid/ok annotations"
+  },
+  "yara": {
+    "rules": "scripts/rules/yara-x/ox.yar",
+    "cases": [
+      {
+        "path": "yara/download-positive.hex.txt",
+        "encoding": "hex",
+        "expected_rules": [
+          "download_and_execute"
+        ]
+      },
+      {
+        "path": "yara/download-negative.hex.txt",
+        "encoding": "hex",
+        "expected_rules": []
+      },
+      {
+        "path": "yara/powershell-positive.hex.txt",
+        "encoding": "hex",
+        "expected_rules": [
+          "encoded_powershell"
+        ]
+      },
+      {
+        "path": "yara/powershell-negative.hex.txt",
+        "encoding": "hex",
+        "expected_rules": []
+      },
+      {
+        "path": "yara/eicar-positive.hex.txt",
+        "encoding": "hex",
+        "expected_rules": [
+          "Ox_Eicar_Test_File"
+        ]
+      },
+      {
+        "path": "yara/eicar-negative.hex.txt",
+        "encoding": "hex",
+        "expected_rules": []
+      }
+    ]
+  },
+  "limitations": [
+    "Prepared fixtures only; native scanner detection has not been executed.",
+    "Decode each YARA case into a separate disposable input; never execute the decoded content."
+  ]
+}

@@ -3,7 +3,8 @@
 # shellcheck disable=SC2034,SC2154 # automate.sh supplies selection inputs and consumes BASE; registry.sh supplies catalog state.
 select_checks() {
     catalog_load
-    local surface check resolved candidates row
+    local surface check resolved candidates row wanted_json surfaces_json
+    local -a stream_fields=()
     local -a wanted=() surfaces=("${requested_surfaces[@]}")
     for surface in "${surfaces[@]}"; do
         jq -e --arg s "${surface}" '.selection.surfaces|has($s)' <<<"${AUTOMATION_JSON}" >/dev/null || die "Unknown surface: ${surface}"
@@ -18,13 +19,13 @@ select_checks() {
         ' <<<"${AUTOMATION_JSON}") || die "Unknown check: ${check}"
         # shellcheck disable=SC2016 # jq variables belong to the quoted program.
         capture_lines stream_fields jq -r '.[]' <<<"${resolved}" || return 1
-        while IFS= read -r row; do wanted+=("${row}"); done < <(printf '%s\n' "${stream_fields[@]}")
+        for row in "${stream_fields[@]}"; do wanted+=("${row}"); done
     done
+    wanted_json=$(json_args "${wanted[@]}") || return 1
     if ((${#surfaces[@]}==0)); then
         if ((${#wanted[@]})); then
-            wanted_json=$(json_args "${wanted[@]}") || return 1
-                        # shellcheck disable=SC2016 # jq program variables are data, not shell expansions.
-                        capture_lines surfaces jq -r --argjson wanted "${wanted_json}" '
+            # shellcheck disable=SC2016 # jq program variables are data, not shell expansions.
+            capture_lines surfaces jq -r --argjson wanted "${wanted_json}" '
               .selection.surfaces|to_entries[]|select(any(.value[];. as $c|$wanted|index($c)))|.key
             ' <<<"${AUTOMATION_JSON}" || return 1
         else
@@ -33,17 +34,15 @@ select_checks() {
         fi
     fi
     surfaces_json=$(json_args "${surfaces[@]}") || return 1
-        candidates=$(jq -c --argjson surfaces "${surfaces_json}" '
+    candidates=$(jq -c --argjson surfaces "${surfaces_json}" '
       .selection as $s | [$surfaces[] as $k|$s.surfaces[$k][]]
     ' <<<"${AUTOMATION_JSON}")
     for check in "${wanted[@]}"; do
         jq -e --arg c "${check}" 'index($c)!=null' <<<"${candidates}" >/dev/null || die "Check outside selected surfaces: ${check}"
     done
     # Stable catalog order, mandatory governance and no duplicate execution.
-    wanted_json=$(json_args "${wanted[@]}") || return 1
-        surfaces_json=$(json_args "${surfaces[@]}") || return 1
-                # shellcheck disable=SC2016 # jq program variables are data, not shell expansions.
-                capture_lines selected jq -r --arg scope "${scope}" \
+    # shellcheck disable=SC2016 # jq program variables are data, not shell expansions.
+    capture_lines selected jq -r --arg scope "${scope}" \
       --argjson surfaces "${surfaces_json}" --argjson wanted "${wanted_json}" '
       .selection as $s |
       [$s.surfaces|to_entries[]|.key as $surface|.value[]|
@@ -54,11 +53,18 @@ select_checks() {
             else $scope=="complete" or ($s.complete_only|index($c))==null end)))] |
       reduce .[] as $c ([]; if index($c)==null then .+[$c] else . end)|.[]
     ' <<<"${AUTOMATION_JSON}" || return 1
-    BASE=("${selected[@]}")
+    # Baseline is the full requested surface set before --check filtering.
+    # shellcheck disable=SC2016 # jq variables are bound by --argjson and must remain literal.
+    capture_lines BASE jq -r --argjson surfaces "${surfaces_json}" '
+      .selection as $s |
+      [$s.surfaces|to_entries[]|select(.key as $k |
+        ($surfaces|index($k))!=null or ($s.mandatory|index($k))!=null)|.value[]] |
+      unique[]' <<<"${AUTOMATION_JSON}" || return 1
 }
 
 execution_environment() {
     local key value candidate parent
+    local -a stream_fields=()
     capture_nul stream_fields jq -j '.environment.defaults|to_entries[]|.key,"\u0000",.value,"\u0000"' <<<"${AUTOMATION_JSON}" || return 1
     while IFS= read -r -d '' key && IFS= read -r -d '' value; do
         # Operator overrides, including empty values, are never silently replaced.
@@ -73,14 +79,14 @@ execution_environment() {
             parent=$(dirname -- "${ROOT}")
             # shellcheck disable=SC2016 # jq variables belong to the quoted program.
             capture_lines stream_fields jq -r '.discovery.toolbox[]' <<<"${AUTOMATION_JSON}" || return 1
-            while IFS= read -r candidate; do
+            for candidate in "${stream_fields[@]}"; do
                 candidate=${candidate//\{parent\}/${parent}}
                 candidate=${candidate//\{home\}/${HOME}}
                 if [[ -f ${candidate} && -x ${candidate} ]]; then
                     export TOOLBOX_BIN=${candidate}
                     break
                 fi
-            done < <(printf '%s\n' "${stream_fields[@]}")
+            done
         fi
     fi
     # Reuse the prepared Ox cache when present; never create/download one here.

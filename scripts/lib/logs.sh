@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 # Two-date retention; caller owns temporary work and propagates publication errors.
+log_name() {
+    local relative=$1
+    relative=${relative//%/%25}
+    relative=${relative//-/%2D}
+    relative=${relative//\//--}
+    printf '%s' "${relative}"
+}
 retain_logs() (
     set -Eeuo pipefail
     local root=$1 run=${2:-} apply=${3:-true} day=${4:-} base path name rel dest
@@ -42,7 +49,8 @@ retain_logs() (
         -type f \( -name '*.log' -o -name '*.json' -o -name '*.jsonl' -o -name '*.err' -o -name '*.txt' \) -print0 >"${run}/.log-paths" || return 2
     while IFS= read -r -d '' path; do
         rel=${path#"${run}"/}
-        rel=${rel//%/%25}; rel=${rel//-/%2D}; rel=${rel//\//--}
+        # shellcheck disable=SC2310 # The callee returns an explicit status; this branch propagates failure.
+        rel=$(log_name "${rel}") || return 2
         dest=${base}/${day}/${run##*/}--${rel}.log
         # noclobber refuses existing files and symlinks without overwriting logs.
         (set -o noclobber; cat -- "${path}" >"${dest}") || return 2

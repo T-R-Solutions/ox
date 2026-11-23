@@ -15,7 +15,8 @@ ignore = ["RUF005", "UP038"]
 # isinstance aceita tupla de tipos; UP038 foi depreciada pelo próprio Ruff.
 # Segurança Python pertence ao scan Bandit integral, com revisão vinculada a
 # hash/regra/linha em automation.json; não duplicar S sem a mesma revisão contextual.
-# O formatter cuida de layout; não há exclusões de fontes nem fixes no gate.
+# O gate executa lint, sem format --check; layout não é verificado por formatter.
+# Não há exclusões de fontes nem fixes no gate.
 
 
 [lint.per-file-ignores]

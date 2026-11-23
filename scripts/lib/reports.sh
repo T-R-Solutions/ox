@@ -74,6 +74,7 @@ redact_trivy() {
 }
 assess() {
     local name=$1 raw=$2 report=$3 expected=1
+    local first_line last_line line_count report_text report_header
     STATE=passed CODE=${raw} COUNT=null
     if ((raw==126 || raw==127)); then STATE=blocked; return; fi
     if [[ ${name} == machete-text ]]; then
@@ -120,7 +121,7 @@ assess() {
         if jq -e 'any(.[:-1][]; .fields.severity=="bug")' "${report}" >/dev/null; then
             STATE=error; CODE=2
         elif ((COUNT==0)); then STATE=passed CODE=0
-        elif ((COUNT>0)); then STATE=findings; ((CODE)) || CODE=1
+        elif ((COUNT>0)); then STATE=findings CODE=1
         else return 1; fi
         return
     fi

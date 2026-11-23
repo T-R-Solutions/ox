@@ -1,6 +1,5 @@
 """The migrated scanners must never prepare local databases in Ox."""
 
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -16,10 +15,11 @@ class ToolboxDatasetOwnership(unittest.TestCase):
             review.write_text("{}")
             for name in ("osv", "trivy", "grype"):
                 with self.subTest(name=name):
-                    run = subprocess.run(
+                    run = S.run(
                         ["bash", str(S.ROOT / "scripts/security/prepare-datasets.sh"),
                          "--root", str(root), "--review", str(review),
                          "--download", "--only", name], capture_output=True)
                     self.assertNotEqual(run.returncode, 0)
                     self.assertIn(b"owned by toolbox", run.stderr)
-                    self.assertFalse((root / ".local").exists())
+                    self.assertFalse((root / ".cache/ox/security").exists())
+                    self.assertEqual(set(root.iterdir()), {review})

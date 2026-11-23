@@ -47,6 +47,7 @@ class JsonGuard(unittest.TestCase):
                     try:
                         S.shell('strict_json "$1"', path)
                         observed = True
-                    except ValueError:
+                    except S.ShellError as error:
+                        self.assertIn(error.returncode, (1, 5), str(error))
                         observed = False
                     self.assertEqual(observed, expected)

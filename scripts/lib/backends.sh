@@ -37,6 +37,12 @@ select_backend() {
         *) BACKEND=toolbox; TOOL_BIN=${LIB_DIR}/../toolbox.sh;;
     esac
 }
+toolbox_command() {
+    local executable=$1 source_path=$2 result_path=$3
+    CMD=("${executable}" exec --tool "${SCANNER}" --project-root "${source_path}"
+         --results "${result_path}" --timeout "${NATIVE_TIMEOUT}"
+         --diagnostic-file "${result_path}/backend_record.json" -- "${NATIVE[@]}")
+}
 backend_plan() {
     CMD=() CWD=${ROOT}
     if [[ ${plan:-false} == true && ${legacy:-true} == false ]]; then
@@ -46,8 +52,8 @@ backend_plan() {
         select_backend || { BACKEND=unavailable; return; }
     fi
     if [[ ${BACKEND} == toolbox ]]; then
-        native_command '{source}'
-        CMD=("${TOOL_BIN}" exec --tool "${SCANNER}" --project-root '{source}' --results '{output}' --timeout "${NATIVE_TIMEOUT}" --diagnostic-file '{output}/backend_record.json' -- "${NATIVE[@]}")
+        native_command "${name}" '{output}' true
+        toolbox_command "${TOOL_BIN}" '{source}' '{output}'
     else
         check_command "${name}" '{output}'
         if [[ -n ${NATIVE_EXECUTABLE_PATH:-} ]]; then
@@ -56,90 +62,96 @@ backend_plan() {
     fi
 }
 run_toolbox() {
-    local report before
-    [[ -z ${CONFIG} || -f ${source}/${CONFIG} ]] || fail_check 'Missing native configuration'
-    [[ -z ${RULE} || -f ${source}/${RULE} ]] || fail_check 'Missing native rules'
+    local name=$1 source=$2 output=$3 tool=$4 tool_sha=$5
+    local report before history_policy history_sha expected_history_sha reviewed_sha final_source_sha wrapper_sha
+    [[ -z ${CONFIG} || -f ${source}/${CONFIG} ]] || fail_check POLICY_INVALID 'Missing native configuration'
+    [[ -z ${RULE} || -f ${source}/${RULE} ]] || fail_check POLICY_INVALID 'Missing native rules'
     if [[ ${name} == history ]]; then
         history_policy=$(policy_path gitleaks-history.ignore) || return 1
-        history_sha=$(hash_file "${source}/${history_policy}") || fail_check 'Missing/changed reviewed history fingerprints'
+        history_sha=$(hash_file "${source}/${history_policy}") || fail_check POLICY_INVALID 'Missing/changed reviewed history fingerprints'
         expected_history_sha=$(jq -r .reviews.history_sha256 <<<"${AUTOMATION_JSON}") || return 1
-        [[ ${history_sha} == "${expected_history_sha}" ]] || fail_check 'Missing/changed reviewed history fingerprints'
+        [[ ${history_sha} == "${expected_history_sha}" ]] || fail_check POLICY_INVALID 'Missing/changed reviewed history fingerprints'
     fi
     if [[ ${name} == bandit || ${name} == ruff ]]; then
         local rel expected review
-        review=$(jq -ce '.reviews.static | select((.sources|length)>0 and (.policy_files|length)>0)' "${source}/scripts/config/automation.json") || fail_check 'Missing static review registry'
+        review=$(jq -ce '.reviews.static | select((.sources|length)>0 and (.policy_files|length)>0)' "${source}/scripts/config/automation.json") || fail_check POLICY_INVALID 'Missing static review registry'
         capture_nul stream_fields jq -j '(.sources + .policy_files)|to_entries[]|.key,"\u0000",.value,"\u0000"' <<<"${review}" || return 1
         while IFS= read -r -d '' rel && IFS= read -r -d '' expected; do
-            [[ ${rel} != /* && ${rel} != *..* && ${expected} =~ ^[a-f0-9]{64}$ ]] || fail_check 'Invalid reviewed source path or hash'
+            [[ ${rel} != /* && ${rel} != .. && ${rel} != ../* && ${rel} != */../* && ${rel} != */.. && ${expected} =~ ^[a-f0-9]{64}$ ]] || fail_check INPUT_INVALID 'Invalid reviewed source path or hash'
             if [[ -f ${source}/${rel} ]]; then
                 reviewed_sha=$(hash_file "${source}/${rel}") || return 1
-                [[ ${reviewed_sha} == "${expected}" ]] || fail_check 'Reviewed static source changed; review required'
+                [[ ${reviewed_sha} == "${expected}" ]] || fail_check INPUT_INVALID 'Reviewed static source changed; review required'
             elif [[ ${rel} == scripts/config/* ]]; then
-                fail_check 'Missing reviewed static policy'
+                fail_check POLICY_INVALID 'Missing reviewed static policy'
             fi
         done < <(printf '%s\0' "${stream_fields[@]}")
     fi
-    native_command "${source}"
-    final_source_sha=$(tree_identity "${source}") || return 1
-    before=${final_source_sha} || fail_check 'Cannot identify complete snapshot'
+    native_command "${name}" "${output}" false
+    before=$(tree_identity "${source}") || fail_check INPUT_INVALID 'Cannot identify complete snapshot'
     EXECUTED=true
-    execute "${output}/tool" "${ROOT}" "${tool}" exec --tool "${SCANNER}" --project-root "${source}" \
-        --results "${output}" --timeout "${NATIVE_TIMEOUT}" --diagnostic-file "${output}/backend_record.json" -- "${NATIVE[@]}"
+    toolbox_command "${tool}" "${source}" "${output}"
+    execute "${output}/tool" "${ROOT}" "${CMD[@]}"
     RUNNER_RAW=${PROCESS_CODE}
     if [[ ${name} == trivy && -f ${output}/report.json ]]; then
-        redact_trivy "${output}/report.json" "${output}" || fail_check 'Invalid Trivy report; raw content withheld, see redaction identity'
+        redact_trivy "${output}/report.json" "${output}" || fail_check REPORT_INVALID 'Invalid Trivy report; raw content withheld, see redaction identity'
     fi
-    strict_json "${output}/backend_record.json" || fail_check "Missing/invalid native execution diagnostic (runner exit ${RUNNER_RAW}); inspect tool/stderr.log and TOOLBOX_BIN/PATH"
-    RAW=$(jq -er 'if .native_exit_code==null then "null" elif (.native_exit_code|type)=="number" and (.native_exit_code|floor)==.native_exit_code and .native_exit_code>=0 and .native_exit_code<=255 then .native_exit_code else error("invalid native exit") end' "${output}/backend_record.json") || { RAW=null; fail_check 'Invalid diagnostic native exit'; }
+    strict_json "${output}/backend_record.json" || fail_check EXECUTOR_INVALID "Missing/invalid native execution diagnostic (runner exit ${RUNNER_RAW}); inspect tool/stderr.log and TOOLBOX_BIN/PATH"
+    RAW=$(jq -er 'if .native_exit_code==null then "null" elif (.native_exit_code|type)=="number" and (.native_exit_code|floor)==.native_exit_code and .native_exit_code>=0 and .native_exit_code<=255 then .native_exit_code else error("invalid native exit") end' "${output}/backend_record.json") || { RAW=null; fail_check EXECUTOR_INVALID 'Invalid diagnostic native exit'; }
     jq -e --arg tool "${SCANNER}" --argjson code "${PROCESS_CODE}" '
         .tool==$tool and .outcome=="native" and .cleanup=="removed" and
         (.version|type=="string" and length>0) and (.image|test("^sha256:[0-9a-f]{64}$")) and
         (.native_exit_code|type=="number" and floor==. and .>=0 and .<=255) and .native_exit_code==$code
-    ' "${output}/backend_record.json" >/dev/null || fail_check 'Executor infrastructure, timeout, cancellation, cleanup or identity failure; inspect diagnostic'
+    ' "${output}/backend_record.json" >/dev/null || fail_check EXECUTOR_INVALID 'Executor infrastructure, timeout, cancellation, cleanup or identity failure; inspect diagnostic'
     case ${name} in
         osv|trivy)
-            validate_database_age "${output}/backend_record.json" "${name}" || fail_check 'Invalid, inconsistent or expired central database metadata';;
+            validate_database_metadata "${output}/backend_record.json" "${name}" || fail_check DATASET_INVALID 'Invalid, inconsistent or expired central database metadata';;
         grype)
-            jq -e '.database|type=="string" and test("^[0-9a-f]{64}$")' "${output}/backend_record.json" >/dev/null || fail_check 'Missing central database identity';;
+            jq -e '.database|type=="string" and test("^[0-9a-f]{64}$")' "${output}/backend_record.json" >/dev/null || fail_check DATASET_INVALID 'Missing central database identity';;
         *) :;; # Other validated classifications require no action.
     esac
     report=${output}/tool/stdout.log
     [[ ${name} != gitleaks && ${name} != history && ${name} != trivy ]] || report=${output}/report.json
-    assess "${name}" "${RAW}" "${report}" || fail_check 'Invalid/incomplete native report'
+    assess "${name}" "${RAW}" "${report}" || fail_check REPORT_INVALID 'Invalid/incomplete native report'
     # For native scanners, a clean report must have exit zero; findings must agree
     # with the chosen native exit policy (Grype/YARA return zero with findings).
     local expected=1
     case ${name} in gitleaks|history) expected=10;; grype|malware) expected=0;; *) :;; esac
-    [[ ${COUNT} =~ ^[0-9]+$ && ${RAW} =~ ^[0-9]+$ ]] || fail_check 'Invalid native report counts'
-    [[ ( ${COUNT} == 0 && ${RAW} == 0 ) || ( ${COUNT} -gt 0 && ${RAW} == "${expected}" ) ]] || fail_check 'Native findings and exit disagree'
+    [[ ${COUNT} =~ ^[0-9]+$ && ${RAW} =~ ^[0-9]+$ ]] || fail_check REPORT_INVALID 'Invalid native report counts'
+    [[ ( ${COUNT} == 0 && ${RAW} == 0 ) || ( ${COUNT} -gt 0 && ${RAW} == "${expected}" ) ]] || fail_check REPORT_INVALID 'Native findings and exit disagree'
     if ((COUNT>0)); then STATE=findings CODE=1; fi
     if [[ ${name} == opengrep ]]; then
         jq -e --slurpfile inputs "${output}/inputs.json" '.paths.scanned as $scanned |
-          all($inputs[0]|keys[]|select(test("\\.(rs|py)$")); . as $p | ($scanned|index("/project/"+$p))!=null)' "${report}" >/dev/null || fail_check 'SAST omitted selected input'
+          all($inputs[0]|keys[]|select(test("\\.(rs|py)$")); . as $p | ($scanned|index("/project/"+$p))!=null)' "${report}" >/dev/null || fail_check INPUT_INVALID 'SAST omitted selected input'
     fi
     if [[ ${name} == bandit ]]; then
         jq -e --slurpfile inputs "${output}/inputs.json" '.metrics as $metrics |
-          all($inputs[0]|keys[]|select(endswith(".py")); . as $p | $metrics|has("/project/"+$p))' "${report}" >/dev/null || fail_check 'Bandit omitted selected input'
+          all($inputs[0]|keys[]|select(endswith(".py")); . as $p | $metrics|has("/project/"+$p))' "${report}" >/dev/null || fail_check INPUT_INVALID 'Bandit omitted selected input'
     fi
     final_source_sha=$(tree_identity "${source}") || return 1
     if [[ ${final_source_sha} != "${before}" ]] || ! verify_inputs "${output}"; then
-        fail_check 'Input/snapshot changed'
+        fail_check INPUT_INVALID 'Input/snapshot changed'
     fi
     mkdir -- "${output}/recheck"
-    source_snapshot "${output}/recheck" all || fail_check 'Cannot verify final source selection'
+    source_snapshot "${output}/recheck" all || fail_check INPUT_INVALID 'Cannot verify final source selection'
     if ! cmp -s -- "${output}/inputs.json" "${output}/recheck/inputs.json" ||
         ! cmp -s -- "${output}/input_modes.json" "${output}/recheck/input_modes.json"; then
-        fail_check 'Source inventory or modes changed during scan'
+        fail_check INPUT_INVALID 'Source inventory or modes changed during scan'
     fi
     wrapper_sha=$(hash_file "${tool}") || return 1
-    [[ ${wrapper_sha} == "${tool_sha}" ]] || fail_check 'Wrapper changed during check'
+    [[ ${wrapper_sha} == "${tool_sha}" ]] || fail_check TOOL_CHANGED 'Wrapper changed during check'
 }
 
-# Consumer age policy; timestamps identify upstream data, never local preparation.
-validate_database_age() {
-    local record=$1 age_policy=$2 limit=86400 oldest=9223372036854775807 value epoch effective current
-    catalog_load
-    limit=$(jq -er --arg policy "${age_policy}" '.databases[$policy].maximum_age_seconds' <<<"${AUTOMATION_JSON}") || return 1
+# OSV acquisition freshness belongs to Toolbox; upstream dates are provenance only.
+# Trivy retains the consumer age policy on its native database timestamps.
+validate_database_metadata() {
+    local record=$1 age_policy=$2 limit oldest=9223372036854775807 value epoch effective current
+    case ${age_policy} in
+        osv) :;;
+        trivy)
+            catalog_load
+            limit=$(jq -er '.databases.trivy.maximum_age_seconds | select(type=="number" and floor==. and .>0)' <<<"${AUTOMATION_JSON}") || return 1;;
+        *) return 1;;
+    esac
     jq -e '
       (.database|type=="string" and test("^[0-9a-f]{64}$")) and
       (.database_metadata as $m | $m.schema==1 and $m.snapshot==.database and
@@ -158,7 +170,9 @@ validate_database_age() {
     for value in "${timestamps[@]}"; do
         [[ ${value} =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$ ]] || return 1
         epoch=$(date -ud "${value}" +%s) || return 1
-        ((epoch<=current && current-epoch<=limit)) || return 1
+        if [[ ${age_policy} == trivy ]]; then
+            ((epoch<=current && current-epoch<=limit)) || return 1
+        fi
         ((epoch>=oldest)) || oldest=${epoch}
     done
     value=$(jq -r '.database_metadata.data_timestamp' "${record}") || return 1

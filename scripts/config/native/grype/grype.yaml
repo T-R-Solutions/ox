@@ -7,7 +7,7 @@ only-notfixed: false
 ignore-states: ""
 show-suppressed: true
 add-cpes-if-none: true
-# A seleção de camadas/arquivos pertence ao produtor Syft do SBOM consumido.
+# O runner analisa dir:/project; o inventário Syft é um resultado independente.
 check-for-app-update: false
 db:
   auto-update: false

@@ -48,18 +48,43 @@ catalog_load() {
           (.value|type=="string" and (contains("\u0000")|not)))) and
       (.discovery.toolbox|type=="array" and all(.[];type=="string" and (explode|all(.[];.>=32))))
     ' <<<"${AUTOMATION_JSON}" >/dev/null || die 'Invalid selection/environment catalog'
+    # Validate paths and source/review selectors before they reach find or files.
+    jq -e '
+      def text: type=="string" and length>0 and (explode|all(.[];.>=32 and .!=127));
+      def relative: text and (startswith("/")|not) and
+        (split("/")|all(.[];.!="" and .!="." and .!=".."));
+      def digest: type=="string" and test("^[a-f0-9]{64}$");
+      def bindings: type=="object" and length>0 and
+        all(to_entries[]; (.key|relative) and (.value|digest));
+      (.inputs|type=="object" and
+        keys==["exclude_names","exclude_paths","root_patterns","roots"]) and
+      (.inputs.roots|type=="array" and length>0 and all(.[];relative)) and
+      (.inputs.root_patterns|type=="array" and length>0 and all(.[];text and (contains("/")|not))) and
+      (.inputs.exclude_names|type=="array" and all(.[];text and (contains("/")|not))) and
+      (.inputs.exclude_paths|type=="array" and all(.[];relative)) and
+      (.paths|type=="object" and keys==["cargo","datasets","root","runs"] and all(.[];relative)) and
+      (.databases|type=="object" and keys==["trivy"]) and
+      (.databases.trivy|type=="object" and keys==["maximum_age_seconds"]) and
+      (.databases.trivy.maximum_age_seconds|type=="number" and floor==. and .>0) and
+      (.reviews|type=="object" and keys==["history_sha256","static"]) and
+      (.reviews.history_sha256|digest) and
+      (.reviews.static|type=="object" and keys==["policy_files","reason","sources"]) and
+      (.reviews.static.reason|text) and
+      (.reviews.static.sources|bindings) and (.reviews.static.policy_files|bindings)
+    ' <<<"${AUTOMATION_JSON}" >/dev/null || die 'Invalid inputs/paths/databases/reviews catalog'
     local scope check
+    local -a scopes=() checks=()
     # shellcheck disable=SC2016 # jq variables belong to the quoted program.
-    capture_lines stream_fields jq -r '.scopes|keys[]' <<<"${AUTOMATION_JSON}" || return 1
-    while IFS= read -r scope; do
+    capture_lines scopes jq -r '.scopes|keys[]' <<<"${AUTOMATION_JSON}" || return 1
+    for scope in "${scopes[@]}"; do
         jq -e --arg scope "${scope}" '.scopes[$scope]|type=="array" and length>0 and length==(unique|length) and all(.[];type=="string")' <<<"${AUTOMATION_JSON}" >/dev/null || die 'Invalid scope'
         # shellcheck disable=SC2016 # jq variables belong to the quoted program.
-        capture_lines stream_fields jq -r --arg scope "${scope}" '.scopes[$scope][]' <<<"${AUTOMATION_JSON}" || return 1
-        while IFS= read -r check; do
+        capture_lines checks jq -r --arg scope "${scope}" '.scopes[$scope][]' <<<"${AUTOMATION_JSON}" || return 1
+        for check in "${checks[@]}"; do
             case ${check} in sdd-structure|ox|governance-tests|scripts-syntax|scripts-tests|rust-fmt|rust-check|rust-build|rust-test|rust-clippy) continue;; *) :;; esac
             jq -e --arg check "${check}" '.checks|has($check)' <<<"${AUTOMATION_JSON}" >/dev/null || die "Unknown catalog check: ${check}"
-        done < <(printf '%s\n' "${stream_fields[@]}")
-    done < <(printf '%s\n' "${stream_fields[@]}")
+        done
+    done
 }
 policy_path() {
     catalog_load
@@ -120,8 +145,8 @@ check_command() {
 
 # All paths below are explicit container paths; no host-path rewriting.
 native_command() {
-    local rel policy_key policy_rel bandit_ini bandit_baseline
-    : "$1"
+    local name=$1 output=$2 plan=$3 rel policy_key policy_rel bandit_ini bandit_baseline
+    local -a stream_fields=()
     SCANNER=${TOOL}
     case ${name} in history) SCANNER=gitleaks;; malware) SCANNER=yara-x;; *) :;; esac
     local policy
@@ -135,14 +160,14 @@ native_command() {
             if [[ ${plan:-false} != true ]]; then
                 capture_nul stream_fields jq -j 'keys[] | ., "\u0000"' "${output:-}/inputs.json" || return 1
             fi
-            while IFS= read -r -d '' rel; do
+            for rel in "${stream_fields[@]}"; do
                 case ${name}:${rel} in
                     shellcheck:scripts/*.sh|ruff:*.py|bandit:*.py) targets+=("/project/${rel}");;
                     *) :;; # Other validated classifications require no action.
                 esac
-            done < <(printf '%s\0' "${stream_fields[@]}")
+            done
             if ((${#targets[@]}==0)); then
-                if [[ ${plan:-false} == true ]]; then targets=('{selected-files}'); else fail_check 'Empty scanner target selection'; fi
+                if [[ ${plan:-false} == true ]]; then targets=('{selected-files}'); else fail_check REPORT_INVALID 'Empty scanner target selection'; fi
             fi ;;
         *) :;; # Other validated classifications require no action.
     esac

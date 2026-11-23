@@ -12,6 +12,7 @@ source "${LIB_DIR}/files.sh"
 source "${LIB_DIR}/reports.sh"
 # shellcheck source=../lib/backends.sh
 source "${LIB_DIR}/backends.sh"
+main() {
 name='' output='' inspect='' plan=false
 manifests=()
 while (($#)); do
@@ -57,18 +58,18 @@ else
 fi
 [[ ! -e ${output}/assessment.json && ! -e ${output}/tool ]] || die 'Output already used'
 chmod 700 -- "${output}"
-STATE=blocked CODE=3 RAW=null RUNNER_RAW=null EXECUTED=false COUNT=null REASON='' PREPARED='' tool='' tool_sha='' BACKEND=native
+STATE=blocked CODE=3 RAW=null RUNNER_RAW=null EXECUTED=false COUNT=null REASON='' REASON_CODE='' PREPARED='' tool='' tool_sha='' BACKEND=native
 # shellcheck disable=SC2329 # Invoked by the EXIT trap, including error exits.
 finish() {
     local rc=$?
     trap - EXIT
-    if ((rc)) && [[ -z ${REASON} ]]; then REASON='Invalid or incomplete check inputs/report'; fi
+    if ((rc)) && [[ -z ${REASON} ]]; then REASON='Check ended without a classified cause'; REASON_CODE=UNKNOWN; fi
     if [[ -n ${REASON} ]]; then
         if [[ ${RAW} == null && ${EXECUTED} == false ]]; then STATE=blocked CODE=3; else STATE=error CODE=2; fi
     fi
-    jq -n --arg backend "${BACKEND}" --arg name "${name}" --arg state "${STATE}" --arg reason "${REASON}" --argjson code "${CODE}" --argjson runner "${RUNNER_RAW}" --argjson raw "${RAW}" --argjson count "${COUNT}" \
+    jq -n --arg backend "${BACKEND}" --arg name "${name}" --arg state "${STATE}" --arg reason "${REASON}" --arg reason_code "${REASON_CODE}" --argjson code "${CODE}" --argjson runner "${RUNNER_RAW}" --argjson raw "${RAW}" --argjson count "${COUNT}" \
       --arg tool "${tool}" --arg sha "${tool_sha}" --arg output "${output}" \
-      '{check:$name,backend:$backend,state:$state,exit_code:$code,tool_exit_code:$raw,runner_exit_code:$runner,finding_count:$count,reason:$reason,product_acceptance:false,
+      '{check:$name,backend:$backend,state:$state,exit_code:$code,tool_exit_code:$raw,runner_exit_code:$runner,finding_count:$count,reason:$reason,reason_code:$reason_code,product_acceptance:false,
         tool:{path:$tool,sha256:$sha},limits:["No automatic product acceptance.","Generated directories and historical validation excluded; history is separate.","Offline flags are not OS isolation."]}' >"${output}/assessment.tmp"
     local field
     for field in inputs dataset member_results backend_record backend_inputs; do
@@ -93,76 +94,75 @@ finish() {
     exit "${CODE}"
 }
 trap 'finish' EXIT
-fail_check() { REASON=$*; exit 1; }
+fail_check() { REASON_CODE=$1; shift; REASON=$*; exit 1; }
 # Remove inherited scanner controls which could suppress results or enable updates.
 # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
 capture_lines stream_fields compgen -e || exit 2
-while IFS= read -r key; do
+for key in "${stream_fields[@]}"; do
     case ${key} in GITLEAKS_*|SEMGREP_*|OPENGREP_*|GRYPE_*|SYFT_*|TRIVY_*|OSV_SCANNER_*|OSV_SCALIBR_*|RUFF_*|BANDIT_*) unset "${key}";; *) :;; esac
-done < <(printf '%s\n' "${stream_fields[@]}")
+done
 # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-select_backend || fail_check "${BACKEND_REASON:-required tool missing: ${TOOL}; invalid explicit backend configuration}"
+select_backend || fail_check POLICY_INVALID "${BACKEND_REASON:-required tool missing: ${TOOL}; invalid explicit backend configuration}"
 tool=${TOOL_BIN}
 # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
 current_tool_sha=$(hash_file "${tool}") || exit 2
 if [[ -n ${NATIVE_EXECUTABLE_SHA256:-} && ${current_tool_sha} != "${NATIVE_EXECUTABLE_SHA256}" ]]; then
-    fail_check 'Configured native executable changed after selection'
+    fail_check TOOL_CHANGED 'Configured native executable changed after selection'
 fi
 tool=$(realpath -e -- "${tool}"); tool_sha=${current_tool_sha}
 if [[ ${TOOL} == cargo-* ]]; then
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    installed_cargo || fail_check 'Required installed Rust toolchain unavailable'
+    installed_cargo || fail_check TOOL_UNAVAILABLE 'Required installed Rust toolchain unavailable'
 fi
 if [[ ${name} == coverage ]]; then
     llvm_cov=$(find "${CARGO%/bin/cargo}/lib/rustlib" -name llvm-cov -type f -print -quit) || exit 2
     llvm_profdata=$(find "${CARGO%/bin/cargo}/lib/rustlib" -name llvm-profdata -type f -print -quit) || exit 2
-    [[ -n ${llvm_cov} && -n ${llvm_profdata} ]] || fail_check 'Installed llvm-tools-preview required'
+    [[ -n ${llvm_cov} && -n ${llvm_profdata} ]] || fail_check TOOL_UNAVAILABLE 'Installed llvm-tools-preview required'
 fi
 if [[ ${BACKEND} == toolbox ]]; then
     printf '{}\n' >"${output}/inputs.json"
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    source_snapshot "${output}" all || fail_check 'Cannot create complete source snapshot'
+    source_snapshot "${output}" all || fail_check INPUT_INVALID 'Cannot create complete source snapshot'
     source=${output}/source
     if [[ ${name} == history ]]; then
         shallow=$(git -C "${ROOT}" rev-parse --is-shallow-repository) || exit 2
-        [[ ${shallow} == false && -d ${ROOT}/.git && ! -L ${ROOT}/.git ]] || fail_check 'Full self-contained Git history required'
-        [[ ! -e ${ROOT}/.git/objects/info/alternates && ! -e ${ROOT}/.git/commondir ]] || fail_check 'External Git object storage is unsupported'
+        [[ ${shallow} == false && -d ${ROOT}/.git && ! -L ${ROOT}/.git ]] || fail_check INPUT_INVALID 'Full self-contained Git history required'
+        [[ ! -e ${ROOT}/.git/objects/info/alternates && ! -e ${ROOT}/.git/commondir ]] || fail_check INPUT_INVALID 'External Git object storage is unsupported'
         # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-        current_git_sha=$(tree_identity "${ROOT}/.git") || exit 2
-        git_before=${current_git_sha} || fail_check 'Unsafe Git metadata'
+        git_before=$(tree_identity "${ROOT}/.git") || fail_check INPUT_INVALID 'Unsafe Git metadata'
         cp -a -- "${ROOT}/.git" "${source}/.git"
         # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
         copied_git_sha=$(tree_identity "${source}/.git") || exit 2
-        [[ ${copied_git_sha} == "${git_before}" ]] || fail_check 'Git copy changed'
+        [[ ${copied_git_sha} == "${git_before}" ]] || fail_check INPUT_INVALID 'Git copy changed'
     fi
     [[ ${name} != opengrep ]] || : >"${source}/.semgrepignore"
-    run_toolbox
+    run_toolbox "${name}" "${source}" "${output}" "${tool}" "${tool_sha}"
     if [[ ${name} == history ]]; then
         # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-        current_git_sha=$(tree_identity "${ROOT}/.git") || fail_check 'Cannot identify Git history'
-        [[ ${current_git_sha} == "${git_before}" ]] || fail_check 'Git history changed'
+        current_git_sha=$(tree_identity "${ROOT}/.git") || fail_check INPUT_INVALID 'Cannot identify Git history'
+        [[ ${current_git_sha} == "${git_before}" ]] || fail_check INPUT_INVALID 'Git history changed'
     fi
     exit 0
 fi
 version=("${tool}" --version)
 if [[ ${TOOL} == cargo-* ]]; then version=("${tool}" "${TOOL#cargo-}" --version); fi
 execute "${output}/version" "${ROOT}" "${version[@]}"
-((PROCESS_CODE==0)) || fail_check 'Cannot identify required tool version'
+((PROCESS_CODE==0)) || fail_check TOOL_UNAVAILABLE 'Cannot identify required tool version'
 db='{reviewed-dataset}' source='{source}'
 if [[ -n ${DATA} ]]; then
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    reviewed_dataset "${DATA}" "${output}" || fail_check "Missing/invalid reviewed dataset: ${DATA}"
+    reviewed_dataset "${DATA}" "${output}" || fail_check DATASET_INVALID "Missing/invalid reviewed dataset: ${DATA}"
     db=${output}/dataset
 fi
 if [[ -n ${CONFIG} ]]; then
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    policy=$(contained "${CONFIG}") && [[ -f ${policy} ]] || fail_check "Missing required scanner configuration: ${CONFIG}"
+    policy=$(contained "${CONFIG}") && [[ -f ${policy} ]] || fail_check POLICY_INVALID "Missing required scanner configuration: ${CONFIG}"
 fi
 printf '{}\n' >"${output}/inputs.json"
 input_add "${output}" scripts/config/automation.json
 if [[ ${SNAPSHOT} != none ]]; then
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    source_snapshot "${output}" "${SNAPSHOT}" || fail_check 'Cannot create complete source snapshot'
+    source_snapshot "${output}" "${SNAPSHOT}" || fail_check INPUT_INVALID 'Cannot create complete source snapshot'
     source=${output}/source
 fi
 for rel in application/Cargo.toml application/Cargo.lock application/rust-toolchain.toml; do
@@ -186,18 +186,20 @@ CMD[0]=${tool}
 jq -n --arg cwd "${CWD}" '{cwd:$cwd,argv_recorded:false}' >"${output}/command.json"
 if [[ ${name} == geiger ]]; then
     mkdir -- "${output}/tool"
-    geiger_stack=$(jq -er '.runtime.geiger_stack_bytes' <<<"${AUTOMATION_JSON}") || fail_check 'Invalid Geiger stack configuration'
+    geiger_stack=$(jq -er '.runtime.geiger_stack_bytes' <<<"${AUTOMATION_JSON}") || fail_check POLICY_INVALID 'Invalid Geiger stack configuration'
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    metadata=$(workspace_metadata) || fail_check 'Cannot enumerate workspace members'
+    metadata=$(workspace_metadata) || fail_check REPORT_INVALID 'Cannot enumerate workspace members'
     # shellcheck disable=SC2016 # jq variables belong to the quoted program.
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
     capture_lines manifests jq -r '.workspace_members as $members | .packages[] | select(.id as $id|$members|index($id)) | .manifest_path' <<<"${metadata}" || exit 2
-    ((${#manifests[@]})) || fail_check 'Empty workspace'
+    ((${#manifests[@]})) || fail_check REPORT_INVALID 'Empty workspace'
     printf '[]\n' >"${output}/member_results.json"
+    jq -n --argjson total "${#manifests[@]}" '{schema:1,completed:0,total:$total,activity:"membros"}' >"${output}/progress.json"
     final_code=0 final_raw=0 i=0 incomplete=false
     for manifest in "${manifests[@]}"; do
         # Cargo paths are parsed, not inferred from globbed directory names.
-        [[ ${manifest} == "${ROOT}/application/"* ]] || fail_check 'Workspace member escaped root'
+        # shellcheck disable=SC2310 # The callee returns an explicit status; this branch propagates failure.
+        validate_member_manifest "${manifest}" || fail_check REPORT_INVALID 'Workspace member escaped root'
         manifest=${source}/application/${manifest#"${ROOT}/application/"}
         execute "${output}/tool/${i}" "${CWD}" env "RUST_MIN_STACK=${geiger_stack}" "${CMD[@]}" --manifest-path "${manifest}"
         RAW=${PROCESS_CODE}
@@ -212,6 +214,10 @@ if [[ ${name} == geiger ]]; then
         ((final_code)) || final_code=${CODE}
         ((final_raw)) || final_raw=${RAW}
         i=$((i+1))
+        jq -n --argjson completed "${i}" --argjson total "${#manifests[@]}" '{schema:1,completed:$completed,total:$total,activity:"membros"}' >"${output}/progress.next"
+        mv -- "${output}/progress.next" "${output}/progress.json"
+        # A cancelled supervised member must not schedule another tool.
+        if ${PROCESS_CANCELLED:-false}; then exit "${RAW}"; fi
     done
     RAW=${final_raw} CODE=${final_code} STATE=recorded
     ((CODE==0)) || STATE=failed
@@ -223,7 +229,7 @@ else
     [[ ${name} != coverage ]] || report=${output}/coverage.lcov
     parser=${name}
     if [[ ${name} == machete ]]; then
-        grep -qx '0.9.2' "${output}/version/stdout.log" || fail_check 'Unsupported Machete version; verified text contract requires 0.9.2'
+        grep -qx '0.9.2' "${output}/version/stdout.log" || fail_check REPORT_INVALID 'Unsupported Machete version; verified text contract requires 0.9.2'
         parser=machete-text
     elif [[ ${name} == deny ]]; then
         # Transformation: JSON Lines stderr -> JSON array; raw bytes remain intact.
@@ -231,13 +237,13 @@ else
         while IFS= read -r line; do
             printf '%s\n' "${line}" >"${output}/deny-line.json"
             # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-            strict_json "${output}/deny-line.json" || fail_check 'Malformed/duplicate Deny JSON line'
+            strict_json "${output}/deny-line.json" || fail_check REPORT_INVALID 'Malformed/duplicate Deny JSON line'
         done <"${output}/tool/stderr.log"
-        jq -s '.' "${output}/tool/stderr.log" >"${report}" || fail_check 'Malformed Deny stream'
-        [[ ! -s ${output}/tool/stdout.log ]] || fail_check 'Unexpected Deny stdout'
+        jq -s '.' "${output}/tool/stderr.log" >"${report}" || fail_check REPORT_INVALID 'Malformed Deny stream'
+        [[ ! -s ${output}/tool/stdout.log ]] || fail_check REPORT_INVALID 'Unexpected Deny stdout'
     fi
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    assess "${parser}" "${RAW}" "${report}" || fail_check 'Invalid/incomplete scanner report'
+    assess "${parser}" "${RAW}" "${report}" || fail_check REPORT_INVALID 'Invalid/incomplete scanner report'
     if [[ ${name} == deny ]]; then
         jq 'group_by(.fields.code // .type)|map({code:(.[0].fields.code // .[0].type),count:length,records:.})' "${report}" >"${output}/diagnostics.json"
         [[ ${STATE} != error ]] || REASON='cargo-deny emitted internal diagnostics; inspect diagnostics.json and raw stderr'
@@ -245,14 +251,16 @@ else
 
 fi
 # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-verify_inputs "${output}" || fail_check 'Input/snapshot changed during check'
+verify_inputs "${output}" || fail_check INPUT_INVALID 'Input/snapshot changed during check'
 # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
 current_tool_sha=$(hash_file "${tool}") || exit 2
-[[ ${current_tool_sha} == "${tool_sha}" ]] || fail_check 'Tool binary changed during check'
+[[ ${current_tool_sha} == "${tool_sha}" ]] || fail_check TOOL_CHANGED 'Tool binary changed during check'
 if [[ -n ${DATA} ]]; then
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
-    current_dataset_sha=$(tree_identity "${PREPARED}") || fail_check 'Cannot identify dataset'
-    expected_dataset_sha=$(jq -r .sha256 "${output}/dataset.json") || fail_check 'Invalid dataset identity'
-    [[ ${current_dataset_sha} == "${expected_dataset_sha}" ]] || fail_check 'Dataset changed during check'
+    current_dataset_sha=$(tree_identity "${PREPARED}") || fail_check DATASET_INVALID 'Cannot identify dataset'
+    expected_dataset_sha=$(jq -r .sha256 "${output}/dataset.json") || fail_check DATASET_INVALID 'Invalid dataset identity'
+    [[ ${current_dataset_sha} == "${expected_dataset_sha}" ]] || fail_check DATASET_INVALID 'Dataset changed during check'
 fi
 exit 0
+}
+if [[ ${BASH_SOURCE[0]} == "$0" ]]; then main "$@"; fi

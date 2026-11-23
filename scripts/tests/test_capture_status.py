@@ -9,12 +9,26 @@ import support as S
 
 class CaptureStatusTests(unittest.TestCase):
     def test_failed_line_producer_preserves_failure(self):
-        with self.assertRaises(ValueError):
+        with S.rejected(self, returncode=17):
             S.shell('capture_lines rows bash -c \'printf partial; exit 17\'')
 
     def test_failed_nul_producer_preserves_failure(self):
-        with self.assertRaises(ValueError):
+        with S.rejected(self, returncode=19):
             S.shell('capture_nul rows bash -c \'printf partial; exit 19\'')
+
+    def test_missing_function_has_distinct_status(self):
+        with S.rejected(self, returncode=127, message="command not found"):
+            S.shell('unset -f capture_lines; capture_lines rows true')
+
+    def test_previous_assessment_cannot_satisfy_a_new_run(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            previous = root / '.local/logs/2026-11-17/ox-security-previous--assessment.json.log'
+            previous.parent.mkdir(parents=True)
+            previous.write_text('{"state":"passed"}', encoding="utf-8")
+            before = S.published_assessments(root)
+            with self.assertRaisesRegex(AssertionError, "exactly one new assessment"):
+                S.current_assessment(root, before)
 
     def test_empty_line_inventory_remains_empty(self):
         self.assertEqual(S.shell('capture_lines rows true; printf "%s" "${#rows[@]}"'), b'0')

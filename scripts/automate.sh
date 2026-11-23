@@ -23,6 +23,7 @@ plan emits JSON without executing checks or preparing resources.
 Legacy: --scope governance|rust|security|quality|full|complete [--check NAME] [--plan].
 HELP
 }
+main() {
 scope='' plan=false legacy=false scope_seen=false
 requested=() requested_surfaces=() OPTIONAL=()
 (($#)) || { usage >&2; exit 2; }
@@ -64,6 +65,7 @@ for rel in AGENTS.md sdd/tools/validate.py tools/governance/scripts/check-ox.py 
     [[ -f ${ROOT}/${rel} ]] || die "Missing Ox input: ${rel}"
 done
 if ${legacy}; then
+# shellcheck disable=SC2154 # scope_checks assigns BASE through the shared catalog contract.
 selected=("${BASE[@]}")
 available=("${BASE[@]}")
 case ${scope} in security|quality|full) available+=("${OPTIONAL[@]}");; *) :;; esac
@@ -106,10 +108,26 @@ if ${plan}; then
     done | jq -s .
     exit 0
 fi
-if ! ${legacy}; then execution_environment; fi
+# Capture the operator preference before scanner defaults set NO_COLOR.
+PROGRESS_USER_NO_COLOR=${NO_COLOR:-}
+# Both interfaces retain their selection semantics and share execution defaults.
+# shellcheck source=lib/selection.sh
+source "${LIB_DIR}/selection.sh"
+execution_environment
+# shellcheck source=lib/progress.sh
+source "${LIB_DIR}/progress.sh"
 run=$(new_run run)
+# Own cleanup immediately, including lease/presentation setup failure.
+trap 'rc=$?; rm -rf -- "${run}"; exit "$rc"' EXIT
 run_lease "${run}"
-trap 'rc=$?; run_complete "$run" || exit 2; exit "$rc"' EXIT
+progress_init "${run}" "${#selected[@]}"
+# shellcheck source=lib/lifecycle.sh
+source "${LIB_DIR}/lifecycle.sh"
+trap 'finalize_run "$?"' EXIT
+trap 'PROGRESS_CANCELLED=true; exit 130' INT
+trap 'PROGRESS_CANCELLED=true; exit 143' TERM
+trap 'PROGRESS_CANCELLED=true; exit 129' HUP
+progress_begin preparation
 printf '[]\n' >"${run}/results.rows.json"
 toolchain_code=0
 if ${needs_cargo}; then
@@ -117,13 +135,16 @@ if ${needs_cargo}; then
     # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
     if installed_cargo >"${run}/toolchain/stdout.log" 2>"${run}/toolchain/stderr.log"; then toolchain_code=0
     else toolchain_code=$?; fi
-    cat "${run}/toolchain/stderr.log" >&2
 fi
+mkdir -- "${run}/preparation"
+jq -n --argjson code "${toolchain_code}" '{exit_code:$code,state:(if $code==0 then "passed" else "blocked" end),reason:(if $code==0 then "" else "Required installed toolchain unavailable" end)}' >"${run}/preparation/result.json"
+progress_end "${run}/preparation/result.json"
 for name in "${selected[@]}"; do
     d=${run}/${name}
+    progress_begin "${name}" "${d}"
+    PROCESS_CANCELLED=false
     # shellcheck disable=SC2310 # check_properties is an explicit status predicate.
     if [[ ${name} == rust-* && ${toolchain_code} != 0 ]]; then
-        check_command "${name}" "${d}"
         mkdir -- "${d}"
         jq -n --arg check "${name}" --argjson code "${toolchain_code}" \
           '{check:$check,argv_recorded:false,exit_code:$code,state:"blocked",reason:"Required installed toolchain unavailable"}' >"${d}/process.json"
@@ -144,6 +165,8 @@ for name in "${selected[@]}"; do
     jq --arg check "${name}" '.+{check:$check}' "${d}/process.json" >"${d}/result.json"
     jq --slurpfile row "${d}/result.json" '.+[$row[0]]' "${run}/results.rows.json" >"${run}/results.next"
     mv -- "${run}/results.next" "${run}/results.rows.json"
+    progress_end "${d}/result.json" "${d}/assessment.json"
+    if ${PROGRESS_CANCELLED}; then break; fi
 done
 # shellcheck disable=SC2310 # Status predicate: failures are propagated explicitly by the called function.
 base_json=$(json_args "${BASE[@]}") || exit 2
@@ -154,19 +177,12 @@ entry_sha=$(hash_file "${BASH_SOURCE[0]}") || exit 2
 jq -n --arg scope "${scope}" --slurpfile results "${run}/results.rows.json" \
   --argjson base "${base_json}" --argjson selected "${selected_json}" --arg hash "${entry_sha}" \
   '{scope:$scope,results:$results[0],product_acceptance:false,entry_sha256:$hash,
-    omitted:[$base[] as $n|select($selected|index($n)|not)|{check:$n,reason:"not selected by --check; applicability must be recorded by the task"}],
+    omitted:[$base[] as $n|select($selected|index($n)|not)|{check:$n,reason:"not selected by scope/check filter; applicability must be recorded by the task"}],
     not_selected:["Surfaces outside the chosen scope need explicit applicability review"],not_applicable:[],
     manual_evidence:["Graphical X11/Wayland acceptance: separate applicable protocol required"],
     limits:["Successful checks do not approve the product.","Offline flags are not OS isolation."]}' >"${run}/results.json"
-printf 'Logs: %s/logs\n' "${ROOT}/.local"
-if ${legacy}; then
-    aggregate_code=$(jq -r '[.results[].exit_code|select(.!=0)][0]//0' "${run}/results.json") || exit 2
+# shellcheck disable=SC2310 # The callee returns an explicit status; this branch propagates failure.
+aggregate_code=$(aggregate_results "${run}/results.json") || exit 2
 exit "${aggregate_code}"
-fi
-# Same aggregate precedence as Ec: errors, blocked prerequisites, findings, pass.
-aggregate_code=$(jq -r '
-  if any(.results[]; .state=="error" or
-      (.state!="blocked" and .exit_code!=0 and .exit_code!=1 and .exit_code!=3)) then 2
-  elif any(.results[]; .state=="blocked" or .exit_code==3) then 3
-  elif any(.results[]; .exit_code!=0) then 1 else 0 end' "${run}/results.json") || exit 2
-exit "${aggregate_code}"
+}
+main "$@"

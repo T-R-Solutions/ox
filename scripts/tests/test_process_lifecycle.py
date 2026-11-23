@@ -47,6 +47,7 @@ time.sleep(1.5)
                         ],
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE,
+                        env=S.environment(),
                     )
                 )
             try:
@@ -64,6 +65,10 @@ time.sleep(1.5)
                 self.assertFalse((root / "second.cleaned").exists())
                 self.assertEqual(
                     json.loads((root / "first/process.json").read_text())["exit_code"],
+                    143,
+                )
+                self.assertEqual(
+                    json.loads((root / "first/process.json").read_text())["child_exit_code"],
                     130,
                 )
                 self.assertEqual(
@@ -75,3 +80,18 @@ time.sleep(1.5)
                     if proc.poll() is None:
                         proc.kill()
                         proc.communicate()
+
+    def test_inherited_progress_flag_without_callbacks_still_supervises_child(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            result = S.run(
+                ["bash", "-c",
+                 'source "$1/lib/common.sh"; source "$1/lib/process.sh"; '
+                 'execute "$2/output" "$2" bash -c "printf supervised; exit 7"',
+                 "_", str(S.ROOT / "scripts"), str(root)],
+                env=S.environment(OX_HUMAN_PROGRESS="true"), capture_output=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(result.stdout, b"supervised")
+            self.assertNotIn(b"command not found", result.stderr)
+            self.assertEqual(json.loads((root / "output/process.json").read_text())["exit_code"], 7)

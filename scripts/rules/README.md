@@ -1,10 +1,20 @@
 # Ox rules, revision 2
 
-First-party MIT rules (see ../security/LICENSE); no external rule pack incorporated.
+Original Ox rules (`opengrep/ox.yml` and `yara-x/ox.yar`) follow the root
+[GPL-3.0-only license](../../LICENSE), as recorded in [NOTICE](../security/NOTICE).
+The MIT license in `security/LICENSE` covers the imported automation component;
+it does not license these original rules. `opengrep/rust.yml` contains indicators
+adapted from Ec; the root license does not replace applicable upstream terms.
+No external rule catalog is incorporated.
 From the Ox root, use the public executor:
 `bash scripts/toolbox.sh exec --tool opengrep --project-root "$PWD" --timeout 120 -- test --config scripts/rules/opengrep scripts/tests/rules`.
-The active central version must support the chosen CLI. Each rule has positive ruleid and negative ok
+The active central version must support the chosen CLI. The original ox.yml rules have positive ruleid and negative ok
 annotations in the Python/Rust fixtures; annotations are not suppressions.
+Additional Rust indicator annotations and hex-encoded YARA positive/negative cases
+are described in [the fixture guide](../tests/rules/README.md). Materialize the
+text fixtures with their scanner-recognized extensions in a disposable directory;
+the command above is a CLI template, not evidence that the stored `.txt` corpus
+was selected or executed. New cases have no native detection observation yet.
 
 | Rule | Rationale and limitation |
 | --- | --- |

@@ -2,10 +2,11 @@
 
 import datetime
 import json
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+
+import support as S
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -15,11 +16,11 @@ class DatabaseAge(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / "record.json"
             path.write_text(json.dumps(record))
-            run = subprocess.run(
+            run = S.run(
                 [
                     "bash",
                     "-c",
-                    'source "${1%/*}/common.sh"; source "${1%/*}/registry.sh"; source "$1"; validate_database_age "$2" "$3"',
+                    'source "${1%/*}/common.sh"; source "${1%/*}/registry.sh"; source "$1"; validate_database_metadata "$2" "$3"',
                     "age",
                     str(ROOT / "scripts/lib/backends.sh"),
                     str(path),
@@ -52,11 +53,18 @@ class DatabaseAge(unittest.TestCase):
             },
         }
 
-    def test_age_boundaries_and_inconsistent_identity(self):
-        for scanner, limit in [("osv", 24), ("trivy", 120)]:
-            self.assertTrue(self.accepted(self.record(limit - 1), scanner))
-            for age in [limit + 1, -1]:
-                self.assertFalse(self.accepted(self.record(age), scanner))
+    def test_osv_upstream_dates_do_not_expire_acquired_database(self):
+        for age in (1, 26, 120, 24 * 365, -1):
+            with self.subTest(age=age):
+                self.assertTrue(self.accepted(self.record(age), "osv"))
+
+    def test_trivy_age_policy_is_preserved(self):
+        self.assertTrue(self.accepted(self.record(119), "trivy"))
+        for age in (121, -1):
+            self.assertFalse(self.accepted(self.record(age), "trivy"))
+
+    def test_inconsistent_or_missing_provenance_is_rejected(self):
+        for scanner in ("osv", "trivy"):
             record = self.record(1)
             record["database_metadata"]["snapshot"] = "b" * 64
             self.assertFalse(self.accepted(record, scanner))
