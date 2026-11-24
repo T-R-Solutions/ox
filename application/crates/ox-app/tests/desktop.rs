@@ -574,6 +574,56 @@ fn keyboard_focus_activation_and_exit() -> Result {
     quit_action(&conn, window)?;
     successful_exit(&mut app)
 }
+/// Resizes through the logical size matrix and checks keyboard scrolling.
+fn window_size_matrix(conn: &RustConnection, window: Window, scale: f32) -> Result {
+    for (logical_width, logical_height) in [(640_u16, 480_u16), (900, 700)] {
+        let width = u32::from(scaled_dimension(logical_width, scale)?);
+        let height = u32::from(scaled_dimension(logical_height, scale)?);
+        conn.configure_window(
+            window,
+            &ConfigureWindowAux::new().width(width).height(height),
+        )?
+        .check()?;
+        conn.flush()?;
+        wait_until(|| {
+            let g = conn.get_geometry(window)?.reply()?;
+            Ok(u32::from(g.width) == width && u32::from(g.height) == height)
+        })?;
+        thread::sleep(Duration::from_millis(200));
+        capture(conn, window, &format!("size-{width}-{height}"))?;
+        let before = capture(conn, window, &format!("scroll-before-{width}-{height}"))?;
+        key(conn, 0xff56)?;
+        thread::sleep(Duration::from_millis(100));
+        let after = capture(conn, window, &format!("scroll-after-{width}-{height}"))?;
+        if logical_height == 480 {
+            assert!(
+                before != after,
+                "keyboard scrolling must expose hidden content"
+            );
+        }
+        key(conn, 0xff55)?;
+        thread::sleep(Duration::from_millis(100));
+    }
+    Ok(())
+}
+/// Reports process status and one second of idle CPU accounting.
+fn report_process_idle(app: &App) -> Result {
+    eprintln!(
+        "GUI_PROC_STATUS_BEGIN\n{}GUI_PROC_STATUS_END",
+        std::fs::read_to_string(format!("/proc/{}/status", app.0.id()))?
+    );
+    let idle_before = std::fs::read_to_string(format!("/proc/{}/stat", app.0.id()))?;
+    let idle_start = Instant::now();
+    thread::sleep(Duration::from_secs(1));
+    let idle_after = std::fs::read_to_string(format!("/proc/{}/stat", app.0.id()))?;
+    eprintln!(
+        "GUI_IDLE_SECONDS={}\nGUI_STAT_BEFORE={}\nGUI_STAT_AFTER={}",
+        idle_start.elapsed().as_secs_f64(),
+        idle_before.trim(),
+        idle_after.trim()
+    );
+    Ok(())
+}
 #[test]
 #[ignore = "requires dedicated X11; measures input-to-observed-pixel response, not compositor presentation"]
 fn visual_response_and_window_matrix() -> Result {
@@ -653,48 +703,8 @@ fn visual_response_and_window_matrix() -> Result {
         }
         thread::sleep(Duration::from_millis(30));
     }
-    for (logical_width, logical_height) in [(640_u16, 480_u16), (900, 700)] {
-        let width = u32::from(scaled_dimension(logical_width, scale)?);
-        let height = u32::from(scaled_dimension(logical_height, scale)?);
-        conn.configure_window(
-            window,
-            &ConfigureWindowAux::new().width(width).height(height),
-        )?
-        .check()?;
-        conn.flush()?;
-        wait_until(|| {
-            let g = conn.get_geometry(window)?.reply()?;
-            Ok(u32::from(g.width) == width && u32::from(g.height) == height)
-        })?;
-        thread::sleep(Duration::from_millis(200));
-        capture(&conn, window, &format!("size-{width}-{height}"))?;
-        let before = capture(&conn, window, &format!("scroll-before-{width}-{height}"))?;
-        key(&conn, 0xff56)?;
-        thread::sleep(Duration::from_millis(100));
-        let after = capture(&conn, window, &format!("scroll-after-{width}-{height}"))?;
-        if logical_height == 480 {
-            assert!(
-                before != after,
-                "keyboard scrolling must expose hidden content"
-            );
-        }
-        key(&conn, 0xff55)?;
-        thread::sleep(Duration::from_millis(100));
-    }
-    eprintln!(
-        "GUI_PROC_STATUS_BEGIN\n{}GUI_PROC_STATUS_END",
-        std::fs::read_to_string(format!("/proc/{}/status", app.0.id()))?
-    );
-    let idle_before = std::fs::read_to_string(format!("/proc/{}/stat", app.0.id()))?;
-    let idle_start = Instant::now();
-    thread::sleep(Duration::from_secs(1));
-    let idle_after = std::fs::read_to_string(format!("/proc/{}/stat", app.0.id()))?;
-    eprintln!(
-        "GUI_IDLE_SECONDS={}\nGUI_STAT_BEFORE={}\nGUI_STAT_AFTER={}",
-        idle_start.elapsed().as_secs_f64(),
-        idle_before.trim(),
-        idle_after.trim()
-    );
+    window_size_matrix(&conn, window, scale)?;
+    report_process_idle(&app)?;
     quit_action(&conn, window)?;
     successful_exit(&mut app)
 }
