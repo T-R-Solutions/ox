@@ -2,7 +2,7 @@
 
 - Data de abertura: 2026-11-24
 - Rota: Completa — altera gates e a sequência de evidência das etapas 5, 6, 8 e 9 e o validador
-- Revisão atual: r3
+- Revisão atual: r4
 - Spec(s): NOT APPLICABLE — processo, não capacidade do produto
 - Estado: concluída
 
@@ -371,4 +371,74 @@ oráculo do AC-09 desta task. Escopo e critérios não mudam; só o AC-09 é reo
 - Inputs da seção 8 alterados no fechamento: nenhum (`evidence --check --require-all` exit 0, 69 verificações)
 - Checks de governança: os da r4 de SDD-ENXUTO-20261123
 - Pendências: verificação completa a repetir; nada em stage nem commitado
+- Estado final: concluída
+
+## Revisão r4 — 2026-11-24 — Verificação completa registrada
+
+Motivo: as r1 e r2 deixaram pendente "pins renovados por revisão das regras → confirmar na
+verificação completa", e a r3 fechou com "verificação completa a repetir". O usuário rodou o
+comando de verificação completa do `AGENTS.md` (execução `ox-run-AhsqPMqq`), colou o resumo
+(`SUCESSO`) e pediu o registro. Mesmo escopo: nenhum arquivo da task muda. A restrição "NÃO rodar
+a verificação completa via Toolbox" continua: esta revisão não a roda; registra a execução feita
+pelo usuário.
+
+### 1. Prompt
+
+Pedido (literal): "corrija", em resposta à proposta de registrar a execução numa revisão nova, com
+o resultado versionado em `sdd/tasks/<ID>/`.
+
+- AC-11: a verificação completa confirma os pins renovados por revisão e as checagens existentes sobre os bytes que a execução registrou | método: o resultado e o manifesto de inputs da execução `ox-run-AhsqPMqq` do comando de verificação completa do `AGENTS.md`, copiados byte a byte para `sdd/tasks/SDD-AJUSTES-20261124/r4/` e conferidos com a origem, com o catálogo de `scripts/config/automation.json`, com o sha256 de `scripts/automate.sh` e com `git show e9e1466:<caminho>` | esperado: escopo `complete` com as 26 fases do catálogo; toda fase `passed` ou `recorded` e todo `exit_code` 0; `ruff` e `bandit` `passed`; `entry_sha256` igual ao sha256 de `scripts/automate.sh`; todo caminho do manifesto tem os bytes de `e9e1466`, exceto arquivos que nenhuma das duas tasks alterou; os arquivos de `e9e1466` alterados pelas tasks e ausentes do manifesto ficam listados no resultado
+
+### 3. Especificação
+
+- AC-11 → REQ-05
+
+### 5. Itens de trabalho
+
+| Item | D | Arquivos (dono) | Depende de | Teste | Pronto quando | Skill |
+|---|---|---|---|---|---|---|
+| T-07 | D-05 | `sdd/tasks/SDD-AJUSTES-20261124/r4/` | T-05 | AC-11 | resultado versionado e idêntico à origem | `software-testing` |
+
+### 7. Execução
+
+Origem das cópias: o diretório de logs da execução, `.local/logs/2026-11-24/`, fora do Git; a cópia
+evita citar `.local/` na seção 8. Os arquivos são os mesmos de `sdd/tasks/SDD-ENXUTO-20261123/r5/`.
+O manifesto (caminho → sha256 dos 597 arquivos lidos) é o de `ruff`. Catorze fases gravam esse
+mesmo manifesto e o reconferem no fim (`shellcheck`, `ruff`, `machete`, `geiger`, `coverage`,
+`gitleaks`, `history`, `opengrep`, `osv`, `trivy`, `grype`, `bandit`, `sbom`, `malware`); `deny` e
+`audit` gravam manifestos próprios; as outras 10 fases não gravam.
+
+| Item | Arquivos alterados | Teste executado | Exit | Observação |
+|---|---|---|---|---|
+| T-07 | `r4/full-verification-results.json` (cópia de `ox-run-AhsqPMqq--results.json.log`), `r4/full-verification-inputs.json` (cópia de `ox-run-AhsqPMqq--ruff--inputs.json.log`) | verificação completa, rodada pelo usuário antes desta revisão | 0 (o resumo `SUCESSO` só é impresso com código 0, `scripts/lib/lifecycle.sh:95-99`) | Nenhum arquivo da task alterado |
+
+### 8. Validação
+
+#### Observação r4
+
+Observação do verificador independente (as mesmas rodadas da r5 de SDD-ENXUTO-20261123), devolvida
+sem hashes; o escritor do registro atribuiu os IDs e gravou os hashes com `sddtask.py evidence --write`.
+
+| Input | Caminho ou saída | Papel | SHA-256 |
+|---|---|---|---|
+| I-60 | `sdd/tasks/SDD-AJUSTES-20261124/r4/full-verification-results.json` | material | `0f924da9c5c4ea2c251bb61586325e0b456643c8c22cd6a0125a41320cd0f04e` |
+| I-61 | `sdd/tasks/SDD-AJUSTES-20261124/r4/full-verification-inputs.json` | material | `725a1e9911b07e117ce0afb22846f979607f7f4c8036fe928f8de24518cd3f39` |
+| I-62 | `scripts/config/automation.json` | configuração | `989f268b634b394ea25200d796ada3edaa6ec3ed66b90e62a3f31376df1172ed` |
+| I-63 | `scripts/automate.sh` | oráculo | `112d080d22a47546bfe0da2ab0b2187d6e3af59565407624b40ed69118c22451` |
+| I-64 | `scripts/lib/common.sh` | oráculo | `200411c6548855fb2fbf0e3d0ee8d321c721586bf3c04b414b05771fad79a779` |
+| I-65 | `scripts/lib/files.sh` | oráculo | `836b2dc801a6ca0ca3d23247de9dbe21f657f437014cf1a8c26867026021a045` |
+| I-66 | `scripts/lib/backends.sh` | oráculo | `2529b784b1bca47e362cab873793a2891504d7bf4db984026b30806a7f47c777` |
+| I-67 | `sdd/tasks/SDD-AJUSTES-20261124/ac07_pins.py` | oráculo | `a5a8be8c6c61076a3b277d09c51851bc44be0ae41b952b601f76ca3823be72c5` |
+
+| AC | Critério (SHA-256) | Método executado | Inputs | Resultado observado | Estado |
+|---|---|---|---|---|---|
+| AC-11 | `e777f1fc8f8ddda5b122680a1cab45a027785265b781666cb78bd72e12397019` | os mesmos `cmp`, análise do resultado e do catálogo, `sha256sum` e comparação com `git show e9e1466:<caminho>` da r5 de SDD-ENXUTO, sobre as cópias de `r4/`; `cmp` entre `r4/` e `sdd/tasks/SDD-ENXUTO-20261123/r5/`; os 25 pins de `reviews.static` contra o manifesto; `python3 -I sdd/tasks/SDD-AJUSTES-20261124/ac07_pins.py`; leitura de `scripts/lib/backends.sh:75-87` (ruff e bandit reprovam com pin divergente) | I-60, I-61, I-62, I-63, I-64, I-65, I-66, I-67 | escopo `complete`; 26 fases do catálogo, 23 `passed` e 3 `recorded`; os 26 `exit_code` são 0; `ruff` e `bandit` `passed`; os 25 pins de `reviews.static` estão no manifesto com o mesmo valor, e `ac07_pins.py` sai com 0 (`25 pin(s); 0 divergência(s)`); `entry_sha256` igual ao sha256 de `scripts/automate.sh`. Manifesto: 597 caminhos, 596 com os bytes de `e9e1466`; diverge só `application/crates/ox-app/tests/desktop.rs`, que nenhuma das tasks alterou. Fora do manifesto, 8 arquivos de `e9e1466`: alterados por esta task (T-05) e por SDD-ENXUTO T-06, `.claude/skills/codex-task-audit/SKILL.md` e `references/ox-governance.md`; só por SDD-ENXUTO, os outros 5 arquivos da mesma skill e `.gitignore`. Cópias idênticas à origem e às de `sdd/tasks/SDD-ENXUTO-20261123/r5/` | APPROVED |
+
+### 9. Fechamento
+
+- Documentação: sem impacto: só o resultado da execução foi versionado em `r4/`
+- `sdd/project.md`: sem mudança
+- Inputs da seção 8 alterados no fechamento: nenhum (`evidence --check --require-all` exit 0, 78 verificações; cópia sem `.local/` exit 0)
+- Checks de governança: os da r5 de SDD-ENXUTO-20261123 (`validate.py --root .`, matrizes, `check-ox.py` e `run-tests.py` exit 0)
+- Pendências: a pendência dos pins renovados sem scanner (r1 e r2) está resolvida pelo AC-11. Continuam os limites da r5 de SDD-ENXUTO-20261123, seção 9: árvore verificada com `desktop.rs` alterado e não commitado; 10 fases sem registro dos bytes lidos; código de saída inferido; conferência com a origem dependente de `.local/`. Nada em stage nem commitado.
 - Estado final: concluída

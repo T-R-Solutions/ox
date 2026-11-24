@@ -2,7 +2,7 @@
 
 - Data de abertura: 2026-11-23
 - Rota: Completa — muda o contrato de governança (workflow, agentes, validador) e remove o histórico
-- Revisão atual: r4
+- Revisão atual: r5
 - Spec(s): NOT APPLICABLE — mudança de processo; as specs de produto migradas são insumo, não capacidade nova
 - Estado: concluída
 
@@ -662,4 +662,73 @@ do registro depois do `--write`.
 - Inputs da seção 8 alterados no fechamento: nenhum (`evidence --check --require-all` exit 0, 142 verificações; cópia sem `.local/` exit 0)
 - Checks de governança: `validate.py --root .` exit 0; `check-ox.py` exit 0; suíte do SDD exit 0 (69); Ruff, Bandit e audit isolados via `automate.sh` passed (`ox-run-ALzoMXov`, `ox-run-ljD4fTvd`)
 - Pendências: a verificação completa precisa rodar de novo para confirmar as 26 fases juntas (só Ruff, Bandit e audit foram repetidos isoladamente). A base RustSec vale até 2026-11-29; depois disso a fase `audit` volta a bloquear até nova renovação. Python 3.11 não executado. Continuam `OX-PATCH.md:37` (vendor) e `views.rs:1221-1222` (produto). Nada em stage nem commitado nesta revisão.
+- Estado final: concluída
+
+## Revisão r5 — 2026-11-24 — Verificação completa registrada
+
+Motivo: a r4 fechou com a pendência "a verificação completa precisa rodar de novo para confirmar
+as 26 fases juntas". O usuário rodou o comando de verificação completa do `AGENTS.md` (execução
+`ox-run-AhsqPMqq`), colou o resumo (`SUCESSO`, `total: 100%`) e pediu o registro. Mesmo escopo:
+nenhum arquivo da task muda; a revisão versiona o resultado e o observa. Depois da execução, o
+usuário commitou a r4 em `e9e1466`.
+
+### 1. Prompt
+
+Pedido (literal): "corrija", em resposta à proposta de registrar a execução numa revisão nova, com
+o resultado versionado em `sdd/tasks/<ID>/`.
+
+Restrições: as da r2 continuam. Esta revisão não roda a verificação completa de novo, não altera
+arquivo fora de `sdd/tasks/` e não faz stage nem commit.
+
+- AC-17: a verificação completa passa sobre os bytes que a execução registrou | método: o resultado e o manifesto de inputs da execução `ox-run-AhsqPMqq` do comando de verificação completa do `AGENTS.md`, copiados byte a byte para `sdd/tasks/SDD-ENXUTO-20261123/r5/` e conferidos com a origem, com o catálogo de `scripts/config/automation.json`, com o sha256 de `scripts/automate.sh` e com `git show e9e1466:<caminho>` | esperado: escopo `complete` com as 26 fases do catálogo; toda fase `passed` ou `recorded` e todo `exit_code` 0; `ruff`, `bandit` e `audit` `passed`; `entry_sha256` igual ao sha256 de `scripts/automate.sh`; todo caminho do manifesto tem os bytes de `e9e1466`, exceto arquivos que nenhuma das duas tasks alterou; os arquivos de `e9e1466` alterados pelas tasks e ausentes do manifesto ficam listados no resultado
+
+### 3. Especificação
+
+- AC-17 → REQ-06
+
+### 5. Itens de trabalho
+
+| Item | D | Arquivos (dono) | Depende de | Teste | Pronto quando | Skill |
+|---|---|---|---|---|---|---|
+| T-13 | D-06 | `sdd/tasks/SDD-ENXUTO-20261123/r5/` | T-03, T-12 | AC-17 | resultado versionado e idêntico à origem | `software-testing` |
+
+### 7. Execução
+
+Origem das cópias: o diretório de logs da execução, `.local/logs/2026-11-24/`, fora do Git; a cópia
+evita citar `.local/` na seção 8 (D-09). O manifesto (caminho → sha256 dos 597 arquivos lidos) é o de `ruff`. Catorze fases gravam esse
+mesmo manifesto e o reconferem no fim (`shellcheck`, `ruff`, `machete`, `geiger`, `coverage`,
+`gitleaks`, `history`, `opengrep`, `osv`, `trivy`, `grype`, `bandit`, `sbom`, `malware`); `deny` e
+`audit` gravam manifestos próprios; as outras 10 fases não gravam.
+
+| Item | Arquivos alterados | Teste executado | Exit | Observação |
+|---|---|---|---|---|
+| T-13 | `r5/full-verification-results.json` (cópia de `ox-run-AhsqPMqq--results.json.log`), `r5/full-verification-inputs.json` (cópia de `ox-run-AhsqPMqq--ruff--inputs.json.log`) | verificação completa, rodada pelo usuário antes desta revisão | 0 (o resumo `SUCESSO` só é impresso com código 0, `scripts/lib/lifecycle.sh:95-99`; o código não aparece no trecho colado) | Nenhum arquivo da task alterado |
+
+### 8. Validação
+
+#### Observação r5
+
+Observação do verificador independente (rodadas 1 a 3 desta revisão), devolvida sem hashes; o
+escritor do registro atribuiu os IDs e gravou os hashes com `sddtask.py evidence --write`.
+
+| Input | Caminho ou saída | Papel | SHA-256 |
+|---|---|---|---|
+| I-127 | `sdd/tasks/SDD-ENXUTO-20261123/r5/full-verification-results.json` | material | `0f924da9c5c4ea2c251bb61586325e0b456643c8c22cd6a0125a41320cd0f04e` |
+| I-128 | `sdd/tasks/SDD-ENXUTO-20261123/r5/full-verification-inputs.json` | material | `725a1e9911b07e117ce0afb22846f979607f7f4c8036fe928f8de24518cd3f39` |
+| I-129 | `scripts/config/automation.json` | configuração | `989f268b634b394ea25200d796ada3edaa6ec3ed66b90e62a3f31376df1172ed` |
+| I-130 | `scripts/automate.sh` | oráculo | `112d080d22a47546bfe0da2ab0b2187d6e3af59565407624b40ed69118c22451` |
+| I-131 | `scripts/lib/common.sh` | oráculo | `200411c6548855fb2fbf0e3d0ee8d321c721586bf3c04b414b05771fad79a779` |
+| I-132 | `scripts/lib/files.sh` | oráculo | `836b2dc801a6ca0ca3d23247de9dbe21f657f437014cf1a8c26867026021a045` |
+
+| AC | Critério (SHA-256) | Método executado | Inputs | Resultado observado | Estado |
+|---|---|---|---|---|---|
+| AC-17 | `614fac465dd35543ed54e14f89dd7b3a5ffa27280960d8622aa6b0b3a65d5b08` | `cmp` das duas cópias de `r5/` com a origem e do manifesto de `ruff` com os das outras 13 fases; `python3 -I` sobre o resultado (escopo, fases contra `selection.surfaces` do catálogo, estados, `exit_code`); `sha256sum scripts/automate.sh` contra `entry_sha256`; sha256 de `git show e9e1466:<caminho>` contra cada caminho do manifesto; `git ls-tree -r --name-only e9e1466` contra as chaves do manifesto, nos dois sentidos | I-127, I-128, I-129, I-130, I-131, I-132 | escopo `complete`; 26 fases, iguais aos 26 checks do catálogo e na mesma ordem: 23 `passed` e 3 `recorded` (`geiger`, `coverage`, `sbom`: medição ou inventário, sem aprovação); os 26 `exit_code` são 0; `ruff`, `bandit` e `audit` `passed` (`audit` com as exceções de `audit.toml` e a base RustSec válida até 2026-11-29); `entry_sha256` igual ao sha256 de `scripts/automate.sh`. Manifesto: 597 caminhos, 596 com os bytes de `e9e1466` e nenhum ausente do commit; diverge só `application/crates/ox-app/tests/desktop.rs`, alteração não commitada que nenhuma das tasks fez. Fora do manifesto, 8 dos 605 arquivos de `e9e1466`, todos alterados por esta task: `.claude/skills/codex-task-audit/SKILL.md`, `references/metrics.md`, `references/ox-governance.md` (também T-10), `references/report-template.md`, `scripts/diff_signals.py`, `scripts/task_inventory.py` e `scripts/test_scripts.py` (T-06), e `.gitignore` (T-06 e T-10). Cópias idênticas à origem; manifesto de `ruff` idêntico aos das outras 13 fases | APPROVED |
+
+### 9. Fechamento
+
+- Documentação: sem impacto: só o resultado da execução foi versionado em `r5/`
+- `sdd/project.md`: sem mudança
+- Inputs da seção 8 alterados no fechamento: nenhum (`evidence --check --require-all` exit 0, 149 verificações; cópia sem `.local/` exit 0, `tasks=2 falhas=0`)
+- Checks de governança: `validate.py --root .` exit 0; as duas matrizes exit 0; `check-ox.py` exit 0; `run-tests.py` exit 0 (246 testes, 1 pulado); `ac08_refs.sh` exit 0 (`ocorrencias=0`)
+- Pendências: (1) a execução verificou `e9e1466` mais `application/crates/ox-app/tests/desktop.rs` alterado e não commitado (não é desta task): ela não prova que `e9e1466` sozinho passa na verificação completa. (2) 10 das 26 fases não registram os bytes lidos (`sdd-structure`, `ox`, `governance-tests`, `scripts-syntax`, `scripts-tests` e as 5 `rust-*`); para elas, a amarração com estes bytes é inferida: as de Rust rodaram entre `ruff` e `machete`, que gravaram o mesmo manifesto. Os 8 arquivos fora do manifesto (seção 8) só podem ter sido lidos por fases sem manifesto, como `ox`. O resultado não tem hash da árvore. (3) O código de saída 0 é inferido do resumo `SUCESSO` (`scripts/lib/lifecycle.sh:95-99`) e do recálculo sobre o resultado; o trecho colado não o mostra. (4) A conferência das cópias com a origem e dos 13 manifestos não versionados depende de `.local/`, que pode ser limpo; depois disso, só o hash das cópias sustenta a afirmação. (5) A base RustSec vale até 2026-11-29; Python 3.11 não executado; continuam `OX-PATCH.md:37` (vendor) e `views.rs:1221-1222` (produto). (6) Nada em stage nem commitado nesta revisão.
 - Estado final: concluída
