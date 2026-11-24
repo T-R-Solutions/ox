@@ -120,8 +120,8 @@ run_toolbox() {
     [[ ( ${COUNT} == 0 && ${RAW} == 0 ) || ( ${COUNT} -gt 0 && ${RAW} == "${expected}" ) ]] || fail_check REPORT_INVALID 'Native findings and exit disagree'
     if ((COUNT>0)); then STATE=findings CODE=1; fi
     if [[ ${name} == opengrep ]]; then
-        jq -e --slurpfile inputs "${output}/inputs.json" '.paths.scanned as $scanned |
-          all($inputs[0]|keys[]|select(test("\\.(rs|py)$")); . as $p | ($scanned|index("/project/"+$p))!=null)' "${report}" >/dev/null || fail_check INPUT_INVALID 'SAST omitted selected input'
+        jq -e --slurpfile inputs "${output}/inputs.json" --arg excluded "${OPENGREP_EXCLUDED_ROOT}/" '.paths.scanned as $scanned |
+          all($inputs[0]|keys[]|select(test("\\.(rs|py)$") and (startswith($excluded)|not)); . as $p | ($scanned|index("/project/"+$p))!=null)' "${report}" >/dev/null || fail_check INPUT_INVALID 'SAST omitted selected input'
     fi
     if [[ ${name} == bandit ]]; then
         jq -e --slurpfile inputs "${output}/inputs.json" '.metrics as $metrics |

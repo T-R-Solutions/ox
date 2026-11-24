@@ -17,7 +17,10 @@ execute() {
        declare -F progress_watch_start >/dev/null && declare -F progress_watch_stop >/dev/null; then
         human_progress=true
     fi
-    (export OX_EXECUTE_DEPTH=$((depth+1)); cd -- "${cwd}" && exec "$@") </dev/null >"${directory}/stdout.log" 2>"${directory}/stderr.log" &
+    # Without job control, Bash starts asynchronous lists with SIGINT/SIGQUIT
+    # ignored, and an ignored-on-entry signal cannot be trapped by a nested
+    # shell. Restore the dispositions inherited by this shell before exec.
+    (trap - INT QUIT; export OX_EXECUTE_DEPTH=$((depth+1)); cd -- "${cwd}" && exec "$@") </dev/null >"${directory}/stdout.log" 2>"${directory}/stderr.log" &
     child=$!
     # Forward cancellation; wait through the executor's own cleanup, without a
     # competing outer timeout. Never signal other executions or process groups.

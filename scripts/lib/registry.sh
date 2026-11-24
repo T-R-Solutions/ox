@@ -143,6 +143,9 @@ check_command() {
     esac
 }
 
+# Vendored third-party root excluded from Opengrep only (ADR verification-repair-20261123);
+# the SAST coverage guard in backends.sh exempts exactly this root.
+OPENGREP_EXCLUDED_ROOT=application/vendor
 # All paths below are explicit container paths; no host-path rewriting.
 native_command() {
     local name=$1 output=$2 plan=$3 rel policy_key policy_rel bandit_ini bandit_baseline
@@ -180,7 +183,7 @@ native_command() {
             fi
             NATIVE+=(/project);;
         osv) NATIVE=(scan source --offline --config "${policy}" --format json --all-packages --lockfile /project/application/Cargo.lock);;
-        opengrep) NATIVE=(scan --config "${policy}" --config "/project/$(policy_path rust.yml)" --disable-version-check --strict --no-git-ignore --experimental --x-ignore-semgrepignore-files --disable-nosem --max-target-bytes 0 --taint-intrafile --timeout 0 --timeout-threshold 0 --error --json /project);;
+        opengrep) NATIVE=(scan --config "${policy}" --config "/project/$(policy_path rust.yml)" --disable-version-check --strict --no-git-ignore --experimental --x-ignore-semgrepignore-files --disable-nosem --max-target-bytes 0 --taint-intrafile --timeout 0 --timeout-threshold 0 --error --json --exclude "/${OPENGREP_EXCLUDED_ROOT}" /project);;
         trivy) NATIVE=(--config "${policy}" fs --quiet --ignorefile "/project/$(policy_path trivyignore)" --offline-scan --skip-db-update --skip-java-db-update --skip-check-update --format json --output /out/report.json --list-all-pkgs --include-dev-deps --include-non-failures --exit-code 1 /project);;
         grype) NATIVE=(--config "${policy}" dir:/project -o json);;
         sbom) NATIVE=(--config "${policy}" scan dir:/project -o syft-json);;

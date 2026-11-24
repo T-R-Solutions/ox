@@ -70,7 +70,7 @@ finish() {
     jq -n --arg backend "${BACKEND}" --arg name "${name}" --arg state "${STATE}" --arg reason "${REASON}" --arg reason_code "${REASON_CODE}" --argjson code "${CODE}" --argjson runner "${RUNNER_RAW}" --argjson raw "${RAW}" --argjson count "${COUNT}" \
       --arg tool "${tool}" --arg sha "${tool_sha}" --arg output "${output}" \
       '{check:$name,backend:$backend,state:$state,exit_code:$code,tool_exit_code:$raw,runner_exit_code:$runner,finding_count:$count,reason:$reason,reason_code:$reason_code,product_acceptance:false,
-        tool:{path:$tool,sha256:$sha},limits:["No automatic product acceptance.","Generated directories and historical validation excluded; history is separate.","Offline flags are not OS isolation."]}' >"${output}/assessment.tmp"
+        tool:{path:$tool,sha256:$sha},limits:(["No automatic product acceptance.","Generated directories and historical validation excluded; history is separate.","Offline flags are not OS isolation."]+(if $name=="opengrep" then ["Vendored third-party application/vendor excluded from Opengrep; dependency scanners still cover it."] else [] end))}' >"${output}/assessment.tmp"
     local field
     for field in inputs dataset member_results backend_record backend_inputs; do
         if [[ -f ${output}/${field}.json ]]; then

@@ -6,7 +6,7 @@ use ox_ui::design::{Appearance, ButtonRole, button_style};
 #[derive(Default)]
 struct Preview;
 
-fn update(_: &mut Preview, (): ()) {}
+const fn update(_: &mut Preview, (): ()) {}
 
 fn appearance() -> Appearance {
     match std::env::args().nth(1).as_deref() {
