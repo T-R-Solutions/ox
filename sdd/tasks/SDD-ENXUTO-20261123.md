@@ -2,7 +2,7 @@
 
 - Data de abertura: 2026-11-23
 - Rota: Completa — muda o contrato de governança (workflow, agentes, validador) e remove o histórico
-- Revisão atual: r3
+- Revisão atual: r4
 - Spec(s): NOT APPLICABLE — mudança de processo; as specs de produto migradas são insumo, não capacidade nova
 - Estado: concluída
 
@@ -596,4 +596,70 @@ registro atribuiu os IDs e gravou os hashes com `sddtask.py evidence --write`.
 - Inputs da seção 8 alterados no fechamento: nenhum (`evidence --check --require-all` exit 0, 132 verificações; cópia sem `.local/` exit 0)
 - Checks de governança: `validate.py --root .` exit 0; `check-ox.py` exit 0; suíte do SDD exit 0 (69)
 - Pendências: as da r2 continuam (verificação completa, Ruff, Bandit e Python 3.11 não executados; `OX-PATCH.md:37`; `views.rs:1221-1222`; SVG editado à mão; nada em stage nem commitado). O AC-08 exige o commit `ea3cf0f` no clone (num clone raso, sai com exit 2). Em `ac08_refs.py`, `main` reaproveita o nome `base` para o diretório do arquivo depois do último uso da lista; não muda o resultado (nota do verificador).
+- Estado final: concluída
+
+## Revisão r4 — 2026-11-24 — Achados da verificação completa
+
+Motivo: a verificação completa (`./scripts/automate.sh run --scope complete`, execução
+`ox-run-s2V25Ten`, rodada pelo usuário depois dos commits `b37b08b` e `d5c9f5b`) saiu com código 3.
+Dois achados são desta task: Ruff F541 em `sdd/tools/tests/test_sddtask.py:266` (f-string sem
+variável, presente desde o r1) e Bandit B112 em `sdd/tasks/SDD-ENXUTO-20261123/ac08_refs.py:115`
+(`except UnicodeDecodeError: continue`). O terceiro, `audit` bloqueado, era a base do RustSec
+vencida (válida até 2026-11-23). O usuário escolheu corrigir por revisão e autorizou o download.
+
+### 7. Execução
+
+| Item | Arquivos alterados | Teste executado | Exit | Observação |
+|---|---|---|---|---|
+| T-03 | `sdd/tools/tests/test_sddtask.py` (sem o `f` da linha 266; correção segura indicada pelo Ruff) | `run --check ruff --check bandit` (`ox-run-ALzoMXov`) | 0 (`ruff` e `bandit` passed) | Arquivo sem pin |
+| T-12 | `ac08_refs.py`: `except` atribui `text = None` e o `continue` vem depois, sem supressão e sem entrada no baseline | o mesmo; `ac08_refs.sh` | 0; 0 (`ocorrencias=0`) | Arquivo sem pin |
+| — | base RustSec renovada: `scripts/security/prepare-datasets.sh --review <revisão> --download --only rustsec`, revisão `1d328b6bb9f2f350bf65c1c81ab68781cb9e018a` (2026-11-24), válida até 2026-11-29; registro `.cache/ox/security/datasets.json` | `run --surface application --check audit` (`ox-run-ljD4fTvd`) | 0 (`audit` passed, 0 achados) | Download autorizado pelo usuário em 2026-11-24 |
+
+Falhas e tentativas abandonadas:
+- O B112 escapou da revisão: o verificador afirmou na rodada 1 que o B112 só aponta exceção
+  ampla, mas `scripts/config/native/bandit/bandit.yaml` define
+  `try_except_continue: check_typed_exception: true`, e o escritor do registro já tinha lido esse
+  arquivo sem conferir a afirmação. O F541 estava fora do diff revisado nas r2 e r3.
+
+### 8. Validação
+
+#### Estado na reabertura (obsoletas)
+
+| AC | Critério (SHA-256) | Método executado | Inputs | Resultado observado | Estado |
+|---|---|---|---|---|---|
+| AC-02 | — | — | — | `test_sddtask.py` mudou; aguarda observação r4 | UNVERIFIED |
+| AC-08 | — | — | — | `ac08_refs.py` mudou; aguarda observação r4 | UNVERIFIED |
+| AC-11 | — | — | — | `test_sddtask.py` mudou; aguarda observação r4 | UNVERIFIED |
+
+#### Observação r4
+
+AC-02 e AC-08 pelo verificador independente (rodada 7), devolvidos sem hashes; AC-11 pelo escritor
+do registro depois do `--write`.
+
+| Input | Caminho ou saída | Papel | SHA-256 |
+|---|---|---|---|
+| I-117 | `sdd/tools/sddtask.py` | material | `9e30d1c8df59c68f44c3f8ff7b47e6a572f020073270860fa6575800c9fd3224` |
+| I-118 | `sdd/tools/validate.py` | oráculo | `3908e9d5371cf52a90f8e43846647498e6af9ed9ed41d6d47162da61a243e503` |
+| I-119 | `sdd/tools/tests/test_sddtask.py` | oráculo | `82d79790a7e7ce8de48d4d543629c6ce7f1cb0a5512efec8f33f9a270726dd6e` |
+| I-120 | `sdd/tools/tests/test_validate.py` | oráculo | `b3e4247d7772e06669535d88e4de0928d78b373f0b805ea4de8516f691dd6ecf` |
+| I-121 | `sdd/tasks/SDD-ENXUTO-20261123/r4/ac02.log` | material | `4326725d3f4198d25d73756a99999b7eb04b51f57bd87df42c30cc205c8b09fa` |
+| I-122 | `scripts/config/automation.json` | configuração | `989f268b634b394ea25200d796ada3edaa6ec3ed66b90e62a3f31376df1172ed` |
+| I-123 | `sdd/tasks/SDD-ENXUTO-20261123/ac08_refs.sh` | oráculo | `ff600d9265eb53aef3f9fa794e7eefa1f15d26cc04e3eaf5a0445a2edf408ab1` |
+| I-124 | `sdd/tasks/SDD-ENXUTO-20261123/ac08_refs.py` | oráculo | `594ce920ea04a4b7e59b1b57c4bf2e04d71899a0cc26183805c65acb516d9845` |
+| I-125 | `sdd/tasks/SDD-ENXUTO-20261123/removed-paths.txt` | configuração | `73f6803b0a3192264276d21747a945e1ee6ccbc60cd9e4eed8bd7a34ab593fe0` |
+| I-126 | `sdd/tasks/SDD-ENXUTO-20261123/r4/ac08.log` | material | `e2136a436c85d4a495b75e14e5b5efefe1ab037c4fa59c5b45db2e4be15d8238` |
+
+| AC | Critério (SHA-256) | Método executado | Inputs | Resultado observado | Estado |
+|---|---|---|---|---|---|
+| AC-02 | `e38241e576702fd076f0b7173afce3cfdf4ca0a30ed11b75f2d48ca3ff13a02a` | `python3 -m unittest discover -s sdd/tools/tests` (mais `-v` complementar) | I-117, I-118, I-119, I-120, I-121 | exit 0; 69 testes OK; 11 de `EvidenceCommandTests` (inclusive `test_obsolete_observations_are_not_rewritten`, o teste corrigido); matriz: `test_matrix_is_derived_from_sections_3_to_5` e `test_rejects_req_whose_criteria_no_item_tests` (órfão) | APPROVED |
+| AC-08 | `b54f1472a4df110bf7c3c38ab8aa0f05d2fa052732d767a80b83dee64405e37e` | `bash sdd/tasks/SDD-ENXUTO-20261123/ac08_refs.sh`; sonda com `sdd/features/scripts-task-closure/plan.md` injetada na lista de ativos e rodada com `ac08_refs.py` contra a lista de `ea3cf0f` e contra a do HEAD real `d5c9f5b`; guarda de lista base vazia | I-122, I-123, I-124, I-125, I-126 | exit 0; `base=ea3cf0f`, `ocorrencias=0 ativos=605 removidos=23066`. Sonda: com `ea3cf0f`, exit 1 e 1 ocorrência; com o HEAD `d5c9f5b`, exit 0, `ocorrencias=0`, `removidos=53` (a perda de cobertura que a base fixa evita, agora no commit real). Lista base vazia: exit 2 | APPROVED |
+| AC-11 | `b8bdc4f0649d2bbab59ee346933b4b761d1bc8d0e0df7e9fab3ef2a762145ba6` | `python3 sdd/tools/sddtask.py evidence --task SDD-ENXUTO-20261123 --check --require-all` (pelo escritor do registro, depois do `--write`) | I-117, I-119 | exit 0; `0 problema(s) em 142 verificação(ões)` | APPROVED |
+
+### 9. Fechamento
+
+- Documentação: sem impacto: só um teste e o script do AC-08 mudaram
+- `sdd/project.md`: sem mudança
+- Inputs da seção 8 alterados no fechamento: nenhum (`evidence --check --require-all` exit 0, 142 verificações; cópia sem `.local/` exit 0)
+- Checks de governança: `validate.py --root .` exit 0; `check-ox.py` exit 0; suíte do SDD exit 0 (69); Ruff, Bandit e audit isolados via `automate.sh` passed (`ox-run-ALzoMXov`, `ox-run-ljD4fTvd`)
+- Pendências: a verificação completa precisa rodar de novo para confirmar as 26 fases juntas (só Ruff, Bandit e audit foram repetidos isoladamente). A base RustSec vale até 2026-11-29; depois disso a fase `audit` volta a bloquear até nova renovação. Python 3.11 não executado. Continuam `OX-PATCH.md:37` (vendor) e `views.rs:1221-1222` (produto). Nada em stage nem commitado nesta revisão.
 - Estado final: concluída

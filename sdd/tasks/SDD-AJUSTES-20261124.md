@@ -2,7 +2,7 @@
 
 - Data de abertura: 2026-11-24
 - Rota: Completa — altera gates e a sequência de evidência das etapas 5, 6, 8 e 9 e o validador
-- Revisão atual: r2
+- Revisão atual: r3
 - Spec(s): NOT APPLICABLE — processo, não capacidade do produto
 - Estado: concluída
 
@@ -338,4 +338,37 @@ os hashes com `sddtask.py evidence --write` e rodou os ACs que conferem o própr
 - Inputs da seção 8 alterados no fechamento: nenhum (`evidence --check --require-all` exit 0, 67 verificações)
 - Checks de governança: os do AC-06 (validate, check-ox, run-tests e `scripts/tests`, exit 0) e a cópia sem `.local/` exit 0
 - Pendências: verificação completa via Toolbox não rodou (não autorizada); Ruff e Bandit não instalados. Os logs antigos em `.local/tasks/SDD-AJUSTES-20261124/` não são mais citados e podem ser apagados. Nada em stage nem commitado.
+- Estado final: concluída
+
+## Revisão r3 — 2026-11-24 — Input alterado pela r4 de SDD-ENXUTO
+
+Motivo: a r4 de SDD-ENXUTO-20261123 corrigiu o Ruff F541 de `sdd/tools/tests/test_sddtask.py`,
+oráculo do AC-09 desta task. Escopo e critérios não mudam; só o AC-09 é reobservado.
+
+### 8. Validação
+
+#### Estado na reabertura (obsoletas)
+
+| AC | Critério (SHA-256) | Método executado | Inputs | Resultado observado | Estado |
+|---|---|---|---|---|---|
+| AC-09 | — | — | — | `test_sddtask.py` mudou; aguarda observação r3 | UNVERIFIED |
+
+#### Observação r3
+
+| Input | Caminho ou saída | Papel | SHA-256 |
+|---|---|---|---|
+| I-58 | `sdd/tools/sddtask.py` | material | `9e30d1c8df59c68f44c3f8ff7b47e6a572f020073270860fa6575800c9fd3224` |
+| I-59 | `sdd/tools/tests/test_sddtask.py` | oráculo | `82d79790a7e7ce8de48d4d543629c6ce7f1cb0a5512efec8f33f9a270726dd6e` |
+
+| AC | Critério (SHA-256) | Método executado | Inputs | Resultado observado | Estado |
+|---|---|---|---|---|---|
+| AC-09 | `0e7a09e044cb1b07ca223d8460bda81bc438e12122a0869dab4eb4141e28d9c9` | `python3 sdd/tools/sddtask.py evidence --task SDD-AJUSTES-20261124 --check --require-all` (pelo escritor do registro, depois do `--write`) | I-58, I-59 | exit 0; `0 problema(s) em 69 verificação(ões)` | APPROVED |
+
+### 9. Fechamento
+
+- Documentação: sem impacto
+- `sdd/project.md`: sem mudança
+- Inputs da seção 8 alterados no fechamento: nenhum (`evidence --check --require-all` exit 0, 69 verificações)
+- Checks de governança: os da r4 de SDD-ENXUTO-20261123
+- Pendências: verificação completa a repetir; nada em stage nem commitado
 - Estado final: concluída

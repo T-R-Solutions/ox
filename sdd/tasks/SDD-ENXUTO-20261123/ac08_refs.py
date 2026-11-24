@@ -111,8 +111,10 @@ def main(argv: list[str]) -> int:
         if rel in EXCLUDE or rel.startswith(EXCLUDE_DIR[0]):
             continue
         try:
-            text = (ROOT / rel).read_text(encoding="utf-8")
+            text: str | None = (ROOT / rel).read_text(encoding="utf-8")
         except UnicodeDecodeError:
+            text = None  # binário: fora da busca (sem continue no except, regra B112 do Bandit)
+        if text is None:
             continue
         base = posixpath.dirname(rel)
         for n, line in enumerate(text.splitlines(), 1):

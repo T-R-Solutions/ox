@@ -263,7 +263,7 @@ class EvidenceCommandTests(unittest.TestCase):
         self.assertIn(f"| I-01 | `src/missing.py` | material | `{self.placeholder}` |", self.path.read_text())
 
     def test_obsolete_observations_are_not_rewritten(self) -> None:
-        old = (f"\n### Observações antigas (obsoletas)\n\n"
+        old = ("\n### Observações antigas (obsoletas)\n\n"
                + ac_table(f"| AC-02 | `{'1' * 64}` | antigo | I-01 | ok | APPROVED |"))
         self.write_record(obsolete=old)
         self.run_cmd("--write")
