@@ -16,8 +16,8 @@ hoje usa fixtures determinísticas, sem modelo de IA ou provedor remoto.
 
 A fundação combina shell gráfico e contratos de domínio pequenos, com fatias
 executáveis de Plugin Host, Agent Runtime e Verification Engine. F0 está aprovado
-somente no envelope local adotado. As [medições F0](../validation/f0-resumption-20261103/report.md)
-não constituem suporte universal a Linux, GPUs, acessibilidade ou plataformas.
+somente no envelope local adotado. As medições F0 de 03/11/2026 (input a pixels até
+59,217 ms, limite 120 ms; RSS até 56,102 MiB, limite 64 MiB) não constituem suporte universal a Linux, GPUs, acessibilidade ou plataformas.
 
 ## Visão dos componentes
 
@@ -149,14 +149,14 @@ entre contradição, interrupção e aprovação.
 
 Rust 2024/resolver 3, toolchain fixado em 1.99.1, piso declarado 1.99 e Iced
 =0.14.0 com tiny-skia, x11, wayland, fira-sans e thread-pool. O perfil dev usa
-`debug = 0` e `opt-level = 3` apenas para tiny-skia; a correção e o corpus estão no
-[relatório F0](../validation/f0-resumption-20261103/report.md). Não há adoção de
+`debug = 0` e `opt-level = 3` apenas para tiny-skia; a correção eliminou o desenho
+do histórico completo de até 429,99 ms observado no corpus F0. Não há adoção de
 Tokio, SQLite, JSON-RPC ou ACP para essas fatias. O host usa `std` e socket Unix;
 o runtime e o engine usam `std::process`.
 
 Fontes próprias usam `forbid(unsafe_code)`. Isso não proíbe unsafe transitivo.
 As decisões vigentes incluem a [fronteira F0](../decisions/f0-boundary-20261102.md),
-a [reconciliação de toolchain](../decisions/governance-reconciliation.md) e a
+o toolchain Rust 1.99.1 fixado (Linux x86_64 como alvo de bootstrap) e a
 [política de versões](../decisions/version-update-policy.md). A ADR de bootstrap
 conserva escolhas históricas, sucedidas nos pontos indicados por essas decisões.
 
@@ -183,18 +183,17 @@ As implementações executáveis estão em
 [host.rs](../../application/crates/ox-plugin/src/host.rs) e
 [engine.rs](../../application/crates/ox-verification/src/engine.rs).
 A [referência de contratos](contracts.md) aponta testes e semântica de falhas.
-As features [bootstrap](../../sdd/features/product-bootstrap/converge.md),
-[host](../../sdd/features/product-plugin-host/converge.md),
-[runtime](../../sdd/features/product-agent-runtime/converge.md),
-[verificação](../../sdd/features/product-verification-engine/converge.md) e
-[UI local](../../sdd/features/product-local-task-ui/converge.md) conservam seus
-critérios e observações. A análise documental não transfere aceitação entre elas.
+As specs vivas [bootstrap](../../sdd/specs/bootstrap.md),
+[host](../../sdd/specs/plugin-host.md),
+[runtime](../../sdd/specs/agent-runtime.md),
+[verificação](../../sdd/specs/verification-engine.md) e
+[UI local](../../sdd/specs/local-task-ui.md) conservam seus
+critérios e estados. A análise documental não transfere aceitação entre elas.
 
 Ao mudar código, dependências, binários auxiliares, workflow ou escopo aceito,
 atualize o README e a seção correspondente destes guias, reexaminando apenas
 observações afetadas. Responsabilidade de manutenção: contribuinte da mudança e
-mantenedor do Ox. O [registro desta revisão](../validation/application-documentation-20261104/report.md)
-identifica os bytes inspecionados, checks e limites.
+mantenedor do Ox.
 
 ## Current presentation integration
 

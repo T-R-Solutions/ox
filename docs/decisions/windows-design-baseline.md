@@ -15,5 +15,5 @@ No new framework/platform/dependency or runtime capability follows from this cho
 Revisit when verified reference sources change, a native translation conflicts with
 accessibility/domain requirements, or the maintainer requests a new baseline.
 Documented target and native acceptance remain separate. Research/dispositions:
-[analysis](../design/windows-apps-analysis.md); criteria and evidence:
-[feature](../../sdd/features/windows-design-baseline/spec.md).
+[analysis](../design/windows-apps-analysis.md); criteria and evidence were recorded in
+the process feature `windows-design-baseline`, recoverable from Git history.

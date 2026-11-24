@@ -1,502 +1,203 @@
-"""Read-only checks of local contracts, resources, evidence and distribution."""
+#!/usr/bin/env python3
+"""Verificação de governança do Ox (somente leitura, stdlib).
 
-import hashlib
+Verifica o que vale no SDD (sdd/constitution.md e sdd/workflow.md):
+1. SDD: estrutura, tasks e specs pelo validador sdd/tools/validate.py.
+2. Constituição: IDs POL/GOV/RQ únicos em sdd/constitution.md.
+3. Skills (GOV-04): os diretórios .codex/skills/*/SKILL.md são exatamente as skills da
+   tabela da seção "Skills" de sdd/workflow.md, e as excluídas não estão instaladas.
+4. Links locais dos .md: arquivo e âncora existentes.
+5. GOV-01: os estudos externos não estão na árvore, nem dentro de archives.
+
+Saída 0: PASS. Saída 1: linhas "FAIL: ...". Saída 2: erro de leitura ou configuração.
+Um exit 0 não aceita o produto.
+"""
+from __future__ import annotations
+
 import importlib.util
 import json
 import re
 import sys
-import tarfile
+import unicodedata
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-sys.path.insert(
-    0, str(Path(__file__).resolve().parents[3] / "tools/governance/scripts")
-)
-from documentation_revision import errors as visual_errors
-from documentation_revision import records as visual_records
-from governance_support import (
-    inspect_tree,
-    preservation_digest,
-    relocated_path,
-    relocated_traceability,
-    succession_errors,
-    succession_records,
-    transient,
-)
-from governance_support import (
-    sha as digest,
-)
-from readme_revision import excluded_product_reference
-from skill_revision import records as integration_records
-from technical_acceptance import technical_errors
-from visual_skill_revision import errors as skill_visual_errors
-from visual_skill_revision import records as skill_visual_records
-
+sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+_support = importlib.import_module("governance_support")
+FINGERPRINTS = _support.FINGERPRINTS
+governance_files = _support.governance_files
+inspect_bytes = _support.inspect_bytes
+
+WORKFLOW = "sdd/workflow.md"
+CONSTITUTION = "sdd/constitution.md"
+RULE_ID_RE = re.compile(r"^- ((?:POL|GOV|RQ)-\d+):", re.M)
+LINK_RE = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
+INSPECTED_PREFIXES = ("sdd/", "docs/", ".codex/", ".claude/", "tools/governance/", "scripts/")
+INSPECTED_ROOT = ("AGENTS.md", "DESIGN.md", "README.md", "NOTICE", "LICENSE")
 
 
-def validator(root):
-    spec = importlib.util.spec_from_file_location(
-        "ox_sdd_validator", root / "sdd/tools/validate.py"
-    )
+def load_module(path: Path, name: str):
+    spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
     spec.loader.exec_module(module)
     return module
 
 
-def phase_errors(root):
-    """Current authorities only; historical prose is not an operational ban.
+def read_json(path: Path):
+    def no_duplicates(pairs):
+        keys = [k for k, _ in pairs]
+        if len(keys) != len(set(keys)):
+            raise ValueError(f"chave duplicada em {path}")
+        return dict(pairs)
+    return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=no_duplicates)
 
-    These are regression guards for the adopted convention, not a natural-language
-    authorization engine. A subsequent phase needs a reviewed contract change.
-    """
-    errors = []
-    project = (root / "sdd/project.md").read_text()
-    agents = (root / "AGENTS.md").read_text()
-    constitution = (root / "docs/constitution.md").read_text()
-    readme = (root / "README.md").read_text()
-    if not re.search(r"^Current phase: `implementation-foundation`\.$", project, re.M):
-        errors.append("Phase contract missing: implementation-foundation")
-    if not re.search(
-        r"^Application state: `(?:not-yet-implemented|bootstrap-implemented)`\.$",
-        project,
-        re.M,
-    ):
-        errors.append(
-            "Application state must be explicit: baseline or scoped bootstrap"
-        )
-    for name, text in (("AGENTS.md", agents), ("sdd/project.md", project)):
-        if re.search(
-            r"(?:escopo atual é governança e biblioteca|não implementar aplicativo|não implementar o aplicativo)",
-            text,
-            re.I,
-        ):
-            errors.append("Obsolete operational implementation ban: " + name)
-    for target in (
-        "sdd/project.md",
-        "docs/constitution.md",
-        "sdd/workflow.md",
-        "sdd/evidence.md",
-    ):
-        if target not in agents:
-            errors.append("Missing AGENTS authority route: " + target)
-    if re.search(r"^- (?:POL|GOV)-\d+:", agents, re.M):
-        errors.append("Normative policy duplicated in AGENTS")
-    gov07 = re.search(r"^- GOV-07: (.+)$", constitution, re.M)
-    if (
-        not gov07
-        or "Implementação permanece futura" in gov07[1]
-        or "features autorizadas" not in gov07[1]
-        or "não significa validação" not in gov07[1]
-    ):
-        errors.append("Constitution contradicts scoped implementation transition")
-    if not all(
-        marker in readme
-        for marker in (
-            "ox-governance.zip",
-            "product_included=false",
-            "not-yet-implemented",
-            "Cargo.toml",
-            "pipeline do aplicativo",
-        )
-    ):
-        errors.append("README must distinguish governance package and application")
-    for name in (
-        "spec.md",
-        "plan.md",
-        "tasks.md",
-        "traceability.json",
-        "evidence.json",
-    ):
-        if not (root / "sdd/features/product-foundation" / name).is_file():
-            errors.append("Missing transition feature contract: " + name)
+
+def sdd_errors(root: Path) -> list[str]:
+    validator = load_module(root / "sdd/tools/validate.py", "ox_sdd_validate")
+    errors = [f"SDD: {e}" for e in validator.structure_errors(root)]
+    if errors:
+        return errors
+    pattern = validator.term_pattern(validator.forbidden_terms(root))
+    for path in validator.T.find_tasks(root):
+        rel = path.relative_to(root).as_posix()
+        errors += [f"SDD: {rel}: {e}" for e in validator.task_errors(root, path, pattern)]
+    for path in sorted((root / "sdd/specs").glob("*.md")):
+        if path.name != "README.md":
+            rel = path.relative_to(root).as_posix()
+            errors += [f"SDD: {rel}: {e}" for e in validator.spec_errors(path)]
     return errors
 
 
-def metadata_revision(root, read):
-    """Read the bounded UI revision; historical copy records remain immutable."""
-    revisions = read(root / "docs/structure/files.json")["revisions"]
-    matches = [r for r in revisions if r["id"] == "skill-ui-metadata-001"]
-    if len(matches) != 1:
-        raise ValueError("Exactly one skill UI metadata revision required")
-    revision = matches[0]
-    if revision.get("decision") != "docs/decisions/skill-ui-metadata-inventory.md":
-        raise ValueError("Skill UI metadata decision required")
-    if not (root / revision["decision"]).is_file():
-        raise ValueError("Skill UI metadata decision missing")
-    rows = revision["records"]
-    expected = {
-        p
-        for p in read(root / "docs/validation/skill-ui-metadata/inspection.json")[
-            "inputs_sha256"
-        ]
-        if p.endswith("/agents/openai.yaml")
-    }
-    paths = [r["destination"] for r in rows]
-    if len(paths) != len(set(paths)) or set(paths) != expected or len(expected) != 30:
-        raise ValueError("Skill UI metadata revision inventory differs")
-    copies = {
-        ".codex/" + r["destination"]: r["source_sha256"]
-        for r in revisions[0]["records"]
-        if r["destination"].startswith("skills/")
-    }
-    for row in rows:
-        path = row["destination"]
-        if not re.fullmatch(r"\.codex/skills/[a-z0-9-]+/agents/openai\.yaml", path):
-            raise ValueError("Invalid skill UI metadata path: " + path)
-        if row["previous_sha256"] != copies.get(path):
-            raise ValueError("Skill UI metadata predecessor differs: " + path)
-        if not re.fullmatch(r"[0-9a-f]{64}", row["sha256"]):
-            raise ValueError("Invalid skill UI metadata hash: " + path)
-    return {r["destination"]: r for r in rows}
+def normative_errors(root: Path) -> list[str]:
+    """Cada ID POL/GOV/RQ aparece uma única vez como regra da constituição."""
+    ids = RULE_ID_RE.findall((root / CONSTITUTION).read_text(encoding="utf-8"))
+    return [f"Duplicate local normative ID: {rid}" for rid in sorted({i for i in ids if ids.count(i) > 1})]
 
 
-def transition_preservation_errors(root, read):
-    """Protect immutable history and methods with the pre-edit content baseline."""
-    metadata = metadata_revision(root, read)
-    baseline = read(root / "docs/validation/implementation-transition/before.json")
+def skill_errors(root: Path) -> list[str]:
+    """Inventário de .codex/skills igual à tabela da seção Skills do workflow (GOV-04)."""
+    sys.path.insert(0, str(root / "sdd/tools"))
+    import sddtask
+    lines = sddtask.unfenced((root / WORKFLOW).read_text(encoding="utf-8").splitlines())
+    section, inside = [], False
+    for n, line in lines:
+        if line.startswith("## "):
+            inside = line.strip() == "## Skills"
+        elif inside:
+            section.append((n, line))
+    mapped: list[str] = []
+    excluded: set[str] = set()
+    for table in sddtask.parse_tables(section):
+        if table.header and table.header[0] == "Skill":
+            mapped += [sddtask.strip_code(row["Skill"]) for row in table.rows]
+    for _, line in section:
+        if line.startswith("Fora do perfil:"):
+            excluded |= set(re.findall(r"`([^`]+)`", line))
     errors = []
-    immutable_files = {
-        "docs/decisions/adoption.md",
-        "docs/decisions/governance-externalization.md",
-        "sdd/workflow.md",
-        "sdd/evidence.md",
-        "src/fixtures/profile.json",
-    }
-    with tarfile.open(
-        root / "docs/validation/implementation-transition/before.tar.gz"
-    ) as archive:
-        original_profile = archive.extractfile("src/fixtures/profile.json").read()
-    if (
-        hashlib.sha256(original_profile).hexdigest()
-        != baseline["src/fixtures/profile.json"]
-    ):
-        return ["Transition recovery input changed: src/fixtures/profile.json"]
-    specialized = {
-        f".codex/skills/{name}/SKILL.md" for name in json.loads(original_profile)["new"]
-    }
-    for relative, observed in baseline.items():
-        immutable = (
-            relative in immutable_files
-            or relative.startswith(
-                (
-                    ".codex/skills/",
-                    "sdd/chain/",
-                    "sdd/templates/",
-                    "sdd/tools/",
-                    "docs/validation/",
-                )
-            )
-            or (
-                relative.startswith("sdd/features/")
-                and Path(relative).name
-                in {"spec.md", "plan.md", "tasks.md", "traceability.json"}
-            )
-        )
-        if not immutable:
-            continue
-        target = root / relocated_path(relative)
-        # Baseline contracts stay immutable except for the explicitly authorized
-        # path-only translation of traceability. Verify original archive bytes
-        # before deriving the expected current version; never refresh old hashes.
-        if (
-            relative.startswith("sdd/features/")
-            and Path(relative).name == "traceability.json"
-        ):
-            with tarfile.open(
-                root / "docs/validation/implementation-transition/before.tar.gz"
-            ) as archive:
-                original = archive.extractfile(relative).read()
-            if hashlib.sha256(original).hexdigest() != observed:
-                errors.append("Transition recovery input changed: " + relative)
-                continue
-            observed = hashlib.sha256(relocated_traceability(original)).hexdigest()
-        # maintenance-001 permits exactly deletion of the historical version block
-        # from the nine profile entries. Authenticate original bytes first.
-        if relative in specialized:
-            with tarfile.open(
-                root / "docs/validation/implementation-transition/before.tar.gz"
-            ) as archive:
-                original = archive.extractfile(relative).read()
-            if hashlib.sha256(original).hexdigest() != observed:
-                errors.append("Transition recovery input changed: " + relative)
-                continue
-            marker = b'metadata:\n  version: "1.0.0"\n'
-            header, separator, body = original.partition(b"\n---\n")
-            if header.count(marker.rstrip(b"\n")) != 1:
-                errors.append("Unexpected historical frontmatter: " + relative)
-                continue
-            expected = (
-                header.replace(marker.rstrip(b"\n"), b"").rstrip(b"\n")
-                + separator
-                + body
-            )
-            observed = hashlib.sha256(expected).hexdigest()
-        current = target.relative_to(root).as_posix()
-        if current in metadata:
-            row = metadata[current]
-            if row["previous_sha256"] != observed:
-                errors.append("Transition UI predecessor differs: " + relative)
-            elif (
-                not target.is_file()
-                or preservation_digest(root, current) != row["sha256"]
-            ):
-                errors.append("Transition UI metadata changed/missing: " + relative)
-            continue
-        if not target.is_file() or preservation_digest(root, current) != observed:
-            errors.append("Transition preserved input changed: " + relative)
+    if not mapped:
+        return [f"Skill table missing in {WORKFLOW}#skills"]
+    if len(mapped) != len(set(mapped)):
+        errors.append(f"Duplicate skill in {WORKFLOW}#skills")
+    skills = root / ".codex/skills"
+    installed = {p.parent.name for p in skills.glob("*/SKILL.md")}
+    for name in sorted(installed - set(mapped)):
+        errors.append(f"Skill not mapped in {WORKFLOW}#skills: {name}")
+    for name in sorted(set(mapped) - installed):
+        errors.append(f"Mapped skill not installed: {name}")
+    for name in sorted(excluded & {p.name for p in skills.iterdir() if p.is_dir()}):
+        errors.append(f"Excluded skill installed: {name}")
     return errors
 
 
-def check(root):
-    root = root.resolve()
-    errors = []
-    V = validator(root)
-    read = V.strict_json
-    errors.extend(phase_errors(root))
-    errors.extend(succession_errors(root))
-    from instruction_revision import errors as instruction_errors
+def slug(heading: str) -> str:
+    text = re.sub(r"[`*_]|<[^>]+>", "", heading.strip()).lower()
+    text = "".join(ch for ch in text if ch.isalnum() or ch in " -" or unicodedata.category(ch) == "Mn")
+    return text.replace(" ", "-")
 
-    errors.extend(instruction_errors(root))
-    errors.extend(visual_errors(root))
-    errors.extend(skill_visual_errors(root))
-    metadata = metadata_revision(root, read)
-    for relative, row in metadata.items():
-        target = root / relative
-        if (
-            not target.is_file()
-            or target.is_symlink()
-            or preservation_digest(root, relative) != row["sha256"]
-        ):
-            errors.append("UI metadata changed/missing: " + relative)
-    errors.extend(transition_preservation_errors(root, read))
-    profile = read(root / "config/governance/profile.json")
-    names = [name for key in ("general", "conditional", "new") for name in profile[key]]
-    expected = set(names)
-    if len(names) != len(expected):
-        errors.append("Duplicate/overlapping profile classes")
-    if profile.get("schema_version") != 2 or not profile.get("revision"):
-        errors.append("Versioned profile required")
-    V.local_file(root, profile["decision"])
-    revisions = read(root / "docs/structure/profile-revisions.json")
-    if revisions.get(profile["revision"]) != digest(
-        root / "config/governance/profile.json"
-    ):
-        errors.append(
-            "Profile revision not reviewed: update revision and decision explicitly"
-        )
-    actual = {p.parent.name for p in (root / ".codex/skills").glob("*/SKILL.md")}
-    if actual != expected:
-        errors.append(
-            "Skill inventory differs from authorized profile: " + str(actual ^ expected)
-        )
-    if set(profile["excluded"]) & {p.name for p in (root / ".codex/skills").iterdir()}:
-        errors.append("Excluded skill installed")
-    bridges = {
-        p.stem for p in (root / "sdd/chain").glob("*.md") if p.name != "README.md"
-    }
-    if bridges != expected:
-        errors.append("Bridge inventory differs from authorized profile")
-    entries = re.findall(
-        r"\[([^\]]+)\]\(([^)]+/SKILL\.md)\)",
-        (root / ".codex/skills/README.md").read_text(),
-    )
-    if (
-        len(entries) != len(expected)
-        or {n for n, _ in entries} != expected
-        or any(p != n + "/SKILL.md" for n, p in entries)
-    ):
-        errors.append("Catalog differs from authorized profile")
-    if (root / "sdd/model").exists():
-        errors.append("Nested model is not the adoption layout")
 
-    copies = read(root / "docs/structure/files.json")["revisions"][0]["records"]
-    copied_paths = set()
-    for row in copies:
-        rel = row["destination"]
-        rel = ".codex/" + rel if rel.startswith("skills/") else rel
-        copied_paths.add(rel)
-        if (
-            rel.startswith(".codex/skills/")
-            and rel not in metadata
-            and (
-                not (root / rel).is_file()
-                or preservation_digest(root, rel) != row["source_sha256"]
-            )
-        ):
-            errors.append("Copied resource changed/missing: " + rel)
-        if row["copied_sha256"] != row["source_sha256"]:
-            errors.append("Invalid copy provenance: " + rel)
-    for name in list(profile["general"]) + list(profile["conditional"]):
-        for path in (root / ".codex/skills" / name).rglob("*"):
-            if (
-                path.is_file()
-                and path.relative_to(root).as_posix()
-                not in copied_paths
-                | metadata.keys()
-                | succession_records(root).keys()
-                | integration_records(root).keys()
-                | visual_records(root).keys()
-                | skill_visual_records(root).keys()
-            ):
-                errors.append(
-                    "Unexpected copied resource: " + str(path.relative_to(root))
-                )
-    with tarfile.open(
-        root / "docs/validation/adoption-baseline/copied-before-adaptation.tar.gz"
-    ) as archive:
-        for row in copies:
-            stream = archive.extractfile(row["destination"])
-            if (
-                stream is None
-                or hashlib.sha256(stream.read()).hexdigest() != row["source_sha256"]
-            ):
-                errors.append("Recovery baseline mismatch: " + row["destination"])
-    stable = ["workflow.md", "evidence.md", "tools/validate.py", "README.md"]
-    stable += [
-        "templates/" + p.name for p in (root / "sdd/templates").iterdir() if p.is_file()
-    ]
-    source_hash = {r["destination"]: r["source_sha256"] for r in copies}
-    for name in stable:
-        if preservation_digest(root, "sdd/" + name) != source_hash["sdd/" + name]:
-            errors.append("SDD core modified: " + name)
-
-    for path in root.rglob("*.md"):
-        rel = path.relative_to(root)
-        if transient(rel) or rel.parts[0] == "dist" or not path.is_file():
-            continue
-        from log_repair_revision import origin, symlinked
-        try:
-            original = origin(root, rel.as_posix())
-        except ValueError as error:
-            errors.append(str(error))
-            continue
-        for target in re.findall(r"\[[^\]]*\]\(([^)]+)\)", path.read_text()):
-            parsed = urlsplit(target.strip("<>"))
-            if parsed.scheme or parsed.netloc or not parsed.path:
+def anchors(path: Path, cache: dict) -> set[str]:
+    if path not in cache:
+        sys.path.insert(0, str(ROOT / "sdd/tools"))
+        import sddtask
+        seen: dict[str, int] = {}
+        out = set()
+        for _, line in sddtask.unfenced(path.read_text(encoding="utf-8").splitlines()):
+            m = re.match(r"^#{1,6}\s+(.+?)\s*#*\s*$", line)
+            if not m:
                 continue
-            lexical = (root / original).parent / unquote(parsed.path)
-            if symlinked(root, lexical):
-                errors.append(f"Symlink link: {rel}: {target}")
-                continue
-            resolved = lexical.resolve()
-            if not resolved.is_relative_to(root) or not (
-                resolved.is_file() or resolved.is_dir()
-            ):
-                from instruction_revision import excluded_local_reference
-                from log_repair_revision import excluded_reference
+            base = slug(m.group(1))
+            n = seen.get(base, 0)
+            out.add(base if n == 0 else f"{base}-{n}")
+            seen[base] = n + 1
+        cache[path] = out
+    return cache[path]
 
-                if (not excluded_product_reference(root, original, resolved)
-                        and not excluded_local_reference(root, rel.as_posix(), resolved)
-                        and not excluded_reference(root, rel.as_posix(), resolved)):
+
+def link_errors(root: Path, files: list[str]) -> list[str]:
+    sys.path.insert(0, str(root / "sdd/tools"))
+    import sddtask
+    errors, cache = [], {}
+    root_resolved = root.resolve()
+    for rel in files:
+        if not rel.endswith(".md"):
+            continue
+        path = root / rel
+        if path.is_symlink():
+            continue
+        for _, line in sddtask.unfenced(path.read_text(encoding="utf-8").splitlines()):
+            for target in LINK_RE.findall(re.sub(r"`[^`]*`", "", line)):
+                parsed = urlsplit(target.strip("<>"))
+                if parsed.scheme or parsed.netloc:
+                    continue
+                dest = path if not parsed.path else (path.parent / unquote(parsed.path))
+                resolved = dest.resolve()
+                if not resolved.is_relative_to(root_resolved) or not resolved.exists():
                     errors.append(f"Broken/escaping link: {rel}: {target}")
-
-    for name in profile["new"]:
-        path = root / ".codex/skills" / name / "SKILL.md"
-        text = path.read_text()
-        if len(name) > 64 or not re.search(
-            r"^description: [^<>\n]{1,1024}$", text, re.M
-        ):
-            errors.append("Invalid new metadata: " + name)
-        if re.search(r"^\[TODO:", text, re.M):
-            errors.append("Unfinished skill: " + name)
-        if any(
-            marker not in text
-            for marker in (
-                "Select:",
-                "Do not select:",
-                "## Inputs and gaps",
-                "## Operating procedure",
-                "## Deliverables and acceptance",
-            )
-        ):
-            errors.append("Missing specialized activation/procedure contract: " + name)
-        if not re.match(
-            r"\A---\nname: " + re.escape(name) + r"\ndescription: [^\n]+\n---\n", text
-        ):
-            errors.append(
-                "Specialized frontmatter must contain only name and description: "
-                + name
-            )
-        if len(list((path.parent / "references").glob("*.md"))) < 4:
-            errors.append("Missing specialized resources: " + name)
-        feature = root / "sdd/features" / ("skill-" + name)
-        spec_text = (feature / "spec.md").read_text()
-        if not {
-            "AC-01",
-            "AC-02",
-            "AC-03",
-            "AC-04",
-            "AC-05",
-            "AC-06",
-        } <= V.acceptance_ids(spec_text):
-            errors.append("Missing local authorship/technical criteria: " + name)
-        if not re.search(r"^- REQ-\d+: .+", spec_text, re.M):
-            errors.append("Missing local requirements: " + name)
-        errors.extend(
-            technical_errors(
-                root,
-                feature,
-                read(feature / "evidence.json"),
-                read(feature / "traceability.json"),
-                V,
-            )
-        )
-
-    authority = root / "docs/constitution.md"
-    declarations = re.findall(
-        r"^- ((?:POL|GOV)-\d+): (.+)$", authority.read_text(), re.M
-    )
-    rules = dict(declarations)
-    if len(rules) != len(declarations):
-        errors.append("Duplicate local normative ID")
-    coverage = read(root / "config/governance/normative-coverage.json")
-    if set(coverage) != set(rules):
-        errors.append("Local normative coverage IDs missing/extra")
-    for identifier, row in coverage.items():
-        local = V.local_file(root, row["authority"])
-        V.local_file(root, row["oracle"])
-        if local != authority or identifier not in rules:
-            errors.append("Missing local normative authority/ID: " + identifier)
-        elif (
-            row["rule_sha256"] != hashlib.sha256(rules[identifier].encode()).hexdigest()
-        ):
-            errors.append(
-                "Normative rule changed without coverage review: " + identifier
-            )
-        if row.get("scope") != "governance-contract; not product implementation":
-            errors.append("Invalid normative acceptance scope: " + identifier)
-    for name in (
-        "AGENTS.md",
-        "sdd/project.md",
-        "sdd/workflow.md",
-        "sdd/evidence.md",
-        "sdd/chain/README.md",
-        "docs/architecture/context.md",
-        "docs/decisions/adoption.md",
-    ):
-        V.local_file(root, name)
-    errors.extend(V.audit(root, check_convergence=True))
-    history = read(
-        root / "docs/validation/governance-externalization/history-integrity.json"
-    )
-    for relative, observed in history.items():
-        if digest(V.local_file(root, relative)) != observed:
-            errors.append("Historical observation changed: " + relative)
-    errors.extend(inspect_tree(root))
+                    continue
+                if parsed.fragment and resolved.is_file() and resolved.suffix == ".md":
+                    if unquote(parsed.fragment).lower() not in anchors(resolved, cache):
+                        errors.append(f"Broken/escaping link: {rel}: {target}")
     return errors
 
 
-if __name__ == "__main__":
+def external_errors(root: Path, files: list[str]) -> list[str]:
+    fingerprints = read_json(root / FINGERPRINTS)
+    errors = []
+    for rel in files:
+        if not (rel.startswith(INSPECTED_PREFIXES) or rel in INSPECTED_ROOT):
+            continue
+        path = root / rel
+        if path.is_symlink():
+            continue
+        errors += inspect_bytes(rel, path.read_bytes(), fingerprints)
+    return errors
+
+
+def check(root: Path) -> list[str]:
+    files = governance_files(root)
+    return (sdd_errors(root) + normative_errors(root) + skill_errors(root)
+            + link_errors(root, files) + external_errors(root, files))
+
+
+def main(argv: list[str]) -> int:
+    root = ROOT
+    if "--root" in argv:
+        root = Path(argv[argv.index("--root") + 1]).resolve()
     try:
-        errors = check(ROOT)
-    except (OSError, ValueError, KeyError, TypeError, tarfile.TarError) as exc:
+        errors = check(root)
+    except (OSError, ValueError, KeyError, TypeError, UnicodeDecodeError) as exc:
         print("FAIL:", exc)
-        sys.exit(2)
+        return 2
     for error in errors:
         print("FAIL:", error)
     if not errors:
-        print(
-            "PASS: local profile, catalog, bridges, skill copies, SDD, normative IDs, links and archive/content inspection. No product acceptance."
-        )
-    sys.exit(bool(errors))
+        print("PASS: SDD, normative IDs, skill map, local links and external-content inspection. "
+              "No product acceptance.")
+    return int(bool(errors))
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

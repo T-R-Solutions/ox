@@ -355,34 +355,6 @@ sys.exit(code)""",
         self.assertIn("deny.toml", obs["reason"])
         self.assertIsNone(obs["tool_exit_code"])
 
-    def test_security_successor_rejects_previous_authority_bytes(self):
-        sys.path.insert(0, str(ROOT / "tools/governance/scripts"))
-        import closure_revision as C
-
-        registry = self.root / C.SECURITY_REGISTRY
-        registry.parent.mkdir(parents=True)
-        shutil.copy2(ROOT / C.SECURITY_REGISTRY, registry)
-        for row in json.loads(registry.read_text())["records"]:
-            target = self.root / row["previous"]
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(ROOT / row["previous"], target)
-        shell_registry = self.root / C.SHELL_REGISTRY
-        shell_registry.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(ROOT / C.SHELL_REGISTRY, shell_registry)
-        for row in json.loads(shell_registry.read_text())["records"]:
-            target = self.root / row["previous"]
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(ROOT / row["previous"], target)
-        current = (
-            ROOT / "docs/validation/scripts-shell-refactor/before/README.md.bin"
-        ).read_bytes()
-        (self.root / "README.md").write_bytes(current)
-        before = C.security_predecessor(self.root, "README.md", current)
-        self.assertNotEqual(before, current)
-        (self.root / "README.md").write_bytes(before)
-        with self.assertRaisesRegex(ValueError, "downgrade"):
-            C.security_predecessor(self.root, "README.md", before)
-
     def test_grype_has_no_inherited_severity_threshold_or_error_suppression(self):
         argv = json.loads(
             S.shell(

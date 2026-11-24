@@ -21,7 +21,7 @@ flowchart TD
     R --> D["docs/ · navegar pelos guias"]
     D --> A["Arquitetura · componentes"]
     D --> C["Contratos · estados e protocolo"]
-    D --> G["Desenvolvimento · governança e cópia"]
+    D --> G["Desenvolvimento · verificar e manter"]
     G --> S["SDD e decisões · escopo e evidências"]
 ```
 
@@ -36,8 +36,7 @@ flowchart TD
 | A ordem entre produção e verificação | [Sequência de execução](architecture/application.md#sequência-de-uma-tentativa) |
 | Os estados do supervisor | [Máquina de estados](architecture/contracts.md#estados-do-supervisor) |
 | A negociação com um plugin | [Sequência do protocolo](architecture/contracts.md#sequência-do-protocolo) |
-| A mudança virando evidência | [Fluxo de governança](development/governance.md#fluxo-de-uma-mudança) |
-| O limite da exportação | [Fronteira do pacote](development/sharing.md#fronteira-de-compartilhamento) |
+| A mudança virando evidência | [Etapas do workflow](../sdd/workflow.md#etapas) |
 | As fontes, licenças e reprodução | [Acervo visual](assets/README.md) |
 
 ## Entender a aplicação
@@ -56,22 +55,22 @@ flowchart TD
 | [Guia da aplicação](../application/README.md) | Build, primeiro uso, problemas e testes Rust/Iced |
 | [Contexto e escopo vigente](../sdd/project.md) | Fase, permissões e entregas autorizadas |
 | [Workflow](../sdd/workflow.md) | Escolher rota local ou completa e retomar trabalho |
-| [Evidências](../sdd/evidence.md) | Registrar critérios, métodos, inputs, resultados e limites |
-| [Índice de features](../sdd/features/README.md) | Encontrar especificações e aceitação por entrega |
-| [Agentes Codex](development/codex-agents.md) e [adaptação](development/codex-agents-replication.md) | Triagem, perfis de complexidade, delegação e verificação no Ox |
-| [Integração SDD/skills](development/sdd-skills.md) | Selecionar e registrar métodos sem ativação automática |
-| [Governança](development/governance.md) | Checks Python, preservação, exportação e empacotamento |
+| [Evidências](../sdd/workflow.md#evidência-e-retomada) | Registrar critérios, métodos, inputs, resultados e limites |
+| [Specs vivas](../sdd/specs/README.md) | Estado e critérios de cada capacidade do produto |
+| [Agentes](../sdd/workflow.md#agentes) | Triagem, perfis de complexidade, delegação e verificação no Ox |
+| [Skills](../sdd/workflow.md#skills) | Selecionar e registrar métodos sem ativação automática |
+| [Comandos](../sdd/project.md#comandos) | Checks do SDD e da governança, build e testes |
 | [Automação local](../scripts/README.md) | Escopos Bash, scanners, configurações, preparo explícito de bases e limites offline |
-| [Compartilhamento e recuperação](development/sharing.md) | Fronteiras da cópia e recuperação histórica |
 
 ## Consultar decisões
 
-A [constituição](constitution.md) contém as políticas permanentes;
+A [constituição](../sdd/constitution.md) contém as políticas permanentes;
 [AGENTS.md](../AGENTS.md) aponta as instruções operacionais. ADRs detalham decisões
 e propostas, respeitando seus estados e sucessores:
 
-- [Bootstrap](decisions/product-bootstrap.md) e
-  [reconciliação](decisions/governance-reconciliation.md): fundação e toolchain.
+- [Modelo do SDD](decisions/sdd-model.md): autoridade, fluxo, agentes e remoção do legado.
+- [Bootstrap](decisions/product-bootstrap.md): fundação e toolchain (Rust 1.99.1 fixado;
+  `rust-version` 1.99 como piso declarado).
 - [Fronteira F0](decisions/f0-boundary-20261102.md): corpus adotado e limites.
 - [Atualização de versões](decisions/version-update-policy.md): avaliação e promoção.
 - [Persistência local](decisions/local-persistence-proposal.md): proposta ainda sem implementação autorizada.
@@ -83,51 +82,33 @@ e propostas, respeitando seus estados e sucessores:
 
 ## Interpretar as evidências
 
-A aceitação pertence aos critérios de cada feature e aos inputs efetivamente
-observados. Aprovação de uma skill não demonstra funcionamento do módulo de
-mesmo nome. Relatórios anteriores permanecem como histórico; um sucessor explicita
-o que foi reavaliado.
-
-- [Revisão visual](validation/documentation-visuals-20261104/report.md):
-  figuras, renderização, temas, fontes, preservação e limites desta entrega.
-- [F0 observado em 03/11](validation/f0-resumption-20261103/report.md): aceitação
-  histórica vinculada àquele corpus; os estados atuais ficam nos envelopes das features.
-- [Análise da aplicação](validation/application-documentation-20261104/report.md):
-  fontes e contratos inspecionados na revisão anterior.
-- [Correção da preservação do README](validation/readme-preservation-20261104/report.md):
-  sucessão de versões, recuperação e verificações da governança.
-- [Reestruturação documental](validation/documentation-refresh-20261104/report.md):
-  arquivos, checks e limitações desta revisão.
-- [Preparo de segurança](validation/scripts-security-preparation/report.md):
-  bases, scanners reais, testes offline e ferramentas opcionais não verificadas.
-- [Manutenção documental](validation/documentation-maintenance-20261106/report.md):
-  índices, ignore local, sucessão de evidências e pendências anteriores.
+A aceitação pertence aos critérios de cada [spec viva](../sdd/specs/README.md) e aos
+inputs efetivamente observados. Aprovação de uma skill não demonstra funcionamento do
+módulo de mesmo nome. Tasks novas registram evidência em `sdd/tasks/<ID>.md`. A evidência
+anterior a 2026-11-23 só é recuperável pelo histórico do Git e não sustenta aprovação nova
+([modelo do SDD](decisions/sdd-model.md)).
 
 Mantenha este índice ao criar ou mover uma entrada de documentação. Atualize a
-explicação canônica quando o código mudar, preservando relatórios de execução e
-seus hashes. O pacote de governança exclui o aplicativo; links de produto nesta
-árvore não significam que ele esteja incluído na exportação.
+explicação canônica quando o código mudar.
 
 ## Manutenção do workspace
 
 - [Artefatos locais](development/local-artifacts.md): caminhos de logs e caches,
   simulação e rotação de no máximo duas datas, sem backup, lixeira ou recibo.
-  Essa retenção operacional não substitui o histórico de evidências em `docs/validation`.
-- [Decisão de manutenção](decisions/repository-maintenance.md) e
-  [observações](validation/repository-maintenance-20261109/report.md).
-- [Fechamento documental por tarefa](../sdd/workflow.md#documentation-before-task-closure).
+  Essa retenção operacional não substitui a evidência das tasks nem o histórico do Git.
+- [Decisão de manutenção](decisions/repository-maintenance.md).
+- [Fechamento documental por tarefa](../sdd/workflow.md#9-fechar).
 
 Visual contract: [DESIGN.md](../DESIGN.md); [surface map](design/surfaces.md); [decision](decisions/visual-workbench.md).
 
 Current visual integration: [source coverage](design/reference-coverage.md),
 [native components](design/components.md),
-[observed outcomes and remaining work](validation/visual-integration-20261111/report.md).
-Task completion requires the [SDD documentation update rule](../sdd/workflow.md#documentation-before-task-closure).
+[state and remaining work](../sdd/specs/visual-workbench.md).
+Task completion requires the [SDD documentation update rule](../sdd/workflow.md#9-fechar).
 
-## Proveniência e instruções históricas
+## Proveniência
 
-- [Prompt de bootstrap v2.0](iniciar-projeto-revisado.md): instruções históricas
-  executadas na [adoção do bootstrap](decisions/product-bootstrap.md); seus diagramas
-  representam o projeto solicitado naquele momento, não a integração atual dos crates.
-- [Ledger de proveniência](structure/README.md): interpretação de `files.json`
-  e dos registros de sucessão, sem tratá-los como inventário da árvore atual.
+- [Proveniência de cópias](licensing/copy-provenance.json): origem e bytes das skills e
+  materiais copiados.
+- [Inventário de licenças](licensing/license-inventory.json): marcadores de licença dos
+  archives (2026-10-27).

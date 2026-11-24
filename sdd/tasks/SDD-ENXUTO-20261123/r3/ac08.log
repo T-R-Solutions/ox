@@ -1,0 +1,24 @@
+$ bash sdd/tasks/SDD-ENXUTO-20261123/ac08_refs.sh
+base=ea3cf0f
+ocorrencias=0 ativos=603 removidos=23066
+exit=0
+
+# Prova do esperado. Sonda fora do repositório (scratch S=/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/r3lists, sem criar arquivo no working tree), injetada como arquivo ativo por caminho absoluto na lista de ativos; o texto da sonda:
+$ cat /tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/r3lists/zz-ac08-sonda.md
+Sonda AC-08 r3: ver sdd/features/scripts-task-closure/plan.md
+exit=0
+$ S=/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/r3lists; git ls-tree -r -z --name-only ea3cf0f2b52deefb68126c4469320846aa37d438 > $S/base.txt; { git ls-files -z -co --exclude-standard; printf '%s\0' $S/zz-ac08-sonda.md; } > $S/active.txt; python3 sdd/tasks/SDD-ENXUTO-20261123/ac08_refs.py $S/base.txt $S/active.txt
+/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/r3lists/zz-ac08-sonda.md:1: caminho removido sdd/features/scripts-task-closure/plan.md
+ocorrencias=1 ativos=604 removidos=23066
+exit=1
+$ S=/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/r3lists; git ls-tree -r -z --name-only ea3cf0f2b52deefb68126c4469320846aa37d438 | while IFS= read -r -d '' p; do if [ -e "$p" ]; then printf '%s\0' "$p"; fi; done > $S/head-simulado.txt; echo "plan.md na lista do HEAD simulado: $(tr '\0' '\n' < $S/head-simulado.txt | grep -c '^sdd/features/scripts-task-closure/plan.md$')"; python3 sdd/tasks/SDD-ENXUTO-20261123/ac08_refs.py $S/head-simulado.txt $S/active.txt
+plan.md na lista do HEAD simulado: 0
+ocorrencias=0 ativos=604 removidos=53
+exit=0
+$ S=/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/r3lists; : > $S/vazia.txt; python3 sdd/tasks/SDD-ENXUTO-20261123/ac08_refs.py $S/vazia.txt $S/active.txt
+falha: lista da base vazia; a busca de caminhos removidos ficaria sem cobertura
+exit=2
+$ git status --short --untracked-files=all | grep -c 'zz-ac08-sonda' ; test ! -e zz-ac08-sonda.md && echo 'nenhuma sonda no working tree'
+0
+nenhuma sonda no working tree
+exit=0

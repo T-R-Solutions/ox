@@ -74,8 +74,7 @@ para inputs alterados. Falha ou interrupção podem deixar somente o pedido.
 **Sair** e fechar a janela solicitam cancelamento e aguardam a operação encerrar.
 Os arquivos de tentativa permanecem no workspace. Reiniciar perde o histórico em
 memória e não recupera as aprovações a partir desses arquivos.
-A [reprodução detalhada](../docs/validation/product-local-task-ui/reproduce.md)
-e a [referência de contratos](../docs/architecture/contracts.md) descrevem os casos.
+A [referência de contratos](../docs/architecture/contracts.md) descreve os casos.
 
 
 [![Fluxo de primeiro uso com caminhos de sucesso, recusa e evidência insuficiente](../docs/assets/first-run.svg)](../docs/assets/first-run.svg)
@@ -187,8 +186,8 @@ desktop marcados como ignorados. Somente em sessão X11 dedicada:
 cargo test --locked -p ox-app --test desktop -- --ignored --nocapture --test-threads=1
 ```
 
-Esse comando move o ponteiro e interage com janelas. A aceitação Wayland tem
-[observações próprias](../docs/validation/f0-resumption-20261103/report.md);
+Esse comando move o ponteiro e interage com janelas. A aceitação Wayland foi
+observada à parte, no corpus F0 de 03/11/2026 em Mutter nativo isolado;
 sucesso da suíte comum não substitui essa verificação gráfica.
 
 ## Navegar no código
@@ -200,12 +199,10 @@ presentes, em `crates/<nome>/tests/`. Não há crate na raiz do workspace.
 - [Contratos e links para implementação/testes](../docs/architecture/contracts.md).
 - [Marcos e direção](../docs/architecture/context.md).
 - [Política de atualização de versões](../docs/decisions/version-update-policy.md).
-- [Features do produto](../sdd/features/README.md#ox-product).
+- [Specs vivas do produto](../sdd/specs/README.md).
 
 Atualize este guia quando mudarem build, auxiliares, ações da UI, testes ou
 ambiente suportado. Responsabilidade: contribuinte da mudança e mantenedor.
-A [revisão visual](../docs/validation/documentation-visuals-20261104/report.md)
-distingue os comandos executados dos apenas conferidos no código.
 
 ## Encerramento de alterações
 
@@ -223,8 +220,9 @@ The native shell provides 27 current/planned destinations, Ctrl+K command search
 three session themes and two densities. See [DESIGN.md](../DESIGN.md) and the
 [surface contracts](../docs/design/surfaces.md). Planned screens identify unavailable
 backends. `python3 application/tools/build_design.py --check` from the repository
-root checks generated roles. `python3 application/tools/native_review.py` runs an
-isolated graphical observation when Mutter/PipeWire prerequisites are available.
+root checks generated roles. The isolated Mutter/PipeWire review scripts were removed
+on 2026-11-23 with the legacy evidence they read; no isolated Wayland review command is
+maintained. The X11 desktop suite above remains the only graphical command.
 
 ### Current native composition
 
@@ -234,14 +232,11 @@ tools. They are read-only demonstrations, not files opened from the selected
 workspace. Architecture shows declared Cargo dependencies; agent screens separate
 roles from unavailable instances. Preferences remain session-only.
 
-From the repository root, `python3 application/tools/native_composition_review.py
---output <new-directory-name>` exercises the composition in isolated Mutter/Wayland;
-use a fresh output name to preserve earlier observations. Prerequisites are Mutter,
-PyGObject, GStreamer/PipeWire, Pillow and built Ox/helper binaries.
-This graphical command requires the effective environment permissions.
+The isolated Mutter/Wayland composition review was removed on 2026-11-23 (see above).
 
-Current results and pending scope are in the
-[reference integration report](../docs/validation/visual-integration-20261111/report.md).
+The 2026-11-11 integration left clause-level semantic review, licensed icon adaptation,
+graph pan/zoom, resizable panes, document editing and real services open
+(`ea3cf0f:docs/validation/visual-integration-20261111/report.md`, Git history).
 Its two native runs and 12 Rust tests do not establish X11 or assistive-technology
 acceptance. Source coverage and component contracts remain linked from DESIGN.md.
 
@@ -254,7 +249,8 @@ integra a barra; o mascote foi retirado da interface. Formulário
 de criação, navegação, preferências e seções compartilham a composição desktop.
 Assets definitivos e IBM Plex estão incorporados ao executável; `.local/assets`
 não é uma dependência de execução.
-[Capturas e verificação do layout](../docs/validation/enterprise-visual-20261116/report.md).
+O layout foi observado em Wayland nativo a 640×480, 1440×900 e 2560×1080 em 17/11/2026,
+sem observação X11 ou de tecnologia assistiva.
 
 A página de boas-vindas oferece **Novo projeto**, **Abrir pastas…**, **Clonar
 repositório** (indisponível) e **Projetos recentes**. O seletor gráfico valida o
@@ -302,11 +298,8 @@ preserva o caminho e o trabalho anterior. Apenas um diálogo é aberto por vez;
 mudar de contexto ou encerrar o Ox solicita seu encerramento supervisionado.
 Nomes sem representação UTF-8 são recusados sem conversão silenciosa.
 
-As observações atuais e limitações estão no
-[relatório de boas-vindas](../docs/validation/welcome-projects-20261114/report.md).
-Os relatórios anteriores de
-[tela inicial](../docs/validation/start-screen-20261114/report.md) e
-[seletor](../docs/validation/folder-picker-20261114/report.md) permanecem históricos.
+A boas-vindas foi aceita em 14/11/2026 só com armazenamento local cooperativo Linux e
+Mutter Wayland isolado em escala 1, sem AT, X11, DPI fracionário, ENOSPC ou NFS.
 
 Em Configurações/Aparência, tema e densidade têm prévia. **Salvar** confirma
 para a sessão e retorna à origem; **Voltar**/Esc descarta a prévia. Os atalhos

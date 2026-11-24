@@ -1,6 +1,6 @@
 # ADR — Bootstrap do produto
 
-Adotada para a execução de iniciar-projeto-revisado.md v2.0. Linux x86_64 e
+Adotada para a execução do prompt de bootstrap v2.0 (removido em 2026-11-23; recuperável pelo histórico do Git). Linux x86_64 e
 stable confirmados explicitamente pelo mantenedor em 28/10/2026.
 
 Workspace virtual em application, 16 crates explícitos, edição 2024/resolver 3,

@@ -1,8 +1,0 @@
-{
-  "method": "Compare current registry with the preserved cleanup receipt, rehash retained RustSec, verify removed generated database directories remain absent; no repeated deletion.",
-  "registry_matches": true,
-  "rustsec_matches": true,
-  "migrated_entries_absent": true,
-  "removed_directories_absent": true,
-  "limits": "Prior adjacent-log hashes were verified by the original cleanup operation; this review does not repeat that deletion or infer current Docker execution."
-}

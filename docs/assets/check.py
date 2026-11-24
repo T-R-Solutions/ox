@@ -1,5 +1,6 @@
 """Check current Markdown targets, anchors and self-contained documentation SVGs."""
 
+import hashlib
 import json
 import re
 import xml.etree.ElementTree as ET
@@ -8,17 +9,20 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
-BASE = ROOT / "docs/validation/documentation-visuals-20261104"
+BASE = ROOT / ".local/docs-assets"
 DOCS = [
     "README.md",
     "application/README.md",
     "docs/README.md",
     "docs/architecture/application.md",
     "docs/architecture/contracts.md",
-    "docs/development/governance.md",
-    "docs/development/sharing.md",
     "docs/assets/README.md",
 ]
+# F0 captures of 2026-11-03, copied byte for byte; see docs/assets/README.md.
+CAPTURES = {
+    "approved": "5b3c14acdf0bf4e1a174920bdd28c78f17eb26658109658d342ea75149253762",
+    "rejected": "633848ef2e724fb362919c09c25d1978035532f0cd23491cf0d573caf26c532f",
+}
 
 
 def anchor(text):
@@ -81,13 +85,9 @@ def check():
                 "external_refs": external,
             }
         )
-    for state in ("approved", "rejected"):
-        source = (
-            ROOT
-            / f"docs/validation/f0-resumption-20261103/optimized-native-1-900/{state}.png"
-        )
+    for state, expected in CAPTURES.items():
         copied = ROOT / f"docs/assets/ox-{state}.png"
-        if source.read_bytes() != copied.read_bytes():
+        if hashlib.sha256(copied.read_bytes()).hexdigest() != expected:
             failures.append("Capture changed: " + state)
     result = {
         "links": links,
@@ -95,6 +95,7 @@ def check():
         "figures": figures,
         "failures": failures,
     }
+    BASE.mkdir(parents=True, exist_ok=True)
     (BASE / "asset-checks.json").write_text(
         json.dumps(result, indent=2, ensure_ascii=False) + "\n"
     )

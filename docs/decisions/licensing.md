@@ -7,8 +7,8 @@ interpretada no contexto das opções apresentadas como GPL-3.0 e comunicada ao 
 Adotar GNU GPL versão 3 somente (GPL-3.0-only) para as contribuições próprias do Ox.
 Não acrescentar a permissão “ou posterior” nem exceção de ligação de plugins sem
 nova decisão. LICENSE contém o texto integral obtido de
-https://www.gnu.org/licenses/gpl-3.0.txt; hash e método em license-source.json
-no registro maintenance-001. NOTICE delimita escopo e materiais excluídos.
+https://www.gnu.org/licenses/gpl-3.0.txt; hash e método em
+[license-source.json](../licensing/license-source.json) (do registro maintenance-001). NOTICE delimita escopo e materiais excluídos.
 
 Motivo: preferência expressa do mantenedor dentre as alternativas permissivas,
 copyleft e adiamento documentadas na análise. MIT e Apache-2.0 não foram escolhidas.

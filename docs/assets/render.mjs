@@ -12,13 +12,12 @@ const require = createRequire(path.join(toolRoot, 'package.json'));
 const { chromium } = require('playwright');
 const MarkdownIt = require('markdown-it');
 const md = new MarkdownIt({ html: true });
-const base = path.join(root, 'docs/validation/documentation-visuals-20261104');
+const base = path.join(root, '.local/docs-assets');
 const output = path.join(base, 'render');
 await fs.mkdir(output, { recursive: true });
 const config = JSON.parse(await fs.readFile(path.join(root, 'docs/assets/mermaid.json')));
 const targets = ['README.md', 'application/README.md', 'docs/README.md',
- 'docs/architecture/application.md', 'docs/architecture/contracts.md',
- 'docs/development/governance.md', 'docs/development/sharing.md'];
+ 'docs/architecture/application.md', 'docs/architecture/contracts.md'];
 const style = `body{margin:0;background:#fff;color:#172554;font:16px/1.6 Arial,sans-serif}
 main{max-width:960px;padding:32px;margin:auto;overflow-wrap:break-word}h1{font-size:36px;line-height:1.2}h2{font-size:28px;border-bottom:1px solid #cbd5e1;padding-bottom:8px;margin-top:40px}h3{font-size:20px;margin-top:32px}a{color:#4338ca}img{display:block;max-width:100%;height:auto;border-radius:8px}pre{background:#f1f5f9;padding:16px;overflow:auto;border-radius:8px}code{font-family:monospace;font-size:.9em}blockquote{border-left:4px solid #6366f1;margin:24px 0;padding:1px 20px;background:#eef2ff}table{border-collapse:collapse;display:block;overflow:auto;font-size:14px}th,td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid #cbd5e1}th{background:#eef2ff}summary{cursor:pointer;color:#4338ca}details{margin:16px 0}hr{border:0;border-top:1px solid #cbd5e1;margin:32px 0}
 body.dark{background:#111827;color:#e2e8f0}body.dark a,body.dark summary{color:#c7d2fe}body.dark pre{background:#1e293b}body.dark blockquote,body.dark th{background:#1e293b}body.dark img[src$=".svg"]{background:white}body.zoom{zoom:2}

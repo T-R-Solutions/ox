@@ -1,8 +1,9 @@
 # Ox IDE shell — Visual Studio 2026 reference, Ox identity
 
-Revision **ide-shell-1**, 2026-11-18. Feature:
-[product-ide-shell](../../sdd/features/product-ide-shell/spec.md). Evidence:
-[report](../validation/ide-shell-20261118/report.md).
+Revision **ide-shell-1**, 2026-11-18. Spec:
+[ide-shell](../../sdd/specs/ide-shell.md). Evidence: native captures by the implementing
+agent at 1024×700, 1600×1000 and 2560×1080 (Mutter, scale 1); the acceptance state
+is in the spec.
 
 This document is the current native contract for the workbench shell, the
 project entry (S01) and the Dark theme values. It complements
@@ -113,9 +114,10 @@ the previous shell. They are superseded for current behavior by this document:
 
 ## Limitations
 
-- Governance pins (`document_ledger.py`, `audit_*_revision.py`) prevent editing
-  DESIGN.md, surfaces.md, components.md and the product-visual-workbench
-  convergence without a new successor layer, which the maintainer declined.
+- The DESIGN.md, surfaces.md, components.md and product-visual-workbench
+  convergence was not done: governance pins then required a new successor layer,
+  which the maintainer declined (`ea3cf0f:tools/governance/scripts/document_ledger.py`;
+  the pins were removed later).
 - High Contrast disabled buttons remain visually close to enabled ones
   (existing `text_muted` value); the adjacent reason text states availability.
 - Iced 0.14 has no AccessKit bridge here; menus, tabs and dock have

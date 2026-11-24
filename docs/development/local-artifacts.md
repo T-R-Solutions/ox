@@ -1,11 +1,14 @@
 # Artefatos locais: caminhos e retenção
 
 A solicitação de 11/11/2026 substitui a política de cópias preservadas e leases
-histórica de repository-maintenance. `.local/` contém somente
+histórica de repository-maintenance. `.local/` contém
 `.local/logs/AAAA-MM-DD/`: arquivos de diagnóstico por execução/ferramenta,
 incluindo stdout, stderr, resultados JSON e identidades de inputs, com extensão
 `.log`. Os bytes dos streams são preservados. Nomes incluem o identificador único
 da execução e o caminho interno escapado, evitando sobrescrever logs do mesmo dia.
+`.local/tasks/<ID>/` guarda saída bruta de task que a seção 8 do registro não cita; é
+descartável e fica fora da rotação abaixo. Log citado é versionado em `sdd/tasks/<ID>/`
+([workflow](../../sdd/workflow.md#evidência-e-retomada)).
 
 São mantidas no máximo duas datas, pelo calendário local no encerramento da
 execução. Antes de criar a terceira, remove-se a mais antiga. Publicação e rotação

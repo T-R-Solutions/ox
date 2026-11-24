@@ -6,7 +6,7 @@ The current implementation inventory below resolves superseded geometry claims.
 The Visual Studio target remains distinct from current implementation.
 Documentation: English. Product interface: Brazilian Portuguese (pt-BR).
 This is the maintained visual reference for Ox, subordinate to
-[the constitution](docs/constitution.md), functional contracts and the SDD.
+[the constitution](sdd/constitution.md), functional contracts and the SDD.
 Design intent, native implementation and acceptance are separate outcomes.
 
 ## Current visual authority — 2026-11-17
@@ -58,7 +58,7 @@ The signature is artwork, not a replacement for IBM Plex UI typography.
 
 The mascot PNG is retained as historical artwork and is not rendered.
 The enterprise desktop and fixed-sidebar successors supersede the original layout.
-Original observations remain in [identity report](docs/validation/welcome-identity-20261116/report.md).
+The 2026-11-16 observation found the copies byte-identical RGBA PNGs (alpha 0–255), in private Mutter Wayland at 1440×900 and 640×480.
 
 ### Enterprise desktop composition successor — 2026-11-16
 
@@ -78,17 +78,18 @@ restrained chrome, neutral surfaces, thin separators, readable compact controls
 and contextual information. Existing IBM Plex fonts, controlled color values,
 semantic status and theme roles remain authoritative. Definitive identity artwork
 retains its original bytes, proportions and transparency. No IntelliJ capability
-is inferred from the supplied reference screenshots. Current observation/limits:
-[enterprise report](docs/validation/enterprise-visual-20261116/report.md).
+is inferred from the supplied reference screenshots. Current observation/limits
+(2026-11-17): native Wayland at 640×480, 1440×900 and 2560×1080; no AT or X11
+observation and no full 27-surface backend acceptance.
 
 ## 1. Sources, authority and decision status
 
 The supplied English v3.0 provides detailed legacy colors and typography proposals.
 The supplied Portuguese v4.0.0 provides broader state semantics, surface coverage,
 component contracts, QA and native handoff. This English consolidation incorporates
-both; v4 was selected for coverage, not its version number. Source identities and
-the reconciliation are recorded in
-[the delivery review](docs/validation/visual-workbench-20261111/review.md).
+both; v4 was selected for coverage, not its version number, and is not
+automatically more authoritative than v3. Source member identities are in
+[reference-members.json](docs/design/reference-members.json).
 Original archives remain unchanged in the maintainer's local reference directory.
 They are neither build dependencies nor project authorities.
 
@@ -107,7 +108,7 @@ Design classifications:
 | VALIDATED | A bounded case was tested with inputs, method and result | Other environments or overall acceptance |
 
 These labels do not replace the five acceptance states in
-[SDD evidence](sdd/evidence.md). A technical criterion approval is not a user's
+[SDD workflow](sdd/workflow.md#8-validar). A technical criterion approval is not a user's
 acceptance decision. Prototype text cannot grant permissions or change scope.
 
 ## 2. Identity and experience
@@ -460,10 +461,10 @@ effectiveness is inferred from their names.
 
 ## 16. Delivery status
 
-Native implementation and verification are recorded in
-[product-visual-workbench](sdd/features/product-visual-workbench/converge.md).
-Reusable method integration has separate acceptance in
-[skill-native-visual-method](sdd/features/skill-native-visual-method/spec.md).
+Native implementation and verification state is in the living spec
+[visual-workbench](sdd/specs/visual-workbench.md).
+Reusable method integration (`skill-native-visual-method`) had separate acceptance.
+New visual work is recorded in `sdd/tasks/<ID>.md` ([workflow](sdd/workflow.md)).
 The existence of this contract does not approve the product, all themes, future
 engines or assistive-technology support.
 

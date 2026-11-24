@@ -37,6 +37,6 @@ recently acquired legitimate upstream objects); set the Ox upstream limit to 12h
 consistency); record scan time (postpones refresh indefinitely).
 
 Review trigger: change of acquisition/publication paths, receipt schema, central
-clock configuration or native metadata contract. Scope and evidence:
-[OSV successor plan](../validation/osv-acquisition-20261116/plan.md). Real downloads,
+clock configuration or native metadata contract. The OSV successor plan of 2026-11-16 is recoverable from Git history
+([modelo do SDD](sdd-model.md)). Real downloads,
 Docker qualification and complete runs are not part of this bounded verification.

@@ -1,7 +1,7 @@
 # Reference disposition and design trace
 
 This successor records source-level trace separately from native implementation.
-The member inventory in `docs/validation/visual-integration-20261111/members.json`
+The member inventory in `docs/design/reference-members.json`
 identifies every file/member by bytes and marks duplicates. Type classification is
 not a claim that every historical screenshot has been visually inspected.
 
@@ -185,7 +185,8 @@ intact. No source board, historical study, generator or `.local` path is loaded
 at runtime. Signature layout is preserved inside the artwork; its integration
 adapts to the native project-entry geometry rather than reproducing the board's
 informational captions. The mascot is raster; no vectorization/animation is claimed.
-Source/copy hashes and observed captures: [identity report](../validation/welcome-identity-20261116/report.md).
+Source/copy SHA-256 values are listed in the
+[embedded identity README](../../application/crates/ox-ui/assets/identity/README.md).
 
 ## Enterprise desktop reference successor — 2026-11-16
 
@@ -197,7 +198,6 @@ docked layout across native presentation; preserve DESIGN palette and IBM Plex.
 Third-party branding, clone/remote/terminal effects and unknown interaction behavior
 are not imported. Definitive OX assets remain intact with a compact signature and
 secondary mascot. Version and runtime behavior cannot be inferred from captures.
-See [enterprise report](../validation/enterprise-visual-20261116/report.md).
 
 ## Windows / Visual Studio successor — 2026-11-17
 

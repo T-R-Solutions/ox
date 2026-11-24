@@ -78,17 +78,17 @@ venv/
 *.db-wal
 *.db-shm
 
-# Importante: NAO ignorar .codex/, sdd/, docs/, config/governance/,
-# tools/, application/Cargo.lock ou evidencias SDD versionadas.
+# Importante: NAO ignorar .codex/, sdd/, docs/, tools/, application/Cargo.lock
+# ou evidencias SDD versionadas (sdd/tasks/<ID>/).
+# Logs citados na secao 8 de uma task sao versionados (sdd/workflow.md, Evidencia).
+!/sdd/tasks/**/*.log
 # Arquivos SQLite de fixture e evidencias devem ser preservados.
 
 # Scratch, snapshots, scanner outputs, datasets and locally acquired tools.
-# Promote reviewed evidence to docs/validation/ before versioning it.
+# Evidence that must be versioned goes to sdd/tasks/<ID>/ (sdd/workflow.md).
 /.local/
 
 # Operational inputs relocated out of log-only .local.
 /.cache/
 /.inputs/
 
-# Handoff local entre IAs (Codex planeja/relata, Claude analisa)
-.ai/

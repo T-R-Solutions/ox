@@ -17,8 +17,10 @@ supervisão de processo e verificação independente do artefato.
 
 > **Estado da entrega:** versão interna **0.1.0**, fase `implementation-foundation`,
 > aplicativo `bootstrap-implemented`. F0 foi aceito no corpus local Linux x86_64
-> adotado, com X11 e Wayland avaliados separadamente. A aprovação tem os
-> [limites registrados](docs/validation/f0-resumption-20261103/report.md).
+> adotado, com X11 e Wayland avaliados separadamente. A aprovação cobre escalas
+> 100/150/200% e janelas lógicas 640x480 e 900x700 no host identificado, sem exposição
+> física, GPU não observada ou conformidade geral de acessibilidade
+> ([spec F0](sdd/specs/f0-gate.md)).
 
 ### Aplicação em imagens
 
@@ -127,16 +129,16 @@ cargo clippy --workspace --all-targets --locked -- -D warnings
 
 Testes comuns cobrem contratos e processos locais. Os seis testes desktop ignorados
 exigem sessão X11 dedicada; as [instruções](application/README.md#testes-e-referência-rust)
-detalham interação e limites. Os checks Python verificam
-[governança](docs/development/governance.md), com escopo próprio.
+detalham interação e limites. Os checks Python verificam a
+[governança](sdd/project.md#comandos), com escopo próprio.
 
 Cada tarefa termina com a revisão e atualização da documentação afetada, conforme
-[o workflow](sdd/workflow.md#documentation-before-task-closure). Consulte
+[o workflow](sdd/workflow.md#9-fechar). Consulte
 [artefatos locais](docs/development/local-artifacts.md) para caminhos, retenção e
 limpeza com simulação. Logs operacionais conservam duas datas e removem a mais
 antiga antes de criar a terceira; isso não remove fontes nem alterações do checkout.
 
-Antes de contribuir, leia [AGENTS.md](AGENTS.md), a [constituição](docs/constitution.md),
+Antes de contribuir, leia [AGENTS.md](AGENTS.md), a [constituição](sdd/constitution.md),
 o [contexto autorizado](sdd/project.md) e o [workflow SDD](sdd/workflow.md).
 
 ## Documentação
@@ -147,20 +149,18 @@ o [contexto autorizado](sdd/project.md) e o [workflow SDD](sdd/workflow.md).
 | Encontrar os guias e suas figuras | [Mapa da documentação](docs/README.md) |
 | Entender componentes e implementações | [Arquitetura](docs/architecture/application.md) |
 | Consultar estados, inputs e protocolo | [Contratos](docs/architecture/contracts.md) |
-| Verificar governança e preservar histórico | [Desenvolvimento](docs/development/governance.md) |
-| Copiar ou recuperar governança | [Compartilhamento](docs/development/sharing.md) |
-| Retomar uma entrega | [Features SDD](sdd/features/README.md) |
-| Selecionar um método de desenvolvimento | [31 skills](.codex/skills/README.md) e [pontes](sdd/chain/README.md) |
+| Verificar governança e o SDD | [Comandos](sdd/project.md#comandos) |
+| Retomar uma entrega | [Evidência e retomada](sdd/workflow.md#evidência-e-retomada) e [specs vivas](sdd/specs/README.md) |
+| Selecionar um método de desenvolvimento | [Mapa de skills](sdd/workflow.md#skills) |
 
 A biblioteca de skills apoia o desenvolvimento do Ox. O desktop atual não carrega
 skills dos projetos do usuário. Disponibilidade, seleção, consulta e uso são estados
-distintos, descritos na [integração SDD/skills](docs/development/sdd-skills.md).
+distintos, descritos no [workflow](sdd/workflow.md#skills).
 
 ## Compartilhamento e licença
 
-`application/Cargo.toml` define o produto. O pacote `ox-governance.zip` declara
-`product_included=false`: inclui governança, sem `application/`, binários ou
-instaladores. O pipeline do aplicativo exige build, testes e distribuição próprios.
+O Ox é um repositório Git único, com produto e governança juntos e sem pacote ou
+exportação separada. Versões anteriores de arquivos são recuperadas pelo histórico do Git.
 
 Material próprio: **GPL-3.0-only**, Rodrigo Batista. Veja [LICENSE](LICENSE),
 [NOTICE](NOTICE) e a [revisão local de licenciamento](docs/licensing/review.md).
@@ -169,8 +169,7 @@ A expressão histórica `not-yet-implemented` descreve o início do projeto.
 
 ---
 
-[Visuais, fontes Mermaid e reprodução](docs/assets/README.md) ·
-[Revisão visual e verificações](docs/validation/documentation-visuals-20261104/report.md)
+[Visuais, fontes Mermaid e reprodução](docs/assets/README.md)
 
 O preparo explícito de bases e a descoberta portátil de scanners/toolbox estão
 em [scripts/README.md](scripts/README.md). Consulte

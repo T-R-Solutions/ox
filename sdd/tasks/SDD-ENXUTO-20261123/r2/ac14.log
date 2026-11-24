@@ -1,0 +1,88 @@
+$ python3 -m unittest discover -s sdd/tools/tests -k test_revision_tables -k test_duplicate_id_in_same_layer -k test_rejects_unrecognized_or_split_stage_tables -v
+test_duplicate_id_in_same_layer_keeps_both_rows (test_validate.ValidatorTests.test_duplicate_id_in_same_layer_keeps_both_rows) ... ok
+test_rejects_unrecognized_or_split_stage_tables (test_validate.ValidatorTests.test_rejects_unrecognized_or_split_stage_tables) ... ok
+test_revision_tables_accept_valid_change_and_feed_matrix (test_validate.ValidatorTests.test_revision_tables_accept_valid_change_and_feed_matrix) ... ok
+test_revision_tables_override_original_by_id (test_validate.ValidatorTests.test_revision_tables_override_original_by_id) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.017s
+
+OK
+exit=0
+
+$ # mutação numa cópia (scratch ac14mut): Task.table lendo só a seção original
+$ diff sdd/tools/sddtask.py <copia>/sdd/tools/sddtask.py
+163c163
+<         for lines in self.stage_layers(num):
+---
+>         for lines in [self.sections.get(num, [])]:
+$ cd <copia> && python3 -m unittest discover -s sdd/tools/tests -k test_revision_tables -k test_duplicate_id_in_same_layer -k test_rejects_unrecognized_or_split_stage_tables -v
+test_duplicate_id_in_same_layer_keeps_both_rows (test_validate.ValidatorTests.test_duplicate_id_in_same_layer_keeps_both_rows) ... FAIL
+test_rejects_unrecognized_or_split_stage_tables (test_validate.ValidatorTests.test_rejects_unrecognized_or_split_stage_tables) ... FAIL
+test_revision_tables_accept_valid_change_and_feed_matrix (test_validate.ValidatorTests.test_revision_tables_accept_valid_change_and_feed_matrix) ... FAIL
+test_revision_tables_override_original_by_id (test_validate.ValidatorTests.test_revision_tables_override_original_by_id) ... FAIL
+
+======================================================================
+FAIL: test_duplicate_id_in_same_layer_keeps_both_rows (test_validate.ValidatorTests.test_duplicate_id_in_same_layer_keeps_both_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/ac14mut/sdd/tools/tests/test_validate.py", line 255, in test_duplicate_id_in_same_layer_keeps_both_rows
+    self.assertError(self.revised(twice), "item com ID T-02 repetido na mesma camada")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/ac14mut/sdd/tools/tests/test_validate.py", line 152, in assertError
+    self.assertTrue(any(fragment in e for e in errs), f"esperado '{fragment}' em {errs}")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : esperado 'item com ID T-02 repetido na mesma camada' em []
+
+======================================================================
+FAIL: test_rejects_unrecognized_or_split_stage_tables (test_validate.ValidatorTests.test_rejects_unrecognized_or_split_stage_tables)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/ac14mut/sdd/tools/tests/test_validate.py", line 263, in test_rejects_unrecognized_or_split_stage_tables
+    self.assertError(self.revised(split), "T-02 testa AC-09, que não existe")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/ac14mut/sdd/tools/tests/test_validate.py", line 152, in assertError
+    self.assertTrue(any(fragment in e for e in errs), f"esperado '{fragment}' em {errs}")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : esperado 'T-02 testa AC-09, que não existe' em []
+
+======================================================================
+FAIL: test_revision_tables_accept_valid_change_and_feed_matrix (test_validate.ValidatorTests.test_revision_tables_accept_valid_change_and_feed_matrix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/ac14mut/sdd/tools/tests/test_validate.py", line 232, in test_revision_tables_accept_valid_change_and_feed_matrix
+    self.assertEqual(V.coherence_matrix(parsed),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     [("REQ-01", ["D-01"], ["T-01"], ["AC-01"]), ("REQ-02", ["D-02"], ["T-02"], ["AC-02"])])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [('RE[18 chars]'T-01'], ['AC-01']), ('REQ-02', ['D-01'], ['T-02'], ['AC-02'])] != [('RE[18 chars]'T-01'], ['AC-01']), ('REQ-02', ['D-02'], ['T-02'], ['AC-02'])]
+
+First differing element 1:
+('REQ-02', ['D-01'], ['T-02'], ['AC-02'])
+('REQ-02', ['D-02'], ['T-02'], ['AC-02'])
+
+  [('REQ-01', ['D-01'], ['T-01'], ['AC-01']),
+-  ('REQ-02', ['D-01'], ['T-02'], ['AC-02'])]
+?                  ^
+
++  ('REQ-02', ['D-02'], ['T-02'], ['AC-02'])]
+?                  ^
+
+
+======================================================================
+FAIL: test_revision_tables_override_original_by_id (test_validate.ValidatorTests.test_revision_tables_override_original_by_id)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/ac14mut/sdd/tools/tests/test_validate.py", line 215, in test_revision_tables_override_original_by_id
+    self.assertError(self.revised(wrong), "T-02 usa D-01, que não atende REQ-02 (de AC-02)")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/ac14mut/sdd/tools/tests/test_validate.py", line 152, in assertError
+    self.assertTrue(any(fragment in e for e in errs), f"esperado '{fragment}' em {errs}")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : esperado 'T-02 usa D-01, que não atende REQ-02 (de AC-02)' em []
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.014s
+
+FAILED (failures=4)
+exit=1

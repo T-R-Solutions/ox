@@ -5,8 +5,8 @@ Current OSV policy: [single acquisition clock](osv-acquisition-validity.md)
 unchanged; historical permissions/observations below do not grant new effects.
 
 The user explicitly authorizes Ox implementation and tests, with no central or
-Ec changes, host maintenance, commits or implicit downloads. Full workflow:
-`sdd/features/scripts-toolbox-native/`.
+Ec changes, host maintenance, commits or implicit downloads. Full workflow, removed
+on 2026-11-23: `ea3cf0f:sdd/features/scripts-toolbox-native/` (Git history).
 
 This supersedes docs/decisions/scanner-toolbox-ownership.md only concerning
 consumer-pinned DB snapshots/image locks, adapters and native-first dispatch.
@@ -21,7 +21,7 @@ explicit /out and native streams stay separate from diagnostic metadata.
 Gitleaks findings retain native code 10 and map to Ox classification 1.
 
 Recovery, exact mappings, operational prerequisites and limitations are in
-scripts/README.md and docs/validation/scripts-toolbox-native/report.md. No runtime
+scripts/README.md. No runtime
 fallback or deletion of security tools/data/generations is authorized by recovery.
 
 ## Consumer guide successor — 2026-11-09
@@ -34,8 +34,8 @@ superseded: scripts/toolbox.sh now preserves the caller's unset/empty/shared/pri
 selection. Relabel must be explicit because it affects host xattrs even for ro
 mounts. Existing Bash/empty-override guards and native exec controls remain.
 No legacy locks, platform maintenance, scanner expansion, downloads or host
-changes are part of this adaptation. Record: scripts-toolbox-native D-25/T025
-and docs/validation/toolbox-consumer-alignment-20261109/report.md. Revisit when
+changes are part of this adaptation. Record: scripts-toolbox-native D-25/T025 (`ea3cf0f:sdd/features/scripts-toolbox-native/`).
+Revisit when
 the public discovery/mount contract changes; previous test evidence stays historical.
 
 ## Operational repair successor — 2026-11-09
@@ -47,7 +47,7 @@ Reviewed static false positives are bounded by native occurrence/path and exact
 source/policy SHA-256. No global rule/severity reduction or vulnerability acceptance.
 Changed/missing review inputs block; new unknown findings still fail. Unsafe
 rule fixtures are non-executable data, tested separately through real detection.
-Details and limitations: docs/validation/ox-operational-repair-20261109/.
+The reviewed static false positives are summarized in scripts/README.md.
 
 Governance-only copies omit dependency-hygiene because its acceptance needs the
 Cargo workspace, which that package deliberately excludes. It remains at the

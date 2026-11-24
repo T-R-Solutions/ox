@@ -25,10 +25,10 @@ Enterprise; no artwork or visual baseline changes are introduced by this repair.
 |---|---|---|---|---|---|
 | S01 Boas-vindas | `product-visual-workbench` welcome successor | choose/create/reopen → validate/open project | `Surface::Start` / desktop/views.rs + project_store.rs | bounded project metadata and creation; no task execution on S01 | native project entry |
 | S02 Novo projeto | `product-visual-workbench` welcome successor | name + parent → confirm → exclusive create → validate/open | `Surface::NewProject` / desktop/views.rs + project_store.rs | bounded local empty-directory creation | native form and explicit consequence |
-| S03 Visão do projeto | `sdd/features/product-local-task-ui/spec.md` | select → execute → verify → inspect | `Surface::Project` / desktop/views.rs | local Controller integrated | native controls/evidence |
-| S04 Tarefas | `sdd/features/product-local-task-ui/spec.md` | select → execute → verify → inspect | `Surface::Tasks` / desktop/views.rs | local Controller integrated | native controls/evidence |
+| S03 Visão do projeto | `sdd/specs/local-task-ui.md` | select → execute → verify → inspect | `Surface::Project` / desktop/views.rs | local Controller integrated | native controls/evidence |
+| S04 Tarefas | `sdd/specs/local-task-ui.md` | select → execute → verify → inspect | `Surface::Tasks` / desktop/views.rs | local Controller integrated | native controls/evidence |
 | S05 Criar tarefa | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::NewTask` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
-| S06 Atividade e evidências | `sdd/features/product-local-task-ui/spec.md` | select → execute → verify → inspect | `Surface::Activity` / desktop/views.rs | local Controller integrated | native controls/evidence |
+| S06 Atividade e evidências | `sdd/specs/local-task-ui.md` | select → execute → verify → inspect | `Surface::Activity` / desktop/views.rs | local Controller integrated | native controls/evidence |
 | S07 Decisões e permissões | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Decisions` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | S08 Agentes | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Agents` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | S09 Configurar agente | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::AgentSettings` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
@@ -42,11 +42,11 @@ Enterprise; no artwork or visual baseline changes are introduced by this repair.
 | A02 Orquestração | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Orchestration` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | A03 Observabilidade | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Observability` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | A04 Revisão de alterações | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Review` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
-| A05 Falhas e recuperação | `sdd/features/product-local-task-ui/spec.md` | select → execute → verify → inspect | `Surface::Recovery` / desktop/views.rs | local Controller integrated | native controls/evidence |
+| A05 Falhas e recuperação | `sdd/specs/local-task-ui.md` | select → execute → verify → inspect | `Surface::Recovery` / desktop/views.rs | local Controller integrated | native controls/evidence |
 | A06 Modo de foco | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Focus` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | TW01 Problemas | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Problems` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
-| TW02 Testes | `sdd/features/product-local-task-ui/spec.md` | select → execute → verify → inspect | `Surface::Tests` / desktop/views.rs | local Controller integrated | native controls/evidence |
-| TW03 Rastro de execução | `sdd/features/product-local-task-ui/spec.md` | select → execute → verify → inspect | `Surface::Trace` / desktop/views.rs | local Controller integrated | native controls/evidence |
+| TW02 Testes | `sdd/specs/local-task-ui.md` | select → execute → verify → inspect | `Surface::Tests` / desktop/views.rs | local Controller integrated | native controls/evidence |
+| TW03 Rastro de execução | `sdd/specs/local-task-ui.md` | select → execute → verify → inspect | `Surface::Trace` / desktop/views.rs | local Controller integrated | native controls/evidence |
 | TW04 Terminal | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Terminal` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | SDD Desenvolvimento SDD | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Sdd` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
 | SKL Skills do projeto | `docs/architecture/context.md` | navigate → inspect contract → return | `Surface::Skills` / desktop/views.rs | planned backend | native composition, unavailable action + dependency |
@@ -64,7 +64,6 @@ S04 on success. Editing the path invalidates selection; rejected paths display
 repairable inline feedback. A validated session offers task resumption; Activity
 and Appearance remain reachable. There is no persisted recent-project list. The
 inspector stacks below the form at narrow widths; no task is executed by navigation.
-Scoped observations: [start-screen report](../validation/start-screen-20261114/report.md).
 
 S01 folder-picker successor: “Escolher pasta…” shares the path-input row and keyboard
 order input → chooser → validate. The optional installed Zenity GTK helper runs under
@@ -82,7 +81,8 @@ locally with MRU/canonical deduplication/cap 20 and removal without project dele
 Unknown/corrupt storage and unavailable project paths have recoverable diagnostics;
 reset is explicit and preserves bounded corrupted bytes. Opening/creating does not
 execute tasks. Settings/theme remain session-only; general persistence is unchanged.
-Current evidence: [welcome report](../validation/welcome-projects-20261114/report.md).
+Accepted 2026-11-14 only for Linux local cooperative storage and isolated Mutter Wayland
+at scale 1; no AT, X11, fractional DPI, ENOSPC or NFS claim.
 The earlier session-only S01/form composition above is historical.
 
 Welcome identity/layout successor (2026-11-16): Historical S01 embedded the supplied definitive
@@ -94,14 +94,15 @@ The body scrolls, long paths wrap and focused controls retain the existing revea
 operation. S01/S02 share the concise “Central de projetos” header and Settings.
 The empty-list explanation is shown only after loading succeeds; unavailable
 history retains its diagnosis/reset controls. Effects, history format and creation
-confirmation are unchanged. [Scoped native observations](../validation/welcome-identity-20261116/report.md).
+confirmation are unchanged. Observed 2026-11-16 in private Mutter Wayland at 1440×900 and 640×480.
 
 Enterprise desktop successor (2026-11-16): supersedes the preceding welcome
 identity geometry. S01 fills the window with context chrome, docked actions/recents
 and neutral primary canvas; compact identity is subordinate. The later fixed sidebar uses 280 units, or 210 below 900 logical units. S02 uses a docked scrollable form.
 Shared workbench navigation, sections and preferences adopt flat separators and
 consistent chrome. Effects/availability/history and confirmation remain governed
-by existing contracts. Current observations: [enterprise report](../validation/enterprise-visual-20261116/report.md).
+by existing contracts. Current observations (2026-11-17): native Wayland at 640×480,
+1440×900 and 2560×1080; no AT or X11 observation.
 
 S13/S14 enterprise refinement: normal preferences contain session scope, theme
 and density with preview/Save/Back. There are no Details specimens. No task-evidence
@@ -118,7 +119,8 @@ S01 project-entry correction (2026-11-17): docked actions are Novo projeto, Abri
 pastas… and disabled Clonar repositório (unavailable tooltip). The separate manual
 path action is removed; a field is disclosed automatically on chooser failure.
 Recents and current-project resumption move to the primary area beside the fixed actions sidebar, including narrow windows. All settings icons share the cog. Effects/history unchanged.
-Scoped observations: [entry report](../validation/project-entry-20261117/report.md).
+Observed 2026-11-17 in native captures at 1366×768 and 640×480; no full
+open/create/resume journey or assistive-technology claim.
 
 ## Visual Studio 2026 Enterprise target — 2026-11-17
 

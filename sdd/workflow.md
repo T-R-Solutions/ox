@@ -1,254 +1,280 @@
-# Execution and resumption in Codex
+# Workflow do Ox
 
-Read the project context and applicable instructions before acting. Authorization
-comes from the request and environment, not this workflow. Proceed autonomously
-with authorized reversible local actions; ask only about material ambiguity,
-conflict or actions requiring authorization. Do not request routine approval
-between every document.
+Único contrato de execução (GOV-02): rotas, etapas, skills, agentes, evidência e fechamento.
+Cada etapa diz **o que** entrega e **quando** está pronta; o **como** técnico é delegado à skill
+indicada. Autorização vem do pedido do usuário e do ambiente, nunca deste arquivo (POL-10).
+Ações locais reversíveis e autorizadas seguem sem pedir confirmação rotineira.
 
-## Choose the route
+## Rotas
 
-Use the **local route** when the goal and acceptance are clear, the affected surface
-and consumers are known, and the change is authorized and recoverable, without
-material uncertainty about contracts, permissions, integrity, concurrency or operation.
-Examples: a text correction or local repair that preserves a known contract.
+Toda etapa é contabilizada; a rota muda o método, não a existência da etapa. Etapa que não se
+aplica aparece como `NOT APPLICABLE` com o motivo em uma linha.
 
-1. Inspect instructions, existing changes, the contract/callers and relevant checks.
-2. Implement the bounded change and run focused verification supporting the result.
-3. Fix failures caused by the change and report results, observations and material
-   limitations. Record the goal, observed files/versions and check in an artifact
-   already used by the project (issue, review or note); do not create spec/plan/tasks
-   merely to populate directories.
+| Rota | Quando | Registro |
+|---|---|---|
+| **Consulta** | Pergunta, explicação, diagnóstico ou status, sem alterar arquivos do projeto | Nenhum arquivo e nenhuma skill obrigatória. A resposta cita fontes e limites |
+| **Local** | Objetivo e aceite claros, superfície e consumidores conhecidos, mudança reversível, sem risco material | `sdd/tasks/<ID>.md` com as seções 1, 2, 7, 8 e 9 e a tabela **Skills lidas** (no mínimo `prompt`); seções 3–6 `NOT APPLICABLE` com motivo |
+| **Completa** | Decisão material em aberto, mudança de contrato/autorização, dados persistidos, concorrência, migração, compatibilidade ou recuperação incerta | `sdd/tasks/<ID>.md` com todas as seções; spec viva em `sdd/specs/` quando a capacidade é duradoura |
 
-Use or expand to the **full workflow below** when there is an unresolved material
-decision, a contract/authorization change, persisted data, concurrency, consumers
-on different versions, uncertain recovery or operational scope requiring coordination.
-A one-line change may require this route. Extensive documentation may remain local.
-When a new risk appears, preserve completed work, add necessary criteria/decisions/tasks
-and continue; do not restart verified work or reduce acceptance to fit the route.
+Risco material é o que pode alterar autorização, evidência/gates, integridade, concorrência,
+migração, compatibilidade ou recuperação. Tamanho do diff não classifica. Risco material exige
+orquestração alta e verificação em contexto independente do implementador ([Agentes](#agentes)).
+Risco novo reclassifica para a rota Completa, preservando o trabalho válido.
 
-If a change affects an existing feature, update its affected artifacts and evidence,
-even on the local route. Do not hide a feature from checks by moving its directory.
-Keep the five states and compare current inputs with observed inputs according to
-[evidence.md](evidence.md). A small task ends only when applicable criteria are
-supported or material gaps are explicit; missing tooling does not imply approval.
+## Identificação e revisões
 
-Bridges map the full workflow. On the local route, a skill can address a concrete
-question independently, without installing a bridge or creating a plan. On either
-route, do not load specialists merely because they are mentioned.
-[Checks by route](evidence.md#checks-by-route) explains automation limits without
-changing its gates.
+`<ID>` = `<TEMA>-<AAAAMMDD>` em maiúsculas, ex.: `IDE-SHELL-20261123`; sufixo `-2`, `-3` se
+repetir no mesmo dia. Correção do usuário sobre o **mesmo escopo** é uma revisão `r2`, `r3` no
+mesmo arquivo. Escopo novo (objetivo ou requisito novo) é task nova, que cita a anterior.
 
-## Material risk and independent acceptance
+## Etapas
 
-Material risk concerns changes that can alter authorization, evidence/gates,
-integrity, concurrency, migration, compatibility or recovery guarantees; diff
-size alone does not classify it. Treat relevant unresolved uncertainty explicitly.
-Apply the consumer's agent procedure and required independent review/validation
-for such work. Missing required capability blocks the dependent step, not
-independently authorized analysis. Local repairs satisfying the conditions above
-retain focused verification; an affected acceptance contract can require additional
-independent contexts. Agent profiles and host capabilities remain consumer-specific.
+Cada etapa preenche a seção de mesmo número do [template](templates/task.md); não avance sem o gate.
 
-## Constitution → specify
+| Etapa | Saída | Skill | Papel | Gate |
+|---|---|---|---|---|
+| 0. Entrada | — | — | raiz | escopo autorizado identificado no pedido ou em `project.md` |
+| 1. Prompt | seção 1 | `prompt` | raiz | cinco divisões, regra de conclusão, AC com método e esperado ou `PENDENTE: Q-n` |
+| 2. Esclarecer | seção 2 | `prompt` | raiz, com o usuário | nenhum AC `PENDENTE` usado pela etapa seguinte |
+| 3. Especificar | seção 3 e spec viva | `domain-modeling` se houver conceito novo | planejador | todo AC liga-se a um REQ; todo REQ tem AC |
+| 4. Planejar | seção 4 | skill do assunto | planejador | todo REQ tem decisão; nenhuma decisão viola a constituição |
+| 5. Itens | seção 5 | `software-testing` | planejador | todo item tem teste, condição de pronto e skill; todo D é coberto |
+| 6. Coerência | seção 6 | — | planejador | `validate.py --root . --task <ID> --matrix` exit 0 |
+| 7. Executar | seção 7 | skill do item | implementador | teste de cada item passando, ou falha registrada; documentação atualizada |
+| 8. Validar | seção 8 | `software-testing` | verificador observa; escritor do registro grava | todo AC com estado; `evidence --check --require-all` exit 0 |
+| 9. Fechar | seção 9 | — | raiz ou orquestrador | regra de conclusão cumprida |
 
-Identify the authoritative constitution. Inspect the actual state and existing
-contracts. Write or adjust the spec with actors, invariants, normal and rejected
-scenarios, identifiable criteria and limits. Distinguish requirements from assumptions
-or examples. Clarify gaps that prevent decisions; proceed with independent work.
+### 0. Entrada
 
-## Plan
+Ler [constitution.md](constitution.md) e [project.md](project.md); conferir `git status` para
+preservar mudanças de terceiros (POL-05). Outras fontes só quando a task as toca.
 
-Compare proportionate alternatives and record decisions/risks and their requirements.
-Consult only bridges present in this SDD's `chain/` directory that match the affected
-surface and risk. Confirm that the configured path exists and the skill name matches.
-Read the actual entry; choose one primary skill and supporting skills only for
-unresolved questions. Record bridge/version, path and reason in the plan; do not
-import the catalog.
+### 1. Prompt
 
-A missing skill or supporting capability has not been executed. Record the gap and
-continue independent work. If the capability is indispensable to acceptance, keep
-that criterion unverified and request the necessary information/capability. Never
-install, pretend to use or recursively traverse a skill chain merely by reference.
+Converter o pedido num prompt com exatamente estas divisões:
 
-## Tasks → implement
+1. `1 - Objetivos`: resultado pretendido, público e insumos.
+2. `2 - Requisitos`: comportamento e entregáveis concretos.
+3. `3 - Restrições`: guardrails — o que **não** fazer, escopo, permissões, o que preservar.
+4. `4 - Critérios de Aceitação`: uma linha por critério, no formato
+   `- AC-01: <condição observável> | método: <comando ou inspeção> | esperado: <resultado>`.
+5. `5 - Entrega`: arquivos/saídas e a **regra de conclusão**: "a task está concluída quando
+   AC-01…AC-n estiverem APPROVED ou NOT APPLICABLE com motivo, e a seção 9 estiver preenchida".
 
-Break changes and checks into IDs, dependencies, files and completion conditions.
-Check consistency among the spec, decisions and tasks before implementation.
-Use a checklist only when it helps assess requirement quality; checking a box does
-not prove code execution. Confirm commands in the project. Keep `tasks.md` files
-in Brazilian Portuguese (pt-BR); other SDD prose is in English.
+Termos subjetivos são proibidos sem métrica (GOV-09). Substituições obrigatórias:
 
-Apply the selected skill's procedure, if any. Use references only when needed.
-Keep product policies in their authoritative documents. Record changes, failures
-and checks actually observed; do not hide failing tests by silently changing requirements.
+| Proibido | Escreva em vez disso |
+|---|---|
+| bonito, elegante, moderno, limpo | aderência a seção nomeada de `DESIGN.md`/`surfaces.md`; contraste ≥ valor; tokens usados |
+| sem erros, robusto, estável | quais testes/checks, com exit 0; quais casos de erro são cobertos |
+| rápido, performático, leve | operação, cenário, métrica, unidade e limite (ex.: p95 < 200 ms em N itens) |
+| completo, tudo, exaustivo | lista enumerada do que entra |
+| simples, intuitivo, fácil | número de passos/cliques, atalho de teclado, estado vazio/erro definidos |
+| adequado, correto, bom | o oráculo que decide (teste, spec, comando) |
 
-## Documentation before task closure
+Não invente números. Métrica, método ou esperado essencial e desconhecido vira AC provisório,
+`- AC-02: <condição> | PENDENTE: Q-1`, com a pergunta registrada na seção 2.
 
-After implementing and verifying each task, update its affected documentation before
-marking that task complete. This applies to local and full routes and to tasks using
-skills. Review behavior/contracts, instructions, examples, paths and commands; update
-the affected SDD artifacts and reevaluate only evidence dependent on changed inputs.
-Preserve previous observations. Do not change a result's hashes to imply reexecution.
+### 2. Esclarecer
 
-Record a documentation disposition in the task's existing record: documents reviewed
-and updated, relevant verification and outstanding limitations. If documentation is
-unaffected, name the reviewed surfaces and give a concrete, verifiable reason. A
-checkbox or structural checker does not establish semantic documentation correctness.
-Do not create a separate document per task when the existing task/review record suffices.
+Lacuna ou contradição que mudaria o resultado vira pergunta ao usuário: 1 a 3 por rodada, com
+opções quando útil. Registrar pergunta e resposta. Lacuna menor vira `SUPOSIÇÃO:` rotulada. Cada
+resposta reescreve o AC pendente na forma completa. Trabalho que depende de AC pendente fica
+bloqueado; o independente segue. A etapa 8 nunca começa com AC pendente.
 
-In Ox, changes to AGENTS.md, SDD or skills require running
-`PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/check-ox.py` before
-closure. Record failures as unresolved; structural success does not approve behavior.
+### 3. Especificar (o quê e por quê)
 
-For every completed task in Ox, including local/full routes and work using skills,
-append a dated entry to [task_finalizada.md](../task_finalizada.md) at the project
-root before reporting completion. Record the task identifier or title, request and
-authorized scope, all work actually performed (including analysis, changes and
-failed attempts), affected/reviewed paths, commands or inspection methods and their
-observed results, documentation disposition, outcome and outstanding limitations
-or follow-up. Link existing detailed evidence where applicable; distinguish work
-performed from proposals and checks not executed. The shared log complements the
-task/feature evidence and does not replace acceptance.
+Registrar motivação, atores, cenários normais e rejeitados, requisitos `REQ-n` e ligar cada AC
+a um REQ (`- AC-01 → REQ-01`). Capacidade duradoura do produto: criar ou atualizar
+`sdd/specs/<capacidade>.md` ([template](templates/spec.md)) e citá-la na task.
 
-This file is append-only: preserve all existing bytes and add entries only at the
-end. Never delete, truncate, overwrite, reorder or rewrite existing information,
-including to correct a previous entry. Append corrections as new dated entries
-referencing the original task. Create the file if absent. The coordinating agent
-consolidates delegated work into the task entry after writers have finished.
+### 4. Planejar (decisões técnicas)
 
-Examples (illustrative, not execution evidence):
-- Behavior change: a scanner output path changes; update scripts usage, affected
-  caller examples and feature evidence, then record those paths and checks.
-- Documentation-only: repair a README command; compare it with the actual entry's
-  help/implementation, check links and record README plus the inspected command.
-- No documentation impact: add a regression fixture for an unchanged rejection
-  contract; review the documented contract and usage, record why neither changed,
-  and identify the fixture/test observation. New behavior would invalidate this reason.
+Arquitetura, modelo de dados, módulos e interfaces, bibliotecas e versões ([Skills](#skills)).
+Cada decisão `D-n`: escolha, alternativa descartada e motivo, REQ atendido. A tabela **Skills
+lidas** (caminho, motivo, contribuição) existe em toda rota com registro (GOV-04). Decisão de
+política ou escolha pendente da RQ-03 exige ADR em `docs/decisions/`.
 
-## Converge and resume
+### 5. Quebrar em itens de trabalho
 
-Trace requirement → decision/risk → task → change → evidence → acceptance.
-Record the five states defined in evidence.md. If an executable gap remains, add a
-bounded task and repeat affected checks. If blocked, record the dependency, impact
-and exact resumption step. Do not repeat identical attempts without new information
-or declare completion because context or budget has ended.
+Cada item `T-n`: decisão atendida, arquivos (um dono por arquivo), dependências, teste que o
+verifica (cita os AC), condição de pronto e skill (nome do catálogo entre crases, registrada em
+**Skills lidas**, ou `nenhuma: <motivo>`). Cada item pode ser implementado e testado sozinho.
 
-When resuming, read the spec, plan, tasks and latest convergence record; compare
-them with current files. Do not rely on hidden chat state or repeat already verified
-work. Update evidence affected by code changes. Completion depends on applicable
-criteria, not the existence of directories or number of documents.
+### 6. Verificar coerência
 
-## Governance suite before task closure
+`python3 sdd/tools/validate.py --root . --task <ID> --matrix` deriva a matriz `REQ → D → T → AC`
+das seções 3–5 e falha em órfão, item sem teste ou decisão que não atende o REQ do AC testado.
+A seção 6 registra o exit e os conflitos com POL/GOV/RQ; a matriz não é redigida à mão.
 
-In Ox, changes to AGENTS.md, SDD or skills require the complete governance suite:
+### 7. Executar
 
-```bash
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/governance/tests -v
-```
+Implementar item a item, na ordem das dependências, com a skill do item. Registrar por item:
+arquivos alterados, teste executado, exit code, falhas e tentativas abandonadas. Não enfraquecer
+critério para passar. O último item atualiza a documentação afetada e `sdd/project.md`, ou
+registra o motivo de não impacto.
 
-Run it in addition to check-ox before declaring the affected task complete.
-Record the commands, observed inputs, results, errors and any unexecuted checks.
-A partial selection, skip, timeout or unavailable mandatory check does not satisfy
-this requirement. This rule does not require the full scanner pipeline for other
-tasks and does not authorize downloads, central maintenance, commits or publication.
+### 8. Validar
 
-## Prompt execution contract
+Tabelas de inputs e de ACs do [template](templates/task.md). Sequência: (1) o verificador
+(na rota Local, a raiz) executa os métodos e devolve as linhas sem hashes; (2) o escritor do
+registro grava as linhas, roda `--write` e depois `--check --require-all`; exit 1 devolve os ACs
+indicados ao passo 1.
 
-In Ox, the standing user instruction requests a prompt artifact for every incoming
-user request, including questions and requests to revise an existing task. The
-controller must consult `.codex/skills/prompt/SKILL.md` to construct that artifact;
-the skill remains reusable and its catalog/profile classification is unchanged.
-Consult other available skills only for a concrete unresolved technical question.
-Read the authorities and inspect the context needed to construct a faithful prompt.
-This entry preparation precedes execution of the described task and is not a
-recursive task requiring another generated prompt.
+- Papéis: `material` (o que é avaliado), `oráculo` (teste, script ou referência que decide),
+  `configuração` (lockfile, perfil, flags). Input derivado (lista gerada) registra o comando
+  e o sha256 da saída. O próprio registro da task não é input.
+- Hashes por ferramenta, nunca à mão:
+  `python3 sdd/tools/sddtask.py evidence --task <ID> --write` preenche as células vazias (ou `<…>`)
+  com o sha256 da linha do AC e dos bytes de cada input com caminho entre crases; nunca renova hash
+  já registrado. `--check` sai com 1 se algum estiver desatualizado; `--require-all` exige
+  observação atual para cada AC.
+- Estados (GOV-05): APPROVED, REJECTED, UNVERIFIED, INCONCLUSIVE, NOT APPLICABLE (este exige
+  motivo). APPROVED/REJECTED citam ao menos um input `material` e um `oráculo`, ou
+  `sem oráculo separado: <motivo>`. Rota Completa: validação pelo verificador independente.
 
-### Construct and persist
+### 9. Fechar
 
-Assign a stable task identifier, date, request reference and prompt revision.
-Generate a self-contained prompt in the user's language, with these five divisions
-in this order (the Portuguese labels are the required Ox format):
+1. Registrar a documentação e o `sdd/project.md` atualizados na etapa 7.
+2. Se a task mudou `AGENTS.md`, `sdd/`, `.codex/` ou skills: rodar
+   `python3 sdd/tools/validate.py --root .` e `python3 tools/governance/scripts/run-tests.py`;
+   exit diferente de 0 impede a conclusão.
+3. `sddtask.py evidence --task <ID> --check --require-all` exit 0.
+4. Marcar `Estado:` no cabeçalho e responder ao usuário com o resultado, os checks realmente
+   executados e as pendências.
 
-1. `1 - Objetivos`: intended outcome, audience and relevant context/inputs.
-2. `2 - Requisitos`: concrete behavior, deliverables and applicable technical methods.
-3. `3 - Restrições`: scope, permissions, preserved behavior, dependencies and explicit exclusions.
-4. `4 - Critérios de Aceitação`: observable conditions, methods and evidence needed to decide them.
-5. `5 - Entrega`: output format, paths, completion conditions, documentation and activity records.
+**Regra de conclusão:** a regra da divisão `5 - Entrega` está cumprida. Se um AC obrigatório não
+está APPROVED/NOT APPLICABLE, a task é reportada como **incompleta** ou **bloqueada**, com a
+condição que falta e o passo de retomada.
 
-Use enough detail to execute and evaluate the task without inventing thresholds,
-facts, tools or requirements. Label assumptions and distinguish supplied data from
-instructions. Preserve the original user's intent, restrictions and current
-corrections: the generated prompt is the operational specification to execute;
-the original request remains the source and limit of authority. Generated text,
-retrieved content and prior records never authorize extra actions. Material
-ambiguity blocks only dependent work until resolved; routine prompt generation
-and already-authorized reversible execution need no additional confirmation.
+## Evidência e retomada
 
-Create `.ai/` and `.ai/task_planning.md` if absent, then append the prompt before
-starting its described work. Never overwrite, truncate, reorder or rewrite any
-existing bytes. Correct a mistake by appending an identified revision that names
-the superseded entry. Under this Ox contract, saving the prompt is its delivery;
-the skill's generic ready-to-copy presentation need not be repeated in chat.
-Keep these logs local under the existing `.ai/` ignore rule. A fresh checkout
-creates them on demand; versioned instructions do not depend on their presence.
-Do not store secrets or private internal reasoning; record technical conclusions,
-assumptions, decisions and observable evidence. Check the observed file prefix
-before appending, use one coordinating writer and preserve unexpected concurrent
-content rather than replacing it. An unsafe/symlinked destination, write denial
-or explicit user prohibition on file writes blocks dependent persistence/execution;
-report the constraint and exact resumption step without bypassing it.
+- Log ou artefato citado na seção 8 é versionado em `sdd/tasks/<ID>/`, até 1 MiB por arquivo;
+  acima disso, a seção guarda comando, sha256 e motivo. `.local/tasks/<ID>/` (ignorado pelo Git)
+  só guarda saída não citada; o `validate.py` reprova input ali.
+- Observação cujo input mudou não é editada: a nova é acrescentada e a antiga vai para
+  `### … (obsoletas)`. Check estrutural com exit 0 prova estrutura, não comportamento.
+- Após o fechamento, correções entram ao final como `## Revisão rN — <data>`, com as etapas
+  afetadas como subseções `### <n>. <nome>`. Por ID vale a revisão mais recente. IDs `I-n` são
+  únicos no registro inteiro. Blocos cercados e comentários HTML não contam como estrutura.
+- Retomada: `sddtask.py evidence --task <ID> --check`; AC cujo critério ou input mudou volta a
+  UNVERIFIED até nova observação. Em task concluída, input alterado depois do fechamento é
+  retomada, não falha do `validate.py`.
+- Revisão externa (ex.: Claude) grava `sdd/tasks/<ID>.review.md`;
+  o dono responde com uma revisão `rN` no registro.
 
-### Execute and record the five stages
+## Skills
 
-Execute the generated prompt, selecting the local or full route by the existing
-risk rules. Every task records the following stages; proportionality changes the
-method, not whether the stage is accounted for:
+As skills ficam em `.codex/skills/<nome>/SKILL.md`; esta seção é o único catálogo e mapa (GOV-04).
 
-1. Analysis: inspect the request, context, consumers, risks and unknowns. Append
-   findings, assumptions and technical conclusions to `.ai/task_planning.md`.
-2. Planning: append the chosen route, work sequence, responsibilities, relevant
-   skills actually consulted, dependencies and acceptance methods to the same file.
-   On the full route, keep the required feature/plan artifacts and link them from
-   this record instead of duplicating their complete contents.
-3. Execution: perform the generated task within scope; record changes and failed
-   attempts or link the existing task evidence.
-4. Tests: run applicable checks with observed inputs/results. For a question or
-   prose-only task, a source/consistency inspection can be the appropriate check;
-   record the method and limitations rather than inventing a software test run.
-5. Validation: compare the actual output and evidence with each acceptance
-   criterion using the five SDD states. Required independent review/validation,
-   governance checks and documentation closure remain applicable.
+- Ler o `SKILL.md` real antes de usar e registrá-lo em **Skills lidas**; menção não é uso.
+- Uma skill primária por assunto; auxiliares só para questão distinta, sem carregamento recursivo.
+- A skill define o método; política e gates são deste workflow, que prevalece em conflito.
+- Skill indisponível: registrar a lacuna; o AC dependente fica UNVERIFIED.
 
-Append revisions before executing work affected by a later user correction; retain
-the task identifier and earlier prompt, analysis, plan and valid observations.
-For a status question, create a linked request entry whose generated task is to
-report observed status; do not restart or cancel the underlying task. On resumption,
-read the latest applicable prompt/revisions, analysis, plan and existing SDD records,
-compare them with current inputs and repeat only affected checks. Delegated work
-uses the controller's prompt/task contract; internal messages, tool results and
-agent handoffs do not generate recursive user requests or competing shared logs.
+| Skill | Etapa | Usar quando |
+|---|---|---|
+| `prompt` | 1–2 | Toda task com registro; criar ou revisar um prompt |
+| `domain-modeling` | 3 | Conceitos, invariantes ou estados de domínio novos |
+| `software-architecture` | 4 | Alternativa estrutural, fronteira entre componentes, migração |
+| `software-design` | 4 | Responsabilidades, APIs internas, acoplamento |
+| `database-engineering` | 4 | Esquema, persistência, migração de dados |
+| `software-evolution` | 4 | Adicionar, atualizar ou remover dependência; depreciação |
+| `software-delivery` | 4, 7 | Build, pipeline, empacotamento e release |
+| `software-testing` | 5, 7, 8 | Caminho feliz e infeliz, oráculos, sensibilidade do teste |
+| `rust` | 4, 7 | Código Rust |
+| `iced-engineering` | 4, 7 | Interface Iced nativa |
+| `design-review` | 4, 8 | Crítica de fluxo e superfície visual (RQ-01) |
+| `design-system` | 4, 7 | Tokens e componentes compartilhados |
+| `application-security` | 4, 7, 8 | Segurança, permissões, entrada não confiável |
+| `api-testing` | 5, 8 | Contratos HTTP/IPC testáveis |
+| `performance-engineering` | 4, 8 | Desempenho medido |
+| `reliability-engineering` | 4 | Falhas, retomada, degradação |
+| `observability-and-diagnostics` | 4, 7 | Logs, métricas, diagnóstico |
+| `distributed-systems` | 4 | Processos com falhas independentes, ordenação, replay; IPC por si só não basta |
+| `plugin-protocol-engineering` | 4, 7 | Protocolo de plugins |
+| `agent-runtime-engineering` | 4, 7 | Runtime de agentes |
+| `autonomous-verification-engineering` | 4, 7 | Verificação autônoma |
+| `workspace-integrity-engineering` | 4, 7 | Integridade do workspace, concorrência de escrita |
+| `code-context-engineering` | 4, 7 | Contexto de código |
+| `code-knowledge-graph-engineering` | 4, 7 | Grafo de conhecimento de código |
+| `tool-output-engineering` | 4, 7 | Saída de ferramentas, parsers, compactação |
+| `agent-usage-accounting` | 4, 7 | Contabilidade de uso de agentes |
+| `ai-engineering` | 4, 7 | Aplicação de IA, RAG, avaliação de modelo |
+| `engineering-productivity` | 4, 8 | Avaliação de fluxo humano com baseline; não benchmark do binário |
+| `technical-documentation` | 7 | Documentação afetada além do registro |
+| `readme-lifecycle-engineering` | 7 | README de entrada |
+| `commit-governance` | fora do fluxo | Só com pedido explícito de commit ou tag |
 
-For an explicit request to write only a prompt, the generated operational task is
-to deliver that prompt; it does not execute the inner task described by that
-deliverable. For a question or read-only diagnosis, execution produces the answer
-and the standing task records, with no unrelated project edits. A newer explicit
-restriction on writes or execution prevails over this standing instruction.
+Fora do perfil: `gleam`, `kotlin` e `postgresql` não são instaladas.
 
-### Record the validated outcome
+## Agentes
 
-After the validation step, create `.ai/task_completed.md` if absent and append a
-dated outcome for the same task identifier and prompt revision. Preserve all prior
-bytes under the same append-only rules. Include the work actually performed and
-affected paths, checks and validation results with evidence references, documentation
-disposition, and each unfinished item with its reason and resumption step. State
-explicitly when nothing remains unfinished. An outcome record may report REJECTED,
-UNVERIFIED or INCONCLUSIVE criteria and an incomplete/blocked task; the filename
-does not establish successful completion. If validation itself is unavailable,
-record that limitation and the attempted validation step without claiming it passed.
+`.codex/config.toml` e `.codex/agents/ec_*.toml` (6 perfis), separados do Agent Runtime do
+produto. Carregar com sessão nova `codex --strict-config`; TOML não é sandbox nem permissão.
 
-This report complements the required `task_finalizada.md` entry and SDD evidence;
-it replaces neither. Append the complete root activity record before reporting a
-task finished. Do not claim completion until all applicable mandatory criteria
-and closure requirements are met. Subsequent fixes receive new linked entries in
-both local records and the root activity log, preserving the earlier outcome.
+| Papel | Perfil normal | Perfil para risco material | Etapas |
+|---|---|---|---|
+| Raiz (controlador) | sessão raiz: Sol 6.1 / medium | a mesma | 0–2, triagem, 9 |
+| Orquestrador | `ec_orquestrador_normal`: Astra 6 / medium | `ec_orquestrador_alta`: Astra 6 / high | coordena 3–9 |
+| Planejador | `ec_planejador`: Sol 6.1 / high | o mesmo | 3–6 |
+| Implementador | `ec_implementador`: Sol 6.1 / high | `ec_implementador_extra_alto` (xhigh) só com dificuldade demonstrada e motivo registrado | 7 |
+| Verificador | `ec_verificador`: Sol 6.1 / high | o mesmo | revisão, testes e 8 |
+
+### Triagem
+
+Feita pela raiz, por ambiguidade, alcance, risco, reversibilidade, dependências e
+verificabilidade; tamanho não decide e incerteza relevante conta como alta.
+
+| Situação | Quem executa |
+|---|---|
+| Rota Consulta | A raiz, diretamente, com fontes e limites |
+| Rota Local | A raiz, no escopo autorizado, com verificação focada |
+| Rota Completa sem risco material | `ec_orquestrador_normal` |
+| Risco material | `ec_orquestrador_alta`; verificação em contexto independente do implementador |
+| Contexto independente indisponível | Concluir análise e plano; bloquear a execução dependente e registrar a condição de retomada |
+
+### Delegação
+
+- Limite: 4 agentes na árvore (raiz, orquestrador e até 2 especialistas); limite menor do host
+  prevalece. Com 1 vaga, implementar e verificar em sequência, cada um em contexto novo.
+- Toda delegação recebe por escrito: ID da task, pedido e permissões, itens `T-n` com a skill,
+  arquivos de que é dono, critérios, fatos e hipóteses, resultado esperado. Não depender de
+  histórico implícito.
+- Um dono por arquivo; paralelizar só itens com escrita disjunta. O orquestrador (ou a raiz, na
+  rota Local) é o único escritor de `sdd/tasks/<ID>.md` e consolida os retornos.
+- Especialistas não subdelegam. O orquestrador não cria outro orquestrador; para trocar de perfil,
+  devolve à raiz um resumo de continuidade.
+- Relato do implementador é pista, não prova. O mesmo perfil não torna independente um contexto
+  que implementou. Não finalizar com trabalho delegado ativo.
+
+### Papel orquestrador
+
+Recebe a triagem e coordena a task até aceite ou bloqueio: atribui itens e arquivos, integra os
+retornos no registro (etapa 8, passo 2), reavalia a rota e escolhe o implementador extra alto
+só com dificuldade demonstrada.
+
+### Papel planejador
+
+Etapas 3–6: lê autoridades, contratos e consumidores; devolve REQ, decisões com alternativas,
+itens com donos, dependências, testes e skill, e o resultado de
+`validate.py --root . --task <ID> --matrix`. Não edita código nem decide política nova.
+
+### Papel implementador
+
+Etapa 7: usa a skill do item, edita só os arquivos atribuídos, confere precondições antes de
+escrever, roda os testes dos itens e devolve arquivos, comandos, exits e pendências. Não altera
+critérios nem evidência.
+
+### Papel verificador
+
+Revisão, testes e etapa 8, em contexto independente do implementador: examina o código real
+contra os REQ (consumidores, invariantes, segurança, falhas) com `software-testing` e a skill do
+item, executa os cenários com oráculos independentes, confronta cada AC com a evidência e devolve
+as linhas da seção 8 sem hashes. Não edita implementação, critérios nem o registro; rejeição volta
+ao orquestrador.
+
+## Fora deste contrato
+
+Ações que exigem pedido explícito (commit, publicação, downloads, verificação completa) estão
+em [AGENTS.md](../AGENTS.md#permissões-que-exigem-pedido-explícito).

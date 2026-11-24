@@ -25,5 +25,10 @@ The retained mascot is raster, including its small tag; the upstream composition
 has a vector tag over a raster body. No claim of full mascot vectorization,
 animation, new external license audit or trademark registration.
 
-Observed source/copy hashes, focused verification and native captures:
-[identity report](../../../../../docs/validation/welcome-identity-20261116/report.md).
+Source/copy SHA-256 (observed equal on 2026-11-16; copies are RGBA with alpha 0–255):
+
+| File | SHA-256 |
+| --- | --- |
+| `logo-escuro.png` | `500d25915909d5255b4c7a48dae749e7b5129ba7ff67c18d9d4e32f973d8943d` |
+| `logo-branco.png` | `9b74c43d7f9c8698cbc87f7916ca39207b7c094ddf025a79b013788de48e9ee9` |
+| `mascote-ox.png` | `6323b3864bb44259fcb3466f1f6a205661e53d1e2de19a765e8ac5eb09f13db1` |

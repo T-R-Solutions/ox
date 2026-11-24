@@ -15,7 +15,7 @@ privados. A confiança de identificação permanece 0,95.
 A revisão comparou 264 pacotes do lockfile candidato aos manifests e avisos da
 revisão anterior autenticada por archives/checksums. Nenhuma divergência foi
 encontrada. O inventário por pacote e arquivo está em
-[license-review.json](../validation/dependency-hygiene-20261109/license-review.json).
+[license-review-20261109.json](license-review-20261109.json).
 Expressões OR permitem a escolha documentada; expressões AND mantêm ambas as
 obrigações. Não foi escolhida GPL-2.0-only quando Apache-2.0 era alternativa.
 
@@ -80,7 +80,7 @@ orienta a preservação de avisos. Isto não aprova a distribuição do produto.
 A resolução isolada/offline eliminou windows-sys 0.59.0: rustix 0.38 aceita
 0.52, já exigida por winit. Nenhuma dependência nova foi adquirida. As demais
 faixas incompatíveis foram revistas por aresta em
-[duplicate-review.json](../validation/complete-repair-20261113/duplicate-review.json).
+[duplicate-review-20261113.json](duplicate-review-20261113.json).
 A política mantém multiple-versions=deny e adiciona apenas versões exatas de
 bitflags, getrandom, jni-sys, objc2, objc2-foundation, r-efi, redox_syscall e
 windows-sys. Clippy também reconhece a família objc2-quartz-core, presente no seu

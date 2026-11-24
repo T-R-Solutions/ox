@@ -13,16 +13,16 @@ sobre materiais de terceiros.
 Inspeção local em 27/10/2026: não encontrados LICENSE, COPYING ou NOTICE na árvore
 nem nos membros dos archives examinados recursivamente. Foram examinados 153
 archives, contando ocorrências aninhadas/repetidas; os marcadores observados estão
-em docs/validation/maintenance-001/license-inventory.json. Nomes e marcadores
+em docs/licensing/license-inventory.json. Nomes e marcadores
 SPDX/copyright/licensed-under foram pesquisados; isso não é parecer sobre todos os
 textos nem prova de ausência de direitos. Cabeçalhos Python locais não apresentam
-concessão de licença. A proveniência de cópia em docs/structure/files.json prova
+concessão de licença. A proveniência de cópia em docs/licensing/copy-provenance.json prova
 identidade de bytes e origem histórica, não autorização de redistribuição.
 
 | Material | Origem observada | Situação e ação necessária |
 | --- | --- | --- |
 | Ferramentas próprias de governança, docs e nove especializações autoradas no Ox | Histórico de autoria e revisões locais | Rodrigo Batista, conforme declaração do mantenedor; GPL-3.0-only aplicada ao material próprio |
-| Vinte skills copiadas e seus recursos | copy-001 em docs/structure/files.json e baseline de adoção | Obter licença/permissão da origem por versão e manter avisos; licença da raiz não as relicencia |
+| Vinte skills copiadas e seus recursos | copy-001 em [copy-provenance.json](copy-provenance.json) e baseline de adoção | Obter licença/permissão da origem por versão e manter avisos; licença da raiz não as relicencia |
 | SDD 1.3.0, templates, validador e pontes copiadas/adaptadas | Mesmo manifesto e baselines | Confirmar termos da biblioteca de origem e das adaptações |
 | skill-quick-validate.py | Cabeçalho de validador mínimo; histórico indica ferramenta upstream | Confirmar origem exata e licença da versão copiada; não presumir termos atuais por semelhança |
 | Referências bibliográficas, trechos e exemplos nas skills | portable-sources.md, sources.md e recursos imported | Autores/editoras mencionados não concedem reprodução; revisar extensão dos trechos e permissões quando necessário |
@@ -39,7 +39,7 @@ uma opção; não rotular a árvore como open source sem concessão aplicável.
 Essas são alternativas para decisão, não termos já aplicados.
 
 Fontes públicas consultadas em 27/10/2026 (GNU HTML indisponível no navegador;
-texto integral obtido com curl e registrado em license-source.json):
+texto integral obtido com curl e registrado em [license-source.json](license-source.json)):
 [MIT — OSI](https://opensource.org/license/mit),
 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0),
 [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html).
@@ -60,7 +60,7 @@ A tabela inicial é histórica a 27/10. O catálogo atual inclui vinte skills de
 adoção e as integrações posteriores `commit-governance` e
 `readme-lifecycle-engineering`, além das nove especializações autorais. A presença
 de 22 entradas oriundas de integrações não resolve sua titularidade ou licença;
-`docs/structure/files.json` conserva a proveniência dessas duas adições.
+[copy-provenance.json](copy-provenance.json) conserva a proveniência dessas duas adições.
 
 | Material atual | Registro local inspecionado | Limite |
 | --- | --- | --- |

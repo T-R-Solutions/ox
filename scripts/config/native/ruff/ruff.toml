@@ -23,4 +23,3 @@ ignore = ["RUF005", "UP038"]
 # Authenticated preserved core/runner: changing these bytes violates the existing
 # SDD/transition succession contract. Exact source hashes are required by the adapter.
 "sdd/tools/validate.py" = ["I001"]
-"tools/governance/scripts/run-checks.py" = ["I001", "UP017"]

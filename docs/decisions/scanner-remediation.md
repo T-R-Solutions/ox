@@ -5,8 +5,8 @@ scripts-toolchain-config and coordinating existing scanner features. No commits,
 product persistence, publication or license approval is authorized. License approval
 was explicitly left pending inventory review on 2026-11-07.
 
-D-01: Preserve the six exact preimages in
-`docs/validation/scanner-remediation-20261107/before/` and their reviewed diffs.
+D-01: Preserve the six exact preimages of scanner-remediation-20261107 and their
+reviewed diffs (since 2026-11-23 recoverable only from Git history, [sdd-model](sdd-model.md)).
 README removes the former automatic closure mandate while retaining scanner commands
 by reference. Project state records the previously authorized optional commit choice
 and explicit security preparation. Commit skill and UI metadata implement that choice;

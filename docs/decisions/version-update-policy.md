@@ -10,8 +10,9 @@ These are observed settings, not a claim about latest releases or demonstrated M
 ## Adopted decision and succession
 
 This decision supersedes only the exact Iced requirement in
-[product-bootstrap](product-bootstrap.md) and extend D-03 of
-[governance-reconciliation](governance-reconciliation.md) with the lifecycle below.
+[product-bootstrap](product-bootstrap.md) and extend the toolchain pin of 2026-11-01
+(Rust 1.99.1 pinned; `rust-version` 1.99 kept as the conservative declared floor, not a
+demonstrated minimum; 1.99.0 needs separate MSRV execution) with the lifecycle below.
 Preserve both historical decisions and the exact validated toolchain principle.
 Actual manifest/toolchain/lockfile changes require candidate validation; adoption
 alone does not change them or renew historical execution evidence.
@@ -55,7 +56,7 @@ changes or repeated update failures.
 
 F0-P01/P06 require an identifiable accepted baseline and candidate-promotion
 procedure; an actual update additionally requires its affected observations.
-See the [quality proposal](../validation/f0-reconciliation-20261101/quality-proposal.md).
+The F0 quality proposal of 2026-11-01 is recoverable from Git history.
 
 Official sources consulted in this conversation: [Cargo dependency requirements](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html)
 and [Cargo CI](https://doc.rust-lang.org/cargo/guide/continuous-integration.html).

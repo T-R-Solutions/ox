@@ -38,7 +38,7 @@ temporary rootful Xwayland, with the main-session input limitation retained.
 
 ## Decisões para o gate F0
 
-A matriz docs/validation/foundation-current-20261101/f0.md identifica a decisão necessária por OPEN-01..11. O mantenedor deve adotar o envelope de risco/plataforma e incluir ou adiar explicitamente persistência. Nenhum adiamento é registrado como adotado nesta reconciliação.
+A matriz F0 de 01/11/2026 (recuperável só pelo histórico do Git) identificou a decisão necessária por OPEN-01..11. O mantenedor deve adotar o envelope de risco/plataforma e incluir ou adiar explicitamente persistência. Nenhum adiamento é registrado como adotado nesta reconciliação.
 
 ## F0 decision successor — 2026-11-02
 
@@ -59,7 +59,7 @@ flow remains INCONCLUSIVE despite identified-window exit 0.
 F0 graphical resumption successor: OPEN-08 GUI/client-frame/idle-CPU budgets and
 the exact 12-cell support matrix were explicitly adopted by the maintainer. Current
 measurements satisfy them; correlated native journeys and keyboard/cancellation
-observations are in docs/validation/f0-resumption-20261103. Broader platform/GPU,
+observations belong to the 2026-11-03 F0 corpus ([f0-gate spec](../../sdd/specs/f0-gate.md)). Broader platform/GPU,
 physical presentation, accessibility and storage decisions remain outside this
 bounded foundation acceptance.
 

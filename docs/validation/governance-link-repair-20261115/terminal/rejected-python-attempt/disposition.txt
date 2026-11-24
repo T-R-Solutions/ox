@@ -1,1 +1,0 @@
-Rejected implementation approach: operational Python helper conflicts with docs/decisions/scripts-shell-refactor.md D-01. Initial delegation permitted it incorrectly; coordinator revoked that permission and required Bash/jq. 11 initial focused tests passed before replacement; those runs do not validate the Bash successor. No authority changed.

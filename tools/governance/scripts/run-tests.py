@@ -10,20 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 # Explicit classification: unknown/new tests are fast unless decorated or their class
 # is integration. Default/discovery always executes every test regardless of grouping.
-INTEGRATION = frozenset(
-    {
-        "test_translation_predecessor_is_authenticated",
-        "test_independent_copy_and_corrupt_resource",
-        "test_implementation_phase_consistency",
-        "test_product_feature_isolated_from_skill_acceptance",
-        "test_normative_hash_requires_review",
-        "test_historical_files_remain_immutable",
-        "test_relocated_contracts_remain_protected",
-        "test_directory_links_stay_within_root",
-        "test_specialized_frontmatter_preserves_original_content",
-        "test_clean_export_and_recovery",
-    }
-)
+INTEGRATION = frozenset()  # nenhum teste atual copia o checkout inteiro
 
 
 def flatten(suite):
@@ -70,6 +57,9 @@ def main():
         flatten(
             unittest.defaultTestLoader.discover(str(ROOT / "tools/governance/tests"))
         )
+    )
+    discovered += list(
+        flatten(unittest.TestLoader().discover(str(ROOT / "sdd/tools/tests"), top_level_dir=str(ROOT / "sdd/tools/tests")))
     )
     discovered += list(
         flatten(unittest.TestLoader().discover(str(ROOT / "scripts/tests")))

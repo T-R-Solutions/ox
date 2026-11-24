@@ -1,0 +1,18 @@
+$ python3 -m unittest discover -s tools/governance/tests -p test_instruction_routes.py; echo '$ python3 -m unittest discover -s tools/governance/tests -p test_instruction_routes.py -v (complementar: nomes)'; python3 -m unittest discover -s tools/governance/tests -p test_instruction_routes.py -v
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 1.119s
+
+OK
+$ python3 -m unittest discover -s tools/governance/tests -p test_instruction_routes.py -v (complementar: nomes)
+test_commit_affirmative_resolves_current_complete_recipe (test_instruction_routes.InstructionRoutes.test_commit_affirmative_resolves_current_complete_recipe) ... ok
+test_commit_choice_safety_and_negative_route_preserved (test_instruction_routes.InstructionRoutes.test_commit_choice_safety_and_negative_route_preserved) ... ok
+test_model_effort_and_role_boundaries (test_instruction_routes.InstructionRoutes.test_model_effort_and_role_boundaries) ... ok
+test_plan_only_selection_matches_catalog_without_running_checks (test_instruction_routes.InstructionRoutes.test_plan_only_selection_matches_catalog_without_running_checks) ... ok
+test_stage_8_sequence_and_item_skill (test_instruction_routes.InstructionRoutes.test_stage_8_sequence_and_item_skill) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.098s
+
+OK
+exit=0

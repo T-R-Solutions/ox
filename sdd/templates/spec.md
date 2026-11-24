@@ -1,26 +1,37 @@
-# Specification: [feature]
+# Spec — <capacidade>
 
-<!-- Instantiation: follow templates/README.md copy-and-adapt procedure.
-Rewrite authority links relative to the destination and preserve fragments. -->
+Spec viva de uma capacidade duradoura do produto. Tasks que a alteram atualizam
+este arquivo e são citadas na tabela de estado.
 
-## Context and scenarios
+## O quê
 
-Actor, precondition, action, result and rejected transitions. Preserved contracts.
+<o que a capacidade faz, para quem>
 
-## Requirements and acceptance
+## Por quê
 
-- REQ-01: observable behavior or invariant.
-- AC-01 → REQ-01: scenario, independent oracle and expected result.
+<problema que resolve, motivação, vínculo com a constituição>
 
-Each normative AC occupies a declarative line like the one above. Prose references
-do not declare criteria; use fenced blocks or HTML comments for non-normative
-examples. Check the grammar in [evidence.md](../evidence.md).
+## Atores e cenários
 
-## Relevant risks and limits
+| Cenário | Ator | Pré-condição | Ação | Resultado esperado |
+|---|---|---|---|---|
 
-Trust boundaries, resources, concurrency, compatibility or accessibility only when
-relevant. Units, workload and responsible party for any target.
+Cenários rejeitados: <entrada inválida → comportamento esperado>
 
-## Open questions
+## Requisitos
 
-Material assumptions and ambiguities; do not confuse them with approved requirements.
+- REQ-01: <comportamento ou invariante observável>
+
+## Critérios de aceitação
+
+- AC-01 → REQ-01: <condição observável> | método: <comando ou inspeção> | esperado: <resultado>
+
+## Estado atual
+
+| AC | Estado | Decidido por (task) | Data |
+|---|---|---|---|
+| AC-01 | UNVERIFIED | — | — |
+
+## Limites e questões abertas
+
+- <limite conhecido ou decisão pendente, com link para ADR/open-questions>

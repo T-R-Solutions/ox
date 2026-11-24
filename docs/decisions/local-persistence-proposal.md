@@ -1,10 +1,10 @@
 # ADR proposal — OPEN-05 durable local task history
 
-Status: **PARTIALLY ADOPTED: D2/D4; D3/D4-deps conditional**. Decision owner: maintainer. Preparation authorized on 2026-11-01; storage implementation, dependency selection and F0 inclusion require explicit authorization. This revision replaces the earlier proposal, preserved byte-for-byte under docs/validation/f0-reconciliation-20261101/before/. No storage engine or version is adopted.
+Status: **PARTIALLY ADOPTED: D2/D4; D3/D4-deps conditional**. Decision owner: maintainer. Preparation authorized on 2026-11-01; storage implementation, dependency selection and F0 inclusion require explicit authorization. This revision replaces the earlier proposal, whose bytes are recoverable only from Git history. No storage engine or version is adopted.
 
 ## Observed need and authority
 
-POL-02 requires local Ox-controlled persistence at MVP; POL-04/05/06 require preservation, current evidence and explicit acceptance. None explicitly requires storage at F0. See the [F0 decision docket](../validation/foundation-current-20261101/f0.md).
+POL-02 requires local Ox-controlled persistence at MVP; POL-04/05/06 require preservation, current evidence and explicit acceptance. None explicitly requires storage at F0. The 2026-11-01 F0 decision matrix (recoverable from Git history) mapped the required decisions to OPEN-01..11.
 
 Observed by source inspection, not a new restart experiment: `application/crates/ox-ui/src/local_task.rs` constructs a new clock-based session and `Engine::default()` in `Controller::new`; request/result directories alone do not reconstruct checks/history. `application/crates/ox-verification/src/engine.rs` holds observations/claims in Vecs, with before/after bytes, Check arguments and result. `ox-storage/src/lib.rs` explicitly declares no persistence implementation; `local.rs` provides location/error types only. Source identities are recorded in the reconciliation input manifest. An APPROVED label alone is insufficient durable evidence. Existing code limits (32 observations, 8 declared inputs, 16 MiB/file and 32 MiB/capture) are observed API bounds, not an adopted lifetime retention policy.
 
@@ -82,7 +82,7 @@ retention/quota, workload, deadlines, dependency and permitted fault mechanisms.
 D5 is reserved for the technology decision **after** results; D6 is a separate
 product integration authorization. None is recorded as adopted by this proposal.
 
-The [feature specification](../../sdd/features/product-local-persistence/spec.md)
+The [living spec](../../sdd/specs/local-persistence.md)
 retains seven operational criteria, all UNVERIFIED. A successful prototype alone
 does not accept the production UI integration, backup path or feature. Record the
 maintainer's actual decision scope/source before executing dependent work.
@@ -171,7 +171,7 @@ integration remain separate decisions.
 
 The milestone proposal above is superseded only by the already adopted
 F0-D1..D5 boundary: independent post-F0/pre-MVP storage. The
-[decision-ready paired protocol](../../sdd/features/product-local-persistence/experiment-protocol.md)
+decision-ready paired protocol (E01..E08, summarized in the [living spec](../../sdd/specs/local-persistence.md))
 provides concrete D2/D3/D4/D4-deps proposals, common logical manifest, corpus,
 repetitions/order, XFS target, barriers, metrics and elimination rules. No candidate
 was implemented/executed. D5 and D6 remain separate later decisions. Earlier
@@ -179,4 +179,4 @@ unversioned sources are design references, not evidence of an evaluated build.
 
 ## Effective successor
 
-The explicit dispositions in [the authorization ADR](local-persistence-experiment-20261105.md) supersede pending-decision language above. Historical proposal reasoning remains; D5/D6 and operational acceptance remain pending. T009 package: docs/validation/persistence-preflight-20261105/review.md.
+The explicit dispositions in [the authorization ADR](local-persistence-experiment-20261105.md) supersede pending-decision language above. Historical proposal reasoning remains; D5/D6 and operational acceptance remain pending. The T009 pre-execution package (2026-11-05) contained no candidate encoders and no executed storage trials.

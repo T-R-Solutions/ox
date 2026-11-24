@@ -1,4 +1,0 @@
-#[repr(C)]
-#[derive(Clone, Copy, bytemuck::Pod, bytemuck::Zeroable)]
-struct Invalid { a: bool }
-fn main() {}

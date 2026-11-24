@@ -1,8 +1,0 @@
-# All plugin checks enabled; only Ox source-bound reviewed baseline occurrences apply.
-# --ignore-nosec preserva também ocorrências documentadas no código.
-exclude_dirs: []
-skips: []
-try_except_pass:
-  check_typed_exception: true
-try_except_continue:
-  check_typed_exception: true

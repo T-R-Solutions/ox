@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Sinais de dívida técnica nas linhas adicionadas do trabalho não commitado.
 
-Somente leitura. Linhas adicionadas = `git diff HEAD` (+) mais o conteúdo inteiro de
+Somente leitura (também no Git). Linhas adicionadas = `git diff-index -p HEAD` (+) mais o conteúdo inteiro de
 arquivos não rastreados. Um sinal é um ponto a inspecionar, não um defeito confirmado.
 """
 from __future__ import annotations
@@ -9,13 +9,14 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 CODE_EXT = {".rs", ".py", ".sh", ".toml", ".json", ".js", ".ts"}
 SOURCE_EXT = {".rs", ".py", ".sh"}
-EVIDENCE_HINT = ("docs/validation/", "/evidence.json", "/fixtures/")
+EVIDENCE_HINT = (".local/tasks/", "sdd/tasks/", "/fixtures/")
 
 SIGNALS: list[tuple[str, str, re.Pattern, set[str] | None]] = [
     ("todo", "M06", re.compile(r"\b(TODO|FIXME|XXX|HACK)\b"), None),
@@ -37,7 +38,9 @@ ARTIFACT_RE = re.compile(r"(__pycache__/|\.pyc$|\.pyo$|\.DS_Store$|\.orig$|\.rej
 
 
 def git(root: Path, *args: str) -> str:
-    proc = subprocess.run(["git", "-C", str(root), *args], capture_output=True, check=False)
+    # --no-optional-locks: somente leitura também no Git (não regravar .git/index)
+    proc = subprocess.run(["git", "--no-optional-locks", "-C", str(root), *args], capture_output=True,
+                          check=False, env=dict(os.environ, GIT_OPTIONAL_LOCKS="0"))
     if proc.returncode not in (0, 1):
         raise RuntimeError(proc.stderr.decode(errors="replace"))
     return proc.stdout.decode(errors="replace")
@@ -50,7 +53,9 @@ def is_test_path(path: str) -> bool:
 
 def added_lines(root: Path, paths: list[str]) -> dict[str, list[tuple[int, str]]]:
     out: dict[str, list[tuple[int, str]]] = {}
-    diff = git(root, "diff", "HEAD", "--unified=0", "--no-color", "--", *paths)
+    # diff-index (plumbing) em vez de `git diff HEAD`: a porcelana atualiza .git/index
+    # mesmo com --no-optional-locks; a saída é a mesma para linhas adicionadas.
+    diff = git(root, "diff-index", "-p", "--unified=0", "--no-color", "HEAD", "--", *paths)
     current = None
     lineno = 0
     for line in diff.splitlines():
@@ -178,7 +183,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--root", default=".", type=Path)
     ap.add_argument("--paths", nargs="*", default=[], help="limita a estes caminhos/pastas")
-    ap.add_argument("--include-evidence", action="store_true", help="inclui docs/validation e evidence.json")
+    ap.add_argument("--include-evidence", action="store_true", help="inclui evidência de tasks e fixtures")
     ap.add_argument("--large", type=int, default=800, help="limiar de linhas para arquivo grande")
     ap.add_argument("--summary", action="store_true", help="imprime só contagens")
     args = ap.parse_args()

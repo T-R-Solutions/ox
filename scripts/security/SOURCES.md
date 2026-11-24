@@ -20,7 +20,7 @@ Licenças e atribuições permanecem em LICENSE/NOTICE deste diretório.
 
 A pesquisa anterior de interfaces/versões, preparo nativo de OSV/Trivy/Grype,
 locks e estados de migração foi retirada da árvore operacional e preservada
-integralmente na [preimagem histórica](../../docs/validation/scripts-document-cleanup-20261109/before/scripts/security/SOURCES.md.bin).
+integralmente no histórico do Git (preimagem de 09/11/2026 da limpeza
+`scripts-document-cleanup-20261109`, presente no commit `2f9a13c`).
 Esse registro conserva fontes consultadas e limites das observações antigas;
-não é guia de preparo atual. A referência de aceitação a este arquivo continua
-resolúvel, com acesso explícito às fontes históricas, sem renovar resultados.
+não é guia de preparo atual nem renova resultados.

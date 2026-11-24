@@ -1,7 +1,7 @@
 # ADR — Repository maintenance and local artifact lifecycle
 
 Adopted under the maintainer's 2026-11-09 explicit sequential maintenance request.
-Feature: [repository-maintenance](../../sdd/features/repository-maintenance/plan.md).
+Feature: `repository-maintenance` (processo; sem spec viva, recuperável pelo histórico do Git).
 
 D-01: Delete only demonstrated obsolete/disposable material. Preserve historical
 hash-bound duplicates, portable skill resources and inconclusive local data.

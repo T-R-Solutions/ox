@@ -1,30 +1,20 @@
 """Static instruction contracts and real plan-only CLI routing; no model execution."""
 
-import importlib
 import json
 import os
 import re
 import shlex
 import subprocess
-import sys
 import tomllib
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-BEFORE = ROOT / "docs/validation/governance-corrections-20261114/before"
-COMMON = "docs/development/codex-agents.md"
+COMMON = "sdd/workflow.md"
 SKILL = ".codex/skills/commit-governance/SKILL.md"
 
 
-sys.path.insert(0, str(ROOT / 'tools/governance/scripts'))
-IR = importlib.import_module('instruction_revision')
-
-
 def agent_text(source):
-    if IR.governance_copy(ROOT):
-        row = next(row for row in IR.agent_snapshots(ROOT) if row['source'] == source)
-        return (ROOT / row['snapshot']).read_text()
     return (ROOT / source).read_text()
 
 
@@ -112,118 +102,74 @@ class InstructionRoutes(unittest.TestCase):
         self.assertIn("block every commit", yes)
         self.assertIn("Do not silently reduce", yes)
         self.assertIn("do not substitute automatic individual validators", no)
-        if BEFORE.is_dir():
-            previous = sections((BEFORE / f"{SKILL}.bin").read_text())[
-                "Pre-commit automation choice"
-            ]
-            self.assertEqual(
-                previous.split("- **Não:**", 1)[1].split("\n\n", 1)[0],
-                no.split("\n\n", 1)[0],
-            )
-            failure = "Wait for completion and inspect its exit status and results."
-            self.assertEqual(
-                previous.split(failure, 1)[1].split("- **Não:**", 1)[0],
-                yes.split(failure, 1)[1],
-            )
 
     def test_model_effort_and_role_boundaries(self):
         config = tomllib.loads(agent_text(".codex/config.toml"))
         expected = {
-            "ec_analista": ("gpt-6.1-sol", "medium"),
-            "ec_analista_alta": ("gpt-6.1-sol", "high"),
             "ec_implementador": ("gpt-6.1-sol", "high"),
             "ec_implementador_extra_alto": ("gpt-6.1-sol", "xhigh"),
             "ec_orquestrador_alta": ("gpt-6-astra", "high"),
             "ec_orquestrador_normal": ("gpt-6-astra", "medium"),
             "ec_planejador": ("gpt-6.1-sol", "high"),
-            "ec_planejador_alta": ("gpt-6-astra", "medium"),
-            "ec_revisor": ("gpt-6.1-sol", "high"),
-            "ec_testador": ("gpt-6.1-sol", "high"),
-            "ec_triador": ("gpt-6.1-sol", "medium"),
-            "ec_validador": ("gpt-6.1-sol", "high"),
-            "ec_validador_alta": ("gpt-6-astra", "medium"),
+            "ec_verificador": ("gpt-6.1-sol", "high"),
+        }
+        workflow = agent_text(COMMON)
+        headings = {
+            re.sub(r"[^\w\- ]", "", h.strip().lower()).replace(" ", "-")
+            for h in re.findall(r"^#{1,6} (.+)$", workflow, re.MULTILINE)
         }
         observed = {}
-        sources = [row["source"] for row in IR.agent_snapshots(ROOT) if row["source"].startswith(".codex/agents/")] if IR.governance_copy(ROOT) else [str(p.relative_to(ROOT)) for p in (ROOT / ".codex/agents").glob("*.toml")]
-        for source in sources:
-            path = Path(source)
-            agent = tomllib.loads(agent_text(source))
+        for path in sorted((ROOT / ".codex/agents").glob("*.toml")):
+            agent = tomllib.loads(path.read_text())
             self.assertEqual(agent["name"], path.stem)
             observed[agent["name"]] = (agent["model"], agent["model_reasoning_effort"])
-            self.assertIn(COMMON, agent["developer_instructions"])
+            instruction = agent["developer_instructions"]
+            self.assertIn(COMMON, instruction)
+            anchors = re.findall(r"#(papel-[a-z]+)", instruction)
+            self.assertTrue(anchors, f"{path.name} sem âncora de papel")
+            self.assertLessEqual(set(anchors), headings, f"{path.name} cita âncora inexistente")
+            self.assertNotIn("procedimento", instruction)
         self.assertEqual(observed, expected)
+        for name in expected:
+            self.assertIn(f"`{name}`", workflow, f"{name} ausente da seção Agentes")
         self.assertEqual((config["model"], config["model_reasoning_effort"]), ("gpt-6.1-sol", "medium"))
         self.assertEqual(config["agents"]["max_concurrent_threads_per_session"], 3)
         root = config["developer_instructions"]
-        self.assertNotIn("aplica diretamente ec_triador", root)
-        self.assertIn("controlador", root)
+        self.assertIn(COMMON, root)
         self.assertIn("ec_orquestrador_alta", root)
+        self.assertIn("ec_verificador", root)
         self.assertIn("bloqueie a etapa dependente", root)
-        triager = tomllib.loads(agent_text(".codex/agents/ec_triador.toml"))[
-            "developer_instructions"
-        ]
-        self.assertIn("Quando delegado", triager)
-        self.assertIn("não implemente", triager)
-        self.assertIn("não execute testes e não crie agentes", triager)
-        for name in ("ec_validador", "ec_validador_alta"):
-            instruction = tomllib.loads(agent_text(f".codex/agents/{name}.toml"))[
-                "developer_instructions"
-            ]
-            self.assertIn("--features/--feature", instruction)
-            self.assertIn("todos os gates", instruction)
-            self.assertIn("não exija aprovação global", instruction)
+        verifier = tomllib.loads(agent_text(".codex/agents/ec_verificador.toml"))["developer_instructions"]
+        self.assertIn("Não edite implementação", verifier)
+        self.assertNotIn("sddtask.py evidence", verifier, "o verificador devolve linhas sem hashes")
+        self.assertIn("sem hashes", verifier)
+        self.assertIn("a skill do item", verifier)
 
-    @unittest.skipUnless(BEFORE.is_dir(), "bounded preimages unavailable in this copy")
-    def test_all_skill_methods_and_bridge_contributions_preserved(self):
-        profile = json.loads((ROOT / "config/governance/profile.json").read_text())
-        names = set(profile["general"]) | set(profile["conditional"]) | set(profile["new"])
-        self.assertEqual(len(names), 31)
-        for name in sorted(names):
-            with self.subTest(skill=name):
-                skill_path = f".codex/skills/{name}/SKILL.md"
-                # Compare this historical transition after authenticating all
-                # later successors, rather than freezing the live skill forever.
-                skill = IR.predecessor(ROOT, skill_path, (ROOT / skill_path).read_bytes())
-                prior = (BEFORE / f"{skill_path}.bin").read_bytes()
-                if name != "commit-governance":
-                    self.assertEqual(skill, prior)
-                else:
-                    before_sections, after_sections = sections(prior.decode()), sections(skill.decode())
-                    self.assertEqual(before_sections.keys(), after_sections.keys())
-                    for title in before_sections.keys() - {"Commit workflow", "Pre-commit automation choice"}:
-                        self.assertEqual(before_sections[title], after_sections[title])
-                bridge_path = f"sdd/chain/{name}.md"
-                bridge = IR.predecessor(ROOT, bridge_path, (ROOT / bridge_path).read_bytes()).decode()
-                previous = (BEFORE / f"{bridge_path}.bin").read_text()
-                self.assertEqual(bridge.split("---", 2)[:2], previous.split("---", 2)[:2])
-                before_sections, after_sections = sections(previous), sections(bridge)
-                for title in before_sections:
-                    if title in {"Completion and authority", "Inputs and contributions"}:
-                        continue
-                    if title == "Conditional project profile":
-                        # The old file appended shared policy after this selection paragraph.
-                        self.assertEqual(
-                            before_sections[title].strip().split("\n\n", 1)[0],
-                            after_sections[title].strip().split("\n\n", 1)[0],
-                        )
-                    else:
-                        self.assertEqual(before_sections[title].strip(), after_sections[title].strip())
-                old_contribution = before_sections.get("Inputs and contributions", "")
-                new_contribution = after_sections.get("Inputs and contributions", "")
-                if name == "autonomous-verification-engineering":
-                    old_contribution = old_contribution.replace(
-                        "Separate states: pending, approved, rejected, inconclusive, justified not applicable.", ""
-                    )
-                    new_contribution = new_contribution.replace(
-                        "Separate domain lifecycle states (including pending) from SDD verdicts; pending is not an SDD status. Record acceptance with the five states in [evidence](../evidence.md), using UNVERIFIED when required evidence has not been collected.", ""
-                    )
-                    new_contribution = new_contribution.replace(
-                        "Separate states: pending, approved, rejected, inconclusive, justified not applicable.", ""
-                    )
-                self.assertEqual(old_contribution, new_contribution)
-                for target in re.findall(r"\]\(([^)]+)\)", bridge):
-                    if not re.match(r"[a-z]+://", target):
-                        self.assertTrue(((ROOT / bridge_path).parent / target.split("#", 1)[0]).is_file(), target)
+    def test_stage_8_sequence_and_item_skill(self):
+        workflow = agent_text(COMMON)
+
+        def stage(title):
+            return re.search(rf"^### {title}\n(.*?)(?=^##)", workflow, re.M | re.S).group(1)
+
+        self.assertIn("roda `--write` e depois `--check --require-all`", stage(r"8\. Validar"))
+        self.assertIn("etapa 8, passo 2", stage("Papel orquestrador"))
+        self.assertNotRegex(workflow, r"\b9\.[12]\b", "etapa 8 não depende de passos da etapa 9")
+        self.assertIn("documentação afetada", stage(r"7\. Executar"))
+        for name in ("ec_orquestrador_normal", "ec_orquestrador_alta"):
+            text = tomllib.loads(agent_text(f".codex/agents/{name}.toml"))["developer_instructions"]
+            self.assertIn("sddtask.py evidence --task <ID> --write e depois --check --require-all", text, name)
+        self.assertIn("skill", stage(r"5\. Quebrar em itens de trabalho"))
+        self.assertIn("todo item tem teste, condição de pronto e skill", workflow)
+        self.assertIn("itens `T-n` com a skill", stage("Delegação"))
+        for name in ("ec_implementador", "ec_implementador_extra_alto"):
+            text = tomllib.loads(agent_text(f".codex/agents/{name}.toml"))["developer_instructions"]
+            self.assertIn("Use a skill indicada no item", text, name)
+        template = agent_text("sdd/templates/task.md")
+        self.assertIn("| Item | D | Arquivos (dono) | Depende de | Teste | Pronto quando | Skill |", template)
+        for path in [COMMON, "sdd/templates/task.md", *sorted(str(p.relative_to(ROOT)) for p in (ROOT / ".codex/agents").glob("*.toml"))]:
+            for line in agent_text(path).splitlines():
+                if "validate.py" in line and "--task" in line:
+                    self.assertIn("--matrix", line, f"{path}: {line}")
 
 
 if __name__ == "__main__":

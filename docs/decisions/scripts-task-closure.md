@@ -8,7 +8,8 @@ and hash preconditions; implement a fixed Python entry delegating to actual Carg
 and existing Ox validators. No foreign thresholds, scanners or installation.
 D-02: explicit governance/rust/full selection, offline checks, raw separate logs,
 real exit codes and required-tool failures. Tests/builds do not approve a product.
-D-03: closure evidence lives in the task/feature and follows sdd/evidence.md;
+D-03: closure evidence lives in the task/feature and follows the evidence rules
+(then `ea3cf0f:sdd/evidence.md`; now [workflow](../../sdd/workflow.md#evidência-e-retomada));
 missing mandatory observations prevent acceptance; graphical targets remain separate.
 D-04: authenticate exact authority successors using a bounded registry and preserved
 preimages. Archive observations affected by changed inputs, mark dependent criteria
@@ -22,7 +23,7 @@ This is a reviewed boundary adjustment, not automatic inclusion of imported scri
 profile/catalog change or authorization to generate/publish a distribution package.
 Governance selection works in this copy; Rust/full requires the complete checkout.
 
-Alternatives and risks are in sdd/features/scripts-task-closure/plan.md.
+Alternatives and risks: `ea3cf0f:sdd/features/scripts-task-closure/plan.md` (Git history).
 Revisit on new stacks, operational consumers, toolchain changes or package qualification.
 
 ## Preference successor — 2026-11-06

@@ -1,9 +1,8 @@
 # Contexto e fases do produto
 
 **Fase atual:** `implementation-foundation`; aplicativo `bootstrap-implemented`.
-A feature `product-foundation` entrega a transição da governança. F0 recebeu aprovação no corpus local de 03/11, após corrigir e revalidar o desenho do histórico; a observação histórica está em
-`docs/validation/f0-resumption-20261103/`. Os estados atuais ficam nos envelopes
-`evidence.json` das features e em suas projeções de convergência. A observação
+A feature `product-foundation` entrega a transição da governança. F0 recebeu aprovação no corpus local de 03/11, após corrigir e revalidar o desenho do histórico. Os estados atuais ficam nas
+[specs vivas](../../sdd/specs/README.md). A observação
 antiga não aceita a UI posterior nem autoriza uma nova fase.
 
 **Escopo arquitetural vigente:** resumo autocontido do produto e seus estados. Ox é agent-first, local-first e extensível, com Rust/Iced, LSP e serviços avançados por plugins, dois modos de grafo e confiabilidade verificável como prioridade. Motores de contexto, grafo e compactação serão próprios; bibliotecas auxiliares exigem avaliação. Os 16 crates de `application/` fornecem os contratos da fundação. O shell Iced
@@ -75,8 +74,8 @@ presentation interactions; they do not open or edit user files. A directional
 Cargo-dependency map and role/instance table illustrate planned capabilities.
 Controller/Runtime/Verification Engine continue to own actual local task effects.
 This does not implement persistence, a graph engine, real agents or remote services.
-The [surface map](../design/surfaces.md) and
-[current integration report](../validation/visual-integration-20261111/report.md)
+The [surface map](../design/surfaces.md) and the
+[visual-workbench spec](../../sdd/specs/visual-workbench.md)
 distinguish current implementation, demonstration and acceptance limits. Historical
 F0 observations above remain tied to their original inputs, not the redesigned UI.
 

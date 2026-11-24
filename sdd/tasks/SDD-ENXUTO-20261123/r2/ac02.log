@@ -1,0 +1,107 @@
+$ python3 -m unittest discover -s sdd/tools/tests
+......task inexistente: sdd/tasks/NOPE-20261124.md
+ID de task inválido: ../../x
+ID de task inválido: FIX-20261124
+
+...............................................................
+----------------------------------------------------------------------
+Ran 69 tests in 0.516s
+
+OK
+malformed          input      I-01         registrado=qualquer atual=—
+1 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=<64 hex> atual=00652b81e746
+unreferenced       input      I-01         registrado=<64 hex> atual=—
+1 problema(s) em 2 verificação(ões).
+1 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+escaping           input      I-01         registrado=<64 hex> atual=—
+escaping           input      I-02         registrado=<64 hex> atual=—
+2 problema(s) em 3 verificação(ões).
+1 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+missing            input      I-01         registrado=<64 hex> atual=—
+1 problema(s) em 2 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+0 problema(s) em 0 verificação(ões).
+unobserved         criterion  AC-01        registrado=— atual=00652b81e746
+unobserved         criterion  AC-02        registrado=— atual=f7294f68b34d
+2 problema(s) em 0 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+unobserved         criterion  AC-02        registrado=— atual=f7294f68b34d
+1 problema(s) em 3 verificação(ões).
+malformed          criterion  AC-01        registrado=<64 hex> atual=00652b81e746
+malformed          input      I-01         registrado=<64 hex> atual=1382c01db535
+2 problema(s) em 3 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+0 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=aaaaaaaaaaaa atual=00652b81e746
+malformed          input      I-01         registrado=aaaaaaaaaaaa atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=AAAAAAAAAAAA atual=00652b81e746
+malformed          input      I-01         registrado=AAAAAAAAAAAA atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=sha256:aaaaa atual=00652b81e746
+malformed          input      I-01         registrado=sha256:aaaaa atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=aaaaaaaaaaaa atual=00652b81e746
+malformed          input      I-01         registrado=aaaaaaaaaaaa atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+stale              input      I-01         registrado=1382c01db535 atual=94a18edec001
+1 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+stale              input      I-01         registrado=1382c01db535 atual=94a18edec001
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+1 problema(s) em 3 verificação(ões).
+0 problema(s) em 3 verificação(ões).
+stale              criterion  AC-01        registrado=00652b81e746 atual=1884fc8a9a14
+1 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+stale              criterion  AC-01        registrado=00652b81e746 atual=1884fc8a9a14
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+1 problema(s) em 3 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+0 problema(s) em 2 verificação(ões).
+exit=0
+$ python3 -m unittest discover -s sdd/tools/tests -v 2>&1 | grep -E 'EvidenceCommandTests|matrix|no_item_tests' (complementar: nomes dos testes de evidence e de matriz)
+test_derived_input_needs_full_sha256 (test_sddtask.EvidenceCommandTests.test_derived_input_needs_full_sha256) ... ok
+test_escaped_pipe_and_unbalanced_backtick_rows_are_preserved (test_sddtask.EvidenceCommandTests.test_escaped_pipe_and_unbalanced_backtick_rows_are_preserved) ... ok
+test_input_outside_repository_is_a_problem_and_not_hashed (test_sddtask.EvidenceCommandTests.test_input_outside_repository_is_a_problem_and_not_hashed) ... ok
+test_missing_referenced_input_stays_a_problem (test_sddtask.EvidenceCommandTests.test_missing_referenced_input_stays_a_problem) ... ok
+test_obsolete_observations_are_not_rewritten (test_sddtask.EvidenceCommandTests.test_obsolete_observations_are_not_rewritten) ... ok
+test_require_all_needs_a_fresh_row_per_criterion (test_sddtask.EvidenceCommandTests.test_require_all_needs_a_fresh_row_per_criterion) ... ok
+test_unknown_or_invalid_task_exits_2 (test_sddtask.EvidenceCommandTests.test_unknown_or_invalid_task_exits_2) ... task inexistente: sdd/tasks/NOPE-20261124.md
+test_write_fills_hashes_from_real_bytes_and_check_passes (test_sddtask.EvidenceCommandTests.test_write_fills_hashes_from_real_bytes_and_check_passes) ... ok
+test_write_keeps_any_recorded_hash_form (test_sddtask.EvidenceCommandTests.test_write_keeps_any_recorded_hash_form) ... ok
+test_write_never_renews_a_stale_observation (test_sddtask.EvidenceCommandTests.test_write_never_renews_a_stale_observation) ... ok
+test_write_uses_real_column_with_repeated_header_names (test_sddtask.EvidenceCommandTests.test_write_uses_real_column_with_repeated_header_names) ... ok
+test_matrix_is_derived_from_sections_3_to_5 (test_validate.ValidatorTests.test_matrix_is_derived_from_sections_3_to_5) ... ok
+test_rejects_req_whose_criteria_no_item_tests (test_validate.ValidatorTests.test_rejects_req_whose_criteria_no_item_tests) ... ok
+test_revision_tables_accept_valid_change_and_feed_matrix (test_validate.ValidatorTests.test_revision_tables_accept_valid_change_and_feed_matrix) ... ok
+exit=0

@@ -11,8 +11,7 @@ workspace `dev_audit/`. O procedimento canônico é
 `shared-toolbox/docs/consumer-integration.md`; operação e preparo pertencem a
 `shared-toolbox/docs/application.md`. Os antigos guias temáticos encaminham para
 esses dois documentos. Esta integração foi conferida contra seus bytes em
-09/11/2026; o [registro da adaptação](../docs/validation/toolbox-consumer-rules-20261109/report.md)
-separa inspeção de execução.
+09/11/2026.
 
 Configure no ambiente local ou no CI, substituindo o caminho da instalação:
 
@@ -124,14 +123,7 @@ somente metadados limitados e sanitizados, com indicação de omissões/truncame
 saída desconhecida continua disponível no bruto e não se transforma em sucesso.
 Após publicar, cada referência confirmada deve apontar a um arquivo retido existente.
 Os caminhos publicados permanecem disponíveis durante a retenção vigente de duas
-datas, sem promessa de armazenamento permanente. A
-[correção de diagnóstico e links históricos](../docs/validation/governance-link-repair-20261115/report.md)
-registra escopo, observações e limites.
-
-O [registro da alteração](../docs/validation/terminal-progress-20261115/report.md)
-documenta exemplos realmente observados em fixtures, verificações e limitações.
-O [sucessor visual do terminal](../docs/validation/terminal-style-20261115/report.md)
-registra o escopo das cores e da hierarquia, com verificações próprias.
+datas, sem promessa de armazenamento permanente.
 
 Superfícies: `docs`, `scripts`, `application` e `security`. `--surface` e `--check`
 são repetíveis; governança (`docs`) permanece obrigatória. Sem superfície explícita,
@@ -192,11 +184,10 @@ históricos revisados, com commit, arquivo, regra e linha. O adapter verifica os
 bytes desse conjunto antes de executar. São hashes de evidência, identificadores
 SQLite, prosa e um teste sintético; nenhum diretório ou regra foi excluído.
 Novos commits não herdam essas exceções; `gitleaks` sobre arquivos atuais não as
-usa. A revisão inicial está em `docs/validation/complete-repair-20261111/history-review.json`.
+usa. A revisão inicial, de 11/11/2026, classificou 1.606 fingerprints.
 Em 15/11, 147 ocorrências adicionais foram comprovadas como hashes SHA-256 de
 arquivos em evidências JSON, incluindo `tokens.rs` no resultado citado da tela de
-boas-vindas. O [registro da correção](../docs/validation/history-correction-20261115/report.md)
-identifica cada ocorrência e seus controles. `history` é o Gitleaks sobre commits,
+boas-vindas. `history` é o Gitleaks sobre commits,
 incluindo documentação; não é uma execução de todos os analisadores sobre `docs`.
 Trivy recebe o cache e o Checks Bundle da Toolbox; não redefine `--cache-dir`.
 Geiger continua recusando relatórios com arquivos usados sem métricas, inclusive
@@ -235,7 +226,7 @@ variáveis para evitar uma segunda autoridade. Remova-as dos ambientes anteriore
 | gitleaks | gitleaks dir, redact=100, ignore-gitleaks-allow, exit-code 10 | obrigatório security |
 | history | gitleaks git, log-opts=--all, mesma política | opcional; Git completo |
 | osv | osv-scanner scan source --offline --all-packages --lockfile | obrigatório security |
-| opengrep | opengrep scan, regras locais, strict, no-git-ignore, disable-nosem | obrigatório security |
+| opengrep | opengrep scan, regras locais, strict, no-git-ignore, disable-nosem; exclui `application/vendor/` ([ADR](../docs/decisions/verification-repair-20261123.md)) | obrigatório security |
 | bandit | bandit, YAML + INI explícitos, ignore-nosec, arquivos explícitos | somente complete no runner plan/run |
 | ruff | ruff check --ignore-noqa --no-fix --no-cache | obrigatório quality |
 | shellcheck | shellcheck --format=json, rcfile explícito | selecionado pelo catálogo no runner plan/run; opcional no CLI legado |
@@ -263,7 +254,7 @@ arquivos obsoletos foram removidos de scripts/config. Evidências históricas
 continuam intactas. Nenhum adapter ou import privado Python é necessário.
 
 Snapshots privados incluem fontes selecionadas, configurações e regras. `.git`,
-`.local`, target/dist, ambientes Python e docs/validation são excluídos da análise
+`.local`, target/dist e ambientes Python são excluídos da análise
 de arquivos. Escopo: arquivos raiz reconhecidos e application/tools/scripts/sdd/
 config/docs/.github/.codex; conteúdo fora dele não recebe certificação.
 Links, especiais e ignores não revisados nas fontes selecionadas bloqueiam.
@@ -374,8 +365,9 @@ Bandit usa baseline de ocorrências revistas e Ruff ignora somente códigos em
 paths exatos. scripts/config/automation.json (reviews.static) vincula fontes e políticas por
 SHA-256: qualquer mudança exige nova revisão antes da análise; ausência da
 revisão com baseline presente falha. Não há corte global de severidade, nosec/noqa
-ou exclusão geral de testes. Motivos e limites estão em
-docs/validation/ox-operational-repair-20261109/static-review.md.
+ou exclusão geral de testes. Bandit B404/B603/B607/B108/B405/B314 e seus espelhos no
+Ruff foram revistos como falsos positivos (subprocess sem shell, ferramentas do PATH
+local, `/tmp` controlado, corpus SVG versionado); nenhuma vulnerabilidade foi aceita.
 
 ### Cache Cargo local desta instalação
 
@@ -411,15 +403,12 @@ impede descoberta de configuração ambiente. O baseline permanece vinculado à 
 
 A organização segue Ec; suas credenciais, serviços web/PostgreSQL, suítes de
 browser e exceções específicas não se aplicam ao desktop Rust/Iced. A interface padrão segue `plan|run`, com a sintaxe antiga preservada para compatibilidade. Mudanças no catálogo são dados, nunca código avaliado pelo shell.
-Inventário, disposição de migração e verificação:
-[relatório](../docs/validation/scripts-centralization-20261113/report.md).
 
 As evidências atuais dessa feature usam entradas presentes na distribuição de
 governança. Observações anteriores que também dependem de `application/`, bases
 locais ou bytecode ficam preservadas como histórico, sem serem reusadas para
 aprovar novos bytes. A feature continua incluída e verificada nas cópias
-independentes. Detalhes e verificações da sucessão:
-[paridade Cargo e evidências portáveis](../docs/validation/ec-cargo-parity-20261113/report.md).
+independentes.
 
 
 ## Padrões dos analisadores — sucessão de 13/11/2026
@@ -439,8 +428,7 @@ baseline Bandit continuam específicas do Ox. Os catálogos externos adicionais 
 o executor CodeQL do Ec são capacidades distintas e não estão implementados neste
 runner. Não há alegação de equivalência da cobertura inteira dos dois produtos.
 Padrões mais amplos podem revelar achados no código existente; a migração de
-configuração não declara a suíte completa aprovada. Evidências e comparação:
-[alinhamento dos padrões](../docs/validation/scripts-defaults-20261113/report.md).
+configuração não declara a suíte completa aprovada.
 
 ## Correções da execução de 13/11
 
@@ -449,8 +437,6 @@ paridade com Ec substitui a antiga prioridade do cache pela busca PATH primeiro,
 descrita acima. Nenhum gate compila ou instala ferramentas. A correção de 15/11
 declara o Geiger corrigido localmente por caminho/hash no catálogo, como descrito
 acima; a antiga seleção manual por `PATH` fica substituída para esse check.
-Fonte, patch, regressões e identidade estão no
-[relatório de reparo](../docs/validation/complete-repair-20261113/report.md).
 SC2310 foi revisto por chamada: predicados propagam falhas explicitamente; os
 produtores de inventário têm seus códigos conferidos antes de carregar arrays.
 As regras dos linters continuam ativas. As disposições de duplicidade/licença
@@ -488,6 +474,3 @@ relatórios sem imprimir mensagens livres das ferramentas no terminal.
 de `--root` é indiferente. Valores ausentes, raiz inexistente e ações conflitantes
 retornam erro de uso. O catálogo rejeita tipos/caminhos inválidos nos seletores,
 caminhos locais e bindings de revisão antes da execução.
-
-Disposição dos achados, revisão e limites operacionais:
-[correções da análise](../docs/validation/claude-analysis-20261117/report.md).

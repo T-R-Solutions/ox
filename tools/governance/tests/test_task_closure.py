@@ -126,30 +126,6 @@ class ClosureTests(unittest.TestCase):
         )
         self.assertEqual(run.returncode, 2)
 
-    def test_succession_rejects_mutation_and_escape(self):
-        sys.path.insert(0, str(ROOT / "tools/governance/scripts"))
-        import closure_revision as R
-
-        data = (ROOT / "sdd/workflow.md").read_bytes()
-        # Current documentary successor normalizes to the authenticated prior policy.
-        import instruction_revision
-        historical = instruction_revision.predecessor(ROOT, "sdd/workflow.md", data)
-        previous = R.maintenance_predecessor(ROOT, "sdd/workflow.md", historical)
-        self.assertNotEqual(previous, data)
-        self.assertEqual(R.predecessor(ROOT, "sdd/workflow.md", data), previous)
-        self.assertIn(b"Choose the route", data)
-        # Current policy no longer contains a mandatory automatic closure invocation.
-        self.assertEqual(
-            R.predecessor(ROOT, "sdd/workflow.md", data + b"unknown"), data + b"unknown"
-        )
-        with tempfile.TemporaryDirectory() as tmp:
-            dest = Path(tmp)
-            registry = dest / R.REGISTRY
-            registry.parent.mkdir(parents=True)
-            registry.write_text("{}")
-            with self.assertRaises(ValueError):
-                R.predecessor(dest, "sdd/workflow.md", data)
-
     def test_execution_from_other_directory_and_blocked_toolchain(self):
         with tempfile.TemporaryDirectory(prefix="Ox execution spaces ") as tmp:
             dest = Path(tmp)

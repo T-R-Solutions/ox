@@ -1,8 +1,0 @@
-{
-  "v0": "fixture schema v0 uses the same entity fields as v1; only schema header differs; migrate header under pre-backup, preserving all logical identities and payloads",
-  "v1": "no-op",
-  "v2": "unsupported sentinel; refuse before write",
-  "downgrade": "refuse without writes",
-  "backup_cut": "M1 logical entity set; before hash must equal restore hash modulo explicit version header",
-  "note": "These are experimental format fixtures, not an earlier Ox storage format or product migration claim."
-}

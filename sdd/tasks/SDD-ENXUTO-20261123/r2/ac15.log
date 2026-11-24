@@ -1,0 +1,11 @@
+$ grep -c 'governança e cópia' docs/assets/diagrams/documentation.mmd docs/README.md docs/assets/documentation.svg; python3 docs/assets/check.py; grep -o 'Desenvolvimento · verificar e manter' docs/assets/diagrams/documentation.mmd docs/README.md docs/assets/documentation.svg; firefox --headless --no-remote --profile /tmp/claude-1000/-home-rodrigo-Projetos-ox/8ddf6760-42c1-479f-a2dc-727eda8fb290/scratchpad/verifier-ajustes-r2/ffprofile-r3b --window-size=920,512 --screenshot /home/rodrigo/Projetos/ox/sdd/tasks/SDD-ENXUTO-20261123/r2/ac15-documentation.png file:///home/rodrigo/Projetos/ox/docs/assets/documentation.svg; file sdd/tasks/SDD-ENXUTO-20261123/r2/ac15-documentation.png
+docs/assets/diagrams/documentation.mmd:0
+docs/README.md:0
+docs/assets/documentation.svg:0
+212 local targets/anchors, 9 SVGs; 0 failures
+docs/assets/diagrams/documentation.mmd:Desenvolvimento · verificar e manter
+docs/README.md:Desenvolvimento · verificar e manter
+docs/assets/documentation.svg:Desenvolvimento · verificar e manter
+*** You are running in headless mode.
+sdd/tasks/SDD-ENXUTO-20261123/r2/ac15-documentation.png: PNG image data, 920 x 512, 8-bit/color RGBA, non-interlaced
+exit=0

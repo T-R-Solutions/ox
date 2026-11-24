@@ -1,787 +1,490 @@
-"""Offline structural checks for this local SDD integration (standard library only)."""
+#!/usr/bin/env python3
+"""Validador do SDD do Ox: estrutura de sdd/ e gates dos registros de task.
+
+Implementa os gates verificáveis mecanicamente de sdd/workflow.md sobre
+sdd/tasks/<ID>.md e sdd/specs/*.md. Usa o parser único sdd/tools/sddtask.py.
+Somente leitura; Python 3.11+ stdlib. Um exit 0 prova formato e coerência
+declarada, não comportamento do produto nem adequação dos oráculos.
+
+Uso, da raiz do Ox:
+  python3 sdd/tools/validate.py --root .                 # estrutura + todas as tasks e specs
+  python3 sdd/tools/validate.py --root . --structure-only
+  python3 sdd/tools/validate.py --root . --task <ID> [--task <ID>] [--matrix]
+
+`--matrix` imprime a matriz REQ → D → T → AC derivada das seções 3-5 (etapa 6).
+
+Saída 0: sem falhas. Saída 1: falhas de validação (linhas "FAIL: ...").
+Saída 2: uso inválido, task inexistente ou arquivo ilegível.
+"""
+from __future__ import annotations
 
 import argparse
-import hashlib
-import json
-from pathlib import Path
+import importlib
 import re
 import sys
-from urllib.parse import unquote, urlsplit
+from pathlib import Path
 
-STATES = {"APPROVED", "REJECTED", "UNVERIFIED", "INCONCLUSIVE", "NOT APPLICABLE"}
-LEGACY_STATES = {
-    "APROVADO": "APPROVED",
-    "REPROVADO": "REJECTED",
-    "NÃO VERIFICADO": "UNVERIFIED",
-    "INCONCLUSIVO": "INCONCLUSIVE",
-    "NÃO APLICÁVEL": "NOT APPLICABLE",
-}
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+T = importlib.import_module("sddtask")
+
+REQUIRED_FILES = ("constitution.md", "project.md", "workflow.md", "templates/task.md", "templates/spec.md")
+REQUIRED_DIRS = ("tasks", "specs", "tools")
+ROUTES = ("Local", "Completa")
+TASK_STATES = ("aberta", "concluída", "incompleta", "bloqueada")
+ID_RE = re.compile(r"^[A-Z0-9]+(?:-[A-Z0-9]+)*-\d{8}(?:-\d+)?$")
+PROMPT_SKILL = ".codex/skills/prompt/SKILL.md"
+NO_ORACLE = "sem oráculo separado:"
+CLOSURE_FIELDS = ("Documentação", "`sdd/project.md`", "Inputs da seção 8 alterados no fechamento",
+                  "Checks de governança", "Pendências", "Estado final")
+INHERITED = "(herdado)"
+# A coluna Skill da seção 5 vale para tasks Completa abertas a partir desta data; registros
+# anteriores foram fechados sem ela e não são reescritos.
+SKILL_COLUMN_SINCE = "2026-11-24"
+# Em task concluída, arquivo de input alterado ou removido depois do fechamento é caso de
+# retomada (sdd/workflow.md, Evidência e retomada), não falha estrutural do registro.
+POST_CLOSE_DRIFT = {"stale", "missing"}
+LOCAL_DIR = ".local"  # ignorado pelo Git: evidência citada ali não é conferível em outro checkout
+LOCAL_RE = re.compile(r"(?<![\w.-])\.local/")
+# Tabelas das etapas 4 e 5: primeiro cabeçalho → nome usado nas mensagens.
+STAGE_TABLES = {4: {"Decisão": "decisão", "SKILL.md": "skill lida"}, 5: {"Item": "item"}}
+SKILL_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+EMPTY = {"", "—", "-", "\u2013"}
 
 
-def state(value):
-    """Normalize legacy evidence without rewriting historical documents."""
-    return LEGACY_STATES.get(value, value) if isinstance(value, str) else None
+class UsageError(Exception):
+    pass
 
 
-def digest(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def forbidden_terms(root: Path) -> list[str]:
+    """Termos da coluna "Proibido" da tabela da etapa 1 de sdd/workflow.md."""
+    workflow = root / "sdd" / "workflow.md"
+    lines = T.unfenced(workflow.read_text(encoding="utf-8").splitlines())
+    terms: list[str] = []
+    for table in T.parse_tables(lines):
+        if table.header and table.header[0] == "Proibido":
+            for row in table.rows:
+                terms += [t.strip().lower() for t in row["Proibido"].split(",") if t.strip()]
+    return terms
 
 
-def contained_path(boundary, path):
-    """Check lexical components before resolving: even internal symlinks fail.
+def term_pattern(terms: list[str]) -> re.Pattern[str] | None:
+    if not terms:
+        return None
+    variants = []
+    for term in terms:
+        word = re.escape(term)
+        if term.endswith("o") and " " not in term:
+            word = re.escape(term[:-1]) + "[oa]s?"
+        elif " " not in term:
+            word += "s?"
+        variants.append(word)
+    return re.compile(r"(?<![\w-])(?:" + "|".join(variants) + r")(?![\w-])", re.IGNORECASE)
 
-    Inspecting before normalization also catches ``alias/../target`` traversal.
-    This is an offline inspection, not an OS isolation or race-free open primitive.
+
+ID_TOKEN_RE = re.compile(r"\b(?:AC|REQ|D|T|I|Q|POL|GOV|RQ)-\d+[a-z]?\b")
+UNITS = (r"ms|s|seg|segundos?|min|minutos?|h|horas?|%|px|pt|dp|fps|b|kb|kib|mb|mib|gb|gib|"
+         r"bytes?|itens|linhas|palavras|testes|arquivos|cliques|passos|requisições|req/s|x")
+# Métrica = comparador seguido de número, número seguido de unidade, ou percentil (p95).
+METRIC_RE = re.compile(rf"(?:[<>≤≥=]\s*=?\s*\d)|(?:\d[\d.,]*\s*(?:{UNITS})(?![\w]))|(?:\bp\d{{2}}\b)",
+                       re.IGNORECASE)
+
+
+def subjective_hits(lines: T.Lines, pattern: re.Pattern[str] | None) -> list[tuple[int, str]]:
+    """Termo proibido sem métrica na mesma parte da linha.
+
+    A linha é dividida em partes por " | " (condição, método, esperado de um AC). Um
+    termo só é aceito se a própria parte tiver uma métrica (METRIC_RE: comparador com
+    número, número com unidade ou percentil), fora de crases e de IDs, ou se a linha for
+    um AC pendente (`PENDENTE: Q-n`). Número solto (ex.: "versão 2") não é métrica.
     """
-    boundary = boundary.resolve()
-    path = path.absolute()
-    if any(part.is_symlink() for part in (path, *path.parents)):
-        raise ValueError(f"Symlink path is not allowed: {path}")
-    resolved = path.resolve()
-    if not resolved.is_relative_to(boundary):
-        raise ValueError(f"Escaping path: {path}")
-    return resolved
+    if pattern is None:
+        return []
+    hits = []
+    for n, line in lines:
+        if T.PENDING_RE.search(line):
+            continue
+        for part in line.split(" | "):
+            plain = ID_TOKEN_RE.sub("", re.sub(r"`[^`]*`", "", part))
+            m = pattern.search(plain)
+            if m and not METRIC_RE.search(plain):
+                hits.append((n, m.group(0)))
+    return hits
 
 
-def local_file(root, value):
-    if not isinstance(value, str) or not value or Path(value).is_absolute():
-        raise ValueError(f"Expected relative file: {value!r}")
-    path = contained_path(root, root / value)
-    if not path.is_file():
-        raise ValueError(f"Missing or escaping file: {value}")
-    return path
+def cell_ids(cell: str, prefix: str) -> list[str]:
+    return re.findall(rf"\b{prefix}-\d+[a-z]?\b", cell)
 
 
-def strict_json(path):
-    """Reject ambiguous objects before any status/trace reconciliation."""
-
-    def unique(pairs):
-        result = {}
-        for key, value in pairs:
-            if key in result:
-                raise ValueError(f"Duplicate JSON property {key!r} in {path}")
-            result[key] = value
-        return result
-
-    return json.loads(path.read_text(), object_pairs_hook=unique)
+def plan_items(task: T.Task) -> tuple[dict[str, set[str]], dict[str, str]]:
+    """Itens da seção 5: ACs citados na coluna Teste e decisão de cada item."""
+    item_acs: dict[str, set[str]] = {}
+    item_d: dict[str, str] = {}
+    items = task.table(5, "Item")
+    for row in (items.rows if items else []):
+        tid = T.strip_code(row.get("Item", ""))
+        item_acs[tid] = set(cell_ids(row.get("Teste", ""), "AC"))
+        item_d[tid] = T.strip_code(row.get("D", ""))
+    return item_acs, item_d
 
 
-def acceptance_ids(text):
-    """Declarations only: unquoted AC-N: text or - AC-N → REQ-N: text.
+def coherence_matrix(task: T.Task) -> list[tuple[str, list[str], list[str], list[str]]]:
+    """Matriz REQ → D → T → AC derivada das seções 3 (AC → REQ) e 5 (itens)."""
+    item_acs, item_d = plan_items(task)
+    rows = []
+    for req in sorted(task.reqs):
+        acs = sorted(a for a, rs in task.ac_req.items() if req in rs)
+        items = sorted(t for t, a in item_acs.items() if a & set(acs))
+        decisions = sorted({item_d[t] for t in items if item_d[t] not in EMPTY})
+        rows.append((req, decisions, items, acs))
+    return rows
 
-    Fenced code and HTML comments are non-normative. This is a deliberately
-    small line grammar, not a general Markdown parser.
+
+def opened_dates(task: T.Task) -> list[str]:
+    """Datas ISO de abertura: a do ID (`<TEMA>-<AAAAMMDD>`) e a do metadado, quando válidas."""
+    dates = []
+    m = re.search(r"-(\d{4})(\d{2})(\d{2})(?:-\d+)?$", task.id or "")
+    if m:
+        dates.append("-".join(m.groups()))
+    opened = task.meta.get("Data de abertura", "")
+    if DATE_RE.match(opened):
+        dates.append(opened)
+    return dates
+
+
+def item_skill_errors(root: Path, task: T.Task, items: T.Table, skills: T.Table | None) -> list[str]:
+    """Etapa 5: cada item cita skill existente e lida, ou 'nenhuma: <motivo>'.
+
+    Dispensa só registro cujas duas datas (ID e metadado) existem e são anteriores a
+    SKILL_COLUMN_SINCE; data ausente, malformada ou divergente exige a coluna.
     """
-    ids = set()
-    fence = None
-    comment = False
-    for line_no, line in enumerate(text.splitlines(), 1):
-        marker = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
-        if fence is not None:
-            if marker:
-                token, tail = marker.groups()
-                if (
-                    token[0] == fence[0]
-                    and len(token) >= len(fence)
-                    and not tail.strip()
-                ):
-                    fence = None
-            continue
-        if marker and not comment:
-            fence = marker[1]
-            continue
-        # Comments inside fenced examples (including info strings) are literal.
-        visible = ""
-        rest = line
-        while rest:
-            if comment:
-                _, end, rest = rest.partition("-->")
-                if not end:
-                    break
-                comment = False
-            else:
-                before, start, rest = rest.partition("<!--")
-                visible += before
-                if not start:
-                    break
-                comment = True
-        line = visible
-        if not re.match(r"^ {0,3}(?:- )?AC-", line):
-            continue
-        match = re.fullmatch(r" {0,3}(?:- )?(AC-\d+)(?: → REQ-\d+)?:[ \t]*(\S.*)", line)
-        if not match:
-            raise ValueError(
-                f"Malformed acceptance declaration at line {line_no}: {line}"
-            )
-        identifier = match[1]
-        if identifier in ids:
-            raise ValueError(
-                f"Duplicate acceptance declaration {identifier} at line {line_no}"
-            )
-        ids.add(identifier)
-    return ids
-
-
-def input_errors(document, root, rows, feature, require_fresh):
-    """Content bindings are scoped per observation; they do not attest execution."""
-    if not isinstance(document, dict):
-        return []  # schema diagnostics belong to evidence_errors
-    version = document.get("schema_version")
-    if version != 2:
-        return ["Freshness requires evidence schema_version 2"] if require_fresh else []
-    errors, bindings = [], {}
-    evidence = document.get("evidence", [])
-    if not isinstance(evidence, list):
+    dates = opened_dates(task)
+    if len(dates) == 2 and max(dates) < SKILL_COLUMN_SINCE:
         return []
-    for item in evidence:
-        if not isinstance(item, dict):
+    if "Skill" not in items.header:
+        return ["etapa 5: tabela de itens sem a coluna 'Skill'"]
+    read = {T.strip_code(r.get("SKILL.md", "")) for r in (skills.rows if skills else [])}
+    errs = []
+    for row in items.rows:
+        tid = T.strip_code(row.get("Item", ""))
+        cell = row.get("Skill", "").strip()
+        none = re.fullmatch(r"(`?)nenhuma:(.*?)\1", cell)
+        if none:
+            if not re.search(r"\w{3}", none.group(2)):
+                errs.append(f"etapa 5: {tid} com 'nenhuma:' sem motivo")
             continue
-        identifier = item.get("id")
-        if not isinstance(identifier, str):
-            continue
-        inputs = item.get("inputs")
-        if not isinstance(inputs, list) or not inputs:
-            errors.append(f"Missing input bindings: {identifier}")
-            continue
-        paths = set()
-        for value in inputs:
-            if not isinstance(value, dict) or value.get("role") not in (
-                "implementation",
-                "oracle",
-                "configuration",
-                "contract",
-                "other",
-            ):
-                errors.append(f"Invalid input binding: {identifier}")
-                continue
-            try:
-                path = local_file(root, value.get("path"))
-                relative = str(path.relative_to(root.resolve()))
-                if relative in paths:
-                    errors.append(f"Duplicate input binding: {identifier}: {relative}")
-                paths.add(relative)
-                if digest(path) != value.get("sha256"):
-                    errors.append(f"Stale input: {identifier}: {relative}")
-            except ValueError as exc:
-                errors.append(str(exc))
-        bindings[identifier] = paths
-    if not isinstance(rows, list) or not isinstance(document.get("requirements"), list):
-        return errors
-    for criterion in document["requirements"]:
-        if not isinstance(criterion, dict) or state(criterion.get("status")) not in (
-            "APPROVED",
-            "REJECTED",
-        ):
-            continue
-        refs = criterion.get("evidence_ids", [])
-        if not isinstance(refs, list) or any(not isinstance(x, str) for x in refs):
-            continue
-        linked = set().union(*(bindings.get(ref, set()) for ref in refs))
-        required = {
-            str((feature / name).relative_to(root))
-            for name in ("spec.md", "plan.md", "tasks.md", "traceability.json")
-        }
-        for row in rows:
-            if isinstance(row, dict) and row.get("acceptance") == criterion.get("id"):
-                for key in ("implementation", "oracle"):
-                    try:
-                        required.add(
-                            str(
-                                local_file(root, row.get(key)).relative_to(
-                                    root.resolve()
-                                )
-                            )
-                        )
-                    except ValueError:
-                        pass  # trace_errors reports path failures
-        for missing in sorted(required - linked):
-            errors.append(
-                f"Missing criterion input binding: {criterion.get('id')}: {missing}"
-            )
+        names = re.findall(r"`([^`]*)`", cell)
+        if not names:
+            errs.append(f"etapa 5: {tid} sem skill (`nome` ou 'nenhuma: <motivo>')")
+        elif not re.fullmatch(r"(?:[\s,;]|\be\b)*", re.sub(r"`[^`]*`", "", cell)):
+            errs.append(f"etapa 5: {tid} com texto fora de crases na coluna Skill")
+        for name in names:
+            if not SKILL_NAME_RE.match(name) or not (root / ".codex/skills" / name / "SKILL.md").is_file():
+                errs.append(f"etapa 5: {tid} cita skill inexistente '{name}'")
+            elif f".codex/skills/{name}/SKILL.md" not in read:
+                errs.append(f"etapa 5: {tid} usa '{name}', ausente de Skills lidas")
+    return errs
+
+
+def structure_errors(root: Path) -> list[str]:
+    base = root / "sdd"
+    errors = [f"sdd/{name}: ausente" for name in REQUIRED_FILES if not (base / name).is_file()]
+    errors += [f"sdd/{name}/: ausente" for name in REQUIRED_DIRS if not (base / name).is_dir()]
+    if (base / "workflow.md").is_file() and not forbidden_terms(root):
+        errors.append("sdd/workflow.md: tabela de termos proibidos (coluna \"Proibido\") ausente")
     return errors
 
 
-def evidence_errors(document, root):
-    errors = []
-    if not isinstance(document, dict):
-        return ["Evidence document must be an object"]
-    if type(document.get("schema_version")) is not int or document[
-        "schema_version"
-    ] not in (1, 2):
-        errors.append("Unsupported schema_version")
-    if (
-        not isinstance(document.get("environment"), str)
-        or not document["environment"].strip()
-    ):
-        errors.append("Missing environment")
-    if not isinstance(document.get("limitations"), list) or any(
-        not isinstance(x, str) for x in document["limitations"]
-    ):
-        errors.append("Missing limitations list")
-    evidence = document.get("evidence", [])
-    requirements = document.get("requirements", [])
-    if (
-        not isinstance(evidence, list)
-        or not isinstance(requirements, list)
-        or not requirements
-    ):
-        return errors + [
-            "Evidence/requirements must be lists; criteria must not be empty"
-        ]
-    ids = set()
-    for item in evidence:
-        if not isinstance(item, dict):
-            errors.append("Invalid evidence object")
+def local_input(root: Path, task: T.Task, inp: dict[str, str]) -> bool:
+    """Input em `.local/` (workflow, Evidência e retomada): na célula, em qualquer forma, ou
+    no caminho resolvido (`sdd/../.local/…`, link relativo ao registro, symlink)."""
+    if LOCAL_RE.search(inp["source"]):
+        return True
+    target = T.single_path(inp["source"], task.path.parent, root)
+    return (target is not None and T.contained(target, root)
+            and target.resolve().is_relative_to((root / LOCAL_DIR).resolve()))
+
+
+def drifted_after_close(root: Path, task: T.Task, inp: dict[str, str]) -> bool:
+    """Input com SHA-256 completo gravado e arquivo comum alterado ou removido depois.
+
+    Hash vazio ou malformado nunca foi uma observação válida; symlink nunca é input
+    por bytes. Nos dois casos a falha da etapa 8 continua.
+    """
+    if not T.SHA_RE.match(inp["sha256"]):
+        return False
+    target = T.single_path(inp["source"], task.path.parent, root)
+    return target is not None and not target.is_symlink()
+
+
+def task_errors(root: Path, path: Path, pattern: re.Pattern[str] | None) -> list[str]:
+    task = T.parse(path)
+    errs: list[str] = []
+    add = errs.append
+
+    # Cabeçalho e metadados
+    if not task.id or not task.title:
+        add("primeira linha deve ser '# <ID> — <título>'")
+    elif task.id != path.stem:
+        add(f"ID '{task.id}' difere do nome do arquivo '{path.stem}'")
+    elif not ID_RE.match(task.id):
+        add(f"ID '{task.id}' fora do formato <TEMA>-<AAAAMMDD>")
+    route = task.meta.get("Rota", "")
+    completa = route.startswith("Completa")
+    if not route.startswith(ROUTES):
+        add("metadado 'Rota' deve começar com Local ou Completa")
+    if not task.meta.get("Estado", "").startswith(TASK_STATES):
+        add("metadado 'Estado' deve começar com " + ", ".join(TASK_STATES))
+    if "Revisão atual" not in task.meta:
+        add("metadado 'Revisão atual' ausente")
+    missing = [n for n in range(1, 10) if n not in task.sections]
+    if missing:
+        add("seções ausentes: " + ", ".join(f"## {n}." for n in missing))
+
+    # Etapa 1 — prompt
+    for n, name in T.DIVISIONS.items():
+        if n not in task.divisions:
+            add(f"etapa 1: divisão '### {n} - {name}' ausente")
+    if 3 in task.divisions and not any(re.match(r"^\s*[-*] \S", text) for _, text in task.divisions[3]):
+        add("etapa 1: '3 - Restrições' sem guardrail listado")
+    if 5 in task.divisions and "Regra de conclusão" not in "\n".join(text for _, text in task.divisions[5]):
+        add("etapa 1: '5 - Entrega' sem 'Regra de conclusão'")
+    if not task.criteria:
+        add("etapa 1: nenhum critério '- AC-n: …' em '4 - Critérios de Aceitação'")
+    for c in task.criteria:
+        if not c.pending and not (c.method and c.expected):
+            add(f"etapa 1: {c.id} (linha {c.lineno}) sem 'método:' e 'esperado:' nem 'PENDENTE: Q-n'")
+    for div in (2, 4):
+        for n, term in subjective_hits(task.divisions.get(div, []), pattern):
+            add(f"etapa 1: termo subjetivo sem métrica '{term}' (linha {n})")
+
+    # Etapa 2 — perguntas dos ACs pendentes registradas
+    q_text = task.section_text(2)
+    for c in task.criteria:
+        if c.pending and not re.search(rf"\b{re.escape(c.pending)}\b", q_text):
+            add(f"etapa 2: {c.id} pendente de {c.pending}, que não está registrada na seção 2")
+
+    # Etapa 3 — REQ ↔ AC
+    ac_ids = {c.id for c in task.criteria}
+    if completa or task.reqs:
+        for ac in sorted(ac_ids - set(task.ac_req)):
+            add(f"etapa 3: {ac} sem REQ ('- {ac} → REQ-n')")
+        mapped_reqs = {r for rs in task.ac_req.values() for r in rs}
+        for req in sorted(set(task.reqs) - mapped_reqs):
+            add(f"etapa 3: {req} sem AC")
+        for ac, rs in sorted(task.ac_req.items()):
+            for r in rs:
+                if ac not in ac_ids or r not in task.reqs:
+                    add(f"etapa 3: mapeamento {ac} → {r} com ID inexistente")
+
+    # Etapa 4 — skills lidas (toda rota) e decisões (rota Completa)
+    skills = task.table(4, "SKILL.md")
+    if skills is None or not any(PROMPT_SKILL in r.get("SKILL.md", "") for r in skills.rows):
+        add(f"etapa 4: tabela 'Skills lidas' sem a linha de `{PROMPT_SKILL}`")
+    decisions = task.table(4, "Decisão")
+    dec_ids = {T.strip_code(r["Decisão"]) for r in decisions.rows} if decisions else set()
+    dec_reqs = {T.strip_code(r["Decisão"]): set(cell_ids(r.get("REQ", ""), "REQ"))
+                for r in (decisions.rows if decisions else [])}
+    if completa:
+        covered = {r for row in (decisions.rows if decisions else []) for r in cell_ids(row.get("REQ", ""), "REQ")}
+        for req in sorted(set(task.reqs) - covered):
+            add(f"etapa 4: {req} sem decisão")
+
+    # Etapas 4-5 — tabelas reconhecidas, IDs presentes e únicos por camada (seção e revisões)
+    for num, known in STAGE_TABLES.items():
+        for t in task.stage_tables(num):
+            if t.header and t.header[0] not in known:
+                add(f"etapa {num}: tabela '{t.header[0]}' não reconhecida; a primeira coluna é "
+                    + " ou ".join(f"'{h}'" for h in known))
+        for first, label in known.items():
+            merged = task.table(num, first)
+            for dup in dict.fromkeys(merged.duplicates if merged else []):
+                add(f"etapa {num}: {label} com ID {dup or '(vazio)'} repetido na mesma camada")
+            for row in (merged.rows if merged else []):
+                if T.strip_code(row.get(first, "")) in EMPTY:
+                    add(f"etapa {num}: linha de {label} sem ID")
+
+    # Etapas 5-6 — itens e matriz derivada (rota Completa); a matriz não é redigida à mão
+    items = task.table(5, "Item")
+    if completa:
+        if items is None:
+            add("etapa 5: tabela de itens ausente")
+        else:
+            item_acs, item_d = plan_items(task)
+            for row in items.rows:
+                tid = T.strip_code(row.get("Item", ""))
+                acs = item_acs[tid]
+                if row.get("Teste", "").strip() in EMPTY:
+                    add(f"etapa 5: {tid} sem teste")
+                for ac in sorted(acs - ac_ids):
+                    add(f"etapa 5: {tid} testa {ac}, que não existe")
+                if item_d[tid] not in EMPTY and item_d[tid] not in dec_ids:
+                    add(f"etapa 5: {tid} cita {item_d[tid]}, que não está nas decisões")
+                elif item_d[tid] in dec_ids:
+                    for ac in sorted(acs & ac_ids):
+                        for req in task.ac_req.get(ac, []):
+                            if req not in dec_reqs[item_d[tid]]:
+                                add(f"etapa 5: {tid} usa {item_d[tid]}, que não atende {req} (de {ac})")
+                if row.get("Pronto quando", "").strip() in EMPTY:
+                    add(f"etapa 5: {tid} sem condição de pronto")
+            for ac in sorted(ac_ids - set().union(*item_acs.values())):
+                add(f"etapa 5: {ac} não é coberto por nenhum item")
+            for d in sorted(dec_ids - set(item_d.values())):
+                add(f"etapa 5: {d} não é coberto por nenhum item")
+            for req, _, tids, _ in coherence_matrix(task):
+                if not tids:
+                    add(f"etapa 6: {req} sem item que teste seus AC")
+            errs += item_skill_errors(root, task, items, skills)
+
+    # Etapa 8 — evidência vigente
+    observations, obs_issues = T.effective_observations(task)
+    concluded = task.meta.get("Estado", "").startswith("concluída")
+    inputs, input_issues = T.recorded_inputs(task)
+    status = {(r["kind"], r["id"]): r["status"] for r in T.freshness(task, root)}
+    for issue in task.issues + obs_issues + input_issues:
+        add(f"etapa 8: {issue['kind']} {issue['id']} (linha {issue['line']})")
+    by_id = {c.id: c for c in task.criteria}
+    for ac, row in sorted(observations.items()):
+        state = row.get("Estado", "").split("(")[0].strip()
+        if state not in T.STATES:
+            add(f"etapa 8: {ac} com estado '{state}' fora dos cinco estados")
             continue
-        for field in (
-            "id",
-            "kind",
-            "command_or_method",
-            "observed_result",
-            "artifact",
-            "sha256",
-        ):
-            if not isinstance(item.get(field), str) or not item[field].strip():
-                errors.append(f"Missing evidence field: {field}")
-        identifier = item.get("id")
-        if not isinstance(identifier, str):
+        if ac in by_id and by_id[ac].pending:
+            add(f"etapa 8: {ac} observado enquanto PENDENTE")
+        if state == "NOT APPLICABLE" and row.get("Resultado observado", "").strip() in EMPTY:
+            add(f"etapa 8: {ac} NOT APPLICABLE sem motivo")
+        if state not in T.DECIDED:
             continue
-        if identifier in ids:
-            errors.append(f"Duplicate evidence: {identifier}")
-        ids.add(identifier)
-        if not isinstance(item.get("kind"), str) or item["kind"] not in {
-            "test",
-            "benchmark",
-            "inspection",
-            "trace",
-            "other",
-        }:
-            errors.append(f"Invalid evidence kind: {identifier}")
-        try:
-            path = local_file(root, item.get("artifact"))
-            if digest(path) != item.get("sha256"):
-                errors.append(f"Artifact hash mismatch: {identifier}")
-        except ValueError as exc:
-            errors.append(str(exc))
-    criteria = set()
-    for row in requirements:
-        if not isinstance(row, dict):
-            errors.append("Invalid criterion object")
-            continue
-        identifier = row.get("id")
-        if not isinstance(identifier, str) or not identifier.strip():
-            errors.append("Missing criterion id")
-            continue
-        if identifier in criteria:
-            errors.append(f"Duplicate criterion: {identifier}")
-        criteria.add(identifier)
-        if not isinstance(row.get("criterion"), str) or not row["criterion"].strip():
-            errors.append(f"Missing criterion text: {identifier}")
-        if state(row.get("status")) not in STATES:
-            errors.append(f"Invalid status: {identifier}")
-            continue
-        refs = row.get("evidence_ids")
-        if not isinstance(refs, list) or any(not isinstance(x, str) for x in refs):
-            errors.append(f"Invalid evidence_ids: {identifier}")
-            continue
-        if len(refs) != len(set(refs)) or not set(refs) <= ids:
-            errors.append(f"Duplicate or dangling evidence IDs: {identifier}")
-        if state(row.get("status")) in {"APPROVED", "REJECTED"} and not refs:
-            errors.append(f"Decided criterion without evidence: {identifier}")
-        if state(row.get("status")) == "NOT APPLICABLE" and (
-            not isinstance(row.get("reason"), str) or not row["reason"].strip()
-        ):
-            errors.append(f"Inapplicable criterion without reason: {identifier}")
-    return errors
+        crit = status.get(("criterion", ac))
+        if crit != "fresh":
+            add(f"etapa 8: {ac} {state} com critério {crit}")
+        refs = T.INPUT_ID_RE.findall(row.get("Inputs", ""))
+        if not refs:
+            add(f"etapa 8: {ac} {state} sem inputs I-n")
+        for ref in refs:
+            if ref in inputs and local_input(root, task, inputs[ref]):
+                add(f"etapa 8: {ac} {state} com input {ref} em {LOCAL_DIR}/, fora do Git; versione em sdd/tasks/<ID>/")
+            st = status.get(("input", ref), "missing") if ref in inputs else "missing"
+            if concluded and ref in inputs and st in POST_CLOSE_DRIFT and drifted_after_close(root, task, inputs[ref]):
+                continue  # input mudou depois do fechamento: retomada (`evidence --check`), não falha
+            if st in T.PROBLEM_STATUSES:
+                add(f"etapa 8: {ac} {state} com input {ref} {st}")
+        roles = {inputs[r]["role"] for r in refs if r in inputs}
+        if refs and "material" not in roles:
+            add(f"etapa 8: {ac} {state} sem input 'material'")
+        justified = re.search(re.escape(NO_ORACLE) + r"\s*([^;|]*)", row.get("Inputs", ""))
+        if "oráculo" not in roles and not (justified and re.search(r"\w{3}", justified.group(1))):
+            add(f"etapa 8: {ac} {state} sem input 'oráculo' nem '{NO_ORACLE} <motivo>'")
+        for column in ("Método executado", "Resultado observado"):
+            if row.get(column, "").strip() in EMPTY:
+                add(f"etapa 8: {ac} {state} com '{column}' vazio")
+
+    # Etapa 9 — fechamento
+    if task.meta.get("Estado", "").startswith("concluída"):
+        for c in task.criteria:
+            st = observations.get(c.id, {}).get("Estado", "").split("(")[0].strip()
+            if st not in ("APPROVED", "NOT APPLICABLE"):
+                add(f"etapa 9: task concluída com {c.id} em '{st or 'sem observação'}'")
+        closing = task.section_text(9)
+        if re.search(r"<[^>\n]+>", closing):
+            add("etapa 9: seção 9 com marcador de template '<…>'")
+        for fieldname in CLOSURE_FIELDS:
+            m = re.search(rf"^- {re.escape(fieldname)}: *(.*)$", closing, re.M)
+            if not m or m.group(1).strip() in EMPTY:
+                add(f"etapa 9: campo '{fieldname}' ausente ou vazio na seção 9")
+        # A revisão mais recente decide (workflow): a última linha, não a do fechamento original.
+        finals = re.findall(r"^- Estado final: *(\S+)", closing, re.M)
+        if finals and not finals[-1].startswith("concluída"):
+            add("etapa 9: 'Estado final' difere do metadado 'Estado: concluída'")
+    return errs
 
 
-def trace_errors(rows, root, feature, document=None):
-    """Check explicit links, not semantic equivalence of free-text requirements."""
-    errors = []
-    texts = {
-        name: (feature / (name + ".md")).read_text()
-        for name in ("spec", "plan", "tasks")
-    }
-    expected = acceptance_ids(texts["spec"])
-    if not expected:
-        errors.append("Spec has no acceptance IDs")
-    if not isinstance(rows, list):
-        return errors + ["Traceability must be a list"]
-    valid = []
-    for row in rows:
-        fields = (
-            "acceptance",
-            "requirement",
-            "decision",
-            "risk",
-            "implementation",
-            "oracle",
-        )
-        if (
-            not isinstance(row, dict)
-            or any(
-                not isinstance(row.get(k), str) or not row[k].strip() for k in fields
-            )
-            or not isinstance(row.get("tasks"), list)
-            or any(not isinstance(t, str) or not t.strip() for t in row["tasks"])
-        ):
-            errors.append("Invalid traceability row")
-            continue
-        valid.append(row)
-    rows = valid
-    actual = [row["acceptance"] for row in rows]
-    if set(actual) != expected or len(actual) != len(set(actual)):
-        errors.append("Traceability must cover each spec acceptance ID exactly once")
-    for row in rows:
-        for key, source in [
-            ("requirement", "spec"),
-            ("decision", "plan"),
-            ("risk", "plan"),
-        ]:
-            if not re.search(r"\b" + re.escape(row[key]) + r"\b", texts[source]):
-                errors.append(f"Unknown {key}: {row[key]}")
-        if not row.get("tasks"):
-            errors.append("Trace row has no tasks")
-        for task in row.get("tasks", []):
-            if not re.search(r"\b" + re.escape(task) + r"\b", texts["tasks"]):
-                errors.append(f"Unknown task: {task}")
-        for key in ("implementation", "oracle"):
-            try:
-                local_file(root, row[key])
-            except ValueError as exc:
-                errors.append(str(exc))
-    if document is not None:
-        requirements = (
-            document.get("requirements", []) if isinstance(document, dict) else []
-        )
-        reported = (
-            {
-                row["id"]
-                for row in requirements
-                if isinstance(row, dict) and isinstance(row.get("id"), str)
-            }
-            if isinstance(requirements, list)
-            else set()
-        )
-        if not expected <= reported:
-            errors.append("Missing acceptance result in evidence")
-    return errors
+def spec_errors(path: Path) -> list[str]:
+    lines = T.unfenced(path.read_text(encoding="utf-8").splitlines())
+    errs = []
+    if not lines or not lines[0][1].startswith("# Spec — "):
+        errs.append("primeira linha deve ser '# Spec — <capacidade>'")
+    reqs = {m.group("id") for _, text in lines if (m := T.REQ_RE.match(text))}
+    acs: dict[str, list[str]] = {}
+    for n, line in lines:
+        m = re.match(r"^- (AC-\d+) → (REQ-\d+): (.+)$", line)
+        if m:
+            acs[m.group(1)] = [m.group(2)]
+            inherited = line.rstrip().endswith(INHERITED)
+            if not inherited and not (" | método:" in line and " | esperado:" in line):
+                errs.append(f"{m.group(1)} (linha {n}) sem 'método:' e 'esperado:'")
+            if m.group(2) not in reqs:
+                errs.append(f"{m.group(1)} → {m.group(2)}: REQ inexistente")
+    for req in sorted(reqs - {r for rs in acs.values() for r in rs}):
+        errs.append(f"{req} sem AC")
+    for table in T.parse_tables(lines):
+        if table.header and table.header[0] == "AC" and "Estado" in table.header:
+            for row in table.rows:
+                state = row["Estado"].strip()
+                if state not in T.STATES:
+                    errs.append(f"estado atual de {row['AC']} fora dos cinco estados: '{state}'")
+    return errs
 
 
-def convergence_errors(text, expected, document):
-    """Check only the delimited projection; historical prose is not parsed."""
-    opening, closing = "<!-- sdd:current-status -->", "<!-- /sdd:current-status -->"
-    lines = text.splitlines()
-    if text.count(opening) != 1 or text.count(closing) != 1:
-        return ["Convergence requires exactly one current-status block"]
-    if opening not in lines or closing not in lines:
-        return ["Convergence markers must occupy their own lines"]
-    start, end = lines.index(opening), lines.index(closing)
-    if start >= end:
-        return ["Convergence current-status block is reversed"]
-    body = lines[start + 1 : end]
-    if body[:2] != ["| Criterion | Status |", "| --- | --- |"]:
-        return ["Invalid convergence table header"]
-    errors, projected = [], {}
-    for line in body[2:]:
-        match = re.fullmatch(r"\| (AC-\d+) \| ([A-Z ]+) \|", line)
-        if not match or match[2] not in STATES:
-            errors.append(f"Invalid convergence row: {line}")
-            continue
-        identifier, status = match.groups()
-        if identifier in projected:
-            errors.append(f"Duplicate convergence criterion: {identifier}")
-        projected[identifier] = status
-    if set(projected) != expected:
-        errors.append("Convergence must cover each spec acceptance ID exactly once")
-    requirements = (
-        document.get("requirements", []) if isinstance(document, dict) else []
-    )
-    reported = {}
-    if isinstance(requirements, list):
-        for row in requirements:
-            if isinstance(row, dict) and isinstance(row.get("id"), str):
-                reported[row["id"]] = state(row.get("status"))
-    for identifier in sorted(expected & projected.keys()):
-        if projected[identifier] != reported.get(identifier):
-            errors.append(f"Convergence status mismatch: {identifier}")
-    return errors
-
-
-def select_features(directory, feature_names=None):
-    """Return direct children only; selection never changes container semantics."""
-    if (directory / "spec.md").is_file() and (
-        directory / "traceability.json"
-    ).is_file():
-        raise ValueError(
-            "--features expects a container, not a feature directory; "
-            "use its parent with --feature NAME"
-        )
-    if feature_names is None:
-        return sorted(directory.iterdir())
-    if not feature_names:
-        raise ValueError("Feature selection must not be empty")
-    for name in feature_names:
-        if (
-            not isinstance(name, str)
-            or not name.strip()
-            or name != name.strip()
-            or name in (".", "..")
-            or "/" in name
-            or "\\" in name
-            or Path(name).is_absolute()
-        ):
-            raise ValueError(f"Expected a direct feature name: {name!r}")
-    selected = []
-    for name in sorted(set(feature_names)):
-        path = contained_path(directory, directory / name)
-        if not path.is_dir():
-            raise ValueError(f"Unknown feature: {name}")
-        selected.append(path)
-    return selected
-
-
-def feature_errors(
-    root,
-    check_evidence=True,
-    require_approved=False,
-    directory=None,
-    require_fresh=False,
-    feature_names=None,
-    check_convergence=False,
-):
-    """Check complete selected features; keep integrity distinct from acceptance."""
-    if not check_evidence and (require_approved or require_fresh or check_convergence):
-        return ["Acceptance, freshness and convergence checks require evidence"]
-    directory = directory or root / "sdd/features"
-    try:
-        directory = contained_path(root, directory)
-    except ValueError as exc:
-        return [str(exc)]
-    if not directory.exists() and not require_approved and feature_names is None:
-        return []
-    if not directory.is_dir() or directory.is_symlink():
-        return ["Missing or symlink feature directory"]
-    try:
-        features = select_features(directory, feature_names)
-    except ValueError as exc:
-        return [str(exc)]
-    errors = []
-    count = 0
-    for feature in features:
-        if feature.is_symlink():
-            errors.append(f"{feature.name}: Symlink feature is not allowed")
-            continue
-        if not feature.is_dir():
-            continue
-        count += 1
-        prefix = str(feature.relative_to(root))
-        try:
-            for name in ("spec.md", "plan.md", "tasks.md", "traceability.json"):
-                local_file(root, str((feature / name).relative_to(root)))
-            document = None
-            if check_evidence:
-                path = local_file(
-                    root, str((feature / "evidence.json").relative_to(root))
-                )
-                document = strict_json(path)
-                errors.extend(f"{prefix}: {e}" for e in evidence_errors(document, root))
-                if check_convergence:
-                    convergence = local_file(
-                        root, str((feature / "converge.md").relative_to(root))
-                    )
-                    errors.extend(
-                        f"{prefix}: {e}"
-                        for e in convergence_errors(
-                            convergence.read_text(),
-                            acceptance_ids((feature / "spec.md").read_text()),
-                            document,
-                        )
-                    )
-            rows = strict_json(feature / "traceability.json")
-            errors.extend(
-                f"{prefix}: {e}" for e in trace_errors(rows, root, feature, document)
-            )
-            if check_evidence:
-                errors.extend(
-                    f"{prefix}: {e}"
-                    for e in input_errors(document, root, rows, feature, require_fresh)
-                )
-            if require_approved:
-                expected = acceptance_ids((feature / "spec.md").read_text())
-                requirements = (
-                    document.get("requirements", [])
-                    if isinstance(document, dict)
-                    else []
-                )
-                if isinstance(requirements, list):
-                    for row in requirements:
-                        if (
-                            isinstance(row, dict)
-                            and isinstance(row.get("id"), str)
-                            and row["id"] in expected
-                        ):
-                            if state(row.get("status")) not in {
-                                "APPROVED",
-                                "NOT APPLICABLE",
-                            }:
-                                errors.append(
-                                    f"{prefix}: Acceptance {row['id']} is {row.get('status')}"
-                                )
-        except (OSError, ValueError, KeyError, TypeError) as exc:
-            errors.append(f"{prefix}: Could not audit feature: {exc}")
-    if not count and require_approved:
-        errors.append("No feature directories found")
-    return errors
-
-
-def markdown_errors(folder, boundary=None):
-    """Resolve inline file links without opening external URLs or following symlinks."""
-    boundary = folder if boundary is None else boundary
-    try:
-        folder = contained_path(boundary, folder)
-    except ValueError as exc:
-        return [str(exc)]
-    errors = []
-    for p in sorted(folder.rglob("*")):
-        if p.is_symlink():
-            errors.append(f"Symlink is not portable: {p}")
-            continue
-        if p.suffix != ".md" or not p.is_file():
-            continue
-        for raw in re.findall(r"\[[^\]]*\]\(([^)]+)\)", p.read_text()):
-            parts = urlsplit(raw.strip("<>"))
-            if parts.scheme or parts.netloc or not parts.path:
-                continue
-            try:
-                target = contained_path(boundary, p.parent / unquote(parts.path))
-            except ValueError as exc:
-                errors.append(f"Nonportable or missing link: {p}: {raw}: {exc}")
-                continue
-            if not target.is_file():
-                errors.append(f"Nonportable or missing link: {p}: {raw}")
-    return errors
-
-
-def skill_errors(folder, expected=None):
-    errors = []
-    if folder.is_symlink() or not folder.is_dir():
-        return [f"Missing or symlink skill folder: {folder}"]
-    entry = folder / "SKILL.md"
-    if not entry.is_file() or entry.is_symlink():
-        return [f"Missing or symlink SKILL.md: {folder}"]
-    text = entry.read_text()
-    header = re.match(r"\A---\n(.*?)\n---(?:\n|$)", text, re.S)
-    name = re.search(r"^name: ([a-z0-9-]+)$", header[1], re.M) if header else None
-    if not name or not re.search(r"^description: .+", header[1], re.M):
-        errors.append(f"Invalid skill metadata: {entry}")
-    elif expected and name[1] != expected:
-        errors.append(f"Skill name mismatch: expected {expected}, found {name[1]}")
-    errors.extend(markdown_errors(folder))
-    return errors
-
-
-def bridge_errors(root, folder):
-    errors = []
-    names = set()
-    if folder.is_symlink():
-        return ["Symlink Chain directory is not allowed"]
-    for p in sorted(folder.glob("*.md")):
-        if p.name == "README.md":
-            continue
-        if p.is_symlink():
-            errors.append(f"Symlink bridge: {p}")
-            continue
-        text = p.read_text()
-        header = re.match(r"\A---\n(.*?)\n---(?:\n|$)", text, re.S)
-        if not header:
-            errors.append(f"Missing bridge header: {p}")
-            continue
-        fields = {}
-        for line in header[1].splitlines():
-            key, sep, value = line.partition(":")
-            if not sep or key.strip() in fields:
-                errors.append(f"Malformed or duplicate bridge field: {p}")
-            fields[key.strip()] = value.strip()
-        name, location = fields.get("skill", ""), fields.get("skill_path", "")
-        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name) or p.stem != name:
-            errors.append(f"Invalid bridge identity: {p}")
-        if name in names:
-            errors.append(f"Duplicate bridge: {name}")
-        names.add(name)
-        if fields.get("bridge_version") != "1":
-            errors.append(f"Unsupported bridge_version: {p}")
-        if location == "UNCONFIGURED":
-            errors.append(f"Unconfigured skill_path: {p}")
-            continue
-        try:
-            entry = local_file(root, location)
-            if entry.name != "SKILL.md":
-                errors.append(f"Bridge must point to SKILL.md: {p}")
-                continue
-            # Reject symlink aliases even if their resolved target remains in root.
-            raw = root / location
-            if any(
-                part.is_symlink()
-                for part in [raw, *raw.parents]
-                if part.is_relative_to(root)
-            ):
-                errors.append(f"Symlink skill path: {p}")
-                continue
-            errors.extend(skill_errors(entry.parent, name))
-        except ValueError as exc:
-            errors.append(f"{p}: {exc}")
-    return errors
-
-
-def audit(
-    root,
-    check_evidence=True,
-    require_approved=False,
-    features=None,
-    model="sdd",
-    require_fresh=False,
-    link_scope="project",
-    feature_names=None,
-    check_convergence=False,
-):
-    root = root.resolve()
-    if not root.is_dir():
-        raise ValueError(f"Missing project root: {root}")
-    if link_scope not in ("project", "portable"):
-        return ["Link scope must be project or portable"]
-    if features is not None and not str(features).strip():
-        return ["Explicit feature container must not be empty"]
-    if not check_evidence and (require_approved or require_fresh or check_convergence):
-        return ["Acceptance, freshness and convergence checks require evidence"]
-    sdd = root / model
-    if Path(model).is_absolute() or not sdd.resolve().is_relative_to(root):
-        return ["Model path must stay inside the project root"]
-    for path in (
-        "README.md",
-        "project.md",
-        "constitution.md",
-        "workflow.md",
-        "evidence.md",
-        "templates/spec.md",
-        "templates/plan.md",
-        "templates/tasks.md",
-        "templates/converge.md",
-    ):
-        local_file(root, str(Path(model) / path))
-    if sdd.is_symlink():
-        return ["Symlink SDD directory is not allowed"]
-    errors = markdown_errors(sdd, root if link_scope == "project" else sdd)
-    errors.extend(bridge_errors(root, sdd / "chain"))
-    directory = root / (features or str(Path(model) / "features"))
-    if Path(
-        features or str(Path(model) / "features")
-    ).is_absolute() or not directory.resolve().is_relative_to(root):
-        return errors + ["Feature path must stay inside the project root"]
-    if features and not directory.is_dir():
-        return errors + ["Explicit feature directory is missing"]
-    errors.extend(
-        feature_errors(
-            root,
-            check_evidence,
-            require_approved,
-            directory,
-            require_fresh,
-            feature_names,
-            check_convergence,
-        )
-    )
-    return errors
-
-
-def main():
-    parser = argparse.ArgumentParser(
-        description="Optional offline checks; no fixed skill catalog or library baseline."
-    )
-    parser.add_argument("--root", type=Path, default=Path.cwd())
-    parser.add_argument(
-        "--model", help="Model directory relative to root (default: sdd)"
-    )
-    parser.add_argument(
-        "--features", help="Directory of feature directories, relative to project root"
-    )
-    parser.add_argument(
-        "--feature", action="append", dest="feature_names", metavar="NAME",
-        help="Select a direct child of --features (repeatable); shared links/bridges still checked",
-    )
-    parser.add_argument(
-        "--link-scope", choices=("project", "portable"), default=None,
-        help="Allowed link boundary: project root (default) or model folder (portable)",
-    )
-    parser.add_argument(
-        "--check-convergence", action="store_true",
-        help="Check the current-status projection against evidence (opt-in)",
-    )
-    parser.add_argument(
-        "--skill", type=Path, help="Check one standalone skill instead of a project"
-    )
-    parser.add_argument(
-        "--require-fresh",
-        action="store_true",
-        help="Require schema 2 content bindings; not proof of execution",
-    )
-    mode = parser.add_mutually_exclusive_group()
-    mode.add_argument("--structure-only", action="store_true")
-    mode.add_argument("--require-approved", action="store_true")
-    args = parser.parse_args()
-    if args.structure_only and (args.require_fresh or args.check_convergence):
-        parser.error(
-            "--require-fresh/--check-convergence cannot be combined with --structure-only"
-        )
-    if args.skill and (
-        args.features is not None
-        or args.model is not None
-        or args.feature_names is not None
-        or args.link_scope is not None
-        or args.check_convergence
-        or args.require_approved
-        or args.structure_only
-        or args.require_fresh
-    ):
-        parser.error("--skill cannot be combined with project/feature modes")
-    try:
-        if args.features is not None and not args.features.strip():
-            raise ValueError("Explicit feature container must not be empty")
-        model = args.model or "sdd"
-        if args.feature_names is not None:
-            root = args.root.resolve()
-            relative = args.features or str(Path(model) / "features")
-            if Path(relative).is_absolute():
-                raise ValueError("Feature path must stay inside the project root")
-            directory = contained_path(root, root / relative)
-            selected = select_features(directory, args.feature_names)
-            print("Selected features: " + ", ".join(p.name for p in selected), flush=True)
-        errors = (
-            skill_errors(args.skill)
-            if args.skill
-            else audit(
-                args.root,
-                not args.structure_only,
-                args.require_approved,
-                args.features,
-                model,
-                args.require_fresh,
-                args.link_scope or "project",
-                args.feature_names,
-                args.check_convergence,
-            )
-        )
-    except (OSError, ValueError, KeyError, TypeError) as exc:
-        print(f"Could not audit: {exc}", file=sys.stderr)
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--root", default=".", type=Path)
+    ap.add_argument("--structure-only", action="store_true", help="só a estrutura de sdd/")
+    ap.add_argument("--task", action="append", default=[], help="ID de task (repetível)")
+    ap.add_argument("--matrix", action="store_true", help="imprime a matriz derivada das tasks de --task")
+    args = ap.parse_args(argv)
+    root = args.root.resolve()
+    if args.structure_only and args.task:
+        print("--structure-only não combina com --task", file=sys.stderr)
         return 2
-    for error in errors:
-        print("FAIL:", error, file=sys.stderr)
-    if errors:
+    if args.matrix and not args.task:
+        print("--matrix exige --task", file=sys.stderr)
+        return 2
+    try:
+        failures = [f"FAIL: {e}" for e in structure_errors(root)]
+        checked_tasks = checked_specs = 0
+        if not args.structure_only and not failures:
+            pattern = term_pattern(forbidden_terms(root))
+            if args.task:
+                paths = []
+                for tid in args.task:
+                    if not ID_RE.match(tid):
+                        raise UsageError(f"ID de task inválido: {tid}")
+                    p = root / "sdd" / "tasks" / f"{tid}.md"
+                    if not p.is_file() or p.is_symlink():
+                        raise UsageError(f"task inexistente: sdd/tasks/{tid}.md")
+                    paths.append(p)
+                specs: list[Path] = []
+            else:
+                paths = T.find_tasks(root)
+                specs = sorted(p for p in (root / "sdd" / "specs").glob("*.md")
+                               if p.name != "README.md" and p.is_file() and not p.is_symlink())
+            for p in paths:
+                rel = p.relative_to(root).as_posix()
+                failures += [f"FAIL: {rel}: {e}" for e in task_errors(root, p, pattern)]
+                checked_tasks += 1
+                if args.matrix:
+                    print(f"Matriz {rel}:")
+                    for req, ds, ts, acs in coherence_matrix(T.parse(p)):
+                        print(f"  {req} → {', '.join(ds) or '—'} → {', '.join(ts) or '—'} → {', '.join(acs) or '—'}")
+            for p in specs:
+                rel = p.relative_to(root).as_posix()
+                failures += [f"FAIL: {rel}: {e}" for e in spec_errors(p)]
+                checked_specs += 1
+    except UsageError as exc:
+        print(exc, file=sys.stderr)
+        return 2
+    except (OSError, UnicodeDecodeError) as exc:
+        print(f"erro de leitura: {exc}", file=sys.stderr)
+        return 2
+    for line in failures:
+        print(line)
+    if failures:
+        print(f"{len(failures)} falha(s).")
         return 1
-    print("PASS: scoped files, configured bridges and requested evidence checks")
-    print(
-        "Not proof of semantic adequacy, agent execution or comparative effectiveness."
-    )
+    scope = "estrutura" if args.structure_only else f"estrutura, {checked_tasks} task(s), {checked_specs} spec(s)"
+    print(f"PASS: {scope}. Formato e coerência declarada; não prova comportamento do produto.")
     return 0
 
 

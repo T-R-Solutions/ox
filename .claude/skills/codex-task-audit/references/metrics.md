@@ -1,6 +1,6 @@
 # Métricas de auditoria (M01–M20)
 
-Escala por métrica, aplicada à task em análise (`.ai/task_planning.md`):
+Escala por métrica, aplicada à task em análise (`sdd/tasks/<ID>.md`):
 
 | Nota | Significado |
 |---|---|
@@ -68,7 +68,7 @@ Cada mudança de comportamento tem teste ou verificação que a exercita?
 - Arquivo/função monolítica que cresceu (ex.: `views.rs` com centenas de linhas
   novas) ou, ao contrário, fragmentação em módulos minúsculos sem coesão.
 - Estado global/escopo dinâmico usado como canal entre funções.
-- Diretórios de evidência por task que duplicam o mesmo conteúdo.
+- Registros da task fora de `sdd/tasks/<ID>.md` (ex.: pastas novas de evidência versionada, logs paralelos) que duplicam o mesmo conteúdo.
 
 ### M06 · Legado, morto, depreciado
 - Código antigo mantido ao lado do novo; flags/ramos de compatibilidade sem prazo
@@ -91,10 +91,11 @@ Cada afirmação do relatório do Codex (“N testes passaram”, “revisão in
 hashes por amostragem, confira se logs citados existem. Alegação falsa material = 0.
 
 ### M09 · Governança SDD e fechamento
-Rota correta (local vs. completa) pela matriz de risco; cinco estados usados
-corretamente; evidência schema 2 com inputs reais; disposição documental registrada;
-entrada em `task_finalizada.md` presente, completa e append-only; revisão/validação em
-contexto independente quando exigido. Ver [governança Ox](ox-governance.md).
+Rota correta (Consulta, Local ou Completa) pelas regras do workflow; gate de cada
+etapa cumprido; cinco estados usados corretamente; seção 8 com SHA-256 completo do
+critério e inputs com papel, gerados e conferidos por `sddtask.py evidence`; matriz
+derivada por `validate.py --matrix`; reobservação de inputs alterados no fechamento; revisão/validação em contexto
+independente quando exigido. Ver [governança Ox](ox-governance.md).
 
 ### M10 · Tratamento de erros e resiliência
 Falhas propagam com causa útil? Recuperação preserva dados (POL-05)? Limpeza em
@@ -144,4 +145,4 @@ features mínimas, fontes/ativos com proveniência (`NOTICE`, `font-provenance.j
 Volume de artefatos proporcional ao risco (milhares de linhas de evidência para uma
 mudança pequena é custo de revisão); arquivos gerados/caches/binários no diff
 (`__pycache__`, `.pyc`, `.log` fora do `.gitignore`); mudanças não relacionadas
-misturadas; arquivos alterados que `task_completed.md` não cita (órfãos).
+misturadas; arquivos alterados que a seção 7 do registro não cita (órfãos).

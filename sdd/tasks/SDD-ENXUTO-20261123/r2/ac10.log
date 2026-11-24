@@ -1,0 +1,25 @@
+$ ls sdd/specs/*.md && grep -c "^## Estado atual" sdd/specs/*.md && python3 sdd/tools/validate.py --root .
+sdd/specs/agent-runtime.md
+sdd/specs/bootstrap.md
+sdd/specs/f0-gate.md
+sdd/specs/foundation.md
+sdd/specs/ide-shell.md
+sdd/specs/local-persistence.md
+sdd/specs/local-task-ui.md
+sdd/specs/plugin-host.md
+sdd/specs/README.md
+sdd/specs/verification-engine.md
+sdd/specs/visual-workbench.md
+sdd/specs/agent-runtime.md:1
+sdd/specs/bootstrap.md:1
+sdd/specs/f0-gate.md:1
+sdd/specs/foundation.md:1
+sdd/specs/ide-shell.md:1
+sdd/specs/local-persistence.md:1
+sdd/specs/local-task-ui.md:1
+sdd/specs/plugin-host.md:1
+sdd/specs/README.md:0
+sdd/specs/verification-engine.md:1
+sdd/specs/visual-workbench.md:1
+PASS: estrutura, 2 task(s), 10 spec(s). Formato e coerência declarada; não prova comportamento do produto.
+exit=0

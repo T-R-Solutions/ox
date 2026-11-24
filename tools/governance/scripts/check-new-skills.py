@@ -1,7 +1,9 @@
-"""Optional upstream skill-creator check; requires already available PyYAML."""
+"""Optional upstream skill-creator check of every .codex/skills/<name>/SKILL.md.
+
+Requires already available PyYAML. The skill map lives in sdd/workflow.md#skills.
+"""
 
 import importlib.util
-import json
 import sys
 from pathlib import Path
 
@@ -12,8 +14,8 @@ spec = importlib.util.spec_from_file_location(
 quick = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(quick)
 failed = False
-for name in json.loads((root / "config/governance/profile.json").read_text())["new"]:
-    ok, message = quick.validate_skill(root / ".codex/skills" / name)
-    print(name + ": " + message)
+for skill in sorted(p.parent for p in (root / ".codex/skills").glob("*/SKILL.md")):
+    ok, message = quick.validate_skill(skill)
+    print(skill.name + ": " + message)
     failed |= not ok
 sys.exit(failed)

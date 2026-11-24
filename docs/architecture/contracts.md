@@ -261,8 +261,8 @@ completos nem estão todos integrados ao Controller.
 
 ## Contratos operacionais e manutenção
 
-A [constituição](../constitution.md), [workflow](../../sdd/workflow.md) e
-[evidências](../../sdd/evidence.md) governam desenvolvimento e aceitação. São
+A [constituição](../../sdd/constitution.md), [workflow](../../sdd/workflow.md) e
+[evidências](../../sdd/workflow.md#evidência-e-retomada) governam desenvolvimento e aceitação. São
 independentes das APIs Rust: `ox-sdd` não implementa o validador Python do
 repositório, e o catálogo `.codex/skills` não é carregado automaticamente pela UI.
 A execução continua sujeita às permissões efetivas do ambiente. Processo separado,

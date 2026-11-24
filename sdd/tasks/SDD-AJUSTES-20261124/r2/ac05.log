@@ -1,0 +1,250 @@
+$ python3 -m unittest discover -s sdd/tools/tests; echo '$ python3 -m unittest discover -s sdd/tools/tests -v (complementar: nomes)'; python3 -m unittest discover -s sdd/tools/tests -v
+......task inexistente: sdd/tasks/NOPE-20261124.md
+ID de task inválido: ../../x
+ID de task inválido: FIX-20261124
+
+...............................................................
+----------------------------------------------------------------------
+Ran 69 tests in 0.492s
+
+OK
+malformed          input      I-01         registrado=qualquer atual=—
+1 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=<64 hex> atual=00652b81e746
+unreferenced       input      I-01         registrado=<64 hex> atual=—
+1 problema(s) em 2 verificação(ões).
+1 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+escaping           input      I-01         registrado=<64 hex> atual=—
+escaping           input      I-02         registrado=<64 hex> atual=—
+2 problema(s) em 3 verificação(ões).
+1 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+missing            input      I-01         registrado=<64 hex> atual=—
+1 problema(s) em 2 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+0 problema(s) em 0 verificação(ões).
+unobserved         criterion  AC-01        registrado=— atual=00652b81e746
+unobserved         criterion  AC-02        registrado=— atual=f7294f68b34d
+2 problema(s) em 0 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+unobserved         criterion  AC-02        registrado=— atual=f7294f68b34d
+1 problema(s) em 3 verificação(ões).
+malformed          criterion  AC-01        registrado=<64 hex> atual=00652b81e746
+malformed          input      I-01         registrado=<64 hex> atual=1382c01db535
+2 problema(s) em 3 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+0 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=aaaaaaaaaaaa atual=00652b81e746
+malformed          input      I-01         registrado=aaaaaaaaaaaa atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=AAAAAAAAAAAA atual=00652b81e746
+malformed          input      I-01         registrado=AAAAAAAAAAAA atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=sha256:aaaaa atual=00652b81e746
+malformed          input      I-01         registrado=sha256:aaaaa atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=aaaaaaaaaaaa atual=00652b81e746
+malformed          input      I-01         registrado=aaaaaaaaaaaa atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+stale              input      I-01         registrado=1382c01db535 atual=94a18edec001
+1 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+stale              input      I-01         registrado=1382c01db535 atual=94a18edec001
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+1 problema(s) em 3 verificação(ões).
+0 problema(s) em 3 verificação(ões).
+stale              criterion  AC-01        registrado=00652b81e746 atual=1884fc8a9a14
+1 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+stale              criterion  AC-01        registrado=00652b81e746 atual=1884fc8a9a14
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+1 problema(s) em 3 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+0 problema(s) em 2 verificação(ões).
+$ python3 -m unittest discover -s sdd/tools/tests -v (complementar: nomes)
+test_derived_input_needs_full_sha256 (test_sddtask.EvidenceCommandTests.test_derived_input_needs_full_sha256) ... ok
+test_escaped_pipe_and_unbalanced_backtick_rows_are_preserved (test_sddtask.EvidenceCommandTests.test_escaped_pipe_and_unbalanced_backtick_rows_are_preserved) ... ok
+test_input_outside_repository_is_a_problem_and_not_hashed (test_sddtask.EvidenceCommandTests.test_input_outside_repository_is_a_problem_and_not_hashed) ... ok
+test_missing_referenced_input_stays_a_problem (test_sddtask.EvidenceCommandTests.test_missing_referenced_input_stays_a_problem) ... ok
+test_obsolete_observations_are_not_rewritten (test_sddtask.EvidenceCommandTests.test_obsolete_observations_are_not_rewritten) ... ok
+test_require_all_needs_a_fresh_row_per_criterion (test_sddtask.EvidenceCommandTests.test_require_all_needs_a_fresh_row_per_criterion) ... ok
+test_unknown_or_invalid_task_exits_2 (test_sddtask.EvidenceCommandTests.test_unknown_or_invalid_task_exits_2) ... task inexistente: sdd/tasks/NOPE-20261124.md
+ID de task inválido: ../../x
+ID de task inválido: FIX-20261124
+
+ok
+test_write_fills_hashes_from_real_bytes_and_check_passes (test_sddtask.EvidenceCommandTests.test_write_fills_hashes_from_real_bytes_and_check_passes) ... ok
+test_write_keeps_any_recorded_hash_form (test_sddtask.EvidenceCommandTests.test_write_keeps_any_recorded_hash_form) ... ok
+test_write_never_renews_a_stale_observation (test_sddtask.EvidenceCommandTests.test_write_never_renews_a_stale_observation) ... ok
+test_write_uses_real_column_with_repeated_header_names (test_sddtask.EvidenceCommandTests.test_write_uses_real_column_with_repeated_header_names) ... ok
+test_duplicate_criterion_and_unknown_observation (test_sddtask.ParserTests.test_duplicate_criterion_and_unknown_observation) ... ok
+test_duplicate_input_cannot_hide_stale_hash (test_sddtask.ParserTests.test_duplicate_input_cannot_hide_stale_hash) ... ok
+test_duplicate_observation_in_same_layer (test_sddtask.ParserTests.test_duplicate_observation_in_same_layer) ... ok
+test_fenced_heading_does_not_change_section (test_sddtask.ParserTests.test_fenced_heading_does_not_change_section) ... ok
+test_fenced_tilde_and_longer_fence (test_sddtask.ParserTests.test_fenced_tilde_and_longer_fence) ... ok
+test_happy_path (test_sddtask.ParserTests.test_happy_path) ... ok
+test_html_comment_is_not_structure (test_sddtask.ParserTests.test_html_comment_is_not_structure) ... ok
+test_inline_inputs_without_ids_are_reported (test_sddtask.ParserTests.test_inline_inputs_without_ids_are_reported) ... ok
+test_missing_input_file_and_stale_criterion (test_sddtask.ParserTests.test_missing_input_file_and_stale_criterion) ... ok
+test_missing_reference (test_sddtask.ParserTests.test_missing_reference) ... ok
+test_obsolete_subsection_is_ignored (test_sddtask.ParserTests.test_obsolete_subsection_is_ignored) ... ok
+test_real_template_parses (test_sddtask.ParserTests.test_real_template_parses) ... ok
+test_revised_criterion_is_the_current_one (test_sddtask.ParserTests.test_revised_criterion_is_the_current_one) ... ok
+test_revision_overrides_state_and_inputs (test_sddtask.ParserTests.test_revision_overrides_state_and_inputs) ... ok
+test_revision_remaps_ac_to_req (test_sddtask.ParserTests.test_revision_remaps_ac_to_req) ... ok
+test_truncated_hash_is_malformed (test_sddtask.ParserTests.test_truncated_hash_is_malformed) ... ok
+test_bare_number_is_not_a_metric (test_validate.ValidatorTests.test_bare_number_is_not_a_metric) ... ok
+test_cli_exit_codes (test_validate.ValidatorTests.test_cli_exit_codes) ... ok
+test_concluded_task_passes_with_full_closure (test_validate.ValidatorTests.test_concluded_task_passes_with_full_closure) ... ok
+test_concluded_task_still_rejects_inputs_never_hashed (test_validate.ValidatorTests.test_concluded_task_still_rejects_inputs_never_hashed) ... ok
+test_concluded_task_tolerates_input_drift_after_closure_only (test_validate.ValidatorTests.test_concluded_task_tolerates_input_drift_after_closure_only) ... ok
+test_duplicate_id_in_same_layer_keeps_both_rows (test_validate.ValidatorTests.test_duplicate_id_in_same_layer_keeps_both_rows) ... ok
+test_forbidden_terms_come_from_workflow (test_validate.ValidatorTests.test_forbidden_terms_come_from_workflow) ... ok
+test_latest_revision_closure_decides_final_state (test_validate.ValidatorTests.test_latest_revision_closure_decides_final_state) ... ok
+test_local_route_skips_plan_tables_but_keeps_prompt_skill (test_validate.ValidatorTests.test_local_route_skips_plan_tables_but_keeps_prompt_skill) ... ok
+test_matrix_is_derived_from_sections_3_to_5 (test_validate.ValidatorTests.test_matrix_is_derived_from_sections_3_to_5) ... ok
+test_number_in_another_part_does_not_excuse_term (test_validate.ValidatorTests.test_number_in_another_part_does_not_excuse_term) ... ok
+test_real_task_record_passes (test_validate.ValidatorTests.test_real_task_record_passes) ... ok
+test_rejects_concluded_task_with_open_criterion (test_validate.ValidatorTests.test_rejects_concluded_task_with_open_criterion) ... ok
+test_rejects_concluded_with_empty_closure (test_validate.ValidatorTests.test_rejects_concluded_with_empty_closure) ... ok
+test_rejects_criterion_without_method (test_validate.ValidatorTests.test_rejects_criterion_without_method) ... ok
+test_rejects_decision_that_does_not_serve_the_tested_req (test_validate.ValidatorTests.test_rejects_decision_that_does_not_serve_the_tested_req) ... ok
+test_rejects_empty_method_result_and_missing_oracle (test_validate.ValidatorTests.test_rejects_empty_method_result_and_missing_oracle) ... ok
+test_rejects_empty_no_oracle_reason (test_validate.ValidatorTests.test_rejects_empty_no_oracle_reason) ... ok
+test_rejects_header_and_metadata (test_validate.ValidatorTests.test_rejects_header_and_metadata) ... ok
+test_rejects_input_kept_in_local_dir (test_validate.ValidatorTests.test_rejects_input_kept_in_local_dir) ... ok
+test_rejects_invalid_state_and_observed_pending (test_validate.ValidatorTests.test_rejects_invalid_state_and_observed_pending) ... ok
+test_rejects_item_citing_unknown_decision (test_validate.ValidatorTests.test_rejects_item_citing_unknown_decision) ... ok
+test_rejects_item_without_test (test_validate.ValidatorTests.test_rejects_item_without_test) ... ok
+test_rejects_item_without_valid_skill (test_validate.ValidatorTests.test_rejects_item_without_valid_skill) ... ok
+test_rejects_missing_prompt_skill_record (test_validate.ValidatorTests.test_rejects_missing_prompt_skill_record) ... ok
+test_rejects_orphan_req_and_ac (test_validate.ValidatorTests.test_rejects_orphan_req_and_ac) ... ok
+test_rejects_pending_without_registered_question (test_validate.ValidatorTests.test_rejects_pending_without_registered_question) ... ok
+test_rejects_req_whose_criteria_no_item_tests (test_validate.ValidatorTests.test_rejects_req_whose_criteria_no_item_tests) ... ok
+test_rejects_req_without_decision (test_validate.ValidatorTests.test_rejects_req_without_decision) ... ok
+test_rejects_stale_input_and_truncated_criterion (test_validate.ValidatorTests.test_rejects_stale_input_and_truncated_criterion) ... ok
+test_rejects_subjective_term_without_metric (test_validate.ValidatorTests.test_rejects_subjective_term_without_metric) ... ok
+test_rejects_unrecognized_or_split_stage_tables (test_validate.ValidatorTests.test_rejects_unrecognized_or_split_stage_tables) ... ok
+test_revision_tables_accept_valid_change_and_feed_matrix (test_validate.ValidatorTests.test_revision_tables_accept_valid_change_and_feed_matrix) ... ok
+test_revision_tables_override_original_by_id (test_validate.ValidatorTests.test_revision_tables_override_original_by_id) ... ok
+test_skill_cell_forms (test_validate.ValidatorTests.test_skill_cell_forms) ... ok
+test_skill_column_exemption_needs_both_dates_before_cutoff (test_validate.ValidatorTests.test_skill_column_exemption_needs_both_dates_before_cutoff) ... ok
+test_spec_inherited_criterion_needs_no_method_but_keeps_links (test_validate.ValidatorTests.test_spec_inherited_criterion_needs_no_method_but_keeps_links) ... ok
+test_spec_rules (test_validate.ValidatorTests.test_spec_rules) ... ok
+test_structure_only_reports_missing_file (test_validate.ValidatorTests.test_structure_only_reports_missing_file) ... ok
+test_task_opened_before_skill_column_passes_without_it (test_validate.ValidatorTests.test_task_opened_before_skill_column_passes_without_it) ... ok
+test_term_with_metric_or_pending_is_accepted (test_validate.ValidatorTests.test_term_with_metric_or_pending_is_accepted) ... ok
+test_valid_task_passes (test_validate.ValidatorTests.test_valid_task_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 69 tests in 0.499s
+
+OK
+malformed          input      I-01         registrado=qualquer atual=—
+1 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=<64 hex> atual=00652b81e746
+unreferenced       input      I-01         registrado=<64 hex> atual=—
+1 problema(s) em 2 verificação(ões).
+1 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+escaping           input      I-01         registrado=<64 hex> atual=—
+escaping           input      I-02         registrado=<64 hex> atual=—
+2 problema(s) em 3 verificação(ões).
+1 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+missing            input      I-01         registrado=<64 hex> atual=—
+1 problema(s) em 2 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+0 problema(s) em 0 verificação(ões).
+unobserved         criterion  AC-01        registrado=— atual=00652b81e746
+unobserved         criterion  AC-02        registrado=— atual=f7294f68b34d
+2 problema(s) em 0 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+unobserved         criterion  AC-02        registrado=— atual=f7294f68b34d
+1 problema(s) em 3 verificação(ões).
+malformed          criterion  AC-01        registrado=<64 hex> atual=00652b81e746
+malformed          input      I-01         registrado=<64 hex> atual=1382c01db535
+2 problema(s) em 3 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+0 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=aaaaaaaaaaaa atual=00652b81e746
+malformed          input      I-01         registrado=aaaaaaaaaaaa atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=AAAAAAAAAAAA atual=00652b81e746
+malformed          input      I-01         registrado=AAAAAAAAAAAA atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=sha256:aaaaa atual=00652b81e746
+malformed          input      I-01         registrado=sha256:aaaaa atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+malformed          criterion  AC-01        registrado=aaaaaaaaaaaa atual=00652b81e746
+malformed          input      I-01         registrado=aaaaaaaaaaaa atual=1382c01db535
+2 problema(s) em 2 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+0 problema(s) em 3 verificação(ões).
+stale              input      I-01         registrado=1382c01db535 atual=94a18edec001
+1 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+stale              input      I-01         registrado=1382c01db535 atual=94a18edec001
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+1 problema(s) em 3 verificação(ões).
+0 problema(s) em 3 verificação(ões).
+stale              criterion  AC-01        registrado=00652b81e746 atual=1884fc8a9a14
+1 problema(s) em 3 verificação(ões).
+0 célula(s) SHA-256 preenchida(s).
+stale              criterion  AC-01        registrado=00652b81e746 atual=1884fc8a9a14
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+unreferenced       input      I-02         registrado=<64 hex> atual=—
+1 problema(s) em 3 verificação(ões).
+2 célula(s) SHA-256 preenchida(s).
+fresh              criterion  AC-01        registrado=00652b81e746 atual=00652b81e746
+fresh              input      I-01         registrado=1382c01db535 atual=1382c01db535
+0 problema(s) em 2 verificação(ões).
+exit=0

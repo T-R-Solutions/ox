@@ -1208,453 +1208,6 @@
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "7 import select\n8 import subprocess\n9 import sys\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "/project/tools/governance/consumers/gui_test.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 8,
-      "line_range": [
-        8
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "46     result[\"server_command\"] = args\n47     server = subprocess.Popen(\n48         args, pass_fds=(writefd,), stdout=log, stderr=subprocess.STDOUT\n49     )\n50     os.close(writefd)\n",
-      "col_offset": 13,
-      "end_col_offset": 5,
-      "filename": "/project/tools/governance/consumers/gui_test.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 47,
-      "line_range": [
-        47,
-        48,
-        49
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "67         with (report / \"tests.log\").open(\"x\") as out:\n68             run = subprocess.run(\n69                 args,\n70                 cwd=root,\n71                 env=env,\n72                 stdout=out,\n73                 stderr=subprocess.STDOUT,\n74                 timeout=55,\n75             )\n76         result[\"exit\"] = run.returncode\n",
-      "col_offset": 18,
-      "end_col_offset": 13,
-      "filename": "/project/tools/governance/consumers/gui_test.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 68,
-      "line_range": [
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "5 import pathlib\n6 import subprocess\n7 import tempfile\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "/project/tools/governance/consumers/isolation_test.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 6,
-      "line_range": [
-        6
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "19         def observe(args):\n20             result = subprocess.run(args, capture_output=True, timeout=10)\n21             commands.append(\n",
-      "col_offset": 21,
-      "end_col_offset": 74,
-      "filename": "/project/tools/governance/consumers/isolation_test.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 20,
-      "line_range": [
-        20
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "53             \"--tmpfs\",\n54             \"/tmp\",\n55             \"--ro-bind\",\n56             binary,\n57             \"/probe\",\n58             \"--ro-bind\",\n59             str(allowed),\n60             \"/allowed\",\n61         ]\n62         positive = observe(sandbox + [\"/probe\", \"read\", \"/allowed\"])\n63         if positive.returncode != 0 or positive.stdout != b\"fixture-public\":\n64             raise RuntimeError(\"Allowed sandbox read failed\")\n65         for target in [str(protected), \"/proc/1/root\" + str(protected)]:\n66             denied = observe(sandbox + [\"/probe\", \"read\", target])\n67             if denied.returncode != 13 or b\"READ_DENIED\" not in denied.stderr:\n68                 raise RuntimeError(\"Protected read did not fail as required\")\n69             if b\"fixture-only-secret\" in denied.stdout:\n70                 raise RuntimeError(\"Protected bytes leaked\")\n71         if protected.read_bytes() != b\"fixture-only-secret\":\n72             raise RuntimeError(\"Protected file changed\")\n73         return {\n74             \"status\": \"PASS\",\n75             \"commands\": commands,\n76             \"scope\": \"disposable read probe; host paths absent in private mounts; not Ox production sandbox adoption\",\n77         }\n78 \n79 \n80 if __name__ == \"__main__\":\n81     print(json.dumps(run(os.environ[\"OX_CONSUMER_FIXTURE\"]), indent=2))\n",
-      "col_offset": 12,
-      "end_col_offset": 18,
-      "filename": "/project/tools/governance/consumers/isolation_test.py",
-      "issue_confidence": "MEDIUM",
-      "issue_cwe": {
-        "id": 377,
-        "link": "https://cwe.mitre.org/data/definitions/377.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Probable insecure usage of temp file/directory.",
-      "line_number": 54,
-      "line_range": [
-        34,
-        35,
-        36,
-        37,
-        38,
-        39,
-        40,
-        41,
-        42,
-        43,
-        44,
-        45,
-        46,
-        47,
-        48,
-        49,
-        50,
-        51,
-        52,
-        53,
-        54,
-        55,
-        56,
-        57,
-        58,
-        59,
-        60,
-        61
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b108_hardcoded_tmp_directory.html",
-      "test_id": "B108",
-      "test_name": "hardcoded_tmp_directory"
-    },
-    {
-      "code": "8 import platform\n9 import subprocess\n10 import tempfile\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "/project/tools/governance/consumers/run_base.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 9,
-      "line_range": [
-        9
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "40         with (report / name).open(\"xb\") as output:\n41             result = subprocess.run(\n42                 command,\n43                 env=environment,\n44                 stdout=output,\n45                 stderr=subprocess.STDOUT,\n46                 timeout=30,\n47             )\n48         records.append({\"command\": command, \"exit\": result.returncode, \"log\": name})\n",
-      "col_offset": 21,
-      "end_col_offset": 13,
-      "filename": "/project/tools/governance/consumers/run_base.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 41,
-      "line_range": [
-        41,
-        42,
-        43,
-        44,
-        45,
-        46,
-        47
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "6 import os\n7 import subprocess\n8 import sys\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "/project/tools/governance/scripts/package-ox.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 7,
-      "line_range": [
-        7
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "96             ]\n97             process = subprocess.run(\n98                 command,\n99                 cwd=extracted,\n100                 env=dict(\n101                     os.environ,\n102                     PYTHONDONTWRITEBYTECODE=\"1\",\n103                     OX_ISOLATION_ORIGIN=str(ROOT),\n104                 ),\n105                 stdout=subprocess.PIPE,\n106                 stderr=subprocess.STDOUT,\n107                 text=True,\n108             )\n109             log = output / f\"{index:02}.log\"\n",
-      "col_offset": 22,
-      "end_col_offset": 13,
-      "filename": "/project/tools/governance/scripts/package-ox.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 97,
-      "line_range": [
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "8 import platform\n9 import subprocess\n10 import sys\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "/project/tools/governance/scripts/run-checks.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 9,
-      "line_range": [
-        9
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "51             ]\n52         process = subprocess.run(\n53             command,\n54             cwd=ROOT,\n55             env=env,\n56             stdout=subprocess.PIPE,\n57             stderr=subprocess.STDOUT,\n58             text=True,\n59         )\n60         log = run / f\"{i:02d}.log\"\n",
-      "col_offset": 18,
-      "end_col_offset": 9,
-      "filename": "/project/tools/governance/scripts/run-checks.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 52,
-      "line_range": [
-        52,
-        53,
-        54,
-        55,
-        56,
-        57,
-        58,
-        59
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "8 import unittest\n9 import subprocess\n10 import sys\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "/project/tools/governance/tests/test_governance.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 9,
-      "line_range": [
-        9
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "256         ]:\n257             result = subprocess.run(\n258                 [\n259                     sys.executable,\n260                     \"tools/governance/scripts/isolated-run.py\",\n261                     str(ROOT),\n262                     *args,\n263                 ],\n264                 cwd=dest,\n265                 env=dict(os.environ, PYTHONDONTWRITEBYTECODE=\"1\"),\n266                 capture_output=True,\n267                 text=True,\n268             )\n269             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)\n",
-      "col_offset": 21,
-      "end_col_offset": 13,
-      "filename": "/project/tools/governance/tests/test_governance.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 257,
-      "line_range": [
-        257,
-        258,
-        259,
-        260,
-        261,
-        262,
-        263,
-        264,
-        265,
-        266,
-        267,
-        268
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "334                 try:\n335                     result = subprocess.run(\n336                         [sys.executable, \"tools/governance/scripts/check-ox.py\"],\n337                         cwd=dest,\n338                         env=dict(os.environ, PYTHONDONTWRITEBYTECODE=\"1\"),\n339                         capture_output=True,\n340                         text=True,\n341                     )\n342                     self.assertNotEqual(result.returncode, 0)\n",
-      "col_offset": 29,
-      "end_col_offset": 21,
-      "filename": "/project/tools/governance/tests/test_governance.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 335,
-      "line_range": [
-        335,
-        336,
-        337,
-        338,
-        339,
-        340,
-        341
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "412             link.type = tarfile.SYMTYPE\n413             link.linkname = \"/tmp/outside\"\n414             archive.addfile(link)\n",
-      "col_offset": 28,
-      "end_col_offset": 42,
-      "filename": "/project/tools/governance/tests/test_governance.py",
-      "issue_confidence": "MEDIUM",
-      "issue_cwe": {
-        "id": 377,
-        "link": "https://cwe.mitre.org/data/definitions/377.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Probable insecure usage of temp file/directory.",
-      "line_number": 413,
-      "line_range": [
-        413
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b108_hardcoded_tmp_directory.html",
-      "test_id": "B108",
-      "test_name": "hardcoded_tmp_directory"
-    },
-    {
-      "code": "505         )\n506         result = subprocess.run(\n507             [\n508                 sys.executable,\n509                 \"tools/governance/scripts/isolated-run.py\",\n510                 str(ROOT),\n511                 \"probe.py\",\n512             ],\n513             cwd=dest,\n514             capture_output=True,\n515             text=True,\n516         )\n517         self.assertNotEqual(result.returncode, 0)\n",
-      "col_offset": 17,
-      "end_col_offset": 9,
-      "filename": "/project/tools/governance/tests/test_governance.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 506,
-      "line_range": [
-        506,
-        507,
-        508,
-        509,
-        510,
-        511,
-        512,
-        513,
-        514,
-        515,
-        516
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "62             elif mutation == \"absolute\":\n63                 d[\"records\"][0][\"previous\"] = \"/tmp/outside\"\n64             elif mutation == \"count\":\n",
-      "col_offset": 46,
-      "end_col_offset": 60,
-      "filename": "/project/tools/governance/tests/test_project_revision.py",
-      "issue_confidence": "MEDIUM",
-      "issue_cwe": {
-        "id": 377,
-        "link": "https://cwe.mitre.org/data/definitions/377.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Probable insecure usage of temp file/directory.",
-      "line_number": 63,
-      "line_range": [
-        63
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b108_hardcoded_tmp_directory.html",
-      "test_id": "B108",
-      "test_name": "hardcoded_tmp_directory"
-    },
-    {
       "code": "6 import shutil\n7 import subprocess\n8 import sys\n",
       "col_offset": 0,
       "end_col_offset": 17,
@@ -2111,86 +1664,6 @@
       "test_name": "hardcoded_tmp_directory"
     },
     {
-      "code": "11 import os\n12 import subprocess\n13 import time\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "/project/application/tools/native_composition_review.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 12,
-      "line_range": [
-        12
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "45         env = dict(session.env, WAYLAND_DEBUG=\"1\", OX_VALIDATION_SESSION=args.output)\n46         app = subprocess.Popen([str(binary)], env=env, cwd=ROOT, stdout=log, stderr=log)\n47         session.children.append(app)\n",
-      "col_offset": 14,
-      "end_col_offset": 88,
-      "filename": "/project/application/tools/native_composition_review.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 46,
-      "line_range": [
-        46
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "11 import os\n12 import subprocess\n13 import time\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "/project/application/tools/native_review.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 12,
-      "line_range": [
-        12
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "45         env = dict(session.env, WAYLAND_DEBUG=\"1\", OX_VALIDATION_SESSION=args.output)\n46         app = subprocess.Popen([str(binary)], env=env, cwd=ROOT, stdout=log, stderr=log)\n47         session.children.append(app)\n",
-      "col_offset": 14,
-      "end_col_offset": 88,
-      "filename": "/project/application/tools/native_review.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 46,
-      "line_range": [
-        46
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
       "code": "6 \n7 import subprocess\n8 \n",
       "col_offset": 0,
       "end_col_offset": 17,
@@ -2496,51 +1969,6 @@
         95,
         96,
         97
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html",
-      "test_id": "B603",
-      "test_name": "subprocess_without_shell_equals_true"
-    },
-    {
-      "code": "8 from pathlib import Path\n9 import subprocess\n10 import sys\n",
-      "col_offset": 0,
-      "end_col_offset": 17,
-      "filename": "/project/tools/governance/tests/test_instruction_validator.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 9,
-      "line_range": [
-        9
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess",
-      "test_id": "B404",
-      "test_name": "blacklist"
-    },
-    {
-      "code": "88     def cli(self, *args):\n89         return subprocess.run(\n90             [sys.executable, str(ENTRY), \"--root\", str(self.root), *args],\n91             capture_output=True, text=True,\n92             env=dict(os.environ, PYTHONDONTWRITEBYTECODE=\"1\"),\n93             check=False,\n94         )\n95 \n",
-      "col_offset": 15,
-      "end_col_offset": 9,
-      "filename": "/project/tools/governance/tests/test_instruction_validator.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 78,
-        "link": "https://cwe.mitre.org/data/definitions/78.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 89,
-      "line_range": [
-        89,
-        90,
-        91,
-        92,
-        93,
-        94
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
@@ -3909,10 +3337,10 @@
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "8 import re\n9 import subprocess\n10 import sys\n",
+      "code": "9 import hashlib\n10 import subprocess\n11 import sys\n",
       "col_offset": 0,
       "end_col_offset": 17,
-      "filename": "/project/tools/governance/tests/test_historical_link_resolution.py",
+      "filename": "/project/sdd/tools/tests/test_validate.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
         "id": 78,
@@ -3920,83 +3348,19 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 9,
+      "line_number": 10,
       "line_range": [
-        9
+        10
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess",
       "test_id": "B404",
       "test_name": "blacklist"
     },
     {
-      "code": "166     def test_noncanonical_and_escaping_paths_after_independent_pin(self):\n167         for name in (\"\", \"/tmp/origin\", \"../outside\", \"scripts/../README.md\",\n168                      \"scripts//README.md\", \"./scripts/README.md\", \"scripts\\\\README.md\", \"scripts/\\x00README.md\"):\n169             for field in (\"source\", \"origin\"):\n",
-      "col_offset": 25,
-      "end_col_offset": 38,
-      "filename": "/project/tools/governance/tests/test_historical_link_resolution.py",
-      "issue_confidence": "MEDIUM",
-      "issue_cwe": {
-        "id": 377,
-        "link": "https://cwe.mitre.org/data/definitions/377.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Probable insecure usage of temp file/directory.",
-      "line_number": 167,
-      "line_range": [
-        167,
-        168
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b108_hardcoded_tmp_directory.html",
-      "test_id": "B108",
-      "test_name": "hardcoded_tmp_directory"
-    },
-    {
-      "candidates": [
-        {
-          "code": "308                    \"tools/governance/scripts/check-ox.py\"]\n309         result = subprocess.run(command, cwd=self.root, capture_output=True, text=True,\n310                                 env=dict(os.environ, PYTHONDONTWRITEBYTECODE=\"1\"), timeout=120)\n311         if expected == 0:\n",
-          "col_offset": 17,
-          "end_col_offset": 95,
-          "filename": "/project/tools/governance/tests/test_historical_link_resolution.py",
-          "issue_confidence": "HIGH",
-          "issue_cwe": {
-            "id": 78,
-            "link": "https://cwe.mitre.org/data/definitions/78.html"
-          },
-          "issue_severity": "LOW",
-          "issue_text": "subprocess call - check for execution of untrusted input.",
-          "line_number": 309,
-          "line_range": [
-            309,
-            310
-          ],
-          "test_id": "B603",
-          "test_name": "subprocess_without_shell_equals_true"
-        },
-        {
-          "code": "382             p.write_text(\"from pathlib import Path\\nPath(\" + repr(str(ROOT / \"README.md\")) + \").read_bytes()\\n\")\n383             result = subprocess.run([sys.executable, \"tools/governance/scripts/isolated-run.py\",\n384                                      str(ROOT), p.name], cwd=self.root, capture_output=True,\n385                                     text=True, env=dict(os.environ, PYTHONDONTWRITEBYTECODE=\"1\"))\n386             self.assertNotEqual(result.returncode, 0)\n",
-          "col_offset": 21,
-          "end_col_offset": 97,
-          "filename": "/project/tools/governance/tests/test_historical_link_resolution.py",
-          "issue_confidence": "HIGH",
-          "issue_cwe": {
-            "id": 78,
-            "link": "https://cwe.mitre.org/data/definitions/78.html"
-          },
-          "issue_severity": "LOW",
-          "issue_text": "subprocess call - check for execution of untrusted input.",
-          "line_number": 383,
-          "line_range": [
-            383,
-            384,
-            385
-          ],
-          "test_id": "B603",
-          "test_name": "subprocess_without_shell_equals_true"
-        }
-      ],
-      "code": "308                    \"tools/governance/scripts/check-ox.py\"]\n309         result = subprocess.run(command, cwd=self.root, capture_output=True, text=True,\n310                                 env=dict(os.environ, PYTHONDONTWRITEBYTECODE=\"1\"), timeout=120)\n311         if expected == 0:\n",
-      "col_offset": 17,
-      "end_col_offset": 95,
-      "filename": "/project/tools/governance/tests/test_historical_link_resolution.py",
+      "code": "321     def run_cli(self, *args: str) -> subprocess.CompletedProcess:\n322         return subprocess.run([sys.executable, \"-B\", str(TOOLS / \"validate.py\"), \"--root\", str(self.root), *args],\n323                               capture_output=True, text=True, check=False)\n324 \n",
+      "col_offset": 15,
+      "end_col_offset": 74,
+      "filename": "/project/sdd/tools/tests/test_validate.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
         "id": 78,
@@ -4004,10 +3368,156 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 309,
+      "line_number": 322,
       "line_range": [
-        309,
-        310
+        322,
+        323
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "15 import stat\n16 import subprocess\n17 import tarfile\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "/project/tools/governance/scripts/governance_support.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 16,
+      "line_range": [
+        16
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "52     \"\"\"\n53     proc = subprocess.run(\n54         [\"git\", \"--no-optional-locks\", \"-C\", str(root), \"ls-files\", \"-co\", \"--exclude-standard\", \"-z\"],\n55         capture_output=True, check=False, env=GIT_ENV,\n56     )\n57     if proc.returncode == 0:\n",
+      "col_offset": 11,
+      "end_col_offset": 5,
+      "filename": "/project/tools/governance/scripts/governance_support.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 53,
+      "line_range": [
+        53,
+        54,
+        55,
+        56
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "52     \"\"\"\n53     proc = subprocess.run(\n54         [\"git\", \"--no-optional-locks\", \"-C\", str(root), \"ls-files\", \"-co\", \"--exclude-standard\", \"-z\"],\n55         capture_output=True, check=False, env=GIT_ENV,\n56     )\n57     if proc.returncode == 0:\n",
+      "col_offset": 11,
+      "end_col_offset": 5,
+      "filename": "/project/tools/governance/scripts/governance_support.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 53,
+      "line_range": [
+        53,
+        54,
+        55,
+        56
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html",
+      "test_id": "B603",
+      "test_name": "subprocess_without_shell_equals_true"
+    },
+    {
+      "code": "7 import json\n8 import subprocess\n9 import sys\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "/project/tools/governance/tests/test_check_ox.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 8,
+      "line_range": [
+        8
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "candidates": [
+        {
+          "code": "223     def run_cli(self, *args):\n224         return subprocess.run([sys.executable, \"-B\", str(SCRIPT), *args], capture_output=True, text=True, check=False)\n225 \n",
+          "col_offset": 15,
+          "end_col_offset": 118,
+          "filename": "/project/tools/governance/tests/test_check_ox.py",
+          "issue_confidence": "HIGH",
+          "issue_cwe": {
+            "id": 78,
+            "link": "https://cwe.mitre.org/data/definitions/78.html"
+          },
+          "issue_severity": "LOW",
+          "issue_text": "subprocess call - check for execution of untrusted input.",
+          "line_number": 224,
+          "line_range": [
+            224
+          ],
+          "test_id": "B603",
+          "test_name": "subprocess_without_shell_equals_true"
+        },
+        {
+          "code": "242     def test_real_repository_passes(self):\n243         res = subprocess.run([sys.executable, \"-B\", str(SCRIPT)], capture_output=True, text=True, check=False)\n244         self.assertEqual(res.returncode, 0, res.stdout[-4000:] + res.stderr[-2000:])\n",
+          "col_offset": 14,
+          "end_col_offset": 110,
+          "filename": "/project/tools/governance/tests/test_check_ox.py",
+          "issue_confidence": "HIGH",
+          "issue_cwe": {
+            "id": 78,
+            "link": "https://cwe.mitre.org/data/definitions/78.html"
+          },
+          "issue_severity": "LOW",
+          "issue_text": "subprocess call - check for execution of untrusted input.",
+          "line_number": 243,
+          "line_range": [
+            243
+          ],
+          "test_id": "B603",
+          "test_name": "subprocess_without_shell_equals_true"
+        }
+      ],
+      "code": "223     def run_cli(self, *args):\n224         return subprocess.run([sys.executable, \"-B\", str(SCRIPT), *args], capture_output=True, text=True, check=False)\n225 \n",
+      "col_offset": 15,
+      "end_col_offset": 118,
+      "filename": "/project/tools/governance/tests/test_check_ox.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "subprocess call - check for execution of untrusted input.",
+      "line_number": 224,
+      "line_range": [
+        224
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
@@ -4016,10 +3526,10 @@
     {
       "candidates": [
         {
-          "code": "308                    \"tools/governance/scripts/check-ox.py\"]\n309         result = subprocess.run(command, cwd=self.root, capture_output=True, text=True,\n310                                 env=dict(os.environ, PYTHONDONTWRITEBYTECODE=\"1\"), timeout=120)\n311         if expected == 0:\n",
-          "col_offset": 17,
-          "end_col_offset": 95,
-          "filename": "/project/tools/governance/tests/test_historical_link_resolution.py",
+          "code": "223     def run_cli(self, *args):\n224         return subprocess.run([sys.executable, \"-B\", str(SCRIPT), *args], capture_output=True, text=True, check=False)\n225 \n",
+          "col_offset": 15,
+          "end_col_offset": 118,
+          "filename": "/project/tools/governance/tests/test_check_ox.py",
           "issue_confidence": "HIGH",
           "issue_cwe": {
             "id": 78,
@@ -4027,19 +3537,18 @@
           },
           "issue_severity": "LOW",
           "issue_text": "subprocess call - check for execution of untrusted input.",
-          "line_number": 309,
+          "line_number": 224,
           "line_range": [
-            309,
-            310
+            224
           ],
           "test_id": "B603",
           "test_name": "subprocess_without_shell_equals_true"
         },
         {
-          "code": "382             p.write_text(\"from pathlib import Path\\nPath(\" + repr(str(ROOT / \"README.md\")) + \").read_bytes()\\n\")\n383             result = subprocess.run([sys.executable, \"tools/governance/scripts/isolated-run.py\",\n384                                      str(ROOT), p.name], cwd=self.root, capture_output=True,\n385                                     text=True, env=dict(os.environ, PYTHONDONTWRITEBYTECODE=\"1\"))\n386             self.assertNotEqual(result.returncode, 0)\n",
-          "col_offset": 21,
-          "end_col_offset": 97,
-          "filename": "/project/tools/governance/tests/test_historical_link_resolution.py",
+          "code": "242     def test_real_repository_passes(self):\n243         res = subprocess.run([sys.executable, \"-B\", str(SCRIPT)], capture_output=True, text=True, check=False)\n244         self.assertEqual(res.returncode, 0, res.stdout[-4000:] + res.stderr[-2000:])\n",
+          "col_offset": 14,
+          "end_col_offset": 110,
+          "filename": "/project/tools/governance/tests/test_check_ox.py",
           "issue_confidence": "HIGH",
           "issue_cwe": {
             "id": 78,
@@ -4047,20 +3556,18 @@
           },
           "issue_severity": "LOW",
           "issue_text": "subprocess call - check for execution of untrusted input.",
-          "line_number": 383,
+          "line_number": 243,
           "line_range": [
-            383,
-            384,
-            385
+            243
           ],
           "test_id": "B603",
           "test_name": "subprocess_without_shell_equals_true"
         }
       ],
-      "code": "382             p.write_text(\"from pathlib import Path\\nPath(\" + repr(str(ROOT / \"README.md\")) + \").read_bytes()\\n\")\n383             result = subprocess.run([sys.executable, \"tools/governance/scripts/isolated-run.py\",\n384                                      str(ROOT), p.name], cwd=self.root, capture_output=True,\n385                                     text=True, env=dict(os.environ, PYTHONDONTWRITEBYTECODE=\"1\"))\n386             self.assertNotEqual(result.returncode, 0)\n",
-      "col_offset": 21,
-      "end_col_offset": 97,
-      "filename": "/project/tools/governance/tests/test_historical_link_resolution.py",
+      "code": "242     def test_real_repository_passes(self):\n243         res = subprocess.run([sys.executable, \"-B\", str(SCRIPT)], capture_output=True, text=True, check=False)\n244         self.assertEqual(res.returncode, 0, res.stdout[-4000:] + res.stderr[-2000:])\n",
+      "col_offset": 14,
+      "end_col_offset": 110,
+      "filename": "/project/tools/governance/tests/test_check_ox.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
         "id": 78,
@@ -4068,11 +3575,9 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 383,
+      "line_number": 243,
       "line_range": [
-        383,
-        384,
-        385
+        243
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",

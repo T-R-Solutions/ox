@@ -1,19 +1,14 @@
-# Entrada do projeto: controlador Sol; execução proporcional conforme procedimento.
-# Uso e limites: docs/development/codex-agents.md.
+# Entrada do projeto: a sessão raiz é o controlador. Papéis e limites: sdd/workflow.md#agentes.
 model = "gpt-6.1-sol"
 model_reasoning_effort = "medium"
 developer_instructions = """
-Leia e siga obrigatoriamente docs/development/codex-agents.md, procedimento
-canônico de entrada, triagem, delegação, capacidades e retomada.
-A sessão raiz é o controlador Sol médio: faz triagem sem assumir as restrições
-do especialista ec_triador delegado. Não crie outro triador para repetir a análise.
-Leitura/diagnóstico e reparo local claro, autorizado e recuperável podem seguir
-diretamente somente nas condições de sdd/workflow.md e sem risco material.
-Mudanças com risco material exigem ec_orquestrador_alta, revisão e validação
-independentes. Se faltar capacidade necessária, bloqueie a etapa dependente;
-não use execução direta ou autorrevisão como substituto. Respeite restrições
-expressas do usuário e do host. Acompanhe os encaminhamentos até resultado
-ou bloqueio, conforme o procedimento canônico.
+Siga AGENTS.md e sdd/workflow.md, seções Rotas, Etapas e Agentes (#agentes).
+A raiz faz a triagem e as etapas 0 a 2 (prompt com a skill prompt e perguntas ao
+usuário). Rotas Consulta e Local seguem diretamente, sem risco material. A rota
+Completa vai ao ec_orquestrador_normal; risco material vai ao ec_orquestrador_alta,
+com verificação independente pelo ec_verificador. Se faltar a capacidade necessária,
+bloqueie a etapa dependente; não use autorrevisão como substituto. Acompanhe os
+encaminhamentos até resultado ou bloqueio.
 """
 [agents]
 enabled = true

@@ -1,10 +1,11 @@
 # Fronteiras de confiança da implementação local
 
-Este registro aplica a [constituição](../constitution.md) sem criar política concorrente.
-AGENTS, pontes e skills orientam; não implementam contenção. A inspeção de fontes
+Este registro aplica a [constituição](../../sdd/constitution.md) sem criar política concorrente.
+AGENTS, SDD e skills orientam; não implementam contenção. A inspeção de fontes
 em 17/11/2026 substitui as afirmações de ausência de host/runtime da baseline de
 governança. Presença de código e testes não demonstra isolamento operacional.
-Estados atuais de aceite pertencem ao `evidence.json` de cada feature.
+Estados de aceite pertencem às observações de cada task (`sdd/tasks/<ID>.md`) e, para o
+modelo anterior, ao `evidence.json` de cada feature congelada.
 
 | Fronteira e dados | Implementação e controle local | Limite e verificação necessária |
 | --- | --- | --- |
@@ -18,11 +19,12 @@ Estados atuais de aceite pertencem ao `evidence.json` de cada feature.
 | Logs/arquivos/contexto → agente | Conteúdo permanece dado, sem ampliar autoridade, conforme POL-10 | Regra documental; nenhuma proteção de runtime contra prompt injection é demonstrada por este inventário |
 | Agente → provedor remoto | Adaptadores reais e transmissão não implementados nessas fatias locais | Escopo, consentimento, dados enviados e capacidades precisam de verificação na futura integração; não há alegação de agente remoto operacional |
 
-As fontes acima são referências relativas à raiz do checkout; o pacote de governança
-exclui o aplicativo. Consulte os [contratos](../architecture/contracts.md), o
-[contexto arquitetural](../architecture/context.md) e as features `product-plugin-host`,
-`product-agent-runtime`, `product-verification-engine`, `product-local-task-ui` e
-`product-visual-workbench` no [índice SDD](../../sdd/features/README.md).
+As fontes acima são referências relativas à raiz do checkout. Consulte os [contratos](../architecture/contracts.md), o
+[contexto arquitetural](../architecture/context.md) e as specs vivas
+[plugin-host](../../sdd/specs/plugin-host.md), [agent-runtime](../../sdd/specs/agent-runtime.md),
+[verification-engine](../../sdd/specs/verification-engine.md),
+[local-task-ui](../../sdd/specs/local-task-ui.md) e
+[visual-workbench](../../sdd/specs/visual-workbench.md).
 
 Esta atualização documenta fronteiras presentes por inspeção; não executa novos
 ensaios adversariais nem renova aceitação histórica. Para demonstrar um controle,
