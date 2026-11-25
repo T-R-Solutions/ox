@@ -1,8 +1,5 @@
 # Spec — <capacidade>
 
-Spec viva de uma capacidade duradoura do produto. Tasks que a alteram atualizam
-este arquivo e são citadas na tabela de estado.
-
 ## O quê
 
 <o que a capacidade faz, para quem>
@@ -24,7 +21,7 @@ Cenários rejeitados: <entrada inválida → comportamento esperado>
 
 ## Critérios de aceitação
 
-- AC-01 → REQ-01: <condição observável> | método: <comando ou inspeção> | esperado: <resultado>
+- AC-01 → REQ-01: <condição> | método: <…> | esperado: <…>
 
 ## Estado atual
 

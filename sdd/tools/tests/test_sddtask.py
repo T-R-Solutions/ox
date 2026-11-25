@@ -5,8 +5,11 @@ Execute da raiz: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s sdd/t
 """
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import importlib
+import io
+import shutil
 import sys
 import tempfile
 import unittest
@@ -15,6 +18,8 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sddtask = importlib.import_module("sddtask")
+validate = importlib.import_module("validate")
+TEMPLATE = Path(__file__).resolve().parents[2] / "templates" / "task.md"
 
 AC1 = "- AC-01: a() retorna 2 | método: `python3 -m unittest` | esperado: exit 0"
 AC2 = "- AC-02: doc revisada | método: leitura | esperado: seção X presente"
@@ -193,13 +198,11 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(st[("criterion", "AC-05")], "unknown-criterion")
 
     def test_real_template_parses(self) -> None:
-        tpl = Path(__file__).resolve().parents[2] / "templates" / "task.md"
-        task = sddtask.parse(tpl)
+        task = sddtask.parse(TEMPLATE)
         self.assertEqual(sorted(task.sections), list(range(1, 10)))
         self.assertEqual(sorted(task.divisions), [1, 2, 3, 4, 5])
-        self.assertEqual([c.id for c in task.criteria], ["AC-01", "AC-02"])
-        self.assertEqual(task.criteria[1].pending, "Q-1")
-        self.assertEqual(task.revisions, [], "exemplo de revisão em comentário HTML não é revisão")
+        self.assertEqual([c.id for c in task.criteria], ["AC-01"])
+        self.assertEqual(task.revisions, [])
         tables = sddtask.parse_tables(task.sections[8])
         self.assertEqual([t.header[0] for t in tables][:2], ["Input", "AC"],
                          "o template usa o formato único de inputs (tabela I-n)")
@@ -333,6 +336,119 @@ class EvidenceCommandTests(unittest.TestCase):
         self.write_record()
         self.run_cmd("--write")
         self.assertEqual(self.run_cmd("--check", "--require-all"), 1, "AC-02 sem observação")
+
+
+class NewCommandTests(unittest.TestCase):
+    """`new`: registro inicial a partir do template real; nunca sobrescreve."""
+
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        (self.root / "sdd/templates").mkdir(parents=True)
+        (self.root / "sdd/tasks").mkdir()
+        shutil.copyfile(TEMPLATE, self.root / "sdd/templates/task.md")
+
+    def tearDown(self) -> None:
+        self.tmp.cleanup()
+
+    def new(self, tid: str, route: str, title: str = "Ajuste") -> int:
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            return sddtask.main(["new", "--root", str(self.root), "--task", tid, "--route", route,
+                                 "--title", title])
+
+    def test_local_record_has_only_the_local_sections_and_validates(self) -> None:
+        self.assertEqual(self.new("FIX-20261124", "Local", "Corrigir link"), 0)
+        path = self.root / "sdd/tasks/FIX-20261124.md"
+        text = path.read_text()
+        task = sddtask.parse(path)
+        self.assertEqual((task.id, task.title), ("FIX-20261124", "Corrigir link"))
+        self.assertEqual(task.meta["Data de abertura"], "2026-11-24")
+        self.assertEqual(task.meta["Estado"], "aberta")
+        self.assertTrue(task.meta["Rota"].startswith("Local — "))
+        self.assertNotIn("<!--", text)
+        self.assertEqual(sorted(task.sections), list(range(1, 10)))
+        for num in sddtask.LOCAL_NA_SECTIONS:
+            self.assertEqual(task.section_text(num).strip(), sddtask.LOCAL_NA, f"seção {num}")
+        self.assertEqual([t.header[0] for t in task.tables(4)], ["SKILL.md"])
+        self.assertIn(validate.PROMPT_SKILL, task.section_text(4))
+        self.assertNotIn("ADR:", task.section_text(4))
+        self.assertEqual(validate.task_errors(self.root, path, None), [])
+
+    def test_full_route_keeps_every_template_section(self) -> None:
+        self.assertEqual(self.new("PLAN-20261124-2", "Completa"), 0)
+        task = sddtask.parse(self.root / "sdd/tasks/PLAN-20261124-2.md")
+        template = sddtask.parse(TEMPLATE)
+        self.assertTrue(task.meta["Rota"].startswith("Completa — "))
+        for num in range(1, 10):
+            self.assertEqual(task.section_text(num), template.section_text(num), f"seção {num}")
+
+    def test_existing_record_is_never_overwritten(self) -> None:
+        with self.subTest("arquivo existente"):
+            path = self.root / "sdd/tasks/FIX-20261124.md"
+            path.write_text("trabalho existente\n")
+            self.assertEqual(self.new("FIX-20261124", "Local"), 2)
+            self.assertEqual(path.read_text(), "trabalho existente\n")
+        with self.subTest("symlink pendente"):
+            link = self.root / "sdd/tasks/LINK-20261124.md"
+            link.symlink_to(self.root / "alvo-inexistente.md")
+            self.assertEqual(self.new("LINK-20261124", "Local"), 2)
+            self.assertFalse((self.root / "alvo-inexistente.md").exists(), "symlink não é seguido")
+
+    def test_invalid_id_date_or_title_writes_nothing(self) -> None:
+        cases = [("../x-20261124", "t"), ("FIX-20261340", "t"), ("FIX-20261124-20261340", "t"),
+                 ("FIX-20261124-0", "t"), ("FIX-20261124-1", "t"),
+                 ("FIX-20261124", " "), ("FIX-20261124", "a\udcffb")]
+        cases += [("FIX-20261124", f"a{sep}b") for sep in ("\n", "\r", "\v", "\f", "\x1c", "\x85", "\u2028")]
+        for tid, title in cases:
+            with self.subTest(tid=tid, title=title):
+                self.assertEqual(self.new(tid, "Local", title), 2)
+                self.assertEqual(list((self.root / "sdd/tasks").iterdir()), [], "nada é escrito, nem vazio")
+
+    def test_date_comes_from_the_group_before_the_repeat_suffix(self) -> None:
+        self.assertEqual(self.new("FIX-20261124-20261125", "Local"), 0)
+        task = sddtask.parse(self.root / "sdd/tasks/FIX-20261124-20261125.md")
+        self.assertEqual(task.meta["Data de abertura"], "2026-11-25")
+        self.assertEqual(self.new("FIX-20261124-2", "Local"), 0)
+        task = sddtask.parse(self.root / "sdd/tasks/FIX-20261124-2.md")
+        self.assertEqual(task.meta["Data de abertura"], "2026-11-24")
+
+    def test_missing_or_redirected_tasks_dir_and_template_without_skills(self) -> None:
+        tasks = self.root / "sdd/tasks"
+        with self.subTest("sdd/tasks ausente"):
+            tasks.rmdir()
+            self.assertEqual(self.new("FIX-20261124", "Local"), 2)
+            tasks.mkdir()
+        with self.subTest("sdd/tasks symlink para fora da raiz"):
+            outside = Path(self.tmp.name + "-fora")
+            outside.mkdir()
+            self.addCleanup(shutil.rmtree, outside)
+            tasks.rmdir()
+            tasks.symlink_to(outside, target_is_directory=True)
+            self.assertEqual(self.new("FIX-20261124", "Local"), 2)
+            self.assertEqual(list(outside.iterdir()), [], "nada escrito fora da raiz")
+            tasks.unlink()
+            tasks.mkdir()
+        with self.subTest("template sem Skills lidas"):
+            template = self.root / "sdd/templates/task.md"
+            template.write_text(template.read_text().replace("Skills lidas:", "Leituras:"))
+            self.assertEqual(self.new("FIX-20261124", "Local"), 2)
+            self.assertEqual(list(tasks.iterdir()), [])
+
+    def test_evidence_reports_next_free_input_including_obsolete(self) -> None:
+        path = self.root / "sdd/tasks/FIX-20261124.md"
+        obsolete = "\n### Antigas (obsoletas)\n\n" + inputs_table("| I-07 | `x` | material | — |")
+        fenced = "\n```\n| I-90 | `x` | material | — |\n```\n<!--\n| I-91 | `x` | material | — |\n-->\n"
+        path.write_text(record(inputs_table("| I-01 | `x` | material | — |\n| `I-03` | `x` | material | — |"),
+                               extra=obsolete + fenced))
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            sddtask.main(["evidence", "--root", str(self.root), "--task", "FIX-20261124"])
+        self.assertIn("próximo input livre: I-08", out.getvalue())
+        path.write_text(record(""))
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            sddtask.main(["evidence", "--root", str(self.root), "--task", "FIX-20261124"])
+        self.assertIn("próximo input livre: I-01", out.getvalue())
 
 
 if __name__ == "__main__":

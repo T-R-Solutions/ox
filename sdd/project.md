@@ -6,15 +6,12 @@ Estado atual apenas. Autorizações anteriores estão no histórico do Git e nã
 
 - Produto: Ox — aplicativo desktop agent-first, local-first e extensível.
 - Fase: `implementation-foundation`. Estado do aplicativo: `bootstrap-implemented`.
-- Implementação de produto só ocorre no escopo autorizado abaixo ou no pedido atual,
-  por tasks do [workflow](workflow.md). Nada é considerado implementado ou validado
-  sem evidência registrada.
 
 ## Escopo autorizado vigente
 
 | Data | Task | Escopo | Exclusões |
 |---|---|---|---|
-| — | — | Nenhuma task aberta. [SDD-ENXUTO-20261123](tasks/SDD-ENXUTO-20261123.md) (SDD enxuto, legado removido) foi fechada em 2026-11-23 | — |
+| — | — | Nenhuma task aberta. [SDD-FLUXO-20261124](tasks/SDD-FLUXO-20261124.md) (fonte única das regras de execução e registro mais leve) foi fechada em 2026-11-24 | — |
 
 Pedidos novos definem o próprio escopo no prompt da task; o pedido original é o
 limite de permissão.
@@ -40,21 +37,17 @@ o estado vem do modelo anterior e a evidência bruta foi removida. Limites conhe
 
 ## Comandos
 
-Da raiz do Ox:
+Do SDD: no [workflow](workflow.md). Do produto, em `application/`:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/validate.py --root .            # SDD
-PYTHONDONTWRITEBYTECODE=1 python3 sdd/tools/sddtask.py evidence --task <ID> --check
-PYTHONDONTWRITEBYTECODE=1 python3 tools/governance/scripts/run-tests.py     # governança
-cd application && cargo test --workspace --locked --offline
-cd application && cargo clippy --workspace --all-targets --locked --offline -- -D warnings
-cd application && cargo run -p ox-app --bin ox
+cargo test --workspace --locked --offline
+cargo clippy --workspace --all-targets --locked --offline -- -D warnings
+cargo run -p ox-app --bin ox
 ```
 
-Verificação completa: somente com autorização, pelo comando de [AGENTS.md](../AGENTS.md).
+Verificação completa: [AGENTS.md](../AGENTS.md#local-full-verification-environment).
 Automação Bash: [scripts/README.md](../scripts/README.md).
 
 ## Decisões pendentes
 
-[docs/decisions/open-questions.md](../docs/decisions/open-questions.md): plataformas,
-versões, runtime, IPC, banco, sandbox, agentes e distribuição (RQ-03).
+[docs/decisions/open-questions.md](../docs/decisions/open-questions.md) (RQ-03).

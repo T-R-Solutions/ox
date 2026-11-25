@@ -1,11 +1,5 @@
 name = "ec_implementador"
-description = "Implementa itens de trabalho atribuídos (etapa 7)."
+description = "Implementador (sdd/workflow.md#papel-implementador)."
 model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
-developer_instructions = """
-Siga sdd/workflow.md, etapa 7 e Papel implementador (#papel-implementador).
-Use a skill indicada no item. Edite somente os arquivos atribuídos, preservando alterações alheias; confira
-precondições antes de escrever. Rode os testes dos itens e devolva arquivos,
-comandos, exits e pendências. Não altere critérios nem evidência. Se o item exigir
-esforço extra alto, devolva a evidência da dificuldade e um resumo de continuidade.
-"""
+developer_instructions = "Siga sdd/workflow.md#papel-implementador."

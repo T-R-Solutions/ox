@@ -2,10 +2,12 @@
 """Leitura do registro de task do SDD do Ox (formato de sdd/templates/task.md).
 
 Módulo único de parsing, usado pelo validador (sdd/tools/validate.py) e por
-ferramentas de revisão. Python 3.11+ stdlib. Somente leitura, exceto
-`evidence --write`, que regrava apenas as células SHA-256 da evidência vigente.
+ferramentas de revisão. Python 3.11+ stdlib. Somente leitura, exceto `new`, que cria um
+registro que ainda não existe, e `evidence --write`, que regrava apenas as células SHA-256 da
+evidência vigente.
 
 Uso, da raiz do Ox:
+  python3 sdd/tools/sddtask.py new --task <ID> --route <Local|Completa> --title "<título>"
   python3 sdd/tools/sddtask.py evidence --task <ID>           # mostra o estado dos hashes
   python3 sdd/tools/sddtask.py evidence --task <ID> --write   # grava os hashes atuais
   python3 sdd/tools/sddtask.py evidence --task <ID> --check   # exit 1 se algum não estiver atual
@@ -29,6 +31,7 @@ import hashlib
 import re
 import sys
 from dataclasses import dataclass, field
+from datetime import date
 from pathlib import Path
 
 SHA_RE = re.compile(r"^[0-9a-f]{64}$")
@@ -469,6 +472,113 @@ def find_tasks(root: Path) -> list[Path]:
 
 
 PLACEHOLDER_RE = re.compile(r"^(?:|—|-|<[^<>]*>)$")
+INPUT_ROW_RE = re.compile(r"^\|\s*`?I-(?P<n>\d+)`?\s*\|")
+# Data do ID: o grupo de 8 dígitos seguido só do sufixo de repetição (`-2`, `-3`, ...).
+ID_DATE_RE = re.compile(r"-(?P<date>\d{8})(?:-(?:[2-9]|[1-9]\d{1,2}))?$")
+LOCAL_NA = "NOT APPLICABLE — rota Local"
+LOCAL_NA_SECTIONS = (3, 5, 6)
+
+
+def next_input_id(path: Path) -> str:
+    """Próximo `I-n` livre: IDs de input são únicos no registro inteiro, inclusive nos obsoletos."""
+    used = [int(m.group("n")) for _, line in unfenced(path.read_text(encoding="utf-8").splitlines())
+            if (m := INPUT_ROW_RE.match(line.strip()))]
+    return f"I-{max(used, default=0) + 1:02d}"
+
+
+def _skills_block(body: list[str]) -> list[str]:
+    """Linha "Skills lidas" da seção 4 do template e a tabela que a segue."""
+    start = next((i for i, line in enumerate(body) if line.startswith("Skills lidas")), None)
+    if start is None:
+        raise ValueError("template sem 'Skills lidas' na seção 4")
+    end = start + 1
+    while end < len(body) and (not body[end].strip() or body[end].lstrip().startswith("|")):
+        end += 1
+    block = body[start:end]
+    while block and not block[-1].strip():
+        block.pop()
+    return block
+
+
+def new_record(template: str, tid: str, route: str, title: str, opened: str) -> str:
+    """Registro inicial a partir do template (sdd/workflow.md, Identificação e revisões).
+
+    Preenche ID, título, data de abertura, rota e estado `aberta`; remove comentários HTML de
+    linha inteira. Na rota Local, as seções 3, 5 e 6 ficam em NOT APPLICABLE e a seção 4 só com
+    a tabela Skills lidas (sdd/workflow.md, Rotas).
+    """
+    out: list[str] = []
+    comment = False
+    for line in template.splitlines():
+        if comment or line.lstrip().startswith("<!--"):
+            comment = "-->" not in line
+            continue
+        if line.strip() or (out and out[-1].strip()):
+            out.append(line)  # a linha do comentário removido não deixa duas linhas em branco
+    for i, line in enumerate(out):
+        if SECTION_RE.match(line):
+            break
+        if i == 0 and line.startswith("# "):
+            out[i] = f"# {tid} — {title}"
+        elif m := META_RE.match(line):
+            key, value = m.group("key").strip(), m.group("value")
+            if key == "Data de abertura":
+                out[i] = f"- {key}: {opened}"
+            elif key == "Estado":
+                out[i] = f"- {key}: aberta"
+            elif key == "Rota":
+                reason = value.partition(" — ")[2] or "<motivo em uma linha>"
+                out[i] = f"- {key}: {route} — {reason}"
+    if route == "Local":
+        heads = [(i, int(m.group("num"))) for i, line in enumerate(out) if (m := SECTION_RE.match(line))]
+        result = out[:heads[0][0]] if heads else out
+        for k, (i, num) in enumerate(heads):
+            end = heads[k + 1][0] if k + 1 < len(heads) else len(out)
+            body = out[i + 1:end]
+            if num in LOCAL_NA_SECTIONS:
+                body = ["", LOCAL_NA, ""]
+            elif num == 4:
+                body = ["", *_skills_block(body), ""]
+            result += [out[i], *body]
+        out = result
+    return "\n".join(out).rstrip("\n") + "\n"
+
+
+def create(root: Path, tid: str, route: str, title: str) -> int:
+    """`new`: cria sdd/tasks/<ID>.md; nunca sobrescreve (POL-05). Exit 0 criado, 2 recusado."""
+    m = ID_DATE_RE.search(tid)
+    if not TASK_ID_RE.fullmatch(tid) or not m:
+        print(f"ID de task inválido: {tid}", file=sys.stderr)
+        return 2
+    raw = m.group("date")
+    try:
+        opened = date.fromisoformat(f"{raw[:4]}-{raw[4:6]}-{raw[6:]}").isoformat()
+    except ValueError:
+        print(f"data inválida no ID: {tid}", file=sys.stderr)
+        return 2
+    title = title.strip()
+    if not title or title.splitlines() != [title]:
+        print("título vazio ou com quebra de linha", file=sys.stderr)
+        return 2
+    tasks = root / "sdd" / "tasks"
+    if tasks.is_symlink() or not tasks.is_dir() or not contained(tasks, root):
+        print("sdd/tasks/ ausente, symlink ou fora da raiz", file=sys.stderr)
+        return 2
+    path = tasks / f"{tid}.md"
+    try:
+        text = new_record((root / "sdd" / "templates" / "task.md").read_text(encoding="utf-8"),
+                          tid, route, title, opened)
+        data = text.encode("utf-8")  # antes de abrir: falha de codificação não deixa arquivo vazio
+        with path.open("xb") as fh:
+            fh.write(data)
+    except FileExistsError:
+        print(f"registro já existe: sdd/tasks/{tid}.md (não sobrescrito)", file=sys.stderr)
+        return 2
+    except (OSError, UnicodeDecodeError, ValueError) as exc:
+        print(f"erro: {exc}", file=sys.stderr)
+        return 2
+    print(f"criado: sdd/tasks/{tid}.md (rota {route})")
+    return 0
 
 
 def _replace_cell(lines: list[str], lineno: int, column: int, value: str) -> bool:
@@ -528,6 +638,11 @@ def write_hashes(task: Task, root: Path) -> int:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="command", required=True)
+    nw = sub.add_parser("new", help="cria sdd/tasks/<ID>.md a partir do template")
+    nw.add_argument("--root", default=".", type=Path)
+    nw.add_argument("--task", required=True, help="ID da task")
+    nw.add_argument("--route", required=True, choices=("Local", "Completa"))
+    nw.add_argument("--title", required=True, help="título curto, uma linha")
     ev = sub.add_parser("evidence", help="estado e gravação dos hashes da seção 8")
     ev.add_argument("--root", default=".", type=Path)
     ev.add_argument("--task", required=True, help="ID da task")
@@ -538,6 +653,8 @@ def main(argv: list[str] | None = None) -> int:
                     help="exige observação vigente com critério atual para cada AC da seção 1")
     args = ap.parse_args(argv)
     root = args.root.resolve()
+    if args.command == "new":
+        return create(root, args.task, args.route, args.title)
     if not TASK_ID_RE.fullmatch(args.task):
         print(f"ID de task inválido: {args.task}", file=sys.stderr)
         return 2
@@ -550,6 +667,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{write_hashes(parse(path), root)} célula(s) SHA-256 preenchida(s).")
         task = parse(path)
         rows = freshness(task, root)
+        free = next_input_id(path)
     except (OSError, UnicodeDecodeError) as exc:
         print(f"erro de leitura: {exc}", file=sys.stderr)
         return 2
@@ -561,6 +679,7 @@ def main(argv: list[str] | None = None) -> int:
     for r in (problems if args.check else rows):
         print(f"{r['status']:<18} {r['kind']:<10} {r['id']:<12} registrado={r['recorded'][:12] or '—'} "
               f"atual={r['current'][:12] or '—'}")
+    print(f"próximo input livre: {free}")
     print(f"{len(problems)} problema(s) em {len(rows)} verificação(ões).")
     return 1 if problems else 0
 

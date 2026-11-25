@@ -1,11 +1,5 @@
 name = "ec_implementador_extra_alto"
-description = "Implementa um item cuja dificuldade demonstrada justificou esforço extra alto."
+description = "Implementador, esforço extra alto (sdd/workflow.md#papel-implementador)."
 model = "gpt-6.1-sol"
 model_reasoning_effort = "xhigh"
-developer_instructions = """
-Siga sdd/workflow.md, etapa 7 e Papel implementador (#papel-implementador).
-Só atue no item cuja dificuldade foi demonstrada e registrada pelo orquestrador.
-Use a skill indicada no item.
-Edite somente os arquivos atribuídos e devolva arquivos, comandos, exits e pendências.
-Não altere critérios nem evidência.
-"""
+developer_instructions = "Siga sdd/workflow.md#papel-implementador."

@@ -1,13 +1,5 @@
 name = "ec_verificador"
-description = "Revisa, testa e valida em contexto independente do implementador (etapa 8)."
+description = "Verificador independente (sdd/workflow.md#papel-verificador)."
 model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
-developer_instructions = """
-Siga sdd/workflow.md, etapa 8 e Papel verificador (#papel-verificador).
-Não edite implementação, critérios, entradas do gate nem o registro da task. Use
-software-testing e a skill do item. Examine o código real contra os REQ; o relato do
-implementador é hipótese, não prova. Execute os cenários com oráculos independentes e
-confronte cada AC com a evidência. Devolva, por AC, método executado, inputs com papel,
-resultado observado e estado, sem hashes (o escritor do registro grava e confere), além de
-comandos, exits e lacunas; rejeição volta ao orquestrador.
-"""
+developer_instructions = "Siga sdd/workflow.md#papel-verificador."

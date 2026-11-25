@@ -1,67 +1,67 @@
 # Workflow do Ox
 
-Único contrato de execução (GOV-02): rotas, etapas, skills, agentes, evidência e fechamento.
-Cada etapa diz **o que** entrega e **quando** está pronta; o **como** técnico é delegado à skill
-indicada. Autorização vem do pedido do usuário e do ambiente, nunca deste arquivo (POL-10).
-Ações locais reversíveis e autorizadas seguem sem pedir confirmação rotineira.
+Contrato de execução do Ox (GOV-02). Cada etapa diz **o que** entrega e **quando** está pronta; o
+**como** técnico vem da skill. Permissões: POL-10 e
+[AGENTS.md](../AGENTS.md#permissões-que-exigem-pedido-explícito).
 
 ## Rotas
 
 Toda etapa é contabilizada; a rota muda o método, não a existência da etapa. Etapa que não se
-aplica aparece como `NOT APPLICABLE` com o motivo em uma linha.
+aplica aparece como `NOT APPLICABLE — <motivo em uma linha>`.
 
 | Rota | Quando | Registro |
 |---|---|---|
 | **Consulta** | Pergunta, explicação, diagnóstico ou status, sem alterar arquivos do projeto | Nenhum arquivo e nenhuma skill obrigatória. A resposta cita fontes e limites |
-| **Local** | Objetivo e aceite claros, superfície e consumidores conhecidos, mudança reversível, sem risco material | `sdd/tasks/<ID>.md` com as seções 1, 2, 7, 8 e 9 e a tabela **Skills lidas** (no mínimo `prompt`); seções 3–6 `NOT APPLICABLE` com motivo |
-| **Completa** | Decisão material em aberto, mudança de contrato/autorização, dados persistidos, concorrência, migração, compatibilidade ou recuperação incerta | `sdd/tasks/<ID>.md` com todas as seções; spec viva em `sdd/specs/` quando a capacidade é duradoura |
+| **Local** | Objetivo e aceite claros, superfície e consumidores conhecidos, mudança reversível, sem risco material | Seções 1, 2, 7, 8 e 9; seções 3, 5 e 6 em `NOT APPLICABLE`; seção 4 só com **Skills lidas** |
+| **Completa** | Decisão material em aberto, mudança de contrato/autorização, dados persistidos, concorrência, migração, compatibilidade ou recuperação incerta | Todas as seções |
 
 Risco material é o que pode alterar autorização, evidência/gates, integridade, concorrência,
-migração, compatibilidade ou recuperação. Tamanho do diff não classifica. Risco material exige
-orquestração alta e verificação em contexto independente do implementador ([Agentes](#agentes)).
-Risco novo reclassifica para a rota Completa, preservando o trabalho válido.
+migração, compatibilidade ou recuperação; tamanho do diff não classifica e incerteza relevante
+conta como risco. Risco novo reclassifica para a rota Completa (GOV-03).
 
 ## Identificação e revisões
 
 `<ID>` = `<TEMA>-<AAAAMMDD>` em maiúsculas, ex.: `IDE-SHELL-20261123`; sufixo `-2`, `-3` se
 repetir no mesmo dia. Correção do usuário sobre o **mesmo escopo** é uma revisão `r2`, `r3` no
 mesmo arquivo. Escopo novo (objetivo ou requisito novo) é task nova, que cita a anterior.
+`python3 sdd/tools/sddtask.py new --task <ID> --route <Local|Completa> --title "<título>"` cria o
+registro da rota a partir do [template](templates/task.md) e nunca sobrescreve um existente.
 
 ## Etapas
 
-Cada etapa preenche a seção de mesmo número do [template](templates/task.md); não avance sem o gate.
+Cada etapa preenche a seção de mesmo número do registro; não avance sem o gate. Os blocos agrupam
+a leitura; cada gate continua valendo sozinho.
 
-| Etapa | Saída | Skill | Papel | Gate |
-|---|---|---|---|---|
-| 0. Entrada | — | — | raiz | escopo autorizado identificado no pedido ou em `project.md` |
-| 1. Prompt | seção 1 | `prompt` | raiz | cinco divisões, regra de conclusão, AC com método e esperado ou `PENDENTE: Q-n` |
-| 2. Esclarecer | seção 2 | `prompt` | raiz, com o usuário | nenhum AC `PENDENTE` usado pela etapa seguinte |
-| 3. Especificar | seção 3 e spec viva | `domain-modeling` se houver conceito novo | planejador | todo AC liga-se a um REQ; todo REQ tem AC |
-| 4. Planejar | seção 4 | skill do assunto | planejador | todo REQ tem decisão; nenhuma decisão viola a constituição |
-| 5. Itens | seção 5 | `software-testing` | planejador | todo item tem teste, condição de pronto e skill; todo D é coberto |
-| 6. Coerência | seção 6 | — | planejador | `validate.py --root . --task <ID> --matrix` exit 0 |
-| 7. Executar | seção 7 | skill do item | implementador | teste de cada item passando, ou falha registrada; documentação atualizada |
-| 8. Validar | seção 8 | `software-testing` | verificador observa; escritor do registro grava | todo AC com estado; `evidence --check --require-all` exit 0 |
-| 9. Fechar | seção 9 | — | raiz ou orquestrador | regra de conclusão cumprida |
+| Bloco (papel) | Etapa | Gate |
+|---|---|---|
+| A. Entender (raiz) | 0. Entrada | escopo autorizado identificado no pedido ou em `project.md` |
+| | 1. Prompt | cinco divisões, regra de conclusão, AC com método e esperado ou `PENDENTE: Q-n` |
+| | 2. Esclarecer | nenhum AC `PENDENTE` usado pela etapa seguinte |
+| B. Planejar (planejador) | 3. Especificar | todo AC liga-se a um REQ; todo REQ tem AC |
+| | 4. Planejar | todo REQ tem decisão; nenhuma decisão viola a constituição |
+| | 5. Itens | todo item tem teste, condição de pronto e skill; todo D é coberto |
+| | 6. Coerência | matriz sem falha (exit 0) |
+| C. Executar (implementador) | 7. Executar | teste de cada item passando, ou falha registrada; documentação atualizada |
+| D. Validar (verificador observa; escritor do registro grava) | 8. Validar | todo AC com estado; evidência atual para todos (exit 0) |
+| E. Fechar (raiz ou orquestrador) | 9. Fechar | regra de conclusão cumprida |
 
 ### 0. Entrada
 
-Ler [constitution.md](constitution.md) e [project.md](project.md); conferir `git status` para
-preservar mudanças de terceiros (POL-05). Outras fontes só quando a task as toca.
+Ler [constitution.md](constitution.md) e [project.md](project.md); conferir `git status` (POL-05).
+Outras fontes só quando a task as toca.
 
 ### 1. Prompt
 
-Converter o pedido num prompt com exatamente estas divisões:
+Converter o pedido, com a skill `prompt`, nas cinco divisões do template:
 
 1. `1 - Objetivos`: resultado pretendido, público e insumos.
 2. `2 - Requisitos`: comportamento e entregáveis concretos.
 3. `3 - Restrições`: guardrails — o que **não** fazer, escopo, permissões, o que preservar.
-4. `4 - Critérios de Aceitação`: uma linha por critério, no formato
+4. `4 - Critérios de Aceitação`: uma linha por critério,
    `- AC-01: <condição observável> | método: <comando ou inspeção> | esperado: <resultado>`.
-5. `5 - Entrega`: arquivos/saídas e a **regra de conclusão**: "a task está concluída quando
-   AC-01…AC-n estiverem APPROVED ou NOT APPLICABLE com motivo, e a seção 9 estiver preenchida".
+5. `5 - Entrega`: arquivos/saídas e a regra de conclusão do template.
 
-Termos subjetivos são proibidos sem métrica (GOV-09). Substituições obrigatórias:
+Substituições obrigatórias de termos subjetivos (GOV-09):
 
 | Proibido | Escreva em vez disso |
 |---|---|
@@ -73,33 +73,31 @@ Termos subjetivos são proibidos sem métrica (GOV-09). Substituições obrigat�
 | adequado, correto, bom | o oráculo que decide (teste, spec, comando) |
 
 Não invente números. Métrica, método ou esperado essencial e desconhecido vira AC provisório,
-`- AC-02: <condição> | PENDENTE: Q-1`, com a pergunta registrada na seção 2.
+`- AC-02: <condição> | PENDENTE: Q-1`, com a pergunta na seção 2.
 
 ### 2. Esclarecer
 
-Lacuna ou contradição que mudaria o resultado vira pergunta ao usuário: 1 a 3 por rodada, com
-opções quando útil. Registrar pergunta e resposta. Lacuna menor vira `SUPOSIÇÃO:` rotulada. Cada
-resposta reescreve o AC pendente na forma completa. Trabalho que depende de AC pendente fica
-bloqueado; o independente segue. A etapa 8 nunca começa com AC pendente.
+Perguntas da GOV-09: 1 a 3 por rodada, com opções quando útil, registradas com a resposta.
+Lacuna menor vira `SUPOSIÇÃO:` rotulada. Cada resposta reescreve o AC pendente na forma completa.
+O trabalho que não depende de AC pendente segue. A etapa 8 nunca começa com AC pendente.
 
 ### 3. Especificar (o quê e por quê)
 
 Registrar motivação, atores, cenários normais e rejeitados, requisitos `REQ-n` e ligar cada AC
-a um REQ (`- AC-01 → REQ-01`). Capacidade duradoura do produto: criar ou atualizar
-`sdd/specs/<capacidade>.md` ([template](templates/spec.md)) e citá-la na task.
+a um REQ (`- AC-01 → REQ-01`). Spec viva (GOV-10): criar ou atualizar
+`sdd/specs/<capacidade>.md` ([template](templates/spec.md)), citá-la na task e registrar a task na
+tabela de estado da spec.
 
 ### 4. Planejar (decisões técnicas)
 
-Arquitetura, modelo de dados, módulos e interfaces, bibliotecas e versões ([Skills](#skills)).
-Cada decisão `D-n`: escolha, alternativa descartada e motivo, REQ atendido. A tabela **Skills
-lidas** (caminho, motivo, contribuição) existe em toda rota com registro (GOV-04). Decisão de
-política ou escolha pendente da RQ-03 exige ADR em `docs/decisions/`.
+Arquitetura, modelo de dados, módulos e interfaces, bibliotecas e versões. Cada decisão `D-n`:
+escolha, alternativa descartada e motivo, REQ atendido.
 
 ### 5. Quebrar em itens de trabalho
 
-Cada item `T-n`: decisão atendida, arquivos (um dono por arquivo), dependências, teste que o
-verifica (cita os AC), condição de pronto e skill (nome do catálogo entre crases, registrada em
-**Skills lidas**, ou `nenhuma: <motivo>`). Cada item pode ser implementado e testado sozinho.
+Cada item `T-n`: decisão atendida, arquivos e seu dono (um por arquivo), dependências, teste que o
+verifica (cita os AC), condição de pronto e skill (nome do catálogo entre crases ou
+`nenhuma: <motivo>`). Cada item pode ser implementado e testado sozinho.
 
 ### 6. Verificar coerência
 
@@ -110,28 +108,28 @@ A seção 6 registra o exit e os conflitos com POL/GOV/RQ; a matriz não é redi
 ### 7. Executar
 
 Implementar item a item, na ordem das dependências, com a skill do item. Registrar por item:
-arquivos alterados, teste executado, exit code, falhas e tentativas abandonadas. Não enfraquecer
-critério para passar. O último item atualiza a documentação afetada e `sdd/project.md`, ou
-registra o motivo de não impacto.
+arquivos alterados, teste executado, exit code, falhas e tentativas abandonadas. O último item
+atualiza a documentação afetada e `sdd/project.md`, ou registra o motivo de não impacto.
 
 ### 8. Validar
 
-Tabelas de inputs e de ACs do [template](templates/task.md). Sequência: (1) o verificador
-(na rota Local, a raiz) executa os métodos e devolve as linhas sem hashes; (2) o escritor do
-registro grava as linhas, roda `--write` e depois `--check --require-all`; exit 1 devolve os ACs
-indicados ao passo 1.
+1. O verificador (na rota Local, a raiz) executa os métodos e devolve, por AC, método executado,
+   inputs com papel, resultado observado e estado, sem hashes, além de comandos, exits e lacunas.
+2. O escritor do registro grava as linhas, roda `python3 sdd/tools/sddtask.py evidence --task <ID>`
+   com `--write` e depois com `--check --require-all`; exit 1 devolve os ACs indicados ao passo 1.
 
-- Papéis: `material` (o que é avaliado), `oráculo` (teste, script ou referência que decide),
-  `configuração` (lockfile, perfil, flags). Input derivado (lista gerada) registra o comando
-  e o sha256 da saída. O próprio registro da task não é input.
-- Hashes por ferramenta, nunca à mão:
-  `python3 sdd/tools/sddtask.py evidence --task <ID> --write` preenche as células vazias (ou `<…>`)
-  com o sha256 da linha do AC e dos bytes de cada input com caminho entre crases; nunca renova hash
-  já registrado. `--check` sai com 1 se algum estiver desatualizado; `--require-all` exige
-  observação atual para cada AC.
-- Estados (GOV-05): APPROVED, REJECTED, UNVERIFIED, INCONCLUSIVE, NOT APPLICABLE (este exige
-  motivo). APPROVED/REJECTED citam ao menos um input `material` e um `oráculo`, ou
-  `sem oráculo separado: <motivo>`. Rota Completa: validação pelo verificador independente.
+- Inputs mínimos: registre só o que sustenta o AC — o `material` julgado, o `oráculo` que decide
+  (teste, script ou referência) e `configuração` (lockfile, perfil, flags) apenas quando altera o
+  resultado. Um `I-n` serve a vários ACs da mesma camada; a saída de `evidence` mostra o próximo
+  livre. Input derivado (lista gerada) registra o comando e o sha256 da saída. O próprio registro
+  da task não é input.
+- Célula de caminho com um único `caminho` entre crases (relativo à raiz) ou um link é conferida
+  por bytes; outra forma não é verificável. Método e resultado nunca ficam vazios.
+- `--write` preenche só células vazias ou `<…>`, com o sha256 da linha do AC e dos bytes de cada
+  input; nunca renova hash registrado. `--check` sai com 1 se algum
+  estiver desatualizado; `--require-all` exige observação atual para cada AC.
+- Estados (GOV-05): `NOT APPLICABLE` exige motivo. APPROVED/REJECTED citam ao menos um input
+  `material` e um `oráculo`, ou `sem oráculo separado: <motivo>`.
 
 ### 9. Fechar
 
@@ -139,37 +137,35 @@ indicados ao passo 1.
 2. Se a task mudou `AGENTS.md`, `sdd/`, `.codex/` ou skills: rodar
    `python3 sdd/tools/validate.py --root .` e `python3 tools/governance/scripts/run-tests.py`;
    exit diferente de 0 impede a conclusão.
-3. `sddtask.py evidence --task <ID> --check --require-all` exit 0.
+3. Repetir `evidence --check --require-all` com exit 0.
 4. Marcar `Estado:` no cabeçalho e responder ao usuário com o resultado, os checks realmente
    executados e as pendências.
 
-**Regra de conclusão:** a regra da divisão `5 - Entrega` está cumprida. Se um AC obrigatório não
-está APPROVED/NOT APPLICABLE, a task é reportada como **incompleta** ou **bloqueada**, com a
-condição que falta e o passo de retomada.
+**Regra de conclusão:** a da divisão `5 - Entrega`. Se um AC obrigatório não está
+APPROVED/NOT APPLICABLE, a task é reportada como **incompleta** ou **bloqueada**, com a condição
+que falta e o passo de retomada.
 
 ## Evidência e retomada
 
 - Log ou artefato citado na seção 8 é versionado em `sdd/tasks/<ID>/`, até 1 MiB por arquivo;
   acima disso, a seção guarda comando, sha256 e motivo. `.local/tasks/<ID>/` (ignorado pelo Git)
   só guarda saída não citada; o `validate.py` reprova input ali.
-- Observação cujo input mudou não é editada: a nova é acrescentada e a antiga vai para
-  `### … (obsoletas)`. Check estrutural com exit 0 prova estrutura, não comportamento.
-- Após o fechamento, correções entram ao final como `## Revisão rN — <data>`, com as etapas
-  afetadas como subseções `### <n>. <nome>`. Por ID vale a revisão mais recente. IDs `I-n` são
-  únicos no registro inteiro. Blocos cercados e comentários HTML não contam como estrutura.
-- Retomada: `sddtask.py evidence --task <ID> --check`; AC cujo critério ou input mudou volta a
-  UNVERIFIED até nova observação. Em task concluída, input alterado depois do fechamento é
-  retomada, não falha do `validate.py`.
-- Revisão externa (ex.: Claude) grava `sdd/tasks/<ID>.review.md`;
-  o dono responde com uma revisão `rN` no registro.
+- Observação substituída (GOV-05) vai, com o motivo, para uma subseção `### … (obsoletas)`.
+- Após o fechamento, correções entram ao final como `## Revisão rN — <data>`, com uma linha
+  `Motivo:` e as etapas afetadas como subseções `### <n>. <nome>`. Por ID vale a revisão mais
+  recente. IDs `I-n` são únicos no registro inteiro. Blocos cercados e comentários HTML não contam
+  como estrutura.
+- Retomada (GOV-03, GOV-05): `evidence --check` lista os ACs a reobservar, que ficam UNVERIFIED
+  até a nova observação. Em task concluída, input alterado depois do fechamento é retomada, não
+  falha do `validate.py`.
+- Revisão externa (ex.: Claude) grava `sdd/tasks/<ID>.review.md`; o dono responde com uma
+  revisão `rN` no registro.
 
 ## Skills
 
-As skills ficam em `.codex/skills/<nome>/SKILL.md`; esta seção é o único catálogo e mapa (GOV-04).
+Catálogo e mapa etapa → skill da GOV-04, com as skills em `.codex/skills/<nome>/SKILL.md`.
 
-- Ler o `SKILL.md` real antes de usar e registrá-lo em **Skills lidas**; menção não é uso.
 - Uma skill primária por assunto; auxiliares só para questão distinta, sem carregamento recursivo.
-- A skill define o método; política e gates são deste workflow, que prevalece em conflito.
 - Skill indisponível: registrar a lacuna; o AC dependente fica UNVERIFIED.
 
 | Skill | Etapa | Usar quando |
@@ -210,71 +206,67 @@ Fora do perfil: `gleam`, `kotlin` e `postgresql` não são instaladas.
 
 ## Agentes
 
-`.codex/config.toml` e `.codex/agents/ec_*.toml` (6 perfis), separados do Agent Runtime do
-produto. Carregar com sessão nova `codex --strict-config`; TOML não é sandbox nem permissão.
+Perfis em `.codex/config.toml` (raiz) e `.codex/agents/ec_*.toml`, separados do Agent Runtime do
+produto e carregados por sessão nova `codex --strict-config`. Modelo e esforço vivem só nos TOML;
+cada perfil aponta para o seu papel abaixo.
 
-| Papel | Perfil normal | Perfil para risco material | Etapas |
-|---|---|---|---|
-| Raiz (controlador) | sessão raiz: Sol 6.1 / medium | a mesma | 0–2, triagem, 9 |
-| Orquestrador | `ec_orquestrador_normal`: Astra 6 / medium | `ec_orquestrador_alta`: Astra 6 / high | coordena 3–9 |
-| Planejador | `ec_planejador`: Sol 6.1 / high | o mesmo | 3–6 |
-| Implementador | `ec_implementador`: Sol 6.1 / high | `ec_implementador_extra_alto` (xhigh) só com dificuldade demonstrada e motivo registrado | 7 |
-| Verificador | `ec_verificador`: Sol 6.1 / high | o mesmo | revisão, testes e 8 |
+| Papel | Perfil | Alternativa e quando |
+|---|---|---|
+| Raiz (controlador) | sessão raiz | — |
+| Orquestrador | `ec_orquestrador_normal` | `ec_orquestrador_alta` ([Triagem](#triagem)) |
+| Planejador | `ec_planejador` | — |
+| Implementador | `ec_implementador` | `ec_implementador_extra_alto` ([Papel implementador](#papel-implementador)) |
+| Verificador | `ec_verificador` | — |
 
 ### Triagem
 
 Feita pela raiz, por ambiguidade, alcance, risco, reversibilidade, dependências e
-verificabilidade; tamanho não decide e incerteza relevante conta como alta.
+verificabilidade ([Rotas](#rotas)).
 
 | Situação | Quem executa |
 |---|---|
 | Rota Consulta | A raiz, diretamente, com fontes e limites |
 | Rota Local | A raiz, no escopo autorizado, com verificação focada |
 | Rota Completa sem risco material | `ec_orquestrador_normal` |
-| Risco material | `ec_orquestrador_alta`; verificação em contexto independente do implementador |
+| Risco material | `ec_orquestrador_alta` |
 | Contexto independente indisponível | Concluir análise e plano; bloquear a execução dependente e registrar a condição de retomada |
 
 ### Delegação
 
-- Limite: 4 agentes na árvore (raiz, orquestrador e até 2 especialistas); limite menor do host
-  prevalece. Com 1 vaga, implementar e verificar em sequência, cada um em contexto novo.
+- Vagas: a raiz mais `max_concurrent_threads_per_session` de `.codex/config.toml`, contando o
+  orquestrador; limite menor do host prevalece. Com 1 vaga, implementar e verificar em sequência,
+  cada um em contexto novo.
 - Toda delegação recebe por escrito: ID da task, pedido e permissões, itens `T-n` com a skill,
   arquivos de que é dono, critérios, fatos e hipóteses, resultado esperado. Não depender de
   histórico implícito.
-- Um dono por arquivo; paralelizar só itens com escrita disjunta. O orquestrador (ou a raiz, na
-  rota Local) é o único escritor de `sdd/tasks/<ID>.md` e consolida os retornos.
-- Especialistas não subdelegam. O orquestrador não cria outro orquestrador; para trocar de perfil,
-  devolve à raiz um resumo de continuidade.
-- Relato do implementador é pista, não prova. O mesmo perfil não torna independente um contexto
-  que implementou. Não finalizar com trabalho delegado ativo.
+- Paralelizar só itens com escrita disjunta. O orquestrador (ou a raiz, na rota Local) é o único
+  escritor de `sdd/tasks/<ID>.md`.
+- Especialistas não subdelegam. O mesmo perfil não torna independente um contexto que implementou.
+  Não finalizar com trabalho delegado ativo.
 
 ### Papel orquestrador
 
-Recebe a triagem e coordena a task até aceite ou bloqueio: atribui itens e arquivos, integra os
-retornos no registro (etapa 8, passo 2), reavalia a rota e escolhe o implementador extra alto
-só com dificuldade demonstrada.
+Recebe a triagem e coordena as etapas 3–9 até aceite ou bloqueio: atribui itens e arquivos,
+integra os retornos (etapa 8, passo 2), reavalia a rota e escolhe o perfil do implementador. Não
+cria outro orquestrador nem simula troca de modelo; para trocar de perfil (ex.: risco material
+novo no perfil normal), devolve à raiz um resumo de continuidade.
 
 ### Papel planejador
 
-Etapas 3–6: lê autoridades, contratos e consumidores; devolve REQ, decisões com alternativas,
-itens com donos, dependências, testes e skill, e o resultado de
-`validate.py --root . --task <ID> --matrix`. Não edita código nem decide política nova.
+Etapas 3–6: lê autoridades, contratos, consumidores e as skills do assunto; devolve REQ, decisões
+com alternativas, itens com donos, dependências, testes e skill, e a saída da etapa 6. Não edita
+código nem decide política nova.
 
 ### Papel implementador
 
-Etapa 7: usa a skill do item, edita só os arquivos atribuídos, confere precondições antes de
-escrever, roda os testes dos itens e devolve arquivos, comandos, exits e pendências. Não altera
-critérios nem evidência.
+Etapa 7: edita só os arquivos atribuídos (POL-05) e devolve arquivos, comandos, exits e
+pendências. Não altera critérios nem evidência. Item que exige esforço extra alto volta com a
+evidência da dificuldade e um resumo de continuidade; o orquestrador usa o perfil extra alto só no
+item cuja dificuldade registrou.
 
 ### Papel verificador
 
-Revisão, testes e etapa 8, em contexto independente do implementador: examina o código real
-contra os REQ (consumidores, invariantes, segurança, falhas) com `software-testing` e a skill do
-item, executa os cenários com oráculos independentes, confronta cada AC com a evidência e devolve
-as linhas da seção 8 sem hashes. Não edita implementação, critérios nem o registro; rejeição volta
-ao orquestrador.
-
-## Fora deste contrato
-
-Ações que exigem pedido explícito (commit, publicação, downloads, verificação completa) estão
-em [AGENTS.md](../AGENTS.md#permissões-que-exigem-pedido-explícito).
+Revisão, testes e etapa 8 (passo 1), em contexto independente do implementador: examina o código
+real contra os REQ (consumidores, invariantes, segurança, falhas) com `software-testing` e a skill
+do item, usa oráculos independentes e confronta cada AC com a evidência. Não
+edita implementação, critérios, entradas do gate nem o registro; rejeição volta ao orquestrador.

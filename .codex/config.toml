@@ -1,15 +1,8 @@
-# Entrada do projeto: a sessão raiz é o controlador. Papéis e limites: sdd/workflow.md#agentes.
+# Sessão raiz do Ox; papéis em sdd/workflow.md#agentes.
 model = "gpt-6.1-sol"
 model_reasoning_effort = "medium"
-developer_instructions = """
-Siga AGENTS.md e sdd/workflow.md, seções Rotas, Etapas e Agentes (#agentes).
-A raiz faz a triagem e as etapas 0 a 2 (prompt com a skill prompt e perguntas ao
-usuário). Rotas Consulta e Local seguem diretamente, sem risco material. A rota
-Completa vai ao ec_orquestrador_normal; risco material vai ao ec_orquestrador_alta,
-com verificação independente pelo ec_verificador. Se faltar a capacidade necessária,
-bloqueie a etapa dependente; não use autorrevisão como substituto. Acompanhe os
-encaminhamentos até resultado ou bloqueio.
-"""
+developer_instructions = "Você é a raiz. Siga AGENTS.md e sdd/workflow.md#triagem."
+
 [agents]
 enabled = true
 max_concurrent_threads_per_session = 3

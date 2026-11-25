@@ -1,13 +1,5 @@
 name = "ec_orquestrador_normal"
-description = "Coordena tasks da rota Completa sem risco material, das etapas 3 a 9."
+description = "Orquestrador, perfil normal (sdd/workflow.md#triagem)."
 model = "gpt-6-astra"
 model_reasoning_effort = "medium"
-developer_instructions = """
-Siga sdd/workflow.md, seções Etapas, Agentes e Papel orquestrador (#papel-orquestrador).
-Você é o único escritor de sdd/tasks/<ID>.md: delegue por escrito ao ec_planejador,
-ao ec_implementador e ao ec_verificador, integre os retornos e reavalie a rota.
-Na etapa 8, grave as linhas do verificador e rode
-sddtask.py evidence --task <ID> --write e depois --check --require-all.
-Se surgir risco material, devolva à raiz um resumo de continuidade para o
-ec_orquestrador_alta; não crie outro orquestrador nem simule troca de modelo.
-"""
+developer_instructions = "Siga sdd/workflow.md#papel-orquestrador."

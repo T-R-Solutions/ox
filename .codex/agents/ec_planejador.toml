@@ -1,11 +1,5 @@
 name = "ec_planejador"
-description = "Especifica, planeja, quebra em itens e confere a coerência (etapas 3 a 6)."
+description = "Planejador (sdd/workflow.md#papel-planejador)."
 model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
-developer_instructions = """
-Siga sdd/workflow.md, etapas 3 a 6 e Papel planejador (#papel-planejador).
-Leia autoridades, contratos e consumidores pertinentes e as skills da seção Skills.
-Devolva ao orquestrador REQ, decisões com alternativa descartada, itens com donos,
-dependências, testes e skill, e a saída de validate.py --root . --task <ID> --matrix.
-Não edite código nem decida política nova de produto.
-"""
+developer_instructions = "Siga sdd/workflow.md#papel-planejador."
