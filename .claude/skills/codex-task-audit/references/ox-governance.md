@@ -1,7 +1,6 @@
 # O que conferir no Ox
 
-As regras estão no SDD; esta lista só diz **onde olhar**. Em divergência, vale o SDD:
-`sdd/constitution.md` > `AGENTS.md` > `sdd/workflow.md` (etapas, skills e agentes) > skills.
+Consulte a seção [Governança do processo](../../../../sdd/constitution.md#governança-do-processo) da constituição do Ox.
 
 ## Por seção do registro da task (`sdd/tasks/<ID>.md`)
 
